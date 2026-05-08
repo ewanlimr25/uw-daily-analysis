@@ -4,7 +4,7 @@ description: Run the full Friday-evening or Sunday-prep weekly intelligence note
 
 # Weekly Market Intelligence
 
-Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same two-phase agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns 8 agents in parallel against a shared week-baseline context. Phase 2 runs `risk-monitor` against the union of the week's candidates. Score conviction formally with explicit tiers, backtest top names, write winners back to the watchlist, and save the report to `analyses/weekly/YYYY-WW.md`.
+Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same two-phase agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context. Phase 2 runs `signal-confluence-quant` for audited scoring, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest top names, write winners back to the watchlist, and save the report to `analyses/weekly/YYYY-WW.md`.
 
 ## When to invoke
 
@@ -25,15 +25,19 @@ The orchestrator running this skill must use **`opus` with extended thinking on*
 
 | Agent | Model | Thinking | Why |
 |---|---|---|---|
-| gamma-flip-tracker | sonnet | off | Mechanical: fetch GEX trajectory, output zero-gamma + pin strikes |
-| sweep-tracker | sonnet | off | Filter and rank by persistence count — no synthesis |
-| accumulation-hunter | sonnet | off | Pattern match across dark pool + OI over 5d/10d |
-| contrarian-scanner | sonnet | off | Trajectory computation — rising vs falling pc_ratio_zscore |
-| earnings-scout | sonnet | **on** | Dual mandate: judgment-heavy recap grading + multi-signal lookahead ranking |
-| vol-surface-scout | sonnet | off | Analytical WoW delta — systematic flagging, no ambiguity |
-| multileg-strategist | sonnet | **on** | Hardest Phase 1 task: inferring institutional intent from repeated cross-week structures |
-| leap-positioning-radar | sonnet | **on** | Multi-signal synthesis over 10d+ window + rolling detector requires reasoning depth |
-| risk-monitor (Phase 2) | sonnet | off | Systematic: correlation matrix + cluster flagging |
+| gamma-flip-tracker | sonnet | off | Mechanical: today's 0DTE flip + pin strikes; demoted to forward-looking only this week |
+| dealer-positioning-strategist | sonnet | **on** | Multi-signal synthesis: DEX trajectory + vanna squeeze + GEX time series across the week — reasoning depth required |
+| sweep-tracker | sonnet | off | Filter and rank by `multi_day_sweep_persistence` count — no synthesis |
+| accumulation-hunter | sonnet | off | Pattern match across DP + OI over 5d/10d, with `dp_block_size_stratified` gate |
+| contrarian-scanner | sonnet | off | Trajectory computation — rising vs falling `pc_ratio_zscore`, VRP gate |
+| earnings-scout | sonnet | **on** | Dual mandate: judgment-heavy recap grading + multi-signal lookahead ranking with term-skew |
+| vol-surface-scout | sonnet | off | Analytical WoW delta — systematic flagging, `iv_percentile_zscore` + VRP bias |
+| multileg-strategist | sonnet | **on** | Hardest Phase 1 task: inferring institutional intent from repeated cross-week structures + term-structure context |
+| leap-positioning-radar | sonnet | **on** | Multi-signal synthesis over 10d+ window + rolling detector + cumulative_premium_flow accretion classification |
+| sector-rotation-strategist | sonnet | off | Persistence-gated rotation calls + leader extraction; mostly mechanical |
+| opex-pin-strategist (conditional) | sonnet | off | OPEX-week only; ranking + structure suggestion is rule-based |
+| signal-confluence-quant (Phase 2a) | sonnet | **on** | Audited per-ticker scoring with explicit component breakdown — reasoning required for tie-breaking and audit-trail prose |
+| risk-monitor (Phase 2b) | sonnet | off | Systematic: correlation matrix + cluster flagging + gate stack application |
 
 Pass the model assignment in each agent's prompt header (e.g. `Model: claude-sonnet-4-6, extended_thinking: false`).
 
@@ -106,19 +110,53 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
 
 ## Step 1 — Phase 1: alpha-finding agents (parallel, single batch)
 
-Spawn these 8 agents **simultaneously** — a single message with 8 Agent tool calls. Hand each one: (a) the week-baseline context block from Step 0, (b) the count of covered days (so agents know whether they have a full 5-day window or a shorter one), and (c) the explicit tool list below. Each agent must restrict queries to `covered_dates` and favour multi-day tools over single-day equivalents.
+Spawn these **11 agents simultaneously** — a single message with 11 Agent tool calls (12 in OPEX week — see opex-pin-strategist). Hand each one: (a) the week-baseline context block from Step 0, (b) the count of covered days (so agents know whether they have a full 5-day window or a shorter one), and (c) the explicit tool list below. Each agent must restrict queries to `covered_dates` and favour multi-day tools over single-day equivalents.
+
+**Hard rule:** no agent re-fetches `market_regime`, `volatility_risk_premium`, or `front_end_iv_ratio` — those come from Step 0 context only.
 
 ### gamma-flip-tracker — DEMOTED, forward-looking only (sonnet, thinking off)
-Do **NOT** produce intraday or 0DTE calls. Instead: forecast next week's zero-gamma level and key pin strikes for SPY/QQQ/IWM and any liquid name with significant LEAP-grade GEX from Step 0.
+Do **NOT** produce intraday or 0DTE calls. Instead: forecast next week's zero-gamma level and key pin strikes for SPY/QQQ/IWM and any liquid name with significant near-dated GEX from Step 0. **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
 
 Tools required:
 - `mcp__uw-options-structure__today_gamma_flip` — current day zero-gamma + flip strike (latest).
 - `mcp__uw-options-structure__gamma_exposure_profile` (default `dte_max=45`) — per-strike GEX, call wall, put wall.
-- `mcp__uw-historical__gex_time_series` (`lookback_days=10`) — multi-day ZGL trajectory; flag any regime flip across the week.
-- `mcp__uw-options-structure__dealer_delta_exposure` — DEX trajectory (week-over-week directional pressure).
-- `mcp__uw-options-structure__vanna_charm_exposure` — vanna-squeeze setup detection (put-heavy book + falling VIX → BUY setup).
+- `mcp__uw-options-flow__expiry_heatmap` — confirm next-week expiry holds the volume share for the forecast.
+- `mcp__uw-options-flow__greek_screener` — `min_gamma` filter for the highest-impact next-week contracts.
 
-Output: §9 next-week GEX outlook — pin vs trend regime, key strikes, DEX/vanna squeeze flags.
+Output: §9 next-week pin vs trend regime call, key SPY/QQQ/IWM pin strikes for next week.
+
+### dealer-positioning-strategist — swing-horizon dealer flows (sonnet, thinking **on**) (NEW)
+Owns the multi-day DEX / vanna / charm / GEX-trajectory work. Surfaces 1–4 week swing setups GF cannot see at the 0DTE horizon.
+
+Tools required:
+- `mcp__uw-options-structure__dealer_delta_exposure` — DEX trajectory week-over-week (directional pressure ahead of price).
+- `mcp__uw-options-structure__vanna_charm_exposure` — vanna-squeeze detection (put-heavy book + falling VIX → BUY setup).
+- `mcp__uw-historical__gex_time_series` (`lookback_days=10`, also 30d) — multi-day ZGL trajectory; flag any regime flip across the week.
+- `mcp__uw-options-structure__gamma_exposure_profile` (default `dte_max=45`) — confirm DEX flip is not a single-strike artifact.
+- `mcp__uw-options-structure__front_end_iv_ratio` — secondary panic gate; consume from Step 0 if available.
+
+Output: per-ticker swing dealer reads — DEX state + 5d/10d trajectory, vanna-squeeze flags, ZGL trajectory week-over-week, regime-flip detections, swing bias for next 1–4 weeks. Feeds §3 (Swing Book) with the `vanna_squeeze` / `dex_flip_long` / `dex_flip_short` signal classes.
+
+### sector-rotation-strategist — durable rotation calls + named single-name leaders (sonnet, thinking off) (NEW)
+Owns multi-week sector rotation + leader extraction. Enforces ≥3-day persistence — primary feed for §2 of the report.
+
+Tools required:
+- `mcp__uw-options-flow__sector_flow_persistence` — multi-day rotation persistence per sector across `covered_dates` (PRIMARY).
+- `mcp__uw-options-flow__sector_flow_summary` for `WEEK_END` — single-day skew within the persistence narrative.
+- `mcp__uw-screener__bullish_bearish_screener` — filter by sector to extract single-name leaders.
+- `mcp__uw-options-flow__dte_volume_share` per covered date — institutional vs retail share by sector trend across the week.
+
+Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders, swing-book implication. Feeds §2 (Sector Rotation) directly.
+
+### opex-pin-strategist — CONDITIONAL: only spawn within 7 days of monthly third-Friday (sonnet, thinking off) (NEW)
+**Conditional spawn.** If `WEEK_END` is within 7 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit.
+
+Tools required:
+- `mcp__uw-oi__pin_risk_screener` — pin candidates with strike + probability.
+- `mcp__uw-oi__opex_concentration` — OI mass at OPEX strikes.
+- `mcp__uw-options-structure__gamma_exposure_profile` — confirm pin strike sits near a long-gamma wall.
+
+Output: ranked OPEX book — top 5–10 names with `{ticker, pin_strike, distance_pct, oi_mass_at_pin, gex_at_pin, ranked_score, suggested_structure}`. Feeds §9 (Setups for Next Week) when the upcoming week is OPEX week.
 
 ### sweep-tracker — multi-day persistence (sonnet, thinking off)
 Use `mcp__uw-hotchains__multi_day_sweep_persistence` as the **primary** signal. Surface tickers swept on **≥3 of 5** trading days this week.
@@ -207,15 +245,32 @@ Output: §4 LEAP candidates that pass strict filters; explicit disqualification 
 
 ---
 
-## Step 2 — Phase 2: risk monitor (sequential, consumes Phase 1 union | sonnet, thinking off)
+## Step 2 — Phase 2: signal-confluence-quant THEN risk-monitor (sequential, consumes Phase 1 union)
 
-Once **all** Phase 1 agents return, collect the **union** of every candidate ticker surfaced across all 8 agents for the full week — not a single day's set. Spawn `risk-monitor` with this week-candidate union as input. It must:
+Phase 2 runs in two stages: the quant produces the audited score, then risk gates and sizes.
 
-- Run `mcp__uw-risk__portfolio_correlation` against this set — flag sub-groups where correlation > 0.7 as concentration risks.
-- Run `mcp__uw-insights__signal_confluence` over the candidate union to identify aligned clusters within the week's universe.
-- Re-confirm `mcp__uw-risk__market_regime` (today) and tag any candidate whose direction conflicts with the WoW regime delta.
+### Step 2a — signal-confluence-quant (sonnet, thinking **on**)
 
-Output: §7 risk & correlation — clusters, regime conflicts, hedge sleeve recommendations.
+Once **all** Phase 1 agents return, collect the **union** of every candidate ticker surfaced across all 11 (or 12) agents for the full week. Spawn `signal-confluence-quant` with that union plus the Step 4 weekly conviction rubric. It must:
+
+- Run `mcp__uw-insights__signal_confluence` per ticker (`min_score=5` for weekly).
+- Run `mcp__uw-historical__signal_backtest` per ticker, per dominant signal class.
+- Pull `mcp__uw-historical__cumulative_premium_flow` (30d and 90d) for tie-breaking and supplemental directional context.
+- Compute `raw_score` per ticker against the weekly persistence-weighted rubric (Step 4), identify `dominant_signal_class`, attach `win_rate`, emit `final_size_recommendation_pre_risk`, and produce a full audit trail per ticker.
+
+Output: sorted list `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, final_size_recommendation_pre_risk, audit_trail}`.
+
+### Step 2b — risk-monitor (sonnet, thinking off)
+
+Spawn `risk-monitor` with (a) the quant's sorted score list and (b) the week-baseline context block from Step 0. It must:
+
+- Run `mcp__uw-risk__portfolio_correlation` against the week-candidate set — flag corr > 0.7 sub-groups as concentration risks.
+- Confirm `mcp__uw-risk__market_regime` from Step 0 (already pinned; do not re-fetch).
+- Apply the gate stack: −1 tier per regime conflict, panic (`front_end_iv_ratio > 1.10`), VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation.
+- Pull `mcp__uw-watchlist__watchlist_alerts` and `mcp__uw-watchlist__watchlist_scan` against the prior `conviction_week_<previous>` group — surface adverse-flow exit candidates.
+- Persist this week's top 5 conviction names via `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_week_<ISO_WEEK>")`.
+
+Output: §7 risk & correlation — clusters, regime conflicts, VRP / panic gates applied, adverse-flow exit list, hedge sleeve recommendation, final sizing table per ticker that consumes the quant's pre-risk size.
 
 ---
 
@@ -227,25 +282,27 @@ Note: the threshold here is `signal_confluence ≥ 5` (vs `≥ 4` in `/daily-ana
 
 ---
 
-## Step 4 — Weekly conviction score (persistence-weighted rubric)
+## Step 4 — Weekly conviction score (persistence-weighted rubric, applied by signal-confluence-quant in Step 2a)
 
-For every ticker that cleared the confluence gate, compute the weekly conviction score:
+For every ticker that cleared the confluence gate, the quant computes the weekly conviction score against this rubric. Every signed point gets attached to a named source agent + tool in `score_components`.
 
 ```
 Weekly conviction score = Σ:
-  +3  swept on ≥3 of 5 days (multi_day_sweep_persistence)
-  +3  oi_trend BUILDING for the full week (lookback_days ≥ 5)
-  +2  3+ aligned signals in accumulation-hunter sustained across week
+  +3  swept on ≥3 of 5 days (sweep-tracker via multi_day_sweep_persistence)
+  +3  oi_trend BUILDING for the full week, lookback_days ≥ 5 (accumulation-hunter / leap-positioning-radar)
+  +2  3+ aligned signals in accumulation-hunter sustained across week, dp_block_size_stratified institutional-tier confirmed
   +2  conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW
-  +2  position_rolling_detector shows institutional roll forward into longer-dated LEAP
-  +2  cumulative_premium_flow shows ≥$X net directional accretion across the week (LEAP signature)
-  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks
-  +1  multileg-strategist directional structure repeated on ≥2 days
-  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW
-  +1  vanna_charm_exposure or dealer_delta_exposure shifts week-over-week in trade direction
-  -2  contrarian-scanner crowded long with rising pc_ratio_zscore trajectory
-  -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7)
-  -3  WoW market_regime flip conflicts with trade direction
+  +2  position_rolling_detector shows institutional roll forward into longer-dated LEAP (per-covered-date)
+  +2  cumulative_premium_flow shows net directional accretion across the week — fresh-thesis (sharp 30d) or thesis-extension (smooth 90d)
+  +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction across the week
+  +1  sector-rotation-strategist names ticker as single-name leader within rotating sector (persistence ≥ 3)
+  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (term_skew aligned for full size)
+  +1  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)
+  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; iv_percentile_zscore extreme; VRP-aligned bias
+  +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
+  -2  contrarian-scanner crowded long with rising pc_ratio_zscore trajectory (VRP positive)
+  -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2b
+  -3  WoW market_regime flip conflicts with trade direction — applied in 2b
 ```
 
 ### Conviction tiers
@@ -338,9 +395,10 @@ Before writing: run `mkdir -p analyses/weekly` via Bash if the directory does no
 - Implications for next week's bias
 
 ## 2. Sector Rotation
-- `sector_flow_persistence` — which sectors saw sustained inflows vs outflows across the full week
-- Persistence score per sector + named single-name leaders within each rotating sector
-- Rotation narrative for next week
+- `sector-rotation-strategist` output: rotating-into / rotating-out-of sectors with persistence scores (≥3 days)
+- Rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change) with regime confidence
+- Named single-name leaders within each rotating sector
+- Rotation narrative for next week + swing-book implications
 
 ## 3. Swing Book (1–6 weeks) — ranked by weekly conviction score
 [Table: Ticker | Tier | Score | Win-rate | Final size | Thesis | Structure | Invalidation. Subdivide into 3a long swings (regime-aligned) and 3b short/fade swings (defined risk only).]
@@ -371,17 +429,19 @@ Embedded rubric (for audit):
 
 ```
 Weekly conviction score = Σ:
-  +3  swept on ≥3 of 5 days (multi_day_sweep_persistence)
-  +3  oi_trend BUILDING for the full week (lookback_days ≥ 5)
-  +2  3+ aligned signals in accumulation-hunter sustained across week
+  +3  swept on ≥3 of 5 days (sweep-tracker via multi_day_sweep_persistence)
+  +3  oi_trend BUILDING for the full week, lookback_days ≥ 5
+  +2  3+ aligned signals in accumulation-hunter sustained across week, dp_block_size_stratified institutional-tier
   +2  conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW
-  +2  position_rolling_detector shows institutional roll forward
-  +2  cumulative_premium_flow shows net directional accretion (LEAP signature)
-  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks
+  +2  position_rolling_detector shows institutional roll forward (per-covered-date)
+  +2  cumulative_premium_flow shows net directional accretion (fresh-thesis or thesis-extension)
+  +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction
+  +1  sector-rotation-strategist names ticker as single-name leader (persistence ≥ 3)
+  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (term_skew aligned)
   +1  multileg-strategist directional structure repeated on ≥2 days
-  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW
-  +1  vanna_charm_exposure or dealer_delta_exposure shifts WoW in trade direction
-  -2  contrarian-scanner crowded long with rising pc_ratio_zscore
+  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; iv_percentile_zscore extreme; VRP-aligned
+  +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
+  -2  contrarian-scanner crowded long with rising pc_ratio_zscore (VRP positive)
   -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7)
   -3  WoW market_regime flip conflicts with trade direction
 
@@ -390,10 +450,11 @@ Tiers: ≥9 HIGH | 6–8 MEDIUM | 3–5 LOW | ≤2 drop
 
 ## 9. Setups for Next Week
 - gamma-flip-tracker next-week GEX forecast — zero-gamma level, key pin strikes for SPY/QQQ/IWM
+- dealer-positioning-strategist swing setups — DEX flips, vanna squeezes, regime flips for the next 1–4 weeks
 - Pin vs trend regime call
 - 2–3 highest-conviction actionable setups for the coming week (HIGH-tier names)
 - LOW-tier names to track for daily-analysis confirmation
-- OPEX-week flags if applicable (`pin_risk_screener` + `opex_concentration` results)
+- OPEX-week ranked book if `opex-pin-strategist` was spawned — pin candidates with `suggested_structure` per name (iron flies, short straddles, broken-wing butterflies)
 
 ## 10. Watch-only — single signal, no confluence
 [Names that surfaced from one agent but failed the confluence gate. Listed for journaling, NOT for trade entry next week.]
@@ -401,19 +462,13 @@ Tiers: ≥9 HIGH | 6–8 MEDIUM | 3–5 LOW | ≤2 drop
 
 ---
 
-## Step 9 — Watchlist write-back
+## Step 9 — Confirm watchlist write-back (handled by risk-monitor in Step 2b)
 
-Take the top 5 tickers by weekly conviction score (descending) and persist them:
+The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2b — the agent calls `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_week_<ISO_WEEK>")` with this week's top 5 by conviction score. **Do not double-write.**
 
-```
-mcp__uw-watchlist__manage_watchlist(
-  action="add",
-  group="conviction_week_<YYYY-WW>",
-  tickers=[<top_5_by_score>]
-)
-```
+Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_week_<ISO_WEEK>", tickers=[<top_5_by_score>])` directly as a fallback.
 
-If any name was already on a manually-curated group, leave that membership alone — write only to the week-stamped group. This closes the feedback loop: this week's high-conviction names become next week's correlation universe.
+If any name was already on a manually-curated group, leave that membership alone — write only to the week-stamped group. This closes the feedback loop: this week's high-conviction names become next week's correlation universe; next week's RM automatically pulls `watchlist_alerts` and `watchlist_scan` against the prior week's group to flag adverse-flow exits.
 
 ---
 

@@ -4,7 +4,7 @@ description: Run the full post-market daily intelligence report — regime + GEX
 
 # Daily Market Analysis
 
-Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns 8 alpha-finding agents in parallel against a shared macro context; Phase 2 runs `risk-monitor` against the candidate set Phase 1 surfaced. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate before sizing, and the top 5 are written back to the watchlist so tomorrow's run measures correlation against today's calls. Save to `analyses/YYYY-MM-DD.md`.
+Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns **11 alpha-finding agents** (12 in OPEX week) in parallel against a shared macro context; Phase 2 runs `signal-confluence-quant` to produce an audited conviction score per candidate, then `risk-monitor` to gate and size. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate before sizing, and the top 5 are written back to the watchlist so tomorrow's run measures correlation against today's calls. Save to `analyses/YYYY-MM-DD.md`.
 
 ## When to invoke
 
@@ -59,18 +59,54 @@ The output of Step 0 is a compact JSON-shaped context block: `{date, regime, vrp
 
 ## Step 1 — Phase 1: alpha-finding agents (parallel, single batch)
 
-Spawn these 8 agents **simultaneously** — a single message with 8 Agent tool calls. Hand each one the Step 0 context block and the explicit MCP tool list below. The named tools are the minimum each agent must consult; agents can pull additional tools from their own descriptions if their finding is surprising.
+Spawn these **11 agents simultaneously** — a single message with 11 Agent tool calls (12 in OPEX week, see opex-pin-strategist below). Hand each one the Step 0 context block and the explicit MCP tool list below. The named tools are the minimum each agent must consult; agents can pull additional tools from their own descriptions if their finding is surprising.
 
-### gamma-flip-tracker — dealer hedging map (0DTE & intraday)
+**Hard rule:** no agent re-fetches `market_regime`, `daily_synthesis`, `volatility_risk_premium`, or `front_end_iv_ratio` — those come from Step 0 context only. Re-fetching corrupts the shared anchor and burns tokens.
+
+### gamma-flip-tracker — today's 0DTE / intraday gamma map ONLY
+Scope is **today's expiry** (0DTE) plus the 0–45d gamma frame for tactical intraday. Swing-horizon DEX/vanna/charm/GEX-trajectory work goes to `dealer-positioning-strategist` (see below) — do not duplicate.
+
 Tools required:
 - `mcp__uw-options-structure__today_gamma_flip` — 0DTE zero-gamma + ATM flip for SPY/QQQ/IWM and any name with significant 0DTE volume from Step 0.
 - `mcp__uw-options-structure__gamma_exposure_profile` — per-strike GEX, default `dte_max=45`. Flag the call wall and put wall.
-- `mcp__uw-options-structure__dealer_delta_exposure` (DEX) — pre-directional move signal; DEX flips often precede price moves (Karsan / SqueezeMetrics).
-- `mcp__uw-options-structure__vanna_charm_exposure` — vanna-squeeze setup detector; flag put-heavy book + falling VIX.
-- `mcp__uw-historical__gex_time_series` (lookback 10–30 days) — multi-day ZGL trajectory for context.
-- `mcp__uw-options-structure__front_end_iv_ratio` — ratio > 1.05 confirms backwardation / panic.
+- `mcp__uw-options-flow__expiry_heatmap` — confirm today owns the volume (else the 0DTE frame doesn't apply).
+- `mcp__uw-options-flow__greek_screener` — `min_gamma` filter to surface highest-impact 0DTE contracts.
+- `mcp__uw-hotchains__most_active_contracts` — which strikes flow is targeting today.
 
-Output: per-index regime label (PIN / TREND / NEAR_FLIP), single-name pin candidates, vanna-squeeze flags.
+Output: per-index regime label (PIN / TREND / NEAR_FLIP), single-name 0DTE pin candidates, today's flip strikes for SPY/QQQ/IWM.
+
+### dealer-positioning-strategist — swing-horizon dealer flows (NEW)
+Scope is **1–4 week** dealer positioning shifts. Owns DEX/vanna/charm/GEX-trajectory work that GF can no longer carry alongside 0DTE.
+
+Tools required:
+- `mcp__uw-options-structure__dealer_delta_exposure` (DEX) — pre-directional signal; DEX flips precede price moves (Karsan / SqueezeMetrics).
+- `mcp__uw-options-structure__vanna_charm_exposure` — vanna-squeeze setup detector (put-heavy book + falling VIX → BUY setup).
+- `mcp__uw-historical__gex_time_series` (lookback 10–30d) — multi-day ZGL trajectory; flag any regime flip across the window.
+- `mcp__uw-options-structure__gamma_exposure_profile` (default `dte_max=45`) — confirm DEX flip is not a single-strike artifact.
+- `mcp__uw-options-structure__front_end_iv_ratio` — ratio > 1.05 confirms front panic; consume from Step 0 if available.
+
+Output: SPY/QQQ/IWM and single-name swing dealer reads — DEX state + 5d trajectory, vanna-squeeze flags, ZGL trajectory, regime-flip detections, swing bias for next 1–4 weeks.
+
+### sector-rotation-strategist — durable rotation calls + named single-name leaders (NEW)
+Scope is multi-week sector rotation with single-name leaders extracted within each rotating sector. Enforces ≥3-day persistence — single-day sector flow is filtered out.
+
+Tools required:
+- `mcp__uw-options-flow__sector_flow_persistence` — multi-day rotation persistence per sector (PRIMARY).
+- `mcp__uw-options-flow__sector_flow_summary` — week-end skew within the persistence narrative (consume from Step 0 if available).
+- `mcp__uw-screener__bullish_bearish_screener` — filter by sector to extract single-name leaders.
+- `mcp__uw-options-flow__dte_volume_share` — institutional vs retail share by sector (institutional rotation only counts at high monthly+ share).
+
+Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders within each rotating sector, and a one-line swing-book implication.
+
+### opex-pin-strategist — CONDITIONAL: only spawn within 5 days of monthly third-Friday (NEW)
+**Conditional spawn.** If TODAY is within 5 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit — the orchestrator must not spawn it outside the window.
+
+Tools required:
+- `mcp__uw-oi__pin_risk_screener` — pin candidates with strike + probability.
+- `mcp__uw-oi__opex_concentration` — OI mass at OPEX strikes; cross-ref against pin_risk_screener for ranking.
+- `mcp__uw-options-structure__gamma_exposure_profile` — confirm pin strike sits inside / adjacent to a long-gamma wall.
+
+Output: ranked OPEX book — top 5–10 names with `{ticker, pin_strike, distance_pct, oi_mass_at_pin, gex_at_pin, ranked_score, suggested_structure}` (iron flies, short straddles, broken-wing butterflies anchored to pin mechanics).
 
 ### sweep-tracker — aggressive directional flow
 Tools required:
@@ -150,15 +186,32 @@ Output: LEAP candidates that pass strict filters — disqualify and explain anyt
 
 ---
 
-## Step 2 — Phase 2: risk monitor (sequential, consumes Phase 1)
+## Step 2 — Phase 2: signal-confluence-quant THEN risk-monitor (sequential)
 
-Once **all** Phase 1 agents return, collect every candidate ticker each agent surfaced into a single union list. Spawn `risk-monitor` with that union as input. It must:
+Phase 2 runs in two stages. The quant produces the audited score; the risk officer gates and sizes against regime/VRP/correlation. Do not collapse them — the separation is the entire point of having auditable conviction math.
+
+### Step 2a — signal-confluence-quant (runs first)
+
+Once **all** Phase 1 agents return, collect every candidate ticker into a single union list with each candidate's flagging agents and named signals. Spawn `signal-confluence-quant` with that union plus the conviction rubric (Step 4 below) as input. It must:
+
+- Run `mcp__uw-insights__signal_confluence` per ticker — confirm or contradict Phase 1 flags.
+- Run `mcp__uw-historical__signal_backtest` per ticker, per dominant signal class — pull historical win-rate (or `vol_realisation_rate` for non-directional signals).
+- Pull `mcp__uw-historical__cumulative_premium_flow` (30d and 90d) for tie-breaking and supplemental directional context.
+- Compute `raw_score` per ticker against the Step 4 rubric, identify `dominant_signal_class`, attach `win_rate`, and emit `final_size_recommendation_pre_risk` (full / half / starter / skip) with a full audit trail per ticker.
+
+Output: a sorted list of `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, final_size_recommendation_pre_risk, audit_trail}`. **The quant does not gate on regime/correlation** — that's risk's job in 2b.
+
+### Step 2b — risk-monitor (runs second, consumes quant output)
+
+Spawn `risk-monitor` with (a) the quant's sorted score list and (b) the Step 0 macro context. It must:
 
 - Run `mcp__uw-risk__portfolio_correlation` against today's candidates (not the static watchlist) — risk is measured against what we're actually considering.
-- Re-confirm `mcp__uw-risk__market_regime` and tag any candidate whose direction conflicts with regime.
-- Run `mcp__uw-insights__signal_confluence` over the candidate union to flag aligned clusters.
+- Confirm `mcp__uw-risk__market_regime` from Step 0 (do not re-fetch).
+- Apply the sizing-gate rules from `risk-monitor.md`: −1 tier for regime conflict, −1 tier for `front_end_iv_ratio > 1.10` panic, −1 tier for VRP-vs-trade-type contradiction, −1 tier for corr-cluster duplication, −1 tier for adverse sector rotation.
+- Pull `mcp__uw-watchlist__watchlist_alerts` and `mcp__uw-watchlist__watchlist_scan` against the rolling `conviction_<yesterday>` group — surface adverse-flow exit candidates.
+- Persist today's top-5 conviction names via `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_<date>")`.
 
-Output: correlation clusters (corr > 0.7 = treat as one position), regime conflicts, and an adverse-flow flag per ticker.
+Output: correlation clusters (corr > 0.7 = treat as one position), regime conflicts, VRP / panic gates applied, adverse-flow exit list, hedge sleeve recommendation, and a final sizing table per ticker that consumes the quant's `final_size_recommendation_pre_risk` and applies the gate stack.
 
 ---
 
@@ -168,26 +221,30 @@ Before scoring, apply the **confluence gate**: a ticker only enters the convicti
 
 ---
 
-## Step 4 — Conviction scoring (formal rubric)
+## Step 4 — Conviction scoring rubric (applied by signal-confluence-quant in Step 2a)
 
-For every ticker that cleared the confluence gate, compute the conviction score:
+The rubric below is what `signal-confluence-quant` consumes in Step 2a to produce the audited score. The quant attaches every signed point to a named source agent + tool in `score_components`. Risk-monitor in Step 2b applies the regime / VRP / cluster gates **on top of** this score.
 
 ```
 Daily conviction score = Σ:
-  +3  flagged by gamma-flip-tracker as setting up a regime breakout (DEX flip or vanna-squeeze)
-  +2  3+ aligned signals in accumulation-hunter (DP + OI + smart_positioning)
+  +3  dealer-positioning-strategist flags DEX flip or vanna-squeeze setup in trade direction
+  +2  gamma-flip-tracker flags 0DTE breakout setup (regime flip + flow alignment)
+  +2  3+ aligned signals in accumulation-hunter (DP + OI + smart_positioning, dp_block_size_stratified institutional-tier confirmed)
   +2  multi-day OI build (oi_trend BUILDING, lookback ≥ 5 days)
   +2  conviction_matrix = DIRECTIONAL_LONG, confidence > 70
-  +1  in sweep-tracker top 5 by persistence count
+  +2  cumulative_premium_flow shows net directional accretion in trade direction (30d window)
+  +1  in sweep-tracker top 5 by multi_day_sweep_persistence count
+  +1  sector-rotation-strategist names ticker as single-name leader within rotating sector (persistence ≥ 3)
   +1  in earnings-scout BUY VOL or SELL VOL
-  +1  in multileg-strategist with directional structure
-  +1  in vol-surface-scout KINKED or BACKWARDATION watch
-  -2  contrarian-scanner flags as overcrowded long with rising pc_ratio_zscore
-  -1  risk-monitor flags in correlation cluster (corr > 0.7)
-  -3  market_regime conflicts with the trade direction
+  +1  in multileg-strategist with directional structure (term-structure-anchored play type)
+  +1  in vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias
+  +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
+  -2  contrarian-scanner flags as overcrowded long with rising pc_ratio_zscore (VRP positive)
+  -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2b on top of raw score
+  -3  market_regime conflicts with trade direction — applied in 2b
 ```
 
-Surface every ticker with **score ≥ 5** in the Executive Summary and §7 (High-Conviction Cross-Ref). Tickers with score 3–4 go into §3/§4 as supporting candidates. Tickers below 3 are dropped.
+Surface every ticker with **score ≥ 5** in the Executive Summary and §7 (High-Conviction Cross-Ref). Tickers with score 3–4 go into §3/§4 as supporting candidates. Tickers below 3 are dropped by the quant's drop floor.
 
 ---
 
@@ -205,14 +262,21 @@ For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest return
 
 ---
 
-## Step 6 — Deep dive + strategy synthesis on the top 3
+## Step 6 — Deep dive on the top 3 by conviction
 
 For each of the **top 3 tickers by conviction score**:
 1. Call `mcp__uw-insights__stock_deep_dive` — full Yahoo + UW data for full thesis verification.
 2. Call `mcp__uw-historical__trend_analyzer` (`lookback_days=10`) — confirm the multi-day price/flow trend.
-3. Call `mcp__uw-playbook__suggest_strategy` — get the rule-based options-strategy recommendation. Use this as the structure suggestion in the Executive Summary unless it conflicts with a named call from multileg-strategist (in which case prefer the multileg read and note the disagreement).
 
-This step is the synthesis bridge from "signal" to "trade" — without it, conviction scores are abstract.
+This step is the synthesis bridge from "signal" to "thesis" — without it, conviction scores are abstract.
+
+---
+
+## Step 6.5 — Batched strategy synthesis on the conviction list
+
+For the entire **score ≥ 5** list (the conviction-tier candidates), make a **single** `mcp__uw-playbook__batch_strategy_scan` call with the full ticker list. This replaces per-ticker `suggest_strategy` calls — one batch call is materially cheaper and produces consistent strategy logic across the book.
+
+Cross-reference each batched recommendation against any named structure from `multileg-strategist`. **Prefer the multileg read** when the two disagree (multileg saw the actual coordinated flow; the rule-based scan is a heuristic) and note the disagreement in §3 / §7 of the report.
 
 ---
 
@@ -237,15 +301,24 @@ Synthesize into the structured markdown below. The report is organized **by trad
 - `volatility_risk_premium` classification
 
 ## 2. 0DTE / Intraday Plays
-- gamma-flip-tracker per-ticker plays (PIN / TREND / NEAR_FLIP)
-- Urgency-ranked sweeps from sweep-tracker with near-term expiry
-- OPEX-week pinning candidates if applicable
+- gamma-flip-tracker per-ticker plays (PIN / TREND / NEAR_FLIP) for **today**
+- Urgency-ranked sweeps from sweep-tracker with near-term expiry (persistence-ranked first)
+- OPEX-week pinning candidates from `opex-pin-strategist` if applicable (with suggested structure per name)
+
+## 2a. Swing Dealer Positioning (1–4 weeks)
+- `dealer-positioning-strategist` outputs: DEX flips, vanna-squeeze flags, ZGL trajectory regime flips
+- Names with `swing_bias=LONG/SHORT` get carried into §3 with the dealer-positioning tag
+
+## 2b. Sector Rotation
+- `sector-rotation-strategist`: rotating-into / rotating-out-of sectors with persistence scores
+- Rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change)
+- Single-name leaders feed §3 with the `sector_rotation` tag
 
 ## 3. Swing Setups (1–6 weeks)
 Ranked by conviction score. Table: Ticker | Score | Thesis | Structure | Invalidation | Sizing.
 Subdivide into:
-- **3a. Long swings (regime-aligned)** — accumulation + multileg directional + earnings BUY VOL.
-- **3b. Short / fade swings (defined risk only)** — contrarian + earnings SELL VOL + analyst-vs-flow disagreement.
+- **3a. Long swings (regime-aligned)** — accumulation + multileg directional + earnings BUY VOL + dealer-positioning vanna-squeeze + sector-rotation leaders.
+- **3b. Short / fade swings (defined risk only)** — contrarian + earnings SELL VOL + analyst-vs-flow disagreement + dealer-positioning DEX-flip-short.
 
 ## 4. LEAP Builds (6–24 months)
 leap-positioning-radar — DIRECTIONAL_LONG only with full disqualification notes for near-misses.
@@ -254,12 +327,12 @@ leap-positioning-radar — DIRECTIONAL_LONG only with full disqualification note
 vol-surface-scout — KINKED names, BACKWARDATION calendars, IV outliers, calendar-spread candidates with implied move per name.
 
 ## 6. Risk & Correlation
-risk-monitor consuming today's Phase 1 candidate union (not the static watchlist) — clusters, regime conflicts, hedge sleeve recommendations.
+risk-monitor consuming today's Phase 1 candidate union and the quant's audited score (not the static watchlist) — clusters, regime conflicts, VRP / panic gates applied, hedge sleeve recommendations.
 
 ## 7. High-Conviction Cross-Ref (score ≥ 5)
-Per-ticker breakdown: score components | win_rate | size | invalidation level.
+Per-ticker breakdown sourced from the `signal-confluence-quant` audit trail: `raw_score` | `score_components[]` (with named source agent + tool per component) | `dominant_signal_class` | `win_rate` | pre-risk size | risk-monitor gates applied | final size | invalidation level.
 
-Embed the conviction-scoring rubric verbatim at the bottom of §7 so future readers can audit the scores.
+Embed the conviction-scoring rubric (Step 4) verbatim at the bottom of §7 so future readers can audit the scores.
 
 ## 8. Watch-only — single signal, no confluence
 Candidates that surfaced from one agent but failed the confluence gate. Listed for journaling, NOT for trade entry today.
@@ -267,19 +340,13 @@ Candidates that surfaced from one agent but failed the confluence gate. Listed f
 
 ---
 
-## Step 8 — Watchlist write-back
+## Step 8 — Confirm watchlist write-back (handled by risk-monitor in Step 2b)
 
-Take the top 5 tickers by conviction score (descending) and persist them so tomorrow's `risk-monitor` automatically tracks today's calls:
+The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2b — the agent calls `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_<YYYY-MM-DD>")` with today's top 5 by conviction score. **Do not double-write here.**
 
-```
-mcp__uw-watchlist__manage_watchlist(
-  action="add",
-  group="conviction_<YYYY-MM-DD>",
-  tickers=[<top_5_by_score>]
-)
-```
+Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `mcp__uw-watchlist__manage_watchlist(action="add", group="conviction_<YYYY-MM-DD>", tickers=[<top_5_by_score>])` directly as a fallback.
 
-If any name was already on a manually-curated group, leave that membership alone — write only to the date-stamped group. This closes the feedback loop: today's high-conviction names become tomorrow's correlation universe.
+If any name was already on a manually-curated group, leave that membership alone — write only to the date-stamped group. This closes the feedback loop: today's high-conviction names become tomorrow's correlation universe, and tomorrow's RM automatically pulls `watchlist_alerts` against them to flag adverse-flow exit candidates.
 
 ---
 

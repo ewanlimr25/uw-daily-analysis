@@ -2,5 +2,8 @@
 *.pyc
 __pycache__/
 .DS_Store
-analysis/
+analyses/
 .mcp.json
+.claude.json
+AGENT_FLEET_REDESIGN.md
+.claude/_archive_commands/
