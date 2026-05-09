@@ -427,26 +427,7 @@ Before writing: run `mkdir -p analyses/weekly` via Bash if the directory does no
 
 Embedded rubric (for audit):
 
-```
-Weekly conviction score = Σ:
-  +3  swept on ≥3 of 5 days (sweep-tracker via multi_day_sweep_persistence)
-  +3  oi_trend BUILDING for the full week, lookback_days ≥ 5
-  +2  3+ aligned signals in accumulation-hunter sustained across week, dp_block_size_stratified institutional-tier
-  +2  conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW
-  +2  position_rolling_detector shows institutional roll forward (per-covered-date)
-  +2  cumulative_premium_flow shows net directional accretion (fresh-thesis or thesis-extension)
-  +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction
-  +1  sector-rotation-strategist names ticker as single-name leader (persistence ≥ 3)
-  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (term_skew aligned)
-  +1  multileg-strategist directional structure repeated on ≥2 days
-  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; iv_percentile_zscore extreme; VRP-aligned
-  +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
-  -2  contrarian-scanner crowded long with rising pc_ratio_zscore (VRP positive)
-  -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7)
-  -3  WoW market_regime flip conflicts with trade direction
-
-Tiers: ≥9 HIGH | 6–8 MEDIUM | 3–5 LOW | ≤2 drop
-```
+[Embed the Step 4 conviction rubric verbatim here.]
 
 ## 9. Setups for Next Week
 - gamma-flip-tracker next-week GEX forecast — zero-gamma level, key pin strikes for SPY/QQQ/IWM
