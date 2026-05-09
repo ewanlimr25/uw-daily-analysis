@@ -1,0 +1,393 @@
+---
+description: Retrospectively audit `/daily-analysis` and `/weekly-analysis` plus their backing UW MCP tools, using the historical reports in `analyses/*.md` and `analyses/weekly/*.md` as the dataset. Seven discrete phases — each writes a resumable checkpoint under `analyses/audit/<YYYY-MM-DD>/phase_<N>_<slug>.md`. Frame every judgment from a desk perspective (buy-side PM, sell-side flow trader, market-maker quant). Propose-only — emits patch *intentions* and never auto-edits agent files. Invoke whenever the user asks for a calibration audit, a backtest of the daily/weekly skills, "how well are we calling the market," win-rate calibration, score-rubric audit, MCP-tool tier list, or types `/calibration-audit`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker deep dives (use `mcp__uw-insights__stock_deep_dive`), or general code review of the agent files.
+model: opus
+defaults:
+  outcome_windows:
+    "0DTE": same-day close vs entry
+    swing: 3D-and-10D
+    LEAP: 30D-and-90D
+    weekly: 5D-and-10D
+  min_dataset:
+    daily: 10
+    weekly: 3
+  disposition: propose-only
+  cadence: on-demand
+  win_threshold: ">=+1R in thesis direction without -1R prior drawdown"
+  relax_threshold: false
+---
+
+# Calibration Audit
+
+Audit the `/daily-analysis` and `/weekly-analysis` skills against their own historical output. The reports under `analyses/` and `analyses/weekly/` are the dataset; forward-resolved outcomes are the truth set; the audit asks whether the conviction rubric, the MCP tools cited as evidence, and the Phase-1→Phase-2 decision process actually deliver the desk-grade discipline they claim to.
+
+The audit is **propose-only**. It emits patch intentions — never auto-edits agent files, score rubrics, or commands. Recommendations cite the phase and the data point that justifies them. No vibes.
+
+## When to invoke
+
+- "Audit the daily-analysis skill" / "calibrate our scoring" / "are our win-rates real?"
+- "Backtest the agent fleet" / "tool tier list" / "schema audit"
+- Slash command `/calibration-audit`
+
+## When NOT to invoke
+
+- Single-ticker forward outlook → `mcp__uw-insights__stock_deep_dive`
+- Single-day post-market report → `/daily-analysis`
+- Weekly recap → `/weekly-analysis`
+- Code review of agent prompts (no outcome data needed) → `code-reviewer` agent
+- "Did NVDA work last week?" → ad-hoc `trend_analyzer` call
+
+## Operating principle: outcome-driven, not opinion-driven
+
+Every claim in this audit must trace to a parseable data point: a ticker call extracted from a report, a forward-resolved outcome from `trend_analyzer` / `signal_backtest`, a tool citation extracted from an audit-trail row. Where data is thin, the skill says so explicitly and downgrades conclusions to "structural / qualitative" — never silently extrapolates.
+
+The persona for every phase is a composite **elite desk reviewer**: buy-side PM (does this generate alpha?), sell-side flow trader (does this match how flow actually trades?), market-maker quant (do the weights match the realised marginal contribution?). A grading schema is only credible if it survives all three readings.
+
+---
+
+## Step 0 — Preflight
+
+1. **Date** — `date +%F` for today's `YYYY-MM-DD`. This is the audit run-id and the output directory: `analyses/audit/<YYYY-MM-DD>/`. `mkdir -p` it.
+
+2. **Inventory** — list `analyses/*.md` (daily) and `analyses/weekly/*.md` (weekly). Count both.
+
+3. **Threshold check** — defaults: 10 daily OR 3 weekly required. If neither passes:
+   - If `relax_threshold=false` (default): **abort** with the exact message:
+     > "Insufficient calibration history: N_daily=<X>, N_weekly=<Y>. Below thresholds (10 daily OR 3 weekly). Calibration math is noise-dominated below this floor. Re-run after collecting more reports, or set `relax_threshold=true` to override (results will be flagged DATASET-SIZE-RELAXED throughout)."
+   - If `relax_threshold=true`: proceed with a **DATASET-SIZE-RELAXED** banner stamped at the top of every checkpoint and re-printed at the start of `SUMMARY.md`.
+
+4. **Resume detection** — if `analyses/audit/<YYYY-MM-DD>/phase_<N>_*.md` already exists, resume from the next phase rather than re-running. Each checkpoint is self-contained; never re-derive earlier phases.
+
+5. **Available-dates check** — `mcp__uw-historical__available_dates`. Phase 2 needs forward outcomes; if the latest UW data is more than one trading day stale relative to the most recent ticker call, abort and tell the user to re-export from UW.
+
+---
+
+## Phase 1 — Inventory & Parse
+
+**Goal.** Enumerate every report and extract structured per-call data into a normalized JSONL alongside the markdown checkpoint.
+
+### Read order
+
+Process daily reports oldest→newest, then weekly reports oldest→newest. Use `Read` directly when total report count is ≤30; otherwise route through the `iterative-retrieval` skill (the analyses folder grows linearly with calendar time and will eventually exceed comfortable single-pass context).
+
+### Per-report extraction
+
+For every ticker mentioned in §3 (Swing Setups), §4 (LEAP Builds), §5 (Volatility Surface — when it produces a sized vol trade), §7 (High-Conviction Cross-Ref), and the Executive Summary's top-call lines, capture:
+
+```jsonc
+{
+  "report_date": "2026-05-08",
+  "report_kind": "daily",                      // "daily" | "weekly"
+  "ticker": "NVDA",
+  "section": "swing_long",                     // 0DTE | swing_long | swing_short | leap | vol_long | vol_short | watch_only
+  "horizon": "swing",                          // 0DTE | swing | LEAP | weekly
+  "tier": "HIGH",                              // High/Medium/Low when explicit; derived from final size when not
+  "raw_score": 10,                             // null if legacy report has no rubric score
+  "score_components": [                        // [] if not surfaced in the report
+    {"points": 3, "source_agent": "dealer-positioning-strategist", "tool": "dealer_delta_exposure"},
+    {"points": 2, "source_agent": "gamma-flip-tracker",            "tool": "today_gamma_flip"}
+  ],
+  "dominant_signal_class": "dealer_positioning_flip",   // null if absent
+  "claimed_win_rate": 1.00,                    // null if absent
+  "pre_risk_size": "full",                     // full|half|starter|skip|null
+  "final_size": "starter",                     // post-risk-monitor; null if same as pre_risk_size
+  "structure": "Long July 720/730 call debit spread",
+  "thesis_direction": "long",                  // long | short | vol_long | vol_short
+  "invalidation": "breadth deteriorates <30%, OR DEX reverses",
+  "agents_flagged_by": ["dealer-positioning-strategist","gamma-flip-tracker","sweep-tracker"],
+  "tools_cited":  ["dealer_delta_exposure","today_gamma_flip","gamma_exposure_profile","multi_day_sweep_persistence"],
+  "regime_at_entry": "TRANSITIONAL UPTREND",
+  "vrp_at_entry": "FAIR",
+  "front_iv_ratio_at_entry": 1.273,
+  "gates_fired": ["regime", "panic_1.27"],     // [] if none
+  "raw_excerpt": "<<≤200-char quote from the row in §7 — provenance>>"
+}
+```
+
+Legacy reports (early format, e.g. `2026-04-30.md`) lack `raw_score` / `score_components` / `claimed_win_rate`. Tag those calls `legacy_format=true` and let downstream phases handle them — they still have a section, ticker, direction, structure, and invalidation, which is enough for outcome resolution and tool attribution.
+
+### Output
+
+- `phase_1_inventory.md` — desk-style summary: total calls extracted, breakdown by horizon, tier, signal class; format coverage gaps; data-quality flags (e.g. "GOOG / GOOGL share-class confusion"; "two reports cite same call differently").
+- `phase_1_inventory.jsonl` — one JSON object per call, machine-readable.
+
+### Hard rules
+
+- Never invent fields. If `claimed_win_rate` is not in the report, leave it `null`.
+- One row per (report_date, ticker) — if the same ticker appears in §3 and §7, prefer §7's audited row.
+- Watch-only / disqualified-LEAP candidates are kept (`section="watch_only"` or `"leap_disqualified"`) — they are part of the decision audit even though they aren't trade calls.
+- Abort early if extraction yields zero rows from any single non-empty report — that's a parser bug, not an empty day.
+
+---
+
+## Phase 2 — Outcome Resolution
+
+**Goal.** Resolve every call from Phase 1 to WIN / LOSS / INCONCLUSIVE on a horizon-matched window.
+
+### Horizon-to-window map (defaults; overridable in frontmatter)
+
+| Horizon | Windows |
+|---|---|
+| 0DTE | same-day close vs entry close |
+| swing | 3D AND 10D (both must agree on direction; disagreement = INCONCLUSIVE unless 10D is decisive) |
+| LEAP | 30D AND 90D |
+| weekly | 5D AND 10D |
+
+### Win threshold (encoded in frontmatter, restated in checkpoint)
+
+> ≥ +1R move in thesis direction within window **without** −1R drawdown first, where R is the structure's defined risk per the report's `structure` field. For tickers without a structure-implied R, default to **0.5 × ATR(14)** at entry.
+
+This is a **path-aware** definition — a +2% gain that came after a -1.5% drawdown is a LOSS (or at best INCONCLUSIVE), not a WIN. Path matters because the report's invalidation rule would have stopped the trade before the move arrived.
+
+### Tool calls
+
+For each row in Phase 1:
+
+1. `mcp__uw-historical__trend_analyzer` — `ticker`, `start_date=report_date`, `lookback_days=horizon_window`. Capture intra-window high/low, drawdown-from-entry, and end-of-window price.
+2. `mcp__uw-historical__signal_backtest` — `ticker`, `signal_class=dominant_signal_class`. Capture the historical realised win-rate for that signal class as of the report's date (this is the rate that *should have* been quoted; compare to `claimed_win_rate` in Phase 3).
+3. **Vol calls (vol_long / vol_short)** — instead of price direction, resolve against `vol_realisation_rate`: did realised vol exceed (long) or fall below (short) the implied move quoted at entry? Use `trend_analyzer`'s window highs/lows to compute realised σ and compare to the report's `implied_move`.
+
+Cap MCP calls per phase: at most 2× the number of rows from Phase 1 (one `trend_analyzer` + one `signal_backtest` per row). If a call fails (delisted, no UW history, permission denied), tag the row INCONCLUSIVE with `inconclusive_reason="data_unavailable"` — never tag as LOSS.
+
+### Output
+
+- `phase_2_outcomes.md` — desk summary by tier and signal class: WIN / LOSS / INCONCLUSIVE counts with explicit win-threshold and INCONCLUSIVE definitions reprinted verbatim. Include a per-horizon breakdown.
+- `phase_2_outcomes.jsonl` — Phase 1 rows extended with `outcome`, `outcome_window`, `realised_return_pct`, `max_adverse_excursion_pct`, `inconclusive_reason` (if applicable), and `realised_signal_class_winrate` (the truth-set rate, distinct from `claimed_win_rate`).
+
+INCONCLUSIVE rows are **excluded from win-rate denominators** in subsequent phases.
+
+---
+
+## Phase 3 — Calibration Audit
+
+**Goal.** Compare claimed win-rate per signal class to realised win-rate. Quantify miscalibration.
+
+### Calculations
+
+1. **Per-signal-class table.** For each `dominant_signal_class` with N≥5 in the dataset:
+   - Claimed win-rate (mean of `claimed_win_rate` field, where present)
+   - Realised win-rate (WIN / (WIN+LOSS), excluding INCONCLUSIVE)
+   - N
+   - Divergence (claimed − realised, in pp)
+   - Flag rows where divergence > 10pp (in either direction).
+
+2. **Per-tier reliability diagram (text table).** For each conviction tier (HIGH / MEDIUM / LOW), show realised win-rate. **A monotone tier order requires HIGH > MEDIUM > LOW.** Flag inversions explicitly — they are a desk-quitting signal.
+
+3. **Brier score.** Across all calls with both `claimed_win_rate` (or the rubric-implied prior for legacy) and an outcome:
+   - `Brier = (1/N) × Σ (claimed − realised_outcome)²` where realised_outcome ∈ {0, 1}
+   - Lower is better. A Brier ≥ 0.25 is "the rubric is no better than coin-flip"; ≤ 0.10 is "professionally calibrated."
+
+4. **Conviction-vs-outcome scatter.** Bucket `raw_score` into quintiles; report realised win-rate per quintile. The slope from low to high score should be positive and monotone. If quintile-3 win-rate exceeds quintile-5 win-rate, that's a tier-inversion buried inside the score.
+
+### Output
+
+- `phase_3_calibration.md` — the desk reads three tables, a Brier number, and a written verdict. The verdict has three sections: (a) "where the rubric is honest," (b) "where it lies to itself," (c) "tier inversions or overconfidence on High-tier."
+- `phase_3_calibration.jsonl` — per-signal-class and per-tier numerics.
+
+### Desk-style commentary required
+
+For every flagged divergence, write one sentence in the voice of a sell-side flow trader: *"`bullish_flow` claims 100% but realised 71% (n=14) — flow chasers who think every sweep is a confirmed signal will cap at this rate; size accordingly."* No spreadsheet-language. This is a desk note.
+
+---
+
+## Phase 4 — Tool Attribution
+
+**Goal.** For each MCP tool cited as evidence, compute marginal contribution to outcome. Identify load-bearing tools, confounded-on-winners tools (only fire on winners — likely outcome-leakage), and indiscriminate tools (no information).
+
+### Per-tool computation
+
+For each `tool` appearing in any row's `tools_cited`:
+
+- N_with = calls where the tool was cited
+- N_without = calls where it was not cited (within the same `dominant_signal_class` to control for class)
+- `winrate_with` − `winrate_without` per signal class, weighted by N
+- Net **marginal contribution** = average of class-conditional differences, weighted by class-N
+
+### Tool tier definitions (use exactly these)
+
+| Tier | Criterion | Action implied |
+|---|---|---|
+| **LOAD-BEARING** | marginal_contribution ≥ +10pp, fires on both winners and losers | Promote to "required citation" for that signal class |
+| **SUPPORTIVE** | marginal_contribution +3pp to +10pp | Keep in the toolkit; no ranking change |
+| **CONFOUNDED** | fires on ≥80% of winners and ≤30% of losers (suspiciously asymmetric) | Demote — the tool may be a post-hoc lookup, not a real-time signal |
+| **NO-INFO** | marginal_contribution within ±2pp | Deprecate from default citation; cite only when meaningful |
+| **NEGATIVE** | marginal_contribution ≤ −5pp | Investigate — the tool may be misinterpreted by an agent |
+
+### Output
+
+- `phase_4_tools.md` — tool tier list with desk commentary per tool. Voice: market-maker quant. Format example: *"`dp_block_size_stratified` LOAD-BEARING (+18pp on `dark_pool_accumulation`, n=22). Acts as the institutional/retail filter that the raw `dark_pool_ticker_summary` lacks. Without this gate, accumulation calls degrade by ~1 in 5."*
+- `phase_4_tools.jsonl` — tool-level numerics.
+
+### Hard rules
+
+- A "CONFOUNDED" finding requires manual sanity-check before recommending demotion — some tools genuinely fire only when conviction is high (e.g. `signal_confluence ≥ 5`). Note this in the per-tool commentary.
+- Do not score tools cited fewer than 5 times — N is too small. Mark as "INSUFFICIENT_N" and exclude from tier ranking.
+
+---
+
+## Phase 5 — Grading-Schema Critique
+
+**Goal.** Audit the `signal-confluence-quant` rubric (the `+3 dealer-positioning, +2 accumulation, …` table) against realised marginal contribution. Propose a re-weighted rubric and re-binned tier cuts. Stress-test on holdout.
+
+### Component-weight audit
+
+For each signed point in the rubric (e.g. `+3 dealer-positioning DEX flip`):
+
+1. Identify which (agent, tool) combination produces that point in the audit trail.
+2. Pull its marginal contribution from Phase 4.
+3. Compute the **calibrated weight** ∝ marginal_contribution × class-prevalence.
+4. Normalize to keep the rubric on the same total-points scale.
+
+Output a "current vs proposed" table side-by-side. The proposed weights must satisfy: (a) sum-to-same-budget, (b) preserve the sign of every signed component (don't invent +/− flips on weak data), (c) include a "source: Phase 4 marginal_contribution = +Xpp, n=N" justification per change.
+
+### Tier-cut audit
+
+The current rubric uses High/Medium/Low cuts implicit at score ≥ 5 / 3–4 / <3. Compute realised win-rate per integer score and propose new cuts that **maximize tier-monotonicity** (HIGH realised > MEDIUM realised > LOW realised, with the largest gap between HIGH and MEDIUM).
+
+### Holdout stress-test
+
+Hold out the **most recent 20% of reports** (rounded up; minimum 2 reports). Refit the proposed rubric on the older 80%; re-score the holdout. Compare:
+
+- In-sample vs holdout realised win-rate per tier
+- Brier in-sample vs holdout
+
+If the holdout Brier degrades by >50% vs in-sample, the proposal is overfit — flag it and propose a more conservative re-weight (closer to the original).
+
+### Output
+
+- `phase_5_schema.md` — the three deliverables: weight table (current vs proposed with justifications), tier-cut table (current vs proposed), holdout stress-test result with verdict (ACCEPT / REJECT / ACCEPT_WITH_CAVEAT). Voice: market-maker quant — precise, no hand-waving.
+- `phase_5_schema.jsonl` — proposed rubric in the same shape `signal-confluence-quant` consumes, ready for a future `apply` mode.
+
+### Hard rules
+
+- **Reuse `signal-confluence-quant` for any rescoring math.** If you need to recompute a score under proposed weights, spawn that agent rather than implementing scoring inline. Pass the proposed rubric as input.
+- Never propose a rubric the holdout test rejects — escalate to a more conservative proposal instead.
+
+---
+
+## Phase 6 — Decision-Process Audit
+
+**Goal.** Trace the Phase-1 → Phase-2 handoff inside `/daily-analysis`. Verify that `signal-confluence-quant` and `risk-monitor` actually applied the documented procedure on every call.
+
+### Per-call compliance checks
+
+For each row in Phase 1 with `score_components` and `gates_fired`:
+
+1. **Quant compliance**:
+   - Sum of `score_components.points` equals `raw_score`? (mechanical check)
+   - Every component has a named `source_agent` and `tool`?
+   - Backtest sizing-map honored? (i.e., does `pre_risk_size` match the win-rate threshold map: ≥0.65 → full, 0.50–0.65 → half, <0.50 → starter/skip?)
+
+2. **Risk-monitor compliance**:
+   - For each gate documented in `risk-monitor.md` (regime, VRP-vs-trade-type, front_iv panic, correlation, sector), was the gate **considered** for this call? A documented gate that should have fired (per Phase 1 macro context) but didn't appear in `gates_fired` is a **missed gate**.
+   - Did `final_size` correctly reflect the gate stack on top of `pre_risk_size`?
+
+### Compliance metrics
+
+- `quant_compliance_rate` = compliant_calls / total_calls
+- `risk_compliance_rate` = same, for risk-monitor
+- Per-gate firing rate: how often did each gate fire when it was applicable?
+- **Missed-gate ledger**: every call where a gate should have fired but didn't, with the specific gate and the macro condition that triggered the obligation.
+
+### Agent-prompt drift detection
+
+If the missed-gate rate for any specific gate exceeds 20%, that's evidence the agent's prompt and its realised behavior have diverged. Identify which agent file needs patching (`risk-monitor.md` for risk gates; `signal-confluence-quant.md` for scoring math).
+
+### Output
+
+- `phase_6_decision_audit.md` — compliance rates, missed-gate ledger, per-agent drift findings. Voice: buy-side PM doing post-mortem on a fund — clinical, specific, names the agent file.
+- `phase_6_decision_audit.jsonl` — per-call compliance flags.
+
+### Hard rules
+
+- Never **patch** the agent file in this phase. Drift findings are inputs to Phase 7's recommendation list.
+- If `score_components` is empty (legacy report), tag the call `compliance_check=skipped_legacy` and exclude from compliance rate denominators.
+
+---
+
+## Phase 7 — Recommendations
+
+**Goal.** Emit a prioritized propose-only patch list. Every recommendation cites the phase and the data point that justifies it.
+
+### Required deliverables
+
+1. **Agent-file edits** (file path + diff intent, NOT full rewrites):
+   - For each agent file flagged by Phase 6 drift detection: the specific behavior to tighten, the rule to add, the prompt section to revise.
+   - For each tool tier change from Phase 4: which agent files cite that tool, and what change of language is implied.
+
+2. **Score-rubric edits**:
+   - Re-weighted components from Phase 5 — both the new weights and a rationale for each change with the Phase 4 marginal contribution.
+   - Re-binned tier cuts from Phase 5.
+
+3. **MCP tool tier movements**:
+   - Promote to required: tools that are LOAD-BEARING per Phase 4.
+   - Demote: tools that are NO-INFO per Phase 4.
+   - Gate behind confluence: tools that are CONFOUNDED.
+
+4. **Process changes**:
+   - Confluence-gate adjustments (e.g. "require 2 independent tools cited per High-tier call" if Phase 6 shows the existing single-tool-with-confluence-≥4 escape hatch produces inferior calibration).
+   - Backtest-sizing-map adjustments if Phase 3 shows the current thresholds don't match realised quintile win-rates.
+
+### Recommendation format
+
+Each recommendation is one heading + one paragraph. Required fields:
+
+- **What** — one-sentence description of the change.
+- **File** — `.claude/agents/<file>.md` or `.claude/commands/<file>.md` (path).
+- **Phase / Data** — `Phase 4: dp_block_size_stratified marginal_contribution +18pp, n=22.`
+- **Priority** — P0 (calibration-breaking), P1 (clear improvement), P2 (polish).
+- **Risk** — what could go wrong if applied, framed for the desk.
+
+### Output
+
+- `phase_7_recommendations.md` — prioritized patch list. Voice: chief of staff at a multi-strat fund.
+
+### Hard rules
+
+- **Propose-only.** Never call `Edit` or `Write` against any file outside `analyses/audit/<YYYY-MM-DD>/` in v1. The skill emits intentions; the user (or a future v2 `apply` mode) does the editing.
+- Every recommendation cites the phase + the data point. No vibe-driven recommendations.
+- If a finding has no data behind it (data-thin pilot run), file it as P2-polish with an explicit "low confidence, needs N≥<threshold> before action" note rather than dropping it silently.
+
+---
+
+## Step 8 — Executive Summary
+
+After all seven phases complete, write `analyses/audit/<YYYY-MM-DD>/SUMMARY.md` (≤400 words, desk-strategist voice). Required structure:
+
+```markdown
+# Calibration Audit — <date>
+
+[DATASET-SIZE-RELAXED banner if applicable]
+
+## Top 3 schema flaws
+1. <one-line finding>. Phase 5 cite. Patch P<X>.
+2. ...
+3. ...
+
+## Top 3 tool-tier surprises
+1. <one-line finding>. Phase 4 cite.
+2. ...
+3. ...
+
+## What we'd do Monday
+<one-paragraph recommendation in JPM-Friday-note voice — what a desk would actually change next session.>
+```
+
+The summary is the document the user actually reads first. Make every word count.
+
+---
+
+## Failure modes & recovery
+
+- **Phase 2 MCP rate-limit hit mid-batch** — checkpoint partial outcomes; resume from last completed ticker on next invocation. Phase 2 is the only phase that should ever appear with a `_partial` suffix.
+- **`available_dates` shows stale UW data** — abort at Step 0 (preflight). Don't compute outcomes against stale data.
+- **Phase 1 yields fewer rows than expected** — if any non-empty report yields zero rows, that's a parser bug. Abort with the report path so the parser can be fixed.
+- **Holdout stress-test rejects the proposal** — Phase 5 must propose a more conservative re-weight; never ship a rejected proposal forward to Phase 7.
+- **Less than 5 calls in the dataset for any single signal class** — flag and exclude from per-class statistics; do not treat single-digit N as a signal.
+
+---
+
+## Step 9 — Save and report
+
+1. All seven phase checkpoints written under `analyses/audit/<YYYY-MM-DD>/`.
+2. `SUMMARY.md` written.
+3. Print `SUMMARY.md` to chat. Nothing else — the user opens the audit folder for the rest.
