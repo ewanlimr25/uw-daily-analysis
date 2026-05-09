@@ -33,6 +33,10 @@ Pull `signal_backtest` for that class on that ticker. Apply the sizing map:
 | < 0.50 | starter / skip |
 | `null` (newly covered, no history) | starter (with `vol_realisation_rate=NA` flag for risk-monitor to consume) |
 
+**Calibration rules (2026-05-09 audit P0):**
+- **Cap `claimed_win_rate` (a.k.a. `win_rate` in the audit trail) at 0.90.** Never emit `1.00` regardless of in-sample backtest result. Reason: in-sample backtest with N<30 routinely returns 100% in trending tapes, and the LOSS-row Brier penalty is dominated by claims at 95–100% confidence. Cap mechanically.
+- **SHORT-side sizing-map floor.** When `win_rate < 0.50`, `pre_risk_size` MUST be `starter` or `skip` — never `half` or `full`. The previous behavior (`half`-size pre-risk on 37.5% expected win-rate) was caught by risk-monitor 22 of 22 times in the audit dataset, but the floor must be enforced at the quant layer, not papered over downstream. No `half`-size on directional shorts where the realised payoff asymmetry is +0.37% avg vs +9.81% bullish.
+
 Output per ticker (full audit trail):
 - `ticker`
 - `raw_score` — the integer score from the rubric

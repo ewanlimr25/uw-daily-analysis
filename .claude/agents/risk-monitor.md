@@ -29,6 +29,8 @@ Sizing rule (apply on top of the quant's pre-risk recommendation):
 - **−1 tier** if sector rotation flowing out of the name's sector with persistence ≥3
 - Floor at "skip" — never go below
 
+**Gate-output discipline (2026-05-09 audit P0).** Every gate above must produce an **explicit per-call verdict** in the sizing table — even when the verdict is "no-op." A silent skip is treated as a missed gate by future audits. Format requirement: each per-call row must include `gate_verdicts: {regime: [no-op | "−1 tier (UPTREND vs SHORT direction)"], vrp: [no-op | "−1 tier (VRP +0.150 single-name vs short-vol structure)"], panic: [no-op | "−1 tier (front_iv_ratio 1.84)"], cluster: [...], sector: [...]}`. The VRP gate in particular had 37.5% compliance in the prior audit — it is the most-missed gate; require the explicit verdict line every time, regardless of whether the gate fired or no-op'd. The desk reads the gate column to confirm the audit happened; "absence of a verdict" reads as "didn't check."
+
 Output a structured risk report:
 - **Regime + VRP + panic gate**: top-line one-liner. Include `front_end_iv_ratio`, VRP classification, dte_share read.
 - **Correlation clusters**: groups of candidates that are the same bet — name which one to keep, which to drop

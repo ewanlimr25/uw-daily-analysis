@@ -280,6 +280,17 @@ Before scoring, apply the **confluence gate**: a ticker only enters the convicti
 
 Note: the threshold here is `signal_confluence ≥ 5` (vs `≥ 4` in `/daily-analysis`) because weekly recommendations carry more capital and need a stricter prior.
 
+### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0)
+
+After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **2 of the 4 LOAD-BEARING tools**:
+
+- `dp_block_size_stratified` (institutional-vs-retail filter)
+- `cumulative_premium_flow` (30d directional accretion)
+- `institutional_accumulation_detector`
+- `dealer_delta_exposure` (DEX)
+
+A call that scores raw_score ≥ 9 (HIGH-tier) but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
+
 ---
 
 ## Step 4 — Weekly conviction score (persistence-weighted rubric, applied by signal-confluence-quant in Step 2a)
@@ -297,10 +308,11 @@ Weekly conviction score = Σ:
   +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction across the week
   +1  sector-rotation-strategist names ticker as single-name leader within rotating sector (persistence ≥ 3)
   +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (term_skew aligned for full size)
-  +1  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)
+  +2  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal)
   +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; iv_percentile_zscore extreme; VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
   -2  contrarian-scanner crowded long with rising pc_ratio_zscore trajectory (VRP positive)
+  -2  signal-confluence-quant audit trail flags flow_conflict (cumulative_premium_flow direction contradicts dominant_signal_class)   # NEW 2026-05-09
   -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2b
   -3  WoW market_regime flip conflicts with trade direction — applied in 2b
 ```

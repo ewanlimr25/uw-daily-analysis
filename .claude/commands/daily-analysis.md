@@ -219,6 +219,17 @@ Output: correlation clusters (corr > 0.7 = treat as one position), regime confli
 
 Before scoring, apply the **confluence gate**: a ticker only enters the conviction rubric if **at least two distinct Phase 1 agents flag it positively** OR **one Phase 1 agent flags it AND `mcp__uw-insights__signal_confluence` rates it ≥4**. Names with only one signal class but no confluence backing are noted in §8 ("Watch-only — single signal") and excluded from the high-conviction list. This rule prevents single-tool false positives from contaminating the trade book.
 
+### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0)
+
+After scoring, before any candidate enters the HIGH-tier section of §3 / §7 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **2 of the 4 LOAD-BEARING tools**:
+
+- `dp_block_size_stratified` (institutional-vs-retail filter)
+- `cumulative_premium_flow` (30d directional accretion)
+- `institutional_accumulation_detector`
+- `dealer_delta_exposure` (DEX)
+
+A call that scores raw_score ≥ 5 but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. Single-tool High-tier calls are the most common over-confidence pattern from the prior audit; this gate forecloses them. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
+
 ---
 
 ## Step 4 — Conviction scoring rubric (applied by signal-confluence-quant in Step 2a)
@@ -228,23 +239,30 @@ The rubric below is what `signal-confluence-quant` consumes in Step 2a to produc
 ```
 Daily conviction score = Σ:
   +3  dealer-positioning-strategist flags DEX flip or vanna-squeeze setup in trade direction
-  +2  gamma-flip-tracker flags 0DTE breakout setup (regime flip + flow alignment)
   +2  3+ aligned signals in accumulation-hunter (DP + OI + smart_positioning, dp_block_size_stratified institutional-tier confirmed)
-  +2  multi-day OI build (oi_trend BUILDING, lookback ≥ 5 days)
+  +1  multi-day OI build (oi_trend BUILDING, lookback ≥ 5 days)                       # was +2; reduced 2026-05-09 (Phase 4 +5pp marginal — supportive, not load-bearing; correlated with the LOAD-BEARING components above)
   +2  conviction_matrix = DIRECTIONAL_LONG, confidence > 70
   +2  cumulative_premium_flow shows net directional accretion in trade direction (30d window)
   +1  in sweep-tracker top 5 by multi_day_sweep_persistence count
   +1  sector-rotation-strategist names ticker as single-name leader within rotating sector (persistence ≥ 3)
   +1  in earnings-scout BUY VOL or SELL VOL
-  +1  in multileg-strategist with directional structure (term-structure-anchored play type)
+  +2  in multileg-strategist with directional structure (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal; multileg-vs-batch_strategy disagreements correctly resolved 5/5 in dataset)
   +1  in vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
   -2  contrarian-scanner flags as overcrowded long with rising pc_ratio_zscore (VRP positive)
+  -2  signal-confluence-quant audit trail flags flow_conflict (e.g. cumulative_premium_flow direction contradicts dominant_signal_class)   # NEW 2026-05-09 (Phase 3: NVDA 2026-05-08 raw=10 LOSS dominated by un-penalised flow_conflict)
   -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2b on top of raw score
   -3  market_regime conflicts with trade direction — applied in 2b
+
+# Removed from swing/LEAP scoring 2026-05-09 (Phase 4 audit, NO-INFO ±0pp on swing horizon):
+#   gamma-flip-tracker 0DTE breakout setup (regime flip + flow alignment) — formerly +2.
+#   The signal continues to drive §2 (0DTE / Intraday Plays) directly, but does NOT earn rubric points
+#   on swing or LEAP rows. This component double-counted with dealer-positioning's +3 DEX flip.
 ```
 
 Surface every ticker with **score ≥ 5** in the Executive Summary and §7 (High-Conviction Cross-Ref). Tickers with score 3–4 go into §3/§4 as supporting candidates. Tickers below 3 are dropped by the quant's drop floor.
+
+**Tier-cut deferred** (audit P1, R-09): the calibration audit (2026-05-09) recommends moving the HIGH threshold from ≥5 to ≥8 once N≥100 resolved calls validate the gap. Until then, keep the ≥5 cut and lean on Step 3a's load-bearing-tool gate to filter out under-supported HIGH calls.
 
 ---
 
