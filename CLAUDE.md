@@ -34,15 +34,15 @@ User-invocable via `/skill-name`. Core skills for this project:
 | Agent | Focus |
 |---|---|
 | `sweep-tracker` | Aggressive options sweeps and smart money flow for short-term directional momentum |
-| `accumulation-hunter` | Quiet institutional accumulation via DP prints + OI buildup; `dp_block_size_stratified` gates out retail |
-| `contrarian-scanner` | Overcrowded fades via `pc_ratio_zscore` + flow divergence from price; aborts in negative VRP |
-| `earnings-scout` | Earnings plays via IV term-structure kink + `term_skew` + `front_end_iv_ratio` + flow alignment |
+| `accumulation-hunter` | Quiet institutional accumulation via DP prints + OI buildup; `dark_pool_block_stratified` gates out retail |
+| `contrarian-scanner` | Overcrowded fades via `historical_pc_ratio_zscore` + flow divergence from price; aborts in negative VRP |
+| `earnings-scout` | Earnings plays via IV term-structure kink + `options_structure_term_skew` + `options_structure_front_end_iv_ratio` + flow alignment |
 | `gamma-flip-tracker` | Today's 0DTE/intraday gamma map only — zero-gamma level, regime, per-strike walls; NOT for swing |
 | `dealer-positioning-strategist` | Swing-horizon (1–4wk) DEX trajectory, vanna/charm exposure, GEX time series; NOT for 0DTE |
 | `multileg-strategist` | Institutional spread structure inference; play type anchored to term-structure; multi-day repeat filter |
 | `vol-surface-scout` | Vol-surface dislocations — KINKED/BACKWARDATION names, IV outliers, skew mispricings, VRP bias |
-| `leap-positioning-radar` | DTE > 180 institutional builds; `cumulative_premium_flow` accretion gate; requires 6-of-9 signal gates |
-| `sector-rotation-strategist` | Multi-week rotation regime calls with single-name leaders; enforces ≥3-day `sector_flow_persistence` |
+| `leap-positioning-radar` | DTE > 180 institutional builds; `historical_cumulative_premium_flow` accretion gate; requires 6-of-9 signal gates |
+| `sector-rotation-strategist` | Multi-week rotation regime calls with single-name leaders; enforces ≥3-day `options_flow_sector_flow_persistence` |
 | `opex-pin-strategist` | OPEX-week-only pin mechanics; ranked gamma-weighted book with iron flies, straddles, butterflies |
 
 ### Phase 2 — scoring then risk (sequential)

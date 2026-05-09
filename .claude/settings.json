@@ -11,17 +11,7 @@
   },
   "permissions": {
     "allow": [
-      "mcp__uw-playbook__*",
-      "mcp__uw-risk__*",
-      "mcp__uw-options-flow__*",
-      "mcp__uw-options-structure__*",
-      "mcp__uw-screener__*",
-      "mcp__uw-insights__*",
-      "mcp__uw-oi__*",
-      "mcp__uw-darkpool__*",
-      "mcp__uw-hotchains__*",
-      "mcp__uw-watchlist__*",
-      "mcp__uw-historical__*"
+      "mcp__uw-pp__*"
     ]
   }
 }
