@@ -33,9 +33,35 @@ Pull `historical_signal_backtest` for that class on that ticker. Apply the sizin
 | < 0.50 | starter / skip |
 | `null` (newly covered, no history) | starter (with `vol_realisation_rate=NA` flag for risk-monitor to consume) |
 
-**Calibration rules (2026-05-09 audit P0):**
-- **Cap `claimed_win_rate` (a.k.a. `win_rate` in the audit trail) at 0.90.** Never emit `1.00` regardless of in-sample backtest result. Reason: in-sample backtest with N<30 routinely returns 100% in trending tapes, and the LOSS-row Brier penalty is dominated by claims at 95–100% confidence. Cap mechanically.
+**Calibration rules (2026-05-15 audit P0; supersedes 2026-05-09 single 0.90 cap):**
+
+- **Cap `claimed_win_rate` (a.k.a. `win_rate` in the audit trail) by backtest sample size.** Apply this N-conditional cap mechanically using the `n` field returned by `historical_signal_backtest`:
+  - `n < 10` → cap at **0.75**
+  - `10 ≤ n < 20` → cap at **0.85**
+  - `n ≥ 20` → cap at **0.90** (the prior 2026-05-09 ceiling stands for well-sampled signals)
+  - Never emit `1.00` regardless of result.
+  Reason: in-sample backtest with low N routinely returns 100% in trending tapes; the LOSS-row Brier penalty is dominated by small-N overconfidence. The 2026-05-08 HIGH-tier book quoted 1.00 for `bullish_flow`, `dark_pool_accumulation`, and `dealer_positioning_flip` and realised 0.64–0.75 (single-date Brier 0.45 — catastrophic). The cap is on the *quote* used downstream, not the underlying backtest computation; show the raw `n` and uncapped `historical_win_rate` in the audit trail alongside the capped `win_rate` so risk-monitor and the orchestrator can see what was bounded.
 - **SHORT-side sizing-map floor.** When `win_rate < 0.50`, `pre_risk_size` MUST be `starter` or `skip` — never `half` or `full`. The previous behavior (`half`-size pre-risk on 37.5% expected win-rate) was caught by risk-monitor 22 of 22 times in the audit dataset, but the floor must be enforced at the quant layer, not papered over downstream. No `half`-size on directional shorts where the realised payoff asymmetry is +0.37% avg vs +9.81% bullish.
+
+**Mechanical `flow_conflict` deduction (2026-05-15 audit P0).** When the candidate's `cum_premium_flow_30d` direction contradicts the inferred trade direction implied by `dominant_signal_class`, you MUST apply a numeric deduction to `raw_score` — not narrate the conflict in `audit_trail` and move on. The 2026-05-15 audit found a 30% missed-gate rate on this rule (3-of-10 cases on 2026-05-08), above the 20% drift threshold; NVDA 2026-05-08 raw=10 LOSS was dominated by un-penalised flow_conflict (cum_flow −$17.89M against LONG thesis).
+
+Apply with two modes:
+- **`flow_conflict` (full): −3** when the 30d cum_premium_flow is *clearly opposite* the dominant_signal_class direction. Definition: signed-sum sign flip AND |cum_flow_30d| > median |cum_flow_30d| across today's candidate union, OR the tool returns an explicit OPPOSITE label.
+- **`flow_conflict_lite`: −1** when the read is MIXED. Definition: signed-sum near zero (|cum_flow_30d| ≤ 25% of today's union median |cum_flow_30d|), OR direction matches the trade but magnitude sits in the bottom quartile of today's union.
+- Append the deduction to `score_components` as `{points: -3 or -1, source_agent: "signal-confluence-quant", source_tool: "historical_cumulative_premium_flow", evidence_string: "<cum_flow_30d value, sign, vs union median, vs dominant_signal_class direction>"}`.
+- Do NOT apply when `dominant_signal_class` is non-directional (`vol_realisation`, `opex_pin`, `earnings_vol`, undirected `vanna_squeeze`) — `flow_conflict` is a directional-thesis test only.
+- Scope is the 30d window. Do NOT escalate to −3 on stale 90d-only contradictions where 30d direction matches (those are post-earnings re-rating in progress, not a flow conflict).
+
+**Tier cuts (2026-05-15 audit P0; supersedes prior daily ≥5 / weekly ≥9 cuts):**
+
+| `raw_score` | Tier | Pre-risk sizing default |
+|---|---|---|
+| ≥ 10 | **HIGH** | full size (subject to win_rate gate AND orchestrator's load-bearing-tool gate) |
+| 7 – 9 | **MEDIUM** | half size (subject to win_rate gate) |
+| 3 – 6 | **LOW** | starter / watch-only — supporting candidate, not surfaced in HIGH-conviction sections |
+| ≤ 2 | drop | not surfaced (the orchestrator's confluence gate should have caught these; floor is enforced here too) |
+
+These cuts apply uniformly to both `/daily-analysis` and `/weekly-analysis` rubrics. Phase 3 quintile data (2026-05-15 audit) showed MED-vs-LOW gap was 1.1pp at the prior cut (noise); HIGH ≥10 realised 0.85 vs the prior HIGH ≥9 realised 0.667. The orchestrator-level rubrics quote the same cuts for embedded-in-report audit.
 
 Output per ticker (full audit trail):
 - `ticker`

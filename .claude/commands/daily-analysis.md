@@ -228,7 +228,7 @@ After scoring, before any candidate enters the HIGH-tier section of §3 / §7 (i
 - `insights_institutional_accumulation`
 - `options_structure_dex` (DEX)
 
-A call that scores raw_score ≥ 5 but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. Single-tool High-tier calls are the most common over-confidence pattern from the prior audit; this gate forecloses them. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
+A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. Single-tool HIGH-tier calls are the most common over-confidence pattern from the prior audit; this gate forecloses them. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
 
 ---
 
@@ -250,7 +250,9 @@ Daily conviction score = Σ:
   +1  in vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
   -2  contrarian-scanner flags as overcrowded long with rising historical_pc_ratio_zscore (VRP positive)
-  -2  signal-confluence-quant audit trail flags flow_conflict (e.g. historical_cumulative_premium_flow direction contradicts dominant_signal_class)   # NEW 2026-05-09 (Phase 3: NVDA 2026-05-08 raw=10 LOSS dominated by un-penalised flow_conflict)
+  -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule
+  -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude in today's union)   # 2026-05-15 audit P0
+  # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line; NVDA 2026-05-08 raw=10 LOSS dominated by un-penalised flow_conflict against −$17.89M cum_flow_30d)
   -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2b on top of raw score
   -3  risk_market_regime conflicts with trade direction — applied in 2b
 
@@ -260,15 +262,22 @@ Daily conviction score = Σ:
 #   on swing or LEAP rows. This component double-counted with dealer-positioning's +3 DEX flip.
 ```
 
-Surface every ticker with **score ≥ 5** in the Executive Summary and §7 (High-Conviction Cross-Ref). Tickers with score 3–4 go into §3/§4 as supporting candidates. Tickers below 3 are dropped by the quant's drop floor.
+**Conviction tiers (2026-05-15 audit P0; supersedes prior `≥ 5` HIGH cut and the deferred R-09 from 2026-05-09):**
 
-**Tier-cut deferred** (audit P1, R-09): the calibration audit (2026-05-09) recommends moving the HIGH threshold from ≥5 to ≥8 once N≥100 resolved calls validate the gap. Until then, keep the ≥5 cut and lean on Step 3a's load-bearing-tool gate to filter out under-supported HIGH calls.
+| Score | Tier | Sizing default |
+|---|---|---|
+| ≥ 10 | **HIGH** | full size (subject to Step 3a load-bearing-tool gate + Step 5 win-rate gate) |
+| 7 – 9 | **MEDIUM** | half size (subject to Step 5 win-rate gate) |
+| 3 – 6 | **LOW** | starter / watch-only — supporting candidate in §3/§4, not surfaced in Executive Summary or §7 |
+| ≤ 2 | drop | filtered by quant's drop floor |
+
+Surface every **HIGH and MEDIUM** ticker in the Executive Summary and §7 (High-Conviction Cross-Ref). LOW tier names appear in §3/§4 as supporting candidates only. These cuts align daily with weekly tiering; the gap between the prior daily HIGH (≥5) and weekly HIGH (≥9) was the largest source of inter-skill inconsistency in the 2026-05-15 audit.
 
 ---
 
 ## Step 5 — Backtest-weighted sizing
 
-For each ticker scoring ≥ 5, identify its dominant signal class — typical labels: `dark_pool_accumulation`, `multi_day_sweep`, `gamma_breakout`, `oi_build`, `leap_directional`, `bullish_flow`, `bearish_flow`, `multileg_directional`. Call `mcp__uw-pp__historical_signal_backtest` with that signal class and the ticker. Apply this sizing map to every conviction ≥5 call:
+For each HIGH or MEDIUM tier ticker (raw_score ≥ 7 under the 2026-05-15 cuts), identify its dominant signal class — typical labels: `dark_pool_accumulation`, `multi_day_sweep`, `gamma_breakout`, `oi_build`, `leap_directional`, `bullish_flow`, `bearish_flow`, `multileg_directional`. Call `mcp__uw-pp__historical_signal_backtest` with that signal class and the ticker. Apply this sizing map to every conviction ≥5 call:
 
 | `win_rate` | Position size |
 |---|---|
@@ -292,7 +301,7 @@ This step is the synthesis bridge from "signal" to "thesis" — without it, conv
 
 ## Step 6.5 — Batched strategy synthesis on the conviction list
 
-For the entire **score ≥ 5** list (the conviction-tier candidates), make a **single** `mcp__uw-pp__playbook_batch_scan` call with the full ticker list. This replaces per-ticker `playbook_suggest_strategy` calls — one batch call is materially cheaper and produces consistent strategy logic across the book.
+For the entire **HIGH and MEDIUM tier** list (raw_score ≥ 7), make a **single** `mcp__uw-pp__playbook_batch_scan` call with the full ticker list. This replaces per-ticker `playbook_suggest_strategy` calls — one batch call is materially cheaper and produces consistent strategy logic across the book.
 
 Cross-reference each batched recommendation against any named structure from `multileg-strategist`. **Prefer the multileg read** when the two disagree (multileg saw the actual coordinated flow; the rule-based scan is a heuristic) and note the disagreement in §3 / §7 of the report.
 
@@ -347,7 +356,7 @@ vol-surface-scout — KINKED names, BACKWARDATION calendars, IV outliers, calend
 ## 6. Risk & Correlation
 risk-monitor consuming today's Phase 1 candidate union and the quant's audited score (not the static watchlist) — clusters, regime conflicts, VRP / panic gates applied, hedge sleeve recommendations.
 
-## 7. High-Conviction Cross-Ref (score ≥ 5)
+## 7. High-Conviction Cross-Ref (HIGH and MEDIUM tier — raw_score ≥ 7)
 Per-ticker breakdown sourced from the `signal-confluence-quant` audit trail: `raw_score` | `score_components[]` (with named source agent + tool per component) | `dominant_signal_class` | `win_rate` | pre-risk size | risk-monitor gates applied | final size | invalidation level.
 
 Embed the conviction-scoring rubric (Step 4) verbatim at the bottom of §7 so future readers can audit the scores.

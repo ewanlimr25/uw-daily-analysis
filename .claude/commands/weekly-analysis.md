@@ -289,7 +289,7 @@ After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i
 - `insights_institutional_accumulation`
 - `options_structure_dex` (DEX)
 
-A call that scores raw_score ≥ 9 (HIGH-tier) but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
+A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
 
 ---
 
@@ -312,23 +312,25 @@ Weekly conviction score = Σ:
   +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; historical_iv_percentile_zscore extreme; VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
   -2  contrarian-scanner crowded long with rising historical_pc_ratio_zscore trajectory (VRP positive)
-  -2  signal-confluence-quant audit trail flags flow_conflict (historical_cumulative_premium_flow direction contradicts dominant_signal_class)   # NEW 2026-05-09
+  -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule
+  -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude)   # 2026-05-15 audit P0
+  # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line)
   -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2b
   -3  WoW risk_market_regime flip conflicts with trade direction — applied in 2b
 ```
 
-### Conviction tiers
+### Conviction tiers (2026-05-15 audit P0; supersedes prior ≥9 / 6–8 / 3–5 cuts)
 
 Map every ticker to a tier:
 
 | Score | Tier | Sizing default |
 |---|---|---|
-| ≥ 9 | **HIGH** | full size (subject to win_rate gate in Step 5) |
-| 6–8 | **MEDIUM** | half size (subject to win_rate gate) |
-| 3–5 | **LOW** | starter / watch-only — paper trade or wait for daily confirmation |
+| ≥ 10 | **HIGH** | full size (subject to win_rate gate in Step 5) |
+| 7 – 9 | **MEDIUM** | half size (subject to win_rate gate) |
+| 3 – 6 | **LOW** | starter / watch-only — paper trade or wait for daily confirmation |
 | ≤ 2 | drop | not surfaced in the report's trade book |
 
-Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and §8 (High-Conviction Cross-Ref). LOW tier goes into a separate "Watchlist for next week" section (§9).
+Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and §8 (High-Conviction Cross-Ref). LOW tier goes into a separate "Watchlist for next week" section (§9). Phase 3 of the 2026-05-15 audit found the MED-vs-LOW gap was only 1.1pp at the prior cuts (noise); the new cuts restore tier monotonicity (HIGH ≥10 realised 0.85 vs the prior HIGH ≥9 realised 0.667).
 
 ---
 
@@ -476,6 +478,6 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Failure modes & recovery
 
 - **Phase 1 agent times out** — re-spawn just that agent with the same context block. If it fails twice, write its section as `[agent timed out — see <agent-name> logs]` and proceed; do not let one agent block the report.
-- **`historical_available_dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 7+, MEDIUM = 5–6, LOW = 3–4) for the smaller window.
+- **`historical_available_dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-15 default cuts of HIGH ≥10 / MED 7–9 / LOW 3–6.)
 - **`risk_market_regime` errors on Monday baseline** — fall back to `covered_dates[1]` and note the substitution.
 - **No tickers clear the confluence gate** — produce a report whose §3, §4, §8 are explicitly empty, with §0 (scorecard), §1 (regime), §2 (sector), §5 (vol surface), §6 (earnings), §7 (risk), and §9 (setups) still populated. A "no edge" week is a valid output, not a failure.
