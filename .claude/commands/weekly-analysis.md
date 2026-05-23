@@ -280,16 +280,17 @@ Before scoring, apply the **confluence gate**: a ticker only enters the convicti
 
 Note: the threshold here is `insights_signal_confluence ≥ 5` (vs `≥ 4` in `/daily-analysis`) because weekly recommendations carry more capital and need a stricter prior.
 
-### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0)
+### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0, hardened 2026-05-15 audit P1.3, expanded to 3-of-5 by 2026-05-23 audit P0.2)
 
-After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **2 of the 4 LOAD-BEARING tools**:
+After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **3 of the 5 LOAD-BEARING tools** (added `insights_signal_confluence` on 2026-05-23):
 
 - `dark_pool_block_stratified` (institutional-vs-retail filter)
 - `historical_cumulative_premium_flow` (30d directional accretion)
 - `insights_institutional_accumulation`
 - `options_structure_dex` (DEX)
+- `insights_signal_confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
 
-A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 2 of these four tools must be **demoted to MEDIUM tier**. The Phase 4 audit found these four tools carry the load (+11pp to +18pp marginal contribution each); any HIGH-tier call without two of them is structurally unsupported even if the rubric points add up.
+A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50).
 
 ---
 
@@ -299,21 +300,25 @@ For every ticker that cleared the confluence gate, the quant computes the weekly
 
 ```
 Weekly conviction score = Σ:
-  +3  swept on ≥3 of 5 days (sweep-tracker via hot_chains_sweep_persistence)
+  # +3 line for swept on ≥3 of 5 days REMOVED 2026-05-23 audit P0.3
+  # Reason: hot_chains_sweep_persistence marginal contribution −22pp two consecutive audits; multi_day_sweep signal class realised 0.43 vs claimed 0.70 (+27pp overstatement).
+  # Tool remains informational — sweep-tracker still surfaces persistence-ranked sweeps in §3/§8 prose — but contributes 0 points to raw_score.
+  # Directional confirmation must come from accumulation, multileg, or cum_flow_30d instead.
   +3  historical_oi_trend BUILDING for the full week, lookback_days ≥ 5 (accumulation-hunter / leap-positioning-radar)
-  +2  3+ aligned signals in accumulation-hunter sustained across week, dark_pool_block_stratified institutional-tier confirmed
-  +2  insights_conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW
+  +3  3+ aligned signals in accumulation-hunter sustained across week, dark_pool_block_stratified institutional-tier confirmed   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +27.8pp marginal contribution (LOAD-BEARING)
+  +1  insights_conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW — CONDITIONAL ONLY (2026-05-23 audit P1.1): award +1 only when dominant_signal_class == leap_directional; in all non-LEAP contexts contribution is 0. Phase 4: marginal contribution −23pp (n=8) on swing/weekly horizon (e.g. BL LOSS, MA LOSS both cited this tool). LEAP gate in leap-positioning-radar still consumes this tool — only the swing/weekly award is gated to leap_directional.
   +2  oi_position_rolls shows institutional roll forward into longer-dated LEAP (per-covered-date)
-  +2  historical_cumulative_premium_flow shows net directional accretion across the week — fresh-thesis (sharp 30d) or thesis-extension (smooth 90d)
+  +3  historical_cumulative_premium_flow shows net directional accretion across the week — fresh-thesis (sharp 30d) or thesis-extension (smooth 90d)   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +24.2pp marginal contribution (LOAD-BEARING)
+  +2  insights_signal_confluence ≥4 at WEEK_END (second-agent confirmation)   # NEW 2026-05-23 audit P1.2 — Phase 4 +19.5pp marginal contribution (n=12, LOAD-BEARING); also added to the 3-of-5 LB gate in Step 3a
   +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction across the week
-  +1  sector-rotation-strategist names ticker as single-name leader within rotating sector (persistence ≥ 3)
+  +1  sector-rotation-strategist names ticker as single-name leader within rotating sector — CONDITIONAL (2026-05-23 audit P1.5): award +1 only when (a) sector persistence_score ≥3 AND (b) cum_premium_flow_30d direction aligned with thesis direction AND (c) |cum_flow_30d| ≥ $50M. Default 0. Phase 4: sector_persistence marginal +2.8pp standalone (NO-INFO); when paired with cum_flow alignment it carried HON-W21 (+4.9% WIN) vs WMT-W19 (−10.4% LOSS).
   +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (options_structure_term_skew aligned for full size)
   +2  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal)
   +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; historical_iv_percentile_zscore extreme; VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
   -2  contrarian-scanner crowded long with rising historical_pc_ratio_zscore trajectory (VRP positive)
-  -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule
-  -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude)   # 2026-05-15 audit P0
+  -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
+  -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude)   # 2026-05-15 audit P0; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict (apply ONE, never both)
   # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line)
   -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2b
   -3  WoW risk_market_regime flip conflicts with trade direction — applied in 2b
@@ -336,12 +341,12 @@ Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and 
 
 ## Step 5 — Backtest-weighted sizing (gates the tier sizing)
 
-For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typical labels: `multi_day_sweep`, `oi_build`, `dark_pool_accumulation`, `leap_roll`, `multileg_repeat`, `bullish_flow`, `bearish_flow`, `vanna_squeeze`. Call `mcp__uw-pp__historical_signal_backtest` with that signal class and the ticker. Apply the win-rate gate **on top of** the tier sizing:
+For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typical labels: `multi_day_sweep`, `oi_build`, `dark_pool_accumulation`, `leap_roll`, `multileg_repeat`, `bullish_flow`, `bearish_flow`, `vanna_squeeze`. Call `mcp__uw-pp__historical_signal_backtest` with that signal class and the ticker. Apply the win-rate gate **on top of** the tier sizing (**2026-05-15 audit PC.1**; full-size threshold tightened 0.65 → 0.70 after Phase 3 quintile data showed only Q5 raw≥9 realised >0.65; Q4 raw 6–8 realised 0.571):
 
 | `win_rate` | Multiplier |
 |---|---|
-| ≥ 0.65 | × 1.0 (keep tier sizing) |
-| 0.50 – 0.65 | × 0.5 (one tier down — HIGH→half, MEDIUM→starter) |
+| ≥ 0.70 | × 1.0 (keep tier sizing) |
+| 0.50 – 0.70 | × 0.5 (one tier down — HIGH→half, MEDIUM→starter) |
 | < 0.50 | × 0 (drop to watch-only regardless of conviction tier) |
 
 For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest returns `vol_realisation_rate` instead — use the same thresholds. Note the win_rate explicitly next to each call in the Swing Book (§3) and LEAP Book (§4).
