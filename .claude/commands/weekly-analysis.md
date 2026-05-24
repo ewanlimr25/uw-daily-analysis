@@ -25,7 +25,7 @@ The orchestrator running this skill must use **`opus` with extended thinking on*
 
 | Agent | Model | Thinking | Why |
 |---|---|---|---|
-| gamma-flip-tracker | sonnet | off | Mechanical: today's 0DTE flip + pin strikes; demoted to forward-looking only this week |
+| gamma-flip-tracker | sonnet | off | Next-session GEX advisory for SPY/QQQ only (ZGL, regime, call/put walls); prose-only, 0 rubric points, no backtested edge |
 | dealer-positioning-strategist | sonnet | **on** | Multi-signal synthesis: DEX trajectory + vanna squeeze + GEX time series across the week — reasoning depth required |
 | sweep-tracker | sonnet | off | Filter and rank by `hot_chains_sweep_persistence` count — no synthesis |
 | accumulation-hunter | sonnet | off | Pattern match across DP + OI over 5d/10d, with `dark_pool_block_stratified` gate |
@@ -111,7 +111,11 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
    - **Macro snapshot** — run `python3 scripts/fred_macro.py` via Bash → `macro_snapshot` JSON (yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y level/direction, USD direction, fed funds). If `available:false`, note the skip and fall back to the regime label.
    - **Forward catalyst calendar** — build `event_risk`: Tier-1 US macro releases over the **next two calendar weeks** (CPI, PPI, PCE, FOMC/SEP, NFP/jobless claims) confirmed via `WebSearch`, each tagged `{event, date, impact}`. Per-name earnings dates are added in Phase 2 from the fundamentals enrichment and cross-referenced against the §6 lookahead.
 
-9. **Compose the week-baseline context block** — this compact JSON-shaped block is passed verbatim to every Phase 1 agent: `{iso_week, monday, week_end, today, covered_dates, regime_today, regime_monday, regime_delta, vrp_classification, sector_persistence, top_bullish, top_bearish, confluence, iv_extremes, earnings_lookahead, opex_pin_candidates, macro_snapshot, event_risk}`.
+9. **§2 GEX-advisory rolling backtest** — the §2 / §9 next-session GEX map for SPY/QQQ is shipped as an *advisory* in `/daily-analysis` with **no** predictive claim; this is where that claim is tested. Run `python3 scripts/gex_next_session_backtest.py --symbols SPY,QQQ --days 60 --json` via Bash and capture it as `gex_advisory_backtest`. It reconstructs the trailing EOD GEX book (via the uw-pp CLI the MCP wraps) and reports, vs a 50% baseline: **H1** spot-vs-ZGL → next-session realised vol (theory: short-gamma > long-gamma) and **H2** whether the next close lands *closer* to the nearest EOD wall (walls-as-magnet), with `n`, binomial `p`, and a coarse `verdict` (`GO_WALLS_PREDICTIVE` / `NO_GO_NO_EDGE` / `INSUFFICIENT_SAMPLE`). If it returns `available:false` (CLI/data unavailable), note the skip and continue. **As of the last gate run the verdict was `NO_GO_NO_EDGE`** (walls were not magnets — next close moved *away* more than chance; H1 ran backwards) — so the GEX walls are dealer context only, never a backtested edge.
+
+   Then run `python3 scripts/zerodte_setup.py --symbols SPY,QQQ --days 60 --json` and capture it as `zerodte_setup` — the **validated** 0DTE stack (delta-neutral premium-selling): rolling `backtest` (front-IV implied move vs realized open-to-close, open-entry vs overnight, GEX→range vol-suppression, VIX-level conditioning, `verdict` ∈ {`GO_PREMIUM_SELL_INTRADAY`/`NO_GO_NO_EDGE`/`INSUFFICIENT_SAMPLE`}) plus a per-index `setup`. This is the part that *did* validate (unlike the GEX walls) — but it is still **advisory, 0 rubric points, and NOT a guaranteed edge** (no vol shock in sample → tail unsampled). `available:false` → note the skip.
+
+10. **Compose the week-baseline context block** — this compact JSON-shaped block is passed verbatim to every Phase 1 agent: `{iso_week, monday, week_end, today, covered_dates, regime_today, regime_monday, regime_delta, vrp_classification, sector_persistence, top_bullish, top_bearish, confluence, iv_extremes, earnings_lookahead, opex_pin_candidates, macro_snapshot, event_risk, gex_advisory_backtest, zerodte_setup}`.
 
 ---
 
@@ -121,16 +125,18 @@ Spawn these **11 agents simultaneously** — a single message with 11 Agent tool
 
 **Hard rule:** no agent re-fetches `risk_market_regime`, `historical_vrp`, or `options_structure_front_end_iv_ratio` — those come from Step 0 context only.
 
-### gamma-flip-tracker — DEMOTED, forward-looking only (sonnet, thinking off)
-Do **NOT** produce intraday or 0DTE calls. Instead: forecast next week's zero-gamma level and key pin strikes for SPY/QQQ/IWM and any liquid name with significant near-dated GEX from Step 0. **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
+### gamma-flip-tracker — next-session GEX advisory, SPY/QQQ only (sonnet, thinking off)
+Do **NOT** produce intraday 0DTE calls. Forecast next session's / next week's zero-gamma level, regime, and call/put walls for **SPY and QQQ only** (drop IWM and single names), read off the standing EOD 0–45d GEX book (OI persists overnight). This is the §9 **advisory** — prose-only, **0 conviction-rubric points**, and **no backtested predictive claim** (its predictive value is tested by the Step 0 `gex_advisory_backtest`; present accordingly). **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
 
 Tools required:
-- `mcp__uw-pp__options_structure_today_gamma_flip` — current day zero-gamma + flip strike (latest).
-- `mcp__uw-pp__options_structure_gex` (default `dte_max=45`) — per-strike GEX, call wall, put wall.
-- `mcp__uw-pp__options_flow_expiry_heatmap` — confirm next-week expiry holds the volume share for the forecast.
-- `mcp__uw-pp__options_flow_greek_screener` — `min_gamma` filter for the highest-impact next-week contracts.
+- `mcp__uw-pp__options_structure_gex` (default `dte_max=45`) — **PRIMARY**: per-strike GEX, `zero_gamma_level`, `regime`, `total_gex`, call wall (largest +GEX strike above spot), put wall (most −GEX strike below). Do **not** lead with `options_structure_today_gamma_flip` (it locks to the snapshot's expired same-day expiry with an unreliable ZGL).
+- `mcp__uw-pp__historical_gex_time_series` — `regime_flip_dates` + multi-day ZGL trajectory across `covered_dates`: regime fresh vs held.
+- `mcp__uw-pp__options_flow_expiry_heatmap` — confirm near-dated expiries hold meaningful volume share.
+- `mcp__uw-pp__options_flow_greek_screener` — `min_gamma` filter for the highest-impact near-dated contracts.
 
-Output: §9 next-week pin vs trend regime call, key SPY/QQQ/IWM pin strikes for next week.
+ZGL rule: trust `zero_gamma_level` only within ~5% of spot; when null/extrapolated, fall back to `total_gex` sign + spot-vs-wall and set `zgl_reliable=false`.
+
+Output: §9 next-session regime + ZGL + call/put wall for SPY and QQQ, with a one-line structure bias and the mandatory caveats (EOD = prior refreshed after the open; gap risk; ETF-not-index book; uw-pp cannot isolate the D+1 expiry).
 
 ### dealer-positioning-strategist — swing-horizon dealer flows (sonnet, thinking **on**) (NEW)
 Owns the multi-day DEX / vanna / charm / GEX-trajectory work. Surfaces 1–4 week swing setups GF cannot see at the 0DTE horizon.
@@ -468,7 +474,8 @@ Embedded rubric (for audit):
 [Embed the Step 4 conviction rubric verbatim here.]
 
 ## 9. Setups for Next Week
-- gamma-flip-tracker next-week GEX forecast — zero-gamma level, key pin strikes for SPY/QQQ/IWM
+- gamma-flip-tracker next-session GEX **advisory** (SPY/QQQ only) — regime, zero-gamma level, call/put walls, one-line structure bias + mandatory caveats. Lead with the Step 0 `gex_advisory_backtest` verdict (`GO_WALLS_PREDICTIVE` / `NO_GO_NO_EDGE` / `INSUFFICIENT_SAMPLE`, with n + walls-as-magnet hit-rate vs 50%) so the advisory is framed by its current out-of-sample track record, not presented as a proven edge.
+- **Next-session 0DTE premium-selling setup** (from Step 0 `zerodte_setup`, the validated stack): per index `{sell_premium, vol_state, size_scalar, expected_range_pct, suggested_structure, entry_rule, stand_aside_reason}` plus the rolling `backtest.verdict` + win-rate. Delta-neutral, advisory, 0 rubric points. Key rules: sell only when front IV rich (size by VIX level), wing width from the GEX vol-suppression range, **enter at the open / never carry overnight**, stand aside on a VIX spike or front-end backwardation. SPY≈SPX (trade either); QQQ weaker. NOT a guaranteed edge — flag the unsampled-tail caveat.
 - dealer-positioning-strategist swing setups — DEX flips, vanna squeezes, regime flips for the next 1–4 weeks
 - Pin vs trend regime call
 - 2–3 highest-conviction actionable setups for the coming week (HIGH-tier names)
@@ -495,7 +502,7 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Step 10 — Save, emit decision envelope, and confirm
 
 1. Use Write to save the report to `analyses/weekly/$ISO_WEEK.md`.
-2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK.decision.json`, conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.0", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` per call. Invariant: `Σ score_components[].points == raw_score` per call.
+2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK.decision.json`, conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.1", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` per call. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
 3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK.decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
 4. Confirm both files were written.
 5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.

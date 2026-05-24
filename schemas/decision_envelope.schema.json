@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "required": ["schema_version", "report_date", "report_kind", "regime", "calls", "report_path"],
   "properties": {
-    "schema_version": {"type": "string", "const": "1.0"},
+    "schema_version": {"type": "string", "enum": ["1.0", "1.1"]},
     "report_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
     "report_kind": {"type": "string", "enum": ["daily", "weekly"]},
     "iso_week": {"type": "string", "pattern": "^[0-9]{4}-W[0-9]{2}$"},
@@ -29,12 +29,78 @@
     },
     "watchlist_write_back": {"type": "array", "items": {"type": "string"}},
     "report_path": {"type": "string"},
+    "next_session_gex": {"$ref": "#/$defs/next_session_gex"},
+    "next_session_0dte_setup": {"$ref": "#/$defs/next_session_0dte_setup"},
     "calls": {
       "type": "array",
       "items": {"$ref": "#/$defs/call"}
     }
   },
   "$defs": {
+    "next_session_0dte_setup": {
+      "description": "ADVISORY (schema_version >= 1.1). The §2 next-session 0DTE premium-selling setup for SPY/QQQ, from scripts/zerodte_setup.py. Delta-neutral vol harvest sized by VIX and structured by the GEX vol-suppression read — NOT a directional bet (every directional signal backtested NO_GO). Like next_session_gex it is prose-only / advisory, deliberately OUT of calls[] so it contributes 0 points to any raw_score; the 0-points invariant is structural. NOT a guaranteed edge: the validation sample has no vol shock, so the short-vol left tail is unsampled.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["advisory", "as_of_eod_date", "indices"],
+      "properties": {
+        "advisory": {"type": "boolean", "const": true},
+        "as_of_eod_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "backtest_verdict": {"type": ["string", "null"], "enum": ["GO_PREMIUM_SELL_INTRADAY", "NO_GO_NO_EDGE", "INSUFFICIENT_SAMPLE", null]},
+        "indices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["symbol", "sell_premium"],
+            "properties": {
+              "symbol": {"type": "string", "enum": ["SPY", "QQQ"]},
+              "sell_premium": {"type": "boolean"},
+              "vol_state": {"type": ["string", "null"], "enum": ["LOW", "MID", "HIGH", "UNKNOWN", null]},
+              "vix": {"type": ["number", "null"]},
+              "implied_move_pct": {"type": ["number", "null"]},
+              "expected_range_pct": {"type": ["number", "null"]},
+              "size_scalar": {"type": ["number", "null"]},
+              "suggested_structure": {"type": ["string", "null"]},
+              "entry_rule": {"type": ["string", "null"]},
+              "stand_aside_reason": {"type": ["string", "null"]},
+              "caution": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    },
+    "next_session_gex": {
+      "description": "ADVISORY (schema_version >= 1.1). The §2 next-session dealer-gamma map for SPY/QQQ ONLY, derived from EOD open interest that persists overnight. Prose-only / advisory: it is NOT a backtested predictive signal (predictive validation accrues in /weekly-analysis) and contributes 0 points to any call's raw_score — it is deliberately kept OUT of calls[] so it cannot enter the conviction rubric. The 0-points invariant is therefore structural. `symbol` is constrained to SPY/QQQ to enforce the §2 scope boundary.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["advisory", "as_of_eod_date", "indices"],
+      "properties": {
+        "advisory": {"type": "boolean", "const": true},
+        "as_of_eod_date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "next_session_date": {"type": ["string", "null"]},
+        "indices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["symbol", "spot", "regime"],
+            "properties": {
+              "symbol": {"type": "string", "enum": ["SPY", "QQQ"]},
+              "spot": {"type": "number"},
+              "zero_gamma_level": {"type": ["number", "null"]},
+              "zgl_reliable": {"type": "boolean"},
+              "regime": {"type": "string", "enum": ["POSITIVE", "NEGATIVE", "FULLY_NEGATIVE", "FULLY_POSITIVE"]},
+              "total_gex": {"type": ["number", "null"]},
+              "call_wall": {"type": ["number", "null"]},
+              "put_wall": {"type": ["number", "null"]},
+              "read": {"type": ["string", "null"]},
+              "structure_bias": {"type": ["string", "null"]},
+              "caveats": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    },
     "call": {
       "type": "object",
       "additionalProperties": false,
