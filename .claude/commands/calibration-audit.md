@@ -69,7 +69,17 @@ The persona for every phase is a composite **elite desk reviewer**: buy-side PM 
 
 Process daily reports oldest→newest, then weekly reports oldest→newest. Use `Read` directly when total report count is ≤30; otherwise route through the `iterative-retrieval` skill (the analyses folder grows linearly with calendar time and will eventually exceed comfortable single-pass context).
 
-### Per-report extraction
+### Prefer the structured decision envelope (machine-resolvable)
+
+Before parsing any report prose, check for a sidecar **decision envelope** beside the report: `analyses/<date>.decision.json` (daily) or `analyses/weekly/<iso-week>.decision.json` (weekly). When present:
+
+1. Validate it first: `python3 scripts/validate_decision.py --file <path>`. If it fails validation, note the data-quality flag and fall back to prose parsing for that report.
+2. Load `calls[]` directly — each object **already is** the normalized per-call row below (`ticker`, `horizon`, `section`, `tier`, `raw_score`, `score_components[]`, `dominant_signal_class`, `win_rate` + `win_rate_n` + `win_rate_source`, `pre_risk_size`, `final_size`, `gate_verdicts`, `fundamentals_verdict`, `debate_residual_confidence`, `structure`, `invalidation`, `thesis`, `key_risks[]`). No prose re-parsing, no `Σ points` reconciliation needed (the validator guarantees it). Map `gate_verdicts` keys to `gates_fired`, and carry `fundamentals_verdict` / `debate_residual_confidence` as new audit dimensions (e.g. did VETO'd names that were nonetheless tracked actually fail? did high bear-residual names underperform?).
+3. The top-level `macro_event_risk` and `macro_snapshot_signals` give the macro context at entry — use them to test whether event-risk-flagged calls drew down around the print.
+
+The envelope is the authoritative source when it exists; the markdown report is its human-readable rendering. Only fall back to the prose-extraction below for **legacy reports that predate the envelope** (no `.decision.json` sidecar).
+
+### Per-report extraction (legacy prose fallback)
 
 For every ticker mentioned in §3 (Swing Setups), §4 (LEAP Builds), §5 (Volatility Surface — when it produces a sized vol trade), §7 (High-Conviction Cross-Ref), and the Executive Summary's top-call lines, capture:
 

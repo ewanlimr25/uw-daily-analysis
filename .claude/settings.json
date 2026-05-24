@@ -11,7 +11,9 @@
   },
   "permissions": {
     "allow": [
-      "mcp__uw-pp__*"
+      "mcp__uw-pp__*",
+      "WebSearch",
+      "Skill(stock-deep-dive)"
     ]
   }
 }

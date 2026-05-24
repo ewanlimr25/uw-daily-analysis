@@ -4,7 +4,7 @@ description: Run the full Friday-evening or Sunday-prep weekly intelligence note
 
 # Weekly Market Intelligence
 
-Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same two-phase agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context. Phase 2 runs `signal-confluence-quant` for audited scoring, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest top names, write winners back to the watchlist, and save the report to `analyses/weekly/YYYY-WW.md`.
+Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context (including a FRED macro snapshot + forward event-risk calendar). Phase 2 runs `signal-confluence-quant` for audited scoring, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest and fundamentally vet top names, write winners back to the watchlist, emit a machine-readable `decision.json` envelope, and save the report to `analyses/weekly/YYYY-WW.md`.
 
 ## When to invoke
 
@@ -37,7 +37,10 @@ The orchestrator running this skill must use **`opus` with extended thinking on*
 | sector-rotation-strategist | sonnet | off | Persistence-gated rotation calls + leader extraction; mostly mechanical |
 | opex-pin-strategist (conditional) | sonnet | off | OPEX-week only; ranking + structure suggestion is rule-based |
 | signal-confluence-quant (Phase 2a) | sonnet | **on** | Audited per-ticker scoring with explicit component breakdown — reasoning required for tie-breaking and audit-trail prose |
-| risk-monitor (Phase 2b) | sonnet | off | Systematic: correlation matrix + cluster flagging + gate stack application |
+| fundamentals-gate (Phase 2b) | sonnet | off | Mechanical cross-check: runs `finnhub_enrich.py` on top-5, maps assessment vs thesis direction to CONFIRM/CAUTION/VETO |
+| bull-researcher (Phase 2c) | sonnet | **on** | Adversarial steelman of the long case — reasoning + honest residual confidence |
+| bear-researcher (Phase 2c) | sonnet | **on** | Adversarial steelman of the bear case — the disconfirmation the additive score lacks |
+| risk-monitor (Phase 2d) | sonnet | off | Systematic: correlation matrix + cluster flagging + full gate stack (incl. fundamentals / event-risk / debate) |
 
 Pass the model assignment in each agent's prompt header (e.g. `Model: claude-sonnet-4-6, extended_thinking: false`).
 
@@ -104,7 +107,11 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
 
 7. **OPEX guard** — if `WEEK_END` is within 7 calendar days of the third Friday, also call `mcp__uw-pp__oi_pin_risk` for SPY/QQQ/IWM and the top 10 from step 6, plus `mcp__uw-pp__oi_opex_concentration` for the same set. Pinning candidates feed §9 (Setups for Next Week).
 
-8. **Compose the week-baseline context block** — this compact JSON-shaped block is passed verbatim to every Phase 1 agent: `{iso_week, monday, week_end, today, covered_dates, regime_today, regime_monday, regime_delta, vrp_classification, sector_persistence, top_bullish, top_bearish, confluence, iv_extremes, earnings_lookahead, opex_pin_candidates}`.
+8. **Macro & event-risk layer** — `risk_market_regime` gives a label, not a calendar; a week-ahead book needs to know which prints land next week. Build it once here:
+   - **Macro snapshot** — run `python3 scripts/fred_macro.py` via Bash → `macro_snapshot` JSON (yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y level/direction, USD direction, fed funds). If `available:false`, note the skip and fall back to the regime label.
+   - **Forward catalyst calendar** — build `event_risk`: Tier-1 US macro releases over the **next two calendar weeks** (CPI, PPI, PCE, FOMC/SEP, NFP/jobless claims) confirmed via `WebSearch`, each tagged `{event, date, impact}`. Per-name earnings dates are added in Phase 2 from the fundamentals enrichment and cross-referenced against the §6 lookahead.
+
+9. **Compose the week-baseline context block** — this compact JSON-shaped block is passed verbatim to every Phase 1 agent: `{iso_week, monday, week_end, today, covered_dates, regime_today, regime_monday, regime_delta, vrp_classification, sector_persistence, top_bullish, top_bearish, confluence, iv_extremes, earnings_lookahead, opex_pin_candidates, macro_snapshot, event_risk}`.
 
 ---
 
@@ -245,9 +252,9 @@ Output: §4 LEAP candidates that pass strict filters; explicit disqualification 
 
 ---
 
-## Step 2 — Phase 2: signal-confluence-quant THEN risk-monitor (sequential, consumes Phase 1 union)
+## Step 2 — Phase 2: quant → fundamentals gate → bull/bear debate → risk-monitor (sequential, consumes Phase 1 union)
 
-Phase 2 runs in two stages: the quant produces the audited score, then risk gates and sizes.
+Phase 2 runs in four stages: the quant produces the audited score (2a); the fundamentals gate cross-checks the top-5 against the underlying (2b); a bounded bull/bear debate stress-tests them (2c); then risk gates and sizes against regime/VRP/correlation **plus** the fundamentals verdict and debate residuals (2d). Stages 2b–2c operate on the **top 5 by `raw_score` only**.
 
 ### Step 2a — signal-confluence-quant (sonnet, thinking **on**)
 
@@ -258,19 +265,27 @@ Once **all** Phase 1 agents return, collect the **union** of every candidate tic
 - Pull `mcp__uw-pp__historical_cumulative_premium_flow` (30d and 90d) for tie-breaking and supplemental directional context.
 - Compute `raw_score` per ticker against the weekly persistence-weighted rubric (Step 4), identify `dominant_signal_class`, attach `win_rate`, emit `final_size_recommendation_pre_risk`, and produce a full audit trail per ticker.
 
-Output: sorted list `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, final_size_recommendation_pre_risk, audit_trail}`.
+Output: sorted list `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, final_size_recommendation_pre_risk, audit_trail}`.
 
-### Step 2b — risk-monitor (sonnet, thinking off)
+### Step 2b — fundamentals-gate (top 5; sonnet, thinking off)
 
-Spawn `risk-monitor` with (a) the quant's sorted score list and (b) the week-baseline context block from Step 0. It must:
+The microstructure fleet is fundamentally blind. Spawn `fundamentals-gate` with the quant's **top 5 by `raw_score`**, each with `dominant_signal_class` + thesis direction, plus `WEEK_END` as the `as_of` date. It runs `python3 scripts/finnhub_enrich.py --ticker <T> --date <WEEK_END>` per name and cross-references earnings-surprise streak, insider MSPR, growth/leverage, and the news catalyst stack against the thesis direction, emitting `{ticker, fundamentals_verdict (CONFIRM/CAUTION/VETO/NA), tier_adjustment, next_earnings_date, days_to_earnings, catalyst_support, reasons[], key_risks[]}`. Cross-check `next_earnings_date` against the §6 earnings lookahead. NA never penalizes. Hands to 2d.
+
+### Step 2c — bull/bear debate (top 5; sonnet, thinking on)
+
+The persistence-weighted score is still additive — crowded multi-week consensus names score highest. For each **top 5 by `raw_score`**, spawn `bull-researcher` and `bear-researcher` for **1 round** (2nd round only on genuine disagreement: residuals within one bin and ≥0.75). Hand both sides the ticker's `score_components`, the 2b fundamentals enrichment, and the Step 0 macro/event context. Debates run in parallel across names; bull-then-bear within a name. Output per ticker: `{bull_residual, bear_residual, bull_strongest_unrefuted, bear_strongest_unrefuted}`. The debate can only cut size, never add it.
+
+### Step 2d — risk-monitor (sonnet, thinking off)
+
+Spawn `risk-monitor` with (a) the quant's sorted score list, (b) the 2b fundamentals verdicts, (c) the 2c debate residuals, and (d) the week-baseline context block from Step 0 (incl. `macro_snapshot` + `event_risk`). It must:
 
 - Run `mcp__uw-pp__risk_portfolio_correlation` against the week-candidate set — flag corr > 0.7 sub-groups as concentration risks.
 - Confirm `mcp__uw-pp__risk_market_regime` from Step 0 (already pinned; do not re-fetch).
-- Apply the gate stack: −1 tier per regime conflict, panic (`options_structure_front_end_iv_ratio > 1.10`), VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation.
+- Apply the full gate stack: VETO → watch-only (fundamentals); −1 tier each for regime conflict, panic (`options_structure_front_end_iv_ratio > 1.10`), VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call.
 - Pull `mcp__uw-pp__watchlist_alerts` and `mcp__uw-pp__watchlist_scan` against the prior `conviction_week_<previous>` group — surface adverse-flow exit candidates.
-- Persist this week's top 5 conviction names via `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")`.
+- Persist this week's top 5 conviction names (post-gate, excluding VETO'd names) via `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")`.
 
-Output: §7 risk & correlation — clusters, regime conflicts, VRP / panic gates applied, adverse-flow exit list, hedge sleeve recommendation, final sizing table per ticker that consumes the quant's pre-risk size.
+Output: §7 risk & correlation — clusters, regime conflicts, VRP / panic gates applied, fundamentals verdicts, event-risk flags, debate cuts, adverse-flow exit list, hedge sleeve recommendation, final sizing table per ticker that consumes the quant's pre-risk size.
 
 ---
 
@@ -320,8 +335,8 @@ Weekly conviction score = Σ:
   -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
   -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude)   # 2026-05-15 audit P0; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict (apply ONE, never both)
   # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line)
-  -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2b
-  -3  WoW risk_market_regime flip conflicts with trade direction — applied in 2b
+  -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2d
+  -3  WoW risk_market_regime flip conflicts with trade direction — applied in 2d
 ```
 
 ### Conviction tiers (2026-05-15 audit P0; supersedes prior ≥9 / 6–8 / 3–5 cuts)
@@ -411,6 +426,7 @@ Before writing: run `mkdir -p analyses/weekly` via Bash if the directory does no
 - `risk_market_regime` today + Monday baseline; WoW delta narrative
 - `historical_vrp` classification — premium-selling vs premium-buying environment
 - `options_flow_dte_volume_share` aggregated across the week — institutional vs retail share trend
+- **Macro backdrop** (`scripts/fred_macro.py` `macro_snapshot`): yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y/USD direction — plus next-two-weeks `event_risk` calendar (Tier-1 prints)
 - Implications for next week's bias
 
 ## 2. Sector Rotation
@@ -439,10 +455,13 @@ Before writing: run `mkdir -p analyses/weekly` via Bash if the directory does no
 - risk-monitor consuming the full week-candidate union — not the static watchlist
 - `risk_portfolio_correlation` clusters with member tickers and corr coefficients
 - `insights_signal_confluence` flags
+- **Macro & event risk**: `macro_snapshot` headline + next-two-weeks `event_risk` calendar
+- **Fundamentals verdicts**: per top-5 name — CONFIRM/CAUTION/VETO with the contradicting facts (insider MSPR, miss/beat streak, earnings date)
+- **Debate-disconfirmation cuts**: names where the bear residual ≥ bull residual
 - Concentration risks + recommended hedge sleeve
 
 ## 8. High-Conviction Cross-Ref (HIGH and MEDIUM tier)
-[Per-ticker breakdown: tier | score components | win_rate | final size | invalidation level. One paragraph per HIGH-tier name.]
+[Per-ticker breakdown: tier | score components | win_rate (with n + source) | `fundamentals_verdict` | bull/bear residuals | gate_verdicts | final size | invalidation level. One paragraph per HIGH-tier name. Note any VETO'd name with its distribution evidence.]
 
 Embedded rubric (for audit):
 
@@ -455,6 +474,7 @@ Embedded rubric (for audit):
 - 2–3 highest-conviction actionable setups for the coming week (HIGH-tier names)
 - LOW-tier names to track for daily-analysis confirmation
 - OPEX-week ranked book if `opex-pin-strategist` was spawned — pin candidates with `suggested_structure` per name (iron flies, short straddles, broken-wing butterflies)
+- **Deep-dive hand-off** (optional): for the top 2 HIGH-tier names (post-gate, non-VETO), if the `stock-deep-dive` skill is available invoke `/stock-deep-dive <TICKER>` and record the report path here; otherwise emit the recommendation verbatim (`Recommended deep dive: /stock-deep-dive <TICKER>`). Skip on a no-edge week.
 
 ## 10. Watch-only — single signal, no confluence
 [Names that surfaced from one agent but failed the confluence gate. Listed for journaling, NOT for trade entry next week.]
@@ -462,9 +482,9 @@ Embedded rubric (for audit):
 
 ---
 
-## Step 9 — Confirm watchlist write-back (handled by risk-monitor in Step 2b)
+## Step 9 — Confirm watchlist write-back (handled by risk-monitor in Step 2d)
 
-The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2b — the agent calls `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")` with this week's top 5 by conviction score. **Do not double-write.**
+The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2d — the agent calls `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")` with this week's top 5 by conviction score (excluding any VETO'd name). **Do not double-write.**
 
 Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>", tickers=[<top_5_by_score>])` directly as a fallback.
 
@@ -472,11 +492,13 @@ If any name was already on a manually-curated group, leave that membership alone
 
 ---
 
-## Step 10 — Save and confirm
+## Step 10 — Save, emit decision envelope, and confirm
 
 1. Use Write to save the report to `analyses/weekly/$ISO_WEEK.md`.
-2. Confirm the file was written.
-3. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
+2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK.decision.json`, conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.0", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` per call. Invariant: `Σ score_components[].points == raw_score` per call.
+3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK.decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
+4. Confirm both files were written.
+5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
 
 ---
 

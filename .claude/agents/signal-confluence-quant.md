@@ -112,6 +112,7 @@ Output per ticker (full audit trail):
 - `confluence_score` — from `insights_signal_confluence`
 - `cum_premium_flow_30d`, `cum_premium_flow_90d` — supplemental directional context
 - `win_rate` (directional) or `vol_realisation_rate` (non-directional) — with the lookback window used
+- `win_rate_n` — the backtest sample size `n` used for the N-conditional cap (or the proxy match count); `win_rate_source` — `backtest` | `fallback_proxy` | `NA`. These two fields are serialized verbatim into the decision envelope so `/calibration-audit` can weight calls by sample quality without re-parsing prose.
 - `final_size_recommendation_pre_risk` — full / half / starter / skip — based on win_rate, before risk-monitor's gates
 - `audit_trail` — one human-readable paragraph explaining the score in plain English, e.g. "Scored 7: +3 historical_cumulative_premium_flow (30d +$112M accretion in LONG direction), +3 accumulation 3-of-3 aligned (dark_pool_block_stratified institutional-tier confirmed), +2 multileg directional vertical (term-structure-anchored). Win rate 0.58 on `dark_pool_accumulation` over 252d → half size pre-risk. LB-gate: 4 of 5 cited (dark_pool_block_stratified ✓, historical_cumulative_premium_flow ✓, insights_institutional_accumulation ✓, insights_signal_confluence ✓, options_structure_dex ✗) — eligible for HIGH if score qualifies."
 

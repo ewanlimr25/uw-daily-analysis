@@ -4,7 +4,7 @@ description: Run the full post-market daily intelligence report — regime + GEX
 
 # Daily Market Analysis
 
-Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns **11 alpha-finding agents** (12 in OPEX week) in parallel against a shared macro context; Phase 2 runs `signal-confluence-quant` to produce an audited conviction score per candidate, then `risk-monitor` to gate and size. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate before sizing, and the top 5 are written back to the watchlist so tomorrow's run measures correlation against today's calls. Save to `analyses/YYYY-MM-DD.md`.
+Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns **11 alpha-finding agents** (12 in OPEX week) in parallel against a shared macro context (including a FRED macro snapshot + forward event-risk calendar); Phase 2 runs `signal-confluence-quant` for an audited conviction score, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` to gate and size. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate and fundamentally vetted before sizing, the top 5 are written back to the watchlist, and a machine-readable `decision.json` envelope is emitted beside the report. Save to `analyses/YYYY-MM-DD.md`.
 
 ## When to invoke
 
@@ -53,7 +53,11 @@ This step builds the shared context every Phase 1 agent receives. **Do not skip 
 
 7. **OPEX guard** — if today is within 5 calendar days of the third Friday, also call `mcp__uw-pp__oi_pin_risk` and `mcp__uw-pp__oi_opex_concentration` for SPY/QQQ/IWM and any name in the top of step 6. Pinning candidates feed §2 (0DTE) directly.
 
-The output of Step 0 is a compact JSON-shaped context block: `{date, regime, vrp_classification, dte_share, sector_summary, sector_persistence, top_bullish, top_bearish, confluence, volume_outliers, iv_extremes, opex_pin_candidates}`. Every Phase 1 agent receives this verbatim.
+8. **Macro & event-risk layer** — `risk_market_regime` gives a regime *label*, not a *calendar*. A swing book sized Tuesday with CPI Wednesday carries un-priced event risk. Build the macro layer once here (it respects the no-re-fetch hard rule — fetch once, pass down):
+   - **Macro snapshot** — run `python3 scripts/fred_macro.py` via Bash. It returns a JSON `macro_snapshot` with latest prints + derived signals (yield-curve sign, core CPI/PCE YoY, unemployment, payrolls, 10Y level + 30d direction, USD direction, fed funds). If it returns `available:false` (no `FRED_API_KEY`), note the skip and continue — fall back to the regime label only.
+   - **Forward catalyst calendar** — build `event_risk`: the Tier-1 US macro releases in the next ~10 trading days (CPI, PPI, PCE, FOMC/SEP, NFP/jobless claims) with their dates. Use `WebSearch` to confirm the scheduled dates (FRED has no forward-calendar endpoint). Tag each `{event, date, impact}`. Per-name earnings dates are added later in Phase 2 from the fundamentals enrichment — they are not known yet at Step 0.
+
+The output of Step 0 is a compact JSON-shaped context block: `{date, regime, vrp_classification, dte_share, sector_summary, sector_persistence, top_bullish, top_bearish, confluence, volume_outliers, iv_extremes, opex_pin_candidates, macro_snapshot, event_risk}`. Every Phase 1 agent receives this verbatim; `macro_snapshot` + `event_risk` are consumed primarily by `risk-monitor` in Phase 2, but agents may use them to gate directional calls against an imminent print.
 
 ---
 
@@ -186,9 +190,9 @@ Output: LEAP candidates that pass strict filters — disqualify and explain anyt
 
 ---
 
-## Step 2 — Phase 2: signal-confluence-quant THEN risk-monitor (sequential)
+## Step 2 — Phase 2: quant → fundamentals gate → bull/bear debate → risk-monitor (sequential)
 
-Phase 2 runs in two stages. The quant produces the audited score; the risk officer gates and sizes against regime/VRP/correlation. Do not collapse them — the separation is the entire point of having auditable conviction math.
+Phase 2 runs in four sequential stages. The quant produces the audited score (2a); the fundamentals gate cross-checks the top-5 against the underlying (2b); a bounded bull/bear debate stress-tests those same names (2c); then the risk officer gates and sizes against regime/VRP/correlation **plus** the fundamentals verdict and debate residuals (2d). Do not collapse them — the separation is the entire point of having auditable, disconfirmed conviction. Stages 2b and 2c operate on the **top 5 by `raw_score` only** (quota-trivial, and the only names that get sized at HIGH/MEDIUM).
 
 ### Step 2a — signal-confluence-quant (runs first)
 
@@ -199,19 +203,31 @@ Once **all** Phase 1 agents return, collect every candidate ticker into a single
 - Pull `mcp__uw-pp__historical_cumulative_premium_flow` (30d and 90d) for tie-breaking and supplemental directional context.
 - Compute `raw_score` per ticker against the Step 4 rubric, identify `dominant_signal_class`, attach `win_rate`, and emit `final_size_recommendation_pre_risk` (full / half / starter / skip) with a full audit trail per ticker.
 
-Output: a sorted list of `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, final_size_recommendation_pre_risk, audit_trail}`. **The quant does not gate on regime/correlation** — that's risk's job in 2b.
+Output: a sorted list of `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, final_size_recommendation_pre_risk, audit_trail}`. **The quant does not gate on regime/correlation** — that's risk's job in 2d.
 
-### Step 2b — risk-monitor (runs second, consumes quant output)
+### Step 2b — fundamentals-gate (top 5; runs after the quant)
 
-Spawn `risk-monitor` with (a) the quant's sorted score list and (b) the Step 0 macro context. It must:
+The microstructure fleet is **fundamentally blind** — it cannot tell genuine accumulation from smart-money distribution into a deteriorating name. Spawn `fundamentals-gate` with the quant's **top 5 by `raw_score`**, each with its `dominant_signal_class` and inferred thesis direction, plus the Step 0 `as_of` date. For each name it runs `python3 scripts/finnhub_enrich.py --ticker <T> --date <as_of>` and cross-references earnings-surprise streak, insider MSPR, growth/leverage, and the news catalyst stack against the thesis direction.
+
+Output: per-ticker `{ticker, fundamentals_verdict (CONFIRM/CAUTION/VETO/NA), tier_adjustment (0/−1/veto), earnings_trend, insider_signal, next_earnings_date, days_to_earnings, catalyst_support, reasons[], key_risks[]}`. Each name's `next_earnings_date` is fed into risk-monitor's event-risk gate. **NA never penalizes** (data unavailable ≠ evidence against). The verdict block hands to risk-monitor (2d).
+
+### Step 2c — bull/bear debate (top 5; runs after the fundamentals gate)
+
+Conviction scoring is **additive** — crowded consensus names score highest and break hardest, and no agent is tasked to kill the trade. Insert a bounded disconfirmation step. For each of the **top 5 by `raw_score`**, spawn `bull-researcher` and `bear-researcher` for **1 round** (escalate to a 2nd round only when the two residual confidences are within one bin of each other and ≥0.75 — i.e. a genuine disagreement worth a rebuttal). Hand both sides: the ticker's `score_components`, the Step 2b fundamentals enrichment, and the Step 0 macro/event context. Run the 5 names' debates in parallel; within a name, bull then bear is sequential.
+
+Output: per-ticker `{ticker, bull_residual, bear_residual, bull_strongest_unrefuted, bear_strongest_unrefuted}`. The residual pair hands to risk-monitor (2d), which cuts size when the bear's residual ≥ the bull's (the debate did not clear the trade). The debate can only **cut** size, never add it.
+
+### Step 2d — risk-monitor (runs last, consumes quant output + fundamentals verdict + debate residuals)
+
+Spawn `risk-monitor` with (a) the quant's sorted score list, (b) the Step 2b fundamentals verdicts, (c) the Step 2c debate residuals, and (d) the Step 0 macro context (including `macro_snapshot` + `event_risk`). It must:
 
 - Run `mcp__uw-pp__risk_portfolio_correlation` against today's candidates (not the static watchlist) — risk is measured against what we're actually considering.
 - Confirm `mcp__uw-pp__risk_market_regime` from Step 0 (do not re-fetch).
-- Apply the sizing-gate rules from `risk-monitor.md`: −1 tier for regime conflict, −1 tier for `options_structure_front_end_iv_ratio > 1.10` panic, −1 tier for VRP-vs-trade-type contradiction, −1 tier for corr-cluster duplication, −1 tier for adverse sector rotation.
+- Apply the full sizing-gate stack from `risk-monitor.md`: VETO → watch-only (fundamentals); −1 tier each for regime conflict, `options_structure_front_end_iv_ratio > 1.10` panic, VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call — including the new `fundamentals`, `event_risk`, and `debate` verdicts — even when each no-op's.
 - Pull `mcp__uw-pp__watchlist_alerts` and `mcp__uw-pp__watchlist_scan` against the rolling `conviction_<yesterday>` group — surface adverse-flow exit candidates.
-- Persist today's top-5 conviction names via `mcp__uw-pp__watchlist_manage(action="add", group="conviction_<date>")`.
+- Persist today's top-5 conviction names (post-gate, **excluding any VETO'd name**) via `mcp__uw-pp__watchlist_manage(action="add", group="conviction_<date>")`.
 
-Output: correlation clusters (corr > 0.7 = treat as one position), regime conflicts, VRP / panic gates applied, adverse-flow exit list, hedge sleeve recommendation, and a final sizing table per ticker that consumes the quant's `final_size_recommendation_pre_risk` and applies the gate stack.
+Output: correlation clusters (corr > 0.7 = treat as one position), regime conflicts, VRP / panic gates applied, fundamentals verdicts, event-risk flags, debate-disconfirmation cuts, adverse-flow exit list, hedge sleeve recommendation, and a final sizing table per ticker that consumes the quant's `final_size_recommendation_pre_risk` and applies the gate stack.
 
 ---
 
@@ -235,7 +251,7 @@ A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but ci
 
 ## Step 4 — Conviction scoring rubric (applied by signal-confluence-quant in Step 2a)
 
-The rubric below is what `signal-confluence-quant` consumes in Step 2a to produce the audited score. The quant attaches every signed point to a named source agent + tool in `score_components`. Risk-monitor in Step 2b applies the regime / VRP / cluster gates **on top of** this score.
+The rubric below is what `signal-confluence-quant` consumes in Step 2a to produce the audited score. The quant attaches every signed point to a named source agent + tool in `score_components`. Risk-monitor in Step 2d applies the regime / VRP / cluster / fundamentals / event-risk / debate gates **on top of** this score.
 
 ```
 Daily conviction score = Σ:
@@ -258,8 +274,8 @@ Daily conviction score = Σ:
   -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
   -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude in today's union)   # 2026-05-15 audit P0; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict (apply ONE, never both)
   # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line; NVDA 2026-05-08 raw=10 LOSS dominated by un-penalised flow_conflict against −$17.89M cum_flow_30d)
-  -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2b on top of raw score
-  -3  risk_market_regime conflicts with trade direction — applied in 2b
+  -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2d on top of raw score
+  -3  risk_market_regime conflicts with trade direction — applied in 2d
 
 # Removed from swing/LEAP scoring 2026-05-09 (Phase 4 audit, NO-INFO ±0pp on swing horizon):
 #   gamma-flip-tracker 0DTE breakout setup (regime flip + flow alignment) — formerly +2.
@@ -331,6 +347,7 @@ Synthesize into the structured markdown below. The report is organized **by trad
 - Per-index gamma table: spot | zero-gamma | total GEX | regime | call wall | put wall (rows: SPY/QQQ/IWM)
 - `options_flow_dte_volume_share` summary (institutional vs retail share)
 - `historical_vrp` classification
+- **Macro backdrop** (`scripts/fred_macro.py` `macro_snapshot`): yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y level/direction, USD direction — one line. Plus the forward `event_risk` calendar: Tier-1 prints in the next ~10 trading days.
 
 ## 2. 0DTE / Intraday Plays
 - gamma-flip-tracker per-ticker plays (PIN / TREND / NEAR_FLIP) for **today**
@@ -359,10 +376,10 @@ leap-positioning-radar — DIRECTIONAL_LONG only with full disqualification note
 vol-surface-scout — KINKED names, BACKWARDATION calendars, IV outliers, calendar-spread candidates with implied move per name.
 
 ## 6. Risk & Correlation
-risk-monitor consuming today's Phase 1 candidate union and the quant's audited score (not the static watchlist) — clusters, regime conflicts, VRP / panic gates applied, hedge sleeve recommendations.
+risk-monitor consuming today's Phase 1 candidate union and the quant's audited score (not the static watchlist) — clusters, regime conflicts, VRP / panic gates applied, **fundamentals verdicts** (CONFIRM/CAUTION/VETO per top-5 name with the contradicting facts), **event-risk flags** (Tier-1 macro / earnings inside a trade's horizon), **debate-disconfirmation cuts**, hedge sleeve recommendations. Lead with the `macro_snapshot` headline + forward `event_risk` calendar.
 
 ## 7. High-Conviction Cross-Ref (HIGH and MEDIUM tier — raw_score ≥ 7)
-Per-ticker breakdown sourced from the `signal-confluence-quant` audit trail: `raw_score` | `score_components[]` (with named source agent + tool per component) | `dominant_signal_class` | `win_rate` | pre-risk size | risk-monitor gates applied | final size | invalidation level.
+Per-ticker breakdown sourced from the `signal-confluence-quant` audit trail: `raw_score` | `score_components[]` (with named source agent + tool per component) | `dominant_signal_class` | `win_rate` (with `n` + source) | pre-risk size | `fundamentals_verdict` | bull/bear residuals | risk-monitor gates applied (`gate_verdicts`) | final size | invalidation level. Note any VETO'd name here with the distribution evidence even though it drops to watch-only.
 
 Embed the conviction-scoring rubric (Step 4) verbatim at the bottom of §7 so future readers can audit the scores.
 
@@ -372,9 +389,9 @@ Candidates that surfaced from one agent but failed the confluence gate. Listed f
 
 ---
 
-## Step 8 — Confirm watchlist write-back (handled by risk-monitor in Step 2b)
+## Step 8 — Confirm watchlist write-back (handled by risk-monitor in Step 2d)
 
-The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2b — the agent calls `mcp__uw-pp__watchlist_manage(action="add", group="conviction_<YYYY-MM-DD>")` with today's top 5 by conviction score. **Do not double-write here.**
+The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2d — the agent calls `mcp__uw-pp__watchlist_manage(action="add", group="conviction_<YYYY-MM-DD>")` with today's top 5 by conviction score (excluding any VETO'd name). **Do not double-write here.**
 
 Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `mcp__uw-pp__watchlist_manage(action="add", group="conviction_<YYYY-MM-DD>", tickers=[<top_5_by_score>])` directly as a fallback.
 
@@ -382,11 +399,27 @@ If any name was already on a manually-curated group, leave that membership alone
 
 ---
 
-## Step 9 — Save and report
+## Step 8.5 — Deep-dive hand-off on the top conviction names (optional)
+
+The fleet is breadth-first and stops at one report row per name. For the **top 2 HIGH-tier names** (post-gate, non-VETO), hand off to the single-name deep-dive engine, which shares this repo's Phase-1 agents so integration is near-zero:
+
+- If the `stock-deep-dive` skill is available in the session, invoke `/stock-deep-dive <TICKER>` for each (sequentially, to avoid spawning two long fleets at once). Record the produced report path under a `## Deep-dive hand-off` note in §7.
+- If the skill is **not** available, do not block — emit the recommendation verbatim in §7 (`Recommended deep dive: /stock-deep-dive NVDA`) so the user can run it.
+
+Skip this step entirely on a "no edge" day (no HIGH-tier names). Keep it to the top 2 — deep dives are expensive and the marginal value drops fast past the top of the book.
+
+---
+
+## Step 9 — Save, emit decision envelope, and report
 
 1. Use Write to save the report to `analyses/YYYY-MM-DD.md`.
-2. Confirm the file was written (the Write tool errors loudly on failure — no need to re-Read it).
-3. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
+2. **Emit the structured decision envelope** beside the report at `analyses/YYYY-MM-DD.decision.json`, conforming to `schemas/decision_envelope.schema.json`. This is the machine-resolvable sidecar `/calibration-audit` Phase 1 reads instead of re-parsing prose. Build it from the data already produced — do not re-derive:
+   - Top level: `{schema_version: "1.0", report_date, report_kind: "daily", regime, vrp_classification, macro_snapshot_signals (the fred_macro signals object), macro_event_risk (the event_risk calendar), watchlist_write_back (the persisted top-5), report_path}`.
+   - `calls[]`: one object per HIGH/MEDIUM/LOW call (and watch-only / VETO'd names) carrying the quant's audit fields verbatim — `ticker, horizon, section, direction, tier, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, pre_risk_size, final_size, gate_verdicts, fundamentals_verdict, debate_residual_confidence (the bull residual), structure, entry_or_trigger, invalidation, key_risks[], thesis`.
+   - **Invariant:** `Σ score_components[].points == raw_score` for every call (the quant already guarantees this — the validator enforces it).
+3. **Validate it:** run `python3 scripts/validate_decision.py --file analyses/YYYY-MM-DD.decision.json` via Bash. If it exits non-zero, fix the envelope (not the validator) until it passes — a malformed envelope silently degrades the calibration loop.
+4. Confirm both files were written (the Write tool errors loudly on failure — no need to re-Read).
+5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
 
 ---
 
