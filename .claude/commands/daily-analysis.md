@@ -45,6 +45,8 @@ This step builds the shared context every Phase 1 agent receives. **Do not skip 
    - `mcp__uw-pp__options_flow_sector_flow` — single-day sector premium balance (snapshot).
    - `mcp__uw-pp__options_flow_sector_flow_persistence` — multi-day rotation persistence score (the durability check that gates §2 of the report).
 
+   These two are **GICS-aggregate** (no symbol input) — they are the shared anchor. The **ETF instrument-level flow tape** (the canonical ETF universe defined in `sector-rotation-strategist.md`) is swept **per-symbol by the agent in Step 1**, not here — do **not** add the ~21 per-symbol ETF calls to preflight. The agent owns the ranked deep-pull; Step 0 stays GICS-aggregate.
+
 6. **Top-of-funnel screens** — run in parallel:
    - `mcp__uw-pp__screener_bullish_bearish` (top 25 each side) — net premium leaderboard.
    - `mcp__uw-pp__insights_signal_confluence` (`min_score=3`, top 25 each direction) — multi-factor scoring; agents start their hunts here.
@@ -97,13 +99,18 @@ Output: SPY/QQQ/IWM and single-name swing dealer reads — DEX state + 5d trajec
 ### sector-rotation-strategist — durable rotation calls + named single-name leaders (NEW)
 Scope is multi-week sector rotation with single-name leaders extracted within each rotating sector. Enforces ≥3-day persistence — single-day sector flow is filtered out.
 
-Tools required:
+Tools required (GICS layer — the shared anchor, cross-checks the ETF tape):
 - `mcp__uw-pp__options_flow_sector_flow_persistence` — multi-day rotation persistence per sector (PRIMARY).
 - `mcp__uw-pp__options_flow_sector_flow` — week-end skew within the persistence narrative (consume from Step 0 if available).
 - `mcp__uw-pp__screener_bullish_bearish` — filter by sector to extract single-name leaders.
 - `mcp__uw-pp__options_flow_dte_volume_share` — institutional vs retail share by sector (institutional rotation only counts at high monthly+ share).
 
-Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders within each rotating sector, and a one-line swing-book implication.
+ETF instrument-level flow tape (per-symbol — GICS tools cannot see ETFs, especially thematics/geographics). Run the **canonical ETF universe** constant in `sector-rotation-strategist.md`, **cap ≤ 40 added MCP calls**:
+- **RANK (≤21):** `mcp__uw-pp__historical_cumulative_premium_flow` (`--symbol <ETF> --days 5`) for every universe ETF — rank by net-premium direction × multi-day persistence. Weight ETF **options** flow above ETF DP. Graceful-skip thin names.
+- **DEEP-PULL top 3 inflow + 3 outflow only (≤12):** `mcp__uw-pp__dark_pool_largest` (`--symbol`, positioning/persistence tell — **not** single-name accumulation) + `mcp__uw-pp__options_flow_sweeps` (`--symbol`, directional urgency).
+- **CROSS-CONFIRM:** GICS sector + its representative ETF agree w/ persistence → high-conviction; disagree → watch-only. No-GICS thematics → instrument-only (`gics_agreement: n/a`).
+
+Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders within each rotating sector, `etf_flow_tape[]` (ranked inflow/outflow ETFs + GICS-agreement + leaders), and a one-line swing-book implication. The ETF tape is **advisory** — it strengthens the existing conditional sector-leader +1 via `gics_agreement`/cum_flow alignment, adds **no new rubric points**.
 
 ### opex-pin-strategist — CONDITIONAL: only spawn within 5 days of monthly third-Friday (NEW)
 **Conditional spawn.** If TODAY is within 5 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit — the orchestrator must not spawn it outside the window.
@@ -399,6 +406,13 @@ Near-term directional **sweeps** are surfaced in §3 (swing setups), not here. *
 - `sector-rotation-strategist`: rotating-into / rotating-out-of sectors with persistence scores
 - Rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change)
 - Single-name leaders feed §3 with the `sector_rotation` tag
+
+**ETF flow tape (advisory)** — instrument-level layer the GICS aggregates can't see. Surface `etf_flow_tape[]` as a ranked table:
+
+| ETF | Net premium dir | Persistence | DP positioning | Options urgency | GICS agreement | Named leaders |
+|---|---|---|---|---|---|---|
+
+Lead with top-3 inflow / top-3 outflow ETFs. Call out **GICS-vs-ETF agreement** explicitly (agree → high-conviction rotation; disagree → watch-only; `n/a` → instrument-only thematic/geographic read). Frame as advisory: ETF DP is a positioning/persistence tell (creation/redemption & hedging), **not** single-name accumulation; ETF options flow is weighted above ETF DP. The tape **strengthens** the existing conditional sector-leader +1 (via `gics_agreement` + cum_flow alignment) — it adds **no rubric points**.
 
 ## 3. Swing Setups (1–6 weeks)
 Ranked by conviction score. Table: Ticker | Score | Thesis | Structure | Invalidation | Sizing.

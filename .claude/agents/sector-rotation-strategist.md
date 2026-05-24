@@ -19,11 +19,34 @@ Rotation-regime detection: compare the rotating-in vs rotating-out sectors again
 - **Value → Growth** (Financials/Energy out → Tech/Comms in) = disinflation / rate-relief; favour growth leaders
 - **No clean pattern** — sectors moving in mixed directions; output `rotation_regime: "no_change"` and surface only individual sector calls
 
+## ETF instrument-level flow tape
+
+`options_flow_sector_flow` / `_persistence` are **GICS-aggregate** — they take no symbol and cannot see an ETF as an instrument. Thematics (TAN) and geographics (EWY, EWT) have **no clean GICS mapping** and are entirely invisible to them. This pass adds the ETF-instrument layer that runs **alongside** the GICS logic above — it does **not** replace it; GICS cross-checks the tape.
+
+**Operating rules (HARD):**
+- **Multi-day > single-day.** A single day of ETF inflow is appendix-only, never a call. ETF rotation requires multi-day persistence.
+- **Options flow > ETF DP.** ETF dark-pool prints are dominated by **creation/redemption & hedging**, not directional accumulation — read ETF DP as a *positioning/persistence tell*, **NOT** a single-name accumulation signal. Weight ETF **options** flow (net-premium direction + persistence) above ETF DP.
+- **Graceful skip.** If an ETF returns insufficient DP/options flow (thin thematics), SKIP it — never fabricate a reading.
+
+### Canonical ETF universe (single source of truth — `daily-analysis` and `weekly-analysis` reference THIS constant)
+- **Broad SPDRs (GICS 1:1):** XLE, XLB, XLV, XLK, XLI, XLU, XLP, XLY, XLF, XLC, XLRE
+- **Industry / thematic (partial or no GICS):** XOP, SMH, TAN, KRE, XBI, IGV, ITB, GDX
+- **Geographic (no GICS):** EWY, EWT  *(extensible: EWJ, EWZ, FXI, INDA)*
+
+**ETF→GICS map (for cross-confirm):** XLE→Energy, XLB→Materials, XLV→Health Care, XLK→Technology, XLI→Industrials, XLU→Utilities, XLP→Staples, XLY→Discretionary, XLF→Financials, XLC→Communications, XLRE→Real Estate; XOP→Energy, SMH/IGV→Technology, KRE→Financials, XBI→Health Care, ITB→Discretionary, GDX→Materials; **TAN→no clean GICS** (instrument-only); **EWY/EWT→no GICS** (country baskets, instrument-only).
+
+### Flow-tape pass (token-budgeted — **cap ≤ 40 added MCP calls/run**)
+1. **RANK (≤ 21 calls):** call `historical_cumulative_premium_flow --symbol <ETF> --days 5 --compact --json` for **every** universe ETF. Rank by net-premium direction × multi-day sign-consistency (persistence). This instrument-level read is the ranking signal; the Step 0 GICS persistence is the **cross-check, not a substitute**. Graceful-skip thin names that return insufficient flow.
+2. **DEEP-PULL — top 3 inflow + top 3 outflow only (≤ 12 calls):** `dark_pool_largest --symbol <ETF>` (positioning/persistence tell — creation/redemption & hedging, **NOT** single-name accumulation) and `options_flow_sweeps --symbol <ETF>` (directional urgency on the ETF itself). Do **not** deep-pull the rest of the ranked set.
+3. **CROSS-CONFIRM vs GICS:** when the GICS sector (`options_flow_sector_flow_persistence`) **and** its representative ETF agree on direction with persistence → **high-conviction** rotation. When they disagree → **downgrade to watch-only**. Thematics/geographics with no GICS map → instrument-only read, `gics_agreement: "n/a"`.
+4. **LEADERS (≤ 6 calls):** for GICS-mapped top-inflow ETFs, extract single-name leaders via `screener_bullish_bearish --sector <ETF's sector>` (the existing mechanism) → feed the swing book with the `sector_rotation` tag, gated by the **existing** conditional +1 (persistence ≥ 3 AND `cum_premium_flow_30d` aligned AND |cum_flow_30d| ≥ $50M — **no new points**). Thematics without a GICS sector → SKIP leader extraction.
+
 Output:
 - `rotating_into` — list of `{sector, persistence_score, institutional_share, single_name_leaders[]}`. Persistence ≥3 only.
 - `rotating_out_of` — list of `{sector, persistence_score, single_name_leaders[]}` (i.e. the names already de-risking, candidates for short / short-vol)
 - `rotation_regime` — `"defensive→cyclical"` | `"cyclical→defensive"` | `"growth→value"` | `"value→growth"` | `"no_change"`
 - `regime_confidence` — `high` if both sides of the rotation match the canonical pattern; `medium` if one side matches; `low` otherwise
+- `etf_flow_tape` — list of `{etf, net_premium_dir, persistence, dp_positioning, options_urgency, gics_agreement, single_name_leaders[]}` for the ranked inflow/outflow ETFs (top 3 each side deep-pulled; the rest rank-only). `net_premium_dir` ∈ `inflow` | `outflow` | `mixed`; `gics_agreement` ∈ `agree` | `disagree` | `n/a` (no GICS map); `dp_positioning`/`options_urgency` from the deep-pull (`null` for rank-only names). **Advisory** — strengthens the existing sector-leader +1 via `gics_agreement`/`cum_flow` alignment, adds **no new points**.
 - `swing_book_implications` — one-line directional read for the report's swing book (e.g. "long XLI leaders MOH/CAT/DE, short XLP MWE/KO if regime persists")
 - `invalidation` — explicit (`options_flow_sector_flow_persistence` for the inflow sectors drops below 2 for ≥2 sessions; OR `options_flow_dte_volume_share` flips to retail-dominant inside the rotating sector — institutional thesis breaking)
 
@@ -31,3 +54,4 @@ Disqualifiers — do not produce a rotation call:
 - No sector reaches persistence ≥3 (no rotation to call — output `rotation_regime: "no_change"`)
 - Inflow and outflow sectors form no canonical pattern AND single-name leaders show no cross-sector correlation (likely idiosyncratic, not rotation)
 - 0DTE share inside the rotating sector > 50% (retail chasing, not institutional rotation — flag as "tactical only", not swing-book)
+- ETF flow tape: a single day of ETF inflow, or an ETF DP print read as single-name accumulation, is **not** a rotation call — appendix-only until multi-day options-flow persistence confirms it
