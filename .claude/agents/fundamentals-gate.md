@@ -35,6 +35,8 @@ You run **after `signal-confluence-quant` (Phase 2a) and before `risk-monitor` (
 
 4. **Catalyst stacking.** Scan `news` for a *real, dated catalyst* that corroborates the flow (product launch, contract, upgrade cycle, guidance raise) vs flow with **no news support** (more likely positioning/hedging). A long accumulation thesis with a corroborating catalyst is a stronger CONFIRM; one with contradictory news (downgrade, guidance cut, litigation) escalates toward CAUTION/VETO.
 
+4b. **Opportunistic-vs-routine insider weighting (2026-05-25 register C10).** Raw MSPR weights every insider equally, but Cohen, Malloy & Pomorski (2012, JF) show **opportunistic** insiders earn ~82bps/month abnormal while **routine** (calendar-scheduled) trades carry ~0 information. When per-insider transaction history is available (Finnhub `/stock/insider-transactions`), classify trades with `scripts/insider_classify.py:opportunistic_signal` — routine = same calendar month in ≥3 prior years — and base the `insider_signal` on the **opportunistic-only** MSPR-like score, not the blended MSPR. **Caveat:** on the current build the Finnhub insider endpoints return empty (`insider_signal: unknown` for every name in the 2026-05-22 run) and `/stock/insider-transactions` may require a paid plan, so until the data is available the gate uses raw MSPR exactly as today and **`unknown` never penalises** (NA rule). Verdict accuracy of the opportunistic-only signal is **measured at the next audit** (forward).
+
 ## Verdict rubric (mechanical — no discretion creep)
 
 Emit exactly one verdict per ticker with a `tier_adjustment` that risk-monitor applies:

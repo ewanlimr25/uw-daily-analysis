@@ -163,6 +163,8 @@ Cap MCP calls per phase: at most 2× the number of rows from Phase 1 (one `histo
 - `phase_2_outcomes.md` — desk summary by tier and signal class: WIN / LOSS / INCONCLUSIVE counts with explicit win-threshold and INCONCLUSIVE definitions reprinted verbatim. Include a per-horizon breakdown.
 - `phase_2_outcomes.jsonl` — Phase 1 rows extended with `outcome`, `outcome_window`, `realised_return_pct`, `max_adverse_excursion_pct`, `inconclusive_reason` (if applicable), and `realised_signal_class_winrate` (the truth-set rate, distinct from `claimed_win_rate`).
 
+**C3 — populate the realised-P&L envelope fields (advisory expectancy record).** For every CLOSED call, write back the new envelope fields so the closed-loop expectancy record accrues: `realized_pnl_pct` = the resolved `realised_return_pct`; `payoff_ratio` = avg WIN return / |avg LOSS return| for that `dominant_signal_class` over closed calls (`scripts/kelly_sizing.py:payoff_ratio`); `expectancy_pct` (`kelly_sizing.py:expectancy`); `kelly_fraction` = `kelly_sizing.py:capped_half_kelly(realised_winrate, payoff_ratio)`. These are **advisory** — recorded for the Phase 3 gate below, NOT yet a live sizing input. Leave them `null` for still-open calls.
+
 INCONCLUSIVE rows are **excluded from win-rate denominators** in subsequent phases.
 
 ---
@@ -187,6 +189,8 @@ INCONCLUSIVE rows are **excluded from win-rate denominators** in subsequent phas
    - Lower is better. A Brier ≥ 0.25 is "the rubric is no better than coin-flip"; ≤ 0.10 is "professionally calibrated."
 
 4. **Conviction-vs-outcome scatter.** Bucket `raw_score` into quintiles; report realised win-rate per quintile. The slope from low to high score should be positive and monotone. If quintile-3 win-rate exceeds quintile-5 win-rate, that's a tier-inversion buried inside the score.
+
+5. **C3 — expectancy table + fractional-Kelly live-activation gate.** Hit-rate alone lost discriminating power (the 05-23 raw_score→WR slope was nearly flat at 58–64%); a payoff-aware metric may restore an actionable ordering. For each tier, report **mean realised P&L (expectancy)**, the signal-class `payoff_ratio` (avg win / |avg loss|), and the advisory **capped half-Kelly** fraction. Then run the **live-activation gate** `scripts/kelly_sizing.py:tier_expectancy_monotone(closed_calls)`: the half-Kelly sizer may go **live only when tier × expectancy is monotone (HIGH ≥ MED ≥ LOW) on n ≥ 30 closed calls** — below that it stays **ADVISORY** and the win-rate ladder remains the live sizer (per register C3, mirroring Kelly's "50–100 trades for stable estimates"). Report the gate's `status` (LIVE / ADVISORY_ONLY) and `reason`. **Do not flip `signal-confluence-quant` / `risk-monitor` to the Kelly sizer until this gate returns LIVE.**
 
 ### Output
 

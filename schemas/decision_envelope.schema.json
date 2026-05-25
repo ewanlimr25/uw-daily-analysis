@@ -155,7 +155,11 @@
         "entry_or_trigger": {"type": ["string", "null"]},
         "invalidation": {"type": "string"},
         "key_risks": {"type": "array", "items": {"type": "string"}},
-        "thesis": {"type": "string"}
+        "thesis": {"type": "string"},
+        "realized_pnl_pct": {"type": ["number", "null"], "description": "C3: realised P&L % once the call closes; populated by /calibration-audit from historical_trend/yahoo prices. null while open."},
+        "payoff_ratio": {"type": ["number", "null"], "description": "C3: avg_win/|avg_loss| (R) for the call's signal class; feeds the fractional-Kelly sizer."},
+        "expectancy_pct": {"type": ["number", "null"], "description": "C3: per-trade expected value % = W*avg_win - (1-W)*|avg_loss|."},
+        "kelly_fraction": {"type": ["number", "null"], "description": "C3: capped half-Kelly fraction, floored at 0. ADVISORY until tier x expectancy is monotone on n>=30 closed calls; the win-rate ladder is the live sizer below that."}
       }
     }
   }

@@ -126,6 +126,12 @@ def check_invariants(doc: dict) -> list[str]:
                     f"{cp}: fundamentals_verdict VETO but final_size is "
                     f"{call.get('final_size')!r} (must be veto/skip/watch_only)"
                 )
+
+        # C3: capped half-Kelly is floored at 0 and is a fraction in [0, 1].
+        kf = call.get("kelly_fraction")
+        if isinstance(kf, (int, float)) and not isinstance(kf, bool):
+            if kf < 0 or kf > 1:
+                errors.append(f"{cp}: kelly_fraction {kf} out of [0, 1] (capped half-Kelly is floored at 0)")
     return errors
 
 

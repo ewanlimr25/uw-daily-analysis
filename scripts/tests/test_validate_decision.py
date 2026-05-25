@@ -225,5 +225,100 @@ class InvariantTest(unittest.TestCase):
         self.assertEqual(vd.validate_doc(_doc(calls=[ok]), SCHEMA), [])
 
 
+class ConjunctionC11Test(unittest.TestCase):
+    """2026-05-25 register C11 — the +3 accumulation line is a conjunction.
+
+    Full +3 only when cum_premium_flow_30d confirms (sign aligned AND |flow| >= $50M);
+    otherwise halved (floored) to +1. These tests pin the two resulting arithmetic
+    states so the Sigma(score_components.points) == raw_score invariant survives the
+    halving and the demotion it produces.
+    """
+
+    def _accum_comp(self, points):
+        return {
+            "rubric_line": "+3 3+ aligned signals in accumulation-hunter (conjunction)",
+            "points": points, "source_agent": "accumulation-hunter",
+            "source_tool": "insights_institutional_accumulation",
+            "evidence": "DP + OI + smart_positioning institutional-tier",
+        }
+
+    def test_c11_full_conjunction_high_valid(self):
+        # cum_flow confirms (+$112M LONG, >=$50M) -> accumulation pays full +3.
+        # +3 accum +3 cum_flow +2 confluence +3 DEX = 11 -> HIGH.
+        comps = [
+            self._accum_comp(3),
+            {"rubric_line": "+3 historical_cumulative_premium_flow", "points": 3,
+             "source_agent": "signal-confluence-quant", "source_tool": "historical_cumulative_premium_flow",
+             "evidence": "30d +$112M LONG >=$50M -> conjunction confirmed"},
+            {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
+             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "evidence": "confluence 5"},
+            {"rubric_line": "+3 dealer DEX flip", "points": 3,
+             "source_agent": "dealer-positioning-strategist", "source_tool": "options_structure_dex",
+             "evidence": "DEX flip long"},
+        ]
+        call = _call(raw_score=11, tier="HIGH", score_components=comps, final_size="full")
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_c11_halved_accumulation_demotes_and_validates(self):
+        # cum_flow MIXED / sub-$50M -> accumulation halved to +1; the additive pile
+        # can no longer clear HIGH. +1 accum +2 confluence +3 DEX = 6 -> LOW. Sigma holds.
+        comps = [
+            self._accum_comp(1),
+            {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
+             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "evidence": "confluence 5"},
+            {"rubric_line": "+3 dealer DEX flip", "points": 3,
+             "source_agent": "dealer-positioning-strategist", "source_tool": "options_structure_dex",
+             "evidence": "DEX flip long"},
+        ]
+        call = _call(raw_score=6, tier="LOW", score_components=comps, final_size="starter")
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_c11_halved_with_flow_conflict_lite_coexists(self):
+        # C11 halving (+1 accum) and flow_conflict_lite (-1) may BOTH fire on a
+        # MIXED-flow name. +1 accum +2 confluence -1 lite = 2 -> DROP band. Sigma holds.
+        comps = [
+            self._accum_comp(1),
+            {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
+             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "evidence": "confluence 4"},
+            {"rubric_line": "-1 flow_conflict_lite", "points": -1,
+             "source_agent": "signal-confluence-quant", "source_tool": "historical_cumulative_premium_flow",
+             "evidence": "cum_flow_30d MIXED vs LONG"},
+        ]
+        call = _call(raw_score=2, tier="DROP", score_components=comps, final_size="skip")
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_c11_halved_to_one_cannot_reach_high_band(self):
+        # Monotonicity intent: accumulation halved to +1 plus one other big component
+        # cannot reach the HIGH band (>=10). Asserting the band math directly.
+        self.assertLess(1 + 3 + 2, 10)  # +1 accum + +3 DEX + +2 confluence = 6 < HIGH
+
+
+class ExpectancyC3Test(unittest.TestCase):
+    """2026-05-25 register C3 — optional realised/Kelly fields on a call (advisory until n>=30)."""
+
+    def test_c3_fields_validate(self):
+        call = _call(realized_pnl_pct=4.9, payoff_ratio=3.0, expectancy_pct=3.6, kelly_fraction=0.2)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_c3_fields_nullable_while_open(self):
+        call = _call(realized_pnl_pct=None, payoff_ratio=None, expectancy_pct=None, kelly_fraction=None)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_c3_legacy_envelope_without_fields_still_valid(self):
+        # Backward-compat: the fields are optional; pre-C3 envelopes omit them.
+        self.assertEqual(vd.validate_doc(_doc(), SCHEMA), [])
+
+    def test_c3_kelly_fraction_must_be_floored_at_zero(self):
+        errs = vd.validate_doc(_doc(calls=[_call(kelly_fraction=-0.1)]), SCHEMA)
+        self.assertTrue(any("kelly_fraction" in e and "out of [0, 1]" in e for e in errs))
+
+    def test_c3_kelly_fraction_above_one_rejected(self):
+        errs = vd.validate_doc(_doc(calls=[_call(kelly_fraction=1.5)]), SCHEMA)
+        self.assertTrue(any("kelly_fraction" in e for e in errs))
+
+
 if __name__ == "__main__":
     unittest.main()
