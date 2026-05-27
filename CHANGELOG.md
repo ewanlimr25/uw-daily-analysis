@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-05-26 — Report output layout: per-id run folders
+
+- **Each report now gets its own folder with generically-named files.** Daily → `analyses/daily/<YYYY-MM-DD>/{report.md, decision.json}`; weekly → `analyses/weekly/<YYYY-WW>/{report.md, decision.json}` (previously flat `analyses/<date>.md` + `analyses/<date>.decision.json`). All historical reports (19 daily, 5 weekly + 3 envelopes) migrated retroactively; each envelope's `report_path` re-pointed at its sibling `report.md` and re-validated.
+- **Updated:** `daily-analysis.md` (Step 9 + intro), `weekly-analysis.md` (Step 10 + anchors + mkdir), `calibration-audit.md` (Phase 1 inventory glob `analyses/daily/*/report.md` + sidecar discovery `analyses/daily/<date>/decision.json`), `CLAUDE.md`, `schemas/decision_envelope.schema.json` description, `scripts/README.md`, `scripts/validate_decision.py` docstring, and the validator test fixture. `Write(analyses/**)` permission already covers the new subfolders. 171 tests green; all three envelopes re-validate. Audit checkpoints (`analyses/audit/<date>/`) unchanged.
+
 Improvement-criteria register implementation (`analyses/audit/2026-05-25/improvement_criteria.md`).
 Each entry cites the academic basis + the measured backtest evidence. Gates that resolve
 only on out-of-sample data are marked **forward (confirm at 05-30 audit)**.

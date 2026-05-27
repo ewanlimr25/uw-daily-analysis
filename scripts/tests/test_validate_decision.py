@@ -44,7 +44,7 @@ def _doc(**over):
         "report_date": "2026-05-23",
         "report_kind": "daily",
         "regime": "TRANSITIONAL UPTREND",
-        "report_path": "analyses/2026-05-23.md",
+        "report_path": "analyses/daily/2026-05-23/report.md",
         "calls": [_call()],
     }
     base.update(over)

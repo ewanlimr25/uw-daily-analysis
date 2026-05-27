@@ -4,7 +4,7 @@ description: Run the full Friday-evening or Sunday-prep weekly intelligence note
 
 # Weekly Market Intelligence
 
-Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context (including a FRED macro snapshot + forward event-risk calendar). Phase 2 runs `signal-confluence-quant` for audited scoring, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest and fundamentally vet top names, write winners back to the watchlist, emit a machine-readable `decision.json` envelope, and save the report to `analyses/weekly/YYYY-WW.md`.
+Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context (including a FRED macro snapshot + forward event-risk calendar). Phase 2 runs `signal-confluence-quant` for audited scoring, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest and fundamentally vet top names, write winners back to the watchlist, emit a machine-readable `decision.json` envelope, and save the report to its own folder `analyses/weekly/YYYY-WW/` holding `report.md` + `decision.json`.
 
 ## When to invoke
 
@@ -82,7 +82,7 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
    echo "ISO_WEEK=$ISO_WEEK  MONDAY=$MONDAY  WEEK_END=$WEEK_END  TODAY=$TODAY"
    ```
 
-   These four variables — `ISO_WEEK`, `MONDAY`, `WEEK_END`, `TODAY` — are the canonical anchors for this run. The filename is `analyses/weekly/$ISO_WEEK.md` and the watchlist group key is `conviction_week_$ISO_WEEK`.
+   These four variables — `ISO_WEEK`, `MONDAY`, `WEEK_END`, `TODAY` — are the canonical anchors for this run. The run folder is `analyses/weekly/$ISO_WEEK/` (holding `report.md` + `decision.json`) and the watchlist group key is `conviction_week_$ISO_WEEK`.
 
 2. **Coverage list** — call `mcp__uw-pp__historical_available_dates` and filter to dates in `[MONDAY, WEEK_END]`. Call this filtered list `covered_dates`. **Rules:**
    - If `covered_dates` is empty → abort and report "No UW data available for the current trading week."
@@ -424,7 +424,7 @@ This step is the synthesis bridge from "signal" to "trade structure" — without
 
 Synthesize into the structured weekly note below. Use **full narrative sentences** in qualitative sections (Executive Summary, Regime & WoW Delta, Risk, Setups for Next Week) and **tables** for data-dense sections (Signal Performance, Swing Book, LEAP Book, High-Conviction Cross-Ref). Tone: institutional desk strategist — precise, assertive, no filler.
 
-Before writing: run `mkdir -p analyses/weekly` via Bash if the directory does not exist.
+Before writing: run `mkdir -p analyses/weekly/$ISO_WEEK` via Bash (creates the run folder).
 
 ````markdown
 # Weekly Market Intelligence — Week of YYYY-MM-DD (ISO YYYY-WW)
@@ -519,9 +519,9 @@ If any name was already on a manually-curated group, leave that membership alone
 
 ## Step 10 — Save, emit decision envelope, and confirm
 
-1. Use Write to save the report to `analyses/weekly/$ISO_WEEK.md`.
-2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK.decision.json`, conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.1", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` per call. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
-3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK.decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
+1. Use Write to save the report to `analyses/weekly/$ISO_WEEK/report.md`.
+2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK/decision.json` (with `report_path` set to `analyses/weekly/$ISO_WEEK/report.md`), conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.1", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` per call. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
+3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK/decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
 4. Confirm both files were written.
 5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
 

@@ -17,8 +17,8 @@ User-invocable via `/skill-name`. Core skills for this project:
 
 | Skill | Purpose |
 |---|---|
-| `/daily-analysis` | Full post-market two-phase agent fleet report; conviction scoring + risk gating; saves to `analyses/YYYY-MM-DD.md` |
-| `/weekly-analysis` | Full week-in-review + week-ahead note; persistence-weighted rubric; saves to `analyses/weekly/YYYY-WW.md` |
+| `/daily-analysis` | Full post-market two-phase agent fleet report; conviction scoring + risk gating; saves to `analyses/daily/YYYY-MM-DD/report.md` |
+| `/weekly-analysis` | Full week-in-review + week-ahead note; persistence-weighted rubric; saves to `analyses/weekly/YYYY-WW/report.md` |
 | `/skill-creator` | Create, modify, and evaluate skills; runs evals, benchmarks variance, optimizes trigger descriptions |
 | `/prompt-optimize` | Analyze a draft prompt and output an ECC-enriched optimized version ready to use |
 | `/eval-harness` | Formal evaluation framework implementing eval-driven development (EDD) principles |
@@ -72,7 +72,7 @@ Commands live in `.claude/commands/` and invoke the agent fleet:
 
 ## Output
 
-Reports are saved to `analyses/YYYY-MM-DD.md` (daily) and `analyses/weekly/YYYY-WW.md` (weekly). A machine-resolvable decision envelope is written beside each report as `analyses/YYYY-MM-DD.decision.json` (daily) / `analyses/weekly/YYYY-WW.decision.json` (weekly), validated against `schemas/decision_envelope.schema.json` and consumed by `/calibration-audit` Phase 1.
+Each report gets its own per-id run folder holding two generically-named files: `analyses/daily/YYYY-MM-DD/{report.md, decision.json}` (daily) and `analyses/weekly/YYYY-WW/{report.md, decision.json}` (weekly). The `decision.json` is the machine-resolvable envelope, validated against `schemas/decision_envelope.schema.json` and consumed by `/calibration-audit` Phase 1 (its `report_path` field points at the sibling `report.md`). Audit checkpoints stay under `analyses/audit/YYYY-MM-DD/`.
 
 ## MCP Server Required
 

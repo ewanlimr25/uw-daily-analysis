@@ -4,7 +4,7 @@ description: Run the full post-market daily intelligence report — regime + GEX
 
 # Daily Market Analysis
 
-Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns **11 alpha-finding agents** (12 in OPEX week) in parallel against a shared macro context (including a FRED macro snapshot + forward event-risk calendar); Phase 2 runs `signal-confluence-quant` for an audited conviction score, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` to gate and size. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate and fundamentally vetted before sizing, the top 5 are written back to the watchlist, and a machine-readable `decision.json` envelope is emitted beside the report. Save to `analyses/YYYY-MM-DD.md`.
+Run a full post-market intelligence report by trade horizon (0DTE / Swing / LEAP). Two phases: Phase 1 spawns **11 alpha-finding agents** (12 in OPEX week) in parallel against a shared macro context (including a FRED macro snapshot + forward event-risk calendar); Phase 2 runs `signal-confluence-quant` for an audited conviction score, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` to gate and size. Every ticker is scored against a formal conviction rubric, top names are backtested for win-rate and fundamentally vetted before sizing, the top 5 are written back to the watchlist, and a machine-readable `decision.json` envelope is emitted beside the report. Each run gets its own folder: `analyses/daily/YYYY-MM-DD/` holding `report.md` + `decision.json`.
 
 ## When to invoke
 
@@ -469,15 +469,16 @@ Skip this step entirely on a "no edge" day (no HIGH-tier names). Keep it to the 
 
 ## Step 9 — Save, emit decision envelope, and report
 
-1. Use Write to save the report to `analyses/YYYY-MM-DD.md`.
-2. **Emit the structured decision envelope** beside the report at `analyses/YYYY-MM-DD.decision.json`, conforming to `schemas/decision_envelope.schema.json`. This is the machine-resolvable sidecar `/calibration-audit` Phase 1 reads instead of re-parsing prose. Build it from the data already produced — do not re-derive:
+0. **Create the run folder** — `mkdir -p analyses/daily/YYYY-MM-DD` via Bash. Both output files live inside it; the date lives in the folder name, so the files are generically named (`report.md`, `decision.json`).
+1. Use Write to save the report to `analyses/daily/YYYY-MM-DD/report.md`.
+2. **Emit the structured decision envelope** beside the report at `analyses/daily/YYYY-MM-DD/decision.json`, conforming to `schemas/decision_envelope.schema.json`. This is the machine-resolvable sidecar `/calibration-audit` Phase 1 reads instead of re-parsing prose. Build it from the data already produced — do not re-derive:
    - Top level: `{schema_version: "1.1", report_date, report_kind: "daily", regime, vrp_classification, macro_snapshot_signals (the fred_macro signals object), macro_event_risk (the event_risk calendar), watchlist_write_back (the persisted top-5), next_session_gex, next_session_0dte_setup, report_path}`.
    - `next_session_gex` (schema_version 1.1): the **advisory** §2 GEX-map block — `{advisory: true, as_of_eod_date: <report_date>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}` for **SPY and QQQ only**.
    - `next_session_0dte_setup` (schema_version 1.1): the **advisory** §2a premium-selling block, copied from Step 0 `zerodte_setup` — `{advisory: true, as_of_eod_date: <report_date>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}` for **SPY and QQQ only**. Emit `null` if `zerodte_setup.available == false`.
    - **Both** advisory blocks are deliberately top-level fields, **not** members of `calls[]` — §2/§2a are prose-only and must contribute 0 points to any `raw_score`. **Do not** add a `horizon: "0DTE"` entry to `calls[]` for this content.
    - `calls[]`: one object per HIGH/MEDIUM/LOW call (and watch-only / VETO'd names) carrying the quant's audit fields verbatim — `ticker, horizon, section, direction, tier, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, pre_risk_size, final_size, gate_verdicts, fundamentals_verdict, debate_residual_confidence (the bull residual), structure, entry_or_trigger, invalidation, key_risks[], thesis`.
    - **Invariant:** `Σ score_components[].points == raw_score` for every call (the quant already guarantees this — the validator enforces it).
-3. **Validate it:** run `python3 scripts/validate_decision.py --file analyses/YYYY-MM-DD.decision.json` via Bash. If it exits non-zero, fix the envelope (not the validator) until it passes — a malformed envelope silently degrades the calibration loop.
+3. **Validate it:** run `python3 scripts/validate_decision.py --file analyses/daily/YYYY-MM-DD/decision.json` via Bash. If it exits non-zero, fix the envelope (not the validator) until it passes — a malformed envelope silently degrades the calibration loop. Set the envelope's `report_path` to `analyses/daily/YYYY-MM-DD/report.md`.
 4. Confirm both files were written (the Write tool errors loudly on failure — no need to re-Read).
 5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.
 

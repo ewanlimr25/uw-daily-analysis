@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://uw-daily-analysis/schemas/decision_envelope.schema.json",
   "title": "Decision Envelope",
-  "description": "Machine-resolvable structured sidecar written beside each analyses/*.md report. Ported in spirit from claude-trading-agents schemas.py:FinalDecision, adapted to a multi-call daily/weekly book. /calibration-audit Phase 1 reads this instead of re-parsing report prose.",
+  "description": "Machine-resolvable structured sidecar written beside each report.md inside its per-id run folder (analyses/daily/<date>/decision.json or analyses/weekly/<iso-week>/decision.json). Ported in spirit from claude-trading-agents schemas.py:FinalDecision, adapted to a multi-call daily/weekly book. /calibration-audit Phase 1 reads this instead of re-parsing report prose.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "report_date", "report_kind", "regime", "calls", "report_path"],

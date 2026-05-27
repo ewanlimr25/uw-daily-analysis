@@ -11,7 +11,7 @@ Two layers:
        - fundamentals_verdict == VETO ⇒ final_size ∈ {veto, skip, watch_only}
 
 Usage:
-    python3 scripts/validate_decision.py --file analyses/2026-05-23.decision.json
+    python3 scripts/validate_decision.py --file analyses/daily/2026-05-23/decision.json
 Exit 0 = valid, 1 = invalid (errors printed), 2 = usage error.
 """
 

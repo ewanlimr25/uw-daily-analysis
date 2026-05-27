@@ -1,5 +1,5 @@
 ---
-description: Retrospectively audit `/daily-analysis` and `/weekly-analysis` plus their backing UW MCP tools, using the historical reports in `analyses/*.md` and `analyses/weekly/*.md` as the dataset. Seven discrete phases — each writes a resumable checkpoint under `analyses/audit/<YYYY-MM-DD>/phase_<N>_<slug>.md`. Frame every judgment from a desk perspective (buy-side PM, sell-side flow trader, market-maker quant). Propose-only — emits patch *intentions* and never auto-edits agent files. Invoke whenever the user asks for a calibration audit, a backtest of the daily/weekly skills, "how well are we calling the market," win-rate calibration, score-rubric audit, MCP-tool tier list, or types `/calibration-audit`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker deep dives (use `mcp__uw-pp__insights_deep_dive`), or general code review of the agent files.
+description: Retrospectively audit `/daily-analysis` and `/weekly-analysis` plus their backing UW MCP tools, using the historical reports in `analyses/daily/*/report.md` and `analyses/weekly/*/report.md` as the dataset. Seven discrete phases — each writes a resumable checkpoint under `analyses/audit/<YYYY-MM-DD>/phase_<N>_<slug>.md`. Frame every judgment from a desk perspective (buy-side PM, sell-side flow trader, market-maker quant). Propose-only — emits patch *intentions* and never auto-edits agent files. Invoke whenever the user asks for a calibration audit, a backtest of the daily/weekly skills, "how well are we calling the market," win-rate calibration, score-rubric audit, MCP-tool tier list, or types `/calibration-audit`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker deep dives (use `mcp__uw-pp__insights_deep_dive`), or general code review of the agent files.
 model: opus
 defaults:
   outcome_windows:
@@ -18,7 +18,7 @@ defaults:
 
 # Calibration Audit
 
-Audit the `/daily-analysis` and `/weekly-analysis` skills against their own historical output. The reports under `analyses/` and `analyses/weekly/` are the dataset; forward-resolved outcomes are the truth set; the audit asks whether the conviction rubric, the MCP tools cited as evidence, and the Phase-1→Phase-2 decision process actually deliver the desk-grade discipline they claim to.
+Audit the `/daily-analysis` and `/weekly-analysis` skills against their own historical output. The reports under `analyses/daily/<date>/` and `analyses/weekly/<iso-week>/` are the dataset; forward-resolved outcomes are the truth set; the audit asks whether the conviction rubric, the MCP tools cited as evidence, and the Phase-1→Phase-2 decision process actually deliver the desk-grade discipline they claim to.
 
 The audit is **propose-only**. It emits patch intentions — never auto-edits agent files, score rubrics, or commands. Recommendations cite the phase and the data point that justifies them. No vibes.
 
@@ -48,7 +48,7 @@ The persona for every phase is a composite **elite desk reviewer**: buy-side PM 
 
 1. **Date** — `date +%F` for today's `YYYY-MM-DD`. This is the audit run-id and the output directory: `analyses/audit/<YYYY-MM-DD>/`. `mkdir -p` it.
 
-2. **Inventory** — list `analyses/*.md` (daily) and `analyses/weekly/*.md` (weekly). Count both.
+2. **Inventory** — list `analyses/daily/*/report.md` (daily) and `analyses/weekly/*/report.md` (weekly). Count both. (Each report lives in its own per-id run folder `analyses/daily/<date>/` or `analyses/weekly/<iso-week>/`, alongside its `decision.json`.)
 
 3. **Threshold check** — defaults: 10 daily OR 3 weekly required. If neither passes:
    - If `relax_threshold=false` (default): **abort** with the exact message:
@@ -71,7 +71,7 @@ Process daily reports oldest→newest, then weekly reports oldest→newest. Use 
 
 ### Prefer the structured decision envelope (machine-resolvable)
 
-Before parsing any report prose, check for a sidecar **decision envelope** beside the report: `analyses/<date>.decision.json` (daily) or `analyses/weekly/<iso-week>.decision.json` (weekly). When present:
+Before parsing any report prose, check for a sidecar **decision envelope** beside the report in the same run folder: `analyses/daily/<date>/decision.json` (daily) or `analyses/weekly/<iso-week>/decision.json` (weekly). When present:
 
 1. Validate it first: `python3 scripts/validate_decision.py --file <path>`. If it fails validation, note the data-quality flag and fall back to prose parsing for that report.
 2. Load `calls[]` directly — each object **already is** the normalized per-call row below (`ticker`, `horizon`, `section`, `tier`, `raw_score`, `score_components[]`, `dominant_signal_class`, `win_rate` + `win_rate_n` + `win_rate_source`, `pre_risk_size`, `final_size`, `gate_verdicts`, `fundamentals_verdict`, `debate_residual_confidence`, `structure`, `invalidation`, `thesis`, `key_risks[]`). No prose re-parsing, no `Σ points` reconciliation needed (the validator guarantees it). Map `gate_verdicts` keys to `gates_fired`, and carry `fundamentals_verdict` / `debate_residual_confidence` as new audit dimensions (e.g. did VETO'd names that were nonetheless tracked actually fail? did high bear-residual names underperform?).
