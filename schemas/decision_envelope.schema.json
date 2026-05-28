@@ -31,12 +31,45 @@
     "report_path": {"type": "string"},
     "next_session_gex": {"$ref": "#/$defs/next_session_gex"},
     "next_session_0dte_setup": {"$ref": "#/$defs/next_session_0dte_setup"},
+    "breadth_cross_check": {"$ref": "#/$defs/breadth_cross_check"},
     "calls": {
       "type": "array",
       "items": {"$ref": "#/$defs/call"}
     }
   },
   "$defs": {
+    "breadth_cross_check": {
+      "description": "ADVISORY (2026-05-27 fz-edge A2). Step-0 `fz breadth --group sector` cross-check vs the `uw` regime label, from a different data lineage. Prose-only / advisory: contributes 0 points and is deliberately top-level (NOT in calls[]). null when fz_available == false.",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["advisory", "source"],
+      "properties": {
+        "advisory": {"type": "boolean", "const": true},
+        "source": {"type": "string"},
+        "advancers": {"type": ["integer", "null"]},
+        "decliners": {"type": ["integer", "null"]},
+        "pct_green": {"type": ["number", "null"]},
+        "divergence_flag": {"type": ["boolean", "null"]},
+        "note": {"type": ["string", "null"]}
+      }
+    },
+    "fz_context": {
+      "description": "ADVISORY (2026-05-27 fz-edge A1/A5). Finviz short-interest / float / analyst context for a top-5 name, from scripts/fz_enrich.py via the fundamentals-gate. Contributes 0 to raw_score — the squeeze (C15) and analyst-divergence (C17) gates are registered but NOT yet live (gated on /calibration-audit). Short interest is the exchange semi-monthly settlement figure (~2-week lag).",
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["available"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "short_float_pct": {"type": ["number", "null"]},
+        "days_to_cover": {"type": ["number", "null"]},
+        "float_shares": {"type": ["number", "null"]},
+        "squeeze_pressure": {"type": ["string", "null"], "enum": ["LOW", "MODERATE", "HIGH", "unknown", null]},
+        "recom": {"type": ["number", "null"]},
+        "upside_to_target_pct": {"type": ["number", "null"]},
+        "rsi": {"type": ["number", "null"]},
+        "note": {"type": ["string", "null"]}
+      }
+    },
     "next_session_0dte_setup": {
       "description": "ADVISORY (schema_version >= 1.1). The §2 next-session 0DTE premium-selling setup for SPY/QQQ, from scripts/zerodte_setup.py. Delta-neutral vol harvest sized by VIX and structured by the GEX vol-suppression read — NOT a directional bet (every directional signal backtested NO_GO). Like next_session_gex it is prose-only / advisory, deliberately OUT of calls[] so it contributes 0 points to any raw_score; the 0-points invariant is structural. NOT a guaranteed edge: the validation sample has no vol shock, so the short-vol left tail is unsampled.",
       "type": ["object", "null"],
@@ -150,6 +183,7 @@
           }
         },
         "fundamentals_verdict": {"type": ["string", "null"], "enum": ["CONFIRM", "CAUTION", "VETO", "NA", null]},
+        "fz_context": {"$ref": "#/$defs/fz_context"},
         "debate_residual_confidence": {"type": ["number", "null"], "enum": [0.55, 0.65, 0.75, 0.85, 0.95, null]},
         "structure": {"type": ["string", "null"]},
         "entry_or_trigger": {"type": ["string", "null"]},

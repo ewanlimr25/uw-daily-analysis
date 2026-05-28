@@ -22,12 +22,25 @@ Cross-reference these signals for convergence:
 
 Flag tickers where **4+ signals align AND `uw insights conviction-matrix` returns DIRECTIONAL_LONG AND `uw dark-pool block-stratified` confirms institutional-tier**. For each that survives, use `uw insights deep-dive` to get the full picture.
 
+### Insider-cluster co-flag (advisory — 2026-05-27 `fz`-edge audit A3)
+
+Run once per pass (not per ticker — it returns the whole tape):
+
+```bash
+fz insider-clusters --days 7 --min-buyers 2 --side buy --agent
+```
+
+It returns rows of `{Ticker, DistinctOwners, Transactions, Side}` — tickers where ≥2 **distinct** insiders bought in the window. This is net-new vs the Finnhub MSPR the fundamentals-gate uses (MSPR is a blended monthly ratio; this is a distinct-buyer *count*, the conviction framing). For any accumulation candidate that also appears here, set `insider_cluster_present: true` with the distinct-buyer count; otherwise `false`.
+
+**Narrative co-flag only — 0 rubric points.** An insider cluster ∧ dark-pool block ∧ cumulative-premium-flow is the C18 three-way conjunction (registered, *not yet live* — see `analyses/audit/2026-05-25/improvement_criteria.md`); until `/calibration-audit` clears C18 it earns no score, it only strengthens the prose thesis. If `fz` is unavailable (CLI missing / errored), skip silently — it never blocks the hunt. Cohen, Malloy & Pomorski (2012, JF): clustered opportunistic insider buying has documented predictive content.
+
 Output a ranked list per ticker with:
 - 1-sentence thesis
 - specific signals that triggered it (named tools)
 - block-tier breakdown (mega vs block vs lower) so the institutional-grade evidence is auditable
 - DP support level (the price they're defending)
 - cumulative-flow window and net premium accretion if available
+- `insider_cluster_present` (true/false) + distinct-buyer count from `fz insider-clusters` (advisory co-flag, 0 points)
 - explicit `invalidation` — e.g. "uw insights conviction-matrix flips to HEDGED_LONG", "price breaks DP support", "uw historical oi-trend turns UNWINDING for 2+ sessions", "block-tier share collapses to retail-dominant"
 
 Disqualifiers — do not surface:

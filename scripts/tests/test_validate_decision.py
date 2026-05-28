@@ -85,6 +85,39 @@ class SchemaTest(unittest.TestCase):
         self.assertTrue(any("pattern" in e for e in errs))
 
 
+class FzAdvisoryTest(unittest.TestCase):
+    """2026-05-27 fz-edge: breadth_cross_check (top-level) + fz_context (per-call), both advisory/additive."""
+
+    def test_breadth_cross_check_valid(self):
+        breadth = {"advisory": True, "source": "finviz", "advancers": 236,
+                   "decliners": 263, "pct_green": 46.92, "divergence_flag": True,
+                   "note": "green tape, more decliners"}
+        self.assertEqual(vd.validate_doc(_doc(breadth_cross_check=breadth), SCHEMA), [])
+
+    def test_breadth_cross_check_null_when_fz_unavailable(self):
+        self.assertEqual(vd.validate_doc(_doc(breadth_cross_check=None), SCHEMA), [])
+
+    def test_breadth_advisory_must_be_true(self):
+        breadth = {"advisory": False, "source": "finviz"}
+        errs = vd.validate_doc(_doc(breadth_cross_check=breadth), SCHEMA)
+        self.assertTrue(any("const" in e for e in errs))
+
+    def test_fz_context_valid_on_call(self):
+        fzc = {"available": True, "short_float_pct": 27.72, "days_to_cover": 7.68,
+               "float_shares": 86000000, "squeeze_pressure": "HIGH", "recom": 2.1,
+               "upside_to_target_pct": 14.0, "rsi": 55.2, "note": "advisory 0pts"}
+        self.assertEqual(vd.validate_doc(_doc(calls=[_call(fz_context=fzc)]), SCHEMA), [])
+
+    def test_fz_context_unavailable_minimal(self):
+        self.assertEqual(
+            vd.validate_doc(_doc(calls=[_call(fz_context={"available": False})]), SCHEMA), [])
+
+    def test_fz_context_bad_squeeze_enum_rejected(self):
+        fzc = {"available": True, "squeeze_pressure": "EXTREME"}
+        errs = vd.validate_doc(_doc(calls=[_call(fz_context=fzc)]), SCHEMA)
+        self.assertTrue(any("not in enum" in e for e in errs))
+
+
 def _next_session_gex(**over):
     base = {
         "advisory": True,

@@ -12,6 +12,7 @@
   "permissions": {
     "allow": [
       "Bash(uw:*)",
+      "Bash(fz:*)",
       "mcp__yahoo-finance__*",
       "WebSearch",
       "Skill(stock-deep-dive)"

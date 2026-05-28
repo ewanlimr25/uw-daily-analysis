@@ -60,6 +60,7 @@ Stdlib-only Python helpers in `scripts/` (no pip installs; run via the already-a
 
 - `scripts/fred_macro.py` — FRED macro snapshot (12 series + derived signals) for Step 0 `macro_snapshot`. Needs `FRED_API_KEY` (free).
 - `scripts/finnhub_enrich.py` — per-ticker fundamentals for the `fundamentals-gate` agent. Falls back to the sibling repo's `FINNHUB_API_KEY`.
+- `scripts/fz_enrich.py` — per-ticker short-interest / float / analyst context via the `fz` CLI (see below) for the `fundamentals-gate` agent. No key. Advisory (0 rubric points); graceful-skips when `fz` is unavailable.
 - `scripts/validate_decision.py` — validates the decision envelope against `schemas/decision_envelope.schema.json` + cross-field invariants (Σ component points == raw_score; tier ≤ score band; VETO ⇒ skip).
 - Tests: `python3 -m unittest discover -s scripts/tests -p 'test_*.py'`.
 
@@ -87,3 +88,9 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 `--json` is mandatory (the CLI defaults to a rendered table); `--quiet` keeps stdout pure JSON. Commands are the mechanical 1:1 of the old tool names: `mcp__uw-pp__<group>_<sub>` → `uw <group-hyphenated> <sub-hyphenated>` (e.g. `uw dark-pool block-stratified`, `uw options-flow sector-flow-persistence`, `uw historical signal-backtest`). Access is granted via the `Bash(uw:*)` permission in `.claude/settings.json`. Trim payloads with `--select`/`--compact`. The mutating `uw watchlist manage` shares the same XDG state file (`~/.config/unusual-whales-pp-cli/watchlist.json`) the MCP used.
 
 Fundamentals enrichment still uses the **yfinance MCP** (`mcp__yahoo-finance__*`), which remains in `.mcp.json`.
+
+## CLI (`fz`) — non-flow context augment
+
+Non-flow context the UW microstructure fleet is structurally blind to — **short interest, days-to-cover, float, institutional/analyst positioning, market breadth, insider clusters** — comes from the **`fz` CLI** (`finviz-pp-cli`, Go binary at `/Users/ewan/.local/bin/fz`; override with `$FZ_PP_CLI`). Free, no-auth public Finviz HTTP. Invoke via Bash as `fz <group> <sub> … --agent` (`--agent` = `--json --compact --no-input --no-color --yes`). Added 2026-05-27 (see `analyses/audit/2026-05-27-fz-edge/`).
+
+**Scope discipline:** `fz` adds **zero** options flow / greeks / dark pool / IV term-structure / GEX/DEX / OI — it cannot replace any `uw` tool; it augments *beside* the flow engine. Every `fz` lane is **advisory (0 rubric points)** and **graceful-skips** if the binary is missing (the report completes unchanged). Short interest is the exchange semi-monthly settlement figure (~2-week lag) — squeeze context, not a live borrow signal; no borrow-fee/HTB field. Scored-gate promotions are registered as criteria **C15–C18** and stay advisory until `/calibration-audit` clears each threshold. Access requires a `Bash(fz:*)` permission in `.claude/settings.json`.

@@ -10,7 +10,7 @@ Your job is not to be contrarian for its own sake — it is to surface the stron
 ## Inputs (provided inline by the orchestrator)
 
 1. The ticker, its `dominant_signal_class`, thesis direction, and the quant's `score_components` (the bull evidence stack you are attacking).
-2. The `fundamentals-gate` enrichment (earnings trend, insider MSPR, growth/leverage, catalysts, `fundamentals_verdict`) — your richest ammunition.
+2. The `fundamentals-gate` enrichment (earnings trend, insider MSPR, growth/leverage, catalysts, `fundamentals_verdict`) — your richest ammunition — **including its `fz_context` block** (2026-05-27 `fz`-edge A5): `short_float_pct` / `days_to_cover` (a SHORT thesis into high short-interest + high days-to-cover is a squeeze trap, not a clean fade — make that case), `recom` and `upside_to_target_pct` (analyst consensus you can cite against an over-extended long, e.g. "already +2% past consensus target [FUND:fz Target Price]"), `squeeze_pressure`. If `fz_context.available` is false, omit these — do not invent them. Prose context, **not new score points**.
 3. The Step 0 macro context (`regime`, `vrp_classification`, `macro_snapshot` signals, `event_risk`).
 4. The full debate transcript so far and the bull's last argument.
 

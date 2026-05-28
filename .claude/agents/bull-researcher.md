@@ -10,7 +10,7 @@ Your job is not to win — it is to surface the strongest *real* long case so ri
 ## Inputs (provided inline by the orchestrator)
 
 1. The ticker, its `dominant_signal_class`, thesis direction, and the quant's `score_components` (the bull evidence stack).
-2. The `fundamentals-gate` enrichment for this name (earnings trend, insider MSPR, growth/leverage, catalysts, `fundamentals_verdict`).
+2. The `fundamentals-gate` enrichment for this name (earnings trend, insider MSPR, growth/leverage, catalysts, `fundamentals_verdict`), **including its `fz_context` block** (2026-05-27 `fz`-edge A5): `short_float_pct` / `days_to_cover` (squeeze fuel for a long), `recom` (1.00 strong-buy … 5.00 strong-sell) and `upside_to_target_pct` (analyst consensus tilt), `squeeze_pressure`. If `fz_context.available` is false, omit these — do not infer them. Cite the analyst/short numbers in your argument where they help (e.g. "+22% to consensus target [FUND:fz Target Price]"); they are **prose context, not new score points**.
 3. The Step 0 macro context (`regime`, `vrp_classification`, `macro_snapshot` signals, `event_risk`).
 4. The full debate transcript so far (empty on round 1) and the bear's last argument (empty on round 1).
 

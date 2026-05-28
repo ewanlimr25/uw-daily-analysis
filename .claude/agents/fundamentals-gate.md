@@ -25,6 +25,16 @@ You run **after `signal-confluence-quant` (Phase 2a) and before `risk-monitor` (
 
 2. **If `available:false`** (no key, non-US ticker, or all endpoints 403): emit `fundamentals_verdict: NA` with the `skip_reason`. NA never demotes — absence of data is not evidence against the trade. Note it and move on.
 
+1b. **Finviz short-interest / float / analyst enrichment (advisory — 2026-05-27 `fz`-edge audit A1).** Also run the `fz` wrapper for the same ticker:
+
+   ```bash
+   python3 scripts/fz_enrich.py --ticker <TICKER> --date <AS_OF>
+   ```
+
+   It returns `fields` (raw Finviz strings) + a `derived` block: `short_float_pct`, `days_to_cover` (`Short Ratio`), `float_shares` (parsed `Shs Float`), `squeeze_pressure` (LOW/MODERATE/HIGH), `recom` (1.00 strong-buy … 5.00 strong-sell), `upside_to_target_pct`, `rsi`. This is the **non-flow context the UW fleet is blind to** — short-interest, float, and analyst consensus. **If `available:false`** (fz CLI missing, ticker not found, errored): note the skip and proceed on Finnhub alone — `fz` never blocks the gate.
+
+   **This is advisory context only.** Carry these fields into the verdict's `reasons` and into the `fz_context` output block so they reach `risk-monitor`, the debate, and the decision envelope — but **do NOT let them change `tier_adjustment`** (the verdict math below stays Finnhub-driven). The short-interest squeeze axis and the analyst-divergence axis are *registered, not-yet-live* scored gates (criteria **C15 / C17**, see `analyses/audit/2026-05-25/improvement_criteria.md`) that stay 0-impact until `/calibration-audit` clears them. Until then: surface the squeeze/analyst read in prose (e.g. "long accumulation into a 27%-short, 7.7-day-to-cover name = squeeze tailwind" or "flow-vs-analyst divergence: bullish flow but `Recom` 4.1 / −18% to target"), tagging each value `[FZ:<field> EOD <as_of>]`, and respect the freshness caveat (SI is the semi-monthly settlement figure, ~2-week lag — context, not a live borrow signal).
+
 3. **Cross-reference the assessment against the thesis direction** — this is the whole point. The script is direction-agnostic; you supply the direction:
 
    | Thesis | CONFIRM when… | VETO / CAUTION when… |
@@ -60,8 +70,17 @@ A VETO must quote the specific contradicting facts. Never VETO on a single soft 
   "leverage_flag": "...", "next_earnings_date": "...", "days_to_earnings": <n|null>,
   "catalyst_support": "corroborating | none | contradictory",
   "reasons": ["<the specific facts driving the verdict, with numbers>"],
-  "key_risks": ["<fundamental risks to carry into the decision envelope key_risks[]>"]
+  "key_risks": ["<fundamental risks to carry into the decision envelope key_risks[]>"],
+  "fz_context": {
+    "available": true | false,
+    "short_float_pct": <n|null>, "days_to_cover": <n|null>, "float_shares": <n|null>,
+    "squeeze_pressure": "LOW | MODERATE | HIGH | unknown",
+    "recom": <n|null>, "upside_to_target_pct": <n|null>, "rsi": <n|null>,
+    "note": "<advisory squeeze / analyst read — 0 tier impact until C15/C17 clear calibration>"
+  }
 }
 ```
+
+The `fz_context` block is **advisory** — it is logged into `decision.json.calls[].fz_context` for the calibration loop and informs prose, but contributes 0 to `tier_adjustment`. Emit it as `{"available": false}` when the `fz` lane was skipped.
 
 Hand the verdict list to risk-monitor. Be conservative with VETO and explicit about every CAUTION — a silent pass on a name with insider selling into accumulation is exactly the miss this gate was added to prevent. Surface the fundamentals data even for CONFIRMs so it flows into the report's per-ticker thesis and the decision envelope `fundamentals_verdict` field.

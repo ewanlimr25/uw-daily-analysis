@@ -79,6 +79,7 @@ Before parsing any report prose, check for a sidecar **decision envelope** besid
 
 1. Validate it first: `python3 scripts/validate_decision.py --file <path>`. If it fails validation, note the data-quality flag and fall back to prose parsing for that report.
 2. Load `calls[]` directly — each object **already is** the normalized per-call row below (`ticker`, `horizon`, `section`, `tier`, `raw_score`, `score_components[]`, `dominant_signal_class`, `win_rate` + `win_rate_n` + `win_rate_source`, `pre_risk_size`, `final_size`, `gate_verdicts`, `fundamentals_verdict`, `debate_residual_confidence`, `structure`, `invalidation`, `thesis`, `key_risks[]`). No prose re-parsing, no `Σ points` reconciliation needed (the validator guarantees it). Map `gate_verdicts` keys to `gates_fired`, and carry `fundamentals_verdict` / `debate_residual_confidence` as new audit dimensions (e.g. did VETO'd names that were nonetheless tracked actually fail? did high bear-residual names underperform?).
+2b. **`fz` advisory dimensions (2026-05-27 `fz`-edge).** Also carry, when present (additive — no schema break): each call's `fz_context` (`short_float_pct`, `days_to_cover`, `float_shares`, `squeeze_pressure`, `recom`, `upside_to_target_pct`) and the top-level `breadth_cross_check`. These are the outcome inputs that authorize (or kill) the Phase-B promotions of `fz` criteria **C15–C18** (`analyses/audit/2026-05-25/improvement_criteria.md`): tag whether each call carried high short-interest, a flow-vs-analyst divergence, or an insider cluster, so Phase 4 can score those axes against realised outcomes.
 3. The top-level `macro_event_risk` and `macro_snapshot_signals` give the macro context at entry — use them to test whether event-risk-flagged calls drew down around the print.
 
 The envelope is the authoritative source when it exists; the markdown report is its human-readable rendering. Only fall back to the prose-extraction below for **legacy reports that predate the envelope** (no `.decision.json` sidecar).
@@ -235,10 +236,22 @@ For each `tool` appearing in any row's `tools_cited`:
 - `phase_4_tools.md` — tool tier list with desk commentary per tool. Voice: market-maker quant. Format example: *"`uw dark-pool block-stratified` LOAD-BEARING (+18pp on `dark_pool_accumulation`, n=22). Acts as the institutional/retail filter that the raw `uw dark-pool ticker-summary` lacks. Without this gate, accumulation calls degrade by ~1 in 5."*
 - `phase_4_tools.jsonl` — tool-level numerics.
 
+### `fz` advisory fields / clusters / breadth (2026-05-27 `fz`-edge — gates the Phase-B promotions)
+
+Score the `fz` signals on the **same** LOAD-BEARING / SUPPORTIVE / NO-INFO / NEGATIVE tier scale as the `uw` tools, so the data authorizes (or kills) each Phase-B promotion:
+
+- **`fz_context.squeeze_pressure` (short interest / days-to-cover)** → gates **C15**: among SHORT-thesis calls, do high-SI names (`short_float ≥ 20% ∧ days_to_cover ≥ 5`) underperform the short-class baseline (squeeze trap)? Among LONG-momentum calls, do they outperform (squeeze tailwind)?
+- **`fz_context.float_shares`** → gates **C16**: does a float-normalized dark-pool-block / OI threshold (block as % of float) separate accumulation winners from churn better than the dollar-tier filter alone (effect ≥ the C11 conjunction)?
+- **`fz_context.recom` / `upside_to_target_pct` (analyst divergence)** → gates **C17**: does flow-vs-analyst disagreement have sign on outcomes (downside-only)?
+- **insider clusters (`fz insider-clusters`)** → gates **C18**: does the 3-way conjunction (insider cluster ∧ DP block ∧ cum-flow) beat the 2-way C11 baseline?
+- **`breadth_cross_check`** → does a breadth divergence (`pct_green < 50` on a green-tape day) precede regime flips / predict next-session drawdown?
+
+Report each with `marginal_contribution`, `n`, and a GO/NO-GO verdict on the corresponding C-item's promotion threshold. **Do not promote** a `fz` criterion that has not cleared its threshold here — until then it stays advisory (Phase A) and earns 0 points (the repo's calibration discipline — `improvement_criteria.md`).
+
 ### Hard rules
 
 - A "CONFOUNDED" finding requires manual sanity-check before recommending demotion — some tools genuinely fire only when conviction is high (e.g. `uw insights signal-confluence ≥ 5`). Note this in the per-tool commentary.
-- Do not score tools cited fewer than 5 times — N is too small. Mark as "INSUFFICIENT_N" and exclude from tier ranking.
+- Do not score tools cited fewer than 5 times — N is too small. Mark as "INSUFFICIENT_N" and exclude from tier ranking. **`fz` fields obey the same N≥5 floor** — on the tiny current dataset they will be INSUFFICIENT_N for several audits; that is expected and keeps them advisory.
 
 ---
 
