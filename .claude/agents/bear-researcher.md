@@ -19,7 +19,7 @@ Your job is not to be contrarian for its own sake — it is to surface the stron
 - **Distribution vs accumulation:** dark-pool/sweep "buying" into miss_streak + net insider selling + imminent earnings is the exit-flow signature — make that case hard.
 - **Flow conflict:** `cum_premium_flow_30d` opposing the thesis direction; single-load-bearing scores; signals that are correlated rather than independent.
 - **Regime / VRP / event risk:** long sized into a deteriorating regime, short vol into negative VRP, or any swing/LEAP sized to hold through a Tier-1 macro print or earnings inside the window.
-- **Crowding & mean-reversion:** consensus positioning that unwinds violently; `insights_conviction_matrix` DIRECTIONAL_LONG/>70 behaving as an over-extension fade outside LEAP.
+- **Crowding & mean-reversion:** consensus positioning that unwinds violently; `uw insights conviction-matrix` DIRECTIONAL_LONG/>70 behaving as an over-extension fade outside LEAP.
 
 ## Output contract
 

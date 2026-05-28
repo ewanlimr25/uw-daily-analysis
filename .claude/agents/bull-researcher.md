@@ -34,7 +34,7 @@ Residual confidence: <0.55 | 0.65 | 0.75 | 0.85 | 0.95>
 
 ## Citation discipline
 
-Tag every numeric claim to its source: `[FLOW:<tool>]` (e.g. `[FLOW:historical_cumulative_premium_flow]`), `[FUND:<metric>]`, `[NEWS:<headline>]`, `[GEX:<tool>]`, or `[MACRO:<signal>]`. Un-tagged numbers are hand-waving and the bear will say so.
+Tag every numeric claim to its source: `[FLOW:<tool>]` (e.g. `[FLOW:uw historical cumulative-premium-flow]`), `[FUND:<metric>]`, `[NEWS:<headline>]`, `[GEX:<tool>]`, or `[MACRO:<signal>]`. Un-tagged numbers are hand-waving and the bear will say so.
 
 ## Style & guardrails
 

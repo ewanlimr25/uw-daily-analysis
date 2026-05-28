@@ -1,10 +1,24 @@
 ---
-description: Run the full Friday-evening or Sunday-prep weekly intelligence note in the voice of a top-tier institutional desk strategist (JPM/GS Friday note). Persistence-weighted conviction rubric over a 5-day window with WoW regime delta, intra-week thesis scorecard (WIN/LOSS/INCONCLUSIVE per ticker), sector rotation persistence, vol-surface evolution, LEAP roll detection, OPEX-week pin map, and 2-week earnings lookahead. Output is tiered High/Medium/Low conviction with backtest-weighted sizing. Invoke whenever the user asks for a weekly recap, week-ahead prep, Sunday strategy session, weekly market intelligence note, or types `/weekly-analysis`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker analyses (use `mcp__uw-pp__insights_deep_dive`), or month/quarter horizons.
+description: Run the full Friday-evening or Sunday-prep weekly intelligence note in the voice of a top-tier institutional desk strategist (JPM/GS Friday note). Persistence-weighted conviction rubric over a 5-day window with WoW regime delta, intra-week thesis scorecard (WIN/LOSS/INCONCLUSIVE per ticker), sector rotation persistence, vol-surface evolution, LEAP roll detection, OPEX-week pin map, and 2-week earnings lookahead. Output is tiered High/Medium/Low conviction with backtest-weighted sizing. Invoke whenever the user asks for a weekly recap, week-ahead prep, Sunday strategy session, weekly market intelligence note, or types `/weekly-analysis`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker analyses (use `uw insights deep-dive`), or month/quarter horizons.
 ---
 
 # Weekly Market Intelligence
 
-Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh from MCP tools — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context (including a FRED macro snapshot + forward event-risk calendar). Phase 2 runs `signal-confluence-quant` for audited scoring, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest and fundamentally vet top names, write winners back to the watchlist, emit a machine-readable `decision.json` envelope, and save the report to its own folder `analyses/weekly/YYYY-WW/` holding `report.md` + `decision.json`.
+Run a full weekly intelligence note in the voice of a top-tier institutional desk strategist. Uses the same agent fleet as `/daily-analysis` but wired to week-range inputs and a persistence-weighted conviction rubric. **All data is pulled fresh via the `uw` CLI — no dependency on prior daily analysis files.** Phase 1 spawns **11 agents** (12 in OPEX week) in parallel against a shared week-baseline context (including a FRED macro snapshot + forward event-risk calendar). Phase 2 runs `signal-confluence-quant` for audited scoring, then a `fundamentals-gate` cross-check and a bounded `bull-researcher`/`bear-researcher` debate on the top-5, then `risk-monitor` for gating, against the union of the week's candidates. Score conviction formally with explicit tiers, backtest and fundamentally vet top names, write winners back to the watchlist, emit a machine-readable `decision.json` envelope, and save the report to its own folder `analyses/weekly/YYYY-WW/` holding `report.md` + `decision.json`.
+
+## Data access — the `uw` CLI
+
+All Unusual Whales data comes from the **`uw` CLI** (`/Users/ewan/.local/bin/uw`; override with `$UW_PP_CLI`), invoked via Bash. Canonical convention for **every** call in this command and **every spawned agent**:
+
+```
+uw <group> <subcommand> [--flag value …] --json --quiet
+```
+
+- `--json` is **mandatory** (the CLI defaults to a rendered table); `--quiet` drops banners so stdout is pure JSON. Parse with `jq` / `json.loads`.
+- Pin point-in-time tools to a covered date with `--date <YYYY-MM-DD>`; multi-day tools take `--days` / `--lookback-days` over the week range.
+- For tie-prone lists (`sector-flow-persistence`, any `--top-n` with score ties) **sort by an explicit key** — Go map order is non-deterministic.
+- Trim large payloads with `--select <dotted,paths>` / `--compact` to save tokens.
+- Fundamentals enrichment still uses the **yfinance MCP** (`mcp__yahoo-finance__*`) and `scripts/finnhub_enrich.py` — unaffected by this CLI path.
 
 ## When to invoke
 
@@ -16,8 +30,8 @@ Run a full weekly intelligence note in the voice of a top-tier institutional des
 ## When NOT to invoke
 
 - "Wrap up today" / "EOD report" → `/daily-analysis`.
-- "What's NVDA doing this week?" → `mcp__uw-pp__insights_deep_dive` + `mcp__uw-pp__historical_trend` for that one ticker.
-- Month-over-month or quarterly horizons — call `mcp__uw-pp__historical_cumulative_premium_flow` with `lookback_days=30` (or 90) and let the user drive the synthesis manually.
+- "What's NVDA doing this week?" → `uw insights deep-dive` + `uw historical trend` for that one ticker.
+- Month-over-month or quarterly horizons — call `uw historical cumulative-premium-flow` with `--days 30` (or 90) and let the user drive the synthesis manually.
 
 ## Model routing
 
@@ -27,13 +41,13 @@ The orchestrator running this skill must use **`opus` with extended thinking on*
 |---|---|---|---|
 | gamma-flip-tracker | sonnet | off | Next-session GEX advisory for SPY/QQQ only (ZGL, regime, call/put walls); prose-only, 0 rubric points, no backtested edge |
 | dealer-positioning-strategist | sonnet | **on** | Multi-signal synthesis: DEX trajectory + vanna squeeze + GEX time series across the week — reasoning depth required |
-| sweep-tracker | sonnet | off | Filter and rank by `hot_chains_sweep_persistence` count — no synthesis |
-| accumulation-hunter | sonnet | off | Pattern match across DP + OI over 5d/10d, with `dark_pool_block_stratified` gate |
-| contrarian-scanner | sonnet | off | Trajectory computation — rising vs falling `historical_pc_ratio_zscore`, VRP gate |
+| sweep-tracker | sonnet | off | Filter and rank by `uw hot-chains sweep-persistence` count — no synthesis |
+| accumulation-hunter | sonnet | off | Pattern match across DP + OI over 5d/10d, with `uw dark-pool block-stratified` gate |
+| contrarian-scanner | sonnet | off | Trajectory computation — rising vs falling `uw historical pc-ratio-zscore`, VRP gate |
 | earnings-scout | sonnet | **on** | Dual mandate: judgment-heavy recap grading + multi-signal lookahead ranking with term-skew |
-| vol-surface-scout | sonnet | off | Analytical WoW delta — systematic flagging, `historical_iv_percentile_zscore` + VRP bias |
+| vol-surface-scout | sonnet | off | Analytical WoW delta — systematic flagging, `uw historical iv-percentile-zscore` + VRP bias |
 | multileg-strategist | sonnet | **on** | Hardest Phase 1 task: inferring institutional intent from repeated cross-week structures + term-structure context |
-| leap-positioning-radar | sonnet | **on** | Multi-signal synthesis over 10d+ window + rolling detector + historical_cumulative_premium_flow accretion classification |
+| leap-positioning-radar | sonnet | **on** | Multi-signal synthesis over 10d+ window + rolling detector + uw historical cumulative-premium-flow accretion classification |
 | sector-rotation-strategist | sonnet | off | Persistence-gated rotation calls + leader extraction; mostly mechanical |
 | opex-pin-strategist (conditional) | sonnet | off | OPEX-week only; ranking + structure suggestion is rule-based |
 | signal-confluence-quant (Phase 2a) | sonnet | **on** | Audited per-ticker scoring with explicit component breakdown — reasoning required for tie-breaking and audit-trail prose |
@@ -46,16 +60,16 @@ Pass the model assignment in each agent's prompt header (e.g. `Model: claude-son
 
 ## Operating principle: persistence beats a single print
 
-Single-day signals are noise; multi-week persistence is the edge. Every agent in this run must consume week-range data wherever the MCP supports it. Specifically:
+Single-day signals are noise; multi-week persistence is the edge. Every agent in this run must consume week-range data wherever the CLI supports it. Specifically:
 
-- `mcp__uw-pp__hot_chains_sweep_persistence` over `mcp__uw-pp__options_flow_sweeps`
-- `mcp__uw-pp__historical_oi_trend` with `lookback_days=5` over `mcp__uw-pp__oi_biggest_increases`
-- `mcp__uw-pp__historical_cumulative_premium_flow` over single-day premium totals
-- `mcp__uw-pp__historical_pc_ratio_zscore` over the deprecated `screener_put_call_extremes`
-- `mcp__uw-pp__historical_iv_percentile_zscore` over raw IV rank for outlier robustness
-- `mcp__uw-pp__historical_gex_time_series` over single-day GEX snapshots
-- `mcp__uw-pp__options_flow_sector_flow_persistence` over single-day `options_flow_sector_flow`
-- `mcp__uw-pp__historical_signal_backtest` before sizing any trade
+- `uw hot-chains sweep-persistence` over `uw options-flow sweeps`
+- `uw historical oi-trend` with `--days 5` over `uw oi biggest-increases`
+- `uw historical cumulative-premium-flow` over single-day premium totals
+- `uw historical pc-ratio-zscore` over the deprecated `uw screener put-call-extremes`
+- `uw historical iv-percentile-zscore` over raw IV rank for outlier robustness
+- `uw historical gex-time-series` over single-day GEX snapshots
+- `uw options-flow sector-flow-persistence` over single-day `uw options-flow sector-flow`
+- `uw historical signal-backtest` before sizing any trade
 
 The week is the minimum unit of analysis. Pass this instruction through to every spawned agent.
 
@@ -84,38 +98,38 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
 
    These four variables — `ISO_WEEK`, `MONDAY`, `WEEK_END`, `TODAY` — are the canonical anchors for this run. The run folder is `analyses/weekly/$ISO_WEEK/` (holding `report.md` + `decision.json`) and the watchlist group key is `conviction_week_$ISO_WEEK`.
 
-2. **Coverage list** — call `mcp__uw-pp__historical_available_dates` and filter to dates in `[MONDAY, WEEK_END]`. Call this filtered list `covered_dates`. **Rules:**
+2. **Coverage list** — call `uw historical available-dates` and filter to dates in `[MONDAY, WEEK_END]`. Call this filtered list `covered_dates`. **Rules:**
    - If `covered_dates` is empty → abort and report "No UW data available for the current trading week."
    - If any calendar weekday Mon–Fri is missing from `covered_dates`, note the gap explicitly — agents must not assume a full 5-day window. Pass `covered_dates` (not the computed calendar range) as the authoritative list to every Phase 1 agent.
 
-3. **Regime baseline** — call `mcp__uw-pp__risk_market_regime` twice: once for `TODAY` and once for `covered_dates[0]`. Compute the WoW regime delta. This **week regime baseline** — regime today vs week-open, and whether it improved / deteriorated / held — is passed to every Phase 1 agent. Agents must gate their directional calls against it.
+3. **Regime baseline** — call `uw risk market-regime` twice: once for `TODAY` and once for `covered_dates[0]`. Compute the WoW regime delta. This **week regime baseline** — regime today vs week-open, and whether it improved / deteriorated / held — is passed to every Phase 1 agent. Agents must gate their directional calls against it.
 
-4. **Vol regime** — call `mcp__uw-pp__historical_vrp` for the most recent date in `covered_dates`. Classify the week as a premium-selling environment (VRP positive) or premium-buying environment (VRP negative). This shapes which agents you trust most: VRP-positive weeks favour vol-surface-scout & contrarian-scanner; VRP-negative weeks favour gamma-flip-tracker & earnings-scout.
+4. **Vol regime** — call `uw historical vrp` for the most recent date in `covered_dates`. Classify the week as a premium-selling environment (VRP positive) or premium-buying environment (VRP negative). This shapes which agents you trust most: VRP-positive weeks favour vol-surface-scout & contrarian-scanner; VRP-negative weeks favour gamma-flip-tracker & earnings-scout.
 
 5. **Sector & flow-share baseline** — call in parallel:
-   - `mcp__uw-pp__options_flow_sector_flow_persistence` over the full week range. This is the durability check that gates §2 of the report (sector rotation narrative).
-   - `mcp__uw-pp__options_flow_sector_flow` for `WEEK_END` — single-day snapshot for week-end skew within the persistence narrative.
-   - `mcp__uw-pp__options_flow_dte_volume_share` for each covered date (or `WEEK_END` only if a faster pass is needed) — institutional vs retail share trend across the week. Feeds §1.
+   - `uw options-flow sector-flow-persistence` over the full week range. This is the durability check that gates §2 of the report (sector rotation narrative).
+   - `uw options-flow sector-flow` for `WEEK_END` — single-day snapshot for week-end skew within the persistence narrative.
+   - `uw options-flow dte-volume-share` for each covered date (or `WEEK_END` only if a faster pass is needed) — institutional vs retail share trend across the week. Feeds §1.
 
    These are **GICS-aggregate** (no symbol input) — the shared anchor. The **ETF instrument-level flow tape** (the canonical ETF universe defined in `sector-rotation-strategist.md`) is swept **per-symbol by the agent in Step 1**, not here — do **not** add the ~21 per-symbol ETF calls to preflight. The agent owns the ranked deep-pull; Step 0 stays GICS-aggregate.
 
 6. **Top-of-funnel screens** — run in parallel for `WEEK_END`:
-   - `mcp__uw-pp__screener_bullish_bearish` (top 25 each side) — week-end leaderboard.
-   - `mcp__uw-pp__insights_signal_confluence` (`min_score=4`, top 25 each direction) — multi-factor scoring at higher threshold than daily.
-   - `mcp__uw-pp__screener_iv_rank` (top 25 high, top 25 low) — premium-selling vs premium-buying candidates for next week.
-   - `mcp__uw-pp__screener_earnings_catalyst` — upcoming earnings + elevated IV (next 14 days) — feeds §6.
-   - `mcp__uw-pp__screener_volume_vs_average` (top 25, `min_ratio=3`) — flow anomalies vs 30-day baseline; cross-reference against multi-day persistence for §3.
-   - `mcp__uw-pp__hot_chains_sweep_ratio` — high sweep-to-volume contracts at week-end; cross-reference against `hot_chains_sweep_persistence` in sweep-tracker.
+   - `uw screener bullish-bearish` (top 25 each side) — week-end leaderboard.
+   - `uw insights signal-confluence` (`min_score=4`, top 25 each direction) — multi-factor scoring at higher threshold than daily.
+   - `uw screener iv-rank` (top 25 high, top 25 low) — premium-selling vs premium-buying candidates for next week.
+   - `uw screener earnings-catalyst` — upcoming earnings + elevated IV (next 14 days) — feeds §6.
+   - `uw screener volume-vs-average` (top 25, `--min-volume-ratio 3`) — flow anomalies vs 30-day baseline; cross-reference against multi-day persistence for §3.
+   - `uw hot-chains sweep-ratio` — high sweep-to-volume contracts at week-end; cross-reference against `uw hot-chains sweep-persistence` in sweep-tracker.
 
    **Liquidity floor (2026-05-25 register C12) — apply to every screened name before handing to agents.** Each candidate must clear **price ≥ $5 AND 20-day dollar-ADV ≥ $50M** (or notional-equivalent). Use the screener `close` for price and a 20-day dollar-volume estimate (equity `volume × close`, or yahoo `get_historical_stock_prices` for the underlying; "notional-equivalent" = options dollar volume where equity ADV is unavailable). **Fail closed:** a name whose liquidity cannot be verified is dropped, not passed. ADV is **dollar** volume (shares × close), *not* a raw share count. Drop sub-floor names from the funnel entirely — they pollute the candidate set, the confluence breadth, and the win-rate denominator. **This floored set is the funnel every downstream step consumes** — all Phase 1 agents (Step 1) and the quant's win-rate denominator (Step 5) operate on the floored names, never the raw screener output. Rationale: the `volume_spike` screen returns micro-ETFs (GIF/BLCN/PEX/IGLD/UTHY/ESGE — all sub-$50M ADV) the desk cannot fill at size; Barbon & Buraschi show flow effects are strongest (and least exitable) in exactly these illiquid names. The reusable filter is `scripts/excess_winrate.py:apply_liquidity_floor`.
 
-7. **OPEX guard** — if `WEEK_END` is within 7 calendar days of the third Friday, also call `mcp__uw-pp__oi_pin_risk` for SPY/QQQ/IWM and the top 10 from step 6, plus `mcp__uw-pp__oi_opex_concentration` for the same set. Pinning candidates feed §9 (Setups for Next Week).
+7. **OPEX guard** — if `WEEK_END` is within 7 calendar days of the third Friday, also call `uw oi pin-risk` for SPY/QQQ/IWM and the top 10 from step 6, plus `uw oi opex-concentration` for the same set. Pinning candidates feed §9 (Setups for Next Week).
 
-8. **Macro & event-risk layer** — `risk_market_regime` gives a label, not a calendar; a week-ahead book needs to know which prints land next week. Build it once here:
+8. **Macro & event-risk layer** — `uw risk market-regime` gives a label, not a calendar; a week-ahead book needs to know which prints land next week. Build it once here:
    - **Macro snapshot** — run `python3 scripts/fred_macro.py` via Bash → `macro_snapshot` JSON (yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y level/direction, USD direction, fed funds). If `available:false`, note the skip and fall back to the regime label.
    - **Forward catalyst calendar** — build `event_risk`: Tier-1 US macro releases over the **next two calendar weeks** (CPI, PPI, PCE, FOMC/SEP, NFP/jobless claims) confirmed via `WebSearch`, each tagged `{event, date, impact}`. Per-name earnings dates are added in Phase 2 from the fundamentals enrichment and cross-referenced against the §6 lookahead.
 
-9. **§2 GEX-advisory rolling backtest** — the §2 / §9 next-session GEX map for SPY/QQQ is shipped as an *advisory* in `/daily-analysis` with **no** predictive claim; this is where that claim is tested. Run `python3 scripts/gex_next_session_backtest.py --symbols SPY,QQQ --days 60 --json` via Bash and capture it as `gex_advisory_backtest`. It reconstructs the trailing EOD GEX book (via the uw-pp CLI the MCP wraps) and reports, vs a 50% baseline: **H1** spot-vs-ZGL → next-session realised vol (theory: short-gamma > long-gamma) and **H2** whether the next close lands *closer* to the nearest EOD wall (walls-as-magnet), with `n`, binomial `p`, and a coarse `verdict` (`GO_WALLS_PREDICTIVE` / `NO_GO_NO_EDGE` / `INSUFFICIENT_SAMPLE`). If it returns `available:false` (CLI/data unavailable), note the skip and continue. **As of the last gate run the verdict was `NO_GO_NO_EDGE`** (walls were not magnets — next close moved *away* more than chance; H1 ran backwards) — so the GEX walls are dealer context only, never a backtested edge.
+9. **§2 GEX-advisory rolling backtest** — the §2 / §9 next-session GEX map for SPY/QQQ is shipped as an *advisory* in `/daily-analysis` with **no** predictive claim; this is where that claim is tested. Run `python3 scripts/gex_next_session_backtest.py --symbols SPY,QQQ --days 60 --json` via Bash and capture it as `gex_advisory_backtest`. It reconstructs the trailing EOD GEX book (via the `uw` CLI) and reports, vs a 50% baseline: **H1** spot-vs-ZGL → next-session realised vol (theory: short-gamma > long-gamma) and **H2** whether the next close lands *closer* to the nearest EOD wall (walls-as-magnet), with `n`, binomial `p`, and a coarse `verdict` (`GO_WALLS_PREDICTIVE` / `NO_GO_NO_EDGE` / `INSUFFICIENT_SAMPLE`). If it returns `available:false` (CLI/data unavailable), note the skip and continue. **As of the last gate run the verdict was `NO_GO_NO_EDGE`** (walls were not magnets — next close moved *away* more than chance; H1 ran backwards) — so the GEX walls are dealer context only, never a backtested edge.
 
    Then run `python3 scripts/zerodte_setup.py --symbols SPY,QQQ --days 60 --json` and capture it as `zerodte_setup` — the **validated** 0DTE stack (delta-neutral premium-selling): rolling `backtest` (front-IV implied move vs realized open-to-close, open-entry vs overnight, GEX→range vol-suppression, VIX-level conditioning, `verdict` ∈ {`GO_PREMIUM_SELL_INTRADAY`/`NO_GO_NO_EDGE`/`INSUFFICIENT_SAMPLE`}) plus a per-index `setup`. This is the part that *did* validate (unlike the GEX walls) — but it is still **advisory, 0 rubric points, and NOT a guaranteed edge** (no vol shock in sample → tail unsampled). `available:false` → note the skip.
 
@@ -127,16 +141,16 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
 
 Spawn these **11 agents simultaneously** — a single message with 11 Agent tool calls (12 in OPEX week — see opex-pin-strategist). Hand each one: (a) the week-baseline context block from Step 0, (b) the count of covered days (so agents know whether they have a full 5-day window or a shorter one), and (c) the explicit tool list below. Each agent must restrict queries to `covered_dates` and favour multi-day tools over single-day equivalents.
 
-**Hard rule:** no agent re-fetches `risk_market_regime`, `historical_vrp`, or `options_structure_front_end_iv_ratio` — those come from Step 0 context only.
+**Hard rule:** no agent re-fetches `uw risk market-regime`, `uw historical vrp`, or `uw options-structure front-end-iv-ratio` — those come from Step 0 context only.
 
 ### gamma-flip-tracker — next-session GEX advisory, SPY/QQQ only (sonnet, thinking off)
 Do **NOT** produce intraday 0DTE calls. Forecast next session's / next week's zero-gamma level, regime, and call/put walls for **SPY and QQQ only** (drop IWM and single names), read off the standing EOD 0–45d GEX book (OI persists overnight). This is the §9 **advisory** — prose-only, **0 conviction-rubric points**, and **no backtested predictive claim** (its predictive value is tested by the Step 0 `gex_advisory_backtest`; present accordingly). **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
 
 Tools required:
-- `mcp__uw-pp__options_structure_gex` (default `dte_max=45`) — **PRIMARY**: per-strike GEX, `zero_gamma_level`, `regime`, `total_gex`, call wall (largest +GEX strike above spot), put wall (most −GEX strike below). Do **not** lead with `options_structure_today_gamma_flip` (it locks to the snapshot's expired same-day expiry with an unreliable ZGL).
-- `mcp__uw-pp__historical_gex_time_series` — `regime_flip_dates` + multi-day ZGL trajectory across `covered_dates`: regime fresh vs held.
-- `mcp__uw-pp__options_flow_expiry_heatmap` — confirm near-dated expiries hold meaningful volume share.
-- `mcp__uw-pp__options_flow_greek_screener` — `min_gamma` filter for the highest-impact near-dated contracts.
+- `uw options-structure gex` (default `dte_max=45`) — **PRIMARY**: per-strike GEX, `zero_gamma_level`, `regime`, `total_gex`, call wall (largest +GEX strike above spot), put wall (most −GEX strike below). Do **not** lead with `uw options-structure today-gamma-flip` (it locks to the snapshot's expired same-day expiry with an unreliable ZGL).
+- `uw historical gex-time-series` — `regime_flip_dates` + multi-day ZGL trajectory across `covered_dates`: regime fresh vs held.
+- `uw options-flow expiry-heatmap` — confirm near-dated expiries hold meaningful volume share.
+- `uw options-flow greek-screener` — `min_gamma` filter for the highest-impact near-dated contracts.
 
 ZGL rule: trust `zero_gamma_level` only within ~5% of spot; when null/extrapolated, fall back to `total_gex` sign + spot-vs-wall and set `zgl_reliable=false`.
 
@@ -146,11 +160,11 @@ Output: §9 next-session regime + ZGL + call/put wall for SPY and QQQ, with a on
 Owns the multi-day DEX / vanna / charm / GEX-trajectory work. Surfaces 1–4 week swing setups GF cannot see at the 0DTE horizon.
 
 Tools required:
-- `mcp__uw-pp__options_structure_dex` — DEX trajectory week-over-week (directional pressure ahead of price).
-- `mcp__uw-pp__options_structure_vanna_charm` — vanna-squeeze detection (put-heavy book + falling VIX → BUY setup).
-- `mcp__uw-pp__historical_gex_time_series` (`lookback_days=10`, also 30d) — multi-day ZGL trajectory; flag any regime flip across the week.
-- `mcp__uw-pp__options_structure_gex` (default `dte_max=45`) — confirm DEX flip is not a single-strike artifact.
-- `mcp__uw-pp__options_structure_front_end_iv_ratio` — secondary panic gate; consume from Step 0 if available.
+- `uw options-structure dex` — DEX trajectory week-over-week (directional pressure ahead of price).
+- `uw options-structure vanna-charm` — vanna-squeeze detection (put-heavy book + falling VIX → BUY setup).
+- `uw historical gex-time-series` (`--days 10`, also 30d) — multi-day ZGL trajectory; flag any regime flip across the week.
+- `uw options-structure gex` (default `dte_max=45`) — confirm DEX flip is not a single-strike artifact.
+- `uw options-structure front-end-iv-ratio` — secondary panic gate; consume from Step 0 if available.
 
 Output: per-ticker swing dealer reads — DEX state + 5d/10d trajectory, vanna-squeeze flags, ZGL trajectory week-over-week, regime-flip detections, swing bias for next 1–4 weeks. Feeds §3 (Swing Book) with the `vanna_squeeze` / `dex_flip_long` / `dex_flip_short` signal classes.
 
@@ -158,14 +172,14 @@ Output: per-ticker swing dealer reads — DEX state + 5d/10d trajectory, vanna-s
 Owns multi-week sector rotation + leader extraction. Enforces ≥3-day persistence — primary feed for §2 of the report.
 
 Tools required (GICS layer — the shared anchor, cross-checks the ETF tape):
-- `mcp__uw-pp__options_flow_sector_flow_persistence` — multi-day rotation persistence per sector across `covered_dates` (PRIMARY).
-- `mcp__uw-pp__options_flow_sector_flow` for `WEEK_END` — single-day skew within the persistence narrative.
-- `mcp__uw-pp__screener_bullish_bearish` — filter by sector to extract single-name leaders.
-- `mcp__uw-pp__options_flow_dte_volume_share` per covered date — institutional vs retail share by sector trend across the week.
+- `uw options-flow sector-flow-persistence` — multi-day rotation persistence per sector across `covered_dates` (PRIMARY).
+- `uw options-flow sector-flow` for `WEEK_END` — single-day skew within the persistence narrative.
+- `uw screener bullish-bearish` — filter by sector to extract single-name leaders.
+- `uw options-flow dte-volume-share` per covered date — institutional vs retail share by sector trend across the week.
 
-ETF instrument-level flow tape (per-symbol — GICS tools cannot see ETFs, especially thematics/geographics). Run the **same canonical ETF universe** constant in `sector-rotation-strategist.md` with **identical agreement logic** to the daily, **cap ≤ 40 added MCP calls**:
-- **RANK (≤21):** `mcp__uw-pp__historical_cumulative_premium_flow` (`--symbol <ETF> --days 5`, extend to the covered-week range) for every universe ETF — rank by net-premium direction × multi-day persistence. Weight ETF **options** flow above ETF DP. Graceful-skip thin names.
-- **DEEP-PULL top 3 inflow + 3 outflow only (≤12):** `mcp__uw-pp__dark_pool_largest` (`--symbol`, positioning/persistence tell — **not** single-name accumulation) + `mcp__uw-pp__options_flow_sweeps` (`--symbol`, directional urgency).
+ETF instrument-level flow tape (per-symbol — GICS tools cannot see ETFs, especially thematics/geographics). Run the **same canonical ETF universe** constant in `sector-rotation-strategist.md` with **identical agreement logic** to the daily, **cap ≤ 40 added `uw` calls**:
+- **RANK (≤21):** `uw historical cumulative-premium-flow` (`--symbol <ETF> --days 5`, extend to the covered-week range) for every universe ETF — rank by net-premium direction × multi-day persistence. Weight ETF **options** flow above ETF DP. Graceful-skip thin names.
+- **DEEP-PULL top 3 inflow + 3 outflow only (≤12):** `uw dark-pool largest` (`--symbol`, positioning/persistence tell — **not** single-name accumulation) + `uw options-flow sweeps` (`--symbol`, directional urgency).
 - **CROSS-CONFIRM:** GICS sector + its representative ETF agree w/ persistence → high-conviction; disagree → watch-only. No-GICS thematics → instrument-only (`gics_agreement: n/a`).
 
 Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders, `etf_flow_tape[]` (ranked inflow/outflow ETFs + GICS-agreement + leaders), swing-book implication. Feeds §2 (Sector Rotation) directly. The ETF tape is **advisory** — it strengthens the existing conditional sector-leader +1 via `gics_agreement`/cum_flow alignment, adds **no new rubric points**.
@@ -174,46 +188,46 @@ Output: rotation regime call (defensive→cyclical / cyclical→defensive / grow
 **Conditional spawn.** If `WEEK_END` is within 7 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit.
 
 Tools required:
-- `mcp__uw-pp__oi_pin_risk` — pin candidates with strike + probability.
-- `mcp__uw-pp__oi_opex_concentration` — OI mass at OPEX strikes.
-- `mcp__uw-pp__options_structure_gex` — confirm pin strike sits near a long-gamma wall.
+- `uw oi pin-risk` — pin candidates with strike + probability.
+- `uw oi opex-concentration` — OI mass at OPEX strikes.
+- `uw options-structure gex` — confirm pin strike sits near a long-gamma wall.
 
 Output: ranked OPEX book — top 5–10 names with `{ticker, pin_strike, distance_pct, oi_mass_at_pin, gex_at_pin, ranked_score, suggested_structure}`. Feeds §9 (Setups for Next Week) when the upcoming week is OPEX week.
 
 ### sweep-tracker — multi-day persistence (sonnet, thinking off)
-Use `mcp__uw-pp__hot_chains_sweep_persistence` as the **primary** signal. Surface tickers swept on **≥3 of 5** trading days this week.
+Use `uw hot-chains sweep-persistence` as the **primary** signal. Surface tickers swept on **≥3 of 5** trading days this week.
 
 Tools required:
-- `mcp__uw-pp__hot_chains_sweep_persistence` (primary).
-- `mcp__uw-pp__hot_chains_smart_money_flow` — ask vs bid colour for each persistence-flagged ticker.
-- `mcp__uw-pp__options_flow_sweeps` — supplementary (week-end snapshot only).
-- `mcp__uw-pp__options_flow_top_premium_trades` (top 30, week range) — whale-ticket validation.
-- `mcp__uw-pp__hot_chains_most_active` — per-ticker contract-level conviction.
+- `uw hot-chains sweep-persistence` (primary).
+- `uw hot-chains smart-money-flow` — ask vs bid colour for each persistence-flagged ticker.
+- `uw options-flow sweeps` — supplementary (week-end snapshot only).
+- `uw options-flow top-premium-trades` (top 30, week range) — whale-ticket validation.
+- `uw hot-chains most-active` — per-ticker contract-level conviction.
 
 Single-day sweeps alone are insufficient for a weekly recommendation. Rank candidates by persistence count first.
 
 ### accumulation-hunter — expanded window (sonnet, thinking off)
-Run with `lookback_days=5` (and `lookback_days=10` as a secondary pass).
+Run with a 5-day window (and a 10-day secondary pass).
 
 Tools required:
-- `mcp__uw-pp__insights_institutional_accumulation` (`lookback_days=5` and `lookback_days=10`).
-- `mcp__uw-pp__dark_pool_ticker_summary` (top 30 by premium across each covered date — aggregated).
-- `mcp__uw-pp__dark_pool_largest` (top 30 across the full week range).
-- `mcp__uw-pp__dark_pool_block_stratified` — institutional vs retail tier filtering.
-- `mcp__uw-pp__dark_pool_price_levels` — institutional support/resistance built up across the week.
-- `mcp__uw-pp__dark_pool_extended_hours` — overnight/pre-market block activity.
-- `mcp__uw-pp__oi_smart_positioning` — OI bullish/bearish inference.
-- `mcp__uw-pp__historical_oi_trend` (`lookback_days=5`) — multi-day OI build verification (BUILDING required for full points).
+- `uw insights institutional-accumulation` (a 5-day window and a 10-day window).
+- `uw dark-pool ticker-summary` (top 30 by premium across each covered date — aggregated).
+- `uw dark-pool largest` (top 30 across the full week range).
+- `uw dark-pool block-stratified` — institutional vs retail tier filtering.
+- `uw dark-pool price-levels` — institutional support/resistance built up across the week.
+- `uw dark-pool extended-hours` — overnight/pre-market block activity.
+- `uw oi smart-positioning` — OI bullish/bearish inference.
+- `uw historical oi-trend` (`--days 5`) — multi-day OI build verification (BUILDING required for full points).
 
 Output: tickers with quiet multi-day OI build sustained across the full week with both DP and OI confirmation.
 
 ### contrarian-scanner — pc_ratio trajectory (sonnet, thinking off)
 Tools required:
-- `mcp__uw-pp__historical_pc_ratio_zscore` — compute the trajectory of historical_pc_ratio_zscore across `covered_dates`. This is the primary signal. **Do NOT use the deprecated `screener_put_call_extremes`.**
-- `mcp__uw-pp__insights_price_vs_flow` (week-range) — when smart money disagrees with price.
-- `mcp__uw-pp__options_flow_iv_outliers` (week aggregated) — high-IV contracts where flow may be exhausted.
-- `mcp__uw-pp__oi_decrease_with_volume` — capitulation / profit-taking detection.
-- `mcp__uw-pp__screener_iv_rank` (extreme high) — premium ripe to fade.
+- `uw historical pc-ratio-zscore` — compute the trajectory of uw historical pc-ratio-zscore across `covered_dates`. This is the primary signal. **Do NOT use the deprecated `uw screener put-call-extremes`.**
+- `uw insights price-vs-flow` (week-range) — when smart money disagrees with price.
+- `uw options-flow iv-outliers` (week aggregated) — high-IV contracts where flow may be exhausted.
+- `uw oi decrease-with-volume` — capitulation / profit-taking detection.
+- `uw screener iv-rank` (extreme high) — premium ripe to fade.
 
 Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs **falling** (crowding unwinding — potential fade entry). Gate every fade call against the week-regime baseline.
 
@@ -221,47 +235,47 @@ Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs *
 Two sub-tasks:
 
 **(a) Recap.** For each earnings event that printed this week (extract from `covered_dates` flow data), evaluate flow reaction vs pre-event thesis:
-- `mcp__uw-pp__insights_earnings_play` — pre-event positioning & post-event flow.
+- `uw insights earnings-play` — pre-event positioning & post-event flow.
 - Grade each play as confirming or disconfirming (BUY VOL → IV crush realised? SELL VOL → directional move trapped? etc.).
 
 **(b) Lookahead.** Scan the next two calendar weeks for earnings catalysts:
-- `mcp__uw-pp__screener_earnings_catalyst` (next 14 days).
-- `mcp__uw-pp__options_structure_iv_term_structure` per candidate — KINKED/BACKWARDATION alignment.
-- `mcp__uw-pp__options_structure_term_skew` — back-month skew at the earnings DTE.
-- `mcp__uw-pp__options_structure_front_end_iv_ratio` — quick panic detector.
-- `mcp__uw-pp__insights_analyst_vs_flow` — analyst-vs-flow disagreement is the highest-EV setup.
+- `uw screener earnings-catalyst` (next 14 days).
+- `uw options-structure iv-term-structure` per candidate — KINKED/BACKWARDATION alignment.
+- `uw options-structure term-skew` — back-month skew at the earnings DTE.
+- `uw options-structure front-end-iv-ratio` — quick panic detector.
+- `uw insights analyst-vs-flow` — analyst-vs-flow disagreement is the highest-EV setup.
 
 Output: §6 earnings recap + ranked 2-week lookahead with IV term-structure alignment + analyst disagreement scores.
 
 ### vol-surface-scout — WoW term-structure & skew evolution (sonnet, thinking off)
 Tools required:
-- `mcp__uw-pp__options_structure_iv_term_structure` for `WEEK_END` and `covered_dates[0]` — compute the WoW shape change.
-- `mcp__uw-pp__options_structure_term_skew` for `WEEK_END` and `covered_dates[0]` — WoW skew change.
-- `mcp__uw-pp__options_structure_front_end_iv_ratio` (current) — single-number panic check.
-- `mcp__uw-pp__historical_iv_percentile_zscore` (`lookback_days=252`) — outlier-robust per-ticker IV percentile (Goyal-Saretto). Use this instead of raw IV rank where possible.
-- `mcp__uw-pp__options_flow_iv_outliers` (week aggregated) — single-contract outliers.
-- `mcp__uw-pp__options_flow_expiry_heatmap` — week-level concentration; calendar-spread candidate identification.
+- `uw options-structure iv-term-structure` for `WEEK_END` and `covered_dates[0]` — compute the WoW shape change.
+- `uw options-structure term-skew` for `WEEK_END` and `covered_dates[0]` — WoW skew change.
+- `uw options-structure front-end-iv-ratio` (current) — single-number panic check.
+- `uw historical iv-percentile-zscore` (`--lookback-days 252`) — outlier-robust per-ticker IV percentile (Goyal-Saretto). Use this instead of raw IV rank where possible.
+- `uw options-flow iv-outliers` (week aggregated) — single-contract outliers.
+- `uw options-flow expiry-heatmap` — week-level concentration; calendar-spread candidate identification.
 
 Flag names that went from NORMAL to KINKED or into BACKWARDATION across the week. These are §5.
 
 ### multileg-strategist — full-week sample (sonnet, thinking **on**)
 Tools required:
-- `mcp__uw-pp__hot_chains_multileg` across the **full week** (not just today). Structures repeated on **≥2 days** carry materially higher directional inference weight than single-day prints.
-- `mcp__uw-pp__options_flow_top_premium_trades` filtered to ≥$1M premium (week range).
-- `mcp__uw-pp__options_flow_greek_screener` — directional / vol / vega bets by Greek profile.
-- `mcp__uw-pp__options_flow_expiry_heatmap` — concentration by expiry to spot calendar/diagonal builds.
-- `mcp__uw-pp__hot_chains_most_active` — per-ticker context.
+- `uw hot-chains multileg` across the **full week** (not just today). Structures repeated on **≥2 days** carry materially higher directional inference weight than single-day prints.
+- `uw options-flow top-premium-trades` filtered to ≥$1M premium (week range).
+- `uw options-flow greek-screener` — directional / vol / vega bets by Greek profile.
+- `uw options-flow expiry-heatmap` — concentration by expiry to spot calendar/diagonal builds.
+- `uw hot-chains most-active` — per-ticker context.
 
 Output: per-ticker structure read with directional thesis, repeated-on-N-days count, and built-in risk caps.
 
 ### leap-positioning-radar — rolling detector + 10d window (sonnet, thinking **on**)
 Tools required:
-- `mcp__uw-pp__oi_position_rolls` across each covered date — surface conviction shifts (rolls forward into 2027/2028 LEAPs, rolls up in strike, large new LEAP OI initiations).
-- `mcp__uw-pp__oi_biggest_increases` (`min_dte=180`) — fresh LEAP positions only.
-- `mcp__uw-pp__historical_oi_trend` (`lookback_days=10`) — BUILDING required for full points.
-- `mcp__uw-pp__historical_cumulative_premium_flow` (`lookback_days=30` or default 90) — LEAP-grade slow-accretion signature.
-- `mcp__uw-pp__insights_institutional_accumulation` (`lookback_days=10`).
-- `mcp__uw-pp__insights_conviction_matrix` — must show DIRECTIONAL_LONG with confidence > 70.
+- `uw oi position-rolls` across each covered date — surface conviction shifts (rolls forward into 2027/2028 LEAPs, rolls up in strike, large new LEAP OI initiations).
+- `uw oi biggest-increases` (`min_dte=180`) — fresh LEAP positions only.
+- `uw historical oi-trend` (`--days 10`) — BUILDING required for full points.
+- `uw historical cumulative-premium-flow` (`--days 30` or default 90) — LEAP-grade slow-accretion signature.
+- `uw insights institutional-accumulation` (a 10-day window).
+- `uw insights conviction-matrix` — must show DIRECTIONAL_LONG with confidence > 70.
 
 Output: §4 LEAP candidates that pass strict filters; explicit disqualification notes for any contender that doesn't.
 
@@ -275,9 +289,9 @@ Phase 2 runs in four stages: the quant produces the audited score (2a); the fund
 
 Once **all** Phase 1 agents return, collect the **union** of every candidate ticker surfaced across all 11 (or 12) agents for the full week. Spawn `signal-confluence-quant` with that union plus the Step 4 weekly conviction rubric. It must:
 
-- Run `mcp__uw-pp__insights_signal_confluence` per ticker (`min_score=5` for weekly).
-- Run `mcp__uw-pp__historical_signal_backtest` per ticker, per dominant signal class.
-- Pull `mcp__uw-pp__historical_cumulative_premium_flow` (30d and 90d) for tie-breaking and supplemental directional context.
+- Run `uw insights signal-confluence` per ticker (`min_score=5` for weekly).
+- Run `uw historical signal-backtest` per ticker, per dominant signal class.
+- Pull `uw historical cumulative-premium-flow` (30d and 90d) for tie-breaking and supplemental directional context.
 - Compute `raw_score` per ticker against the weekly persistence-weighted rubric (Step 4), identify `dominant_signal_class`, attach `win_rate`, emit `final_size_recommendation_pre_risk`, and produce a full audit trail per ticker.
 
 Output: sorted list `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, final_size_recommendation_pre_risk, audit_trail}`.
@@ -294,11 +308,11 @@ The persistence-weighted score is still additive — crowded multi-week consensu
 
 Spawn `risk-monitor` with (a) the quant's sorted score list, (b) the 2b fundamentals verdicts, (c) the 2c debate residuals, and (d) the week-baseline context block from Step 0 (incl. `macro_snapshot` + `event_risk`). It must:
 
-- Run `mcp__uw-pp__risk_portfolio_correlation` against the week-candidate set — flag corr > 0.7 sub-groups as concentration risks.
-- Confirm `mcp__uw-pp__risk_market_regime` from Step 0 (already pinned; do not re-fetch).
-- Apply the full gate stack: VETO → watch-only (fundamentals); −1 tier each for regime conflict, panic (`options_structure_front_end_iv_ratio > 1.10`), VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call.
-- Pull `mcp__uw-pp__watchlist_alerts` and `mcp__uw-pp__watchlist_scan` against the prior `conviction_week_<previous>` group — surface adverse-flow exit candidates.
-- Persist this week's top 5 conviction names (post-gate, excluding VETO'd names) via `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")`.
+- Run `uw risk portfolio-correlation` against the week-candidate set — flag corr > 0.7 sub-groups as concentration risks.
+- Confirm `uw risk market-regime` from Step 0 (already pinned; do not re-fetch).
+- Apply the full gate stack: VETO → watch-only (fundamentals); −1 tier each for regime conflict, panic (`uw options-structure front-end-iv-ratio > 1.10`), VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call.
+- Pull `uw watchlist alerts` and `uw watchlist scan` against the prior `conviction_week_<previous>` group — surface adverse-flow exit candidates.
+- Persist this week's top 5 conviction names (post-gate, excluding VETO'd names) via `uw watchlist manage --action add --group conviction_week_<ISO_WEEK> --tickers <top_5_by_score>`.
 
 Output: §7 risk & correlation — clusters, regime conflicts, VRP / panic gates applied, fundamentals verdicts, event-risk flags, debate cuts, adverse-flow exit list, hedge sleeve recommendation, final sizing table per ticker that consumes the quant's pre-risk size.
 
@@ -306,19 +320,19 @@ Output: §7 risk & correlation — clusters, regime conflicts, VRP / panic gates
 
 ## Step 3 — Confluence gate
 
-Before scoring, apply the **confluence gate**: a ticker only enters the conviction rubric if **at least two distinct Phase 1 agents flag it positively across the week** OR **one Phase 1 agent flags it AND `mcp__uw-pp__insights_signal_confluence` rates it ≥5 at WEEK_END**. Names with only one signal class but no confluence backing are noted in §10 ("Watch-only — single signal") and excluded from the high-conviction list. This rule prevents single-tool false positives from contaminating the trade book.
+Before scoring, apply the **confluence gate**: a ticker only enters the conviction rubric if **at least two distinct Phase 1 agents flag it positively across the week** OR **one Phase 1 agent flags it AND `uw insights signal-confluence` rates it ≥5 at WEEK_END**. Names with only one signal class but no confluence backing are noted in §10 ("Watch-only — single signal") and excluded from the high-conviction list. This rule prevents single-tool false positives from contaminating the trade book.
 
-Note: the threshold here is `insights_signal_confluence ≥ 5` (vs `≥ 4` in `/daily-analysis`) because weekly recommendations carry more capital and need a stricter prior.
+Note: the threshold here is `uw insights signal-confluence ≥ 5` (vs `≥ 4` in `/daily-analysis`) because weekly recommendations carry more capital and need a stricter prior.
 
 ### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0, hardened 2026-05-15 audit P1.3, expanded to 3-of-5 by 2026-05-23 audit P0.2)
 
-After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **3 of the 5 LOAD-BEARING tools** (added `insights_signal_confluence` on 2026-05-23):
+After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **3 of the 5 LOAD-BEARING tools** (added `uw insights signal-confluence` on 2026-05-23):
 
-- `dark_pool_block_stratified` (institutional-vs-retail filter)
-- `historical_cumulative_premium_flow` (30d directional accretion)
-- `insights_institutional_accumulation`
-- `options_structure_dex` (DEX)
-- `insights_signal_confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
+- `uw dark-pool block-stratified` (institutional-vs-retail filter)
+- `uw historical cumulative-premium-flow` (30d directional accretion)
+- `uw insights institutional-accumulation`
+- `uw options-structure dex` (DEX)
+- `uw insights signal-confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
 
 A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50).
 
@@ -331,27 +345,27 @@ For every ticker that cleared the confluence gate, the quant computes the weekly
 ```
 Weekly conviction score = Σ:
   # +3 line for swept on ≥3 of 5 days REMOVED 2026-05-23 audit P0.3
-  # Reason: hot_chains_sweep_persistence marginal contribution −22pp two consecutive audits; multi_day_sweep signal class realised 0.43 vs claimed 0.70 (+27pp overstatement).
+  # Reason: uw hot-chains sweep-persistence marginal contribution −22pp two consecutive audits; multi_day_sweep signal class realised 0.43 vs claimed 0.70 (+27pp overstatement).
   # Tool remains informational — sweep-tracker still surfaces persistence-ranked sweeps in §3/§8 prose — but contributes 0 points to raw_score.
   # Directional confirmation must come from accumulation, multileg, or cum_flow_30d instead.
-  +3  historical_oi_trend BUILDING for the full week, lookback_days ≥ 5 (accumulation-hunter / leap-positioning-radar)
-  +3  3+ aligned signals in accumulation-hunter sustained across week, dark_pool_block_stratified institutional-tier confirmed — CONJUNCTION (2026-05-25 register C11): full +3 only when cum_premium_flow_30d confirms (sign aligned with thesis AND |cum_flow_30d| ≥ $50M); else halved (floored) +3→+1. Reason: additive DP+accum+matrix manufactured false HIGH conviction (tier inversion HIGH 60.0% < MED 62.5%, n=49); the ≥0.80 WR is a conjunction (DP-block ∧ cum_flow ∧ institutional-accum). Distinct from flow_conflict/−lite (those subtract on opposing/MIXED flow; this reduces the +3 accumulation award to +1 on non-confirming flow — both may fire). A sub-$50M flow that halves this line does not separately qualify as "net directional accretion" for the +3 cum_flow line. See signal-confluence-quant.md "Conditional dark_pool_accumulation conjunction".   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +27.8pp marginal contribution (LOAD-BEARING)
-  +1  insights_conviction_matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW — CONDITIONAL ONLY (2026-05-23 audit P1.1): award +1 only when dominant_signal_class == leap_directional; in all non-LEAP contexts contribution is 0. Phase 4: marginal contribution −23pp (n=8) on swing/weekly horizon (e.g. BL LOSS, MA LOSS both cited this tool). LEAP gate in leap-positioning-radar still consumes this tool — only the swing/weekly award is gated to leap_directional.
-  +2  oi_position_rolls shows institutional roll forward into longer-dated LEAP (per-covered-date)
-  +3  historical_cumulative_premium_flow shows net directional accretion across the week — fresh-thesis (sharp 30d) or thesis-extension (smooth 90d)   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +24.2pp marginal contribution (LOAD-BEARING)
-  +2  insights_signal_confluence ≥4 at WEEK_END (second-agent confirmation)   # NEW 2026-05-23 audit P1.2 — Phase 4 +19.5pp marginal contribution (n=12, LOAD-BEARING); also added to the 3-of-5 LB gate in Step 3a
+  +3  uw historical oi-trend BUILDING for the full week, --days ≥ 5 (accumulation-hunter / leap-positioning-radar)
+  +3  3+ aligned signals in accumulation-hunter sustained across week, uw dark-pool block-stratified institutional-tier confirmed — CONJUNCTION (2026-05-25 register C11): full +3 only when cum_premium_flow_30d confirms (sign aligned with thesis AND |cum_flow_30d| ≥ $50M); else halved (floored) +3→+1. Reason: additive DP+accum+matrix manufactured false HIGH conviction (tier inversion HIGH 60.0% < MED 62.5%, n=49); the ≥0.80 WR is a conjunction (DP-block ∧ cum_flow ∧ institutional-accum). Distinct from flow_conflict/−lite (those subtract on opposing/MIXED flow; this reduces the +3 accumulation award to +1 on non-confirming flow — both may fire). A sub-$50M flow that halves this line does not separately qualify as "net directional accretion" for the +3 cum_flow line. See signal-confluence-quant.md "Conditional dark_pool_accumulation conjunction".   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +27.8pp marginal contribution (LOAD-BEARING)
+  +1  uw insights conviction-matrix = DIRECTIONAL_LONG, confidence > 70, stable WoW — CONDITIONAL ONLY (2026-05-23 audit P1.1): award +1 only when dominant_signal_class == leap_directional; in all non-LEAP contexts contribution is 0. Phase 4: marginal contribution −23pp (n=8) on swing/weekly horizon (e.g. BL LOSS, MA LOSS both cited this tool). LEAP gate in leap-positioning-radar still consumes this tool — only the swing/weekly award is gated to leap_directional.
+  +2  uw oi position-rolls shows institutional roll forward into longer-dated LEAP (per-covered-date)
+  +3  uw historical cumulative-premium-flow shows net directional accretion across the week — fresh-thesis (sharp 30d) or thesis-extension (smooth 90d)   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +24.2pp marginal contribution (LOAD-BEARING)
+  +2  uw insights signal-confluence ≥4 at WEEK_END (second-agent confirmation)   # NEW 2026-05-23 audit P1.2 — Phase 4 +19.5pp marginal contribution (n=12, LOAD-BEARING); also added to the 3-of-5 LB gate in Step 3a
   +2  dealer-positioning-strategist flags DEX flip or vanna squeeze in trade direction across the week
   +1  sector-rotation-strategist names ticker as single-name leader within rotating sector — CONDITIONAL (2026-05-23 audit P1.5): award +1 only when (a) sector persistence_score ≥ 0.6 (the tool's 0–1 sign-consistency scale = ≥3-of-5-days; 2026-05-25 fix — was an unsatisfiable `≥3`) AND (b) cum_premium_flow_30d direction aligned with thesis direction AND (c) |cum_flow_30d| ≥ $50M. Default 0. Phase 4: sector_persistence marginal +2.8pp standalone (NO-INFO); when paired with cum_flow alignment it carried HON-W21 (+4.9% WIN) vs WMT-W19 (−10.4% LOSS).
-  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (options_structure_term_skew aligned for full size)
+  +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (uw options-structure term-skew aligned for full size)
   +2  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal)
-  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; historical_iv_percentile_zscore extreme; VRP-aligned bias
+  +1  vol-surface-scout flags KINKED or BACKWARDATION, worsening WoW; uw historical iv-percentile-zscore extreme; VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
-  -2  contrarian-scanner crowded long with rising historical_pc_ratio_zscore trajectory (VRP positive)
-  -3  flow_conflict — signal-confluence-quant applies mechanically when historical_cumulative_premium_flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
+  -2  contrarian-scanner crowded long with rising uw historical pc-ratio-zscore trajectory (VRP positive)
+  -3  flow_conflict — signal-confluence-quant applies mechanically when uw historical cumulative-premium-flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
   -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude)   # 2026-05-15 audit P0; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict (apply ONE, never both)
   # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line)
   -2  risk-monitor flags in week-candidate correlation cluster (corr > 0.7) — applied in 2d
-  -3  WoW risk_market_regime flip conflicts with trade direction — applied in 2d
+  -3  WoW uw risk market-regime flip conflicts with trade direction — applied in 2d
 ```
 
 ### Conviction tiers (2026-05-15 audit P0; supersedes prior ≥9 / 6–8 / 3–5 cuts)
@@ -371,7 +385,7 @@ Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and 
 
 ## Step 5 — Backtest-weighted sizing (gates the tier sizing)
 
-For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typical labels: `multi_day_sweep`, `oi_build`, `dark_pool_accumulation`, `leap_roll`, `multileg_repeat`, `bullish_flow`, `bearish_flow`, `vanna_squeeze`. Call `mcp__uw-pp__historical_signal_backtest` with that signal class and the ticker. Apply the win-rate gate **on top of** the tier sizing (**2026-05-15 audit PC.1**; full-size threshold tightened 0.65 → 0.70 after Phase 3 quintile data showed only Q5 raw≥9 realised >0.65; Q4 raw 6–8 realised 0.571):
+For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typical labels: `multi_day_sweep`, `oi_build`, `dark_pool_accumulation`, `leap_roll`, `multileg_repeat`, `bullish_flow`, `bearish_flow`, `vanna_squeeze`. Call `uw historical signal-backtest` with that signal class and the ticker. Apply the win-rate gate **on top of** the tier sizing (**2026-05-15 audit PC.1**; full-size threshold tightened 0.65 → 0.70 after Phase 3 quintile data showed only Q5 raw≥9 realised >0.65; Q4 raw 6–8 realised 0.571):
 
 | `win_rate` | Multiplier |
 |---|---|
@@ -381,20 +395,20 @@ For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typi
 
 For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest returns `vol_realisation_rate` instead — use the same thresholds. Note the win_rate explicitly next to each call in the Swing Book (§3) and LEAP Book (§4).
 
-**On top of this ladder (2026-05-25 register C2), the quant applies two downgrade-only guards** (see `signal-confluence-quant.md` "Market-excess gate" + the N-conditional cap): (1) the `n < 10` cap is **0.69** (below the 0.70 full line — a small-N up-week class sizes at most half), and (2) a **market-excess gate** — if a class does not beat the same-direction SPY bet over the same windows (`excess ≤ 0`), cap at half; `excess ≤ −0.10` → starter. Beta in an up-tape is not edge. The win-rate denominator is computed only over liquidity-floor-passing names (C12). Reusable: `scripts/excess_winrate.py:size_decision`. **(3, register C4)** a `bullish_flow`/`bearish_flow` class also caps at half when the flow is **not OI-confirmed-opening** (Pan-Poteshman: only opening flow predicts) — `historical_oi_trend` BUILDING or ΔOI ≥ 20% of day volume; flat/falling OI vs high volume = churn → cap half. Reusable: `scripts/oi_opening.py:opening_gate_size`. All three guards are downgrade-only and may stack.
+**On top of this ladder (2026-05-25 register C2), the quant applies two downgrade-only guards** (see `signal-confluence-quant.md` "Market-excess gate" + the N-conditional cap): (1) the `n < 10` cap is **0.69** (below the 0.70 full line — a small-N up-week class sizes at most half), and (2) a **market-excess gate** — if a class does not beat the same-direction SPY bet over the same windows (`excess ≤ 0`), cap at half; `excess ≤ −0.10` → starter. Beta in an up-tape is not edge. The win-rate denominator is computed only over liquidity-floor-passing names (C12). Reusable: `scripts/excess_winrate.py:size_decision`. **(3, register C4)** a `bullish_flow`/`bearish_flow` class also caps at half when the flow is **not OI-confirmed-opening** (Pan-Poteshman: only opening flow predicts) — `uw historical oi-trend` BUILDING or ΔOI ≥ 20% of day volume; flat/falling OI vs high volume = churn → cap half. Reusable: `scripts/oi_opening.py:opening_gate_size`. All three guards are downgrade-only and may stack.
 
 ---
 
 ## Step 6 — Thesis scorecard: intra-week signal performance
 
-For every ticker surfaced by any Phase 1 agent this week, check whether signals present at the **start** of the week resolved in their predicted direction by **week-end**. This is derived entirely from fresh MCP queries — no daily analysis files are read.
+For every ticker surfaced by any Phase 1 agent this week, check whether signals present at the **start** of the week resolved in their predicted direction by **week-end**. This is derived entirely from fresh `uw` CLI queries — no daily analysis files are read.
 
 For each ticker, run these checks using `covered_dates[0]` and `covered_dates[1]` as early-week reference dates and `covered_dates[-1]` (today / Friday) as the resolution date:
 
-1. **Sweep signals** — `mcp__uw-pp__hot_chains_sweep_persistence` per-day breakdown. Did sweeps on days 1–2 continue (sustained conviction) or reverse (fading signal)?
-2. **OI-build signals** — `mcp__uw-pp__historical_oi_trend` (`lookback_days=5`). Did OI continue building (BUILDING → WIN) or roll off (LOSS)?
-3. **Premium flow signals** — `mcp__uw-pp__historical_cumulative_premium_flow` for the full week range. Did net premium align with the directional thesis?
-4. **Direction confirmation** — `mcp__uw-pp__historical_trend` over the week range. Did price action confirm or contradict the early-week signal direction?
+1. **Sweep signals** — `uw hot-chains sweep-persistence` per-day breakdown. Did sweeps on days 1–2 continue (sustained conviction) or reverse (fading signal)?
+2. **OI-build signals** — `uw historical oi-trend` (`--days 5`). Did OI continue building (BUILDING → WIN) or roll off (LOSS)?
+3. **Premium flow signals** — `uw historical cumulative-premium-flow` for the full week range. Did net premium align with the directional thesis?
+4. **Direction confirmation** — `uw historical trend` over the week range. Did price action confirm or contradict the early-week signal direction?
 
 Grade each ticker:
 - **WIN** — signal direction confirmed by end-of-week flow and price trend.
@@ -410,11 +424,11 @@ Compute the week's hit rate: `wins / (wins + losses)`. This headline goes in the
 ## Step 7 — Strategy synthesis on the conviction list
 
 For each **HIGH and MEDIUM** tier ticker (after the win-rate gate):
-1. Call `mcp__uw-pp__insights_deep_dive` — full Yahoo + UW data for full thesis verification.
-2. Call `mcp__uw-pp__historical_trend` (`lookback_days=10`) — multi-week price/flow trend confirmation.
+1. Call `uw insights deep-dive` — full Yahoo + UW data for full thesis verification.
+2. Call `uw historical trend` (`--days 10`) — multi-week price/flow trend confirmation.
 
 For the entire HIGH and MEDIUM tier list (in one call):
-3. Call `mcp__uw-pp__playbook_batch_scan` with the ticker list — get rule-based options-strategy suggestions. Cross-reference against multileg-strategist's named structures; prefer the multileg read if there's disagreement and note the conflict.
+3. Call `uw playbook batch-scan` with the ticker list — get rule-based options-strategy suggestions. Cross-reference against multileg-strategist's named structures; prefer the multileg read if there's disagreement and note the conflict.
 
 This step is the synthesis bridge from "signal" to "trade structure" — without it, conviction scores are abstract.
 
@@ -437,12 +451,12 @@ Before writing: run `mkdir -p analyses/weekly/$ISO_WEEK` via Bash (creates the r
 - **Biggest emerging risk:** <correlation cluster name + members, OR adverse flow, OR regime flip>
 
 ## 0. Week in Review — Intra-Week Signal Performance
-[Table: Ticker | Signal type | Early-week direction | Week-end outcome | Grade | Note. Hit rate headline. Sourced from hot_chains_sweep_persistence, historical_oi_trend, historical_cumulative_premium_flow, historical_trend — no daily files read.]
+[Table: Ticker | Signal type | Early-week direction | Week-end outcome | Grade | Note. Hit rate headline. Sourced from uw hot-chains sweep-persistence, uw historical oi-trend, uw historical cumulative-premium-flow, uw historical trend — no daily files read.]
 
 ## 1. Regime & WoW Delta
-- `risk_market_regime` today + Monday baseline; WoW delta narrative
-- `historical_vrp` classification — premium-selling vs premium-buying environment
-- `options_flow_dte_volume_share` aggregated across the week — institutional vs retail share trend
+- `uw risk market-regime` today + Monday baseline; WoW delta narrative
+- `uw historical vrp` classification — premium-selling vs premium-buying environment
+- `uw options-flow dte-volume-share` aggregated across the week — institutional vs retail share trend
 - **Macro backdrop** (`scripts/fred_macro.py` `macro_snapshot`): yield-curve sign, core CPI/PCE YoY, unemployment + payrolls, 10Y/USD direction — plus next-two-weeks `event_risk` calendar (Tier-1 prints)
 - Implications for next week's bias
 
@@ -463,13 +477,13 @@ Lead with top-3 inflow / top-3 outflow ETFs. Call out **GICS-vs-ETF agreement** 
 [Table: Ticker | Tier | Score | Win-rate | Final size | Thesis | Structure | Invalidation. Subdivide into 3a long swings (regime-aligned) and 3b short/fade swings (defined risk only).]
 
 ## 4. LEAP Book (6–24 months)
-[Table: Ticker | Tier | Score | Win-rate | Final size | Scenario | Invalidation. leap-positioning-radar with `oi_position_rolls` highlights and `historical_cumulative_premium_flow` accretion. DIRECTIONAL_LONG only.]
+[Table: Ticker | Tier | Score | Win-rate | Final size | Scenario | Invalidation. leap-positioning-radar with `uw oi position-rolls` highlights and `uw historical cumulative-premium-flow` accretion. DIRECTIONAL_LONG only.]
 
 ## 5. Volatility Surface — WoW Term Structure & Skew Evolution
 - vol-surface-scout: names that shifted to KINKED or BACKWARDATION across the week
-- WoW IV term-structure delta with `options_structure_iv_term_structure` snapshots from `covered_dates[0]` and `WEEK_END`
+- WoW IV term-structure delta with `uw options-structure iv-term-structure` snapshots from `covered_dates[0]` and `WEEK_END`
 - Skew change narrative; calendar-spread candidates
-- `historical_iv_percentile_zscore` outliers (multi-month percentile context)
+- `uw historical iv-percentile-zscore` outliers (multi-month percentile context)
 
 ## 6. Earnings — Recap & 2-Week Lookahead
 - (a) Recap of this week's prints with flow reaction grades
@@ -477,8 +491,8 @@ Lead with top-3 inflow / top-3 outflow ETFs. Call out **GICS-vs-ETF agreement** 
 
 ## 7. Risk & Correlation (week-candidate universe)
 - risk-monitor consuming the full week-candidate union — not the static watchlist
-- `risk_portfolio_correlation` clusters with member tickers and corr coefficients
-- `insights_signal_confluence` flags
+- `uw risk portfolio-correlation` clusters with member tickers and corr coefficients
+- `uw insights signal-confluence` flags
 - **Macro & event risk**: `macro_snapshot` headline + next-two-weeks `event_risk` calendar
 - **Fundamentals verdicts**: per top-5 name — CONFIRM/CAUTION/VETO with the contradicting facts (insider MSPR, miss/beat streak, earnings date)
 - **Debate-disconfirmation cuts**: names where the bear residual ≥ bull residual
@@ -509,11 +523,11 @@ Embedded rubric (for audit):
 
 ## Step 9 — Confirm watchlist write-back (handled by risk-monitor in Step 2d)
 
-The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2d — the agent calls `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>")` with this week's top 5 by conviction score (excluding any VETO'd name). **Do not double-write.**
+The top-5 watchlist write-back is performed inside `risk-monitor` during Step 2d — the agent calls `uw watchlist manage --action add --group conviction_week_<ISO_WEEK> --tickers <top_5_by_score>` with this week's top 5 by conviction score (excluding any VETO'd name). **Do not double-write.**
 
-Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `mcp__uw-pp__watchlist_manage(action="add", group="conviction_week_<ISO_WEEK>", tickers=[<top_5_by_score>])` directly as a fallback.
+Confirm the write-back happened by checking the `risk-monitor` output for the explicit `watchlist_write_back_confirmation` field. If missing, call `uw watchlist manage --action add --group conviction_week_<ISO_WEEK> --tickers <top_5_by_score>` directly as a fallback.
 
-If any name was already on a manually-curated group, leave that membership alone — write only to the week-stamped group. This closes the feedback loop: this week's high-conviction names become next week's correlation universe; next week's RM automatically pulls `watchlist_alerts` and `watchlist_scan` against the prior week's group to flag adverse-flow exits.
+If any name was already on a manually-curated group, leave that membership alone — write only to the week-stamped group. This closes the feedback loop: this week's high-conviction names become next week's correlation universe; next week's RM automatically pulls `uw watchlist alerts` and `uw watchlist scan` against the prior week's group to flag adverse-flow exits.
 
 ---
 
@@ -530,6 +544,6 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Failure modes & recovery
 
 - **Phase 1 agent times out** — re-spawn just that agent with the same context block. If it fails twice, write its section as `[agent timed out — see <agent-name> logs]` and proceed; do not let one agent block the report.
-- **`historical_available_dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-15 default cuts of HIGH ≥10 / MED 7–9 / LOW 3–6.)
-- **`risk_market_regime` errors on Monday baseline** — fall back to `covered_dates[1]` and note the substitution.
+- **`uw historical available-dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-15 default cuts of HIGH ≥10 / MED 7–9 / LOW 3–6.)
+- **`uw risk market-regime` errors on Monday baseline** — fall back to `covered_dates[1]` and note the substitution.
 - **No tickers clear the confluence gate** — produce a report whose §3, §4, §8 are explicitly empty, with §0 (scorecard), §1 (regime), §2 (sector), §5 (vol surface), §6 (earnings), §7 (risk), and §9 (setups) still populated. A "no edge" week is a valid output, not a failure.

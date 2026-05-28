@@ -31,7 +31,7 @@ Rubric — **Impact:** CRITICAL/HIGH/MEDIUM/LOW/NICE · **Effort:** S(<1d)/M(1�
 ## 4. Missing capabilities the trader desk would want
 **CRITICAL — Fundamental blindness on the names being sized.** Detailed in §2. A flow engine with no earnings/FCF/guidance context will repeatedly size into smart-money exits dressed as accumulation. This is the one gap that materially dents expectancy.
 
-**HIGH — Short interest + borrow rate.** Squeeze setups and hard-to-borrow flags are core to interpreting bullish flow (a sweep into a 30%-SI, HTB name means something very different than into a liquid mega-cap). Not present in the `uw-pp` tool catalog. Genuinely missing and directly flow-relevant.
+**HIGH — Short interest + borrow rate.** Squeeze setups and hard-to-borrow flags are core to interpreting bullish flow (a sweep into a 30%-SI, HTB name means something very different than into a liquid mega-cap). Not present in the `uw-pp` tool catalog. Genuinely missing and directly flow-relevant. → **Closing path found (2026-05-27):** the `fz` Finviz CLI delivers `Short Float`, `Short Ratio` (days-to-cover), and `Shs Float` free in one `fz quote` call (the SI/DTC/float leg of this gap; borrow-fee/HTB still needs WebSearch). Full assessment + phased plan: [`analyses/audit/2026-05-27-fz-edge/`](analyses/audit/2026-05-27-fz-edge/).
 
 **MEDIUM — Book-level greeks aggregation.** Per-name GEX/DEX is rich, but there's no net delta/gamma/vega across the recommended conviction book. A desk wants to know its aggregate vol exposure before market open, not just per-ticker.
 

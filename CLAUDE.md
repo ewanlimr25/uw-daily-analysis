@@ -74,8 +74,16 @@ Commands live in `.claude/commands/` and invoke the agent fleet:
 
 Each report gets its own per-id run folder holding two generically-named files: `analyses/daily/YYYY-MM-DD/{report.md, decision.json}` (daily) and `analyses/weekly/YYYY-WW/{report.md, decision.json}` (weekly). The `decision.json` is the machine-resolvable envelope, validated against `schemas/decision_envelope.schema.json` and consumed by `/calibration-audit` Phase 1 (its `report_path` field points at the sibling `report.md`). Audit checkpoints stay under `analyses/audit/YYYY-MM-DD/`.
 
-## MCP Server Required
+## CLI Required (`uw`)
 
-All Unusual Whales data is served by a **single consolidated MCP server, `uw-pp`**, defined in `.mcp.json`. It bundles into one binary the capabilities previously split across multiple `uw-*` servers (dark pool, historical, hot chains, insights, OI, options flow, options structure, playbook, risk, screener, watchlist) — this is faster and cheaper on tokens than running them as separate processes.
+All Unusual Whales data is served by the **`uw` CLI** — a single Go binary at `/Users/ewan/.local/bin/uw` (override with `$UW_PP_CLI`). It exposes the same 61 tools previously reached through the `uw-pp` MCP server (dark pool, historical, hot chains, insights, OI, options flow, options structure, playbook, risk, screener, watchlist); in fact the now-retired MCP server was just a stdio wrapper that shelled out to this CLI. Migrated 2026-05-27 (see `analyses/audit/2026-05-27/`): dropping the MCP server stops loading 61 tool schemas into every agent's context.
 
-Tools are namespaced `mcp__uw-pp__<tool>`, where `<tool>` keeps its domain prefix (e.g. `mcp__uw-pp__dark_pool_block_stratified`, `mcp__uw-pp__options_flow_sector_flow_persistence`, `mcp__uw-pp__historical_signal_backtest`). Access is granted via the `mcp__uw-pp__*` permission in `.claude/settings.json`.
+Invoke via Bash with the canonical convention:
+
+```
+uw <group> <subcommand> [--flag value …] --json --quiet
+```
+
+`--json` is mandatory (the CLI defaults to a rendered table); `--quiet` keeps stdout pure JSON. Commands are the mechanical 1:1 of the old tool names: `mcp__uw-pp__<group>_<sub>` → `uw <group-hyphenated> <sub-hyphenated>` (e.g. `uw dark-pool block-stratified`, `uw options-flow sector-flow-persistence`, `uw historical signal-backtest`). Access is granted via the `Bash(uw:*)` permission in `.claude/settings.json`. Trim payloads with `--select`/`--compact`. The mutating `uw watchlist manage` shares the same XDG state file (`~/.config/unusual-whales-pp-cli/watchlist.json`) the MCP used.
+
+Fundamentals enrichment still uses the **yfinance MCP** (`mcp__yahoo-finance__*`), which remains in `.mcp.json`.

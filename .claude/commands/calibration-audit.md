@@ -1,5 +1,5 @@
 ---
-description: Retrospectively audit `/daily-analysis` and `/weekly-analysis` plus their backing UW MCP tools, using the historical reports in `analyses/daily/*/report.md` and `analyses/weekly/*/report.md` as the dataset. Seven discrete phases — each writes a resumable checkpoint under `analyses/audit/<YYYY-MM-DD>/phase_<N>_<slug>.md`. Frame every judgment from a desk perspective (buy-side PM, sell-side flow trader, market-maker quant). Propose-only — emits patch *intentions* and never auto-edits agent files. Invoke whenever the user asks for a calibration audit, a backtest of the daily/weekly skills, "how well are we calling the market," win-rate calibration, score-rubric audit, MCP-tool tier list, or types `/calibration-audit`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker deep dives (use `mcp__uw-pp__insights_deep_dive`), or general code review of the agent files.
+description: Retrospectively audit `/daily-analysis` and `/weekly-analysis` plus their backing UW `uw` CLI tools, using the historical reports in `analyses/daily/*/report.md` and `analyses/weekly/*/report.md` as the dataset. Seven discrete phases — each writes a resumable checkpoint under `analyses/audit/<YYYY-MM-DD>/phase_<N>_<slug>.md`. Frame every judgment from a desk perspective (buy-side PM, sell-side flow trader, market-maker quant). Propose-only — emits patch *intentions* and never auto-edits agent files. Invoke whenever the user asks for a calibration audit, a backtest of the daily/weekly skills, "how well are we calling the market," win-rate calibration, score-rubric audit, CLI-tool tier list, or types `/calibration-audit`. Do NOT trigger for single-day reports (use `/daily-analysis`), single-ticker deep dives (use `uw insights deep-dive`), or general code review of the agent files.
 model: opus
 defaults:
   outcome_windows:
@@ -18,9 +18,13 @@ defaults:
 
 # Calibration Audit
 
-Audit the `/daily-analysis` and `/weekly-analysis` skills against their own historical output. The reports under `analyses/daily/<date>/` and `analyses/weekly/<iso-week>/` are the dataset; forward-resolved outcomes are the truth set; the audit asks whether the conviction rubric, the MCP tools cited as evidence, and the Phase-1→Phase-2 decision process actually deliver the desk-grade discipline they claim to.
+Audit the `/daily-analysis` and `/weekly-analysis` skills against their own historical output. The reports under `analyses/daily/<date>/` and `analyses/weekly/<iso-week>/` are the dataset; forward-resolved outcomes are the truth set; the audit asks whether the conviction rubric, the `uw` CLI tools cited as evidence, and the Phase-1→Phase-2 decision process actually deliver the desk-grade discipline they claim to.
 
 The audit is **propose-only**. It emits patch intentions — never auto-edits agent files, score rubrics, or commands. Recommendations cite the phase and the data point that justifies them. No vibes.
+
+## Data access — the `uw` CLI
+
+All Unusual Whales data comes from the **`uw` CLI** (`/Users/ewan/.local/bin/uw`; override with `$UW_PP_CLI`), invoked via Bash: `uw <group> <subcommand> [--flag value …] --json --quiet`. `--json` is mandatory (the CLI defaults to a table); `--quiet` keeps stdout pure JSON. For a backward window from a fixed report date, pass `--date <report_date> --days <window>`. `scripts/validate_decision.py` is unchanged.
 
 ## When to invoke
 
@@ -30,15 +34,15 @@ The audit is **propose-only**. It emits patch intentions — never auto-edits ag
 
 ## When NOT to invoke
 
-- Single-ticker forward outlook → `mcp__uw-pp__insights_deep_dive`
+- Single-ticker forward outlook → `uw insights deep-dive`
 - Single-day post-market report → `/daily-analysis`
 - Weekly recap → `/weekly-analysis`
 - Code review of agent prompts (no outcome data needed) → `code-reviewer` agent
-- "Did NVDA work last week?" → ad-hoc `historical_trend` call
+- "Did NVDA work last week?" → ad-hoc `uw historical trend` call
 
 ## Operating principle: outcome-driven, not opinion-driven
 
-Every claim in this audit must trace to a parseable data point: a ticker call extracted from a report, a forward-resolved outcome from `historical_trend` / `historical_signal_backtest`, a tool citation extracted from an audit-trail row. Where data is thin, the skill says so explicitly and downgrades conclusions to "structural / qualitative" — never silently extrapolates.
+Every claim in this audit must trace to a parseable data point: a ticker call extracted from a report, a forward-resolved outcome from `uw historical trend` / `uw historical signal-backtest`, a tool citation extracted from an audit-trail row. Where data is thin, the skill says so explicitly and downgrades conclusions to "structural / qualitative" — never silently extrapolates.
 
 The persona for every phase is a composite **elite desk reviewer**: buy-side PM (does this generate alpha?), sell-side flow trader (does this match how flow actually trades?), market-maker quant (do the weights match the realised marginal contribution?). A grading schema is only credible if it survives all three readings.
 
@@ -57,7 +61,7 @@ The persona for every phase is a composite **elite desk reviewer**: buy-side PM 
 
 4. **Resume detection** — if `analyses/audit/<YYYY-MM-DD>/phase_<N>_*.md` already exists, resume from the next phase rather than re-running. Each checkpoint is self-contained; never re-derive earlier phases.
 
-5. **Available-dates check** — `mcp__uw-pp__historical_available_dates`. Phase 2 needs forward outcomes; if the latest UW data is more than one trading day stale relative to the most recent ticker call, abort and tell the user to re-export from UW.
+5. **Available-dates check** — `uw historical available-dates`. Phase 2 needs forward outcomes; if the latest UW data is more than one trading day stale relative to the most recent ticker call, abort and tell the user to re-export from UW.
 
 ---
 
@@ -93,8 +97,8 @@ For every ticker mentioned in §3 (Swing Setups), §4 (LEAP Builds), §5 (Volati
   "tier": "HIGH",                              // High/Medium/Low when explicit; derived from final size when not
   "raw_score": 10,                             // null if legacy report has no rubric score
   "score_components": [                        // [] if not surfaced in the report
-    {"points": 3, "source_agent": "dealer-positioning-strategist", "tool": "options_structure_dex"},
-    {"points": 2, "source_agent": "gamma-flip-tracker",            "tool": "options_structure_today_gamma_flip"}
+    {"points": 3, "source_agent": "dealer-positioning-strategist", "tool": "uw options-structure dex"},
+    {"points": 2, "source_agent": "gamma-flip-tracker",            "tool": "uw options-structure today-gamma-flip"}
   ],
   "dominant_signal_class": "dealer_positioning_flip",   // null if absent
   "claimed_win_rate": 1.00,                    // null if absent
@@ -104,7 +108,7 @@ For every ticker mentioned in §3 (Swing Setups), §4 (LEAP Builds), §5 (Volati
   "thesis_direction": "long",                  // long | short | vol_long | vol_short
   "invalidation": "breadth deteriorates <30%, OR DEX reverses",
   "agents_flagged_by": ["dealer-positioning-strategist","gamma-flip-tracker","sweep-tracker"],
-  "tools_cited":  ["options_structure_dex","options_structure_today_gamma_flip","options_structure_gex","hot_chains_sweep_persistence"],
+  "tools_cited":  ["uw options-structure dex","uw options-structure today-gamma-flip","uw options-structure gex","uw hot-chains sweep-persistence"],
   "regime_at_entry": "TRANSITIONAL UPTREND",
   "vrp_at_entry": "FAIR",
   "front_iv_ratio_at_entry": 1.273,
@@ -152,11 +156,11 @@ This is a **path-aware** definition — a +2% gain that came after a -1.5% drawd
 
 For each row in Phase 1:
 
-1. `mcp__uw-pp__historical_trend` — `ticker`, `start_date=report_date`, `lookback_days=horizon_window`. Capture intra-window high/low, drawdown-from-entry, and end-of-window price.
-2. `mcp__uw-pp__historical_signal_backtest` — `ticker`, `signal_class=dominant_signal_class`. Capture the historical realised win-rate for that signal class as of the report's date (this is the rate that *should have* been quoted; compare to `claimed_win_rate` in Phase 3).
-3. **Vol calls (vol_long / vol_short)** — instead of price direction, resolve against `vol_realisation_rate`: did realised vol exceed (long) or fall below (short) the implied move quoted at entry? Use `historical_trend`'s window highs/lows to compute realised σ and compare to the report's `implied_move`.
+1. `uw historical trend` — `ticker`, `--date <report_date>`, `--days <horizon_window>`. Capture intra-window high/low, drawdown-from-entry, and end-of-window price.
+2. `uw historical signal-backtest` — `ticker`, `--signal-type <dominant_signal_class>`. Capture the historical realised win-rate for that signal class as of the report's date (this is the rate that *should have* been quoted; compare to `claimed_win_rate` in Phase 3).
+3. **Vol calls (vol_long / vol_short)** — instead of price direction, resolve against `vol_realisation_rate`: did realised vol exceed (long) or fall below (short) the implied move quoted at entry? Use `uw historical trend`'s window highs/lows to compute realised σ and compare to the report's `implied_move`.
 
-Cap MCP calls per phase: at most 2× the number of rows from Phase 1 (one `historical_trend` + one `historical_signal_backtest` per row). If a call fails (delisted, no UW history, permission denied), tag the row INCONCLUSIVE with `inconclusive_reason="data_unavailable"` — never tag as LOSS.
+Cap `uw` calls per phase: at most 2× the number of rows from Phase 1 (one `uw historical trend` + one `uw historical signal-backtest` per row). If a call fails (delisted, no UW history, permission denied), tag the row INCONCLUSIVE with `inconclusive_reason="data_unavailable"` — never tag as LOSS.
 
 ### Output
 
@@ -205,7 +209,7 @@ For every flagged divergence, write one sentence in the voice of a sell-side flo
 
 ## Phase 4 — Tool Attribution
 
-**Goal.** For each MCP tool cited as evidence, compute marginal contribution to outcome. Identify load-bearing tools, confounded-on-winners tools (only fire on winners — likely outcome-leakage), and indiscriminate tools (no information).
+**Goal.** For each `uw` CLI tool cited as evidence, compute marginal contribution to outcome. Identify load-bearing tools, confounded-on-winners tools (only fire on winners — likely outcome-leakage), and indiscriminate tools (no information).
 
 ### Per-tool computation
 
@@ -228,12 +232,12 @@ For each `tool` appearing in any row's `tools_cited`:
 
 ### Output
 
-- `phase_4_tools.md` — tool tier list with desk commentary per tool. Voice: market-maker quant. Format example: *"`dark_pool_block_stratified` LOAD-BEARING (+18pp on `dark_pool_accumulation`, n=22). Acts as the institutional/retail filter that the raw `dark_pool_ticker_summary` lacks. Without this gate, accumulation calls degrade by ~1 in 5."*
+- `phase_4_tools.md` — tool tier list with desk commentary per tool. Voice: market-maker quant. Format example: *"`uw dark-pool block-stratified` LOAD-BEARING (+18pp on `dark_pool_accumulation`, n=22). Acts as the institutional/retail filter that the raw `uw dark-pool ticker-summary` lacks. Without this gate, accumulation calls degrade by ~1 in 5."*
 - `phase_4_tools.jsonl` — tool-level numerics.
 
 ### Hard rules
 
-- A "CONFOUNDED" finding requires manual sanity-check before recommending demotion — some tools genuinely fire only when conviction is high (e.g. `insights_signal_confluence ≥ 5`). Note this in the per-tool commentary.
+- A "CONFOUNDED" finding requires manual sanity-check before recommending demotion — some tools genuinely fire only when conviction is high (e.g. `uw insights signal-confluence ≥ 5`). Note this in the per-tool commentary.
 - Do not score tools cited fewer than 5 times — N is too small. Mark as "INSUFFICIENT_N" and exclude from tier ranking.
 
 ---
@@ -332,7 +336,7 @@ If the missed-gate rate for any specific gate exceeds 20%, that's evidence the a
    - Re-weighted components from Phase 5 — both the new weights and a rationale for each change with the Phase 4 marginal contribution.
    - Re-binned tier cuts from Phase 5.
 
-3. **MCP tool tier movements**:
+3. **CLI tool tier movements**:
    - Promote to required: tools that are LOAD-BEARING per Phase 4.
    - Demote: tools that are NO-INFO per Phase 4.
    - Gate behind confluence: tools that are CONFOUNDED.
@@ -347,7 +351,7 @@ Each recommendation is one heading + one paragraph. Required fields:
 
 - **What** — one-sentence description of the change.
 - **File** — `.claude/agents/<file>.md` or `.claude/commands/<file>.md` (path).
-- **Phase / Data** — `Phase 4: dark_pool_block_stratified marginal_contribution +18pp, n=22.`
+- **Phase / Data** — `Phase 4: uw dark-pool block-stratified marginal_contribution +18pp, n=22.`
 - **Priority** — P0 (calibration-breaking), P1 (clear improvement), P2 (polish).
 - **Risk** — what could go wrong if applied, framed for the desk.
 
@@ -392,8 +396,8 @@ The summary is the document the user actually reads first. Make every word count
 
 ## Failure modes & recovery
 
-- **Phase 2 MCP rate-limit hit mid-batch** — checkpoint partial outcomes; resume from last completed ticker on next invocation. Phase 2 is the only phase that should ever appear with a `_partial` suffix.
-- **`historical_available_dates` shows stale UW data** — abort at Step 0 (preflight). Don't compute outcomes against stale data.
+- **Phase 2 data-fetch failure mid-batch** — checkpoint partial outcomes; resume from last completed ticker on next invocation. Phase 2 is the only phase that should ever appear with a `_partial` suffix.
+- **`uw historical available-dates` shows stale UW data** — abort at Step 0 (preflight). Don't compute outcomes against stale data.
 - **Phase 1 yields fewer rows than expected** — if any non-empty report yields zero rows, that's a parser bug. Abort with the report path so the parser can be fixed.
 - **Holdout stress-test rejects the proposal** — Phase 5 must propose a more conservative re-weight; never ship a rejected proposal forward to Phase 7.
 - **Less than 5 calls in the dataset for any single signal class** — flag and exclude from per-class statistics; do not treat single-digit N as a signal.
