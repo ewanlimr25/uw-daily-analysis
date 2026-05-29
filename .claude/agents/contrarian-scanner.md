@@ -31,3 +31,22 @@ Disqualifiers — do not surface as a fade:
 - Fewer than 3 aligned signals from the list above
 
 Flag only high-conviction fades where ≥3 signals align AND term structure is not BACKWARDATION near a catalyst AND VRP is positive. Do not output weak setups.
+
+---
+
+## Single-leg whale put co-flag (advisory, C19)
+
+Alongside the put/call-ratio crowding read, pull the single-leg whale tier scan:
+
+```
+uw options-flow single-leg --regime <regime> --option-type put --json --quiet
+```
+
+A **Tier-1** short-DTE opening/floor PUT (`CONTRARIAN_SHORT`) is a candidate
+single-name short thesis when the broader put/call ratio is also crowding — an
+institution shorting a specific name against the tape (next-session WR 61–64%,
++23–26pp vs SPY, p<0.001, bull regime). Use `CALL_BETA_FADE_CHASE` (aggressive
+bull-tape call-chasing, −9.7pp vs SPY) as a **fade / crowding** tell, not a long.
+
+Advisory — **0 rubric points** pending cross-regime validation (C19). See
+`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.

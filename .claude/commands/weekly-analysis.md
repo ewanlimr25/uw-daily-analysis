@@ -554,3 +554,24 @@ If any name was already on a manually-curated group, leave that membership alone
 - **`uw historical available-dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-15 default cuts of HIGH ≥10 / MED 7–9 / LOW 3–6.)
 - **`uw risk market-regime` errors on Monday baseline** — fall back to `covered_dates[1]` and note the substitution.
 - **No tickers clear the confluence gate** — produce a report whose §3, §4, §8 are explicitly empty, with §0 (scorecard), §1 (regime), §2 (sector), §5 (vol surface), §6 (earnings), §7 (risk), and §9 (setups) still populated. A "no edge" week is a valid output, not a failure.
+
+---
+
+## Single-Leg Whale Persistence (advisory — criterion C19)
+
+Run the tier scan across each of the week's sessions:
+
+```
+uw options-flow single-leg --regime <weekly_regime> --date <YYYY-MM-DD> --json --quiet
+```
+
+- **Persistence:** flag names that throw **repeat** Tier-1 opening/floor PUT
+  prints across the 5-day window — repeat informed positioning outranks one-offs.
+- **OOS scoreboard:** track the realized next-session hit-rate of each week's
+  Tier-1 signals; this is the live out-of-sample accrual toward C19 graduation
+  (promote to a scored bearish line once rolling WR ≥58% over ≥60 days / ≥2 regimes).
+
+Validated edge (bull window, Mar–May 2026): Tier-1 opening put WR 63.5% (+26pp vs
+SPY, p<0.001); floor-put block 61.0%. Calls = beta (−9.7pp). size/OI<0.5 = anti-signal.
+Advisory only — 0 rubric points. See
+`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.

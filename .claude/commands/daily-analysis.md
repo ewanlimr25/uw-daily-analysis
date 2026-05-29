@@ -514,3 +514,39 @@ Skip this step entirely on a "no edge" day (no HIGH-tier names). Keep it to the 
 - **`uw playbook daily-synthesis` returns empty** — fall back to manually composing the macro context from `uw risk market-regime` + `uw insights signal-confluence` + `uw watchlist alerts` and continue.
 - **`uw historical available-dates` shows stale data** — abort and ask the user to re-export from Unusual Whales. Do not proceed with stale data.
 - **No tickers clear the confluence gate** — produce a report whose §3 and §4 are explicitly empty, with the §1 regime + §2 next-session GEX advisory still populated. A "no edge" day is a valid output, not a failure.
+
+---
+
+## Single-Leg Whale Signal (Phase 1 advisory — criterion C19)
+
+After **Step 0** establishes the directional regime, run the single-leg whale
+tier scan once on the session tape (post-close):
+
+```
+uw options-flow single-leg --regime <step0_regime> --json --quiet
+```
+
+This grades clean single-leg, ask-side, ≥$500K, common-stock opening prints by
+the empirically-backtested **Signal Quality Hierarchy** (see
+`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`):
+
+| Tier | Label | Setup | Backtest | Action |
+|---|---|---|---|---|
+| 1 | `OPENING_PUT_PRIME` | put, size/OI≥2, DTE≤30 | WR 63.5%, +26pp, p<0.001 (n=266) | `CONTRARIAN_SHORT` |
+| 1 | `FLOOR_PUT_BLOCK` | put, slft/slcn, DTE≤30 | WR 61.0%, +23.5pp, p<0.001 (n=328) | `CONTRARIAN_SHORT` |
+| 2 | `OPENING_PUT_STRONG` | put, size/OI≥2, DTE>30 | edge decays | context only |
+| 3 | `CALL_BETA_NOEDGE` / `CALL_UNVALIDATED` | any call | −9.7pp in bull; unmeasured else | context only |
+| 4 | `CLOSING_ANTISIGNAL` (size/OI<0.5) / `CALL_BETA_FADE_CHASE` | closing / bull call-chase | 43.7% / −9.7pp | **AVOID / FADE** |
+
+**Routing:**
+- **`accumulation-hunter`** — a Tier-1 opening/floor PUT on a name also showing
+  dark-pool distribution (`dark_pool_block_stratified`) is the strongest bearish
+  co-confirmation; surface as a bearish co-flag.
+- **`contrarian-scanner`** — Tier-1 short-DTE puts feed single-name short theses
+  alongside a crowding put/call read.
+- **`risk-monitor` / debate** — `CALL_BETA_FADE_CHASE` is a **veto** on bullish
+  conviction resting on "big call flow"; `CLOSING_ANTISIGNAL` weakens a
+  same-direction thesis.
+
+**Grading:** advisory, **0 conviction-rubric points** (criterion C19) pending
+≥60 trading days across ≥2 regimes. Calls are never auto-scored from this signal.

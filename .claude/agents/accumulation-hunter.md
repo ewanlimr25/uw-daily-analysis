@@ -47,3 +47,25 @@ Disqualifiers — do not surface:
 - DP volume dominated by retail/lower tiers (`uw dark-pool block-stratified` fails)
 - `uw insights conviction-matrix` is HEDGED_LONG or COVERED_CALL (these have offsetting hedges — not directional accumulation)
 - `uw historical oi-trend` is FLAT or UNWINDING (no persistence)
+
+---
+
+## Single-leg whale put co-flag (advisory, C19)
+
+When scanning for distribution, cross-reference the single-leg whale tier scan:
+
+```
+uw options-flow single-leg --regime <regime> --option-type put --json --quiet
+```
+
+A **Tier-1 opening/floor PUT** (`OPENING_PUT_PRIME` size/OI≥2 DTE≤30, or
+`FLOOR_PUT_BLOCK` slft/slcn DTE≤30) on a name that *also* shows dark-pool
+**distribution** via `dark_pool_block_stratified` is the strongest bearish
+co-confirmation in the research set (next-session WR 61–64%, +23–26pp vs SPY,
+p<0.001, bull regime). Surface it as a **bearish co-flag** alongside the DP read.
+
+Discipline: this is the **bearish** side only. Do **not** treat single-leg CALL
+prints as a bullish accumulation co-flag — in a bull tape they underperformed
+SPY by 9.7pp (beta, not edge). `size/OI<0.5` puts are closing flow (anti-signal),
+not accumulation. Advisory — **0 rubric points** pending 60-day cross-regime
+validation. See `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.

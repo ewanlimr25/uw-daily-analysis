@@ -94,3 +94,16 @@ Fundamentals enrichment still uses the **yfinance MCP** (`mcp__yahoo-finance__*`
 Non-flow context the UW microstructure fleet is structurally blind to — **short interest, days-to-cover, float, institutional/analyst positioning, market breadth, insider clusters** — comes from the **`fz` CLI** (`finviz-pp-cli`, Go binary at `/Users/ewan/.local/bin/fz`; override with `$FZ_PP_CLI`). Free, no-auth public Finviz HTTP. Invoke via Bash as `fz <group> <sub> … --agent` (`--agent` = `--json --compact --no-input --no-color --yes`). Added 2026-05-27 (see `analyses/audit/2026-05-27-fz-edge/`).
 
 **Scope discipline:** `fz` adds **zero** options flow / greeks / dark pool / IV term-structure / GEX/DEX / OI — it cannot replace any `uw` tool; it augments *beside* the flow engine. Every `fz` lane is **advisory (0 rubric points)** and **graceful-skips** if the binary is missing (the report completes unchanged). Short interest is the exchange semi-monthly settlement figure (~2-week lag) — squeeze context, not a live borrow signal; no borrow-fee/HTB field. Scored-gate promotions are registered as criteria **C15–C18** and stay advisory until `/calibration-audit` clears each threshold. Access requires a `Bash(fz:*)` permission in `.claude/settings.json`.
+
+## `uw options-flow single-leg` — single-leg whale tier scan
+
+`uw options-flow single-leg --regime <bull|bear|neutral> [--option-type put] --json --quiet`
+grades clean single-leg, ask-side, ≥$500K, common-stock **opening** prints by the
+backtested Signal Quality Hierarchy: **Tier-1 opening/floor PUT (size/OI≥2 or
+floor, DTE≤30)** is the validated edge (next-session WR 61–64%, +23–26pp vs SPY,
+p<0.001, bull regime); calls are beta (−9.7pp); `size/OI<0.5` is a closing
+anti-signal. Advisory (**criterion C19**, 0 rubric points) pending 60-day
+cross-regime validation. Built into the `uw` Go binary
+(`internal/analysis/singleleg.go` + `internal/cli/single_leg.go`). The research /
+backtest harness remains `scripts/single_leg_whale.py`. See
+`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.
