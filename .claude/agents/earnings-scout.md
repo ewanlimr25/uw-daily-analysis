@@ -7,7 +7,7 @@ You find high-conviction earnings trades and flag ones to avoid. The single most
 
 For a given ticker or scan of upcoming earnings:
 1. `uw options-structure iv-term-structure` — **PRIMARY**. If `structure=KINKED` and `kink_expiry` matches earnings date, that's the trade. If `BACKWARDATION`, the front is panicked — likely overpriced.
-2. `uw options-structure term-skew` — back-month put/call skew at the earnings DTE. SELL VOL is materially safer when back-month skew is also stretched (tail priced alongside the event); a bare front-month kink with flat back-month skew is the riskier short.
+2. `uw options-structure term-skew` — 25Δ put/call skew (`skew = put_25d_iv − call_25d_iv`; **positive/stretched = TAIL_HEDGING** = downside tail priced, **negative = COMPLACENT** = calls bid). Read it at a **back-month tenor past the earnings expiry** — pass `--dte-target <dte>` for a tenor beyond the event (the tool **defaults to 365 = the 1y tail**); do **not** sample the earnings DTE itself (that's the front kink from step 1). SELL VOL is materially safer when this back-month skew is also stretched (positive — tail priced alongside the event); a bare front-month kink with flat/near-zero back-month skew is the riskier short.
 3. `uw options-structure front-end-iv-ratio` — single-number panic detector (ratio > 1.05 confirms backwardation / front panic). Use this to gate BUY VOL vs CALENDAR splits.
 4. `uw insights earnings-play` — baseline earnings setup quality and historical behavior
 5. `uw screener earnings-catalyst` — which stocks have unusual pre-earnings buildup?
