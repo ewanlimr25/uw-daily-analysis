@@ -341,7 +341,7 @@ After scoring, before any candidate enters the HIGH-tier section of §3 / §8 (i
 - `uw options-structure dex` (DEX)
 - `uw insights signal-confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
 
-A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50).
+A call that scores raw_score ≥ 9 (HIGH-tier under the 2026-05-30 P1.3 cut) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50).
 
 ---
 
@@ -381,12 +381,12 @@ Map every ticker to a tier:
 
 | Score | Tier | Sizing default |
 |---|---|---|
-| ≥ 10 | **HIGH** | full size (subject to win_rate gate in Step 5) |
-| 7 – 9 | **MEDIUM** | half size (subject to win_rate gate) |
+| ≥ 9 | **HIGH** | full size (subject to win_rate gate in Step 5) |
+| 7 – 8 | **MEDIUM** | half size (subject to win_rate gate) |
 | 3 – 6 | **LOW** | starter / watch-only — paper trade or wait for daily confirmation |
 | ≤ 2 | drop | not surfaced in the report's trade book |
 
-Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and §8 (High-Conviction Cross-Ref). LOW tier goes into a separate "Watchlist for next week" section (§9). Phase 3 of the 2026-05-15 audit found the MED-vs-LOW gap was only 1.1pp at the prior cuts (noise); the new cuts restore tier monotonicity (HIGH ≥10 realised 0.85 vs the prior HIGH ≥9 realised 0.667).
+Surface every HIGH and MEDIUM tier ticker in the Executive Summary headline and §8 (High-Conviction Cross-Ref). LOW tier goes into a separate "Watchlist for next week" section (§9). **HIGH cut lowered 10 → 9 (2026-05-30 register P1.3):** both recent audits show the score-9 cohort is genuine HIGH conviction — the ≥9 bin realised 0.774 (n=31, path-aware) vs MED (7–8) ~0.54, restoring monotone HIGH>MED>LOW; supersedes the 2026-05-15 ≥10 cut (its smaller close-only sample had shown ≥9 realised 0.667). ⚠️ In-sample-only (holdout 0 resolved HIGH), single UPTREND regime — re-confirm ~2026-06-12; a score-9 beta-long promoted to HIGH is still capped at half by the C2 market-excess gate.
 
 ---
 
@@ -554,7 +554,7 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Failure modes & recovery
 
 - **Phase 1 agent times out** — re-spawn just that agent with the same context block. If it fails twice, write its section as `[agent timed out — see <agent-name> logs]` and proceed; do not let one agent block the report.
-- **`uw historical available-dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-15 default cuts of HIGH ≥10 / MED 7–9 / LOW 3–6.)
+- **`uw historical available-dates` shows fewer than 3 covered weekdays** — produce a "limited-data weekly" with that explicit caveat in the Executive Summary, and downgrade tier thresholds (HIGH = 8+, MEDIUM = 6–7, LOW = 3–5) for the smaller window. (Downgrade preserves the same relative gap to the 2026-05-30 default cuts of HIGH ≥9 / MED 7–8 / LOW 3–6.)
 - **`uw risk market-regime` errors on Monday baseline** — fall back to `covered_dates[1]` and note the substitution.
 - **No tickers clear the confluence gate** — produce a report whose §3, §4, §8 are explicitly empty, with §0 (scorecard), §1 (regime), §2 (sector), §5 (vol surface), §6 (earnings), §7 (risk), and §9 (setups) still populated. A "no edge" week is a valid output, not a failure.
 

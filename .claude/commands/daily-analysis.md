@@ -281,7 +281,7 @@ After scoring, before any candidate enters the HIGH-tier section of §3 / §7 (i
 - `uw options-structure dex` (DEX)
 - `uw insights signal-confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
 
-A call that scores raw_score ≥ 10 (HIGH-tier under the 2026-05-15 cuts) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50). Half-baked "accumulation only" HIGH calls (e.g. MA 5/18, BL 5/19) demote to MED — both lost in resolved outcomes, so the demote is correct in retrospect.
+A call that scores raw_score ≥ 9 (HIGH-tier under the 2026-05-30 P1.3 cut) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50). Half-baked "accumulation only" HIGH calls (e.g. MA 5/18, BL 5/19) demote to MED — both lost in resolved outcomes, so the demote is correct in retrospect.
 
 ---
 
@@ -325,12 +325,12 @@ Daily conviction score = Σ:
 
 | Score | Tier | Sizing default |
 |---|---|---|
-| ≥ 10 | **HIGH** | full size (subject to Step 3a load-bearing-tool gate + Step 5 win-rate gate) |
-| 7 – 9 | **MEDIUM** | half size (subject to Step 5 win-rate gate) |
+| ≥ 9 | **HIGH** | full size (subject to Step 3a load-bearing-tool gate + Step 5 win-rate gate) |
+| 7 – 8 | **MEDIUM** | half size (subject to Step 5 win-rate gate) |
 | 3 – 6 | **LOW** | starter / watch-only — supporting candidate in §3/§4, not surfaced in Executive Summary or §7 |
 | ≤ 2 | drop | filtered by quant's drop floor |
 
-Surface every **HIGH and MEDIUM** ticker in the Executive Summary and §7 (High-Conviction Cross-Ref). LOW tier names appear in §3/§4 as supporting candidates only. These cuts align daily with weekly tiering; the gap between the prior daily HIGH (≥5) and weekly HIGH (≥9) was the largest source of inter-skill inconsistency in the 2026-05-15 audit.
+Surface every **HIGH and MEDIUM** ticker in the Executive Summary and §7 (High-Conviction Cross-Ref). LOW tier names appear in §3/§4 as supporting candidates only. **HIGH cut lowered 10 → 9 (2026-05-30 register P1.3):** the ≥9 bin realised 0.774 (n=31, path-aware) / 0.70 (close-only) across the two most recent audits vs MED (7–8) ~0.54, restoring monotone HIGH>MED>LOW; supersedes the 2026-05-15 ≥10 cut. ⚠️ In-sample-only (holdout had 0 resolved HIGH), single UPTREND regime — re-confirm ~2026-06-12; a score-9 beta-long promoted to HIGH is still capped at half by the C2 market-excess gate, so only genuine-edge names full-size.
 
 ---
 

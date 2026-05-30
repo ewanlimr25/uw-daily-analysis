@@ -45,8 +45,9 @@ Pull `uw historical signal-backtest` for that class on that ticker. Apply the si
 
 - **Cap `claimed_win_rate` (a.k.a. `win_rate` in the audit trail) by backtest sample size.** Apply this N-conditional cap mechanically using the `n` field returned by `uw historical signal-backtest`:
   - `n < 10` → cap at **0.69** (2026-05-25 register C2 — **TIGHTENED from 0.75**; 0.75 still cleared the 0.70 full-size line, so an 8-signal up-week class still full-sized. 0.69 sits one notch below the full line, capping a single-regime small-N class at half.)
-  - `10 ≤ n < 20` → cap at **0.85**
-  - `n ≥ 20` → cap at **0.90** (the prior 2026-05-09 ceiling stands for well-sampled signals)
+  - `10 ≤ n < 20` → cap at **0.80**
+  - `n ≥ 20` → cap at **0.80** (2026-05-30 register P1.2 — **TIGHTENED from 0.90**)
+  - **Absolute reliability ceiling — never quote `claimed_win_rate` > 0.80 regardless of N** (2026-05-30 audit Phase 3 / C25 reliability diagram: the 0.80–0.90 quote bucket realised **62%**, the ≥0.90 bucket realised **53%** — overconfidence is localized entirely to the high tail, and no class earns a ≥0.80 quote even when well-sampled. The honest `dealer_positioning` class quotes ~0.78 and is unaffected.)
   - Never emit `1.00` regardless of result.
   Reason: in-sample backtest with low N routinely returns 100% in trending tapes; the LOSS-row Brier penalty is dominated by small-N overconfidence. The live `bullish_flow` probe (n=8, 100%, all 05-19/05-20 in an UPTREND, set included SPY/IWM) is the canonical case: under the old 0.75 cap it full-sized; under 0.69 it sizes at most half. The 2026-05-08 HIGH-tier book quoted 1.00 for `bullish_flow`, `dark_pool_accumulation`, and `dealer_positioning_flip` and realised 0.64–0.75 (single-date Brier 0.45 — catastrophic). The cap is on the *quote* used downstream, not the underlying backtest computation; show the raw `n` and uncapped `historical_win_rate` in the audit trail alongside the capped `win_rate` so risk-monitor and the orchestrator can see what was bounded.
 - **SHORT-side sizing-map floor.** When `win_rate < 0.50`, `pre_risk_size` MUST be `starter` or `skip` — never `half` or `full`. The previous behavior (`half`-size pre-risk on 37.5% expected win-rate) was caught by risk-monitor 22 of 22 times in the audit dataset, but the floor must be enforced at the quant layer, not papered over downstream. No `half`-size on directional shorts where the realised payoff asymmetry is +0.37% avg vs +9.81% bullish.
@@ -57,6 +58,7 @@ Pull `uw historical signal-backtest` for that class on that ticker. Apply the si
   - **Gate:** `excess ≤ 0` → cap `pre_risk_size` at **half** (no edge over simply being in the tape); `excess ≤ −0.10` → cap at **starter** (underperforms the market bet). `excess > 0` → no excess penalty. The gate can only **downgrade**.
   - This is a *gate*, not a re-scaling: the 0.70/0.50 ladder thresholds were calibrated on raw WR and are unchanged — feeding excess into them would be a silent recalibration. Record the excess and the gate result in `audit_trail`, e.g. `"market-excess: bullish_flow WR 1.00 − SPY-long 1.00 = +0.00 ≤ 0 → capped half (beta in UPTREND)"`.
   - Compute deterministically with `scripts/excess_winrate.py:size_decision(signal_win_rate, n, benchmark_win_rate, liquidity_ok=...)` — it applies the liquidity floor, the tightened N-cap, the ladder, and this excess gate in one auditable call.
+  - **2026-05-30 audit corroboration (Phase 3d / register P1.1) — this gate is load-bearing; do NOT weaken it.** Realised forward excess confirms exactly what C2 guards: BOOK long-class WR **58%** vs SPY-long base **80%** = **−22pp** (every long-side class is negative-excess beta), while shorts ran **+20pp** excess (the desk's real directional alpha). The C2 downgrade is the single most important sizing protection in an up-tape, and it is what makes the P1.3 HIGH-cut lowering safe: a score-9 *beta-long* promoted to HIGH is still capped at half here on `excess ≤ 0`, so only genuine-edge names (shorts, `dealer_positioning`) full-size. Surface the excess and its sign in the report (not just `audit_trail`) so the human PM sees beta-vs-alpha per call.
 
 - **Liquidity floor on the win-rate denominator (2026-05-25 register C12).** Before computing or quoting any class win-rate, drop sub-floor names (price < $5 OR 20-day dollar-ADV < $50M, fail-closed) from the backtest result set — a class must not be credited (or debited) for un-tradable names like the `volume_spike` micro-ETFs. Use `scripts/excess_winrate.py:apply_liquidity_floor` then `compute_win_rate` on the kept set; if `n` graded names < 10 after flooring, the n<10 cap (0.69) applies.
 
@@ -116,12 +118,12 @@ else:
 
 | `raw_score` | Tier | Pre-risk sizing default |
 |---|---|---|
-| ≥ 10 | **HIGH** | full size (subject to win_rate gate AND 3-of-5 load-bearing-tool gate below) |
-| 7 – 9 | **MEDIUM** | half size (subject to win_rate gate) |
+| ≥ 9 | **HIGH** | full size (subject to win_rate gate AND 3-of-5 load-bearing-tool gate below) |
+| 7 – 8 | **MEDIUM** | half size (subject to win_rate gate) |
 | 3 – 6 | **LOW** | starter / watch-only — supporting candidate, not surfaced in HIGH-conviction sections |
 | ≤ 2 | drop | not surfaced (the orchestrator's confluence gate should have caught these; floor is enforced here too) |
 
-These cuts apply uniformly to both `/daily-analysis` and `/weekly-analysis` rubrics. Phase 3 quintile data (2026-05-15 audit) showed MED-vs-LOW gap was 1.1pp at the prior cut (noise); HIGH ≥10 realised 0.85 vs the prior HIGH ≥9 realised 0.667. The orchestrator-level rubrics quote the same cuts for embedded-in-report audit.
+These cuts apply uniformly to both `/daily-analysis` and `/weekly-analysis` rubrics. **HIGH cut lowered 10 → 9 (2026-05-30 register P1.3).** Both recent audits show the score-9 cohort is genuine HIGH conviction: 2026-05-29 (close-only) score-9 realised 0.70 (n=10); 2026-05-30 (path-aware) the **≥9 HIGH bin realised 0.774 (n=31)** vs MED (7–8) ~0.54 and LOW (3–6) ~0.51 — **monotone HIGH>MED>LOW restored** (24pp HIGH–MED gap). This **supersedes the 2026-05-15 ≥10 cut** (set because its smaller close-only sample showed ≥9 realised 0.667). ⚠️ **In-sample-only — re-confirm at the ~2026-06-12 audit:** the 2026-05-30 holdout had **0 resolved HIGH calls** and the dataset is a single UPTREND regime. The change is safe because a score-9 *beta-long* promoted to HIGH is still capped at half by the C2 market-excess gate (excess ≤ 0), so only genuine-edge names full-size. The orchestrator-level rubrics quote the same cuts for embedded-in-report audit.
 
 **HIGH-tier load-bearing-tool gate (2026-05-23 audit P0.2 — hardened from 3-of-4 to 3-of-5).** Before emitting any ticker at HIGH tier, the call must additionally cite at least **3 of the 5 LOAD-BEARING tools**:
 
@@ -131,7 +133,7 @@ These cuts apply uniformly to both `/daily-analysis` and `/weekly-analysis` rubr
 4. `uw options-structure dex` (DEX)
 5. `uw insights signal-confluence` (second-agent confirmation) — **added 2026-05-23**: Phase 4 marginal contribution +19.5pp (n=12), now LOAD-BEARING
 
-A call that scores `raw_score ≥ 10` but cites fewer than 3 of these 5 must be **demoted to MEDIUM tier** (and `final_size_recommendation_pre_risk` capped at `half`). Record the gate result in `audit_trail` even when it no-op's: `"LB-gate: 4 of 5 cited (uw dark-pool block-stratified ✓, uw historical cumulative-premium-flow ✓, uw insights institutional-accumulation ✓, uw insights signal-confluence ✓, uw options-structure dex ✗) — HIGH tier preserved"`. A silent skip reads as a missed gate.
+A call that scores `raw_score ≥ 9` (HIGH-tier under the 2026-05-30 P1.3 cut) but cites fewer than 3 of these 5 must be **demoted to MEDIUM tier** (and `final_size_recommendation_pre_risk` capped at `half`). Record the gate result in `audit_trail` even when it no-op's: `"LB-gate: 4 of 5 cited (uw dark-pool block-stratified ✓, uw historical cumulative-premium-flow ✓, uw insights institutional-accumulation ✓, uw insights signal-confluence ✓, uw options-structure dex ✗) — HIGH tier preserved"`. A silent skip reads as a missed gate.
 
 **Why 3-of-5 (not 3-of-4):** Phase 3 of the 2026-05-23 audit found tier inversion (HIGH 60.0% < MED 62.5% on a 73-row resolved set) under the 3-of-4 gate. Phase 5 holdout (W21) showed the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50). Half-baked "accumulation only" HIGH calls demote to MED — the demote is correct in retrospect.
 
