@@ -69,3 +69,43 @@ prints as a bullish accumulation co-flag — in a bull tape they underperformed
 SPY by 9.7pp (beta, not edge). `size/OI<0.5` puts are closing flow (anti-signal),
 not accumulation. Advisory — **0 rubric points** pending 60-day cross-regime
 validation. See `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.
+
+---
+
+## Distribution counter-signal (advisory — 2026-05-30 meta-audit C28)
+
+The accumulation read is built from *opening* prints (DP blocks, OI building,
+smart_positioning bullish-opening). Its mirror — institutions **closing** the
+bullish position — is a direct-flow tell that the desk currently only *infers*
+from Finnhub at the fundamentals-gate. `uw oi decrease-with-volume` is the
+unused UW primitive that observes it on the tape: contracts where **OI fell on
+high volume = positions being closed.**
+
+For each accumulation candidate that clears the 4+-signal gate, run once
+(market-wide, then filter to your candidates) or per ticker:
+
+```bash
+uw oi decrease-with-volume --symbol <T> --min-volume 500 --json --quiet
+```
+
+Read it **direction-aware**, because OI-down is not automatically bearish:
+- On a **long** accumulation thesis, the contradiction is **call OI being closed**
+  (someone unwinding the bullish position) or large **put OI being opened** — set
+  `distribution_flag.present = true`, `closing_side = "call"` (or `"mixed"`), and
+  record the closing premium + `oi_decrease`.
+- Puts being *closed* on a long name is **confirming** (protection lifted), not a
+  contradiction — do **not** flag it.
+
+**This is a CAUTION co-flag, not a veto and not a deduction — 0 rubric points,
+0 tier impact.** It never enters `score_components`; it does not lower the
+accumulation flag. It strengthens the *prose* distribution thesis and is carried
+to `decision.json.calls[].distribution_flag` so `/calibration-audit` Phase 6 can
+score it. It promotes to a scored VETO-support line **only** when calibration
+shows distribution-flagged names underperform the accumulation baseline by ≥10pp
+on n≥15 (the C28 gate). If `uw oi decrease-with-volume` errors or is empty, skip
+silently — it never blocks the hunt.
+
+Add to each candidate's output: `distribution_flag` = `{present, closing_side,
+closing_premium, oi_decrease, note}` (or `{present:false}` when the name shows no
+bullish-side closing). Hand it to the fundamentals-gate, which uses it as
+corroborating evidence for the long-thesis CAUTION/VETO row.

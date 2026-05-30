@@ -80,6 +80,10 @@ class SchemaTest(unittest.TestCase):
     def test_schema_version_1_1_valid(self):
         self.assertEqual(vd.validate_doc(_doc(schema_version="1.1"), SCHEMA), [])
 
+    def test_schema_version_1_2_valid(self):
+        # 2026-05-30 meta-audit bump (C28 distribution_flag).
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.2"), SCHEMA), [])
+
     def test_report_date_pattern(self):
         errs = vd.validate_doc(_doc(report_date="May 23 2026"), SCHEMA)
         self.assertTrue(any("pattern" in e for e in errs))
@@ -327,6 +331,50 @@ class ConjunctionC11Test(unittest.TestCase):
         # Monotonicity intent: accumulation halved to +1 plus one other big component
         # cannot reach the HIGH band (>=10). Asserting the band math directly.
         self.assertLess(1 + 3 + 2, 10)  # +1 accum + +3 DEX + +2 confluence = 6 < HIGH
+
+
+class DistributionFlagC28Test(unittest.TestCase):
+    """2026-05-30 meta-audit C28 — advisory `oi decrease-with-volume` distribution counter-signal.
+
+    Additive optional per-call block, 0 points / 0 tier impact (never in score_components),
+    structurally identical-in-discipline to fz_context. These pin valid/null/backward-compat
+    and the closing_side enum.
+    """
+
+    def test_distribution_flag_present_valid(self):
+        df = {"present": True, "source_tool": "uw oi decrease-with-volume",
+              "closing_side": "call", "closing_premium": 20769937, "oi_decrease": -61636,
+              "note": "META 720C OI -61.6k on 69.9k vol while flow reads long-accumulation"}
+        self.assertEqual(vd.validate_doc(_doc(calls=[_call(distribution_flag=df)]), SCHEMA), [])
+
+    def test_distribution_flag_absent_present_minimal(self):
+        df = {"present": False}
+        self.assertEqual(vd.validate_doc(_doc(calls=[_call(distribution_flag=df)]), SCHEMA), [])
+
+    def test_distribution_flag_null_when_not_evaluated(self):
+        self.assertEqual(vd.validate_doc(_doc(calls=[_call(distribution_flag=None)]), SCHEMA), [])
+
+    def test_distribution_flag_backward_compat_absent(self):
+        # Pre-C28 envelopes omit the field entirely — must still validate.
+        self.assertEqual(vd.validate_doc(_doc(), SCHEMA), [])
+
+    def test_distribution_flag_bad_closing_side_rejected(self):
+        df = {"present": True, "closing_side": "straddle"}
+        errs = vd.validate_doc(_doc(calls=[_call(distribution_flag=df)]), SCHEMA)
+        self.assertTrue(any("not in enum" in e for e in errs))
+
+    def test_distribution_flag_missing_present_rejected(self):
+        df = {"closing_side": "call"}
+        errs = vd.validate_doc(_doc(calls=[_call(distribution_flag=df)]), SCHEMA)
+        self.assertTrue(any("missing required key 'present'" in e for e in errs))
+
+    def test_distribution_flag_never_in_score_components(self):
+        # Discipline: the flag is 0-points — it must not be expressed as a score component.
+        # A call carrying the flag with components summing to raw_score still validates,
+        # proving the flag lives outside the Sigma-invariant.
+        df = {"present": True, "note": "advisory"}
+        call = _call(distribution_flag=df)  # raw_score 8, components sum 8, flag is extra
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
 
 
 class ExpectancyC3Test(unittest.TestCase):

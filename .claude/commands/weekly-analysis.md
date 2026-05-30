@@ -224,8 +224,9 @@ Tools required:
 - `uw dark-pool extended-hours` — overnight/pre-market block activity.
 - `uw oi smart-positioning` — OI bullish/bearish inference.
 - `uw historical oi-trend` (`--days 5`) — multi-day OI build verification (BUILDING required for full points).
+- `uw oi decrease-with-volume` (`--min-volume 500`) — **distribution counter-signal (C28)**: bullish-side OI closed on high volume across the week on a long-thesis name = accumulation-as-distribution. Advisory, 0 points; emits `distribution_flag` (persistence makes the weekly read stronger than a single-day daily flag).
 
-Output: tickers with quiet multi-day OI build sustained across the full week with both DP and OI confirmation.
+Output: tickers with quiet multi-day OI build sustained across the full week with both DP and OI confirmation, each with an advisory `distribution_flag` (C28).
 
 ### contrarian-scanner — pc_ratio trajectory (sonnet, thinking off)
 Tools required:
@@ -480,7 +481,7 @@ Before writing: run `mkdir -p analyses/weekly/$ISO_WEEK` via Bash (creates the r
 Lead with top-3 inflow / top-3 outflow ETFs. Call out **GICS-vs-ETF agreement** explicitly (agree → high-conviction rotation; disagree → watch-only; `n/a` → instrument-only thematic/geographic read). Frame as advisory: ETF DP is a positioning/persistence tell (creation/redemption & hedging), **not** single-name accumulation; ETF options flow is weighted above ETF DP. The tape **strengthens** the existing conditional sector-leader +1 (via `gics_agreement` + cum_flow alignment) — it adds **no rubric points**.
 
 ## 3. Swing Book (1–6 weeks) — ranked by weekly conviction score
-[Table: Ticker | Tier | Score | Win-rate | Final size | Thesis | Structure | Invalidation. Subdivide into 3a long swings (regime-aligned) and 3b short/fade swings (defined risk only).]
+[Table: Ticker | Tier | Score | Win-rate | Final size | Thesis | Structure | Invalidation. Subdivide into 3a long swings (regime-aligned) and 3b short/fade swings (defined risk only). **Invalidation (C34):** anchor to the institutional `uw dark-pool price-levels` shelf where one exists, not a guessed %. **Distribution caution (C28):** for any long name carrying a `distribution_flag` (bullish-side OI closed across the week), add a one-line ⚠ note — advisory, 0 points, no size change.]
 
 ## 4. LEAP Book (6–24 months)
 [Table: Ticker | Tier | Score | Win-rate | Final size | Scenario | Invalidation. leap-positioning-radar with `uw oi position-rolls` highlights and `uw historical cumulative-premium-flow` accretion. DIRECTIONAL_LONG only.]
@@ -506,7 +507,9 @@ Lead with top-3 inflow / top-3 outflow ETFs. Call out **GICS-vs-ETF agreement** 
 - Concentration risks + recommended hedge sleeve
 
 ## 8. High-Conviction Cross-Ref (HIGH and MEDIUM tier)
-[Per-ticker breakdown: tier | score components | win_rate (with n + source) | `fundamentals_verdict` | bull/bear residuals | gate_verdicts | final size | invalidation level. One paragraph per HIGH-tier name. Note any VETO'd name with its distribution evidence.]
+[Per-ticker breakdown: tier | score components | win_rate (with n + source) | `fundamentals_verdict` | bull/bear residuals | gate_verdicts | final size | invalidation level | `distribution_flag` when present. One paragraph per HIGH-tier name. Note any VETO'd name with its distribution evidence.
+
+**Expectancy lens (advisory — C31):** lead §8 with a per-tier expectancy + payoff-ratio line (avg win / |avg loss|) from the latest `/calibration-audit` `phase_3_calibration`, or computed over the rolling `conviction_<date>` closed calls via `scripts/kelly_sizing.py`. Display-only — the live sizer stays the win-rate ladder (Step 5); C3 Kelly remains ADVISORY until tier×expectancy is monotone on n≥30. It keeps the desk honest about where the week's edge lives (asymmetry, not hit-rate).]
 
 Embedded rubric (for audit):
 
@@ -541,7 +544,7 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Step 10 — Save, emit decision envelope, and confirm
 
 1. Use Write to save the report to `analyses/weekly/$ISO_WEEK/report.md`.
-2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK/decision.json` (with `report_path` set to `analyses/weekly/$ISO_WEEK/report.md`), conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.1", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}`; `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` + (for top-5) the advisory `fz_context` block per call. `breadth_cross_check` (advisory, top-level, 0 points): `{advisory: true, source: "finviz", advancers, decliners, pct_green, divergence_flag, note}` — `null` when `fz_available == false`. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
+2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK/decision.json` (with `report_path` set to `analyses/weekly/$ISO_WEEK/report.md`), conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.2", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}` (`1.2` adds the advisory per-call `distribution_flag`, C28; `1.0`/`1.1` stay valid); `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `gate_verdicts` + (for top-5) the advisory `fz_context` block per call + (for long names with bullish-side OI being closed) the advisory `distribution_flag` block (`{present, closing_side, closing_premium, oi_decrease, note}` — 0 points, 0 tier impact, never a `score_components` line). `breadth_cross_check` (advisory, top-level, 0 points): `{advisory: true, source: "finviz", advancers, decliners, pct_green, divergence_flag, note}` — `null` when `fz_available == false`. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
 3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK/decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
 4. Confirm both files were written.
 5. Print the **Executive Summary** section to chat. Nothing else — the user opens the file for the rest.

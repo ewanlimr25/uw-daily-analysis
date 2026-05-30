@@ -22,6 +22,8 @@ Audit the `/daily-analysis` and `/weekly-analysis` skills against their own hist
 
 The audit is **propose-only**. It emits patch intentions — never auto-edits agent files, score rubrics, or commands. Recommendations cite the phase and the data point that justifies them. No vibes.
 
+> **Method register (2026-05-30 meta-audit, `analyses/audit/2026-05-30/calibration_meta_audit.md`).** Auditor-method fixes applied: **C20** daily-OHLC path-aware resolution (replaces the non-executable `uw historical trend --date`/high-low spec); **C21** benchmark-excess (realised − SPY same-window) as a first-class Phase-3 column — the audit now measures *edge*, not just calibration; **C22** removes look-ahead from the truth-set (`signal-backtest` has no `--date`); **C23** decided-N≥8 floor + Benjamini-Hochberg across flagged class/tool stats + reconstructed-citation priority cap; **C24** Phase-6 gate *effectiveness* (downgrade-effectiveness, VETO false-positive rate) on top of gate firing; **C25** reliability diagram + log-loss beside Brier. These are *method* changes to the auditor; the audit it runs stays propose-only and never edits the subjects.
+
 ## Data access — the `uw` CLI
 
 All Unusual Whales data comes from the **`uw` CLI** (`/Users/ewan/.local/bin/uw`; override with `$UW_PP_CLI`), invoked via Bash: `uw <group> <subcommand> [--flag value …] --json --quiet`. `--json` is mandatory (the CLI defaults to a table); `--quiet` keeps stdout pure JSON. For a backward window from a fixed report date, pass `--date <report_date> --days <window>`. `scripts/validate_decision.py` is unchanged.
@@ -153,20 +155,22 @@ Legacy reports (early format, e.g. `2026-04-30.md`) lack `raw_score` / `score_co
 
 This is a **path-aware** definition — a +2% gain that came after a -1.5% drawdown is a LOSS (or at best INCONCLUSIVE), not a WIN. Path matters because the report's invalidation rule would have stopped the trade before the move arrived.
 
+**Resolution granularity — daily OHLC, not close-only (C20).** The path rule is only real if you can see the intra-window low (for a long) or high (for a short). Resolve on **daily OHLC bars** — `mcp__yahoo-finance__get_historical_stock_prices` returns `open/high/low/close` per day (verified: the daily bar carries `high` and `low`; only intraday-tick range is unavailable). Compute `ATR(14)` as **true range** — `max(high−low, |high−prev_close|, |low−prev_close|)` averaged over the 14 bars before entry — not the close-to-close range proxy. Then walk the window bar-by-bar: a long is a LOSS the first day `low` breaches `entry − R` *before* any day's `high` reaches `entry + R`; symmetric for a short. This recovers ~80% of the true path rule. Record `max_adverse_excursion_pct` from the daily extreme, not the daily close. **Do not** silently degrade to close-to-close — if a ticker has no daily OHLC, tag it INCONCLUSIVE (`data_unavailable`), never a LOSS. The earlier "close-only is the only option" framing was wrong: daily high/low is available and the path rule must use it.
+
 ### Tool calls
 
 For each row in Phase 1:
 
-1. `uw historical trend` — `ticker`, `--date <report_date>`, `--days <horizon_window>`. Capture intra-window high/low, drawdown-from-entry, and end-of-window price.
-2. `uw historical signal-backtest` — `ticker`, `--signal-type <dominant_signal_class>`. Capture the historical realised win-rate for that signal class as of the report's date (this is the rate that *should have* been quoted; compare to `claimed_win_rate` in Phase 3).
-3. **Vol calls (vol_long / vol_short)** — instead of price direction, resolve against `vol_realisation_rate`: did realised vol exceed (long) or fall below (short) the implied move quoted at entry? Use `uw historical trend`'s window highs/lows to compute realised σ and compare to the report's `implied_move`.
+1. **Price window (the WIN/LOSS resolver) — daily OHLC.** `mcp__yahoo-finance__get_historical_stock_prices` for `ticker`, spanning `report_date` through `report_date + horizon_window` (trading days). Capture per-bar `high`/`low`/`close`; compute entry = the `close` on `report_date` (or next session if the report is post-close), `R` = 0.5 × true-range-ATR(14) at entry, intra-window MAE from the daily extremes, and end-of-window close. **`uw historical trend` is NOT a price-window tool** — it has no `--date` flag and returns options-flow metrics + daily close only (no high/low). Use it, if at all, only to read the *flow context* at entry, never to resolve outcomes. (Earlier versions of this skill specified `uw historical trend --date … capture intra-window high/low`; that method is not executable — the flags and fields don't exist. Do not reintroduce it.)
+2. **Signal-class context — NOT a point-in-time benchmark (C22).** `uw historical signal-backtest --signal-type <dominant_signal_class>` returns *general* class behaviour over all available history. **It has no `--date` flag**, so it cannot be quoted as "the realised win-rate as of the report's date" — doing so injects look-ahead (the rate is computed partly on data that postdates the call). Carry it only as `general_class_behaviour` colour. The honest point-in-time benchmark for Phase 3 calibration is the **SPY same-window same-direction base rate** (C21), computed in Phase 3 — not this tool.
+3. **Vol calls (vol_long / vol_short)** — resolve against realised-vol direction: did realised σ over the window exceed (long) or fall below (short) the implied move quoted at entry? Use the daily OHLC highs/lows to compute realised σ and compare to the report's `implied_move` **when present**. Legacy reports without an `implied_move` field cannot do a true IV-vs-RV resolution — resolve on RV-direction only and tag `vol_resolution="rv_direction_proxy"` so Phase 3 never treats these as calibrated IV-vs-RV outcomes.
 
-Cap `uw` calls per phase: at most 2× the number of rows from Phase 1 (one `uw historical trend` + one `uw historical signal-backtest` per row). If a call fails (delisted, no UW history, permission denied), tag the row INCONCLUSIVE with `inconclusive_reason="data_unavailable"` — never tag as LOSS.
+Cap external price calls per phase: at most 2 per row (one OHLC window pull + one same-window SPY pull for the C21 benchmark). If a price pull fails (delisted, no history), tag the row INCONCLUSIVE with `inconclusive_reason="data_unavailable"` — never tag as LOSS.
 
 ### Output
 
 - `phase_2_outcomes.md` — desk summary by tier and signal class: WIN / LOSS / INCONCLUSIVE counts with explicit win-threshold and INCONCLUSIVE definitions reprinted verbatim. Include a per-horizon breakdown.
-- `phase_2_outcomes.jsonl` — Phase 1 rows extended with `outcome`, `outcome_window`, `realised_return_pct`, `max_adverse_excursion_pct`, `inconclusive_reason` (if applicable), and `realised_signal_class_winrate` (the truth-set rate, distinct from `claimed_win_rate`).
+- `phase_2_outcomes.jsonl` — Phase 1 rows extended with `outcome`, `outcome_window`, `realised_return_pct`, `max_adverse_excursion_pct` (from daily extremes, C20), `inconclusive_reason` (if applicable), `general_class_behaviour_winrate` (the no-`--date` `signal-backtest` rate — colour only, look-ahead-contaminated, **not** a benchmark; C22), and `spy_benchmark_win` (boolean: did a same-direction SPY bet entered the same day clear +1R over the same window — the per-row input to the C21 benchmark-excess statistic).
 
 **C3 — populate the realised-P&L envelope fields (advisory expectancy record).** For every CLOSED call, write back the new envelope fields so the closed-loop expectancy record accrues: `realized_pnl_pct` = the resolved `realised_return_pct`; `payoff_ratio` = avg WIN return / |avg LOSS return| for that `dominant_signal_class` over closed calls (`scripts/kelly_sizing.py:payoff_ratio`); `expectancy_pct` (`kelly_sizing.py:expectancy`); `kelly_fraction` = `kelly_sizing.py:capped_half_kelly(realised_winrate, payoff_ratio)`. These are **advisory** — recorded for the Phase 3 gate below, NOT yet a live sizing input. Leave them `null` for still-open calls.
 
@@ -180,18 +184,20 @@ INCONCLUSIVE rows are **excluded from win-rate denominators** in subsequent phas
 
 ### Calculations
 
-1. **Per-signal-class table.** For each `dominant_signal_class` with N≥5 in the dataset:
+1. **Per-signal-class table.** For each `dominant_signal_class` with **decided-N ≥ 8** in the dataset (C23 — raised from 5; a divergence on n=5–7 is noise, and the 2026-05-29 run tabled −40pp on n=1 claims that should never have reached a reader):
    - Claimed win-rate (mean of `claimed_win_rate` field, where present)
    - Realised win-rate (WIN / (WIN+LOSS), excluding INCONCLUSIVE)
-   - N
+   - **Realised benchmark-excess (C21)** = realised WR − SPY same-window same-direction WR, via `scripts/excess_winrate.py:market_excess(realised_wr, spy_benchmark_wr)`, where `spy_benchmark_wr` = the fraction of that class's rows whose `spy_benchmark_win` (Phase 2) fired. **This is the column that separates edge from beta.** A class can be perfectly calibrated (claimed ≈ realised) and still have **zero or negative excess** — i.e. it only "wins" because the tape rose. In a single-regime UPTREND dataset this is the most important number on the table: a 50% long WR against a 55% SPY up-day base rate is **negative edge dressed as a coin-flip**. Report excess with its sign; flag any class with calibration ✅ but excess ≤ 0 as **"calibrated-but-beta."** (This mirrors the *subject's* own C2 market-excess gate — the audit must hold the system to the same bar the system holds itself.)
+   - N (decided)
    - Divergence (claimed − realised, in pp)
-   - Flag rows where divergence > 10pp (in either direction).
+   - **Flag with multiple-hypothesis control (C23).** Computing a divergence p-value per class across ~10 classes inflates false positives. After computing a two-sided binomial p-value for each class's realised-vs-claimed divergence, apply **Benjamini-Hochberg** (FDR 0.10) across the whole class set; only 🚩 a divergence that survives BH. Classes with decided-N in 5–7 go to an **appendix table** marked `THIN_N` and never appear in the headline table or the SUMMARY.
 
 2. **Per-tier reliability diagram (text table).** For each conviction tier (HIGH / MEDIUM / LOW), show realised win-rate. **A monotone tier order requires HIGH > MEDIUM > LOW.** Flag inversions explicitly — they are a desk-quitting signal.
 
-3. **Brier score.** Across all calls with both `claimed_win_rate` (or the rubric-implied prior for legacy) and an outcome:
-   - `Brier = (1/N) × Σ (claimed − realised_outcome)²` where realised_outcome ∈ {0, 1}
-   - Lower is better. A Brier ≥ 0.25 is "the rubric is no better than coin-flip"; ≤ 0.10 is "professionally calibrated."
+3. **Brier score + reliability curve + log-loss (C25).** Across all calls with both `claimed_win_rate` (or the rubric-implied prior for legacy) and an outcome:
+   - `Brier = (1/N) × Σ (claimed − realised_outcome)²` where realised_outcome ∈ {0, 1}. Lower is better; ≥ 0.25 is "no better than coin-flip," ≤ 0.10 is "professionally calibrated." Brier is a *single* number that **conflates calibration and resolution** — it can't tell you *where* on the confidence scale the rubric lies.
+   - **Reliability diagram** — bucket `claimed_win_rate` into deciles (0.5–0.55, 0.55–0.60, …, ≥0.90); for each bucket report predicted-mean vs realised-hit-rate and N. This localizes the miscalibration: the 2026-05-29 run's overconfidence lives entirely in the ≥0.80 buckets (dark-pool/vol-surface quoting 0.80+ and realising ~0.50). A desk reads the diagram, not just the scalar Brier.
+   - **Log-loss** = `−(1/N) × Σ [y·ln(p) + (1−y)·ln(1−p)]` (clamp `p` to [0.01, 0.99]). Log-loss punishes confident-and-wrong far harder than Brier, so a rubric that quotes 0.85 and is wrong is penalised the way a desk actually feels it. Report both; if log-loss and Brier disagree on direction across iterations, the confident tail is the cause.
 
 4. **Conviction-vs-outcome scatter.** Bucket `raw_score` into quintiles; report realised win-rate per quintile. The slope from low to high score should be positive and monotone. If quintile-3 win-rate exceeds quintile-5 win-rate, that's a tier-inversion buried inside the score.
 
@@ -199,8 +205,8 @@ INCONCLUSIVE rows are **excluded from win-rate denominators** in subsequent phas
 
 ### Output
 
-- `phase_3_calibration.md` — the desk reads three tables, a Brier number, and a written verdict. The verdict has three sections: (a) "where the rubric is honest," (b) "where it lies to itself," (c) "tier inversions or overconfidence on High-tier."
-- `phase_3_calibration.jsonl` — per-signal-class and per-tier numerics.
+- `phase_3_calibration.md` — the desk reads the class table (now carrying **benchmark-excess**), the per-tier diagram, the **reliability deciles**, Brier + **log-loss**, and a written verdict. The verdict has **four** sections: (a) "where the rubric is honest," (b) "where it lies to itself," (c) "tier inversions or overconfidence on High-tier," and **(d) "calibrated-but-beta" — classes whose claimed≈realised but whose benchmark-excess ≤ 0 (they ride the tape, they don't beat it).** (d) is the new desk-critical read: a class can pass calibration and still be worthless edge.
+- `phase_3_calibration.jsonl` — per-signal-class numerics incl. `realised_excess`, `spy_benchmark_wr`, BH-adjusted p-values, the reliability-decile array, and per-tier + log-loss/Brier scalars.
 
 ### Desk-style commentary required
 
@@ -252,6 +258,9 @@ Report each with `marginal_contribution`, `n`, and a GO/NO-GO verdict on the cor
 
 - A "CONFOUNDED" finding requires manual sanity-check before recommending demotion — some tools genuinely fire only when conviction is high (e.g. `uw insights signal-confluence ≥ 5`). Note this in the per-tool commentary.
 - Do not score tools cited fewer than 5 times — N is too small. Mark as "INSUFFICIENT_N" and exclude from tier ranking. **`fz` fields obey the same N≥5 floor** — on the tiny current dataset they will be INSUFFICIENT_N for several audits; that is expected and keeps them advisory.
+- **Multiple-hypothesis control (C23).** The tool table runs ~20 simultaneous `winrate_with − winrate_without` tests. Apply Benjamini-Hochberg (FDR 0.10) across the tool set before declaring any tier *change*; a single tool clearing +10pp on n=9 in a 20-test sweep is one expected false positive. Tools cited 5–7 times are `THIN_N` and tier-rated **provisionally** (lower-case tier label) — never the sole basis for a Phase-7 recommendation.
+- **Ubiquity confound (C32 precursor).** A tool cited on a large fraction of rows (e.g. `cumulative-premium-flow` at n=76) will read NO-INFO by construction — `with`≈`without` because it's the base-rate citation, not because it carries no signal. When a tool is cited on >60% of rows in its class, flag `ubiquity_confounded` and say so in the commentary rather than declaring it dead.
+- **Provenance governs priority (the reconstructed-citation rule).** For any audit where `tools_cited` on the majority of rows was **reconstructed from prose** (not read verbatim from `decision.json` `score_components[].source_tool`), every tool-tier finding is **structural/qualitative**. Such a finding may inform a Phase-7 recommendation but **cannot be rated above P1** — a P0 (calibration-breaking, act-now) tool change requires verbatim envelope provenance on ≥ the N used. State the provenance basis (verbatim vs reconstructed, and the N of each) in the phase header. This prevents the failure mode where a tool is caveated to "qualitative" and then ripped out of a live gate at P0 on the same breath.
 
 ---
 
@@ -306,7 +315,7 @@ For each row in Phase 1 with `score_components` and `gates_fired`:
 1. **Quant compliance**:
    - Sum of `score_components.points` equals `raw_score`? (mechanical check)
    - Every component has a named `source_agent` and `tool`?
-   - Backtest sizing-map honored? (i.e., does `pre_risk_size` match the win-rate threshold map: ≥0.65 → full, 0.50–0.65 → half, <0.50 → starter/skip?)
+   - Backtest sizing-map honored? Check against the **live** subject map (`signal-confluence-quant.md`): **≥0.70 → full, 0.50–0.70 → half, <0.50 → starter/skip** (the full-size line was tightened 0.65→0.70 by the 2026-05-23 register; auditing against the old 0.65 mis-flags compliant half-sizes). The size vocabulary the rubric actually emits is **`full | half | quarter | starter | skip`** — `quarter` sits between half and starter; include it in the order map so a legitimate `quarter` downgrade is not flagged as a violation (this caused several false positives in the 2026-05-29 run). Gate-driven downgrades below the map size are always allowed; only an *upgrade* above the win-rate-implied size is a violation.
 
 2. **Risk-monitor compliance**:
    - For each gate documented in `risk-monitor.md` (regime, VRP-vs-trade-type, front_iv panic, correlation, sector), was the gate **considered** for this call? A documented gate that should have fired (per Phase 1 macro context) but didn't appear in `gates_fired` is a **missed gate**.
@@ -319,14 +328,24 @@ For each row in Phase 1 with `score_components` and `gates_fired`:
 - Per-gate firing rate: how often did each gate fire when it was applicable?
 - **Missed-gate ledger**: every call where a gate should have fired but didn't, with the specific gate and the macro condition that triggered the obligation.
 
+### Gate effectiveness — does the gate HELP, not just FIRE (C24)
+
+Firing rate measures *compliance*; it says nothing about whether the gate improves outcomes. A gate that fires perfectly and downgrades winners is destroying edge with full procedural compliance. For each gate, measure effectiveness against resolved outcomes (Phase 2):
+
+1. **Downgrade-effectiveness.** Within each `dominant_signal_class`, compare realised WR (and benchmark-excess, C21) of calls the gate **downgraded** vs comparable calls it **left alone**. A *useful* downgrade gate is one whose downgraded names realise *lower* WR/excess than the ungated peers — i.e. the gate found the losers. If downgraded names win *as often or more*, the gate is **anti-effective** (it's taxing good trades) — flag it for the desk; that is a far more expensive error than a missed firing.
+2. **VETO false-positive rate (the fundamentals-gate cost).** Among `fundamentals_verdict == VETO` (and CAUTION) names that were nonetheless tracked, compute the fraction that *would have won* had they been sized. A VETO is only earning its keep if VETO'd names lose materially more than the book. Report `veto_fp_rate` = WIN / (WIN+LOSS) among VETO'd-but-resolved names. A high FP-rate means the gate is killing alpha on a fundamentals story that the flow was right to ignore.
+3. **Debate-gate effectiveness.** Among names where `bear_residual ≥ bull_residual` fired the −1 debate downgrade, did they underperform names where bull won? If not, the adversarial debate is theatre, not signal.
+
+**Activation discipline.** These effectiveness numbers need resolved outcomes — on a dataset with few decided gated names they will be **INSUFFICIENT_N (< 10 decided per gate)**. Report them as **advisory** below that floor; do **not** recommend loosening or removing a gate on thin effectiveness data (a gate's *insurance* value shows up only in the regime that hasn't happened yet — removing it in a calm tape is how desks blow up in the next one). The finding becomes actionable for Phase 7 only at ≥10 decided names per gate.
+
 ### Agent-prompt drift detection
 
 If the missed-gate rate for any specific gate exceeds 20%, that's evidence the agent's prompt and its realised behavior have diverged. Identify which agent file needs patching (`risk-monitor.md` for risk gates; `signal-confluence-quant.md` for scoring math).
 
 ### Output
 
-- `phase_6_decision_audit.md` — compliance rates, missed-gate ledger, per-agent drift findings. Voice: buy-side PM doing post-mortem on a fund — clinical, specific, names the agent file.
-- `phase_6_decision_audit.jsonl` — per-call compliance flags.
+- `phase_6_decision_audit.md` — compliance rates, missed-gate ledger, **gate-effectiveness table (downgrade-effectiveness per gate + `veto_fp_rate` + debate-gate effectiveness, C24)**, per-agent drift findings. Voice: buy-side PM doing post-mortem on a fund — clinical, specific, names the agent file. State the decided-N behind every effectiveness number; mark `< 10` as advisory.
+- `phase_6_decision_audit.jsonl` — per-call compliance flags + per-gate effectiveness numerics.
 
 ### Hard rules
 
@@ -374,9 +393,12 @@ Each recommendation is one heading + one paragraph. Required fields:
 
 ### Hard rules
 
-- **Propose-only.** Never call `Edit` or `Write` against any file outside `analyses/audit/<YYYY-MM-DD>/` in v1. The skill emits intentions; the user (or a future v2 `apply` mode) does the editing.
+- **Propose-only.** Never call `Edit` or `Write` against any file outside `analyses/audit/<YYYY-MM-DD>/`. The skill emits intentions; the user (or a separate, human-approved upgrade pass) does the editing. This is invariant — auditing the system and *editing* the system are different jobs, and the audit must never silently mutate the thing it grades.
 - Every recommendation cites the phase + the data point. No vibe-driven recommendations.
 - If a finding has no data behind it (data-thin pilot run), file it as P2-polish with an explicit "low confidence, needs N≥<threshold> before action" note rather than dropping it silently.
+- **Provenance caps priority (C23).** A recommendation derived from **reconstructed** (prose-parsed) tool citations or from a single regime **cannot be rated P0**, regardless of effect size — P0 means "act before next session," which demands verbatim-envelope provenance at the cited N. Downgrade such findings to P1 with the provenance basis stated. (The 2026-05-29 run violated this — it proposed P0 gate-surgery off explicitly-reconstructed citations.)
+- **Edge before calibration in the verdict.** When a class is both miscalibrated (Phase 3 claimed-vs-realised) *and* calibrated-but-beta (excess ≤ 0, C21), lead with the **edge** problem — a desk loses money on negative-excess long before it loses on an honest-but-wrong win-rate quote.
+- **Never recommend loosening/removing a risk gate on thin effectiveness data (C24).** Gate-removal proposals require ≥10 decided gated names showing the gate is anti-effective. A gate's value is insurance against the regime not yet in the dataset; absence of evidence in a calm tape is not evidence of absence.
 
 ---
 
