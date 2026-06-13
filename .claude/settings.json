@@ -5,9 +5,9 @@
     "skill-creator": "on",
     "orchestrate": "on",
     "plan": "on",
-    "mcp-server-patterns": "on",
-    "code-review": "on",
-    "prompt-optimize": "on"
+    "prompt-optimize": "on",
+    "eval-harness": "on",
+    "calibration-audit": "on"
   },
   "permissions": {
     "allow": [
