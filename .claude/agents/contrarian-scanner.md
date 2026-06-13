@@ -5,7 +5,7 @@ description: Finds overcrowded bullish or bearish positions using put/call extre
 
 You find trades where the crowd is too one-sided, creating a fade opportunity. **Raw P/C ratio at +2σ on an event-driven name is not a fade — it is a real hedge bid.** The v0.4.0 statistical replacement (`uw historical pc-ratio-zscore`) discriminates "crowded euphoria" from "structural insurance bid"; the deprecated `uw screener put-call-extremes` does not. You must not use the deprecated tool.
 
-1. `uw historical pc-ratio-zscore` — **PRIMARY**. Statistical sentiment extremes (±2σ flag BULLISH_EXTREME / BEARISH_EXTREME against a trailing window). This replaces the deprecated `uw screener put-call-extremes` — never call that tool.
+1. `uw historical pc-ratio-zscore` — **PRIMARY**. Statistical sentiment extremes (±2σ flag BULLISH_EXTREME / BEARISH_EXTREME against a trailing window). This replaces the deprecated `uw screener put-call-extremes` — never call that tool. **2026-06-12 audit P1.5 — two disciplines from P4 external evidence:** (a) **the "rising z-score" condition the scored −2 line references has no single-call data path** — `pc-ratio-zscore` returns today's z, not its trajectory; to assert "rising/crowding-worsening" you MUST pull it across ≥2–3 dated calls and compare, exactly like the dealer-positioning DEX-flip reconstruction. A single snapshot can state the *level* (`±2σ extreme`), not the *direction* of change — do not claim "rising" off one call. (b) **Single-name P/C extremes predict CONTINUATION, not reversal** (Pan-Poteshman 2006, Blau et al. 2014, Ge-Lin-Pearson 2016 — fading a call-heavy single name fights informed flow that on average continues +40bps/day). Contrarian P/C fading is published-supported **only at the INDEX level, at fear extremes (high-P/C), 10–30 day horizon** (Simon-Wiggins 2001). So: confine standalone fade theses to **SPY/QQQ index-level high-P/C fear extremes**; for single names, a ±2σ extreme is a *flag for caution / informed-continuation watch*, not a green light to short the crowd.
 2. `uw insights price-vs-flow` — price moving one way but flow going the other = smart money disagrees with the crowd
 3. `uw options-flow iv-outliers` — single-contract IV blowups where flow may be exhausted (top of the fade ladder)
 4. `uw screener iv-rank` (extreme high) — premium ripe to fade when paired with crowded sentiment
@@ -44,9 +44,23 @@ uw options-flow single-leg --regime <regime> --option-type put --json --quiet
 
 A **Tier-1** short-DTE opening/floor PUT (`CONTRARIAN_SHORT`) is a candidate
 single-name short thesis when the broader put/call ratio is also crowding — an
-institution shorting a specific name against the tape (next-session WR 61–64%,
-+23–26pp vs SPY, p<0.001, bull regime). Use `CALL_BETA_FADE_CHASE` (aggressive
-bull-tape call-chasing, −9.7pp vs SPY) as a **fade / crowding** tell, not a long.
+institution shorting a specific name against the tape (backtested next-session WR
+61–64%, +23–26pp vs SPY, p<0.001 in the Mar–May 2026 bull window — source:
+`scripts/single_leg_whale.py`, plan at `analyses/audit/2026-05-29/`; **re-validated
+2026-06-12**: Tier-1 PRIME 0.600 n=295 p≈0, June/TRANSITIONAL cohort 0.632 n=19).
+Stronger when the name shows borrow constraint — `fz_context` `short_ratio` /
+`short_float` (2026-06-12 P0.5, Johnson & So 2012 channel). Use
+`CALL_BETA_FADE_CHASE` (aggressive bull-tape call-chasing, −9.7pp vs SPY) as a
+**fade / crowding** tell, not a long — **bull-regime-conditional** (2026-06-12
+P0.5): outside bull regimes the call tier reads `CALL_UNVALIDATED`, not a default
+fade.
 
-Advisory — **0 rubric points** pending cross-regime validation (C19). See
-`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.
+Advisory — **0 rubric points**; promotion only via the pre-registered C19 gate
+(rolling WR ≥58%, ≥60d, ≥2 regimes). See
+`analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md` and
+`analyses/audit/2026-06-12/plan.md` P0.5.
+
+
+---
+
+**Output discipline (hard rule — 2026-06-12 audit P1.6).** You are a Phase-1 alpha-finder: **return your findings to the orchestrator only.** Do NOT write or edit any file, do NOT emit a `report.md` or a `decision.json`, and do NOT call `uw watchlist manage` or mutate the watchlist in any way. The only authorized watchlist write in the entire fleet is `risk-monitor`'s Step-2d `conviction_<date>` write-back — you have no write role. (2026-06-05 W23 incident: Phase-1 agents wrote a full report + envelope + watchlist entry unprompted; this rule exists to prevent a repeat.)

@@ -37,7 +37,7 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 
 ## Operating principle: prefer multi-day metrics over single-day snapshots
 
-Every spawned agent must prefer multi-day persistence tools over single-day equivalents wherever the CLI supports it. Specifically: `uw historical oi-trend` over `uw oi biggest-increases`, `uw hot-chains sweep-persistence` over `uw options-flow sweeps` for ranking, `uw options-flow sector-flow-persistence` over `uw options-flow sector-flow` for rotation calls, `uw historical pc-ratio-zscore` over the deprecated `uw screener put-call-extremes`, and `uw historical signal-backtest` before sizing any trade. Single-day signals are noise; multi-day persistence is the edge. Pass this instruction through to every spawned agent.
+Every spawned agent must prefer multi-day persistence tools over single-day equivalents wherever the CLI supports it. Specifically: `uw historical oi-trend` over `uw oi biggest-increases`, `uw hot-chains sweep-persistence` over `uw options-flow sweeps` for ranking (informational ranking / prose only — the sweep-persistence rubric line was removed 2026-05-23 P0.3; it earns 0 points), `uw options-flow sector-flow-persistence` over `uw options-flow sector-flow` for rotation calls, `uw historical pc-ratio-zscore` over the deprecated `uw screener put-call-extremes`, and — for the quant ONLY — `uw historical signal-backtest` under the P0.3 clean-query protocol before sizing any trade (2026-06-12: the tool is quarantined; Phase 1 agents must not call it and its raw headline is never quoted). Single-day signals are noise; multi-day persistence is the edge. Pass this instruction through to every spawned agent.
 
 ---
 
@@ -113,7 +113,7 @@ Output: for **SPY and QQQ** — `{symbol, spot, zero_gamma_level, zgl_reliable, 
 Scope is **1–4 week** dealer positioning shifts. Owns DEX/vanna/charm/GEX-trajectory work that GF can no longer carry alongside 0DTE.
 
 Tools required:
-- `uw options-structure dex` (DEX) — pre-directional signal; DEX flips precede price moves (Karsan / SqueezeMetrics).
+- `uw options-structure dex` (DEX) — dated-call snapshots; the "flips precede price moves" framing (Karsan / SqueezeMetrics) is practitioner hypothesis, not validated evidence (2026-06-12 P0.4) — only the MECHANIZED sign-change trigger in `dealer-positioning-strategist.md` feeds the scored line.
 - `uw options-structure vanna-charm` — vanna-squeeze setup detector (put-heavy book + falling VIX → BUY setup).
 - `uw historical gex-time-series` (lookback 10–30d) — multi-day ZGL trajectory; flag any regime flip across the window.
 - `uw options-structure gex` (default `dte_max=45`) — confirm DEX flip is not a single-strike artifact.
@@ -128,7 +128,7 @@ Tools required (GICS layer — the shared anchor, cross-checks the ETF tape):
 - `uw options-flow sector-flow-persistence` — multi-day rotation persistence per sector (PRIMARY).
 - `uw options-flow sector-flow` — week-end skew within the persistence narrative (consume from Step 0 if available).
 - `uw screener bullish-bearish` — filter by sector to extract single-name leaders.
-- `uw options-flow dte-volume-share` — institutional vs retail share by sector (institutional rotation only counts at high monthly+ share).
+- `uw options-flow dte-volume-share` — institutional vs retail DTE share. **MARKET-level only (returns `{symbol: MARKET}`), NOT per-sector (2026-06-12 P1.5)** — use as a market-wide regime overlay (high monthly+ share = institutional-positioning tape, rotation calls get the benefit of the doubt; high 0DTE share = retail tape, downgrade all rotation conviction uniformly), not a per-sector split the tool cannot produce.
 
 ETF instrument-level flow tape (per-symbol — GICS tools cannot see ETFs, especially thematics/geographics). Run the **canonical ETF universe** constant in `sector-rotation-strategist.md`, **cap ≤ 40 added `uw` calls**:
 - **RANK (≤21):** `uw historical cumulative-premium-flow` (`--symbol <ETF> --days 5`) for every universe ETF — rank by net-premium direction × multi-day persistence. Weight ETF **options** flow above ETF DP. Graceful-skip thin names.
@@ -141,7 +141,7 @@ Output: rotation regime call (defensive→cyclical / cyclical→defensive / grow
 **Conditional spawn.** If TODAY is within 5 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit — the orchestrator must not spawn it outside the window.
 
 Tools required:
-- `uw oi pin-risk` — pin candidates with strike + probability.
+- `uw oi pin-risk` — pin candidates with strike + `pin_score` (the tool's composite; **there is NO `probability` field** — 2026-06-12 P1.5).
 - `uw oi opex-concentration` — OI mass at OPEX strikes; cross-ref against uw oi pin-risk for ranking.
 - `uw options-structure gex` — confirm pin strike sits inside / adjacent to a long-gamma wall.
 
@@ -234,8 +234,8 @@ Phase 2 runs in four sequential stages. The quant produces the audited score (2a
 
 Once **all** Phase 1 agents return, collect every candidate ticker into a single union list with each candidate's flagging agents and named signals. Spawn `signal-confluence-quant` with that union plus the conviction rubric (Step 4 below) as input. It must:
 
-- Run `uw insights signal-confluence` per ticker — confirm or contradict Phase 1 flags.
-- Run `uw historical signal-backtest` per ticker, per dominant signal class — pull historical win-rate (or `vol_realisation_rate` for non-directional signals).
+- ~~Run `uw insights signal-confluence` per ticker~~ — **REMOVED 2026-06-12 audit P0.2.** The tool is funnel-only (Step 0 #6); the quant must not call it. `confluence_score` in the output is carried from the Step 0 funnel result when the ticker appeared there (informational only), else `null`.
+- Run `uw historical signal-backtest` **per dominant signal class under the P0.3 clean-query protocol** (see `signal-confluence-quant.md` "Signal-backtest substrate quarantine"): `--top-n 200` pinned, rows post-filtered to **complete forward windows only** (`signal_date` ≥ `lookback_days` trading days before the latest data date — the tool's own `truncated_signals` are silently INCLUDED in its headline, so the headline `win_rate` field must never be quoted directly), WR recomputed from the kept rows with the kept `n`. The tool is **market-wide per class** (it has no `--symbol` flag) — label `win_rate_source` accordingly; never present the number as ticker-specific. If the clean protocol cannot be completed for a class, emit `win_rate: null, win_rate_source: "NA(substrate)"` and size by tier default capped at half.
 - Pull `uw historical cumulative-premium-flow` (30d and 90d) for tie-breaking and supplemental directional context.
 - Compute `raw_score` per ticker against the Step 4 rubric, identify `dominant_signal_class`, attach `win_rate`, and emit `final_size_recommendation_pre_risk` (full / half / starter / skip) with a full audit trail per ticker.
 
@@ -259,7 +259,7 @@ Spawn `risk-monitor` with (a) the quant's sorted score list, (b) the Step 2b fun
 
 - Run `uw risk portfolio-correlation` against today's candidates (not the static watchlist) — risk is measured against what we're actually considering.
 - Confirm `uw risk market-regime` from Step 0 (do not re-fetch).
-- Apply the full sizing-gate stack from `risk-monitor.md`: VETO → watch-only (fundamentals); −1 tier each for regime conflict, `uw options-structure front-end-iv-ratio > 1.10` panic, VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call — including the new `fundamentals`, `event_risk`, and `debate` verdicts — even when each no-op's.
+- Apply the full sizing-gate stack from `risk-monitor.md`: VETO → watch-only (fundamentals); −1 tier each for regime conflict, `uw options-structure front-end-iv-ratio > 1.10` panic, VRP-vs-trade-type contradiction, corr-cluster duplication, adverse sector rotation, `fundamentals_verdict == CAUTION`, a Tier-1 macro/earnings event inside the trade horizon (event-risk gate), and bear residual ≥ bull residual (debate gate). Emit an explicit `gate_verdicts` line per call — **all 9 keys**, including `fundamentals`, `event_risk`, `debate`, and the new `rubric_regime` verdict (2026-06-12 P0.6) — even when each no-op's.
 - Pull `uw watchlist alerts` and `uw watchlist scan` against the rolling `conviction_<yesterday>` group — surface adverse-flow exit candidates.
 - Persist today's top-5 conviction names (post-gate, **excluding any VETO'd name**) via `uw watchlist manage --action add --group conviction_<date> --tickers <top_5_by_score>`.
 
@@ -269,34 +269,54 @@ Output: correlation clusters (corr > 0.7 = treat as one position), regime confli
 
 ## Step 3 — Confluence gate
 
-Before scoring, apply the **confluence gate**: a ticker only enters the conviction rubric if **at least two distinct Phase 1 agents flag it positively** OR **one Phase 1 agent flags it AND `uw insights signal-confluence` rates it ≥4**. Names with only one signal class but no confluence backing are noted in §8 ("Watch-only — single signal") and excluded from the high-conviction list. This rule prevents single-tool false positives from contaminating the trade book.
+Before scoring, apply the **confluence gate**: a ticker only enters the conviction rubric if **at least two distinct Phase 1 agents flag it positively**. Names flagged by a single agent are noted in §8 ("Watch-only — single signal") and excluded from the high-conviction list. This rule prevents single-tool false positives from contaminating the trade book.
 
-### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0, hardened 2026-05-15 audit P1.3, expanded to 3-of-5 by 2026-05-23 audit P0.2)
+> **2026-06-12 audit P0.2 — the `uw insights signal-confluence` entry path was REMOVED.** The prior "OR one Phase 1 agent + `signal-confluence` ≥4" alternative is gone: the tool is a server-side composite of the same quantities the rubric scores (live factor list: `dp_accumulation`, `oi_building`, `bullish_flow`, `low_pcr`, …), so it can never be the *second* opinion on a name one agent already flagged — it is the first opinion re-aggregated. It also has no per-ticker mode (top-N screener only), which made the path non-deterministic. The tool now has exactly **one role in the whole pipeline: the Step 0 #6 funnel seed.** Do not consult it at entry, scoring, or HIGH-gate stages.
 
-After scoring, before any candidate enters the HIGH-tier section of §3 / §7 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **3 of the 5 LOAD-BEARING tools** (added `uw insights signal-confluence` on 2026-05-23):
+### Step 3a — HIGH-tier load-bearing-tool gate (2026-05-09 audit P0; 3-of-4 as of 2026-06-12 audit P0.2)
+
+After scoring, before any candidate enters the HIGH-tier section of §3 / §7 (i.e. anything that would be sized as `full` post-quant), the call must additionally cite at least **3 of the 4 LOAD-BEARING tools**:
 
 - `uw dark-pool block-stratified` (institutional-vs-retail filter)
 - `uw historical cumulative-premium-flow` (30d directional accretion)
 - `uw insights institutional-accumulation`
 - `uw options-structure dex` (DEX)
-- `uw insights signal-confluence` (second-agent confirmation — added 2026-05-23 P0.2; Phase 4 +19.5pp marginal, LOAD-BEARING)
 
-A call that scores raw_score ≥ 9 (HIGH-tier under the 2026-05-30 P1.3 cut) but cites fewer than 3 of these five tools must be **demoted to MEDIUM tier**. Phase 3 of the 2026-05-23 audit detected tier inversion (HIGH 60.0% < MED 62.5%) under the prior 3-of-4 gate; Phase 5 W21 holdout shows the 3-of-5 gate restores tier monotonicity (HIGH 0.80 / MED 0.50 / LOW 0.50). Half-baked "accumulation only" HIGH calls (e.g. MA 5/18, BL 5/19) demote to MED — both lost in resolved outcomes, so the demote is correct in retrospect.
+A call that scores raw_score ≥ 9 (HIGH-tier under the 2026-05-30 P1.3 cut) but cites fewer than 3 of these four tools must be **demoted to MEDIUM tier**.
+
+# `uw insights signal-confluence` REMOVED from this gate 2026-06-12 audit P0.2 (had been added 2026-05-23).
+# Reason: the tool is a composite of the other gate members' own quantities (dp_accumulation / oi_building /
+# bullish_flow factors verified live), so citing it added correlated citation breadth, not evidence
+# independence — and the +19.5pp (n=12) that justified adding it was selection-confounded (candidates were
+# funnel-seeded and gate-admitted on the same score). The 2026-05-30 meta-audit had already found the tool's
+# marginal contribution method-unstable (+17.2pp → −1.0pp under path-aware grading).
+# Known limitation (2026-06-12 plan, deliberately accepted): the remaining 4 tools are still downstream of one
+# actor's footprint — this gate guards against *thin* HIGH calls, not against correlated ones. The structural
+# fix (a cross-QUANTITY independence requirement) is pre-registered for a future cycle, not improvised here.
 
 ---
 
 ## Step 4 — Conviction scoring rubric (applied by signal-confluence-quant in Step 2a)
 
+> **RUBRIC FROZEN — version `2026-06-12` (audit P0.1).** Weights, tier cuts, and gate membership below are frozen as of the 2026-06-12 audit. No line may be promoted, demoted, added, or re-binned until a change clears a **pre-registered, cross-regime, Benjamini-Hochberg-surviving** bar (the same discipline the C-register already applies to C6/C8/C19). Audits **grade** this rubric; they do not retune it. Rationale: six prior cycles re-weighted correlated lines on n=8–31 single-regime marginal contributions whose CIs straddle zero; the cum-flow +2→+3→+1 whipsaw was a realized false positive of that process, and the ≥9 HIGH cut failed its scheduled re-confirmation on 2026-06-12 (HIGH realized 0.222 vs claimed 0.774 on the first post-UPTREND window). Every emitted envelope stamps `rubric_version: "2026-06-12"` so /calibration-audit can stratify by rubric era mechanically.
+
 The rubric below is what `signal-confluence-quant` consumes in Step 2a to produce the audited score. The quant attaches every signed point to a named source agent + tool in `score_components`. Risk-monitor in Step 2d applies the regime / VRP / cluster / fundamentals / event-risk / debate gates **on top of** this score.
 
 ```
 Daily conviction score = Σ:
-  +3  dealer-positioning-strategist flags DEX flip or vanna-squeeze setup in trade direction
-  +3  3+ aligned signals in accumulation-hunter (DP + OI + uw oi smart-positioning, uw dark-pool block-stratified institutional-tier confirmed) — CONJUNCTION (2026-05-25 register C11): full +3 only when cum_premium_flow_30d confirms (sign aligned with thesis AND |cum_flow_30d| ≥ $50M); else halved (floored) +3→+1. Reason: additive DP+accum+matrix manufactured false HIGH conviction (tier inversion HIGH 60.0% < MED 62.5%, n=49); the ≥0.80 WR is a conjunction (DP-block ∧ cum_flow ∧ institutional-accum). Distinct from flow_conflict/−lite (those subtract on opposing/MIXED flow; this reduces the +3 accumulation award to +1 on non-confirming flow — both may fire). A sub-$50M flow that halves this line does not separately qualify as "net directional accretion" for the +3 cum_flow line. See signal-confluence-quant.md "Conditional dark_pool_accumulation conjunction".   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +27.8pp marginal contribution (LOAD-BEARING)
+  +1  dealer-positioning-strategist flags a MECHANIZED DEX flip or vanna-squeeze setup in trade direction — the trigger must be a verified SIGN CHANGE, not a level: sign(net_dex) on the latest session opposite to ≥3 consecutive prior sessions, read from dated `uw options-structure dex --date` calls (≥4 to verify the prior-session sign run; ~11 for the trailing-median floor), with |net_dex| on the flip day ≥ 0.25× the trailing-10-session median |net_dex|; the evidence string must cite both dated values. Vanna disjunct additionally requires a dated VIX source (Yahoo chart API ^VIX) for the falling-VIX leg — no out-of-band VIX fills.   # DEMOTED +3→+1 and MECHANIZED 2026-06-12 audit P0.4: the 2026-06-11 book awarded the +3 to MU/MRVL/ASML with no DEX sign change anywhere in their 10d windows (level scored as flip — the tool returns a snapshot with no flip field); no peer-reviewed support exists for DEX/vanna flips as 1–4wk directional signals (hedging pressure is intraday-mean-reverting per Baltussen et al. 2021), and a positive DEX *level* in an up-tape is beta (dealer_positioning ran −7pp excess, 2026-05-30 audit). Restore toward +3 only via a pre-registered dex-flip backtest (pattern: scripts/single_leg_whale.py) showing forward excess across ≥2 regimes.
+  +3  3+ aligned signals in accumulation-hunter (DP + OI + uw oi smart-positioning, uw dark-pool block-stratified institutional-tier confirmed) — CONJUNCTION (2026-05-25 register C11): full +3 only when cum_premium_flow_30d confirms (sign aligned with thesis AND |cum_flow_30d| ≥ $50M); else halved (floored) +3→+1. Reason: additive DP+accum+matrix manufactured false HIGH conviction (tier inversion HIGH 60.0% < MED 62.5%, n=49); the ≥0.80 WR is a conjunction (DP-block ∧ cum_flow ∧ institutional-accum). Distinct from flow_conflict/−lite (those subtract on opposing/MIXED flow; this reduces the +3 accumulation award to +1 on non-confirming flow — both may fire). A sub-$50M flow that halves this line does not separately qualify as "net directional accretion" for the +1 cum_flow line (demoted from +3, 2026-06-06 P1.4). See signal-confluence-quant.md "Conditional dark_pool_accumulation conjunction".   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +27.8pp marginal contribution (LOAD-BEARING)
   +1  multi-day OI build (uw historical oi-trend BUILDING, --days ≥ 5)                       # was +2; reduced 2026-05-09 (Phase 4 +5pp marginal — supportive, not load-bearing; correlated with the LOAD-BEARING components above)
   +1  uw insights conviction-matrix = DIRECTIONAL_LONG, confidence > 70 — CONDITIONAL ONLY (2026-05-23 audit P1.1): award +1 only when dominant_signal_class == leap_directional; in all non-LEAP contexts contribution is 0. Phase 4: marginal contribution −23pp (n=8) on swing horizon; the DIRECTIONAL_LONG/>70 signature appears to be a mean-reversion-fade (top-pick) signature outside LEAP. LEAP gate in leap-positioning-radar still consumes this tool — only the swing-rubric award is gated to leap_directional.
-  +3  uw historical cumulative-premium-flow shows net directional accretion in trade direction (30d window)   # was +2; promoted 2026-05-15 audit P1.2 — Phase 4 +24.2pp marginal contribution (LOAD-BEARING)
-  +2  uw insights signal-confluence ≥4 (second-agent confirmation)   # NEW 2026-05-23 audit P1.2 — Phase 4 +19.5pp marginal contribution (n=12, LOAD-BEARING); also added to the 3-of-5 LB gate in Step 3a
+  +1  uw historical cumulative-premium-flow shows net directional accretion in trade direction (30d window) — INTENT-SCREENED (2026-06-06 audit P1.4): award the +1 only when the premium passes an intent screen: (a) no C28 distribution_flag present on the name (uw oi decrease-with-volume closing signature), AND (b) on dividend payers inside an ex-div window, the accreting prints are NOT deep-ITM sub-parity calls (dividend-capture arb, not conviction — the NEE 2026-06-04 false-bullish). Screen failed or unevaluated on a flagged name → 0.   # DEMOTED +3→+1 2026-06-06 audit P1.4 — most-cited tool in the book (n=136) and NO-INFO across three consecutive path-aware audits (−3.5pp MC); demoted-not-removed (reconstructed-citation provenance caps at P1; tool stays in the LB gate (3-of-4 as of 2026-06-12 P0.2)). Original promotion (+2→+3, 2026-05-15, +24.2pp) was a close-only-method artifact.
+  # +2 line for uw insights signal-confluence ≥4 REMOVED 2026-06-12 audit P0.2 (had been added 2026-05-23 P1.2 on +19.5pp, n=12)
+  # Reason: live factor-list probe shows the tool is a server-side RE-COUNT of already-scored quantities
+  # (factors: dp_accumulation ↔ the +3 accumulation line, oi_building ↔ the +1 oi-trend line, bullish_flow ↔
+  # the +1 cum-flow line) — "second-agent confirmation" was the same tape re-aggregated, near-deterministic
+  # for any name with the accumulation stack lit. The promotion evidence was selection-confounded (entry gate
+  # and funnel keyed on the same score) and the CLI has no per-ticker mode, so the ≥4 check was non-deterministic
+  # (membership in a top-N list). Tool keeps exactly ONE role: the Step 0 #6 funnel seed. It earns no points,
+  # gates no entry, and sits in no HIGH-tier gate.
   # +1 line for uw hot-chains sweep-persistence top-5 REMOVED 2026-05-23 audit P0.3
   # Reason: marginal contribution −22pp two consecutive audits (n=15); mega-cap suppression rule from 2026-05-15 P1.1 was insufficient.
   # Tool remains informational — sweep-tracker still surfaces persistence-ranked sweeps in §3/§7 prose — but contributes 0 points to raw_score.
@@ -306,19 +326,24 @@ Daily conviction score = Σ:
   +2  in multileg-strategist with directional structure (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal; multileg-vs-batch_strategy disagreements correctly resolved 5/5 in dataset)
   +1  in vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias
   +1  opex-pin-strategist ranks ticker top-5 (OPEX week only)
-  -2  contrarian-scanner flags as overcrowded long with rising uw historical pc-ratio-zscore (VRP positive)
+  -2  contrarian-scanner flags as overcrowded long with rising uw historical pc-ratio-zscore (VRP positive)   # MECHANISM (2026-06-12 P1.5, re-attributed per P4): an INFORMED-FLOW CONTINUATION penalty, not a "crowd is wrong, fade it" signal. Single-name P/C extremes predict continuation, not reversal (Pan-Poteshman 2006; Ge-Lin-Pearson 2016) — a crowded long sits on the side informed flow tends to continue, so a LONG resting on crowded-euphoria evidence is the riskier long and gets docked. "Rising" needs a multi-date z trajectory (no single-call path). Frozen at −2 (P0.1); routed through the C13 router so it never double-counts with a flow read.
   -3  flow_conflict — signal-confluence-quant applies mechanically when uw historical cumulative-premium-flow 30d direction is *clearly opposite* dominant_signal_class (signed-sum sign flip + magnitude > today's union-median |cum_flow_30d|, or explicit OPPOSITE label)   # 2026-05-15 audit P0 — see signal-confluence-quant.md "Mechanical flow_conflict deduction" rule; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict_lite (apply ONE, never both)
   -1  flow_conflict_lite — signal-confluence-quant applies when the 30d cum_premium_flow read is MIXED (signed sum near zero, or aligned but bottom-quartile magnitude in today's union)   # 2026-05-15 audit P0; 2026-05-23 audit P1.3: mutually exclusive with flow_conflict (apply ONE, never both)
   # 2026-05-09 -2 generic flow_conflict line replaced with the mechanical -3 / -1 split above (Phase 3 2026-05-15 audit: 30% missed-gate rate at the generic line; NVDA 2026-05-08 raw=10 LOSS dominated by un-penalised flow_conflict against −$17.89M cum_flow_30d)
-  -1  risk-monitor flags in correlation cluster (corr > 0.7) — applied in 2d on top of raw score
-  -3  uw risk market-regime conflicts with trade direction — applied in 2d
+  # The two lines below are NOT score_components — they are risk-monitor TIER gates applied in Step 2d, listed here only
+  # to document the full deduction stack. They contribute 0 to raw_score and never appear in score_components (verified
+  # 0/151 envelope calls, 2026-06-12 audit P1/F5 — the quant is forbidden from gating on regime/correlation, risk-monitor
+  # acts on tiers not points, and the validator locks Σ score_components == raw_score). Keeping them inside the score block
+  # made the rubric overstate its own score-level discipline; they live here as gate documentation, outside the Σ.
+  -1  [TIER GATE, 2d] risk-monitor flags in correlation cluster (pairwise corr ≥ 0.70) — −1 TIER, not −1 point
+  -3  [TIER GATE, 2d] uw risk market-regime conflicts with trade direction — −1 TIER (regime gate), not −3 points
 
 # Removed from swing/LEAP scoring 2026-05-09 (Phase 4 audit, NO-INFO ±0pp on swing horizon):
 #   gamma-flip-tracker 0DTE breakout setup (regime flip + flow alignment) — formerly +2.
 #   The signal drives §2 (Next-Session GEX Map — SPY/QQQ advisory) directly, but does NOT earn rubric
 #   points on any row. §2 is advisory / prose-only and contributes 0 points to raw_score by design
 #   (the next_session_gex envelope block is kept OUT of calls[] so it cannot enter the rubric). This
-#   component also double-counted with dealer-positioning's +3 DEX flip.
+#   component also double-counted with dealer-positioning's DEX-flip line (then +3, now +1 mechanized — 2026-06-12 P0.4).
 ```
 
 **Conviction tiers (2026-05-15 audit P0; supersedes prior `≥ 5` HIGH cut and the deferred R-09 from 2026-05-09):**
@@ -330,21 +355,25 @@ Daily conviction score = Σ:
 | 3 – 6 | **LOW** | starter / watch-only — supporting candidate in §3/§4, not surfaced in Executive Summary or §7 |
 | ≤ 2 | drop | filtered by quant's drop floor |
 
-Surface every **HIGH and MEDIUM** ticker in the Executive Summary and §7 (High-Conviction Cross-Ref). LOW tier names appear in §3/§4 as supporting candidates only. **HIGH cut lowered 10 → 9 (2026-05-30 register P1.3):** the ≥9 bin realised 0.774 (n=31, path-aware) / 0.70 (close-only) across the two most recent audits vs MED (7–8) ~0.54, restoring monotone HIGH>MED>LOW; supersedes the 2026-05-15 ≥10 cut. ⚠️ In-sample-only (holdout had 0 resolved HIGH), single UPTREND regime — re-confirm ~2026-06-12; a score-9 beta-long promoted to HIGH is still capped at half by the C2 market-excess gate, so only genuine-edge names full-size.
+Surface every **HIGH and MEDIUM** ticker in the Executive Summary and §7 (High-Conviction Cross-Ref). LOW tier names appear in §3/§4 as supporting candidates only. **Tier-cut status (2026-06-12):** the ≥9 HIGH cut (2026-05-30 P1.3, set in-sample on UPTREND data where the ≥9 bin realised 0.774 n=31) **failed its scheduled re-confirmation on 2026-06-12** — bands inverted on the first post-UPTREND window (HIGH 0.222 / MED 0.214 / LOW 0.444, close-only 5d). The cuts are retained under the P0.1 freeze (re-binning on another thin window repeats the documented failure mode) but carry no validated ranking claim; the P0.6 out-of-regime guard caps all sizing at half in the interim.
 
 ---
 
 ## Step 5 — Backtest-weighted sizing
 
-For each HIGH or MEDIUM tier ticker (raw_score ≥ 7 under the 2026-05-15 cuts), identify its dominant signal class — typical labels: `dark_pool_accumulation`, `multi_day_sweep`, `gamma_breakout`, `oi_build`, `leap_directional`, `bullish_flow`, `bearish_flow`, `multileg_directional`. Call `uw historical signal-backtest` with that signal class and the ticker. Apply this sizing map (**2026-05-15 audit PC.1**; full-size threshold tightened 0.65 → 0.70 after Phase 3 quintile data showed only Q5 raw≥9 realised >0.65; Q4 raw 6–8 realised 0.571 — sub-0.65, deserves half not full):
+For each HIGH or MEDIUM tier ticker (raw_score ≥ 7 under the 2026-05-15 cuts), identify its dominant signal class — typical labels: `dark_pool_accumulation`, `multi_day_sweep`, `gamma_breakout`, `oi_build`, `leap_directional`, `bullish_flow`, `bearish_flow`, `multileg_directional`. Obtain the class win-rate **only via the P0.3 clean-query protocol** (2026-06-12 audit; see Step 2a and `signal-confluence-quant.md` "Signal-backtest substrate quarantine") — the raw tool headline is quarantined: its forward windows clamp to the latest bar (complete-window WR 0.485 vs clamped 0.733 on the same class, measured 2026-06-12) and its quote swings 30pp across `--top-n` choices. Apply this sizing map (**2026-05-15 audit PC.1**; full-size threshold tightened 0.65 → 0.70):
 
-| `win_rate` | Position size |
+| `win_rate` (clean protocol) | Position size |
 |---|---|
 | ≥ 0.70 | full size |
 | 0.50 – 0.70 | half size |
-| < 0.50 | starter / skip |
+| < 0.50 | starter / skip (the quant's authoritative floor — `signal-confluence-quant.md` enforces `win_rate < 0.50 ⇒ pre_risk ∈ {starter, skip}` at emission; never half/full) |
+| `null` (newly covered, no history) | starter — matches the quant's sizing map |
+| `NA(substrate)` (clean protocol could not complete) | tier default capped at half (HIGH → half, MEDIUM → half, LOW → starter), then gates |
 
-For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest returns `vol_realisation_rate` instead — use the same thresholds. Note the win_rate explicitly next to each top call.
+For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest returns `vol_realisation_rate` instead — same thresholds, same clean protocol. Note the win_rate explicitly next to each top call **with its `win_rate_source` and kept `n`**.
+
+**Out-of-regime guard (2026-06-12 audit P0.6, downgrade-only):** the rubric was fitted entirely in the UPTREND regime that ended 2026-06-12. Until a `/calibration-audit` records **≥30 resolved post-2026-06-12 calls** and re-validates the tiers, every conviction-tier size is **capped at half** regardless of win_rate, and the Executive Summary must carry the line `Rubric regime status: OUT-OF-REGIME (fitted UPTREND; current <regime>) — sizing capped at half`. risk-monitor enforces the cap (its `rubric_regime` gate) — the lift happens by editing this block when the named audit clears it, not by discretion.
 
 **On top of this ladder (2026-05-25 register C2), the quant applies two downgrade-only guards** (see `signal-confluence-quant.md` "Market-excess gate" + the N-conditional cap): (1) the `n < 10` cap is **0.69** (below the 0.70 full line — a small-N up-week class sizes at most half), and (2) a **market-excess gate** — if a class does not beat the same-direction SPY bet over the same windows (`excess ≤ 0`), cap at half; `excess ≤ −0.10` → starter. Beta in an up-tape is not edge. The win-rate denominator is computed only over liquidity-floor-passing names (C12). Reusable: `scripts/excess_winrate.py:size_decision`. **(3, register C4)** a `bullish_flow`/`bearish_flow` class also caps at half when the flow is **not OI-confirmed-opening** (Pan-Poteshman: only opening flow predicts) — `uw historical oi-trend` BUILDING or ΔOI ≥ 20% of day volume; flat/falling OI vs high volume = churn → cap half. Reusable: `scripts/oi_opening.py:opening_gate_size`. All three guards are downgrade-only and may stack.
 
@@ -377,6 +406,7 @@ Synthesize into the structured markdown below. The report is organized **by trad
 
 ## Executive Summary
 - **Regime + GEX state:** <one line — regime label, SPY/QQQ/IWM gamma, VIX, breadth, sector lean>
+- **Rubric regime status:** <`IN-REGIME` or `OUT-OF-REGIME (fitted UPTREND; current <regime>) — sizing capped at half` — the P0.6 guard line; mandatory while the 2026-06-12 freeze block in Step 5 is active>
 - **Next-session GEX (SPY/QQQ):** <per index: regime (long/short-gamma) · ZGL · call wall / put wall · one-line structure bias> — advisory, see §2
 - **Top swing build:** <ticker, thesis, structure, invalidation, win_rate, size>
 - **Top LEAP candidate:** <ticker, scenario, structure, invalidation, win_rate, size>
@@ -415,14 +445,14 @@ Per index, state **regime + ZGL + call wall + put wall + a one-line structure bi
 ### 2a. Next-session 0DTE premium-selling setup (from `scripts/zerodte_setup.py` — the validated stack)
 The GEX **walls above are a map (advisory "where"), not a pin** — wall-as-magnet backtested NO_GO, as did every directional signal (charm, vanna, intraday momentum). What *did* validate is a **delta-neutral premium-selling** edge. Surface the `zerodte_setup` block from Step 0 for **SPY and QQQ** (still advisory, **0 rubric points**, NOT a guaranteed edge — the validation sample has no vol shock, so the short-vol tail is unsampled):
 
-- **Whether (VRP):** the front-expiry implied move systematically exceeds the realized next-day open-to-close move. Report `sell_premium` + the rolling `backtest.verdict` / win-rate so the read carries its own track record.
+- **Whether (VRP):** the front-expiry implied move systematically exceeds the realized next-day open-to-close move. Report `sell_premium` + the rolling `backtest.verdict`. **2026-06-12 P1.8 — quote the PnL on its real basis and net of cost:** the `mean_pnl_open_pct` is **% of underlying spot notional, GROSS** (`pnl_basis` field spells this out) — it is NOT premium-collected and NOT margin-relative, so a "+0.30%/day" figure is tiny in absolute terms. Report `mean_pnl_open_net_pct` (gross minus the assumed `round_trip_cost_pct_assumed` half-spread+fees) **alongside** the win-rate, and lead with net — Vilkov (2024) found an unconditional 0DTE condor flips to negative net Sharpe once costs are charged, so the gross win-rate overstates a negatively-skewed seller's edge.
 - **How much (GEX vol-suppression, Barbon-Buraschi):** long-gamma → quieter next-day range → tighter wings; short-gamma → wider range → wings out or stand aside. Use `expected_range_pct` for wing width.
 - **Size (VIX level):** scale by `size_scalar` / `vol_state` — bigger when VIX rich, skip when VIX low (thin edge).
 - **When:** `entry_rule` — **enter at/after the open once the gap resolves; hold the 0DTE to the close; never carry overnight** (overnight entry backtested negative — the gap erases the edge). If it gaps beyond the wings, stand aside.
 - **Stand aside** when `stand_aside_reason`/`caution` is set (VIX spiking or front-end backwardation — the regime where short-vol blows up).
 - **Direction:** none — this is delta-neutral. Do not add a directional tilt.
 
-Per index, surface `{sell_premium, vol_state, size_scalar, expected_range_pct, suggested_structure, entry_rule, stand_aside_reason}`. **SPY ≈ SPX** (validated identical — trade either); **QQQ is weaker** (Nasdaq index book unavailable) — flag its lower confidence.
+Per index, surface `{sell_premium, vol_state, size_scalar, expected_range_pct, suggested_structure, entry_rule, stand_aside_reason}` plus `{mean_pnl_open_pct (gross), mean_pnl_open_net_pct, pnl_basis}`. **SPY ≈ SPX** (validated identical — trade either); **QQQ is weaker** (Nasdaq index book unavailable) — flag its lower confidence. **Promotion bar (P1.8):** this lane stays advisory / 0 rubric points **permanently** until BOTH a vol-shock day enters the sample (the short-vol left tail is currently UNSAMPLED) AND **net** expectancy clears a tail-aware bar — win-rate is explicitly NOT the promotion metric for a negatively-skewed short-vol strategy.
 
 Near-term directional **sweeps** are surfaced in §3 (swing setups), not here. **OPEX-week pin mechanics** (when `opex-pin-strategist` is spawned) flow through the conviction rubric into §3 / §7 like any other scored name — they are not part of this advisory.
 
@@ -499,12 +529,12 @@ Skip this step entirely on a "no edge" day (no HIGH-tier names). Keep it to the 
 0. **Create the run folder** — `mkdir -p analyses/daily/YYYY-MM-DD` via Bash. Both output files live inside it; the date lives in the folder name, so the files are generically named (`report.md`, `decision.json`).
 1. Use Write to save the report to `analyses/daily/YYYY-MM-DD/report.md`.
 2. **Emit the structured decision envelope** beside the report at `analyses/daily/YYYY-MM-DD/decision.json`, conforming to `schemas/decision_envelope.schema.json`. This is the machine-resolvable sidecar `/calibration-audit` Phase 1 reads instead of re-parsing prose. Build it from the data already produced — do not re-derive:
-   - Top level: `{schema_version: "1.2", report_date, report_kind: "daily", regime, vrp_classification, macro_snapshot_signals (the fred_macro signals object), macro_event_risk (the event_risk calendar), watchlist_write_back (the persisted top-5), next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}`. (`1.2` adds the advisory per-call `distribution_flag`, 2026-05-30 meta-audit C28; older `1.0`/`1.1` envelopes remain valid.)
+   - Top level: `{schema_version: "1.3", rubric_version: "2026-06-12", report_date, report_kind: "daily", regime, vrp_classification, macro_snapshot_signals (the fred_macro signals object), macro_event_risk (the event_risk calendar), watchlist_write_back (the persisted top-5), next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}`. (`1.3` adds the `rubric_version` era stamp, 2026-06-12 audit P0.1 — update the literal only when the frozen rubric is formally re-versioned; `1.2` added the advisory per-call `distribution_flag`; older envelopes remain valid.)
    - `breadth_cross_check` (advisory, 2026-05-27 `fz`-edge A2): the Step-0 `fz breadth` block — `{advisory: true, source: "finviz", advancers, decliners, pct_green, divergence_flag (true when the index is green but pct_green < 50), note}`. Emit `null` when `fz_available == false`. Like the other advisory blocks it is top-level, **not** in `calls[]`, and contributes 0 points.
    - `next_session_gex` (schema_version 1.1): the **advisory** §2 GEX-map block — `{advisory: true, as_of_eod_date: <report_date>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}` for **SPY and QQQ only**.
    - `next_session_0dte_setup` (schema_version 1.1): the **advisory** §2a premium-selling block, copied from Step 0 `zerodte_setup` — `{advisory: true, as_of_eod_date: <report_date>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}` for **SPY and QQQ only**. Emit `null` if `zerodte_setup.available == false`.
    - **Both** advisory blocks are deliberately top-level fields, **not** members of `calls[]` — §2/§2a are prose-only and must contribute 0 points to any `raw_score`. **Do not** add a `horizon: "0DTE"` entry to `calls[]` for this content.
-   - `calls[]`: one object per HIGH/MEDIUM/LOW call (and watch-only / VETO'd names) carrying the quant's audit fields verbatim — `ticker, horizon, section, direction, tier, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, pre_risk_size, final_size, gate_verdicts, fundamentals_verdict, debate_residual_confidence (the bull residual), structure, entry_or_trigger, invalidation, key_risks[], thesis`. For any top-5 name carry the fundamentals-gate's `fz_context` block (short-interest / float / squeeze / analyst — advisory, 0 points); omit or set `{available:false}` otherwise. For any **long** name that the accumulation-hunter flagged with bullish-side OI being closed, carry its `distribution_flag` block (`{present, closing_side, closing_premium, oi_decrease, note}` — advisory, 0 points, 0 tier impact, C28); omit or set `{present:false}` otherwise. It is **not** a `score_components` line — it lives only on the call object so the Σ-invariant is untouched.
+   - `calls[]`: one object per HIGH/MEDIUM/LOW call (and watch-only / VETO'd names) carrying the quant's audit fields verbatim — `ticker, horizon, section, direction, tier, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_n, win_rate_source, market_excess, pre_risk_size, final_size, gate_verdicts, fundamentals_verdict, debate_residual_confidence (the bull residual), debate_residuals ({bull, bear}), structure, entry_or_trigger, invalidation, key_risks[], thesis`. **2026-06-12 P1.1 (schema 1.3):** `gate_verdicts` carries **all 9 keys** (`regime, vrp, panic, cluster, sector, fundamentals, event_risk, debate, rubric_regime`) on every non-DROP call — the validator rejects a 1.3 envelope missing any (the `debate` key had silently been absent on 0/151 prior calls because the schema rejected it; root cause fixed). `market_excess` surfaces the C2 result per call (negative = beta, not edge). `debate_residuals` carries both sides so the debate gate's discrimination is measurable; `debate_residual_confidence` stays as the bull-residual scalar for backward compatibility. For any top-5 name carry the fundamentals-gate's `fz_context` block (short-interest / float / squeeze / analyst — advisory, 0 points); omit or set `{available:false}` otherwise. For any **long** name that the accumulation-hunter flagged with bullish-side OI being closed, carry its `distribution_flag` block (`{present, closing_side, closing_premium, oi_decrease, note}` — advisory, 0 points, 0 tier impact, C28); omit or set `{present:false}` otherwise. It is **not** a `score_components` line — it lives only on the call object so the Σ-invariant is untouched.
    - **Invariant:** `Σ score_components[].points == raw_score` for every call (the quant already guarantees this — the validator enforces it).
 3. **Validate it:** run `python3 scripts/validate_decision.py --file analyses/daily/YYYY-MM-DD/decision.json` via Bash. If it exits non-zero, fix the envelope (not the validator) until it passes — a malformed envelope silently degrades the calibration loop. Set the envelope's `report_path` to `analyses/daily/YYYY-MM-DD/report.md`.
 4. Confirm both files were written (the Write tool errors loudly on failure — no need to re-Read).
@@ -554,3 +584,21 @@ the empirically-backtested **Signal Quality Hierarchy** (see
 
 **Grading:** advisory, **0 conviction-rubric points** (criterion C19) pending
 ≥60 trading days across ≥2 regimes. Calls are never auto-scored from this signal.
+
+**2026-06-12 audit P0.5 — promotion path active, two refinements:**
+- **Second-regime accrual started:** the 2026-06-12 audit re-ran the backtest on a
+  refreshed window — Tier-1 PRIME WR 0.600 (n=295, +21.9pp vs SPY-direction, p≈0),
+  month-stable, **June/TRANSITIONAL cohort 0.632 (n=19)**. The pre-registered gate
+  (rolling WR ≥58% over ≥60 days across ≥2 regimes) is the ONLY promotion route to a
+  scored bearish line — do not shortcut it on the June strength.
+- **Short-sale-constraint conditioning (advisory):** weight a Tier-1 put co-flag
+  higher when the name shows borrow constraint — `fz` `short_ratio` (days-to-cover)
+  / `short_float` from the fundamentals-gate `fz_context`. Rationale: the published
+  channel for bearish-option informativeness is short-sale cost (Johnson & So 2012;
+  Ofek-Richardson-Whitelaw 2004) — the put edge should concentrate in
+  harder-to-short names. Advisory color only until C19 graduates.
+- **Regime-tag the call-side read:** `CALL_BETA_NOEDGE` (−9.7pp) was measured in a
+  bull window, and the best signed-flow study found opening *call* buys the most
+  informative leg (Ge-Lin-Pearson 2016) — treat "calls are beta" as
+  **bull-regime-conditional, not structural**. In non-bull regimes report the call
+  tier as `CALL_UNVALIDATED` rather than fading it by default.

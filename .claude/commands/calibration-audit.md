@@ -83,6 +83,7 @@ Before parsing any report prose, check for a sidecar **decision envelope** besid
 2. Load `calls[]` directly — each object **already is** the normalized per-call row below (`ticker`, `horizon`, `section`, `tier`, `raw_score`, `score_components[]`, `dominant_signal_class`, `win_rate` + `win_rate_n` + `win_rate_source`, `pre_risk_size`, `final_size`, `gate_verdicts`, `fundamentals_verdict`, `debate_residual_confidence`, `structure`, `invalidation`, `thesis`, `key_risks[]`). No prose re-parsing, no `Σ points` reconciliation needed (the validator guarantees it). Map `gate_verdicts` keys to `gates_fired`, and carry `fundamentals_verdict` / `debate_residual_confidence` as new audit dimensions (e.g. did VETO'd names that were nonetheless tracked actually fail? did high bear-residual names underperform?).
 2b. **`fz` advisory dimensions (2026-05-27 `fz`-edge).** Also carry, when present (additive — no schema break): each call's `fz_context` (`short_float_pct`, `days_to_cover`, `float_shares`, `squeeze_pressure`, `recom`, `upside_to_target_pct`) and the top-level `breadth_cross_check`. These are the outcome inputs that authorize (or kill) the Phase-B promotions of `fz` criteria **C15–C18** (`analyses/audit/2026-05-25/improvement_criteria.md`): tag whether each call carried high short-interest, a flow-vs-analyst divergence, or an insider cluster, so Phase 4 can score those axes against realised outcomes.
 3. The top-level `macro_event_risk` and `macro_snapshot_signals` give the macro context at entry — use them to test whether event-risk-flagged calls drew down around the print.
+4. **Carry `rubric_version` (schema ≥1.3, 2026-06-12 audit P0.1) on every row** — all downstream calibration/tier/tool tables stratify by it; never pool rubric eras. Envelopes without the field are era-banded by `report_date` against the rubric changelog (e.g. raw-9 calls recorded MEDIUM in 2026-05-30 → 06-05; `win_rate_source` values `backtest`/`fallback_proxy` mark pre-quarantine substrate-contaminated quotes — weight accordingly).
 
 The envelope is the authoritative source when it exists; the markdown report is its human-readable rendering. Only fall back to the prose-extraction below for **legacy reports that predate the envelope** (no `.decision.json` sidecar).
 
@@ -266,41 +267,34 @@ Report each with `marginal_contribution`, `n`, and a GO/NO-GO verdict on the cor
 
 ## Phase 5 — Grading-Schema Critique
 
-**Goal.** Audit the `signal-confluence-quant` rubric (the `+3 dealer-positioning, +2 accumulation, …` table) against realised marginal contribution. Propose a re-weighted rubric and re-binned tier cuts. Stress-test on holdout.
+> **RUBRIC FREEZE (2026-06-12 audit P0.1) — this phase GRADES the frozen rubric; it does not retune it.** The rubric is frozen at version `2026-06-12` (current weights: +3 accumulation-conjunction, +1 mechanized DEX, +1 cum-flow intent-screened, +2 multileg, …; tier cuts **≥9 / 7–8 / 3–6**). The single-window component re-weight + cut re-bin this phase used to run is the documented failure mode the freeze exists to stop: six cycles re-weighted correlated lines on n=8–31, BH-null, single-regime marginal contributions (the cum-flow +2→+3→+1 whipsaw was a realized false positive; the ≥9 HIGH cut failed its own scheduled re-confirmation on 2026-06-12 at HIGH 0.222 vs claimed 0.774). **Stratify every table by the envelope `rubric_version` field (schema ≥1.3)** — never pool calls scored under different rubric eras; pre-1.3 envelopes are era-banded by `report_date` against the rubric changelog.
 
-### Component-weight audit
+**Goal.** Grade the FROZEN rubric: realised win-rate, excess, and expectancy per component / per tier / **per regime stratum**, so the desk can see whether the frozen weights are earning their points. The only change output this phase may emit is a **pre-registration**, never an edit.
 
-For each signed point in the rubric (e.g. `+3 dealer-positioning DEX flip`):
+### Component-weight grading
+
+For each signed point in the frozen rubric (e.g. `+1 dealer-positioning MECHANIZED DEX flip`):
 
 1. Identify which (agent, tool) combination produces that point in the audit trail.
-2. Pull its marginal contribution from Phase 4.
-3. Compute the **calibrated weight** ∝ marginal_contribution × class-prevalence.
-4. Normalize to keep the rubric on the same total-points scale.
+2. Pull its marginal contribution from Phase 4, per regime stratum, with `n`, CI, and BH status.
+3. Report frozen weight vs measured contribution. **No "proposed weight" column and no budget renormalization** — a component whose evidence clears the pre-registration bar gets a register entry, not an edit.
 
-Output a "current vs proposed" table side-by-side. The proposed weights must satisfy: (a) sum-to-same-budget, (b) preserve the sign of every signed component (don't invent +/− flips on weak data), (c) include a "source: Phase 4 marginal_contribution = +Xpp, n=N" justification per change.
+### Tier-cut grading
 
-### Tier-cut audit
+The frozen cuts are **HIGH ≥9 / MEDIUM 7–8 / LOW 3–6 / drop ≤2** (older phase docs quoting ≥5 / 3–4 / <3 describe a pre-2026-05-15 era — do not grade against them). Compute realised win-rate per integer score per regime stratum and report monotonicity status vs the frozen cuts. Do **not** propose new cuts from a single window.
 
-The current rubric uses High/Medium/Low cuts implicit at score ≥ 5 / 3–4 / <3. Compute realised win-rate per integer score and propose new cuts that **maximize tier-monotonicity** (HIGH realised > MEDIUM realised > LOW realised, with the largest gap between HIGH and MEDIUM).
+### Pre-registration lane (replaces the old re-weight/re-bin/holdout-refit deliverables)
 
-### Holdout stress-test
-
-Hold out the **most recent 20% of reports** (rounded up; minimum 2 reports). Refit the proposed rubric on the older 80%; re-score the holdout. Compare:
-
-- In-sample vs holdout realised win-rate per tier
-- Brier in-sample vs holdout
-
-If the holdout Brier degrades by >50% vs in-sample, the proposal is overfit — flag it and propose a more conservative re-weight (closer to the original).
+If the grading evidence indicates a weight or cut is wrong, emit a **pre-registered change hypothesis**: `{rubric_line or cut, direction of change, mechanism claim, acceptance bar: cross-regime ∧ n ≥ 30 per arm ∧ BH-surviving at FDR 0.10, decision window: <future dates>}` — registered as a C-numbered item, decided by a *future* audit on data that does not yet exist. The 80/20 same-window holdout refit is retired: refitting and testing inside one regime window is self-grading.
 
 ### Output
 
-- `phase_5_schema.md` — the three deliverables: weight table (current vs proposed with justifications), tier-cut table (current vs proposed), holdout stress-test result with verdict (ACCEPT / REJECT / ACCEPT_WITH_CAVEAT). Voice: market-maker quant — precise, no hand-waving.
-- `phase_5_schema.jsonl` — proposed rubric in the same shape `signal-confluence-quant` consumes, ready for a future `apply` mode.
+- `phase_5_schema.md` — frozen-weight grading table (per regime stratum, with provenance basis), tier-cut monotonicity status, and any pre-registered hypotheses. Voice: market-maker quant — precise, no hand-waving.
 
 ### Hard rules
 
-- **Reuse `signal-confluence-quant` for any rescoring math.** If you need to recompute a score under proposed weights, spawn that agent rather than implementing scoring inline. Pass the proposed rubric as input.
-- Never propose a rubric the holdout test rejects — escalate to a more conservative proposal instead.
+- **Reuse `signal-confluence-quant` for any rescoring math** (e.g. counterfactual "what would the book look like without line X" diagnostics — allowed as *analysis*, never as a shipped weight). Pass the frozen rubric version explicitly.
+- Never emit a weight/cut edit from this phase. Pre-registrations only.
 
 ---
 
@@ -364,18 +358,15 @@ If the missed-gate rate for any specific gate exceeds 20%, that's evidence the a
    - For each agent file flagged by Phase 6 drift detection: the specific behavior to tighten, the rule to add, the prompt section to revise.
    - For each tool tier change from Phase 4: which agent files cite that tool, and what change of language is implied.
 
-2. **Score-rubric edits**:
-   - Re-weighted components from Phase 5 — both the new weights and a rationale for each change with the Phase 4 marginal contribution.
-   - Re-binned tier cuts from Phase 5.
+2. **Score-rubric items — pre-registrations ONLY (rubric frozen at version `2026-06-12`, audit P0.1)**:
+   - NO re-weighted components and NO re-binned cuts as actionable edits. Any rubric-change evidence from Phase 5 ships as a **pre-registered hypothesis** (C-numbered register entry with its cross-regime / n≥30-per-arm / BH-surviving acceptance bar and a future decision window). A prior pre-registration whose bar has now been CLEARED by this audit's data may be recommended for application — cite the registration and the clearing evidence.
+   - Freeze-lift check: if this audit accrues ≥30 resolved post-2026-06-12 calls, explicitly grade the P0.6 out-of-regime half-cap (daily/weekly Step 5 + risk-monitor `rubric_regime` gate) and recommend lift / keep with the tier-monotonicity evidence.
 
-3. **CLI tool tier movements**:
-   - Promote to required: tools that are LOAD-BEARING per Phase 4.
-   - Demote: tools that are NO-INFO per Phase 4.
-   - Gate behind confluence: tools that are CONFOUNDED.
+3. **CLI tool tier movements** — same freeze discipline: gate-membership and required-tool changes are pre-registrations unless verbatim-provenance, cross-regime, BH-surviving evidence already exists in this audit's data.
 
 4. **Process changes**:
-   - Confluence-gate adjustments (e.g. "require 2 independent tools cited per High-tier call" if Phase 6 shows the existing single-tool-with-confluence-≥4 escape hatch produces inferior calibration).
-   - Backtest-sizing-map adjustments if Phase 3 shows the current thresholds don't match realised quintile win-rates.
+   - Confluence-gate adjustments. (Note: the "one agent + `signal-confluence` ≥4" escape hatch was REMOVED 2026-06-12 P0.2 — entry is two-distinct-agents only; do not test or report on the removed path.)
+   - Backtest-sizing-map adjustments if Phase 3 shows the current thresholds don't match realised quintile win-rates — these are sizing-*procedure* items (e.g. the P0.3 clean-query protocol), not rubric weights, and remain in scope.
 
 ### Recommendation format
 
