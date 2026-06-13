@@ -43,6 +43,25 @@ _REQUIRED_GATE_KEYS = (
 )
 _GATE_COMPLETENESS_VERSIONS = ("1.3",)
 
+# 2026-06-12 audit P2.5: schema >= 1.3 must carry the rubric-freeze era stamp
+# (rubric_version), else /calibration-audit cannot stratify calls by rubric era.
+_RUBRIC_VERSION_REQUIRED_VERSIONS = ("1.3",)
+
+# 2026-06-12 audit P2.5 (P1/F5 dead-letter finding): the regime-conflict and
+# correlation-cluster lines are risk-monitor TIER gates applied in Step 2d — they
+# are NOT score_components and must never re-enter the score carrying nonzero points.
+# A score_components entry whose rubric_line matches one of these signatures AND
+# carries points != 0 is rejected. (A points==0 documentation entry is allowed.)
+_DEAD_LETTER_LINE_PATTERNS = (
+    "market-regime conflict",
+    "market regime conflict",
+    "regime conflicts with trade",
+    "regime conflicts with direction",
+    "market-regime conflicts with",
+    "correlation cluster",
+    "corr-cluster",
+)
+
 
 def _band_max_tier(raw_score: int) -> int:
     if raw_score >= 9:
@@ -121,6 +140,16 @@ def check_invariants(doc: dict) -> list[str]:
     enforce_gates = (
         isinstance(doc, dict) and doc.get("schema_version") in _GATE_COMPLETENESS_VERSIONS
     )
+
+    # P2.5: rubric_version era stamp required on schema >= 1.3.
+    if isinstance(doc, dict) and doc.get("schema_version") in _RUBRIC_VERSION_REQUIRED_VERSIONS:
+        rv = doc.get("rubric_version")
+        if not isinstance(rv, str) or not rv.strip():
+            errors.append(
+                f"$: rubric_version is required and must be a non-empty string on "
+                f"schema_version {doc.get('schema_version')} (got {rv!r}) — the freeze era stamp"
+            )
+
     for i, call in enumerate(doc.get("calls", []) if isinstance(doc, dict) else []):
         if not isinstance(call, dict):
             continue
@@ -142,6 +171,21 @@ def check_invariants(doc: dict) -> list[str]:
             total = sum(c.get("points", 0) for c in comps if isinstance(c, dict))
             if total != raw:
                 errors.append(f"{cp}: Σ score_components.points ({total}) != raw_score ({raw})")
+
+        # P2.5: dead-letter tier-gate lines must not re-enter the score with points.
+        if isinstance(comps, list):
+            for j, c in enumerate(comps):
+                if not isinstance(c, dict):
+                    continue
+                line = str(c.get("rubric_line", "")).lower()
+                pts = c.get("points", 0)
+                if isinstance(pts, (int, float)) and pts != 0 and any(p in line for p in _DEAD_LETTER_LINE_PATTERNS):
+                    errors.append(
+                        f"{cp}: score_components[{j}] is a dead-letter TIER GATE "
+                        f"(regime-conflict / correlation-cluster) carrying {pts} points — "
+                        f"these are risk-monitor 2d tier gates, never score_components "
+                        f"(rubric_line={c.get('rubric_line')!r})"
+                    )
 
         tier = call.get("tier")
         if isinstance(raw, int) and tier in _TIER_RANK:

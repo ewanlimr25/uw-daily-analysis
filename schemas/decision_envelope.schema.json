@@ -638,6 +638,13 @@
             "null"
           ]
         },
+        "win_rate_uncapped": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "2026-06-12 audit P2.3 — the raw class win-rate BEFORE the 0.69/0.80 N-conditional + absolute caps were applied at emission. Preserved as a structured field (it was previously only in audit_trail prose) so /calibration-audit reliability diagrams bin on the true quote instead of the cap point-masses at 0.69/0.80. The capped value used downstream stays in win_rate."
+        },
         "win_rate_n": {
           "type": [
             "integer",

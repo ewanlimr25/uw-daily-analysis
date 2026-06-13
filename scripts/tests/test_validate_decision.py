@@ -516,5 +516,79 @@ class ExpectancyC3Test(unittest.TestCase):
         self.assertTrue(any("kelly_fraction" in e for e in errs))
 
 
+class ReliabilityFieldTest(unittest.TestCase):
+    """2026-06-12 audit P2.3 — win_rate_uncapped preserves the pre-cap rate as a
+    structured field so reliability diagrams aren't polluted by the 0.69/0.80 cap
+    point-masses (the uncapped value was previously only in audit_trail prose)."""
+
+    def test_uncapped_field_accepted(self):
+        ok = _call(gate_verdicts=_gv(), win_rate=0.80, win_rate_uncapped=0.933, win_rate_n=49)
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_uncapped_null_accepted(self):
+        ok = _call(gate_verdicts=_gv(), win_rate=None, win_rate_uncapped=None)
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_uncapped_must_be_number(self):
+        ok = _call(gate_verdicts=_gv(), win_rate_uncapped="0.9")
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA)
+        self.assertTrue(any("win_rate_uncapped" in e for e in errs))
+
+
+class RubricVersionPresenceTest(unittest.TestCase):
+    """2026-06-12 audit P2.5 — a 1.3 envelope must stamp rubric_version (the freeze
+    era stamp); a missing/null stamp defeats per-era stratification."""
+
+    def test_1_3_requires_rubric_version(self):
+        doc = _doc(schema_version="1.3", calls=[_call(gate_verdicts=_gv())])
+        # no rubric_version key
+        errs = vd.validate_doc(doc, SCHEMA)
+        self.assertTrue(any("rubric_version" in e for e in errs))
+
+    def test_1_3_null_rubric_version_rejected(self):
+        doc = _doc(schema_version="1.3", rubric_version=None, calls=[_call(gate_verdicts=_gv())])
+        errs = vd.validate_doc(doc, SCHEMA)
+        self.assertTrue(any("rubric_version" in e for e in errs))
+
+    def test_1_3_with_rubric_version_ok(self):
+        doc = _doc(schema_version="1.3", rubric_version="2026-06-12", calls=[_call(gate_verdicts=_gv())])
+        self.assertEqual(vd.validate_doc(doc, SCHEMA), [])
+
+    def test_legacy_1_2_no_rubric_version_required(self):
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.2"), SCHEMA), [])
+
+
+class DeadLetterScoreComponentTest(unittest.TestCase):
+    """2026-06-12 audit P2.5 — the regime-conflict and correlation-cluster lines are
+    risk-monitor TIER gates (applied in 2d), never score_components. They must never
+    re-enter the score carrying nonzero points (the dead-letter finding, P1/F5)."""
+
+    def _comps_with(self, line, pts):
+        # base components sum to 8; add the dead-letter line, fix raw_score to match
+        base = _call()["score_components"]
+        return base + [{"rubric_line": line, "points": pts,
+                        "source_agent": "risk-monitor", "source_tool": "uw risk market-regime",
+                        "evidence": "x"}]
+
+    def test_regime_conflict_with_points_rejected(self):
+        comps = self._comps_with("-3 uw risk market-regime conflicts with trade direction", -3)
+        errs = vd.validate_doc(_doc(calls=[_call(raw_score=5, score_components=comps)]), SCHEMA)
+        self.assertTrue(any("dead-letter" in e.lower() or "tier gate" in e.lower() for e in errs))
+
+    def test_correlation_cluster_with_points_rejected(self):
+        comps = self._comps_with("-1 risk-monitor flags in correlation cluster (corr > 0.7)", -1)
+        errs = vd.validate_doc(_doc(calls=[_call(raw_score=7, score_components=comps)]), SCHEMA)
+        self.assertTrue(any("dead-letter" in e.lower() or "tier gate" in e.lower() for e in errs))
+
+    def test_dead_letter_line_with_zero_points_allowed(self):
+        # a documentation entry carrying explicit 0 points is fine (Σ unaffected)
+        comps = self._comps_with("[TIER GATE, 2d] uw risk market-regime conflicts with trade direction", 0)
+        self.assertEqual(vd.validate_doc(_doc(calls=[_call(raw_score=8, score_components=comps)]), SCHEMA), [])
+
+    def test_normal_components_not_flagged(self):
+        # the existing valid doc (accumulation/cum-flow/multileg) must not trip the check
+        self.assertEqual(vd.validate_doc(_doc(), SCHEMA), [])
+
+
 if __name__ == "__main__":
     unittest.main()

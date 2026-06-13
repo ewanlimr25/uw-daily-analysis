@@ -139,6 +139,20 @@ def market_excess(signal_win_rate: float, benchmark_win_rate: float) -> float:
 
     Both arguments are the RAW (uncapped) win-rate — apples-to-apples. The N-cap is a
     separate humility guard on the *quoted* win-rate and is deliberately NOT applied here.
+
+    WINDOW-MATCHING RULE (2026-06-12 audit P2.6 — the caller's responsibility, not
+    enforced here). ``benchmark_win_rate`` must be computed over **exactly the kept
+    windows of the signal side** — i.e. the P0.3 clean-query complete-forward-window set
+    (signal_date has >= lookback_days of data after it), NOT whatever windows the caller
+    can conveniently build. Two failure modes this rule exists to stop: (1) computing SPY
+    over the FULL calendar while the signal side dropped clamped (too-recent) windows ->
+    apples-to-oranges excess, sign-flippable near the 0 boundary where the gate is binary;
+    (2) reusing SPY's appearance INSIDE the signal class's own backtest set as the
+    benchmark -> conflates the signal with its reference. The matched window set is NOT
+    reconstructible from ``uw historical signal-backtest`` output alone (it returns per-row
+    signal_date but the SPY-side fractions must be rebuilt over those same dates via a
+    dedicated SPY ``uw historical trend``); the caller (signal-confluence-quant, under the
+    P0.3 protocol) owns that reconstruction and must record the date set in audit_trail.
     """
     return round(signal_win_rate - benchmark_win_rate, 4)
 
