@@ -84,6 +84,21 @@ class SchemaTest(unittest.TestCase):
         # 2026-05-30 meta-audit bump (C28 distribution_flag).
         self.assertEqual(vd.validate_doc(_doc(schema_version="1.2"), SCHEMA), [])
 
+    def test_schema_version_1_3_valid_with_rubric_version(self):
+        # 2026-06-12 audit P0.1: rubric freeze — envelopes stamp the rubric era.
+        # 1.3 calls also carry the 9-key gate_verdicts (P1.1 completeness invariant).
+        doc = _doc(schema_version="1.3", rubric_version="2026-06-12",
+                   calls=[_call(gate_verdicts=_gv())])
+        self.assertEqual(vd.validate_doc(doc, SCHEMA), [])
+
+    def test_rubric_version_optional_on_legacy_versions(self):
+        # Additive field: 1.2 envelopes without rubric_version must keep validating.
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.2"), SCHEMA), [])
+
+    def test_rubric_version_must_be_string(self):
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version=7), SCHEMA)
+        self.assertTrue(any("rubric_version" in e and "type" in e for e in errs))
+
     def test_report_date_pattern(self):
         errs = vd.validate_doc(_doc(report_date="May 23 2026"), SCHEMA)
         self.assertTrue(any("pattern" in e for e in errs))
@@ -238,10 +253,21 @@ class InvariantTest(unittest.TestCase):
         self.assertTrue(any("!= raw_score" in e for e in errs))
 
     def test_tier_exceeds_band(self):
-        # raw_score 8 only justifies MEDIUM; HIGH must come from >=10.
+        # raw_score 8 only justifies MEDIUM; HIGH must come from >=9
+        # (2026-05-30 register P1.3 band, validator synced 2026-06-06 audit P1.1).
         bad = _call(tier="HIGH")
         errs = vd.validate_doc(_doc(calls=[bad]), SCHEMA)
         self.assertTrue(any("exceeds band" in e for e in errs))
+
+    def test_raw_9_high_validates(self):
+        # 2026-06-06 audit P1.1: the live rubric's HIGH cut is >=9; the stale >=10 band
+        # forced raw-9 calls to be recorded MEDIUM (five such calls in the June cohort).
+        comps = _call()["score_components"] + [
+            {"rubric_line": "+1 sector leader", "points": 1, "source_agent": "sector-rotation-strategist",
+             "source_tool": "options_flow_sector_flow_persistence", "evidence": "leader, persistence 0.8"}
+        ]
+        ok = _call(raw_score=9, tier="HIGH", score_components=comps)
+        self.assertEqual(vd.validate_doc(_doc(calls=[ok]), SCHEMA), [])
 
     def test_tier_demotion_allowed(self):
         # raw_score 10 (HIGH band) demoted to MEDIUM is legal (LB-gate demote).
@@ -260,6 +286,95 @@ class InvariantTest(unittest.TestCase):
     def test_veto_with_veto_size_ok(self):
         ok = _call(fundamentals_verdict="VETO", final_size="veto")
         self.assertEqual(vd.validate_doc(_doc(calls=[ok]), SCHEMA), [])
+
+
+def _gv(**over):
+    """A complete 9-key gate_verdicts dict (2026-06-12 P0.6/P1.1)."""
+    base = {"regime": "no-op", "vrp": "no-op", "panic": "no-op", "cluster": "no-op",
+            "sector": "no-op", "fundamentals": "CONFIRM", "event_risk": "no-op",
+            "debate": "no-op", "rubric_regime": "capped half (OUT-OF-REGIME)"}
+    base.update(over)
+    return base
+
+
+class GateVerdictCompletenessTest(unittest.TestCase):
+    """2026-06-12 audit P1.1 — the schema had been REJECTING the debate key
+    (additionalProperties:false without it), which is why it was recorded on
+    0/151 envelope calls ever. 1.3+ envelopes must carry all 9 keys on every
+    non-DROP call."""
+
+    def test_full_9_key_gate_verdicts_valid(self):
+        ok = _call(gate_verdicts=_gv())
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_debate_and_rubric_regime_keys_accepted(self):
+        ok = _call(gate_verdicts=_gv(debate="−1 tier (bear 0.75 ≥ bull 0.65)"))
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_missing_debate_key_fails_on_1_3(self):
+        gv = _gv(); del gv["debate"]
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12",
+                                    calls=[_call(gate_verdicts=gv)]), SCHEMA)
+        self.assertTrue(any("gate_verdicts" in e and "debate" in e for e in errs))
+
+    def test_missing_gate_verdicts_fails_on_1_3_non_drop(self):
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12",
+                                    calls=[_call()]), SCHEMA)
+        self.assertTrue(any("gate_verdicts" in e for e in errs))
+
+    def test_drop_tier_exempt_from_gate_verdicts(self):
+        ok = _call(tier="DROP", raw_score=2, final_size="skip",
+                   score_components=[{"rubric_line": "+2 multileg directional", "points": 2,
+                                      "source_agent": "multileg-strategist",
+                                      "source_tool": "hot_chains_multileg", "evidence": "x"}])
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_legacy_1_2_exempt_from_completeness(self):
+        # Pre-1.3 envelopes keep validating without the 9-key requirement.
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.2", calls=[_call()]), SCHEMA), [])
+
+
+class DebateResidualsPairTest(unittest.TestCase):
+    """2026-06-12 audit P1.1 — store debate residuals as a {bull, bear} pair so
+    the debate gate's effectiveness can be measured (06-06 P2.1 concurs)."""
+
+    def test_pair_valid(self):
+        ok = _call(gate_verdicts=_gv(), debate_residuals={"bull": 0.75, "bear": 0.65},
+                   debate_residual_confidence=0.75)
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_pair_off_bin_rejected(self):
+        bad = _call(gate_verdicts=_gv(), debate_residuals={"bull": 0.70, "bear": 0.65})
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[bad]), SCHEMA)
+        self.assertTrue(any("not in enum" in e for e in errs))
+
+    def test_market_excess_field_accepted(self):
+        ok = _call(gate_verdicts=_gv(), market_excess=-0.12)
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+
+class WinRateSourceVocabTest(unittest.TestCase):
+    """2026-06-12 audit P0.3/P1 reconciliation — the quant now emits backtest_clean
+    and NA(substrate); the schema enum must accept them (retired values kept for
+    pre-1.3 back-compat)."""
+
+    def test_backtest_clean_accepted(self):
+        ok = _call(gate_verdicts=_gv(), win_rate=0.58, win_rate_n=37, win_rate_source="backtest_clean")
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_na_substrate_accepted(self):
+        ok = _call(gate_verdicts=_gv(), win_rate=None, win_rate_source="NA(substrate)")
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
+
+    def test_retired_values_still_accepted_for_backcompat(self):
+        # pre-1.3 envelopes carrying backtest / fallback_proxy must keep validating.
+        ok = _call(win_rate_source="fallback_proxy")
+        self.assertEqual(vd.validate_doc(_doc(schema_version="1.2", calls=[ok]), SCHEMA), [])
+
+    def test_garbage_source_rejected(self):
+        ok = _call(gate_verdicts=_gv(), win_rate_source="vibes")
+        errs = vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA)
+        self.assertTrue(any("win_rate_source" in e and "enum" in e for e in errs))
 
 
 class ConjunctionC11Test(unittest.TestCase):

@@ -26,11 +26,26 @@ from pathlib import Path
 SCHEMA_PATH = Path(__file__).resolve().parent.parent / "schemas" / "decision_envelope.schema.json"
 
 # raw_score bands → highest tier the score alone justifies (lower tiers always OK).
+# HIGH band ≥ 9 (2026-05-30 register P1.3; validator synced by the 2026-06-06 audit
+# P1.1 — the stale ≥10 band forced raw-9 calls to be recorded MEDIUM, mis-bucketing
+# every downstream tier table: the suppressed raw-9 cohort went 3/4 while the
+# recorded-HIGH (≥10) envelope calls went 1/5).
 _TIER_RANK = {"DROP": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3}
+
+# 2026-06-12 audit P1.1: gate-output discipline, mechanically enforced.
+# The schema had silently REJECTED the `debate` key (additionalProperties: false
+# without it) — the debate gate verdict was recorded on 0 of 151 envelope calls
+# ever. On schema >= 1.3 every non-DROP call must carry all nine gate verdicts
+# (no-op is a verdict; absence is a missed gate).
+_REQUIRED_GATE_KEYS = (
+    "regime", "vrp", "panic", "cluster", "sector",
+    "fundamentals", "event_risk", "debate", "rubric_regime",
+)
+_GATE_COMPLETENESS_VERSIONS = ("1.3",)
 
 
 def _band_max_tier(raw_score: int) -> int:
-    if raw_score >= 10:
+    if raw_score >= 9:
         return _TIER_RANK["HIGH"]
     if raw_score >= 7:
         return _TIER_RANK["MEDIUM"]
@@ -103,10 +118,23 @@ def _validate(value, schema: dict, root: dict, path: str, errors: list[str]) -> 
 
 def check_invariants(doc: dict) -> list[str]:
     errors: list[str] = []
+    enforce_gates = (
+        isinstance(doc, dict) and doc.get("schema_version") in _GATE_COMPLETENESS_VERSIONS
+    )
     for i, call in enumerate(doc.get("calls", []) if isinstance(doc, dict) else []):
         if not isinstance(call, dict):
             continue
         cp = f"calls[{i}] ({call.get('ticker', '?')})"
+
+        # P1.1 gate-verdict completeness (schema >= 1.3, non-DROP calls only).
+        if enforce_gates and call.get("tier") != "DROP":
+            gv = call.get("gate_verdicts")
+            if not isinstance(gv, dict):
+                errors.append(f"{cp}: gate_verdicts missing on non-DROP call (schema >= 1.3 requires all 9 gate verdicts)")
+            else:
+                missing = [k for k in _REQUIRED_GATE_KEYS if k not in gv]
+                if missing:
+                    errors.append(f"{cp}: gate_verdicts missing required key(s) {missing} (no-op is a verdict; absence is a missed gate)")
 
         comps = call.get("score_components")
         raw = call.get("raw_score")

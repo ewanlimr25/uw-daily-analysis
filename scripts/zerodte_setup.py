@@ -52,6 +52,22 @@ BACKWARDATION_RATIO = 1.25
 # overnight VIX jump (points) at/above this = spiking → stand-aside gate.
 VIX_SPIKE = 2.0
 
+# 2026-06-12 audit P1.8 — net-of-cost discipline.
+# All PnL in this module is in PERCENT OF UNDERLYING SPOT NOTIONAL (0.8×1σ premium
+# captured minus the realized open-to-close move), NOT premium-collected and NOT
+# margin-relative. A "+0.30%/day" gross figure is therefore tiny in absolute terms
+# and is BEFORE transaction costs. Vilkov (2024) found an unconditional 0DTE iron
+# condor flips from +0.77 to −0.20 net Sharpe once a half-spread + fees is charged,
+# so the gross win-rate is the wrong promotion metric — net expectancy with a tail
+# prior is. ROUND_TRIP_COST_PCT is an ASSUMED round-trip cost (both legs, half-spread
+# + fees) in % of underlying for a liquid SPY/QQQ 0DTE ATM straddle; it is a
+# placeholder to be calibrated against real fills, not a measured constant.
+ROUND_TRIP_COST_PCT = 0.10
+PNL_BASIS = (
+    "percent-of-underlying-spot-notional, GROSS of transaction costs "
+    "(0.8x1sigma premium captured minus realized |open-close|); not premium-collected, not margin-relative"
+)
+
 
 # ---------- pure computation (stdlib only; unit-tested) ---------------------
 
@@ -135,10 +151,14 @@ def evaluate(sessions: list[dict[str, Any]]) -> dict[str, Any]:
         else "GO_PREMIUM_SELL_INTRADAY" if (mean_open and mean_open > 0 and win_open / n >= 0.60)
         else "NO_GO_NO_EDGE"
     )
+    mean_open_net = (mean_open - ROUND_TRIP_COST_PCT) if mean_open is not None else None
     return {
         "n": n,
         "premium_sell_win_open_pct": round(100 * win_open / n, 1),
         "mean_pnl_open_pct": round(mean_open, 3) if mean_open is not None else None,
+        "mean_pnl_open_net_pct": round(mean_open_net, 3) if mean_open_net is not None else None,
+        "round_trip_cost_pct_assumed": ROUND_TRIP_COST_PCT,
+        "pnl_basis": PNL_BASIS,
         "mean_pnl_overnight_pct": round(_mean(pnl_overnight), 3) if pnl_overnight else None,
         "worst_day_open_pct": round(min(pnl_open), 3),
         "gex_to_range_corr": _gex_range_corr(done),
@@ -147,7 +167,13 @@ def evaluate(sessions: list[dict[str, Any]]) -> dict[str, Any]:
         "mean_pnl_by_vix_state": {k: (round(v, 3) if v is not None else None) for k, v in by_state.items()},
         "vix_tercile_bounds": [round(b, 1) if not math.isnan(b) else None for b in bounds],
         "verdict": verdict,
-        "tail_caveat": "Validation sample has no vol shock; short-vol left tail is UNSAMPLED.",
+        # 2026-06-12 P1.8: the GO/NO_GO verdict is an ADVISORY win-rate read, NOT a
+        # promotion criterion. The lane stays advisory (0 rubric points) permanently
+        # until BOTH (a) a vol-shock day enters the sample (the short-vol left tail is
+        # currently UNSAMPLED) AND (b) net expectancy (mean_pnl_open_net_pct) clears a
+        # tail-aware bar — win-rate alone overstates a negatively-skewed seller's edge.
+        "promotion_criterion": "expectancy-with-tail-prior on net PnL; win-rate is NOT a promotion metric (P1.8)",
+        "tail_caveat": "Validation sample has no vol shock; short-vol left tail is UNSAMPLED. Net-of-cost mean = mean_pnl_open_net_pct; gross win-rate overstates a negatively-skewed short-vol edge.",
     }
 
 

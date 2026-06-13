@@ -47,6 +47,20 @@ class EvaluateTest(unittest.TestCase):
         self.assertGreater(r["mean_pnl_open_pct"], 0)
         self.assertEqual(r["verdict"], "GO_PREMIUM_SELL_INTRADAY")
 
+    def test_net_of_cost_fields(self):
+        # 2026-06-12 P1.8: PnL is %-of-underlying GROSS; the net line subtracts a
+        # round-trip cost assumption and must be strictly below gross + carry a basis label.
+        r = z.evaluate(self._book(30, 0.4, 20, 1))
+        self.assertIn("pnl_basis", r)
+        self.assertIn("mean_pnl_open_net_pct", r)
+        self.assertIn("round_trip_cost_pct_assumed", r)
+        self.assertLess(r["mean_pnl_open_net_pct"], r["mean_pnl_open_pct"])
+        self.assertAlmostEqual(
+            r["mean_pnl_open_net_pct"],
+            round(r["mean_pnl_open_pct"] - z.ROUND_TRIP_COST_PCT, 3),
+            places=6,
+        )
+
     def test_no_edge_when_realized_exceeds_implied(self):
         r = z.evaluate(self._book(30, 1.5, 20, 1))  # realized 1.5 > implied 1.0
         self.assertEqual(r["premium_sell_win_open_pct"], 0.0)
