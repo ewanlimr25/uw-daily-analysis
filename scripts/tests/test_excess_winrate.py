@@ -103,10 +103,18 @@ class NConditionalCapC2Test(unittest.TestCase):
         self.assertEqual(ew.n_conditional_cap(1.00, 8), 0.69)
         self.assertEqual(ew.n_conditional_cap(0.60, 8), 0.60)  # cap never raises a low WR
 
-    def test_n_mid_and_high_caps_unchanged(self):
-        self.assertEqual(ew.n_conditional_cap(1.00, 12), 0.85)
-        self.assertEqual(ew.n_conditional_cap(1.00, 25), 0.90)
+    def test_n_10_plus_caps_at_absolute_ceiling(self):
+        # 2026-06-06 audit P0.1: the prior 0.85/0.90 tiers re-permitted quotes the
+        # 2026-05-30 P1.2 ceiling bans (11 post-register rows quoted 0.837-0.933,
+        # decided 0-for-3). All n >= 10 now cap at the 0.80 absolute ceiling.
+        self.assertEqual(ew.n_conditional_cap(1.00, 12), 0.80)
+        self.assertEqual(ew.n_conditional_cap(1.00, 25), 0.80)
         self.assertEqual(ew.n_conditional_cap(0.50, 25), 0.50)
+
+    def test_no_n_path_exceeds_absolute_ceiling(self):
+        # Design lock: no sample size, however large, earns a quote above 0.80.
+        for n in (1, 9, 10, 19, 20, 49, 89, 1000):
+            self.assertLessEqual(ew.n_conditional_cap(1.00, n), ew.ABSOLUTE_WR_CEILING)
 
     def test_069_cap_maps_to_half_not_full(self):
         self.assertEqual(ew.size_from_winrate(0.69), "half")
@@ -127,9 +135,10 @@ class MarketExcessGateC2Test(unittest.TestCase):
         self.assertEqual(d["final_size"], "half")  # no class full-sizes on a single up-week
 
     def test_genuine_edge_keeps_full(self):
-        # A well-sampled signal that beats the market keeps full size.
+        # A well-sampled signal that beats the market keeps full size; the quote is
+        # bounded at the 0.80 ceiling but 0.80 still clears the 0.70 full line.
         d = ew.size_decision(0.82, 25, benchmark_win_rate=0.55)
-        self.assertEqual(d["capped_win_rate"], 0.82)
+        self.assertEqual(d["capped_win_rate"], 0.80)
         self.assertEqual(d["base_size"], "full")
         self.assertGreater(d["excess"], 0)
         self.assertEqual(d["final_size"], "full")

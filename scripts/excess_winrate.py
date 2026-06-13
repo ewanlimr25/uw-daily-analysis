@@ -105,23 +105,27 @@ def compute_win_rate(candidates: list[Candidate]) -> tuple[int, int, float | Non
 #      The gate can only DOWNGRADE; it never upgrades.
 MATERIALLY_NEGATIVE_EXCESS = -0.10  # signal underperforms the market by >= 10pp -> starter
 
+# 2026-05-30 register P1.2 absolute reliability ceiling, enforced here since the
+# 2026-06-06 audit P0.1: no class earns a >0.80 quote at ANY sample size (the >=0.90
+# claimed bucket realised 51-53%, the 0.80-0.90 bucket 55-62%, across both audits).
+ABSOLUTE_WR_CEILING = 0.80
+
 _SIZE_RANK = {"skip": 0, "starter": 1, "half": 2, "full": 3}
 
 
 def n_conditional_cap(win_rate: float, n: int) -> float:
-    """Cap the quoted win-rate by backtest sample size (2026-05-15 audit, C2-tightened).
+    """Cap the quoted win-rate by backtest sample size (2026-05-15 audit, C2-tightened;
+    synced to the live 0.80 ceiling by the 2026-06-06 audit P0.1 — was stale at 0.85/0.90).
 
     n < 10  -> 0.69  (TIGHTENED from 0.75: keeps a single-regime small-N class below the
                       0.70 full-size line so it cannot full-size on an up-week alone)
-    10<=n<20 -> 0.85
-    n >= 20 -> 0.90  (never 1.00)
+    n >= 10 -> 0.80  (ABSOLUTE_WR_CEILING — 2026-05-30 register P1.2. The prior
+                      0.85 (10<=n<20) / 0.90 (n>=20) tiers silently re-permitted the
+                      quotes the ceiling bans; realized 2026-06-06 audit P0.1, where 11
+                      post-register vol-lane rows quoted 0.837-0.933 raw backtest rates
+                      and the decided ones went 0-for-3.)
     """
-    if n < 10:
-        cap = 0.69
-    elif n < 20:
-        cap = 0.85
-    else:
-        cap = 0.90
+    cap = 0.69 if n < 10 else ABSOLUTE_WR_CEILING
     return min(win_rate, cap)
 
 
