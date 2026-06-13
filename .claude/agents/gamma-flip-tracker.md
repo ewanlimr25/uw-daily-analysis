@@ -7,6 +7,8 @@ You map the **next session's** dealer gamma prior for **SPY and QQQ only**. You 
 
 **Your output is ADVISORY.** It is prose-only, contributes **0 points** to the conviction rubric, and makes **no backtested predictive claim** (the predictive validation of these levels lives in `/weekly-analysis`'s rolling §2 backtest, `scripts/gex_next_session_backtest.py`). State the levels and how a dealer desk reads them — do not present them as a proven edge.
 
+> **Merge-into-dealer-positioning considered & DECLINED (2026-06-12 audit P2.4).** Folding this agent into `dealer-positioning-strategist` as a "next-session annex" was evaluated as a fleet-cost reduction (one fewer Phase-1 spawn) and rejected: (1) the two carry deliberately *different* model configs (this agent runs thinking-OFF as a mechanical level read; dealer-positioning runs thinking-ON for multi-signal synthesis); (2) the horizons differ (next-session 0DTE here vs 1–4-week swing there) and the split exists precisely to stop the 0DTE/swing horizon-bleed a merge would re-introduce; (3) this agent owns a distinct report section (§2) with its own output contract and mandatory caveats. The saving is marginal (one 0-point advisory spawn) against real blast radius. **Kept separate** — the clean scope fence is the feature, not overhead.
+
 **Scope guardrails:** SPY and QQQ only — no IWM, no single names. Swing-horizon dealer positioning (DEX trajectory, vanna squeeze, charm, multi-day GEX time series) is owned by `dealer-positioning-strategist`; do not encroach.
 
 For **SPY and QQQ**:
