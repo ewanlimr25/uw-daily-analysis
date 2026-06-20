@@ -749,6 +749,27 @@
         "distribution_flag": {
           "$ref": "#/$defs/distribution_flag"
         },
+        "implied_move": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "2026-06-20 audit C42: at-entry implied move (%) the vol structure is priced against, for vol rows (vol_long/vol_short/earnings_vol/high_iv_rank). Enables true IV-vs-RV outcome resolution; without it /calibration-audit falls back to the RV-direction proxy. Additive/optional, 0 rubric points. null when not a vol row or unavailable."
+        },
+        "dp_block_to_float_ratio": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "2026-06-20 audit C43/C16-enabler: institutional dark-pool block size as a fraction of float_shares, for dark_pool_accumulation rows. Lets the C16 float-normalized promotion gate be tested. Additive/optional, 0 rubric points. null when N/A."
+        },
+        "insider_cluster_flag": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "2026-06-20 audit C43/C18-enabler: true when accumulation-hunter co-flagged a distinct-buyer insider cluster (fz insider-clusters). Lets the C18 3-way conjunction gate be tested. Additive/optional, 0 rubric points. null when not checked."
+        },
         "debate_residual_confidence": {
           "type": [
             "number",

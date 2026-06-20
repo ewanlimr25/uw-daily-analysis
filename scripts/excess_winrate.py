@@ -129,6 +129,47 @@ def n_conditional_cap(win_rate: float, n: int) -> float:
     return min(win_rate, cap)
 
 
+# ----- 2026-06-20 audit P1 #2: ceiling + clean-source emission guard -----------
+# Sizing-eligible win_rate sources. The 2026-06-12 P0.3 quarantine RETIRED
+# ``backtest`` / ``fallback_proxy`` as sizing sources (substrate-contaminated): the
+# 2026-06-20 audit measured 30 pre-freeze envelopes that quoted >=0.80 off exactly
+# these sources (earnings_vol 0.86->0.38, high_iv_rank 0.84->0.38, both BH-surviving).
+SIZING_ELIGIBLE_SOURCES = frozenset({"backtest_clean", "NA(substrate)", "NA", None})
+RETIRED_SUBSTRATE_SOURCES = frozenset({"backtest", "fallback_proxy"})
+
+
+def sizing_eligible_quote(win_rate: float | None, win_rate_source: str | None) -> dict:
+    """C2 / 2026-06-20 P1 #2 emission guard: bind the 0.80 ceiling AND the clean-source
+    requirement at serialization, mirroring the sub-0.50 pre-emit floor in the agent.
+
+    Returns an audit dict:
+      ``sizing_eligible`` — False when the quote carries a RETIRED substrate source; such a
+                            quote must NOT drive ``pre_risk_size`` (size at the NA(substrate)
+                            tier-default-capped-at-half and mark advisory/non-sizing).
+      ``capped_win_rate``  — ``win_rate`` clamped to ABSOLUTE_WR_CEILING (None if input None).
+      ``ceiling_ok``       — was the input already <= 0.80 (a serialized >0.80 is an envelope bug).
+      ``reason``           — human-readable audit string.
+    """
+    eligible = win_rate_source in SIZING_ELIGIBLE_SOURCES
+    capped = None if win_rate is None else round(min(win_rate, ABSOLUTE_WR_CEILING), 4)
+    ceiling_ok = win_rate is None or win_rate <= ABSOLUTE_WR_CEILING
+    if not eligible:
+        reason = (
+            f"win_rate_source={win_rate_source!r} is RETIRED substrate (2026-06-12 P0.3) -> "
+            f"NON-SIZING; size at NA(substrate) tier-default capped half"
+        )
+    elif not ceiling_ok:
+        reason = f"win_rate {win_rate} > {ABSOLUTE_WR_CEILING} ceiling -> clamped to {capped} (envelope bug if serialized raw)"
+    else:
+        reason = f"win_rate {win_rate} (source {win_rate_source}) <= {ABSOLUTE_WR_CEILING} ceiling -> sizing-eligible"
+    return {
+        "sizing_eligible": eligible,
+        "capped_win_rate": capped,
+        "ceiling_ok": ceiling_ok,
+        "reason": reason,
+    }
+
+
 def market_excess(signal_win_rate: float, benchmark_win_rate: float) -> float:
     """Market-excess win-rate = signal WR - benchmark WR.
 

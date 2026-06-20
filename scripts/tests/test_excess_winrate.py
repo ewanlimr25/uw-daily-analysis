@@ -186,5 +186,44 @@ class MarketExcessGateC2Test(unittest.TestCase):
         self.assertEqual(d["excess_gate"], "no_benchmark")
 
 
+class SizingEligibleQuoteP1Test(unittest.TestCase):
+    """2026-06-20 audit P1 #2 — ceiling + clean-source emission guard."""
+
+    def test_retired_substrate_source_is_non_sizing(self):
+        # The exact leak the 2026-06-20 audit measured: a >=0.80 quote off the retired
+        # substrate must NOT be sizing-eligible.
+        for src in ("backtest", "fallback_proxy"):
+            d = ew.sizing_eligible_quote(0.86, src)
+            self.assertFalse(d["sizing_eligible"], src)
+
+    def test_clean_source_is_sizing_eligible(self):
+        for src in ("backtest_clean", "NA(substrate)", "NA", None):
+            self.assertTrue(ew.sizing_eligible_quote(0.62, src)["sizing_eligible"], src)
+
+    def test_ceiling_clamps_above_080(self):
+        d = ew.sizing_eligible_quote(0.93, "backtest_clean")
+        self.assertEqual(d["capped_win_rate"], 0.80)
+        self.assertFalse(d["ceiling_ok"])  # raw > 0.80 flagged as envelope bug
+
+    def test_mu_post_freeze_080_is_compliant(self):
+        # MU 2026-06-15 = 0.80 exactly off backtest_clean — the ceiling working, not a leak.
+        d = ew.sizing_eligible_quote(0.80, "backtest_clean")
+        self.assertTrue(d["sizing_eligible"])
+        self.assertTrue(d["ceiling_ok"])
+        self.assertEqual(d["capped_win_rate"], 0.80)
+
+    def test_none_win_rate_is_safe(self):
+        d = ew.sizing_eligible_quote(None, "NA(substrate)")
+        self.assertIsNone(d["capped_win_rate"])
+        self.assertTrue(d["ceiling_ok"])
+
+    def test_no_clean_path_exceeds_ceiling(self):
+        for wr in (0.80, 0.85, 0.99, 1.00):
+            self.assertLessEqual(
+                ew.sizing_eligible_quote(wr, "backtest_clean")["capped_win_rate"],
+                ew.ABSOLUTE_WR_CEILING,
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
