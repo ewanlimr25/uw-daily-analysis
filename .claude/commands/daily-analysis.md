@@ -21,6 +21,10 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 - Fundamentals enrichment still uses the **yfinance MCP** (`mcp__yahoo-finance__*`) and `scripts/finnhub_enrich.py` — unaffected by this CLI path.
 - **Non-flow context** (short interest, days-to-cover, float, analyst consensus, breadth, insider clusters) comes from the **`fz` CLI** (`finviz-pp-cli`), invoked via Bash as `fz <group> … --agent`, and the `scripts/fz_enrich.py` wrapper. It is a fundamentals/screening/breadth augment **beside** the flow engine — it adds **zero** options flow / greeks / dark pool / GEX / OI and replaces no `uw` tool. Every `fz` lane is **advisory (0 rubric points)** and **graceful-skip**: if `fz` is unavailable the report completes unchanged. See `analyses/audit/2026-05-27-fz-edge/`.
 
+## Model routing
+
+Fleet models and effort are pinned per-agent in `.claude/agents/*.md` frontmatter (`model:` + `effort:`) — the single source of truth; do **not** restate model assignments in spawn prompts (prompt-text "Model:" lines are mechanically inert). Current pins: `signal-confluence-quant` and `risk-monitor` = fable/high, `multileg-strategist` = opus/high, rest of the fleet = sonnet/high (gamma-flip-tracker, opex-pin-strategist = sonnet/medium). Run the orchestrating session itself on **fable (opus minimum)** — Step 0, the confluence gate, rubric application, and report/envelope authoring live in the main loop. Rationale + escalation triggers: `analyses/audit/2026-07-03/agent-model-effort-audit.md`.
+
 ## When to invoke
 
 - Post-market daily report ("EOD analysis", "end of day report", "wrap up the day", "daily intel")

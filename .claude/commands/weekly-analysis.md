@@ -36,28 +36,9 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 
 ## Model routing
 
-The orchestrator running this skill must use **`opus` with extended thinking on**. It performs the cross-agent synthesis, conviction rubric application, and report writing — tasks that degrade materially on a smaller model. Sub-agents are cheaper and have narrower mandates; assign models as follows when spawning each agent:
+**Models and effort are pinned per-agent in `.claude/agents/*.md` frontmatter (`model:` + `effort:`) — that frontmatter is the single source of truth; do NOT restate model assignments in spawn prompts** (prompt-header "Model:" lines are mechanically inert — they never change the spawned model; a stale table of them lived here until the 2026-07-03 audit). Current pins: `signal-confluence-quant` and `risk-monitor` = fable/high (envelope-writing + state-mutating choke points), `multileg-strategist` = opus/high, the rest of the fleet = sonnet/high (gamma-flip-tracker and opex-pin-strategist at sonnet/medium). Rationale, evidence, and escalation triggers: `analyses/audit/2026-07-03/agent-model-effort-audit.md`.
 
-| Agent | Model | Thinking | Why |
-|---|---|---|---|
-| gamma-flip-tracker | sonnet | off | Next-session GEX advisory for SPY/QQQ only (ZGL, regime, call/put walls); prose-only, 0 rubric points, no backtested edge |
-| dealer-positioning-strategist | sonnet | **on** | Multi-signal synthesis: DEX trajectory + vanna squeeze + GEX time series across the week — reasoning depth required |
-| sweep-tracker | sonnet | off | Filter and rank by `uw hot-chains sweep-persistence` count — no synthesis |
-| accumulation-hunter | sonnet | off | Pattern match across DP + OI over 5d/10d, with `uw dark-pool block-stratified` gate |
-| contrarian-scanner | sonnet | off | Trajectory computation — rising vs falling `uw historical pc-ratio-zscore`, VRP gate |
-| earnings-scout | sonnet | **on** | Dual mandate: judgment-heavy recap grading + multi-signal lookahead ranking with term-skew |
-| vol-surface-scout | sonnet | off | Analytical WoW delta — systematic flagging, `uw historical iv-percentile-zscore` + VRP bias |
-| multileg-strategist | sonnet | **on** | Hardest Phase 1 task: inferring institutional intent from repeated cross-week structures + term-structure context |
-| leap-positioning-radar | sonnet | **on** | Multi-signal synthesis over 10d+ window + rolling detector + uw historical cumulative-premium-flow accretion classification |
-| sector-rotation-strategist | sonnet | off | Persistence-gated rotation calls + leader extraction; mostly mechanical |
-| opex-pin-strategist (conditional) | sonnet | off | OPEX-week only; ranking + structure suggestion is rule-based |
-| signal-confluence-quant (Phase 2a) | sonnet | **on** | Audited per-ticker scoring with explicit component breakdown — reasoning required for tie-breaking and audit-trail prose |
-| fundamentals-gate (Phase 2b) | sonnet | off | Mechanical cross-check: runs `finnhub_enrich.py` on top-5, maps assessment vs thesis direction to CONFIRM/CAUTION/VETO |
-| bull-researcher (Phase 2c) | sonnet | **on** | Adversarial steelman of the long case — reasoning + honest residual confidence |
-| bear-researcher (Phase 2c) | sonnet | **on** | Adversarial steelman of the bear case — the disconfirmation the additive score lacks |
-| risk-monitor (Phase 2d) | sonnet | off | Systematic: correlation matrix + cluster flagging + full gate stack (incl. fundamentals / event-risk / debate) |
-
-Pass the model assignment in each agent's prompt header (e.g. `Model: claude-sonnet-4-6, extended_thinking: false`).
+**Run the orchestrating session itself on fable (opus minimum)** — Step 0 synthesis, the confluence gate, rubric application, and report + envelope authoring live in the main loop, and the two fable frontmatter pins protect only Phase 2's core, not the orchestration.
 
 ## Operating principle: persistence beats a single print
 
@@ -149,8 +130,7 @@ Spawn these **11 agents simultaneously** — a single message with 11 Agent tool
 
 **Hard rule:** no agent re-fetches `uw risk market-regime`, `uw historical vrp`, or `uw options-structure front-end-iv-ratio` — those come from Step 0 context only.
 
-### gamma-flip-tracker — next-session GEX advisory, SPY/QQQ only (sonnet, thinking off)
-Do **NOT** produce intraday 0DTE calls. Forecast next session's / next week's zero-gamma level, regime, and call/put walls for **SPY and QQQ only** (drop IWM and single names), read off the standing EOD 0–45d GEX book (OI persists overnight). This is the §9 **advisory** — prose-only, **0 conviction-rubric points**, and **no backtested predictive claim** (its predictive value is tested by the Step 0 `gex_advisory_backtest`; present accordingly). **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
+### gamma-flip-tracker — next-session GEX advisory, SPY/QQQ onlyDo **NOT** produce intraday 0DTE calls. Forecast next session's / next week's zero-gamma level, regime, and call/put walls for **SPY and QQQ only** (drop IWM and single names), read off the standing EOD 0–45d GEX book (OI persists overnight). This is the §9 **advisory** — prose-only, **0 conviction-rubric points**, and **no backtested predictive claim** (its predictive value is tested by the Step 0 `gex_advisory_backtest`; present accordingly). **Swing-horizon DEX/vanna/charm/GEX-trajectory work is owned by `dealer-positioning-strategist` (next agent below) — do not duplicate.**
 
 Tools required:
 - `uw options-structure gex` (default `dte_max=45`) — **PRIMARY**: per-strike GEX, `zero_gamma_level`, `regime`, `total_gex`, call wall (largest +GEX strike above spot), put wall (most −GEX strike below). Do **not** lead with `uw options-structure today-gamma-flip` (it locks to the snapshot's expired same-day expiry with an unreliable ZGL).
@@ -162,7 +142,7 @@ ZGL rule: trust `zero_gamma_level` only within ~5% of spot; when null/extrapolat
 
 Output: §9 next-session regime + ZGL + call/put wall for SPY and QQQ, with a one-line structure bias and the mandatory caveats (EOD = prior refreshed after the open; gap risk; ETF-not-index book; uw-pp cannot isolate the D+1 expiry).
 
-### dealer-positioning-strategist — swing-horizon dealer flows (sonnet, thinking **on**) (NEW)
+### dealer-positioning-strategist — swing-horizon dealer flows (NEW)
 Owns the multi-day DEX / vanna / charm / GEX-trajectory work. Surfaces 1–4 week swing setups GF cannot see at the 0DTE horizon.
 
 Tools required:
@@ -174,7 +154,7 @@ Tools required:
 
 Output: per-ticker swing dealer reads — DEX state + 5d/10d trajectory, vanna-squeeze flags, ZGL trajectory week-over-week, regime-flip detections, swing bias for next 1–4 weeks. Feeds §3 (Swing Book) with the `vanna_squeeze` / `dex_flip_long` / `dex_flip_short` signal classes.
 
-### sector-rotation-strategist — durable rotation calls + named single-name leaders (sonnet, thinking off) (NEW)
+### sector-rotation-strategist — durable rotation calls + named single-name leaders (NEW)
 Owns multi-week sector rotation + leader extraction. Enforces ≥3-day persistence — primary feed for §2 of the report.
 
 Tools required (GICS layer — the shared anchor, cross-checks the ETF tape):
@@ -190,7 +170,7 @@ ETF instrument-level flow tape (per-symbol — GICS tools cannot see ETFs, espec
 
 Output: rotation regime call (defensive→cyclical / cyclical→defensive / growth→value / value→growth / no_change), per-sector persistence scores, named single-name leaders, `etf_flow_tape[]` (ranked inflow/outflow ETFs + GICS-agreement + leaders), swing-book implication. Feeds §2 (Sector Rotation) directly. The ETF tape is **advisory** — it strengthens the existing conditional sector-leader +1 via `gics_agreement`/cum_flow alignment, adds **no new rubric points**.
 
-### opex-pin-strategist — CONDITIONAL: only spawn within 7 days of monthly third-Friday (sonnet, thinking off) (NEW)
+### opex-pin-strategist — CONDITIONAL: only spawn within 7 days of monthly third-Friday (NEW)
 **Conditional spawn.** If `WEEK_END` is within 7 calendar days of the monthly third-Friday OPEX, include this agent (12 agents total). Otherwise omit.
 
 Tools required:
@@ -200,8 +180,7 @@ Tools required:
 
 Output: ranked OPEX book — top 5–10 names with `{ticker, pin_strike, distance_pct, oi_mass_at_pin, gex_at_pin, ranked_score, suggested_structure}`. Feeds §9 (Setups for Next Week) when the upcoming week is OPEX week.
 
-### sweep-tracker — multi-day persistence (sonnet, thinking off)
-Use `uw hot-chains sweep-persistence` as the **primary** signal. Surface tickers swept on **≥3 of 5** trading days this week.
+### sweep-tracker — multi-day persistenceUse `uw hot-chains sweep-persistence` as the **primary** signal. Surface tickers swept on **≥3 of 5** trading days this week.
 
 Tools required:
 - `uw hot-chains sweep-persistence` (primary).
@@ -212,8 +191,7 @@ Tools required:
 
 Single-day sweeps alone are insufficient for a weekly recommendation. Rank candidates by persistence count first.
 
-### accumulation-hunter — expanded window (sonnet, thinking off)
-Run with a 5-day window (and a 10-day secondary pass).
+### accumulation-hunter — expanded windowRun with a 5-day window (and a 10-day secondary pass).
 
 Tools required:
 - `uw insights institutional-accumulation` (a 5-day window and a 10-day window).
@@ -228,8 +206,7 @@ Tools required:
 
 Output: tickers with quiet multi-day OI build sustained across the full week with both DP and OI confirmation, each with an advisory `distribution_flag` (C28).
 
-### contrarian-scanner — pc_ratio trajectory (sonnet, thinking off)
-Tools required:
+### contrarian-scanner — pc_ratio trajectoryTools required:
 - `uw historical pc-ratio-zscore` — compute the trajectory of uw historical pc-ratio-zscore across `covered_dates`. This is the primary signal. **Do NOT use the deprecated `uw screener put-call-extremes`.**
 - `uw insights price-vs-flow` (week-range) — when smart money disagrees with price.
 - `uw options-flow iv-outliers` (week aggregated) — high-IV contracts where flow may be exhausted.
@@ -238,8 +215,7 @@ Tools required:
 
 Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs **falling** (crowding unwinding — potential fade entry). Gate every fade call against the week-regime baseline.
 
-### earnings-scout — DUAL MANDATE: recap + lookahead (sonnet, thinking **on**)
-Two sub-tasks:
+### earnings-scout — DUAL MANDATE: recap + lookaheadTwo sub-tasks:
 
 **(a) Recap.** For each earnings event that printed this week (extract from `covered_dates` flow data), evaluate flow reaction vs pre-event thesis:
 - `uw insights earnings-play` — pre-event positioning & post-event flow.
@@ -254,8 +230,7 @@ Two sub-tasks:
 
 Output: §6 earnings recap + ranked 2-week lookahead with IV term-structure alignment + analyst disagreement scores.
 
-### vol-surface-scout — WoW term-structure & skew evolution (sonnet, thinking off)
-Tools required:
+### vol-surface-scout — WoW term-structure & skew evolutionTools required:
 - `uw options-structure iv-term-structure` for `WEEK_END` and `covered_dates[0]` — compute the WoW shape change.
 - `uw options-structure term-skew` for `WEEK_END` and `covered_dates[0]` — WoW skew change.
 - `uw options-structure front-end-iv-ratio` (current) — single-number panic check.
@@ -265,8 +240,7 @@ Tools required:
 
 Flag names that went from NORMAL to KINKED or into BACKWARDATION across the week. These are §5.
 
-### multileg-strategist — full-week sample (sonnet, thinking **on**)
-Tools required:
+### multileg-strategist — full-week sampleTools required:
 - `uw hot-chains multileg` across the **full week** (not just today). Structures repeated on **≥2 days** carry materially higher directional inference weight than single-day prints.
 - `uw options-flow top-premium-trades` filtered to ≥$1M premium (week range).
 - `uw options-flow greek-screener` — directional / vol / vega bets by Greek profile.
@@ -275,8 +249,7 @@ Tools required:
 
 Output: per-ticker structure read with directional thesis, repeated-on-N-days count, and built-in risk caps.
 
-### leap-positioning-radar — rolling detector + 10d window (sonnet, thinking **on**)
-Tools required:
+### leap-positioning-radar — rolling detector + 10d windowTools required:
 - `uw oi position-rolls` across each covered date — surface conviction shifts (rolls forward into 2027/2028 LEAPs, rolls up in strike, large new LEAP OI initiations).
 - `uw oi biggest-increases` (`min_dte=180`) — fresh LEAP positions only.
 - `uw historical oi-trend` (`--days 10`) — BUILDING required for full points.
@@ -292,8 +265,7 @@ Output: §4 LEAP candidates that pass strict filters; explicit disqualification 
 
 Phase 2 runs in four stages: the quant produces the audited score (2a); the fundamentals gate cross-checks the top-5 against the underlying (2b); a bounded bull/bear debate stress-tests them (2c); then risk gates and sizes against regime/VRP/correlation **plus** the fundamentals verdict and debate residuals (2d). Stages 2b–2c operate on the **top 5 by `raw_score` only**.
 
-### Step 2a — signal-confluence-quant (sonnet, thinking **on**)
-
+### Step 2a — signal-confluence-quant
 Once **all** Phase 1 agents return, collect the **union** of every candidate ticker surfaced across all 11 (or 12) agents for the full week. Spawn `signal-confluence-quant` with that union plus the Step 4 weekly conviction rubric. It must:
 
 - ~~Run `uw insights signal-confluence` per ticker~~ — **REMOVED 2026-06-12 audit P0.2** (funnel-only tool; no per-ticker mode exists). Carry `confluence_score` from the Step 0 funnel when present, else `null`.
@@ -311,8 +283,7 @@ The microstructure fleet is fundamentally blind. Spawn `fundamentals-gate` with 
 
 The persistence-weighted score is still additive — crowded multi-week consensus names score highest. For each **top 5 by `raw_score`**, spawn `bull-researcher` and `bear-researcher` for **1 round** (2nd round only on genuine disagreement: residuals within one bin and ≥0.75). Hand both sides the ticker's `score_components`, the 2b fundamentals enrichment, and the Step 0 macro/event context. Debates run in parallel across names; bull-then-bear within a name. Output per ticker: `{bull_residual, bear_residual, bull_strongest_unrefuted, bear_strongest_unrefuted}`. The debate can only cut size, never add it.
 
-### Step 2d — risk-monitor (sonnet, thinking off)
-
+### Step 2d — risk-monitor
 Spawn `risk-monitor` with (a) the quant's sorted score list, (b) the 2b fundamentals verdicts, (c) the 2c debate residuals, and (d) the week-baseline context block from Step 0 (incl. `macro_snapshot` + `event_risk`). It must:
 
 - Run `uw risk portfolio-correlation` against the week-candidate set — flag corr > 0.7 sub-groups as concentration risks.
