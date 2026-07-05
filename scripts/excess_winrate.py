@@ -138,22 +138,60 @@ SIZING_ELIGIBLE_SOURCES = frozenset({"backtest_clean", "NA(substrate)", "NA", No
 RETIRED_SUBSTRATE_SOURCES = frozenset({"backtest", "fallback_proxy"})
 
 
-def sizing_eligible_quote(win_rate: float | None, win_rate_source: str | None) -> dict:
+def sizing_eligible_quote(
+    win_rate: float | None, win_rate_source: str | None, win_rate_n: int | None = None
+) -> dict:
     """C2 / 2026-06-20 P1 #2 emission guard: bind the 0.80 ceiling AND the clean-source
     requirement at serialization, mirroring the sub-0.50 pre-emit floor in the agent.
+    Extended 2026-07-04 audit P1 #1 (register C46, emission half) with the DEGENERATE
+    floor: a quote <= 0.0 from an EMPTY/sub-Step-e cell (``win_rate_n`` < 5 kept rows,
+    or n unknown) is the substrate degenerating, not a forecast — it must be emitted as
+    ``win_rate: null`` / ``win_rate_source: 'NA(substrate)'`` and sized **at most
+    starter** (the ladder's None path), never a numeric 0.0 (the MRVL 2026-06-08/06-09
+    multi_day_sweep rows serialized 0.0 on live setups and corrupted the low reliability
+    buckets — the pessimistic mirror of the >=0.80 ceiling leak).
+
+    A **measured zero** — 0-for-N on ``win_rate_n`` >= 5 kept rows — is a real (terrible)
+    quote, NOT degenerate: it stays numeric so the frozen sub-0.50 floor keeps binding it
+    to starter/skip. (3-lens review 2026-07-04: nulling a measured zero would re-route it
+    to the NA(substrate) tier default and LOOSEN the frozen floor — a 0.00 measurement
+    must never size larger than a 0.05 one. Negative rates are impossible measurements
+    and are degenerate at any n.)
 
     Returns an audit dict:
-      ``sizing_eligible`` — False when the quote carries a RETIRED substrate source; such a
-                            quote must NOT drive ``pre_risk_size`` (size at the NA(substrate)
-                            tier-default-capped-at-half and mark advisory/non-sizing).
-      ``capped_win_rate``  — ``win_rate`` clamped to ABSOLUTE_WR_CEILING (None if input None).
-      ``ceiling_ok``       — was the input already <= 0.80 (a serialized >0.80 is an envelope bug).
-      ``reason``           — human-readable audit string.
+      ``sizing_eligible`` — False when the quote carries a RETIRED substrate source OR is
+                            degenerate; such a quote must NOT drive ``pre_risk_size``.
+      ``degenerate``      — True when ``win_rate <= 0.0`` and it is not a measured zero
+                            (n >= 5). The serialized envelope value must then be null and
+                            the size at most starter.
+      ``capped_win_rate`` — ``win_rate`` clamped to ABSOLUTE_WR_CEILING (None if input
+                            None OR degenerate — a degenerate quote has no emittable value).
+      ``ceiling_ok``      — was the input already <= 0.80 (a serialized >0.80 is an envelope bug).
+      ``reason``          — human-readable audit string.
     """
-    eligible = win_rate_source in SIZING_ELIGIBLE_SOURCES
-    capped = None if win_rate is None else round(min(win_rate, ABSOLUTE_WR_CEILING), 4)
+    measured_zero = (
+        win_rate is not None
+        and win_rate == 0.0
+        and win_rate_n is not None
+        and win_rate_n >= 5
+    )
+    degenerate = win_rate is not None and win_rate <= 0.0 and not measured_zero
+    eligible = win_rate_source in SIZING_ELIGIBLE_SOURCES and not degenerate
+    capped = None if (win_rate is None or degenerate) else round(min(win_rate, ABSOLUTE_WR_CEILING), 4)
     ceiling_ok = win_rate is None or win_rate <= ABSOLUTE_WR_CEILING
-    if not eligible:
+    if degenerate:
+        reason = (
+            f"win_rate {win_rate} <= 0.0 with n={win_rate_n} (<5 or unknown) is a DEGENERATE "
+            f"substrate cell (2026-07-04 P1 #1 / C46) -> emit win_rate=null, "
+            f"win_rate_source='NA(substrate)', size at most starter (ladder None path); "
+            f"never serialize a 0.0 forecast"
+        )
+    elif measured_zero:
+        reason = (
+            f"win_rate 0.0 MEASURED on n={win_rate_n} kept rows is a real quote -> keep numeric; "
+            f"the sub-0.50 floor binds pre_risk_size to starter/skip"
+        )
+    elif not eligible:
         reason = (
             f"win_rate_source={win_rate_source!r} is RETIRED substrate (2026-06-12 P0.3) -> "
             f"NON-SIZING; size at NA(substrate) tier-default capped half"
@@ -164,6 +202,7 @@ def sizing_eligible_quote(win_rate: float | None, win_rate_source: str | None) -
         reason = f"win_rate {win_rate} (source {win_rate_source}) <= {ABSOLUTE_WR_CEILING} ceiling -> sizing-eligible"
     return {
         "sizing_eligible": eligible,
+        "degenerate": degenerate,
         "capped_win_rate": capped,
         "ceiling_ok": ceiling_ok,
         "reason": reason,

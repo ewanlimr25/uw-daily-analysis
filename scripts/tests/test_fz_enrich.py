@@ -112,5 +112,109 @@ class EnrichTest(unittest.TestCase):
         self.assertEqual(out["skip_reason"], "fz CLI not found")
 
 
+# ---- 2026-07-04 screener-view fallback (W27 §7(8) upstream quote-grid regression) ----
+
+# Real broken `fz quote --agent` shape observed 2026-07-04: only the FIRST snapshot
+# column of the 84-field grid survives (14 valuation fields; no SI/analyst/technical).
+BROKEN_QUOTE = {
+    "company": "Apple Inc",
+    "fundamentals": {
+        "Market Cap": "4532.96B",
+        "Index": "DJIA, S&P 500",
+        "Book/sh": "4.35",
+        "Income": "112.39B",
+    },
+}
+
+# Real `fz screen --tickers AAPL --view ownership --agent` row (2026-07-04).
+OWNERSHIP_ROW = {
+    "Ticker": "AAPL", "Short Float": "0.98%", "Short Ratio": "2.71",
+    "Float": "14.67B", "Outstanding": "14.69B",
+    "Insider Own": "0.12%", "Insider Trans": "-2.21%",
+    "Inst Own": "67.21%", "Inst Trans": "0.00%",
+    "Price": "308.63", "Market Cap": "4532.96B",
+    "Avg Volume": "53.22M", "Change": "4.84%", "Volume": "75,218,001",
+}
+
+# Real `fz screen --tickers AAPL --view technical --agent` row (2026-07-04).
+TECHNICAL_ROW = {
+    "Ticker": "AAPL", "RSI": "60.26", "SMA20": "4.69%", "SMA50": "5.15%",
+    "SMA200": "14.02%", "52W High": "-2.76%", "52W Low": "53.17%",
+    "Beta": "1.09", "ATR": "8.74", "Price": "308.63",
+    "Change": "4.84%", "Volume": "75,218,001",
+}
+
+
+def _fake_screen(ticker, binary, view):
+    return [OWNERSHIP_ROW] if view == "ownership" else [TECHNICAL_ROW]
+
+
+class ScreenFallbackTest(unittest.TestCase):
+    """fz 1.0.0 truncates the quote grid to the first snapshot column; the screener
+    ownership/technical views still carry the SI/float/insider/technical fields.
+    Analyst fields (Recom / Target Price) exist in NO view -> upstream_gaps."""
+
+    def test_broken_quote_grid_recovers_si_and_technical_via_screen(self):
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=_fake_screen)
+        self.assertTrue(out["available"])
+        self.assertEqual(out["fields"]["short_float"], "0.98%")
+        self.assertEqual(out["fields"]["short_ratio"], "2.71")
+        self.assertEqual(out["fields"]["shs_float"], "14.67B")
+        self.assertEqual(out["fields"]["rsi"], "60.26")
+        self.assertEqual(out["derived"]["short_float_pct"], 0.98)
+        self.assertEqual(out["derived"]["days_to_cover"], 2.71)
+        self.assertEqual(out["derived"]["float_shares"], 14.67e9)
+        self.assertEqual(out["derived"]["squeeze_pressure"], "LOW")
+        self.assertIn("short_float", out["screen_fallback_used"])
+        self.assertIn("rsi", out["screen_fallback_used"])
+
+    def test_analyst_fields_reported_as_upstream_gaps(self):
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=_fake_screen)
+        self.assertIn("recom", out["upstream_gaps"])
+        self.assertIn("target_price", out["upstream_gaps"])
+        # short_interest (absolute) and earnings date are equally unrecoverable
+        # (no screener column) — the gap report must not under-state (review 2026-07-04).
+        self.assertIn("short_interest", out["upstream_gaps"])
+        self.assertIn("earnings", out["upstream_gaps"])
+        self.assertIsNone(out["derived"]["recom"])
+        self.assertIsNone(out["derived"]["upside_to_target_pct"])
+
+    def test_quote_values_win_over_screen_fallback(self):
+        # Intact quote grid: quote's Short Float 0.92% must survive even though the
+        # ownership view says 0.98% (fallback fills gaps, never overrides).
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: AAPL_PAYLOAD,
+                        screen_runner=_fake_screen)
+        self.assertEqual(out["fields"]["short_float"], "0.92%")
+        self.assertEqual(out["fields"]["recom"], "1.98")
+        self.assertEqual(out["upstream_gaps"], [])
+
+    def test_screen_failure_never_blocks_enrichment(self):
+        def broken_screen(ticker, binary, view):
+            raise fz.FzError("screen exploded")
+
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=broken_screen)
+        self.assertTrue(out["available"])  # graceful: quote-only payload
+        self.assertNotIn("short_float", out["fields"])
+        self.assertEqual(out["screen_fallback_used"], [])
+
+    def test_screen_row_matched_by_ticker(self):
+        def multi_row_screen(ticker, binary, view):
+            other = dict(OWNERSHIP_ROW, Ticker="MSFT", **{"Short Float": "9.99%"})
+            return [other, OWNERSHIP_ROW] if view == "ownership" else [TECHNICAL_ROW]
+
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=multi_row_screen)
+        self.assertEqual(out["fields"]["short_float"], "0.98%")  # AAPL row, not MSFT
+
+    def test_empty_screen_rows_tolerated(self):
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=lambda t, b, v: [])
+        self.assertTrue(out["available"])
+        self.assertNotIn("short_float", out["fields"])
+
+
 if __name__ == "__main__":
     unittest.main()

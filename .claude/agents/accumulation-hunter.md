@@ -45,6 +45,7 @@ Output a ranked list per ticker with:
 - DP support level (the price they're defending)
 - cumulative-flow window and net premium accretion if available
 - `insider_cluster_present` (true/false) + distinct-buyer count from `fz insider-clusters` (advisory co-flag, 0 points)
+- `dp_block_to_float_ratio` (advisory, 0 points — 2026-07-04 audit P1 #4 / C16-enabler): the **largest institutional-tier DP block (shares) ÷ float shares**, e.g. `0.0012`. Float comes from `python3 scripts/fz_enrich.py --ticker <T> --date <AS_OF>` → `derived.float_shares` (restored via the fz screener `ownership` view, 2026-07-04). Emit `null` when `fz` float is unavailable — never block the hunt on it. This is the per-call number the quant serializes into `decision.json.calls[].dp_block_to_float_ratio`; two consecutive audits could not test the C16 float-normalized gate because it was never emitted.
 - explicit `invalidation` — e.g. "uw insights conviction-matrix flips to HEDGED_LONG", "price breaks DP support", "uw historical oi-trend turns UNWINDING for 2+ sessions", "block-tier share collapses to retail-dominant"
 
 Disqualifiers — do not surface:

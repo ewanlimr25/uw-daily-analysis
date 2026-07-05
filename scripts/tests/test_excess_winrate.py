@@ -225,5 +225,79 @@ class SizingEligibleQuoteP1Test(unittest.TestCase):
             )
 
 
+class DegenerateQuoteFloorTest(unittest.TestCase):
+    """2026-07-04 audit P1 #1 (register C46 emission half): a substrate win-rate of
+    0.0 from an EMPTY/sub-Step-e conditional cell (n < 5 kept rows, or n unknown)
+    is the substrate degenerating, not a forecast. The MRVL 2026-06-08/06-09
+    multi_day_sweep rows serialized claimed_win_rate=0.0 on live setups (one
+    resolved WIN) and corrupted the low reliability buckets (pred 0.36 ->
+    realised 0.50, n=50). A degenerate quote must be emitted as win_rate=null /
+    win_rate_source='NA(substrate)' and sized AT MOST starter — the ladder's
+    None path — NEVER the retired-source tier-default-half path (3-lens review
+    2026-07-04: routing it to half would LOOSEN the frozen sub-0.50 floor).
+    A genuinely MEASURED 0-for-N on n >= 5 kept rows is a real (terrible) quote:
+    it stays numeric and the frozen sub-0.50 floor binds it to starter/skip."""
+
+    def test_zero_quote_unknown_n_is_degenerate_and_non_sizing(self):
+        d = ew.sizing_eligible_quote(0.0, "backtest_clean")
+        self.assertTrue(d["degenerate"])
+        self.assertFalse(d["sizing_eligible"])
+        self.assertIsNone(d["capped_win_rate"])  # never serialize a numeric 0.0 forecast
+        self.assertIn("NA(substrate)", d["reason"])
+        self.assertIn("starter", d["reason"])  # degenerate path caps at starter, not half
+
+    def test_zero_quote_small_n_is_degenerate(self):
+        d = ew.sizing_eligible_quote(0.0, "backtest_clean", win_rate_n=3)
+        self.assertTrue(d["degenerate"])
+        self.assertFalse(d["sizing_eligible"])
+        self.assertIsNone(d["capped_win_rate"])
+
+    def test_measured_zero_on_5plus_rows_is_a_real_quote_not_degenerate(self):
+        # 0-for-7 on real kept rows is information, not degeneracy. It must stay a
+        # numeric quote so the frozen sub-0.50 floor (starter/skip) keeps binding —
+        # nulling it would re-route to the NA(substrate) tier default (a loosening).
+        d = ew.sizing_eligible_quote(0.0, "backtest_clean", win_rate_n=7)
+        self.assertFalse(d["degenerate"])
+        self.assertTrue(d["sizing_eligible"])
+        self.assertEqual(d["capped_win_rate"], 0.0)
+        self.assertIn("sub-0.50 floor", d["reason"])
+
+    def test_measured_zero_agrees_with_size_decision_ladder(self):
+        # Helper coherence: the measured-zero path and size_from_winrate/size_decision
+        # must agree (both bind at the floor), and the degenerate path must match the
+        # ladder's None handling (starter).
+        self.assertEqual(ew.size_from_winrate(0.0), "starter")
+        self.assertEqual(ew.size_from_winrate(None), "starter")
+
+    def test_negative_quote_is_degenerate_even_with_large_n(self):
+        # A negative rate is impossible as a measurement — always degenerate.
+        d = ew.sizing_eligible_quote(-0.1, "backtest_clean", win_rate_n=50)
+        self.assertTrue(d["degenerate"])
+        self.assertFalse(d["sizing_eligible"])
+        self.assertIsNone(d["capped_win_rate"])
+
+    def test_small_positive_quote_is_not_degenerate(self):
+        # A genuinely terrible-but-measured class (e.g. 0.05) is a real quote;
+        # the sub-0.50 sizing floor handles it — do NOT null it out.
+        d = ew.sizing_eligible_quote(0.05, "backtest_clean")
+        self.assertFalse(d["degenerate"])
+        self.assertTrue(d["sizing_eligible"])
+        self.assertEqual(d["capped_win_rate"], 0.05)
+
+    def test_none_quote_is_not_degenerate(self):
+        d = ew.sizing_eligible_quote(None, "NA(substrate)")
+        self.assertFalse(d["degenerate"])
+
+    def test_degenerate_with_retired_source_still_flagged_degenerate(self):
+        d = ew.sizing_eligible_quote(0.0, "backtest")
+        self.assertTrue(d["degenerate"])
+        self.assertFalse(d["sizing_eligible"])
+
+    def test_existing_clean_quotes_carry_degenerate_false(self):
+        # Backward-compat: the new key is present and False on normal quotes.
+        for wr in (0.55, 0.69, 0.80):
+            self.assertFalse(ew.sizing_eligible_quote(wr, "backtest_clean")["degenerate"])
+
+
 if __name__ == "__main__":
     unittest.main()

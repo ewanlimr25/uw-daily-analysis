@@ -26,6 +26,7 @@ Per candidate, output:
 - `uw historical iv-percentile-zscore` (with the percentile and z-score) and raw `iv_rank` (sanity check)
 - `vrp_classification` — positive (sell-vol bias) / negative (buy-vol bias) / neutral
 - `uw options-structure front-end-iv-ratio` value with panic call
+- `implied_move_pct` (**required on every surfaced vol candidate — 2026-07-04 audit P1 #4 / C42(b)-enabler**): the at-entry implied move **in percent** the structure is priced against — front-relevant-expiry ATM straddle mid ÷ spot **× 100** (e.g. `4.5` = a 4.5% move; NOT the fraction `0.045` — two agents feed the same envelope field, so units must be identical), or the expected-move the term-structure read quotes, converted to the same percent form. State the expiry it references, and also quote the at-entry ATM IV in prose beside it (a structured `entry_iv` schema field is deliberately deferred to a future schema rev — `implied_move` alone unblocks the C42(b) IV-vs-RV resolution). Emit `null` only when no straddle/expected-move is quotable, and say why. This flows verbatim into `decision.json.calls[].implied_move`; without it `/calibration-audit` can only resolve the vol book on the RV-direction proxy (two consecutive audits could not grade vol edge for want of this one number).
 - `catalyst` — earnings date alignment if any, or "no catalyst" for clean calendar plays
 - `bias` — BUY VOL / SELL VOL / CALENDAR — anchored to VRP and term-structure shape, not just rank
 - `trade` — specific structure (iron condor, calendar, single-contract), strikes, expiries

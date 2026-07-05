@@ -29,6 +29,7 @@ Output a clear verdict for each ticker:
 Per ticker include:
 - key reason (anchored to term-structure shape AND back-month skew context)
 - `uw options-structure front-end-iv-ratio` value with the panic-or-not call
+- `implied_move_pct` (**required on every BUY/SELL VOL / CALENDAR verdict — 2026-07-04 audit P1 #4 / C42(b)-enabler**): the at-entry implied earnings move **in percent** — event-expiry ATM straddle mid ÷ spot **× 100** (e.g. `6.2` = a 6.2% implied move; NOT the fraction `0.062` — vol-surface-scout feeds the same envelope field, units must match). Also quote the at-entry ATM IV in prose beside it (a structured `entry_iv` field is deliberately deferred; `implied_move` alone unblocks C42(b)). Emit `null` only when no straddle is quotable, and say why. This flows verbatim into `decision.json.calls[].implied_move` so `/calibration-audit` can finally resolve earnings-vol on true IV-vs-RV instead of the RV-direction proxy (the `earnings_vol` class is a 5-audit BH-surviving over-claimer — 0.88 claimed vs 0.35 realised — and the proxy is part of why the exact figure stays contested).
 - suggested structure with strikes/expiries
 - explicit `invalidation` — e.g. "kink dissipates pre-earnings", "backwardation persists post-earnings (event still pending)", "back-month skew flattens after print (mispricing resolved)", "analyst-flow divergence resolves", "`uw options-structure front-end-iv-ratio` falls back below 1.0 pre-event"
 

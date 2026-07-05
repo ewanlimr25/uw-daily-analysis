@@ -18,6 +18,14 @@ settlement figure (~2-week lag)** — squeeze *context*, not a live borrow
 signal — and ``fz`` exposes **no borrow fee / hard-to-borrow** field. All
 ``fz`` surfaces are EOD/delayed; never use for 0DTE timing.
 
+2026-07-04 (audit P2 #5): fz 1.0.0's quote parser truncates the 84-field grid to
+its first snapshot column, so the gate-relevant SI/float/insider/technical fields
+are transparently backfilled from the screener ``ownership``/``technical`` views
+(quote values win; failures skip silently). Analyst consensus (``recom`` /
+``target_price``) exists in no screener view and is reported in ``upstream_gaps``
+until the upstream quote parser is fixed — the C17 flow-vs-analyst axis starves
+on new data until then, by upstream limitation, not by selection.
+
 Usage:
     python3 scripts/fz_enrich.py --ticker AAPL --date 2026-05-27
 
@@ -51,6 +59,21 @@ FRESHNESS_CAVEAT = (
     "fee / HTB status available. All fields EOD/delayed, never for 0DTE timing."
 )
 
+# --- 2026-07-04 upstream regression + screener-view fallback (2026-07-04 audit P2 #5) ---
+# fz 1.0.0's quote parser truncates the 84-field fundamentals grid to the FIRST
+# snapshot column (~14 valuation fields) — the SI / float / insider / analyst /
+# technical fields the gate needs vanished from `fz quote` (first observed live on
+# W27, logged as §7(8) "selector miss"; root-caused 2026-07-04 as an upstream parse
+# regression, not a selection bug here). The screener views still carry most of
+# them per ticker, so `enrich` transparently backfills any missing mapped field
+# from `fz screen --tickers <T> --view ownership|technical`. Quote values always
+# win; the fallback only fills gaps and never blocks (graceful-skip discipline).
+#
+# Analyst consensus fields (`recom`, `target_price`) exist in NO screener view —
+# they are UPSTREAM-UNRECOVERABLE until finviz-pp-cli fixes its quote parser. The
+# payload reports them in `upstream_gaps` so the fundamentals-gate / C17 collection
+# can state the reason instead of silently starving.
+
 # Output key -> exact Finviz field label inside the `fundamentals` object.
 _FIELD_MAP = {
     "short_float": "Short Float",
@@ -76,6 +99,38 @@ _FIELD_MAP = {
     "earnings": "Earnings",
     "index": "Index",
 }
+
+# Output key -> screener-row label, per view, for the quote-grid fallback.
+_SCREEN_VIEW_FIELD_MAP = {
+    "ownership": {
+        "short_float": "Short Float",
+        "short_ratio": "Short Ratio",
+        "shs_float": "Float",
+        "shs_outstanding": "Outstanding",
+        "inst_own": "Inst Own",
+        "inst_trans": "Inst Trans",
+        "insider_own": "Insider Own",
+        "insider_trans": "Insider Trans",
+        "price": "Price",
+        "market_cap": "Market Cap",
+    },
+    "technical": {
+        "rsi": "RSI",
+        "sma20": "SMA20",
+        "sma50": "SMA50",
+        "sma200": "SMA200",
+        "high_52w": "52W High",
+        "low_52w": "52W Low",
+        "beta": "Beta",
+        "price": "Price",
+    },
+}
+
+# Mapped fields available in NEITHER the truncated quote grid NOR any screener view
+# (verified against all six views 2026-07-04: recom/target_price are analyst-only
+# quote-grid fields; short_interest (absolute shares) and earnings (next date) have
+# no screener column either — only short_float/short_ratio survive via `ownership`).
+UPSTREAM_UNRECOVERABLE = ("earnings", "recom", "short_interest", "target_price")
 
 
 class FzError(RuntimeError):
@@ -121,6 +176,33 @@ def _run_fz_quote(ticker: str, binary: str) -> object:
         return json.loads(proc.stdout)
     except (ValueError, json.JSONDecodeError) as exc:
         raise FzError(f"fz returned non-JSON output: {exc}") from exc
+
+
+def _run_fz_screen(ticker: str, binary: str, view: str) -> list:
+    """Run ``fz screen --tickers <T> --view <view> --agent`` -> list of row dicts.
+
+    The screener payload is a JSON array of label-keyed rows (one per ticker).
+    Raises the same typed errors as the quote runner; the caller treats every
+    failure as a silent skip (the fallback never blocks enrichment).
+    """
+    try:
+        proc = subprocess.run(  # noqa: S603 - fixed argv, no shell
+            [binary, "screen", "--tickers", ticker, "--view", view, "--agent"],
+            capture_output=True,
+            text=True,
+            timeout=TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:  # pragma: no cover - env path
+        raise FzError(f"fz screen invocation failed: {exc}") from exc
+
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout or "").strip()[:200]
+        raise FzError(f"fz screen exit {proc.returncode}: {detail}")
+    try:
+        rows = json.loads(proc.stdout)
+    except (ValueError, json.JSONDecodeError) as exc:
+        raise FzError(f"fz screen returned non-JSON output: {exc}") from exc
+    return rows if isinstance(rows, list) else []
 
 
 # ---------- pure parsers -----------------------------------------------------
@@ -224,14 +306,60 @@ def derive(fields: dict) -> dict:
     }
 
 
+def screen_fallback_fields(
+    ticker: str, binary: str, missing_keys: set, screen_runner=_run_fz_screen
+) -> dict:
+    """Recover missing mapped fields from the screener views (quote-grid fallback).
+
+    Pure gap-fill: only keys in ``missing_keys`` are pulled; each view is queried at
+    most once and only when it can still contribute. Any screener failure or empty
+    result is a silent skip — the fallback never blocks enrichment.
+    """
+    out: dict = {}
+    for view, fmap in _SCREEN_VIEW_FIELD_MAP.items():
+        wanted = {k: lbl for k, lbl in fmap.items() if k in missing_keys and k not in out}
+        if not wanted:
+            continue
+        try:
+            rows = screen_runner(ticker, binary, view)
+        except FzError:
+            continue
+        row = next(
+            (r for r in rows if isinstance(r, dict) and str(r.get("Ticker", "")).upper() == ticker),
+            None,
+        )
+        if row is None:
+            continue
+        for key, label in wanted.items():
+            val = row.get(label)
+            if isinstance(val, str) and val.strip() not in ("", "-"):
+                out[key] = val.strip()
+    return out
+
+
 # ---------- orchestration ----------------------------------------------------
 
 
-def enrich(ticker: str, as_of: str, runner=_run_fz_quote, binary: str = "fz") -> dict:
-    """Fetch one ticker via ``fz`` and assemble the enrichment payload."""
+def enrich(
+    ticker: str,
+    as_of: str,
+    runner=_run_fz_quote,
+    binary: str = "fz",
+    screen_runner=_run_fz_screen,
+) -> dict:
+    """Fetch one ticker via ``fz`` and assemble the enrichment payload.
+
+    Quote first; any mapped field the (upstream-truncated) quote grid lacks is
+    backfilled from the screener ownership/technical views. Quote values win.
+    ``screen_fallback_used`` lists the backfilled keys; ``upstream_gaps`` lists
+    mapped fields recoverable from no fz surface (today: recom / target_price).
+    """
     sym = ticker.upper()
     resp = runner(sym, binary)
-    fields = extract_fields(resp)
+    quote_fields = extract_fields(resp)
+    missing = {k for k in _FIELD_MAP if k not in quote_fields}
+    fallback = screen_fallback_fields(sym, binary, missing, screen_runner=screen_runner) if missing else {}
+    fields = {**fallback, **quote_fields}  # quote wins on any overlap
     return {
         "ticker": sym,
         "as_of": as_of,
@@ -240,6 +368,8 @@ def enrich(ticker: str, as_of: str, runner=_run_fz_quote, binary: str = "fz") ->
         "fz_available": True,
         "fields": fields,
         "derived": derive(fields),
+        "screen_fallback_used": sorted(fallback.keys()),
+        "upstream_gaps": sorted(k for k in UPSTREAM_UNRECOVERABLE if k not in fields),
         "freshness_caveat": FRESHNESS_CAVEAT,
     }
 
