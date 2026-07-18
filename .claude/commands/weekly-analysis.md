@@ -575,7 +575,15 @@ Advisory only — 0 rubric points. See
 
 **2026-06-12 audit P0.5 re-validation + refinements:** refreshed-window re-run holds —
 Tier-1 PRIME 0.600 (n=295, +21.9pp, p≈0), month-stable, **June/TRANSITIONAL cohort
-0.632 (n=19)** — the second-regime accrual the graduation gate requires has begun.
+0.632 (n=19)** — as of the 2026-06-12 backtest this looked like the second-regime
+accrual beginning. **2026-07-18 audit UPDATE — NOT corroborated at the aggregate level:**
+the broad short/bearish direction ran **negative** benchmark-excess again (−7.2pp
+pooled; −26.7pp uptrend / −22.7pp pullback, 394 decided), and 2026-07-11's class-level
+`bearish_flow` **+29.4pp** positive was a benchmark-window artifact (that window's
+SPY-short path base was 0.176 vs 0.588 now). The audit does not re-measure the narrow
+Tier-1 put tier directly, but aggregate short-selection stays negative — **hold C19
+advisory / 0 points; do not treat June as accrual-in-progress. Promotion only via the
+pre-registered gate (unmet; its 2-regime-consistency clause now carries a failing datum).**
 (a) Weight repeat Tier-1 put names higher when `fz_context` shows borrow constraint
 (`short_ratio` / `short_float`) — the published bearish-information channel is
 short-sale cost (Johnson & So 2012). (b) "Calls = beta" is **bull-regime-conditional**

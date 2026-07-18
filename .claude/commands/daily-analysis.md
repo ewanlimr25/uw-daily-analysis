@@ -596,6 +596,17 @@ the empirically-backtested **Signal Quality Hierarchy** (see
   month-stable, **June/TRANSITIONAL cohort 0.632 (n=19)**. The pre-registered gate
   (rolling WR ≥58% over ≥60 days across ≥2 regimes) is the ONLY promotion route to a
   scored bearish line — do not shortcut it on the June strength.
+- **2026-07-18 audit — accrual NOT corroborated at the aggregate level; hold advisory:**
+  the calibration audit (first cycle with real regime diversity — 292 non-uptrend
+  rows) found the **broad short/bearish direction ran negative benchmark-excess again**
+  (−7.2pp pooled; −26.7pp uptrend / −22.7pp pullback, 394 decided), and the
+  2026-07-11 class-level `bearish_flow` **+29.4pp** positive was a **benchmark-window
+  artifact** (SPY-short path base 0.176 that window vs 0.588 now). The audit does not
+  re-measure the narrow Tier-1 single-leg-put tier directly, but aggregate
+  short-selection stays negative — **do not treat the June 0.632 (n=19) cohort as
+  "accrual in progress."** C19 stays advisory / **0 rubric points**; the ≥58% rolling-WR
+  / ≥60-day / ≥2-regime gate is **unmet**, and its 2-regime-consistency clause now
+  carries a failing datum. Promotion only via the pre-registered gate — never on June.
 - **Short-sale-constraint conditioning (advisory):** weight a Tier-1 put co-flag
   higher when the name shows borrow constraint — `fz` `short_ratio` (days-to-cover)
   / `short_float` from the fundamentals-gate `fz_context`. Rationale: the published
