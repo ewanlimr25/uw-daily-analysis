@@ -61,6 +61,10 @@ Stdlib-only Python helpers in `scripts/` (no pip installs; run via the already-a
 - `scripts/fred_macro.py` — FRED macro snapshot (12 series + derived signals) for Step 0 `macro_snapshot`. Needs `FRED_API_KEY` (free).
 - `scripts/finnhub_enrich.py` — per-ticker fundamentals for the `fundamentals-gate` agent. Falls back to the sibling repo's `FINNHUB_API_KEY`.
 - `scripts/fz_enrich.py` — per-ticker short-interest / float / analyst context via the `fz` CLI (see below) for the `fundamentals-gate` agent. No key. Advisory (0 rubric points); graceful-skips when `fz` is unavailable.
+- `scripts/step0_cache.py` — fetches the ~22 market-wide `uw` payloads once per run into `analyses/daily/<date>/step0_cache/`; agents read the cached paths instead of re-issuing the commands (a measured 528KB duplicate on 2026-07-24).
+- `scripts/market_data.py` — raw Yahoo chart API OHLCV for the **C12 liquidity floor** (price ≥ $5, 20d dollar ADV ≥ $50M), the cap-weighted-vs-equal-weight tape check, and realized vol. The `uw` CLI has no OHLC or share-volume source.
+- `scripts/dex_flip.py` — the mechanized +1 DEX sign-flip rubric line (2026-06-12 P0.4); emits a rubric-ready evidence string plus a whipsaw warning.
+- `scripts/term_structure_hygiene.py` — re-derives IV term structure after dropping the 0DTE bucket and thin tenors (raw label was BACKWARDATION on 39/41 names on 2026-07-24; 14 flipped).
 - `scripts/validate_decision.py` — validates the decision envelope against `schemas/decision_envelope.schema.json` + cross-field invariants (Σ component points == raw_score; tier ≤ score band; VETO ⇒ skip).
 - Tests: `python3 -m unittest discover -s scripts/tests -p 'test_*.py'`.
 

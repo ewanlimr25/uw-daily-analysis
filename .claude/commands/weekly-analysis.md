@@ -102,7 +102,11 @@ This step builds the shared week-baseline context every Phase 1 agent receives. 
 6. **Top-of-funnel screens** — run in parallel for `WEEK_END`:
    - `uw screener bullish-bearish` (top 25 each side) — week-end leaderboard.
    - `uw insights signal-confluence` (`min_score=4`, top 25 each direction) — multi-factor scoring at higher threshold than daily.
-   - `uw screener iv-rank` (top 25 high, top 25 low) — premium-selling vs premium-buying candidates for next week.
+   - **`uw screener iv-rank --mode high|low`** (top 25 high, top 25 low) — premium-selling vs premium-buying candidates for next week.
+
+   > **Shared-payload cache.** These market-wide screens are the same set `scripts/step0_cache.py` fetches for the daily. Run `python3 scripts/step0_cache.py --date <WEEK_END> --out-dir analyses/weekly/<YYYY-WW>/step0_cache` once and hand agents the manifest `paths`, rather than letting each agent re-issue them — on 2026-07-24 two agents fetched a byte-identical 528,504-byte `earnings-catalyst` payload in the same run.
+   > **Liquidity floor.** Apply C12 with `python3 scripts/market_data.py --as-of <WEEK_END> --symbols "<funnel>"` (always pin `--as-of`, or a re-run measures a different tape).
+     > ⚠ **CLI FLAG TRAP — takes `--mode`, NOT `--direction`.** The adjacent `screener bullish-bearish` and `insights signal-confluence` both take `--direction`; flag-transfer is the natural error.
    - `uw screener earnings-catalyst` — upcoming earnings + elevated IV (next 14 days) — feeds §6.
    - `uw screener volume-vs-average` (top 25, `--min-volume-ratio 3`) — flow anomalies vs 30-day baseline; cross-reference against multi-day persistence for §3.
    - `uw hot-chains sweep-ratio` — high sweep-to-volume contracts at week-end; cross-reference against `uw hot-chains sweep-persistence` in sweep-tracker.
@@ -211,7 +215,7 @@ Output: tickers with quiet multi-day OI build sustained across the full week wit
 - `uw insights price-vs-flow` (week-range) — when smart money disagrees with price.
 - `uw options-flow iv-outliers` (week aggregated) — high-IV contracts where flow may be exhausted.
 - `uw oi decrease-with-volume` — capitulation / profit-taking detection.
-- `uw screener iv-rank` (extreme high) — premium ripe to fade.
+- `uw screener iv-rank --mode high` (extreme high) — premium ripe to fade (flag is `--mode`, NOT `--direction`).
 
 Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs **falling** (crowding unwinding — potential fade entry). Gate every fade call against the week-regime baseline.
 
@@ -223,7 +227,7 @@ Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs *
 
 **(b) Lookahead.** Scan the next two calendar weeks for earnings catalysts:
 - `uw screener earnings-catalyst` (next 14 days).
-- `uw options-structure iv-term-structure` per candidate — KINKED/BACKWARDATION alignment.
+- `uw options-structure iv-term-structure` per candidate — KINKED/BACKWARDATION alignment. **Classify through `python3 scripts/term_structure_hygiene.py --file <{ticker: payload}.json>`, never off the raw label** — raw returned BACKWARDATION on 39 of 41 names on 2026-07-24 and 14 flipped once the `dte_approx: 0` bucket (250-480% avg IV) and sub-15-contract tenors were dropped. It emits kink-aware `shape` **and** monotonic `base_shape`, the `front_end_ratio` re-read at `--near-dte 7`, and `NO_NEAR_TENOR` where the front is unmeasurable rather than calm.
 - `uw options-structure term-skew` — back-month skew at the earnings DTE.
 - `uw options-structure front-end-iv-ratio` — quick panic detector.
 - `uw insights analyst-vs-flow` — analyst-vs-flow disagreement is the highest-EV setup.
@@ -231,7 +235,7 @@ Flag names where crowdedness is **rising** (deteriorating contrarian setup) vs *
 Output: §6 earnings recap + ranked 2-week lookahead with IV term-structure alignment + analyst disagreement scores.
 
 ### vol-surface-scout — WoW term-structure & skew evolutionTools required:
-- `uw options-structure iv-term-structure` for `WEEK_END` and `covered_dates[0]` — compute the WoW shape change.
+- `uw options-structure iv-term-structure` for `WEEK_END` and `covered_dates[0]` — compute the WoW shape change. **Run BOTH snapshots through `scripts/term_structure_hygiene.py` before differencing them**: an unfiltered week-start snapshot taken on a non-expiry day and a week-end snapshot taken on an expiry day differ mostly in their 0DTE bucket, so a raw WoW 'shape change' is an artifact of which day you sampled. Compare `base_shape` to `base_shape` and `front_end_ratio` to `front_end_ratio`.
 - `uw options-structure term-skew` for `WEEK_END` and `covered_dates[0]` — WoW skew change.
 - `uw options-structure front-end-iv-ratio` (current) — single-number panic check.
 - `uw historical iv-percentile-zscore` (`--lookback-days 252`) — outlier-robust per-ticker IV percentile (Goyal-Saretto). Use this instead of raw IV rank where possible.
@@ -345,7 +349,7 @@ Weekly conviction score = Σ:
   # (dp_accumulation / oi_building / bullish_flow); it also contradicted the Step 3 gate threshold (≥5 vs ≥4 —
   # undecidable as written) and the CLI has no per-ticker mode. Funnel-seed role only (Step 0 #6); no points,
   # no entry path, no LB-gate slot.
-  +1  dealer-positioning-strategist flags a MECHANIZED DEX flip or vanna squeeze in trade direction across the week — verified SIGN CHANGE only, not a level: sign(net_dex) on the latest session opposite to ≥3 consecutive prior sessions, read from dated `uw options-structure dex --date` calls (≥4 to verify the prior-session sign run; ~11 for the trailing-median floor) across covered_dates, flip-day |net_dex| ≥ 0.25× trailing-10-session median |net_dex|, both dated values cited in evidence; vanna leg requires a dated VIX source (Yahoo chart API ^VIX)   # DEMOTED +2→+1 and MECHANIZED 2026-06-12 audit P0.4 — the 06-11 daily book awarded the flip line to three names with no sign change in their windows (level-as-flip); no peer-reviewed support at the 1–4wk horizon; restore weight only via a pre-registered dex-flip backtest showing cross-regime forward excess
+  +1  dealer-positioning-strategist flags a MECHANIZED DEX flip or vanna squeeze in trade direction across the week — verified SIGN CHANGE only, not a level: sign(net_dex) on the latest session opposite to ≥3 consecutive prior sessions, read from dated `uw options-structure dex --date` calls (≥4 to verify the prior-session sign run; ~11 for the trailing-median floor) across covered_dates, flip-day |net_dex| ≥ 0.25× trailing-10-session median |net_dex|, both dated values cited in evidence. **Compute with `python3 scripts/dex_flip.py --symbol <T> --dates <covered_dates + the ~10 prior sessions>` — do NOT do the arithmetic by hand**; it returns `qualifies`, dated `prior_run_*`, `magnitude_floor`, `magnitude_ratio`, a rubric-ready `evidence` string, and `sign_changes_in_window`/`whipsaw_warning` (mandatory to report — both 2026-07-24 passers cleared the floor while whipsawing 4-5× in 14 sessions). ISO dates required. Vanna leg requires a dated VIX source (Yahoo chart API ^VIX)   # DEMOTED +2→+1 and MECHANIZED 2026-06-12 audit P0.4 — the 06-11 daily book awarded the flip line to three names with no sign change in their windows (level-as-flip); no peer-reviewed support at the 1–4wk horizon; restore weight only via a pre-registered dex-flip backtest showing cross-regime forward excess
   +1  sector-rotation-strategist names ticker as single-name leader within rotating sector — CONDITIONAL (2026-05-23 audit P1.5): award +1 only when (a) sector persistence_score ≥ 0.6 (the tool's 0–1 sign-consistency scale = ≥3-of-5-days; 2026-05-25 fix — was an unsatisfiable `≥3`) AND (b) cum_premium_flow_30d direction aligned with thesis direction AND (c) |cum_flow_30d| ≥ $50M. Default 0. Phase 4: sector_persistence marginal +2.8pp standalone (NO-INFO); when paired with cum_flow alignment it carried HON-W21 (+4.9% WIN) vs WMT-W19 (−10.4% LOSS).
   +1  in earnings-scout BUY VOL or SELL VOL for next 2 weeks (uw options-structure term-skew aligned for full size)
   +2  multileg-strategist directional structure repeated on ≥2 days (term-structure-anchored play type)   # was +1; promoted 2026-05-09 (Phase 4 +8pp marginal)

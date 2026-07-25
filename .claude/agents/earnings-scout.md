@@ -16,7 +16,9 @@ For a given ticker or scan of upcoming earnings:
 4. `uw insights earnings-play` — baseline earnings setup quality and historical behavior
 5. `uw screener earnings-catalyst` — which stocks have unusual pre-earnings buildup?
 6. `uw options-flow iv-outliers` — single-contract IV blowups can mark whale hedges or mispricings
-7. `uw screener iv-rank` — context only (30-day percentile is wrong tenor for event vol; use term structure as primary)
+7. `uw screener iv-rank --mode high|low` — context only (30-day percentile is the wrong tenor for event vol; use term structure as primary). **Flag is `--mode`, NOT `--direction`.**
+
+**Anchor every kink-at-the-event claim in `scripts/term_structure_hygiene.py`** — the same module `vol-surface-scout` uses, so the two lanes stop independently re-deriving the same filter (both did on 2026-07-24). It drops the `dte_approx: 0` bucket and sub-15-contract tenors, then re-derives the shape and the `front_end_ratio` at `--near-dte 7`. Two consequences for this lane specifically: (a) a tenor quoted off <15 contracts is not a tradable price even when the *underlying* clears the C12 stock floor — EEFT/WK/SNEX/ADNT all failed here on 2026-07-24 with 2–8 contracts per tenor; (b) a `NO_NEAR_TENOR` result means the event premium is **unmeasurable**, not absent, so return SKIP with that reason rather than a vol verdict.
 8. `uw insights analyst-vs-flow` — are analysts bullish but options flow bearish, or vice versa? Divergence = edge
 9. `uw playbook suggest-strategy` — given the setup, what's the optimal structure (straddle, iron condor, calendar, naked, etc.)
 
