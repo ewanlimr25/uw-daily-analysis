@@ -388,7 +388,9 @@ For each HIGH or MEDIUM tier ticker, identify its dominant signal class — typi
 | `win_rate` (clean protocol) | Multiplier |
 |---|---|
 | ≥ 0.70 | × 1.0 (keep tier sizing) |
-| 0.50 – 0.70 | × 0.5 (one tier down — HIGH→half, MEDIUM→starter) |
+| 0.65 – 0.70 | × 0.5 (one tier down — HIGH→half, MEDIUM→starter) |
+| **0.55 – 0.65** | **cap at starter** (HIGH→starter, MEDIUM→starter) — anti-predictive band floor (2026-07-25 audit P1 #4): the band predicted ~0.58 and realised **0.179 overall / 0.133 on 15 post-freeze rows**, worse than the sub-0.50 bucket, and **0.55 is the modal post-freeze quote**. Downgrade-only, quote unchanged; enforced at emission by `signal-confluence-quant.md`. |
+| 0.50 – 0.55 | × 0.5 (one tier down — HIGH→half, MEDIUM→starter) |
 | < 0.50 | × 0 → watch-only (no live capital — equivalent to the daily 'skip'; consistent with the quant's authoritative `win_rate < 0.50 ⇒ starter/skip` floor applied at emission. 2026-06-12 P1.2: this is a downstream win-rate-gate multiplier, not a competing floor — both resolve to no-capital) |
 | `null` (newly covered, no history) | starter — matches the quant's sizing map |
 | `NA(substrate)` (clean protocol could not complete) | tier default capped at half, then gates |
@@ -397,7 +399,7 @@ For non-directional signals (`high_iv_rank`, `volume_spike`) the backtest return
 
 **Out-of-regime guard (2026-06-12 audit P0.6, downgrade-only):** the rubric was fitted entirely in the UPTREND regime that ended 2026-06-12. Until a `/calibration-audit` records **≥30 resolved post-2026-06-12 calls** and re-validates the tiers, every conviction-tier size is **capped at half**, and the Executive Summary must carry `Rubric regime status: OUT-OF-REGIME (fitted UPTREND; current <regime>) — sizing capped at half`. risk-monitor enforces the cap (its `rubric_regime` gate); the lift happens by editing this block when the named audit clears it.
 
-**On top of this ladder (2026-05-25 register C2), the quant applies two downgrade-only guards** (see `signal-confluence-quant.md` "Market-excess gate" + the N-conditional cap): (1) the `n < 10` cap is **0.69** (below the 0.70 full line — a small-N up-week class sizes at most half), and (2) a **market-excess gate** — if a class does not beat the same-direction SPY bet over the same windows (`excess ≤ 0`), cap at half; `excess ≤ −0.10` → starter. Beta in an up-tape is not edge. The win-rate denominator is computed only over liquidity-floor-passing names (C12). Reusable: `scripts/excess_winrate.py:size_decision`. **(3, register C4)** a `bullish_flow`/`bearish_flow` class also caps at half when the flow is **not OI-confirmed-opening** (Pan-Poteshman: only opening flow predicts) — `uw historical oi-trend` BUILDING or ΔOI ≥ 20% of day volume; flat/falling OI vs high volume = churn → cap half. Reusable: `scripts/oi_opening.py:opening_gate_size`. All three guards are downgrade-only and may stack.
+**On top of this ladder the quant applies four downgrade-only guards** — all stack, none ever upgrades (see `signal-confluence-quant.md` "Market-excess gate" + the N-conditional cap): (1) the `n < 10` cap is **0.69** (below the 0.70 full line — a small-N up-week class sizes at most half), and (2) a **market-excess gate** — if a class does not beat the same-direction SPY bet over the same windows (`excess ≤ 0`), cap at half; `excess ≤ −0.10` → starter. Beta in an up-tape is not edge. The win-rate denominator is computed only over liquidity-floor-passing names (C12). Reusable: `scripts/excess_winrate.py:size_decision`. **(3, register C4)** a `bullish_flow`/`bearish_flow` class also caps at half when the flow is **not OI-confirmed-opening** (Pan-Poteshman: only opening flow predicts) — `uw historical oi-trend` BUILDING or ΔOI ≥ 20% of day volume; flat/falling OI vs high volume = churn → cap half. Reusable: `scripts/oi_opening.py:opening_gate_size`. **(4, 2026-07-25 audit P1 #4)** the anti-predictive **[0.55, 0.65) band floor** in the table above caps at `starter`. Reusable: `scripts/excess_winrate.py:anti_predictive_band_gate` (already wired into `size_decision`). All four guards are downgrade-only and may stack.
 
 ---
 
@@ -540,7 +542,7 @@ If any name was already on a manually-curated group, leave that membership alone
 ## Step 10 — Save, emit decision envelope, and confirm
 
 1. Use Write to save the report to `analyses/weekly/$ISO_WEEK/report.md`.
-2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK/decision.json` (with `report_path` set to `analyses/weekly/$ISO_WEEK/report.md`), conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.3", rubric_version: "2026-06-12", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}` (`1.3` adds the `rubric_version` era stamp, 2026-06-12 audit P0.1; `1.2` added the advisory per-call `distribution_flag`, C28; older versions stay valid); `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `debate_residuals` ({bull, bear} — 2026-06-12 P1.1, so the debate gate's discrimination is measurable) + `win_rate_uncapped` (raw pre-cap rate for reliability diagrams — P2.3) + `market_excess` (C2 result per call, negative = beta not edge — P1.1) + `gate_verdicts` (**all 9 keys** `regime, vrp, panic, cluster, sector, fundamentals, event_risk, debate, rubric_regime` on every non-DROP call; the validator rejects a 1.3 envelope missing any — the `debate` key had been silently absent on 0/151 prior calls, root cause now fixed) + (for top-5) the advisory `fz_context` block per call + (for long names with bullish-side OI being closed) the advisory `distribution_flag` block (`{present, closing_side, closing_premium, oi_decrease, note}` — 0 points, 0 tier impact, never a `score_components` line). `breadth_cross_check` (advisory, top-level, 0 points): `{advisory: true, source: "finviz", advancers, decliners, pct_green, divergence_flag, note}` — `null` when `fz_available == false`. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
+2. **Emit the structured decision envelope** at `analyses/weekly/$ISO_WEEK/decision.json` (with `report_path` set to `analyses/weekly/$ISO_WEEK/report.md`), conforming to `schemas/decision_envelope.schema.json` (the machine-resolvable sidecar `/calibration-audit` Phase 1 reads). Top level: `{schema_version: "1.3", rubric_version: "2026-06-12", report_date: <WEEK_END>, report_kind: "weekly", iso_week: <ISO_WEEK>, regime, vrp_classification, macro_snapshot_signals, macro_event_risk, watchlist_write_back, next_session_gex, next_session_0dte_setup, breadth_cross_check, report_path}` (`1.3` adds the `rubric_version` era stamp, 2026-06-12 audit P0.1; `1.2` added the advisory per-call `distribution_flag`, C28; older versions stay valid); `calls[]` carries the quant audit fields + `fundamentals_verdict` + `debate_residual_confidence` (bull residual) + `debate_residuals` ({bull, bear} — 2026-06-12 P1.1, so the debate gate's discrimination is measurable; **bin ladder now 0.15–0.95, 2026-07-25 P1 #5 — carry sub-0.55 residuals verbatim, never clamp up**) + `win_rate_uncapped` (raw pre-cap rate for reliability diagrams — P2.3) + `market_excess` (C2 result per call, negative = beta not edge — P1.1) + the **instrumentation trio `implied_move`, `dp_block_to_float_ratio`, `insider_cluster_flag`** (2026-07-25 P1 #5 — schema-present since C43 but absent from this enumeration, which is why C16/C18 have been untestable for three audits; **mandatory-when-source-present, explicit-`null` otherwise**, advisory, 0 rubric points, never `score_components` lines) + `gate_verdicts` (**all 9 keys** `regime, vrp, panic, cluster, sector, fundamentals, event_risk, debate, rubric_regime` on every non-DROP call; the validator rejects a 1.3 envelope missing any — the `debate` key had been silently absent on 0/151 prior calls, root cause now fixed) + (for top-5) the advisory `fz_context` block per call + (for long names with bullish-side OI being closed) the advisory `distribution_flag` block (`{present, closing_side, closing_premium, oi_decrease, note}` — 0 points, 0 tier impact, never a `score_components` line). `breadth_cross_check` (advisory, top-level, 0 points): `{advisory: true, source: "finviz", advancers, decliners, pct_green, divergence_flag, note}` — `null` when `fz_available == false`. Two **advisory** top-level blocks (SPY/QQQ only), **not** `calls[]` members (prose-only, 0 points): `next_session_gex` (`{advisory: true, as_of_eod_date: <WEEK_END>, next_session_date, indices: [{symbol, spot, zero_gamma_level, zgl_reliable, regime, total_gex, call_wall, put_wall, read, structure_bias, caveats}]}`) and `next_session_0dte_setup` (copied from `zerodte_setup`: `{advisory: true, as_of_eod_date: <WEEK_END>, backtest_verdict, indices: [{symbol, sell_premium, vol_state, vix, implied_move_pct, expected_range_pct, size_scalar, suggested_structure, entry_rule, stand_aside_reason, caution}]}`; `null` if `available:false`). Invariant: `Σ score_components[].points == raw_score` per call.
 
    **Author from the schema, not this prose.** Every object in `schemas/decision_envelope.schema.json` is `additionalProperties: false` with explicit `required` lists and enums — read the `$defs` (`call`, `fz_context`, `distribution_flag`, `next_session_gex`, `next_session_0dte_setup`) for the exact allowed keys, and copy the shape of the most recent valid envelope (e.g. last week's). The field lists above are a guide, **not** the contract: do **not** add keys the schema doesn't define (seen in practice: `audit_trail` on a call, `pnl_basis`/`mean_pnl_open_pct` on `next_session_0dte_setup`, `analyst_target`/`close`/`beta` on `fz_context`, a top-level `backtest_verdict` on `next_session_gex`), and keep prose out of typed/enum fields — `regime` is the enum `[POSITIVE, NEGATIVE, FULLY_NEGATIVE, FULLY_POSITIVE]` (descriptive text goes in `read`), `watchlist_write_back` is an array of ticker strings, and GEX/0DTE backtest detail folds into the `read` / `suggested_structure` prose. `fz_context` requires `available`.
 3. **Validate it:** `python3 scripts/validate_decision.py --file analyses/weekly/$ISO_WEEK/decision.json` via Bash. If it exits non-zero, fix the envelope until it passes.
@@ -558,7 +560,7 @@ If any name was already on a manually-curated group, leave that membership alone
 
 ---
 
-## Single-Leg Whale Persistence (advisory — criterion C19)
+## Single-Leg Whale Persistence (advisory — permanently 0 points; C19 CLOSED 2026-07-25)
 
 Run the tier scan across each of the week's sessions:
 
@@ -569,29 +571,35 @@ uw options-flow single-leg --regime <weekly_regime> --date <YYYY-MM-DD> --json -
 - **Persistence:** flag names that throw **repeat** Tier-1 opening/floor PUT
   prints across the 5-day window — repeat informed positioning outranks one-offs.
 - **OOS scoreboard:** track the realized next-session hit-rate of each week's
-  Tier-1 signals; this is the live out-of-sample accrual toward C19 graduation
-  (promote to a scored bearish line once rolling WR ≥58% over ≥60 days / ≥2 regimes).
+  Tier-1 signals as **descriptive colour only**. It is **not** an accrual toward
+  anything — C19 was CLOSED as REFUTED on 2026-07-25 (register C53); there is no
+  rolling-WR gate left to clear and no promotion path to report progress against.
 
 Validated edge (bull window, Mar–May 2026): Tier-1 opening put WR 63.5% (+26pp vs
 SPY, p<0.001); floor-put block 61.0%. Calls = beta (−9.7pp). size/OI<0.5 = anti-signal.
 Advisory only — 0 rubric points. See
 `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.
 
-**2026-06-12 audit P0.5 re-validation + refinements:** refreshed-window re-run holds —
-Tier-1 PRIME 0.600 (n=295, +21.9pp, p≈0), month-stable, **June/TRANSITIONAL cohort
-0.632 (n=19)** — as of the 2026-06-12 backtest this looked like the second-regime
-accrual beginning. **2026-07-18 audit UPDATE — NOT corroborated at the aggregate level:**
-the broad short/bearish direction ran **negative** benchmark-excess again (−7.2pp
-pooled; −26.7pp uptrend / −22.7pp pullback, 394 decided), and 2026-07-11's class-level
-`bearish_flow` **+29.4pp** positive was a benchmark-window artifact (that window's
-SPY-short path base was 0.176 vs 0.588 now). The audit does not re-measure the narrow
-Tier-1 put tier directly, but aggregate short-selection stays negative — **hold C19
-advisory / 0 points; do not treat June as accrual-in-progress. Promotion only via the
-pre-registered gate (unmet; its 2-regime-consistency clause now carries a failing datum).**
+**2026-07-25 audit — C19 CLOSED as REFUTED (register C53).** The criterion is retired,
+not blocked. Phase 3d measured that **71.1% of the benchmark-excess column's variance is
+the benchmark**, not the book: on the first cross-regime dataset (159 up-tape / 281
+down-tape decided) `bearish_flow` books **0.533 up-tape / 0.526 down-tape** — stationary
+— realises **0.49 vs a 0.48 claim on n=94 (p=0.96)**, and its down-tape paired McNemar is
+**ns (p=0.2478)**. The 2026-07-11 "+29.4pp" and 2026-07-18 "sign reversed" headlines were
+the same rows under a moved denominator (SPY-short path base 0.176 vs 0.588). **Stop
+reporting rolling-WR / cohort figures as accrual** — including the 2026-06-12
+"Tier-1 PRIME 0.600 (n=295), June/TRANSITIONAL 0.632 (n=19)" re-validation, which stands
+as a backtest result and nothing more. **What this does NOT refute:** the 2026-05-29
+Tier-1 PUT backtest above — a different measurement on a different substrate (raw
+single-print Parquet rows graded next-session vs scored fleet calls graded on a
+path-aware 0.5-ATR window). A scored bearish line now needs a **new** C-numbered
+pre-registration with its own substrate and its own cross-regime ∧ n≥30-per-arm ∧
+BH-surviving bar. Two refinements from the 2026-06-12 P0.5 review still stand as
+advisory colour:
 (a) Weight repeat Tier-1 put names higher when `fz_context` shows borrow constraint
 (`short_ratio` / `short_float`) — the published bearish-information channel is
 short-sale cost (Johnson & So 2012). (b) "Calls = beta" is **bull-regime-conditional**
 (Ge-Lin-Pearson 2016 found opening calls the most informative leg on signed data) —
-outside bull regimes report `CALL_UNVALIDATED`, not a default fade. Promotion to a
-scored bearish line happens ONLY through the pre-registered gate (rolling WR ≥58%,
-≥60 days, ≥2 regimes), at the audit that certifies it.
+outside bull regimes report `CALL_UNVALIDATED`, not a default fade. There is **no**
+promotion path: the old ≥58% / ≥60-day / ≥2-regime gate died with C19 and must not be
+re-opened under that wording.

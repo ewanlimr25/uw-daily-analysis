@@ -110,6 +110,16 @@ MATERIALLY_NEGATIVE_EXCESS = -0.10  # signal underperforms the market by >= 10pp
 # claimed bucket realised 51-53%, the 0.80-0.90 bucket 55-62%, across both audits).
 ABSOLUTE_WR_CEILING = 0.80
 
+# 2026-07-25 audit P1 #4: the ANTI-PREDICTIVE mid-band. A quote in [0.55, 0.65) is the
+# rubric's least reliable statement — and 0.55 is its MODAL post-freeze quote (14 rows).
+# Reliability diagram: the band predicted ~0.58 and realised 0.179 overall / 0.133 on the
+# 15 post-freeze rows, i.e. WORSE than the [0.00,0.50) bucket the same rubric is honest
+# about (pred 0.38 -> realised 0.44). This is a SIZING-PROCEDURE guard, explicitly in
+# scope under the 2026-06-12 rubric freeze (the freeze governs rubric weights and tier
+# cuts, not the win-rate quote that drives the sizing map), and it is downgrade-only.
+ANTI_PREDICTIVE_BAND = (0.55, 0.65)  # [lo, hi) on the EMITTED (capped) quote
+ANTI_PREDICTIVE_BAND_MAX_SIZE = "starter"
+
 _SIZE_RANK = {"skip": 0, "starter": 1, "half": 2, "full": 3}
 
 
@@ -209,6 +219,52 @@ def sizing_eligible_quote(
     }
 
 
+def in_anti_predictive_band(win_rate: float | None) -> bool:
+    """True when the EMITTED (post-cap) quote falls in the anti-predictive [0.55, 0.65).
+
+    Tested on the capped value because the capped value is what the envelope serializes
+    and what the audit's reliability diagram bins — a raw 0.92 that the n<10 cap pulls to
+    0.69 is a 0.69 quote, not a mid-band one.
+    """
+    if win_rate is None:
+        return False
+    lo, hi = ANTI_PREDICTIVE_BAND
+    return lo <= win_rate < hi
+
+
+def anti_predictive_band_gate(win_rate: float | None, base_size: str) -> dict:
+    """2026-07-25 audit P1 #4 — downgrade-only floor on the anti-predictive mid-band.
+
+    A quote in [0.55, 0.65) may not size above ``starter``. It never upgrades: a quote
+    already at ``starter``/``skip`` (e.g. via the sub-0.50 floor or a prior gate) stays
+    where it is. The numeric quote itself is UNCHANGED — it stays in ``win_rate`` so the
+    reliability diagram keeps binning the true statement; only the size is floored.
+
+    Evidence (2026-07-25 audit Phase 3.3 / 3.3b): [0.55,0.65) realised **0.179 overall**
+    and **0.133 on 15 post-freeze rows** against ~0.58 predicted; 0.55 is the modal
+    post-freeze quote (14 rows); post-freeze ``bullish_flow`` claims 0.499 and realises
+    0.250 (n=20). The band is not merely overconfident — it is anti-predictive: those
+    names did worse than the ones the rubric said it was unsure about.
+    """
+    if not in_anti_predictive_band(win_rate):
+        return {
+            "band_hit": False,
+            "size": base_size,
+            "reason": f"win_rate {win_rate} outside anti-predictive band {ANTI_PREDICTIVE_BAND}",
+        }
+    floored = _min_size(base_size, ANTI_PREDICTIVE_BAND_MAX_SIZE)
+    return {
+        "band_hit": True,
+        "size": floored,
+        "reason": (
+            f"win_rate {win_rate} in ANTI-PREDICTIVE band [{ANTI_PREDICTIVE_BAND[0]}, "
+            f"{ANTI_PREDICTIVE_BAND[1]}) (2026-07-25 P1 #4: predicted ~0.58, realised "
+            f"0.179 overall / 0.133 post-freeze) -> capped {ANTI_PREDICTIVE_BAND_MAX_SIZE} "
+            f"(was {base_size}); quote itself unchanged"
+        ),
+    }
+
+
 def market_excess(signal_win_rate: float, benchmark_win_rate: float) -> float:
     """Market-excess win-rate = signal WR - benchmark WR.
 
@@ -259,20 +315,28 @@ def size_decision(
     *,
     liquidity_ok: bool = True,
 ) -> dict:
-    """Full C2 sizing decision: liquidity floor -> N-cap -> ladder -> market-excess gate.
+    """Full C2 sizing decision: liquidity floor -> N-cap -> ladder -> anti-predictive
+    band floor (2026-07-25 P1 #4) -> market-excess gate.
 
-    Returns an audit dict. The market-excess gate can only downgrade the ladder size.
+    Returns an audit dict. Both the band floor and the market-excess gate can only
+    downgrade the ladder size; neither ever upgrades, and neither alters the quote.
     """
     if not liquidity_ok:
         return {
             "capped_win_rate": None, "excess": None, "base_size": "skip",
             "final_size": "skip", "excess_gate": "below_liquidity_floor",
+            "band_gate": "n/a (below liquidity floor)", "band_hit": False,
             "reason": "below liquidity floor (price < $5 or 20d $ADV < $50M or unverifiable)",
         }
 
     capped = None if signal_win_rate is None else round(n_conditional_cap(signal_win_rate, n), 4)
     base = size_from_winrate(capped)
-    final = base
+
+    # 2026-07-25 P1 #4: anti-predictive [0.55, 0.65) floor. Downgrade-only, applied on
+    # the EMITTED (capped) quote, before the market-excess gate. Both gates can only cut.
+    band = anti_predictive_band_gate(capped, base)
+    final = band["size"]
+
     excess = None
     gate = "no_benchmark"
 
@@ -281,21 +345,24 @@ def size_decision(
         # Branch order matters: the more-negative threshold MUST be checked first, else
         # excess=-0.15 would satisfy `<= 0` and only cap to half instead of starter.
         if excess <= MATERIALLY_NEGATIVE_EXCESS:
-            final = _min_size(base, "starter")
+            final = _min_size(final, "starter")
             gate = f"excess {excess:+.2f} <= {MATERIALLY_NEGATIVE_EXCESS:+.2f} -> starter (beta, underperforms market)"
         elif excess <= 0:
-            final = _min_size(base, "half")
+            final = _min_size(final, "half")
             gate = f"excess {excess:+.2f} <= 0 -> capped half (no edge over same-direction SPY)"
         else:
             gate = f"excess {excess:+.2f} > 0 -> edge confirmed, no excess penalty"
 
     reason = (
         f"raw {signal_win_rate} n={n} -> N-cap {capped} -> ladder {base}"
+        + (f"; anti-predictive band: {band['reason']}" if band["band_hit"] else "")
         + (f"; market-excess gate: {gate} -> {final}" if benchmark_win_rate is not None else "")
     )
     return {
         "capped_win_rate": capped, "excess": excess, "base_size": base,
-        "final_size": final, "excess_gate": gate, "reason": reason,
+        "final_size": final, "excess_gate": gate,
+        "band_gate": band["reason"], "band_hit": band["band_hit"],
+        "reason": reason,
     }
 
 

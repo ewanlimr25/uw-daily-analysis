@@ -207,6 +207,51 @@ def check_invariants(doc: dict) -> list[str]:
     return errors
 
 
+# 2026-07-25 audit P1 #5: the instrumentation trio is schema-present (C43, 2026-06-20)
+# and mandatory-when-source-present per the agent contracts — but it was never added to
+# the orchestrator's calls[] enumeration, so envelopes from 2026-07-20 on dropped the
+# keys entirely and C16 / C18 have been untestable for three consecutive audits. These
+# are WARNINGS, not errors: a missing key must be visible at emission time without
+# retroactively invalidating the 52 historical envelopes the audit reads as its dataset.
+def check_instrumentation_warnings(doc: dict) -> list[str]:
+    """Non-fatal instrumentation gaps: keys that should be present-with-explicit-null.
+
+    Returns warning strings. These never affect the exit code — the envelope is still
+    valid — but they surface the silent-drop failure mode that made C16/C18 ungradeable.
+    """
+    warnings: list[str] = []
+    for i, call in enumerate(doc.get("calls", []) if isinstance(doc, dict) else []):
+        if not isinstance(call, dict):
+            continue
+        cp = f"calls[{i}] ({call.get('ticker', '?')})"
+        cls = call.get("dominant_signal_class")
+        section = call.get("section") or ""
+
+        if cls == "dark_pool_accumulation" and "dp_block_to_float_ratio" not in call:
+            warnings.append(
+                f"{cp}: dark_pool_accumulation row missing 'dp_block_to_float_ratio' key "
+                f"(explicit null is required when fz float is unavailable) — the C16 "
+                f"float-normalized gate stays untestable without it"
+            )
+        if cls == "dark_pool_accumulation" and "insider_cluster_flag" not in call:
+            warnings.append(
+                f"{cp}: dark_pool_accumulation row missing 'insider_cluster_flag' key "
+                f"(false = checked-and-absent, null = fz lane skipped) — the C18 "
+                f"conjunction gate stays untestable without it"
+            )
+        if (cls in ("earnings_vol", "high_iv_rank") or "vol" in section) and "implied_move" not in call:
+            warnings.append(
+                f"{cp}: vol row missing 'implied_move' key — /calibration-audit can only "
+                f"resolve this row on the RV-direction proxy, never true IV-vs-RV (C42)"
+            )
+        if call.get("tier") != "DROP" and "debate_residuals" not in call:
+            warnings.append(
+                f"{cp}: non-DROP call missing 'debate_residuals' — both {{bull, bear}} "
+                f"scalars are mandatory for every debated name (2026-06-12 P1.1)"
+            )
+    return warnings
+
+
 def validate_doc(doc: dict, schema: dict) -> list[str]:
     """Return a list of validation error strings ([] == valid)."""
     errors: list[str] = []
@@ -218,6 +263,11 @@ def validate_doc(doc: dict, schema: dict) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate a decision-envelope JSON file")
     parser.add_argument("--file", required=True)
+    parser.add_argument(
+        "--no-warnings",
+        action="store_true",
+        help="suppress the non-fatal instrumentation-gap warnings (exit code is unaffected either way)",
+    )
     args = parser.parse_args()
 
     path = Path(args.file)
@@ -241,6 +291,15 @@ def main() -> int:
 
     n = len(doc.get("calls", []))
     print(f"OK: {args.file} validates ({n} call(s))")
+
+    # Non-fatal instrumentation gaps (2026-07-25 P1 #5). Printed, never exit-code-bearing.
+    if not args.no_warnings:
+        warnings = check_instrumentation_warnings(doc)
+        if warnings:
+            print(f"WARNINGS ({len(warnings)}): instrumentation keys missing — the envelope "
+                  f"is valid, but these gaps make gates ungradeable at the next audit", file=sys.stderr)
+            for warn in warnings:
+                print(f"  ! {warn}", file=sys.stderr)
     return 0
 
 

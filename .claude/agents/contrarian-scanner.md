@@ -36,7 +36,7 @@ Flag only high-conviction fades where ≥3 signals align AND term structure is n
 
 ---
 
-## Single-leg whale put co-flag (advisory, C19)
+## Single-leg whale put co-flag (advisory — 0 points permanently; C19 CLOSED 2026-07-25)
 
 Alongside the put/call-ratio crowding read, pull the single-leg whale tier scan:
 
@@ -57,8 +57,14 @@ Stronger when the name shows borrow constraint — `fz_context` `short_ratio` /
 P0.5): outside bull regimes the call tier reads `CALL_UNVALIDATED`, not a default
 fade.
 
-Advisory — **0 rubric points**; promotion only via the pre-registered C19 gate
-(rolling WR ≥58%, ≥60d, ≥2 regimes). See
+Advisory — **0 rubric points, permanently.** **C19 was CLOSED as REFUTED on
+2026-07-25** (register C53): the fleet's `bearish_flow` class books 0.533 up-tape
+/ 0.526 down-tape (stationary), realises 0.49 vs a 0.48 claim on n=94, and its
+six-audit "positive excess" was the benchmark moving. There is **no accrual and no
+promotion path** — the old ≥58% / ≥60d / ≥2-regime gate is retired and must not be
+re-opened under that wording. The tier labels stay useful as short-thesis routing
+context; they never score. (The 2026-05-29 single-print backtest is untouched —
+different substrate, different measurement.) See
 `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md` and
 `analyses/audit/2026-06-12/plan.md` P0.5.
 

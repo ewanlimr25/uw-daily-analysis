@@ -299,5 +299,77 @@ class DegenerateQuoteFloorTest(unittest.TestCase):
             self.assertFalse(ew.sizing_eligible_quote(wr, "backtest_clean")["degenerate"])
 
 
+class AntiPredictiveBandFloorTest(unittest.TestCase):
+    """2026-07-25 audit P1 #4 — the [0.55, 0.65) band is anti-predictive.
+
+    Reliability diagram: predicted ~0.58, realised 0.179 overall / 0.133 on the 15
+    post-freeze rows — worse than the [0.00,0.50) bucket. 0.55 is the modal post-freeze
+    quote (14 rows), so this band is the rubric's most common confidence statement AND
+    its least reliable one. Sizing-procedure guard (in scope under the rubric freeze),
+    downgrade-only, quote left untouched.
+    """
+
+    def test_band_membership_is_half_open(self):
+        self.assertFalse(ew.in_anti_predictive_band(0.5499))
+        self.assertTrue(ew.in_anti_predictive_band(0.55))   # the modal quote
+        self.assertTrue(ew.in_anti_predictive_band(0.6499))
+        self.assertFalse(ew.in_anti_predictive_band(0.65))  # 0.65-0.80 grades honestly
+        self.assertFalse(ew.in_anti_predictive_band(None))
+
+    def test_modal_quote_no_longer_half_sizes(self):
+        # BEFORE: 0.55 cleared the 0.50 ladder line -> half. AFTER: floored to starter.
+        self.assertEqual(ew.size_from_winrate(0.55), "half")
+        d = ew.size_decision(0.55, 20, benchmark_win_rate=0.40)
+        self.assertEqual(d["base_size"], "half")
+        self.assertTrue(d["band_hit"])
+        self.assertEqual(d["final_size"], "starter")
+
+    def test_quote_itself_is_unchanged_by_the_floor(self):
+        # Only the SIZE is floored — the numeric quote must survive so the audit's
+        # reliability diagram keeps binning the rubric's true statement.
+        d = ew.size_decision(0.60, 20, benchmark_win_rate=0.40)
+        self.assertEqual(d["capped_win_rate"], 0.60)
+        self.assertEqual(d["final_size"], "starter")
+
+    def test_band_is_downgrade_only_never_upgrades(self):
+        # A sub-0.50 quote already at starter is untouched; the band never lifts.
+        d = ew.size_decision(0.40, 30, benchmark_win_rate=0.10)
+        self.assertFalse(d["band_hit"])
+        self.assertEqual(d["final_size"], "starter")
+
+    def test_honest_bands_are_untouched(self):
+        # [0.65,0.80) realised 0.57-0.75 against 0.66-0.77 predicted — leave it alone.
+        d = ew.size_decision(0.72, 25, benchmark_win_rate=0.40)
+        self.assertFalse(d["band_hit"])
+        self.assertEqual(d["final_size"], "full")
+        # And the honest low band keeps its existing starter treatment.
+        d_low = ew.size_decision(0.45, 25, benchmark_win_rate=0.30)
+        self.assertFalse(d_low["band_hit"])
+        self.assertEqual(d_low["final_size"], "starter")
+
+    def test_band_tested_on_capped_quote_not_raw(self):
+        # A raw 0.92 with n<10 caps to 0.69 — that is a 0.69 quote, NOT a mid-band one.
+        d = ew.size_decision(0.92, 8, benchmark_win_rate=0.40)
+        self.assertEqual(d["capped_win_rate"], 0.69)
+        self.assertFalse(d["band_hit"])
+        self.assertEqual(d["final_size"], "half")
+        # Conversely a raw 0.60 with n>=10 stays 0.60 and IS mid-band.
+        d2 = ew.size_decision(0.60, 25, benchmark_win_rate=0.40)
+        self.assertTrue(d2["band_hit"])
+
+    def test_band_stacks_with_excess_gate_lowest_wins(self):
+        # Both gates fire; the result is the tightest, and neither can raise the other.
+        d = ew.size_decision(0.58, 20, benchmark_win_rate=0.75)
+        self.assertTrue(d["band_hit"])
+        self.assertLessEqual(d["excess"], ew.MATERIALLY_NEGATIVE_EXCESS)
+        self.assertEqual(d["final_size"], "starter")
+
+    def test_liquidity_short_circuit_carries_band_keys(self):
+        # Backward-compat: every size_decision return carries the new keys.
+        d = ew.size_decision(0.60, 25, benchmark_win_rate=0.40, liquidity_ok=False)
+        self.assertFalse(d["band_hit"])
+        self.assertEqual(d["final_size"], "skip")
+
+
 if __name__ == "__main__":
     unittest.main()

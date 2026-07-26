@@ -775,7 +775,12 @@
             "number",
             "null"
           ],
+          "description": "The bull-side residual confidence, snapped to the 0.10-spaced ladder. 2026-07-25 audit P1 #5: the ladder was extended DOWN to 0.15 — the prior 0.55 floor made any sub-coin-flip residual unrepresentable and erased TSLA's 0.42/0.40 pair on 2026-07-23, exactly the signal the debate gate exists to catch. Extending an enum is additive; every pre-existing envelope still validates.",
           "enum": [
+            0.15,
+            0.25,
+            0.35,
+            0.45,
             0.55,
             0.65,
             0.75,
@@ -841,7 +846,7 @@
             "object",
             "null"
           ],
-          "description": "2026-06-12 P1.1: both debate residuals as a pair so the debate gate's discrimination can be measured. The scalar debate_residual_confidence (bull residual) is kept for backward compatibility.",
+          "description": "2026-06-12 P1.1: both debate residuals as a pair so the debate gate's discrimination can be measured. The scalar debate_residual_confidence (bull residual) is kept for backward compatibility. 2026-07-25 audit P1 #5: bin floor lowered from 0.55 to 0.15 on both sides (0.10 spacing) — a residual below 0.55 was previously UNREPRESENTABLE, which erased TSLA's 0.42/0.40 pair on 2026-07-23. A both-sides-low pair ('neither advocate can make their case') is the strongest kill signal the debate produces and must survive serialization. Additive enum extension; all pre-existing envelopes still validate.",
           "additionalProperties": false,
           "required": [
             "bull",
@@ -854,6 +859,10 @@
                 "null"
               ],
               "enum": [
+                0.15,
+                0.25,
+                0.35,
+                0.45,
                 0.55,
                 0.65,
                 0.75,
@@ -868,6 +877,10 @@
                 "null"
               ],
               "enum": [
+                0.15,
+                0.25,
+                0.35,
+                0.45,
                 0.55,
                 0.65,
                 0.75,

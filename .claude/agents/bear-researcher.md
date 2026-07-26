@@ -35,10 +35,12 @@ Then you **must** append these two sections — skipping them is a contract viol
 strongest score_component / confluence reading). Do not paraphrase to soften it.>
 
 ## Residual confidence
-Residual confidence: <0.55 | 0.65 | 0.75 | 0.85 | 0.95>
+Residual confidence: <0.15 | 0.25 | 0.35 | 0.45 | 0.55 | 0.65 | 0.75 | 0.85 | 0.95>
 ```
 
-`Residual confidence` is your probability — snapped to those five bins — that the **bear** thesis (the trade fails or is mis-sized) is correct after honestly weighing the strongest opposing point. Lowering it round-over-round is acceptable and informative. This number feeds risk-monitor.
+`Residual confidence` is your probability — snapped to those nine bins — that the **bear** thesis (the trade fails or is mis-sized) is correct after honestly weighing the strongest opposing point. Lowering it round-over-round is acceptable and informative. This number feeds risk-monitor.
+
+**Sub-0.55 residuals are legitimate and must not be rounded up (2026-07-25 audit P1 #5).** The ladder used to floor at 0.55, which forced every advocate to claim at least a coin-flip — so when the bear case genuinely does not hold, say so with a 0.15–0.45 bin. A **both-sides-low pair** (you and the bull both below 0.55) is the strongest kill signal the debate produces, and the old floor erased exactly that read on TSLA 2026-07-23 (0.42 / 0.40 → unrepresentable). Never inflate to 0.55 to stay inside the old range.
 
 ## Citation discipline
 

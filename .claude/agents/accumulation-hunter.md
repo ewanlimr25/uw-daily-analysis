@@ -55,7 +55,7 @@ Disqualifiers — do not surface:
 
 ---
 
-## Single-leg whale put co-flag (advisory, C19)
+## Single-leg whale put co-flag (advisory — 0 points permanently; C19 CLOSED 2026-07-25)
 
 When scanning for distribution, cross-reference the single-leg whale tier scan:
 
@@ -78,10 +78,15 @@ not a default fade). `size/OI<0.5` puts are closing flow (anti-signal), not
 accumulation. **Constraint conditioning (2026-06-12 P0.5, advisory):** weight the
 co-flag higher when the name shows borrow constraint — `fz_context`
 `short_ratio` / `short_float` (the published bearish-information channel is
-short-sale cost, Johnson & So 2012). Advisory — **0 rubric points**; promotion
-only via the pre-registered C19 gate (rolling WR ≥58%, ≥60d, ≥2 regimes —
-2026-06-12 re-validation: Tier-1 PRIME 0.600 n=295 p≈0, June/TRANSITIONAL cohort
-0.632 n=19, second-regime accrual underway). See
+short-sale cost, Johnson & So 2012). Advisory — **0 rubric points, permanently.**
+**C19 was CLOSED as REFUTED on 2026-07-25** (register C53): the fleet's
+`bearish_flow` class books 0.533 up-tape / 0.526 down-tape (stationary) and its
+"positive excess" across six audits was the benchmark moving, not the book. There
+is **no accrual and no promotion path** — do not report rolling-WR progress, and
+do not treat the 2026-06-12 re-validation cohort as second-regime accrual. The
+co-flag stays exactly as described above: bearish context, zero points. (The
+2026-05-29 single-print backtest is untouched by that closure — different
+substrate, different measurement.) See
 `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md` and
 `analyses/audit/2026-06-12/plan.md` P0.5.
 

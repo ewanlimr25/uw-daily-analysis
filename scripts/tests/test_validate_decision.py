@@ -590,5 +590,79 @@ class DeadLetterScoreComponentTest(unittest.TestCase):
         self.assertEqual(vd.validate_doc(_doc(), SCHEMA), [])
 
 
+class DebateResidualBinFloorTest(unittest.TestCase):
+    """2026-07-25 audit P1 #5 — the ladder had no bin below 0.55.
+
+    TSLA 2026-07-23 emitted 0.42 / 0.40 — 'neither advocate can make their case', the
+    most informative debate output there is — and the schema erased it.
+    """
+
+    def test_sub_coin_flip_pair_now_validates(self):
+        # The exact TSLA pair, snapped to the extended 0.10-spaced ladder.
+        call = _call(debate_residuals={"bull": 0.45, "bear": 0.35},
+                     debate_residual_confidence=0.45)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+    def test_full_extended_ladder_accepted_on_both_sides(self):
+        for value in (0.15, 0.25, 0.35, 0.45, 0.55, 0.65, 0.75, 0.85, 0.95):
+            call = _call(debate_residuals={"bull": value, "bear": value},
+                         debate_residual_confidence=value)
+            self.assertEqual(
+                vd.validate_doc(_doc(calls=[call]), SCHEMA), [],
+                msg=f"residual bin {value} rejected",
+            )
+
+    def test_off_ladder_value_still_rejected(self):
+        # The ladder is extended, not opened up — 0.42 must be snapped to a bin, not
+        # serialized raw. Bin discipline is what makes the gate's arms comparable.
+        call = _call(debate_residuals={"bull": 0.42, "bear": 0.40})
+        errs = vd.validate_doc(_doc(calls=[call]), SCHEMA)
+        self.assertTrue(any("not in enum" in e for e in errs))
+
+    def test_legacy_high_bins_unaffected(self):
+        # Backward-compat: extending an enum must not disturb anything already valid.
+        call = _call(debate_residuals={"bull": 0.75, "bear": 0.65},
+                     debate_residual_confidence=0.75)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+
+class InstrumentationWarningsTest(unittest.TestCase):
+    """2026-07-25 audit P1 #5 — silent field drops made C16/C18 ungradeable.
+
+    These are WARNINGS by design: the 52 historical envelopes the audit reads as its
+    dataset must keep validating, so a missing key is surfaced without being fatal.
+    """
+
+    def test_accumulation_row_missing_c16_c18_keys_warns(self):
+        warns = vd.check_instrumentation_warnings(_doc())  # class is dark_pool_accumulation
+        self.assertTrue(any("dp_block_to_float_ratio" in w for w in warns))
+        self.assertTrue(any("insider_cluster_flag" in w for w in warns))
+
+    def test_explicit_null_satisfies_the_check(self):
+        call = _call(dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                     debate_residuals={"bull": 0.65, "bear": 0.55})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertEqual(warns, [])
+
+    def test_vol_row_missing_implied_move_warns(self):
+        call = _call(dominant_signal_class="earnings_vol",
+                     dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                     debate_residuals={"bull": 0.65, "bear": 0.55})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertTrue(any("implied_move" in w for w in warns))
+
+    def test_drop_rows_are_not_warned_for_debate_residuals(self):
+        # DROP names exit before the full stack runs — same C54 logic as the audit's
+        # missed-gate denominator. Only non-DROP calls owe a debate pair.
+        call = _call(tier="DROP", dominant_signal_class="bullish_flow")
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertEqual(warns, [])
+
+    def test_warnings_never_become_errors(self):
+        # The whole point: an envelope with every instrumentation gap is still VALID.
+        self.assertEqual(vd.validate_doc(_doc(), SCHEMA), [])
+        self.assertTrue(vd.check_instrumentation_warnings(_doc()))
+
+
 if __name__ == "__main__":
     unittest.main()

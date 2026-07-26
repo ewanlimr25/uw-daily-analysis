@@ -106,8 +106,17 @@ grades clean single-leg, ask-side, ≥$500K, common-stock **opening** prints by 
 backtested Signal Quality Hierarchy: **Tier-1 opening/floor PUT (size/OI≥2 or
 floor, DTE≤30)** is the validated edge (next-session WR 61–64%, +23–26pp vs SPY,
 p<0.001, bull regime); calls are beta (−9.7pp); `size/OI<0.5` is a closing
-anti-signal. Advisory (**criterion C19**, 0 rubric points) pending 60-day
-cross-regime validation. Built into the `uw` Go binary
+anti-signal. **Advisory, 0 rubric points — permanently, unless a NEW criterion is
+registered.** The old accrual criterion **C19 was CLOSED as REFUTED on 2026-07-25**
+(register C53): six audits carried "`bearish_flow` shows positive excess but scores 0"
+as an unscoreable down-tape edge, and Phase 3d showed the excess swing was the
+**benchmark**, not the book — `bearish_flow` books 0.533 up-tape / 0.526 down-tape
+(stationary), realises 0.49 vs a 0.48 claim on n=94 (p=0.96, the best-calibrated large
+class in the book), and its down-tape paired McNemar is ns (p=0.2478). **This does not
+refute the 2026-05-29 backtest above** — that was a different measurement on a different
+substrate (raw single-print Parquet rows graded next-session, not scored fleet calls
+graded on a path-aware 0.5-ATR window). The scan stays live and useful as context; it is
+simply no longer accruing toward a scored line. Built into the `uw` Go binary
 (`internal/analysis/singleleg.go` + `internal/cli/single_leg.go`). The research /
 backtest harness remains `scripts/single_leg_whale.py`. See
 `analyses/audit/2026-05-29/single_leg_whale_implementation_plan.md`.
