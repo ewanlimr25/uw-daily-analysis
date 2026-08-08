@@ -50,6 +50,8 @@ Every claim in this audit must trace to a parseable data point: a ticker call ex
 
 The persona for every phase is a composite **elite desk reviewer**: buy-side PM (does this generate alpha?), sell-side flow trader (does this match how flow actually trades?), market-maker quant (do the weights match the realised marginal contribution?). A grading schema is only credible if it survives all three readings.
 
+**Scope discipline (orchestrator):** run all seven phases in the main session — the phases are sequential and checkpoint-resumable, not delegable. Do not spawn subagents to run, verify, or re-check a phase, and do not add steps beyond the pipeline written here. The checkpoint files are the resume mechanism and the validator scripts are the verification layer; no extra passes.
+
 ---
 
 ## Step 0 — Preflight
@@ -436,7 +438,6 @@ The summary is the document the user actually reads first. Make every word count
 - **Phase 2 data-fetch failure mid-batch** — checkpoint partial outcomes; resume from last completed ticker on next invocation. Phase 2 is the only phase that should ever appear with a `_partial` suffix.
 - **`uw historical available-dates` shows stale UW data** — abort at Step 0 (preflight). Don't compute outcomes against stale data.
 - **Phase 1 yields fewer rows than expected** — if any non-empty report yields zero rows, that's a parser bug. Abort with the report path so the parser can be fixed.
-- **Holdout stress-test rejects the proposal** — Phase 5 must propose a more conservative re-weight; never ship a rejected proposal forward to Phase 7.
 - **Less than 5 calls in the dataset for any single signal class** — flag and exclude from per-class statistics; do not treat single-digit N as a signal.
 
 ---

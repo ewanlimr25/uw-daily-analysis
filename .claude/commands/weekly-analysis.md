@@ -40,6 +40,8 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 
 **Run the orchestrating session itself on fable (opus minimum)** — Step 0 synthesis, the confluence gate, rubric application, and report + envelope authoring live in the main loop, and the two fable frontmatter pins protect only Phase 2's core, not the orchestration.
 
+**Scope discipline (orchestrator):** spawn exactly the agents this command names, in the batches it names — 11 Phase 1 agents (12 in OPEX week) in one message, then the four Phase 2 stages sequentially. Do not spawn additional subagents to verify, re-check, or parallelize work the main loop owns, and do not add pipeline steps beyond those written here. The validator scripts and gate stack are the verification layer; no extra passes.
+
 ## Operating principle: persistence beats a single print
 
 Single-day signals are noise; multi-week persistence is the edge. Every agent in this run must consume week-range data wherever the CLI supports it. Specifically:
@@ -279,11 +281,11 @@ Once **all** Phase 1 agents return, collect the **union** of every candidate tic
 
 Output: sorted list `{ticker, raw_score, score_components[], dominant_signal_class, confluence_score, cum_premium_flow_30d/90d, win_rate, win_rate_uncapped, win_rate_n, win_rate_source, final_size_recommendation_pre_risk, audit_trail}`.
 
-### Step 2b — fundamentals-gate (top 5; sonnet, thinking off)
+### Step 2b — fundamentals-gate (top 5)
 
 The microstructure fleet is fundamentally blind. Spawn `fundamentals-gate` with the quant's **top 5 by `raw_score`**, each with `dominant_signal_class` + thesis direction, plus `WEEK_END` as the `as_of` date. It runs `python3 scripts/finnhub_enrich.py --ticker <T> --date <WEEK_END>` per name and cross-references earnings-surprise streak, insider MSPR, growth/leverage, and the news catalyst stack against the thesis direction, emitting `{ticker, fundamentals_verdict (CONFIRM/CAUTION/VETO/NA), tier_adjustment, next_earnings_date, days_to_earnings, catalyst_support, reasons[], key_risks[]}`. Cross-check `next_earnings_date` against the §6 earnings lookahead. NA never penalizes. Hands to 2d.
 
-### Step 2c — bull/bear debate (top 5; sonnet, thinking on)
+### Step 2c — bull/bear debate (top 5)
 
 The persistence-weighted score is still additive — crowded multi-week consensus names score highest. For each **top 5 by `raw_score`**, spawn `bull-researcher` and `bear-researcher` for **1 round** (2nd round only on genuine disagreement: residuals within one bin and ≥0.75). Hand both sides the ticker's `score_components`, the 2b fundamentals enrichment, and the Step 0 macro/event context. Debates run in parallel across names; bull-then-bear within a name. Output per ticker: `{bull_residual, bear_residual, bull_strongest_unrefuted, bear_strongest_unrefuted}`. The debate can only cut size, never add it.
 
@@ -445,7 +447,7 @@ This step is the synthesis bridge from "signal" to "trade structure" — without
 
 ## Step 8 — Write the report
 
-Synthesize into the structured weekly note below. Use **full narrative sentences** in qualitative sections (Executive Summary, Regime & WoW Delta, Risk, Setups for Next Week) and **tables** for data-dense sections (Signal Performance, Swing Book, LEAP Book, High-Conviction Cross-Ref). Tone: institutional desk strategist — precise, assertive, no filler.
+Synthesize into the structured weekly note below. Use **full narrative sentences** in qualitative sections (Executive Summary, Regime & WoW Delta, Risk, Setups for Next Week) and **tables** for data-dense sections (Signal Performance, Swing Book, LEAP Book, High-Conviction Cross-Ref). Tone: institutional desk strategist — precise, assertive, no filler. Match each section's length to its substance — no filler sections, no restated Step 0 context, no summary-of-the-summary; an empty section states that it is empty in one line.
 
 Before writing: run `mkdir -p analyses/weekly/$ISO_WEEK` via Bash (creates the run folder).
 

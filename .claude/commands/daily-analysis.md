@@ -25,6 +25,8 @@ uw <group> <subcommand> [--flag value …] --json --quiet
 
 Fleet models and effort are pinned per-agent in `.claude/agents/*.md` frontmatter (`model:` + `effort:`) — the single source of truth; do **not** restate model assignments in spawn prompts (prompt-text "Model:" lines are mechanically inert). Current pins: `signal-confluence-quant` and `risk-monitor` = fable/high, `multileg-strategist` = opus/high, rest of the fleet = sonnet/high (gamma-flip-tracker, opex-pin-strategist = sonnet/medium). Run the orchestrating session itself on **fable (opus minimum)** — Step 0, the confluence gate, rubric application, and report/envelope authoring live in the main loop. Rationale + escalation triggers: `analyses/audit/2026-07-03/agent-model-effort-audit.md`.
 
+**Scope discipline (orchestrator):** spawn exactly the agents this command names, in the batches it names — 11 Phase 1 agents (12 in OPEX week) in one message, then the four Phase 2 stages sequentially. Do not spawn additional subagents to verify, re-check, or parallelize work the main loop owns, and do not add pipeline steps beyond those written here. The validator scripts and gate stack are the verification layer; no extra passes.
+
 ## When to invoke
 
 - Post-market daily report ("EOD analysis", "end of day report", "wrap up the day", "daily intel")
@@ -439,7 +441,7 @@ Cross-reference each batched recommendation against any named structure from `mu
 
 ## Step 7 — Write the report
 
-Synthesize into the structured markdown below. The report is organized **by trade horizon**, not by agent. Use tables for data-dense sections and full sentences for thesis sections. Tone: institutional desk strategist — precise, assertive, no filler.
+Synthesize into the structured markdown below. The report is organized **by trade horizon**, not by agent. Use tables for data-dense sections and full sentences for thesis sections. Tone: institutional desk strategist — precise, assertive, no filler. Match each section's length to its substance — no filler sections, no restated Step 0 context, no summary-of-the-summary; an empty section states that it is empty in one line.
 
 ```markdown
 # Daily Market Analysis — YYYY-MM-DD
