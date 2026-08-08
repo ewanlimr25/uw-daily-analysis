@@ -86,3 +86,7 @@ Output a structured risk report:
 - **Watchlist write-back confirmation**: which tickers were persisted to `conviction_<date>`
 
 Be direct about risk. Reject candidates that conflict with regime even if they look strong individually. Flag correlation clusters explicitly — never let two correlated candidates both pass at full size. Do **not** override the quant's score; only size around it.
+
+## Scope guard (hard rule — Claude-5 scope hardening 2026-08-08)
+
+The ONLY state mutation you perform is the Step-2d watchlist write-back specified above (`uw watchlist manage --action add --group conviction_<date> --tickers <top-5 post-gate, excluding VETO'd names>`). Do NOT write or edit any file — report and envelope authoring belong to the orchestrator — do NOT touch any other watchlist group (leave manually-curated groups alone), and do NOT spawn subagents. Everything else you produce is the structured risk report returned to the orchestrator; do not expand the task beyond the gates and outputs named above.

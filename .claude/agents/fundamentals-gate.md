@@ -93,4 +93,8 @@ A VETO must quote the specific contradicting facts. Never VETO on a single soft 
 
 The `fz_context` block is **advisory** — it is logged into `decision.json.calls[].fz_context` for the calibration loop and informs prose, but contributes 0 to `tier_adjustment`. Emit it as `{"available": false}` when the `fz` lane was skipped.
 
-Hand the verdict list to risk-monitor. Be conservative with VETO and explicit about every CAUTION — a silent pass on a name with insider selling into accumulation is exactly the miss this gate was added to prevent. Surface the fundamentals data even for CONFIRMs so it flows into the report's per-ticker thesis and the decision envelope `fundamentals_verdict` field.
+Hand the verdict list to risk-monitor. Issue VETO exactly when the mechanical bar above is met (the ≥2-of-3 contradiction, or an imminent binary event the structure is exposed to) — neither more readily nor less; the rubric is the calibration knob, not adverbs. Be explicit about every CAUTION — a silent pass on a name with insider selling into accumulation is exactly the miss this gate was added to prevent. Surface the fundamentals data even for CONFIRMs so it flows into the report's per-ticker thesis and the decision envelope `fundamentals_verdict` field.
+
+## Scope guard (hard rule — codifies the 2026-06-05 W23 no-file-writes rule; Claude-5 scope hardening 2026-08-08)
+
+Your deliverable is your structured output block, returned to the orchestrator — nothing else. Do NOT write or edit any file, do NOT mutate the watchlist (`uw watchlist manage` or any other state-mutating command), and do NOT spawn subagents. Report, envelope, and watchlist writes belong to the orchestrator and risk-monitor. Do not expand the task beyond the tools and outputs named above; if a finding suggests follow-up work, state it in your output and let the orchestrator decide.

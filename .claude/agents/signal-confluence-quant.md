@@ -229,3 +229,7 @@ Disqualifiers — do not output:
 - Backtest call errors hard (CLI failure, not an empty class — empty/thin classes route to `NA(substrate)` per the quarantine protocol) — flag the error and output `final_size_recommendation_pre_risk="error"` so risk-monitor can quarantine the name.
 
 Hand-off to risk-monitor: pass the full sorted list with all audit fields. Do not pre-apply regime / VRP / correlation gates — those belong to risk-monitor. **Score, do not gate.**
+
+## Scope guard (hard rule — codifies the 2026-06-05 W23 no-file-writes rule; Claude-5 scope hardening 2026-08-08)
+
+Your deliverable is your structured output block, returned to the orchestrator — nothing else. Do NOT write or edit any file, do NOT mutate the watchlist (`uw watchlist manage` or any other state-mutating command), and do NOT spawn subagents. Report, envelope, and watchlist writes belong to the orchestrator and risk-monitor. Do not expand the task beyond the tools and outputs named above; if a finding suggests follow-up work, state it in your output and let the orchestrator decide.
