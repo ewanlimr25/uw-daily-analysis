@@ -205,6 +205,86 @@ def _run_fz_screen(ticker: str, binary: str, view: str) -> list:
     return rows if isinstance(rows, list) else []
 
 
+def _run_fz_insider_clusters(binary: str, days: int, min_buyers: int, side: str) -> list:
+    """Run ``fz insider-clusters ... --agent`` -> list of cluster dicts.
+
+    NB this command reads a **local store** populated by ``fz insider`` / ``fz sync``;
+    an empty store is indistinguishable from "no clusters" at the CLI level, so the
+    caller treats empty as a SKIPPED lane (``None``), never as ``False``.
+    """
+    try:
+        proc = subprocess.run(  # noqa: S603 - fixed argv, no shell
+            [binary, "insider-clusters", "--days", str(days),
+             "--min-buyers", str(min_buyers), "--side", side, "--agent"],
+            capture_output=True,
+            text=True,
+            timeout=TIMEOUT_SECONDS,
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:  # pragma: no cover - env path
+        raise FzError(f"fz insider-clusters invocation failed: {exc}") from exc
+
+    if proc.returncode != 0:
+        detail = (proc.stderr or proc.stdout or "").strip()[:200]
+        raise FzError(f"fz insider-clusters exit {proc.returncode}: {detail}")
+    try:
+        rows = json.loads(proc.stdout)
+    except (ValueError, json.JSONDecodeError) as exc:
+        raise FzError(f"fz insider-clusters returned non-JSON output: {exc}") from exc
+    return rows if isinstance(rows, list) else []
+
+
+def insider_cluster_flag(
+    ticker: str,
+    binary: str = "fz",
+    days: int = 7,
+    min_buyers: int = 2,
+    side: str = "buy",
+    runner=_run_fz_insider_clusters,
+) -> bool | None:
+    """C18 enabler: does ``ticker`` carry an insider BUY cluster right now?
+
+    Returns ``True`` (cluster present), ``False`` (store populated, ticker absent —
+    *checked-and-absent*), or ``None`` (lane skipped: ``fz`` unavailable, store
+    empty, or blank ticker). The True/False/None split is the whole point — C18
+    needs a flag that can contrast, and a skipped lane must never masquerade as a
+    negative observation.
+
+    **Why this function exists (2026-08-08 audit P1 #4).** ``accumulation-hunter``
+    previously shelled out to ``fz insider-clusters`` and matched the ticker by
+    exact equality. The local insider store carries the same upstream
+    **doubled-first-letter** artifact as the screener grid — on 2026-08-08, **14 of
+    14** distinct tickers in the store were doubled (``PLTR`` -> ``PPLTR``,
+    ``XAIR`` -> ``XXAIR``) — so no lookup ever matched. The flag was serialized 15
+    times across the corpus and was ``False`` **every** time: zero variance, and the
+    C18 conjunction gate untestable for five consecutive audits. This routes the
+    match through the same doubled-letter-tolerant comparison already used for the
+    screener rows (:func:`_screen_row_matches`), and returns ``None`` rather than
+    ``False`` when the store is empty so a dead lane is never scored as evidence.
+    """
+    want = (ticker or "").strip()
+    if not want:
+        return None
+    try:
+        rows = runner(binary, days, min_buyers, side)
+    except FzError:
+        return None
+    if not rows:
+        # Empty store (never synced) — a skipped lane, NOT checked-and-absent.
+        return None
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        if not _screen_row_matches(str(row.get("Ticker") or ""), want):
+            continue
+        if str(row.get("Side") or side).strip().lower() != side.strip().lower():
+            continue
+        owners = row.get("DistinctOwners")
+        if isinstance(owners, (int, float)) and owners < min_buyers:
+            continue
+        return True
+    return False
+
+
 # ---------- pure parsers -----------------------------------------------------
 
 
@@ -306,6 +386,24 @@ def derive(fields: dict) -> dict:
     }
 
 
+def _screen_row_matches(row_ticker: str, ticker: str) -> bool:
+    """Does a screener row's ``Ticker`` cell identify ``ticker``?
+
+    The upstream `fz screen` payload emits a **doubled first letter** on the Ticker
+    cell (`MSFT` -> `MMSFT`, `AAPL` -> `AAAPL`) — the same synthetic-ticker artifact
+    already logged against the quote grid. An exact-equality match therefore rejected
+    every screener row, which is why the ownership-view float never reached the
+    envelope and C16 stayed untestable for four consecutive audits even though the
+    field, the agent contract and the validator warning were all in place
+    (2026-08-01 audit, item 5).
+    """
+    got = (row_ticker or "").strip().upper()
+    want = (ticker or "").strip().upper()
+    if not got or not want:
+        return False
+    return got == want or got == want[0] + want
+
+
 def screen_fallback_fields(
     ticker: str, binary: str, missing_keys: set, screen_runner=_run_fz_screen
 ) -> dict:
@@ -325,9 +423,15 @@ def screen_fallback_fields(
         except FzError:
             continue
         row = next(
-            (r for r in rows if isinstance(r, dict) and str(r.get("Ticker", "")).upper() == ticker),
+            (r for r in rows
+             if isinstance(r, dict) and _screen_row_matches(str(r.get("Ticker", "")), ticker)),
             None,
         )
+        # The query is already ticker-scoped (`--tickers <T>`), so a single returned
+        # row is unambiguous even if its Ticker cell is mangled beyond the known
+        # doubled-letter form. Never guess when the payload carries several rows.
+        if row is None and len(rows) == 1 and isinstance(rows[0], dict):
+            row = rows[0]
         if row is None:
             continue
         for key, label in wanted.items():

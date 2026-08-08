@@ -28,13 +28,19 @@ Flag tickers where **4+ signals align AND `uw insights conviction-matrix` return
 
 ### Insider-cluster co-flag (advisory — 2026-05-27 `fz`-edge audit A3)
 
-Run once per pass (not per ticker — it returns the whole tape):
+**Resolve this per candidate through the helper — do NOT match the raw CLI rows yourself (2026-08-08 audit P1 #4):**
 
 ```bash
-fz insider-clusters --days 7 --min-buyers 2 --side buy --agent
+python3 -c "import sys; sys.path.insert(0,'scripts'); import fz_enrich as fz; print(fz.insider_cluster_flag('<TICKER>'))"
 ```
 
-It returns rows of `{Ticker, DistinctOwners, Transactions, Side}` — tickers where ≥2 **distinct** insiders bought in the window. This is net-new vs the Finnhub MSPR the fundamentals-gate uses (MSPR is a blended monthly ratio; this is a distinct-buyer *count*, the conviction framing). For any accumulation candidate that also appears here, set `insider_cluster_present: true` with the distinct-buyer count; otherwise `false`.
+It returns exactly one of **`True`** (insider BUY cluster present), **`False`** (store populated, ticker absent — *checked-and-absent*), or **`None`** (lane skipped: `fz` missing, errored, or the local store is empty). Carry that value verbatim into `insider_cluster_present`. **`None` is not `False`** — a skipped lane must never be serialized as a negative observation.
+
+> **Operational dependency — refresh the store first.** `insider-clusters` aggregates a **local** store, not a live endpoint; Finviz lists transactions one at a time with no aggregation. Run `fz insider --agent` (or `fz sync`) once at the start of the pass so the window is current. A stale or unsynced store silently degrades every lookup to `None` — which is *safe* (nothing is scored) but produces no data, so the C18 evidence never accrues. The store is small and short-horizon: on 2026-08-08 it held **14 distinct tickers**, and `--days 7` and `--days 30` returned the same single cluster.
+
+You may still run `fz insider-clusters --days 7 --min-buyers 2 --side buy --agent` to *read* the tape (rows of `{Ticker, DistinctOwners, Transactions, Side}` — tickers where ≥2 **distinct** insiders bought in the window). This is net-new vs the Finnhub MSPR the fundamentals-gate uses (MSPR is a blended monthly ratio; this is a distinct-buyer *count*, the conviction framing). But **do not derive the flag from those rows by string equality.**
+
+> **Why the helper is mandatory.** `fz insider-clusters` reads a **local store** (populated by `fz insider` / `fz sync`) whose `Ticker` cells carry the same upstream **doubled-first-letter** artifact as the screener quote grid. On 2026-08-08, **14 of 14** distinct tickers in the store were doubled — `PLTR` → `PPLTR`, `XAIR` → `XXAIR`. Exact-equality matching therefore returned false for *every* ticker ever checked: the 2026-08-08 audit found `insider_cluster_flag` serialized **15 times across the whole corpus and `False` all 15** — zero variance, which is why **C18 was untestable for five consecutive audits** even though the schema field, the agent contract and the validator warning were all in place. `scripts/fz_enrich.py:insider_cluster_flag` routes the comparison through the same doubled-letter-tolerant matcher already used for screener rows, and distinguishes an empty store (`None`) from a real miss (`False`). This is the exact same bug, and the exact same fix, as the C16 float lookup at 2026-08-01 item 5.
 
 **Narrative co-flag only — 0 rubric points.** An insider cluster ∧ dark-pool block ∧ cumulative-premium-flow is the C18 three-way conjunction (registered, *not yet live* — see `analyses/audit/2026-05-25/improvement_criteria.md`); until `/calibration-audit` clears C18 it earns no score, it only strengthens the prose thesis. If `fz` is unavailable (CLI missing / errored), skip silently — it never blocks the hunt. Cohen, Malloy & Pomorski (2012, JF): clustered opportunistic insider buying has documented predictive content.
 

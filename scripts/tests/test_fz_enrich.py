@@ -215,6 +215,128 @@ class ScreenFallbackTest(unittest.TestCase):
         self.assertTrue(out["available"])
         self.assertNotIn("short_float", out["fields"])
 
+    # --- 2026-08-01 audit item 5: the doubled-first-letter Ticker artifact ---
+    # Live `fz screen --tickers MSFT --view ownership` returns Ticker="MMSFT".
+    # Exact-equality matching rejected every row, so the ownership float never
+    # reached the envelope and C16 was untestable for four audits.
+
+    def test_screen_row_matched_despite_doubled_first_letter(self):
+        def doubled(ticker, binary, view):
+            if view == "ownership":
+                return [dict(OWNERSHIP_ROW, Ticker="AAAPL")]
+            return [dict(TECHNICAL_ROW, Ticker="AAAPL")]
+
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=doubled)
+        self.assertEqual(out["fields"]["short_float"], "0.98%")
+        self.assertIn("short_float", out["screen_fallback_used"])
+
+    def test_sole_row_accepted_when_ticker_cell_unrecognisable(self):
+        def mangled(ticker, binary, view):
+            if view == "ownership":
+                return [dict(OWNERSHIP_ROW, Ticker="???")]
+            return []
+
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=mangled)
+        self.assertEqual(out["fields"]["short_float"], "0.98%")
+
+    def test_multi_row_payload_never_guesses(self):
+        """The sole-row fallback must not fire when the payload is ambiguous."""
+        def two_unmatched(ticker, binary, view):
+            if view == "ownership":
+                return [dict(OWNERSHIP_ROW, Ticker="???"),
+                        dict(OWNERSHIP_ROW, Ticker="!!!")]
+            return []
+
+        out = fz.enrich("AAPL", AS_OF, runner=lambda t, b: BROKEN_QUOTE,
+                        screen_runner=two_unmatched)
+        self.assertNotIn("short_float", out["fields"])
+
+    def test_row_matcher_unit(self):
+        self.assertTrue(fz._screen_row_matches("MMSFT", "MSFT"))
+        self.assertTrue(fz._screen_row_matches("MSFT", "MSFT"))
+        self.assertTrue(fz._screen_row_matches(" aaapl ", "AAPL"))
+        self.assertFalse(fz._screen_row_matches("MSFT", "AAPL"))
+        self.assertFalse(fz._screen_row_matches("", "AAPL"))
+        self.assertFalse(fz._screen_row_matches("AAPL", ""))
+
+
+class InsiderClusterFlagTests(unittest.TestCase):
+    """C18 enabler (2026-08-08 audit P1 #4).
+
+    `fz insider-clusters` reads a LOCAL store whose Ticker cells carry the same
+    upstream doubled-first-letter artifact as the screener grid (observed
+    2026-08-08: 14 of 14 distinct tickers doubled -- PLTR -> PPLTR, XAIR -> XXAIR).
+    Exact-equality matching therefore returned False for every ticker ever
+    checked, which is why `insider_cluster_flag` was serialized 15 times and was
+    `False` all 15 -- zero variance, and C18 untestable for five audits.
+    """
+
+    CLUSTERS = [
+        {"Ticker": "PPLTR", "DistinctOwners": 3, "Side": "buy", "Transactions": 5},
+        {"Ticker": "XXAIR", "DistinctOwners": 2, "Side": "buy", "Transactions": 2},
+    ]
+
+    def test_doubled_first_letter_ticker_matches(self):
+        """The bug that blocked C18: PLTR must match the store's PPLTR row."""
+        self.assertIs(
+            fz.insider_cluster_flag("PLTR", runner=lambda b, d, m, s: self.CLUSTERS),
+            True,
+        )
+
+    def test_undoubled_ticker_still_matches(self):
+        rows = [{"Ticker": "PLTR", "DistinctOwners": 2, "Side": "buy"}]
+        self.assertIs(
+            fz.insider_cluster_flag("PLTR", runner=lambda b, d, m, s: rows), True
+        )
+
+    def test_absent_ticker_is_false_not_none(self):
+        """checked-and-absent must be False -- the value C18 needs to contrast."""
+        self.assertIs(
+            fz.insider_cluster_flag("AAPL", runner=lambda b, d, m, s: self.CLUSTERS),
+            False,
+        )
+
+    def test_empty_store_is_none_not_false(self):
+        """An unpopulated store is a SKIPPED lane, not evidence of no cluster."""
+        self.assertIsNone(
+            fz.insider_cluster_flag("AAPL", runner=lambda b, d, m, s: [])
+        )
+
+    def test_fz_failure_is_none_graceful_skip(self):
+        def boom(binary, days, min_buyers, side):
+            raise fz.FzError("fz missing")
+
+        self.assertIsNone(fz.insider_cluster_flag("AAPL", runner=boom))
+
+    def test_min_buyers_threshold_respected(self):
+        rows = [{"Ticker": "PPLTR", "DistinctOwners": 1, "Side": "buy"}]
+        self.assertIs(
+            fz.insider_cluster_flag("PLTR", min_buyers=2,
+                                    runner=lambda b, d, m, s: rows),
+            False,
+        )
+
+    def test_side_filter_excludes_opposite_side(self):
+        rows = [{"Ticker": "PPLTR", "DistinctOwners": 3, "Side": "sell"}]
+        self.assertIs(
+            fz.insider_cluster_flag("PLTR", side="buy",
+                                    runner=lambda b, d, m, s: rows),
+            False,
+        )
+
+    def test_malformed_rows_tolerated(self):
+        rows = ["not-a-dict", {"no_ticker": 1}, {"Ticker": None}]
+        self.assertIs(
+            fz.insider_cluster_flag("PLTR", runner=lambda b, d, m, s: rows), False
+        )
+
+    def test_blank_ticker_is_none(self):
+        self.assertIsNone(
+            fz.insider_cluster_flag("", runner=lambda b, d, m, s: self.CLUSTERS)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

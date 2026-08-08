@@ -213,6 +213,24 @@ def check_invariants(doc: dict) -> list[str]:
 # keys entirely and C16 / C18 have been untestable for three consecutive audits. These
 # are WARNINGS, not errors: a missing key must be visible at emission time without
 # retroactively invalidating the 52 historical envelopes the audit reads as its dataset.
+def _load_canonical_signal_classes() -> tuple[frozenset, dict]:
+    """Read the canonical class list + alias map off the schema (single source of truth).
+
+    Falls back to empty on any read failure so a schema-path problem can never turn
+    into a spurious warning storm.
+    """
+    try:
+        schema = json.loads(SCHEMA_PATH.read_text())
+        prop = schema["$defs"]["call"]["properties"]["dominant_signal_class"]
+        return (frozenset(prop.get("x-canonical-classes", [])),
+                dict(prop.get("x-canonical-aliases", {})))
+    except Exception:  # pragma: no cover - defensive
+        return frozenset(), {}
+
+
+_CANONICAL_SIGNAL_CLASSES, _CANONICAL_SIGNAL_ALIASES = _load_canonical_signal_classes()
+
+
 def check_instrumentation_warnings(doc: dict) -> list[str]:
     """Non-fatal instrumentation gaps: keys that should be present-with-explicit-null.
 
@@ -248,6 +266,37 @@ def check_instrumentation_warnings(doc: dict) -> list[str]:
             warnings.append(
                 f"{cp}: non-DROP call missing 'debate_residuals' — both {{bull, bear}} "
                 f"scalars are mandatory for every debated name (2026-06-12 P1.1)"
+            )
+
+        # 2026-08-01 audit P2 #9: keep dominant_signal_class from fragmenting again.
+        # Warning, never an error — a hard enum would fail-validate the historical
+        # envelopes that ARE the calibration dataset.
+        if isinstance(cls, str) and cls and cls not in _CANONICAL_SIGNAL_CLASSES:
+            alias = _CANONICAL_SIGNAL_ALIASES.get(cls)
+            hint = f" — emit '{alias}'" if alias else ""
+            warnings.append(
+                f"{cp}: dominant_signal_class {cls!r} is not canonical{hint} "
+                f"(schema x-canonical-classes; off-list values force every audit to "
+                f"re-implement a collapse before it can group anything)"
+            )
+
+        # 2026-08-01 audit item 5: the C16 field shipped and is emitted, but every value
+        # was null because fz_enrich's screener row-match rejected the upstream
+        # doubled-first-letter Ticker cell (MSFT -> MMSFT). That parse bug is fixed; this
+        # warning catches a silent regression of the *value* rather than the key.
+        # Scoped to calls whose own fz lane demonstrably RAN (fz_context.available is
+        # true): an explicit null remains the correct, contract-mandated value on a
+        # graceful fz skip, and must never warn — the hunt is never blocked on fz.
+        fzc = call.get("fz_context")
+        fz_ran = isinstance(fzc, dict) and fzc.get("available") is True
+        if (cls == "dark_pool_accumulation" and fz_ran
+                and "dp_block_to_float_ratio" in call
+                and call.get("dp_block_to_float_ratio") is None):
+            warnings.append(
+                f"{cp}: dark_pool_accumulation row has dp_block_to_float_ratio=null "
+                f"despite fz_context.available=true — expected a number now that the fz "
+                f"float lookup is fixed (2026-08-01); persistent nulls here mean the C16 "
+                f"float-normalized gate is still ungradeable"
             )
     return warnings
 

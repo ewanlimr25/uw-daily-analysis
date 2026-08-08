@@ -666,3 +666,54 @@ class InstrumentationWarningsTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CanonicalClassAndC16ValueWarnings(unittest.TestCase):
+    """2026-08-01 audit: P2 #9 class-drift warning + the C16 null-value regression guard."""
+
+    def test_offlist_signal_class_warns_with_alias_hint(self):
+        call = _call(dominant_signal_class="dex_flip_long",
+                     dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                     debate_residuals={"bull": 0.65, "bear": 0.55})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        hit = [w for w in warns if "not canonical" in w]
+        self.assertTrue(hit)
+        self.assertIn("dealer_positioning", hit[0])
+
+    def test_canonical_signal_class_does_not_warn(self):
+        call = _call(dominant_signal_class="bullish_flow",
+                     dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                     debate_residuals={"bull": 0.65, "bear": 0.55})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertFalse([w for w in warns if "not canonical" in w])
+
+    def test_c16_null_warns_only_when_fz_lane_ran(self):
+        base = dict(dominant_signal_class="dark_pool_accumulation",
+                    dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                    debate_residuals={"bull": 0.65, "bear": 0.55})
+        ran = _call(fz_context={"available": True}, **base)
+        warns = vd.check_instrumentation_warnings(_doc(calls=[ran]))
+        self.assertTrue([w for w in warns if "dp_block_to_float_ratio=null" in w])
+
+    def test_c16_null_silent_on_graceful_fz_skip(self):
+        """An explicit null is the contract-mandated value when fz is unavailable."""
+        base = dict(dominant_signal_class="dark_pool_accumulation",
+                    dp_block_to_float_ratio=None, insider_cluster_flag=None,
+                    debate_residuals={"bull": 0.65, "bear": 0.55})
+        for fzc in ({"available": False}, None):
+            call = _call(fz_context=fzc, **base)
+            warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+            self.assertFalse([w for w in warns if "dp_block_to_float_ratio=null" in w])
+
+    def test_c16_populated_value_never_warns(self):
+        call = _call(dominant_signal_class="dark_pool_accumulation",
+                     fz_context={"available": True},
+                     dp_block_to_float_ratio=0.0012, insider_cluster_flag=False,
+                     debate_residuals={"bull": 0.65, "bear": 0.55})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertFalse([w for w in warns if "dp_block_to_float_ratio" in w])
+
+    def test_these_warnings_are_never_errors(self):
+        call = _call(dominant_signal_class="dex_flip_long",
+                     fz_context={"available": True}, dp_block_to_float_ratio=None)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])

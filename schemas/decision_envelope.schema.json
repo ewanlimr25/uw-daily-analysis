@@ -610,7 +610,42 @@
           }
         },
         "dominant_signal_class": {
-          "type": "string"
+          "type": "string",
+          "description": "The single signal class contributing most of raw_score. 2026-08-01 audit P2 #9: the corpus carries 31 distinct strings, 12 of them appearing <=2 times (dealer-positioning_dex_flip, dex_flip_long, multileg_repeat, directional_conflict, ...), so every audit has had to re-implement a canonical_class collapse before it can group anything. Emit a value from x-canonical-classes below. This is deliberately NOT a hard JSON-Schema enum: making it one would retroactively fail-validate the historical envelopes that are the calibration dataset. scripts/validate_decision.py emits a non-fatal WARNING for an off-list value, which surfaces drift at emission time without invalidating history.",
+          "x-canonical-classes": [
+            "dark_pool_accumulation",
+            "dark_pool_distribution",
+            "bullish_flow",
+            "bearish_flow",
+            "multi_day_sweep",
+            "multileg_directional",
+            "single_leg_whale",
+            "oi_build",
+            "gamma_breakout",
+            "dealer_positioning",
+            "vanna_squeeze",
+            "sector_rotation",
+            "leap_directional",
+            "opex_pin",
+            "earnings_vol",
+            "high_iv_rank",
+            "event_vol"
+          ],
+          "x-canonical-aliases": {
+            "dealer_positioning_flip": "dealer_positioning",
+            "dealer-positioning_dex_flip": "dealer_positioning",
+            "dealer_flip": "dealer_positioning",
+            "dealer_short": "dealer_positioning",
+            "dex_flip_long": "dealer_positioning",
+            "dex_flip_short": "dealer_positioning",
+            "distribution": "dark_pool_distribution",
+            "bearish_flow_single_leg_put": "bearish_flow",
+            "single_leg_put": "single_leg_whale",
+            "multileg_directional_conflicted": "multileg_directional",
+            "directional_conflict": "multileg_directional",
+            "multileg_repeat": "multileg_directional",
+            "sector_leader": "sector_rotation"
+          }
         },
         "confluence_score": {
           "type": [

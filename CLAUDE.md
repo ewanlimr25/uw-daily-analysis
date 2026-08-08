@@ -42,7 +42,7 @@ User-invocable via `/skill-name`. Core skills for this project:
 | `multileg-strategist` | Institutional spread structure inference; play type anchored to term-structure; multi-day repeat filter |
 | `vol-surface-scout` | Vol-surface dislocations — KINKED/BACKWARDATION names, IV outliers, skew mispricings, VRP bias |
 | `leap-positioning-radar` | DTE > 180 institutional builds; `historical_cumulative_premium_flow` accretion gate; requires 6-of-9 signal gates |
-| `sector-rotation-strategist` | Multi-week rotation regime calls with single-name leaders; enforces ≥3-day `options_flow_sector_flow_persistence` |
+| `sector-rotation-strategist` | Multi-week rotation regime calls with single-name leaders. **Direction reads off the NETTED `uw risk market-regime.sector_rotation` (2026-08-01 C55)**; `options_flow_sector_flow_persistence` is a durability filter only — it and `sector-flow` are one *gross-turnover* source and cannot express direction. Netted-vs-gross disagreement ⇒ watch_only |
 | `opex-pin-strategist` | OPEX-week-only pin mechanics; ranked gamma-weighted book with iron flies, straddles, butterflies |
 
 ### Phase 2 — scoring → fundamentals → debate → risk (sequential)
@@ -52,7 +52,7 @@ User-invocable via `/skill-name`. Core skills for this project:
 | `signal-confluence-quant` | 2a | Audited per-ticker conviction score — `score_components`, `win_rate`, pre-risk size; runs first |
 | `fundamentals-gate` | 2b | Finnhub cross-check on top-5 (earnings-surprise streak, insider MSPR, leverage, news catalysts); CONFIRM / CAUTION / VETO vs the flow thesis — catches distribution dressed as accumulation |
 | `bull-researcher` / `bear-researcher` | 2c | Bounded 1–2 round adversarial debate on top-5; honest residual confidence; the disconfirmation the additive score lacks |
-| `risk-monitor` | 2d | Consumes quant + fundamentals + debate; applies regime / VRP / correlation / sector / fundamentals / event-risk / debate gate stack; watchlist write-back |
+| `risk-monitor` | 2d | Consumes quant + fundamentals + debate; applies regime / VRP / correlation / sector / fundamentals / event-risk / debate gate stack; watchlist write-back. **Directional SHORTs route to `watch_only` and are never sized (2026-08-01 P0 #1)** — routing, not suppression: theses are still generated, scored and serialized so the counterfactual keeps resolving. Hedge legs / defined-risk spreads / short-vol structures are out of scope |
 
 ## Scripts & schemas
 
