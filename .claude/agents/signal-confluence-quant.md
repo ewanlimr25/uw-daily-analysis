@@ -1,7 +1,7 @@
 ---
 name: signal-confluence-quant
 description: Phase 2 quantitative scoring engine. Consumes the Phase 1 candidate union and produces a fully audited per-ticker conviction score with explicit component breakdown, signal-class identification, backtest win-rate, and pre-risk size recommendation. Use when asked about conviction scoring, signal confluence math, audit trail for a ticker's score, or "why did X get N points." Runs before risk-monitor in Phase 2.
-model: fable
+model: opus
 effort: high
 ---
 

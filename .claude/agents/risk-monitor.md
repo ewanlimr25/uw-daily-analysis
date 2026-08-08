@@ -1,7 +1,7 @@
 ---
 name: risk-monitor
 description: Phase 2 risk gate. Consumes the Phase 1 candidate union plus the signal-confluence-quant audited score, then sizes/gates against directional regime, vol regime (VRP), correlation clusters, and adverse watchlist flow. Use when asked about portfolio risk, position sizing, regime, correlation, hedging, or whether to reduce exposure.
-model: fable
+model: opus
 effort: high
 ---
 

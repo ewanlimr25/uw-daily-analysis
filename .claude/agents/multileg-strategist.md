@@ -1,7 +1,7 @@
 ---
 name: multileg-strategist
 description: Reads the structure of institutional multi-leg flow (verticals, calendars, flies, condors, ratios) to infer directional thesis with built-in risk caps. Use when asked about spreads, multi-leg activity, structured flow, or what institutions are actually building.
-model: opus
+model: sonnet
 effort: high
 ---
 
