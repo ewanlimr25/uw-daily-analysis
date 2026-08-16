@@ -20,13 +20,13 @@ def _call(**over):
         "raw_score": 8,
         "score_components": [
             {"rubric_line": "+3 historical_cumulative_premium_flow", "points": 3,
-             "source_agent": "signal-confluence-quant", "source_tool": "historical_cumulative_premium_flow",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow",
              "evidence": "30d +$112M long"},
             {"rubric_line": "+3 accumulation 3-of-3", "points": 3,
-             "source_agent": "accumulation-hunter", "source_tool": "insights_institutional_accumulation",
+             "source_agent": "accumulation-hunter", "source_tool": "uw insights institutional-accumulation",
              "evidence": "DP + OI + smart_positioning"},
             {"rubric_line": "+2 multileg directional", "points": 2,
-             "source_agent": "multileg-strategist", "source_tool": "hot_chains_multileg",
+             "source_agent": "multileg-strategist", "source_tool": "uw hot-chains multileg",
              "evidence": "bull vertical"},
         ],
         "dominant_signal_class": "dark_pool_accumulation",
@@ -264,7 +264,7 @@ class InvariantTest(unittest.TestCase):
         # forced raw-9 calls to be recorded MEDIUM (five such calls in the June cohort).
         comps = _call()["score_components"] + [
             {"rubric_line": "+1 sector leader", "points": 1, "source_agent": "sector-rotation-strategist",
-             "source_tool": "options_flow_sector_flow_persistence", "evidence": "leader, persistence 0.8"}
+             "source_tool": "uw options-flow sector-flow-persistence", "evidence": "leader, persistence 0.8"}
         ]
         ok = _call(raw_score=9, tier="HIGH", score_components=comps)
         self.assertEqual(vd.validate_doc(_doc(calls=[ok]), SCHEMA), [])
@@ -273,7 +273,7 @@ class InvariantTest(unittest.TestCase):
         # raw_score 10 (HIGH band) demoted to MEDIUM is legal (LB-gate demote).
         comps = _call()["score_components"] + [
             {"rubric_line": "+2 confluence", "points": 2, "source_agent": "signal-confluence-quant",
-             "source_tool": "insights_signal_confluence", "evidence": "score 5"}
+             "source_tool": "uw insights signal-confluence", "evidence": "score 5"}
         ]
         ok = _call(raw_score=10, tier="MEDIUM", score_components=comps)
         self.assertEqual(vd.validate_doc(_doc(calls=[ok]), SCHEMA), [])
@@ -326,7 +326,7 @@ class GateVerdictCompletenessTest(unittest.TestCase):
         ok = _call(tier="DROP", raw_score=2, final_size="skip",
                    score_components=[{"rubric_line": "+2 multileg directional", "points": 2,
                                       "source_agent": "multileg-strategist",
-                                      "source_tool": "hot_chains_multileg", "evidence": "x"}])
+                                      "source_tool": "uw hot-chains multileg", "evidence": "x"}])
         self.assertEqual(vd.validate_doc(_doc(schema_version="1.3", rubric_version="2026-06-12", calls=[ok]), SCHEMA), [])
 
     def test_legacy_1_2_exempt_from_completeness(self):
@@ -390,7 +390,7 @@ class ConjunctionC11Test(unittest.TestCase):
         return {
             "rubric_line": "+3 3+ aligned signals in accumulation-hunter (conjunction)",
             "points": points, "source_agent": "accumulation-hunter",
-            "source_tool": "insights_institutional_accumulation",
+            "source_tool": "uw insights institutional-accumulation",
             "evidence": "DP + OI + smart_positioning institutional-tier",
         }
 
@@ -400,13 +400,13 @@ class ConjunctionC11Test(unittest.TestCase):
         comps = [
             self._accum_comp(3),
             {"rubric_line": "+3 historical_cumulative_premium_flow", "points": 3,
-             "source_agent": "signal-confluence-quant", "source_tool": "historical_cumulative_premium_flow",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow",
              "evidence": "30d +$112M LONG >=$50M -> conjunction confirmed"},
             {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
-             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence",
              "evidence": "confluence 5"},
             {"rubric_line": "+3 dealer DEX flip", "points": 3,
-             "source_agent": "dealer-positioning-strategist", "source_tool": "options_structure_dex",
+             "source_agent": "dealer-positioning-strategist", "source_tool": "uw options-structure dex",
              "evidence": "DEX flip long"},
         ]
         call = _call(raw_score=11, tier="HIGH", score_components=comps, final_size="full")
@@ -418,10 +418,10 @@ class ConjunctionC11Test(unittest.TestCase):
         comps = [
             self._accum_comp(1),
             {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
-             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence",
              "evidence": "confluence 5"},
             {"rubric_line": "+3 dealer DEX flip", "points": 3,
-             "source_agent": "dealer-positioning-strategist", "source_tool": "options_structure_dex",
+             "source_agent": "dealer-positioning-strategist", "source_tool": "uw options-structure dex",
              "evidence": "DEX flip long"},
         ]
         call = _call(raw_score=6, tier="LOW", score_components=comps, final_size="starter")
@@ -433,10 +433,10 @@ class ConjunctionC11Test(unittest.TestCase):
         comps = [
             self._accum_comp(1),
             {"rubric_line": "+2 insights_signal_confluence >=4", "points": 2,
-             "source_agent": "signal-confluence-quant", "source_tool": "insights_signal_confluence",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence",
              "evidence": "confluence 4"},
             {"rubric_line": "-1 flow_conflict_lite", "points": -1,
-             "source_agent": "signal-confluence-quant", "source_tool": "historical_cumulative_premium_flow",
+             "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow",
              "evidence": "cum_flow_30d MIXED vs LONG"},
         ]
         call = _call(raw_score=2, tier="DROP", score_components=comps, final_size="skip")
@@ -716,4 +716,91 @@ class CanonicalClassAndC16ValueWarnings(unittest.TestCase):
     def test_these_warnings_are_never_errors(self):
         call = _call(dominant_signal_class="dex_flip_long",
                      fz_context={"available": True}, dp_block_to_float_ratio=None)
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+
+class CanonicalSourceToolWarnings(unittest.TestCase):
+    """2026-08-15 audit P1 #1 — one canonical tool id per score_component.
+
+    The corpus carried 122 distinct citation strings over 1,225 instances (60 singletons,
+    52 concatenations); 155 instances were trapped in n<5 labels and the same tool scored
+    opposite Phase-4 tiers under two spellings.
+    """
+
+    def _comp(self, tool):
+        return {"rubric_line": "+3 x", "points": 3, "source_agent": "a",
+                "source_tool": tool, "evidence": "e"}
+
+    def _warns_for(self, tool):
+        call = _call(score_components=[self._comp(tool)], raw_score=3, tier="LOW",
+                     dominant_signal_class="bullish_flow",
+                     debate_residuals={"bull": 0.6, "bear": 0.5})
+        return vd.check_instrumentation_warnings(_doc(calls=[call]))
+
+    def test_plus_concatenated_tool_warns(self):
+        w = [x for x in self._warns_for(
+            "uw options-structure iv-term-structure + uw options-structure term-skew")
+            if "names more than one tool" in x]
+        self.assertTrue(w)
+
+    def test_slash_and_comma_concatenations_warn(self):
+        for tool in ("uw oi position-rolls / biggest-increases",
+                     "uw historical vrp, uw options-structure term-skew"):
+            hits = [x for x in self._warns_for(tool) if "names more than one tool" in x]
+            self.assertTrue(hits, f"expected concat warning for {tool!r}")
+
+    def test_offlist_spelling_warns(self):
+        for tool in ("uw options-structure dex (dated)", "historical_cumulative_premium_flow"):
+            hits = [x for x in self._warns_for(tool) if "is not canonical" in x]
+            self.assertTrue(hits, f"expected off-list warning for {tool!r}")
+
+    def test_canonical_single_tool_is_silent(self):
+        for tool in ("uw historical cumulative-premium-flow", "scripts/dex_flip.py"):
+            hits = [x for x in self._warns_for(tool)
+                    if "is not canonical" in x or "names more than one tool" in x]
+            self.assertFalse(hits, f"unexpected warning for canonical {tool!r}")
+
+    def test_source_tool_warnings_are_never_errors(self):
+        call = _call(score_components=[self._comp("uw a + uw b")], raw_score=3, tier="LOW")
+        self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])
+
+
+class BacktestClassSupportWarnings(unittest.TestCase):
+    """2026-08-15 audit P1 #2 — a backtest-sourced win_rate is only possible for the five
+    classes `uw historical signal-backtest --signal-type` accepts.
+
+    earnings_vol is NOT one of them, yet quoted 0.87 / realised 0.394 on n=109 (BH p<0.001)
+    with 12 of 13 quoted rows citing win_rate_source 'backtest'.
+    """
+
+    def _warns(self, cls, src):
+        call = _call(dominant_signal_class=cls, win_rate=0.87, win_rate_source=src,
+                     debate_residuals={"bull": 0.6, "bear": 0.5})
+        return [w for w in vd.check_instrumentation_warnings(_doc(calls=[call]))
+                if "does not support" in w]
+
+    def test_unsupported_class_with_backtest_source_warns(self):
+        for src in ("backtest", "backtest_clean"):
+            self.assertTrue(self._warns("earnings_vol", src), f"expected warning for {src}")
+
+    def test_supported_classes_are_silent(self):
+        for cls in ("bullish_flow", "bearish_flow", "high_iv_rank",
+                    "volume_spike", "dark_pool_accumulation"):
+            self.assertFalse(self._warns(cls, "backtest_clean"), f"unexpected warning for {cls}")
+
+    def test_alias_is_collapsed_before_the_support_check(self):
+        """dex_flip_long -> dealer_positioning, which is still unsupported: warn once."""
+        self.assertTrue(self._warns("dex_flip_long", "backtest_clean"))
+
+    def test_na_substrate_never_warns(self):
+        """The honest emission for an unsupported class must be silent."""
+        call = _call(dominant_signal_class="earnings_vol", win_rate=None,
+                     win_rate_source="NA(substrate)",
+                     debate_residuals={"bull": 0.6, "bear": 0.5})
+        warns = vd.check_instrumentation_warnings(_doc(calls=[call]))
+        self.assertFalse([w for w in warns if "does not support" in w])
+
+    def test_support_warnings_are_never_errors(self):
+        call = _call(dominant_signal_class="earnings_vol", win_rate=0.87,
+                     win_rate_source="backtest")
         self.assertEqual(vd.validate_doc(_doc(calls=[call]), SCHEMA), [])

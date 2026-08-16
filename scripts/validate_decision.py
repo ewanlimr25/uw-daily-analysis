@@ -228,7 +228,33 @@ def _load_canonical_signal_classes() -> tuple[frozenset, dict]:
         return frozenset(), {}
 
 
+def _load_canonical_tools() -> frozenset:
+    """Canonical `source_tool` ids (2026-08-15 audit P1 #1). Schema is the source of truth."""
+    try:
+        schema = json.loads(SCHEMA_PATH.read_text())
+        prop = (schema["$defs"]["call"]["properties"]["score_components"]
+                ["items"]["properties"]["source_tool"])
+        return frozenset(prop.get("x-canonical-tools", []))
+    except Exception:  # pragma: no cover - defensive
+        return frozenset()
+
+
+def _load_backtest_supported_classes() -> frozenset:
+    """Classes `uw historical signal-backtest --signal-type` accepts (2026-08-15 audit P1 #2)."""
+    try:
+        schema = json.loads(SCHEMA_PATH.read_text())
+        prop = schema["$defs"]["call"]["properties"]["win_rate_source"]
+        return frozenset(prop.get("x-backtest-supported-classes", []))
+    except Exception:  # pragma: no cover - defensive
+        return frozenset()
+
+
 _CANONICAL_SIGNAL_CLASSES, _CANONICAL_SIGNAL_ALIASES = _load_canonical_signal_classes()
+_CANONICAL_TOOLS = _load_canonical_tools()
+_BACKTEST_SUPPORTED_CLASSES = _load_backtest_supported_classes()
+_BACKTEST_SOURCES = ("backtest", "backtest_clean")
+# A concatenated citation is any source_tool naming more than one tool.
+_TOOL_CONCAT_MARKERS = (" + ", " / ", " and ", ",")
 
 
 def check_instrumentation_warnings(doc: dict) -> list[str]:
@@ -278,6 +304,50 @@ def check_instrumentation_warnings(doc: dict) -> list[str]:
                 f"{cp}: dominant_signal_class {cls!r} is not canonical{hint} "
                 f"(schema x-canonical-classes; off-list values force every audit to "
                 f"re-implement a collapse before it can group anything)"
+            )
+
+        # 2026-08-15 audit P1 #1: one canonical tool per score_component.
+        # A concatenated or off-list source_tool fragments the Phase-4 attribution
+        # denominator — 155 citation instances were trapped in n<5 labels, and the same
+        # tool scored opposite tiers under two spellings. Warning, never an error: the
+        # historical envelopes carrying concatenations ARE the calibration dataset.
+        comps = call.get("score_components")
+        if isinstance(comps, list):
+            for j, comp in enumerate(comps):
+                if not isinstance(comp, dict):
+                    continue
+                tool = comp.get("source_tool")
+                if not isinstance(tool, str) or not tool.strip():
+                    continue
+                if any(m in tool for m in _TOOL_CONCAT_MARKERS):
+                    warnings.append(
+                        f"{cp}: score_components[{j}].source_tool {tool!r} names more than "
+                        f"one tool — emit ONE component PER TOOL (split the points, or award "
+                        f"them on the dominant tool and 0 on the corroborators). Concatenated "
+                        f"citations fragment Phase-4 attribution (2026-08-15 P1 #1)"
+                    )
+                elif _CANONICAL_TOOLS and tool not in _CANONICAL_TOOLS:
+                    warnings.append(
+                        f"{cp}: score_components[{j}].source_tool {tool!r} is not canonical "
+                        f"(schema x-canonical-tools) — off-list spellings split one tool's "
+                        f"denominator across several labels"
+                    )
+
+        # 2026-08-15 audit P1 #2: a backtest-sourced win_rate is only POSSIBLE for the five
+        # classes `uw historical signal-backtest --signal-type` accepts. Anything else was
+        # never measured. earnings_vol quoted 0.87 / realised 0.394 on n=109 (BH p<0.001)
+        # with 12 of 13 quoted rows citing 'backtest' for a class the tool does not support.
+        wrs = call.get("win_rate_source")
+        if (isinstance(wrs, str) and wrs in _BACKTEST_SOURCES
+                and _BACKTEST_SUPPORTED_CLASSES
+                and isinstance(cls, str) and cls
+                and _CANONICAL_SIGNAL_ALIASES.get(cls, cls) not in _BACKTEST_SUPPORTED_CLASSES):
+            warnings.append(
+                f"{cp}: win_rate_source={wrs!r} on dominant_signal_class {cls!r}, which "
+                f"`uw historical signal-backtest` does not support "
+                f"(supported: {sorted(_BACKTEST_SUPPORTED_CLASSES)}) — that rate cannot have "
+                f"been measured. Emit win_rate: null with win_rate_source: 'NA(substrate)' "
+                f"(2026-08-15 P1 #2)"
             )
 
         # 2026-08-01 audit item 5: the C16 field shipped and is emitted, but every value

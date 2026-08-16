@@ -601,7 +601,64 @@
                 "type": "string"
               },
               "source_tool": {
-                "type": "string"
+                "type": "string",
+                "description": "EXACTLY ONE canonical tool identifier — never a free-text list. 2026-08-15 audit P1 #1: the corpus carried 122 distinct citation strings across 1,225 instances, 60 of them singletons and 52 containing a ' + ' concatenation (e.g. 'uw options-structure iv-term-structure + uw options-structure term-skew + scripts/term_structure_hygiene.py'). The concatenations fragment the attribution denominator: 155 citation instances were trapped in n<5 labels and silently excluded from Phase-4 tiering, and the SAME tool scored opposite tiers under different labels (scripts/term_structure_hygiene.py +34.1pp vs 'iv-term-structure hygiene' -39.7pp; options-structure front-end-iv-ratio -7.3pp vs 'front-end-iv-ratio' +6.5pp). Eleven consecutive audits produced a BH-null tool table built on these fragmented denominators. When a rubric line rests on several tools, emit ONE score_component PER TOOL (splitting the points, or awarding the points on the dominant tool and 0 on the corroborators) — never merge them into one string. Emit a value from x-canonical-tools below. Deliberately NOT a hard JSON-Schema enum, for the same reason as dominant_signal_class: a hard enum would retroactively fail-validate the historical envelopes that ARE the calibration dataset. scripts/validate_decision.py emits a non-fatal WARNING for a concatenated or off-list value.",
+                "x-canonical-tools": [
+                  "uw historical cumulative-premium-flow",
+                  "uw historical oi-trend",
+                  "uw historical iv-percentile-zscore",
+                  "uw historical vrp",
+                  "uw historical signal-backtest",
+                  "uw historical gex-time-series",
+                  "uw historical trend",
+                  "uw historical pc-ratio-zscore",
+                  "uw historical available-dates",
+                  "uw hot-chains multileg",
+                  "uw hot-chains sweep-persistence",
+                  "uw hot-chains most-active",
+                  "uw options-flow sector-flow-persistence",
+                  "uw options-flow sector-flow",
+                  "uw options-flow single-leg",
+                  "uw options-flow greek-screener",
+                  "uw options-flow sweeps",
+                  "uw options-structure term-skew",
+                  "uw options-structure dex",
+                  "uw options-structure gex",
+                  "uw options-structure iv-term-structure",
+                  "uw options-structure front-end-iv-ratio",
+                  "uw options-structure vanna-charm",
+                  "uw options-structure today-gamma-flip",
+                  "uw insights signal-confluence",
+                  "uw insights institutional-accumulation",
+                  "uw insights earnings-play",
+                  "uw insights conviction-matrix",
+                  "uw insights price-vs-flow",
+                  "uw insights deep-dive",
+                  "uw dark-pool block-stratified",
+                  "uw dark-pool ticker-summary",
+                  "uw dark-pool price-levels",
+                  "uw oi biggest-increases",
+                  "uw oi decrease-with-volume",
+                  "uw oi pin-risk",
+                  "uw oi oi-by-strike",
+                  "uw oi smart-positioning",
+                  "uw oi position-rolls",
+                  "uw screener earnings-catalyst",
+                  "uw screener bullish-bearish",
+                  "uw screener iv-rank",
+                  "uw risk market-regime",
+                  "uw playbook daily-synthesis",
+                  "scripts/term_structure_hygiene.py",
+                  "scripts/dex_flip.py",
+                  "scripts/market_data.py",
+                  "scripts/fz_enrich.py",
+                  "scripts/finnhub_enrich.py",
+                  "scripts/fred_macro.py",
+                  "scripts/step0_cache.py",
+                  "fz screen",
+                  "fz insider-clusters",
+                  "yahoo chart-api"
+                ]
               },
               "evidence": {
                 "type": "string"
@@ -691,7 +748,7 @@
             "string",
             "null"
           ],
-          "description": "Provenance of win_rate. 2026-06-12 P0.3: backtest_clean = signal-backtest under the clean-query protocol (complete forward windows, pinned --top-n, market-wide per class); NA(substrate) = clean protocol could not complete. backtest / fallback_proxy are RETIRED pre-quarantine era values, kept only for pre-1.3 back-compat (substrate-contaminated — audits weight accordingly).",
+          "description": "Provenance of win_rate. 2026-06-12 P0.3: backtest_clean = signal-backtest under the clean-query protocol (complete forward windows, pinned --top-n, market-wide per class); NA(substrate) = clean protocol could not complete. backtest / fallback_proxy are RETIRED pre-quarantine era values, kept only for pre-1.3 back-compat (substrate-contaminated — audits weight accordingly). 2026-08-15 audit P1 #2: a backtest-sourced provenance is only POSSIBLE for the five classes `uw historical signal-backtest --signal-type` actually accepts (x-backtest-supported-classes below). Any other dominant_signal_class MUST carry win_rate: null with win_rate_source: 'NA(substrate)' — a numeric quote sourced 'backtest'/'backtest_clean' on an unsupported class was never measured and is an unlabelled proxy. Evidence: earnings_vol is NOT a supported class, yet quoted 0.87 and realised 0.394 on n=109 (BH p<0.001, largest miscalibration in the corpus, 5th consecutive appearance), with 12 of 13 quoted rows citing win_rate_source 'backtest'.",
           "enum": [
             "backtest_clean",
             "NA(substrate)",
@@ -699,6 +756,13 @@
             "fallback_proxy",
             "NA",
             null
+          ],
+          "x-backtest-supported-classes": [
+            "bullish_flow",
+            "bearish_flow",
+            "high_iv_rank",
+            "volume_spike",
+            "dark_pool_accumulation"
           ]
         },
         "pre_risk_size": {
