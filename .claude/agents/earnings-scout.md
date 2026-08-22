@@ -22,6 +22,18 @@ For a given ticker or scan of upcoming earnings:
 8. `uw insights analyst-vs-flow` — are analysts bullish but options flow bearish, or vice versa? Divergence = edge
 9. `uw playbook suggest-strategy` — given the setup, what's the optimal structure (straddle, iron condor, calendar, naked, etc.)
 
+**CONFIRMATION LEG — the hygiene-corrected kink may not, by itself, propose a sized vol trade (2026-08-22 audit P1 #3).**
+The hygiene run above stays **MANDATORY** — the correction is always applied. What changes is that a *corrected* term-structure label is no longer sufficient on its own to justify anything better than SKIP/watch-only. When the hygiene-derived kink (or corrected shape) is the **proximate justification** for the verdict, attach at least one independent confirmation leg and name it, with its number, in the `key reason` line:
+
+- **VRP sign agreement** — `uw historical vrp` bias agrees with the verdict (negative VRP for BUY VOL / CALENDAR, positive for SELL VOL). Merely failing to contradict is not confirmation.
+- **IV-vs-RV gap** — at-entry ATM IV for the earnings expiry vs trailing realised vol, differing in the verdict's direction by a stated margin.
+- **Flow alignment** — `uw hot-chains multileg` / `uw options-flow iv-outliers` shows institutional flow already in the same structure and tenor. (`uw insights analyst-vs-flow` divergence does **not** count — it is a *direction* signal, not a vol-richness one.)
+
+**No confirming leg ⇒ SKIP with the reason "hygiene kink unconfirmed."** This is a *procedure* rule in the vol lane, **not** a rubric change — the frozen `vol_term_structure(+/−)` point, the `earnings_vol` 0.55 class ceiling and every tier cut are untouched.
+
+> **Why (2026-08-22 audit — four independent instruments on one lane).** Phase 4: `scripts/term_structure_hygiene.py` reads **−16.9pp on n=42, p=0.003 — the first BH-surviving tool result in twelve audit cycles**; `uw insights earnings-play` −11.2/n=12, `term-skew` −10.5/n=93, `front-end-iv-ratio` −10.4/n=40, `iv-term-structure` −4.8/n=64 all negative alongside it. Phase 5.1: the `vol_term_structure(+/−)` line reads **−10.3pp on n=137, negative in *both* tapes** (−6.1 up / −13.4 down), so not a benchmark artifact. Phase 2: the `vol` horizon realises **36.7%** vs a 40.2% book. Phase 3: **`earnings_vol` quoted 0.87 and realised 0.38 on n=130** (BH p<0.001, its sixth appearance) — this lane's calibration failure is the single most-replicated finding in the audit series.
+> **The confound, stated honestly:** 36 of the tool's 42 rows are August 2026, the corpus's weakest month (0.318), and its sign is *opposite* the same script's +34.1pp/n=9 one cycle earlier under looser citation normalization — this is the **first clean measurement**. Within-August control holds (0.194 n=36 vs 0.380 n=71) but is single-regime. Registered as **C61** (`analyses/audit/2026-08-22/phase_5_schema.md`); **if C61 fails its bar this rule is reversed in one edit.**
+
 Output a clear verdict for each ticker:
 - **BUY VOL** — kink at earnings under-prices the move; cheap vol; flow aligns; back-month skew not stretched (event move not already in tail)
 - **SELL VOL** — kinked vol over-prices the move; crowded; mean-reversion likely; **`uw options-structure term-skew` ALSO stretched** (tail priced) for full size — front-only kink → half size

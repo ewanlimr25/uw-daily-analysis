@@ -668,7 +668,7 @@
         },
         "dominant_signal_class": {
           "type": "string",
-          "description": "The single signal class contributing most of raw_score. 2026-08-01 audit P2 #9: the corpus carries 31 distinct strings, 12 of them appearing <=2 times (dealer-positioning_dex_flip, dex_flip_long, multileg_repeat, directional_conflict, ...), so every audit has had to re-implement a canonical_class collapse before it can group anything. Emit a value from x-canonical-classes below. This is deliberately NOT a hard JSON-Schema enum: making it one would retroactively fail-validate the historical envelopes that are the calibration dataset. scripts/validate_decision.py emits a non-fatal WARNING for an off-list value, which surfaces drift at emission time without invalidating history.",
+          "description": "The single signal class contributing most of raw_score. 2026-08-01 audit P2 #9: the corpus carries 31 distinct strings, 12 of them appearing <=2 times (dealer-positioning_dex_flip, dex_flip_long, multileg_repeat, directional_conflict, ...), so every audit has had to re-implement a canonical_class collapse before it can group anything. Emit a value from x-canonical-classes below. This is deliberately NOT a hard JSON-Schema enum: making it one would retroactively fail-validate the historical envelopes that are the calibration dataset. scripts/validate_decision.py emits a non-fatal WARNING for an off-list value, which surfaces drift at emission time without invalidating history. 2026-08-22 audit P1 #2: the 2026-08-15 emitter fix collapsed off-list labels 14 -> 1, but the survivor was NEW -- 'vol_long' on 5 rows (2026-08-18). vol_long/vol_short are DIRECTIONS (the 'direction' field), not signal classes; emitting one here is a category error. They are aliased to the new class 'vol_term_dislocation' (IV-vs-RV / term-structure-hump / calendar setups) rather than folded into 'high_iv_rank' or 'event_vol' ON PURPOSE: 'high_iv_rank' is one of the five x-backtest-supported-classes, so mapping long-vol dislocations into it would re-authorize backtest win-rate quotes on rows signal-backtest cannot measure -- silently undoing the 2026-08-15 P1 #2 class-support check. 'vol_term_dislocation' is deliberately NOT backtest-supported, so these rows correctly take the win_rate: null + NA(substrate) path.",
           "x-canonical-classes": [
             "dark_pool_accumulation",
             "dark_pool_distribution",
@@ -686,7 +686,8 @@
             "opex_pin",
             "earnings_vol",
             "high_iv_rank",
-            "event_vol"
+            "event_vol",
+            "vol_term_dislocation"
           ],
           "x-canonical-aliases": {
             "dealer_positioning_flip": "dealer_positioning",
@@ -701,7 +702,9 @@
             "multileg_directional_conflicted": "multileg_directional",
             "directional_conflict": "multileg_directional",
             "multileg_repeat": "multileg_directional",
-            "sector_leader": "sector_rotation"
+            "sector_leader": "sector_rotation",
+            "vol_long": "vol_term_dislocation",
+            "vol_short": "vol_term_dislocation"
           }
         },
         "confluence_score": {
