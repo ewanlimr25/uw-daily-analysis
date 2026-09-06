@@ -845,6 +845,26 @@
             null
           ]
         },
+        "fundamentals_verdict_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "earnings_surprise_streak_negative",
+            "insider_selling_cluster",
+            "leverage_or_solvency",
+            "fcf_deterioration",
+            "news_catalyst_contradicts_thesis",
+            "merger_arb_capped_upside",
+            "dividend_capture_artifact",
+            "valuation_or_analyst_cluster",
+            "data_unavailable",
+            "other",
+            null
+          ],
+          "description": "2026-08-30 audit P1 #1: WHY the fundamentals gate returned its verdict. REQUIRED (non-null) whenever fundamentals_verdict is VETO or CAUTION; null otherwise. Advisory, 0 rubric points, never a score_components line \u2014 it changes no score, no tier and no size. Rationale: veto_fp_rate has now inverted past the book for two consecutive audits (VETO 0.524 n=21 vs CONFIRM 0.376 n=117 vs CAUTION 0.328 n=131), and without a logged reason the audit can only ever report THAT vetoed names win, which is unactionable. Use 'other' with a prose note in the report rather than forcing a bad fit. Do NOT read the inverted FP rate as licence to loosen the gate (C24)."
+        },
         "fz_context": {
           "$ref": "#/$defs/fz_context"
         },
