@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-09-06 — Retire the three commands; repo frozen as history
+
+- **`/daily-analysis`, `/weekly-analysis` and `/calibration-audit` are retired.** Their command files moved
+  from `.claude/commands/` to `.claude/_archive_commands/` (`git mv`, history preserved). Nothing else in the
+  repo changes: `analyses/`, `schemas/`, `scripts/` and `.claude/agents/` stay in place as history for
+  `market-visual`. `scripts/zerodte_setup.py` is copied, not moved, into `~/Development/market-analysis`
+  when the desk sheet is built. The `uw` and `fz` binaries are unaffected.
+- **Why:** the 2026-09-06 reassessment in `~/Development/findings/uw-daily-analysis/` (`README.md`,
+  `RESEARCH/90-commands-effectiveness.md`, `91-levels-backtest.md`, `92-run-cost.md`, `DESIGN/50-desk-sheet.md`,
+  `DECISIONS.md` D6 to D10; owner accepted the defaults on 2026-09-06). In short: no sized daily trade since
+  2026-07-07 (43 consecutive empty boards through 09-04); the sized book 0.426 WR on 47 rows, HIGH tier 0.143,
+  log-loss 0.788 > ln 2; the frozen rubric's top tiers arithmetically unreachable (the 09-05 audit's own P0);
+  the published GEX walls contain 37% of next-day ranges against 55% for a same-width box (McNemar p 2e-5) and
+  no level source beats randomly placed levels on touch-and-reject; the GEX map and 0DTE setup are two
+  sub-second scripts that the fleet's prose contradicts on 92 of 124 index-days; a daily run is about 64
+  active minutes, 69 M tokens and $177 list-price.
+- **Replacement:** a deterministic nightly desk sheet inside `market-analysis` (`findings/.../DESIGN/50`,
+  R1 to R6), slotted for the week of 2026-09-14 after S-C R1 (D10 default). It grades its own levels forward.
+- **Last outputs:** daily 2026-09-04, weekly 2026-W36, audit 2026-09-05. The 2026-08-30 audit recs that were
+  found uncommitted in the working tree were committed as found in the commit before this one.
+
 ## 2026-05-26 — Report output layout: per-id run folders
 
 - **Each report now gets its own folder with generically-named files.** Daily → `analyses/daily/<YYYY-MM-DD>/{report.md, decision.json}`; weekly → `analyses/weekly/<YYYY-WW>/{report.md, decision.json}` (previously flat `analyses/<date>.md` + `analyses/<date>.decision.json`). All historical reports (19 daily, 5 weekly + 3 envelopes) migrated retroactively; each envelope's `report_path` re-pointed at its sibling `report.md` and re-validated.
