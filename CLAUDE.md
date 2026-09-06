@@ -2,6 +2,12 @@
 
 Post-market daily analysis powered by Unusual Whales MCP data.
 
+> **Retired 2026-09-06.** `/daily-analysis`, `/weekly-analysis` and `/calibration-audit` no longer run; their
+> command files are archived in `.claude/_archive_commands/`. The repo is frozen as history (`analyses/` is the
+> record; `market-visual` renders it). Why, and what replaces them: `CHANGELOG.md` (2026-09-06 entry) and
+> `~/Development/findings/uw-daily-analysis/` (`RESEARCH/90` to `92`, `DESIGN/50`, `DECISIONS.md` D6 to D10).
+> Do not re-create the commands or extend the agent fleet. `scripts/` and its tests remain usable.
+
 ## Purpose
 
 Produces a structured daily market intelligence report covering:
@@ -17,8 +23,8 @@ User-invocable via `/skill-name`. Core skills for this project:
 
 | Skill | Purpose |
 |---|---|
-| `/daily-analysis` | Full post-market two-phase agent fleet report; conviction scoring + risk gating; saves to `analyses/daily/YYYY-MM-DD/report.md` |
-| `/weekly-analysis` | Full week-in-review + week-ahead note; persistence-weighted rubric; saves to `analyses/weekly/YYYY-WW/report.md` |
+| `/daily-analysis` | **Retired 2026-09-06** (archived). Was: full post-market two-phase agent fleet report; conviction scoring + risk gating; saved to `analyses/daily/YYYY-MM-DD/report.md` |
+| `/weekly-analysis` | **Retired 2026-09-06** (archived). Was: full week-in-review + week-ahead note; persistence-weighted rubric; saved to `analyses/weekly/YYYY-WW/report.md` |
 | `/skill-creator` | Create, modify, and evaluate skills; runs evals, benchmarks variance, optimizes trigger descriptions |
 | `/prompt-optimize` | Analyze a draft prompt and output an ECC-enriched optimized version ready to use |
 | `/eval-harness` | Formal evaluation framework implementing eval-driven development (EDD) principles |
@@ -70,10 +76,12 @@ Stdlib-only Python helpers in `scripts/` (no pip installs; run via the already-a
 
 ## Commands
 
-Commands live in `.claude/commands/` and invoke the agent fleet:
+The three commands were retired on 2026-09-06 and moved from `.claude/commands/` (now gone) to
+`.claude/_archive_commands/`, kept only so the historical reports stay reproducible:
 
-- `daily-analysis.md` — Orchestrates 11–12 Phase 1 agents in parallel, then Phase 2 (quant → fundamentals → debate → risk) sequentially; emits a `decision.json` envelope and optionally hands the top-2 to `/stock-deep-dive`
-- `weekly-analysis.md` — Same fleet wired to 5-day persistence metrics and WoW regime delta
+- `daily-analysis.md` — Orchestrated 11–12 Phase 1 agents in parallel, then Phase 2 (quant → fundamentals → debate → risk) sequentially; emitted a `decision.json` envelope and optionally handed the top-2 to `/stock-deep-dive`. Last run 2026-09-04.
+- `weekly-analysis.md` — Same fleet wired to 5-day persistence metrics and WoW regime delta. Last run 2026-W36.
+- `calibration-audit.md` — Graded every envelope path-aware against Yahoo OHLC and wrote propose-only recommendations. Last run 2026-09-05.
 
 ## Output
 
