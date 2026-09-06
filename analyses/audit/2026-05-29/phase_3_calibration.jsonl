@@ -1,0 +1,214 @@
+{
+ "n_decided": 328,
+ "signal_class_table": [
+  {
+   "signal_class": "earnings_vol",
+   "n": 72,
+   "claimed_wr": 0.576,
+   "claimed_n": 13,
+   "realised_wr": 0.431,
+   "divergence_pp": 14.6,
+   "flag": true
+  },
+  {
+   "signal_class": "bullish_flow",
+   "n": 67,
+   "claimed_wr": 0.645,
+   "claimed_n": 46,
+   "realised_wr": 0.463,
+   "divergence_pp": 18.3,
+   "flag": true
+  },
+  {
+   "signal_class": "dark_pool_accumulation",
+   "n": 43,
+   "claimed_wr": 0.828,
+   "claimed_n": 24,
+   "realised_wr": 0.512,
+   "divergence_pp": 31.6,
+   "flag": true
+  },
+  {
+   "signal_class": "vol_surface",
+   "n": 34,
+   "claimed_wr": 0.802,
+   "claimed_n": 16,
+   "realised_wr": 0.471,
+   "divergence_pp": 33.2,
+   "flag": true
+  },
+  {
+   "signal_class": "bearish_flow",
+   "n": 25,
+   "claimed_wr": 0.425,
+   "claimed_n": 10,
+   "realised_wr": 0.44,
+   "divergence_pp": -1.5,
+   "flag": false
+  },
+  {
+   "signal_class": "gamma_pin",
+   "n": 20,
+   "claimed_wr": 0.639,
+   "claimed_n": 2,
+   "realised_wr": 0.3,
+   "divergence_pp": 33.9,
+   "flag": true
+  },
+  {
+   "signal_class": "dealer_positioning",
+   "n": 20,
+   "claimed_wr": 0.844,
+   "claimed_n": 14,
+   "realised_wr": 0.8,
+   "divergence_pp": 4.4,
+   "flag": false
+  },
+  {
+   "signal_class": "multileg_directional",
+   "n": 16,
+   "claimed_wr": 0.672,
+   "claimed_n": 11,
+   "realised_wr": 0.562,
+   "divergence_pp": 10.9,
+   "flag": true
+  },
+  {
+   "signal_class": "hedge",
+   "n": 16,
+   "claimed_wr": null,
+   "claimed_n": 0,
+   "realised_wr": 0.375,
+   "divergence_pp": null,
+   "flag": false
+  },
+  {
+   "signal_class": "contrarian_fade",
+   "n": 5,
+   "claimed_wr": 0.8,
+   "claimed_n": 1,
+   "realised_wr": 0.4,
+   "divergence_pp": 40.0,
+   "flag": true
+  },
+  {
+   "signal_class": "sector_rotation",
+   "n": 5,
+   "claimed_wr": null,
+   "claimed_n": 0,
+   "realised_wr": 0.6,
+   "divergence_pp": null,
+   "flag": false
+  }
+ ],
+ "tier_table": [
+  {
+   "tier": "HIGH",
+   "n": 41,
+   "realised_wr": 0.537
+  },
+  {
+   "tier": "MEDIUM",
+   "n": 124,
+   "realised_wr": 0.46
+  },
+  {
+   "tier": "LOW",
+   "n": 86,
+   "realised_wr": 0.558
+  }
+ ],
+ "tier_monotone": false,
+ "tier_inversions": [
+  "MEDIUM<=LOW"
+ ],
+ "brier": 0.34,
+ "brier_n": 142,
+ "quintiles": [
+  {
+   "quintile": 1,
+   "n": 43,
+   "score_range": [
+    -1,
+    3
+   ],
+   "realised_wr": 0.488
+  },
+  {
+   "quintile": 2,
+   "n": 43,
+   "score_range": [
+    3,
+    4
+   ],
+   "realised_wr": 0.535
+  },
+  {
+   "quintile": 3,
+   "n": 43,
+   "score_range": [
+    4,
+    5
+   ],
+   "realised_wr": 0.465
+  },
+  {
+   "quintile": 4,
+   "n": 43,
+   "score_range": [
+    5,
+    7
+   ],
+   "realised_wr": 0.535
+  },
+  {
+   "quintile": 5,
+   "n": 43,
+   "score_range": [
+    7,
+    13
+   ],
+   "realised_wr": 0.535
+  }
+ ],
+ "expectancy_table": [
+  {
+   "tier": "HIGH",
+   "n": 36,
+   "realised_wr": 0.556,
+   "expectancy_pct": -1.518,
+   "payoff_ratio": 0.063,
+   "capped_half_kelly": 0.0
+  },
+  {
+   "tier": "MEDIUM",
+   "n": 79,
+   "realised_wr": 0.481,
+   "expectancy_pct": 1.928,
+   "payoff_ratio": 6.115,
+   "capped_half_kelly": 0.1981
+  },
+  {
+   "tier": "LOW",
+   "n": 54,
+   "realised_wr": 0.556,
+   "expectancy_pct": 0.19,
+   "payoff_ratio": 0.902,
+   "capped_half_kelly": 0.0316
+  }
+ ],
+ "kelly_gate": {
+  "n_closed": 169,
+  "min_n": 30,
+  "tier_expectancy": {
+   "LOW": 0.19,
+   "MEDIUM": 1.9277,
+   "HIGH": -1.5175
+  },
+  "monotone_high_ge_med_ge_low": false,
+  "activate_live_sizer": false,
+  "status": "ADVISORY_ONLY",
+  "reason": "n=169 (>= 30? True); monotone HIGH>=MED>=LOW? False ({'LOW': 0.19, 'MEDIUM': 1.9277, 'HIGH': -1.5175}) -> advisory only; win-rate ladder stays live"
+ },
+ "directional_n": 188
+}

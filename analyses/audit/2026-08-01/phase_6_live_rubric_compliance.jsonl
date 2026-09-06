@@ -1,0 +1,74 @@
+{
+ "regime": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 188,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "vrp": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 190,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "event_risk": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 183,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "fundamentals": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 186,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "panic": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 190,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "cluster": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 186,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "sector": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 190,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "debate": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 190,
+  "drop_n": 385,
+  "drift_flag": false
+ },
+ "rubric_regime": {
+  "non_drop_missed": 0,
+  "non_drop_n": 42,
+  "non_drop_rate": 0.0,
+  "drop_missed": 183,
+  "drop_n": 385,
+  "drift_flag": false
+ }
+}

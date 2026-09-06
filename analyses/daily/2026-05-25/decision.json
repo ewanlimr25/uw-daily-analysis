@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.1",
+  "report_date": "2026-05-25",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL \u2014 UPTREND",
+  "vrp_classification": "FAIR",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.43,
+    "core_cpi_yoy_pct": 2.99,
+    "core_pce_yoy_pct": 3.2,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 115.0,
+    "ten_year_yield": 4.57,
+    "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.62
+  },
+  "macro_event_risk": [
+    {
+      "event": "Core PCE (April)",
+      "date": "2026-05-29",
+      "impact": "high"
+    },
+    {
+      "event": "Earnings cluster: ZS/HPQ/SNOW/DELL/OKTA/QCOM",
+      "date": "2026-05-26",
+      "impact": "medium"
+    },
+    {
+      "event": "PANW earnings",
+      "date": "2026-06-02",
+      "impact": "medium"
+    }
+  ],
+  "watchlist_write_back": [
+    "AMD",
+    "PANW",
+    "NVDA",
+    "F"
+  ],
+  "report_path": "analyses/daily/2026-05-25/report.md",
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-05-25",
+    "next_session_date": "2026-05-26",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 745.92,
+        "zero_gamma_level": 744.7,
+        "zgl_reliable": true,
+        "regime": "POSITIVE",
+        "total_gex": 1527909389,
+        "call_wall": 750,
+        "put_wall": 730,
+        "read": "Spot just above a reliable ZGL on a strongly +GEX book; 745 is the gravity pin. Long-gamma: mean-revert / vol-suppress while spot holds >=744.7; a clean break below drops into the 730-738 short-gamma shelf where hedging amplifies.",
+        "structure_bias": "iron fly / short straddle centred on 745 pin; lower wing inside 738. Walls asymmetric (call +0.55%, put -2.1%).",
+        "caveats": "Regime flipped POSITIVE only 05-22 (one session old, whippy prior tape) \u2014 fragile. EOD prior, re-reads after the open. ETF book not SPX. Holiday-weekend gap through 744.7 inverts the read."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 717.85,
+        "zero_gamma_level": 717.82,
+        "zgl_reliable": true,
+        "regime": "POSITIVE",
+        "total_gex": 429800000,
+        "call_wall": 718,
+        "put_wall": 700,
+        "read": "Spot sitting exactly on the ZGL (knife's edge) on a +GEX but ~3.5x smaller book than SPY. Pin-to-715/718, vol-suppressed, with low-conviction downside-trend risk only if it loses 717 cleanly (negative shelf below is thin).",
+        "structure_bias": "butterfly / iron fly centred 717-718; size smaller than SPY (weaker pin, flip one tick away).",
+        "caveats": "Flip one tick from spot and one session old \u2014 least stable of the two. EOD prior, ETF book, gap risk."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-05-25",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.7,
+        "implied_move_pct": 0.57,
+        "expected_range_pct": 0.75,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle centred at 745.9, wings ~ +/-0.75% (long-gamma: quieter, mean-reverting)",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close \u2014 never carry overnight.",
+        "stand_aside_reason": null,
+        "caution": "Validation sample has no vol shock; short-vol left tail UNSAMPLED. Regime one session old."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.7,
+        "implied_move_pct": 0.8,
+        "expected_range_pct": 1.22,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle centred at 717.59, wings ~ +/-1.22% (long-gamma: quieter, mean-reverting)",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close \u2014 never carry overnight.",
+        "stand_aside_reason": null,
+        "caution": "QQQ weaker than SPY (Nasdaq index book unavailable); flip one tick from spot. Tail unsampled."
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "AMD",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "MEDIUM",
+      "raw_score": 9,
+      "score_components": [
+        {
+          "rubric_line": "+3 historical_cumulative_premium_flow shows net directional accretion in trade direction (30d window)",
+          "points": 3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "historical_cumulative_premium_flow",
+          "evidence": "30d cum_flow +$354M LONG, 2.11x union median, sign-aligned >=$50M"
+        },
+        {
+          "rubric_line": "+3 3+ aligned signals in accumulation-hunter (DP + OI + oi_smart_positioning) \u2014 C11 conjunction FULL",
+          "points": 3,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "insights_institutional_accumulation",
+          "evidence": "5d OI BUILDING + smart_positioning BULL + DP mega buy_ratio 0.945; cum_flow confirms (>=$50M, aligned) -> conjunction FULL +3"
+        },
+        {
+          "rubric_line": "+2 dealer-positioning-strategist flags DEX/GEX setup in trade direction",
+          "points": 2,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "options_structure_dex",
+          "evidence": "swing LONG: GEX expanding to highs on 415->468 breakout, call-heavy build +81k OI"
+        },
+        {
+          "rubric_line": "+1 insights_signal_confluence",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "insights_signal_confluence",
+          "evidence": "confluence score corroborates"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": 353578414,
+      "cum_premium_flow_90d": null,
+      "win_rate": 0.85,
+      "win_rate_n": 14,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "ok (LONG aligns UPTREND)",
+        "vrp": "-1 (single-name VRP -0.208 PREMIUM_BUYING contradicts a premium-paid directional long)",
+        "panic": "ok (front_iv 0.653)",
+        "cluster": "ok (AMD/NVDA 30d return corr 0.379 <0.60; opposite directions)",
+        "sector": "ok (Tech INFLOW persist 1.0)",
+        "event_risk": "ok (earnings 8/03, 73d out)",
+        "fundamentals": "CONFIRM"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "debate_residual_confidence": 0.65,
+      "structure": "swing long (shares / call debit)",
+      "entry_or_trigger": "n/a \u2014 gated out",
+      "invalidation": "GEX rolls back toward zero for >=3 sessions; spot loses the 446 breakout shelf; regime flips RISK-OFF (beta 2.47 amplifies downside).",
+      "key_risks": [
+        "C2 market-excess: 92.9% bullish_flow WR is up-tape beta (excess -0.07), not AMD edge",
+        "PE TTM 152x / beta 2.47 into weak 38.1% breadth",
+        "Debate did not clear (bear 0.65 >= bull 0.65)"
+      ],
+      "thesis": "Genuine C11-confirmed accumulation + fundamentals CONFIRM ($10B AI catalyst), but the win-rate is up-tape beta (C2 demote full->half), the debate did not clear (bear>=bull), and the single-name VRP gate contradicts a premium-paid long. Net: gated to SKIP in a weak-breadth transitional tape \u2014 the crowded high-scorer the gate stack exists to cut."
+    },
+    {
+      "ticker": "PANW",
+      "horizon": "vol",
+      "section": "vol_long",
+      "direction": "vol_long",
+      "tier": "LOW",
+      "raw_score": 4,
+      "score_components": [
+        {
+          "rubric_line": "+1 in earnings-scout BUY VOL or SELL VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "options_structure_iv_term_structure",
+          "evidence": "KINKED 6/5 earnings expiry; BUY VOL lean into 6/2 print"
+        },
+        {
+          "rubric_line": "+1 in vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "options_structure_term_skew",
+          "evidence": "100th-pctile IV, FLAT front, complacent back-month skew"
+        },
+        {
+          "rubric_line": "+2 insights_signal_confluence / bullish_flow corroboration",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "insights_signal_confluence",
+          "evidence": "bullish flow +$12.7M net into the name"
+        }
+      ],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": 4,
+      "cum_premium_flow_30d": null,
+      "cum_premium_flow_90d": null,
+      "win_rate": 0.7,
+      "win_rate_n": 20,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "full",
+      "final_size": "half",
+      "gate_verdicts": {
+        "regime": "ok (non-directional)",
+        "vrp": "-1 (single-name VRP +0.211 PREMIUM_SELLING \u2014 long-vol pays rich premium; consider a premium-SELLING expression instead)",
+        "panic": "ok (front_iv 0.653)",
+        "cluster": "ok",
+        "sector": "ok (Tech INFLOW)",
+        "event_risk": "earnings 6/2 (11d) is the thesis basis \u2014 no penalty, but defined-risk through the print",
+        "fundamentals": "CAUTION (event handoff)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "debate_residual_confidence": null,
+      "structure": "defined-risk earnings vol (the +0.211 VRP argues for an iron fly / credit, not a long straddle)",
+      "entry_or_trigger": "into the 6/2 print; size half",
+      "invalidation": "front-end IV crush pre-print (event premium leaks early); VRP collapses toward neutral; stock already +44%/30d into ATH so IV likely rich.",
+      "key_risks": [
+        "+0.211 PREMIUM_SELLING VRP makes a long-vol structure structurally adverse",
+        "+44%/30d into ATH (261) \u2014 priced for perfection, PE 165x",
+        "binary 6/2 event"
+      ],
+      "thesis": "Only surviving sized position. Earnings 6/2 (11d) vol play; cleanest term-structure on the board. But the single-name VRP is +0.211 PREMIUM_SELLING \u2014 the quant should express this as premium-selling (iron fly/credit), not a long straddle. Half-size, defined-risk through the print."
+    },
+    {
+      "ticker": "NVDA",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 4,
+      "score_components": [
+        {
+          "rubric_line": "+2 dealer-positioning-strategist flags DEX/GEX setup in trade direction",
+          "points": 2,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "options_structure_gex",
+          "evidence": "swing SHORT: positive GEX collapsing 93% (2.02B->133M) into falling price 235->215; dealers short gamma at 215 ATM"
+        },
+        {
+          "rubric_line": "+1 accumulation read aligned SHORT (COVERED_CALL)",
+          "points": 1,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "insights_conviction_matrix",
+          "evidence": "conviction_matrix COVERED_CALL \u2014 call selling caps upside, not directional accumulation"
+        },
+        {
+          "rubric_line": "+1 historical_cumulative_premium_flow 30d aligned SHORT",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "historical_cumulative_premium_flow",
+          "evidence": "30d cum_flow -$168M, bearish-signed (aligned with the short)"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": 3,
+      "cum_premium_flow_30d": -167828515,
+      "cum_premium_flow_90d": null,
+      "win_rate": 0.333,
+      "win_rate_n": 15,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "-1 (UPTREND conflicts with the SHORT direction)",
+        "vrp": "ok (VRP -0.024 FAIR)",
+        "panic": "ok (0.653)",
+        "cluster": "ok (opposite direction to AMD)",
+        "sector": "ok (Tech INFLOW is itself a short headwind, captured via regime)",
+        "event_risk": "ok (next_earnings null \u2014 open-ended)",
+        "fundamentals": "CAUTION (fundamentals fight the short \u2014 beat streak, +70% rev)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "debate_residual_confidence": null,
+      "structure": "swing short (defined-risk put structure)",
+      "entry_or_trigger": "n/a \u2014 gated out",
+      "invalidation": "total GEX re-expands >+500M for >=3 sessions; spot reclaims 225; positive Q3 guidance squeeze.",
+      "key_risks": [
+        "bearish_flow WR 0.333 \u2014 short-side floor",
+        "shorting +70% revenue growth + beat streak (fundamentals fight the short)",
+        "regime UPTREND vs short",
+        "beta 2.25 squeeze risk"
+      ],
+      "thesis": "Dealer-positioning swing short (GEX collapsing into falling price) with aligned bearish cum_flow, but a 0.333 WR, regime conflict (UPTREND), and fundamentals fighting the short (beat streak + 70% growth). Two independent gate cuts -> SKIP."
+    },
+    {
+      "ticker": "F",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 3,
+      "score_components": [
+        {
+          "rubric_line": "+2 in multileg-strategist with directional structure (term-structure-anchored play type)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "hot_chains_multileg",
+          "evidence": "long diagonal call 6/12 C15 / 5/29 C14, repeat_count 4, back leg before assumed 6/26 earnings kink"
+        },
+        {
+          "rubric_line": "+3 3+ aligned signals in accumulation-hunter \u2014 C11 conjunction HALVED to +1",
+          "points": 1,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "dark_pool_block_stratified",
+          "evidence": "DP block buy/sell 2.0, mega buy_ratio 1.0, $51.7M at $14.93 \u2014 but cum_flow_30d +$4.3M < $50M -> conjunction NOT met -> halved 3->1"
+        },
+        {
+          "rubric_line": "+1 insights_signal_confluence",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "insights_signal_confluence",
+          "evidence": "Step-0 confluence score 5 (bullish_flow + dp_accumulation + oi_building)"
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "historical_cumulative_premium_flow",
+          "evidence": "cum_flow_30d +$4.3M aligned LONG but bottom-quartile magnitude (0.03x union median)"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": 4300000,
+      "cum_premium_flow_90d": null,
+      "win_rate": 0.85,
+      "win_rate_n": 14,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "ok (LONG aligns UPTREND)",
+        "vrp": "ok (VRP -0.194 PREMIUM_BUYING favours the debit-paid diagonal)",
+        "panic": "ok (0.653)",
+        "cluster": "ok",
+        "sector": "ok (Consumer Cyclical INFLOW persist 1.0)",
+        "event_risk": "-1 (the diagonal's assumed 6/26 earnings kink may not exist \u2014 Finnhub earnings 7/28; phantom calendar anchor)",
+        "fundamentals": "CAUTION (unprofitable, D/E 4.54, earnings-date mismatch)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "debate_residual_confidence": null,
+      "structure": "long diagonal call spread (6/12 C15 / 5/29 C14)",
+      "entry_or_trigger": "n/a \u2014 gated out",
+      "invalidation": "F loses 14 / 5/29 short strike with no roll; the 6/26 IV kink the structure assumes is confirmed absent (earnings 7/28).",
+      "key_risks": [
+        "earnings-date integrity: diagonal assumes 6/26 kink, Finnhub says 7/28 \u2014 possible phantom anchor",
+        "unprofitable TTM (-3.22% net margin), D/E 4.54",
+        "price $14.93 at 52w high (14.95)",
+        "C11 conjunction halved (flow sub-$50M); accumulation backtest empty -> proxy WR"
+      ],
+      "thesis": "Term-structure-anchored multileg diagonal with repeat-4 conviction, but C11 halved the accumulation (cum_flow only +$4.3M), the win-rate is a bullish_flow proxy (accumulation backtest empty), and fundamentals flagged an earnings-date mismatch (6/26 kink vs Finnhub 7/28) on an unprofitable, 4.5x-levered name. Gated to SKIP pending date reconciliation."
+    }
+  ]
+}

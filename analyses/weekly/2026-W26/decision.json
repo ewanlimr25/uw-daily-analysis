@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-06-26",
+  "report_kind": "weekly",
+  "iso_week": "2026-W26",
+  "regime": "TRANSITIONAL/CHOPPY — Mixed signals, reduce size, wait for clarity (held WoW Mon->Fri). SPY 728.99 below 20sma(743.6) & 50sma(734.35), -2.86% 30d; bullish_pct 35.2%->38.2% (still bearish-leaning). OUT-OF-REGIME (rubric fitted UPTREND, ended 2026-06-12) — sizing capped at half.",
+  "vrp_classification": "PREMIUM_BUYING (SPY vrp -2.74, QQQ -2.63; vol cheap vs realised — favour premium buying; distrust premium-selling fades)",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.31,
+    "core_cpi_yoy_pct": 2.96,
+    "core_pce_yoy_pct": 3.41,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 172.0,
+    "ten_year_yield": 4.4,
+    "ten_year_30d_direction": "falling",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.63,
+    "macro_note": "Sticky core inflation (core CPI 2.96% / core PCE 3.41% YoY) with decelerating growth tells and a falling 10Y — a stagflation-lite mix that penalises directional conviction."
+  },
+  "macro_event_risk": [
+    {"event": "ISM Manufacturing PMI (June)", "date": "2026-07-01", "impact": "medium"},
+    {"event": "June NFP / Employment Situation (advanced for Jul-4 holiday)", "date": "2026-07-02", "impact": "high"},
+    {"event": "US market closed / early-close (Independence Day observed)", "date": "2026-07-03", "impact": "low"},
+    {"event": "ISM Services PMI (June)", "date": "2026-07-06", "impact": "medium"},
+    {"event": "June CPI", "date": "2026-07-14", "impact": "high"}
+  ],
+  "watchlist_write_back": ["QQQ", "AMAT", "SMH", "TSLA", "NOW"],
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-26",
+    "next_session_date": "2026-06-29",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 732.14,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -1360000000,
+        "call_wall": 734,
+        "put_wall": 730,
+        "read": "FULLY_NEGATIVE 5 consecutive sessions (longest run in the 30d lookback) — no computable ZGL. Spot pinned between the 730 put-amplifier and the 734/735 negative-to-positive GEX transition; dealers short gamma across the whole book. Backtest NO_GO_NO_EDGE (walls-as-magnet 26.4% vs 50%, p~1.0) — dealer context only, not an edge.",
+        "structure_bias": "No long-gamma pin support; favour debit verticals / long straddle for a break of the tight 730-734 pocket over premium-selling.",
+        "caveats": "EOD prior refreshed after the open; ETF-not-index book; cannot isolate the D+1 expiry; 06-29 is a Monday and a holiday-shortened week follows (Jul-3 early close)."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 708.02,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -873000000,
+        "call_wall": 724,
+        "put_wall": 705,
+        "read": "FULLY_NEGATIVE, GEX deepening to -873M (weekly low). Asymmetric: the 705 put wall (-$206M, single largest node) sits only ~3pts below spot while the 724 call absorber is ~16pts away — downside gaps amplify far harder than upside is absorbed. Backtest NO_GO_NO_EDGE.",
+        "structure_bias": "Debit puts / put verticals anchored through 705 capture the dealer-forced selling on a break; on the upside a short-cover run can travel freely to 724.",
+        "caveats": "EOD prior; ETF-not-index; cannot isolate D+1; holiday-shortened week; $36M 715C (07-09) is a near-dated upside gamma magnet to watch."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-26",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "MID",
+        "vix": 18.41,
+        "implied_move_pct": 0.74,
+        "expected_range_pct": 1.25,
+        "size_scalar": 1.0,
+        "suggested_structure": "wider iron condor, wings ~+/-1.25% (short-gamma: wider range / trendier); net +0.223% of spot notional, gross +0.323%; win 94.3% n=53 — or reduce / stand aside",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight (overnight mean -0.16%).",
+        "stand_aside_reason": "Stand aside on a VIX spike or front-end backwardation.",
+        "caution": "PnL is % of underlying spot notional, GROSS of costs (lead with net); validation sample has NO vol shock, left tail UNSAMPLED; advisory 0 points permanently. NOTE tension with PREMIUM_BUYING VRP — front IV may not be rich enough to sell this week; size down or stand aside if the open IV is light."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "MID",
+        "vix": 18.41,
+        "implied_move_pct": 1.31,
+        "expected_range_pct": 1.9,
+        "size_scalar": 1.0,
+        "suggested_structure": "wider iron condor, wings ~+/-1.9% (short-gamma: wider range / trendier); net +0.34% of spot notional, gross +0.44%; win 90.6% n=53 — or reduce / stand aside",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.",
+        "stand_aside_reason": "Stand aside on a VIX spike or front-end backwardation; QQQ is the weaker of the two indices for this stack.",
+        "caution": "PnL is % of spot notional, GROSS of costs; tail UNSAMPLED; advisory 0 points permanently. PREMIUM_BUYING VRP backdrop argues for caution selling premium this week."
+      }
+    ]
+  },
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 324,
+    "decliners": 178,
+    "pct_green": 64.41,
+    "divergence_flag": true,
+    "note": "Price breadth GREEN (pct_green 64.4%, 324 adv / 178 dec) vs uw options flow bearish-leaning (bullish_pct 38.2%) — a price-up / flow-down divergence (not the classic <50 distribution flag; flow is lagging green price). Top mover MRNA +12.6%, worst ON -23.7%. Advisory, 0 points."
+  },
+  "report_path": "analyses/weekly/2026-W26/report.md",
+  "calls": [
+    {
+      "ticker": "QQQ",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 3,
+      "score_components": [
+        {
+          "rubric_line": "+1 MECHANIZED dex_flip / vanna_squeeze — verified sign change",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw options-structure dex",
+          "evidence": "dex_flip_short 6/23: prior 4 sessions positive DEX -> negative flip, |flip| 1.01x trailing-10 median |net_dex| (minimum passing). GEX regime FULLY_NEGATIVE 5-day (advisory corroboration)."
+        },
+        {
+          "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days>=5) in trade direction",
+          "points": 3,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "PUT OI building all 5 covered days (consec 54d, +437k net contracts 6/26), Jul-17 put strikes P675/P695/P715 dominant — PUT-side build confirms the SHORT direction."
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite — 30d cum_premium_flow MIXED / sub-threshold magnitude",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d cum_flow -$6.68M: directionally aligned with SHORT but bottom-quartile magnitude (|$6.68M| < 25% of union-median); tool trend_direction MIXED -> -1 flow_conflict_lite (mutually exclusive with -3)."
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -6680652,
+      "cum_premium_flow_90d": 100093309,
+      "win_rate": 0.519,
+      "win_rate_uncapped": 0.519,
+      "win_rate_n": 135,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.148,
+      "pre_risk_size": "half",
+      "final_size": "starter",
+      "gate_verdicts": {
+        "regime": "no-op (SHORT consistent with weakening TRANSITIONAL tape, SPY below 20/50 SMA)",
+        "vrp": "no-op (directional bearish_flow, not a vol structure)",
+        "panic": "no-op (SPY front-end-iv-ratio 0.782 < 1.10)",
+        "cluster": "no-op (kept member of tech_semis_cluster — highest flow magnitude vs AMAT/SMH)",
+        "sector": "no-op (Technology persistence 1.0 inflow — bullish-tape headwind noted qualitatively, not a mechanical fire)",
+        "fundamentals": "NA (ETF)",
+        "event_risk": "-0.5 step (NFP ~Jul-2 = T+4 from 2026-06-26; half -> starter)",
+        "debate": "no-op (proponent bear 0.65 > disconfirmer bull 0.55 — debate cleared the short)",
+        "rubric_regime": "capped half (OUT-OF-REGIME; rubric fitted UPTREND, current TRANSITIONAL, 0/30 post-freeze resolved)"
+      },
+      "fundamentals_verdict": "NA",
+      "debate_residual_confidence": 0.55,
+      "debate_residuals": {"bull": 0.55, "bear": 0.65},
+      "structure": "Express as a 30-45 DTE bear put spread (defined-risk through NFP) rather than outright; anchor shorts inside the 705-715 pocket.",
+      "entry_or_trigger": "On a failure at/below the 705 put wall; stand aside on a strong NFP gap up through 715.",
+      "invalidation": "QQQ reclaims 724 (upside GEX absorber) on a close; OR VIX compresses >=3 sessions firing the put-heavy vanna squeeze (705 wall becomes fuel to 715-720); OR a strong NFP rips QQQ +1.5-2%.",
+      "key_risks": [
+        "NFP Jul-2 (T+4) strong-print squeeze",
+        "latent vanna squeeze if VIX compresses post-NFP (705 put wall -> fuel)",
+        "Technology sector flow persistence 1.0 — the tape is still inflowing against the short"
+      ],
+      "thesis": "Index short on a mechanized DEX sign-flip (6/23) plus a 54-day persistent PUT OI build inside a FULLY_NEGATIVE GEX book; but 30d net premium is near-flat and Technology sector flow is still inflowing — a regime/positioning short, not a flow-confirmed one. STARTER only, after the NFP event-risk cut and the OUT-OF-REGIME half cap."
+    },
+    {
+      "ticker": "AMAT",
+      "horizon": "vol",
+      "section": "vol_long",
+      "direction": "vol_long",
+      "tier": "LOW",
+      "raw_score": 3,
+      "score_components": [
+        {
+          "rubric_line": "+1 vol-surface KINKED/BACKWARDATION worsening + iv-zscore extreme + VRP-aligned",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "Front-end BACKWARDATION Jul-02 IV 169.3% (ratio 2.105, RISING WoW); per-name VRP -2.25 (realised >> implied); iv-zscore ~2.5 (provisional, 53 days)."
+        },
+        {
+          "rubric_line": "+1 earnings BUY/SELL VOL term-skew aligned",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "Front kink at the Jul-02 catalyst window; BUY VOL (long gamma) aligned with the rising front-IV ratio."
+        },
+        {
+          "rubric_line": "+1 uw historical cumulative-premium-flow net directional accretion (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d cum_flow +$61.3M, |.| >= $50M floor, no distribution_flag; non-directional class so no flow_conflict. Corroborating (base_rate_citation), not the dominant evidence."
+        }
+      ],
+      "dominant_signal_class": "high_iv_rank",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 61336514,
+      "cum_premium_flow_90d": 76405964,
+      "win_rate": 0.80,
+      "win_rate_uncapped": 0.921,
+      "win_rate_n": 164,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.350,
+      "pre_risk_size": "starter",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op (BUY VOL direction-neutral; choppy is vol-friendly)",
+        "vrp": "no-op / tailwind (PREMIUM_BUYING favours long vol)",
+        "panic": "no-op (front-end-iv-ratio 0.782 < 1.10)",
+        "cluster": "-1 tier (tech_semis_cluster; QQQ kept member, AMAT corr 0.87 vs SMH)",
+        "sector": "no-op (Technology persistence 1.0 inflow)",
+        "fundamentals": "no-op (CONFIRM — beat streak 3/3, Jun-26 Master Class catalyst)",
+        "event_risk": "no-op (vol/event-play exemption; phantom-catalyst risk handled by debate gate)",
+        "debate": "-1 tier (disconfirmer bear 0.75 >= proponent bull 0.65 — phantom-catalyst Jul-02 double-crush unrefuted)",
+        "rubric_regime": "capped half (OUT-OF-REGIME)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "debate_residual_confidence": 0.65,
+      "debate_residuals": {"bull": 0.65, "bear": 0.75},
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 2.77,
+        "days_to_cover": 2.76,
+        "float_shares": 789930000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.46,
+        "upside_to_target_pct": -8.82,
+        "rsi": 63.92,
+        "note": "Advisory, 0 points. Squeeze LOW; analyst consensus strong-buy (1.46) but price -8.8% vs a STALE PT aggregate (same-day Wells $740 / B.Riley $790 / Jefferies $770 raises not yet aggregated). RSI 63.9 extended-not-extreme."
+      },
+      "structure": "If taken at all: small long straddle/strangle on the Jul-02 expiry; otherwise watch-only — re-evaluate after Jul-02 resolves the phantom-catalyst question.",
+      "entry_or_trigger": "watch-only this week (debate-cut to SKIP); re-enter only if Jul-02 IV holds without the predicted double-crush.",
+      "invalidation": "Front-end-iv-ratio falls below 1.5 (panic resolving / event passed) or Jul-02 IV collapses toward the Jul-10 83% level (double-crush confirmed); VRP flips positive.",
+      "key_risks": [
+        "Jul-02 may be a phantom catalyst (Jun-26 Master Class already fired; next earnings Aug-13) -> double IV crush at peak IV-rank 100",
+        "heavy insider selling (MSPR -100 Apr/May/Jun)",
+        "semis sector overhang (Apple price-hike / memory-cost)"
+      ],
+      "thesis": "Long-vol / long-gamma play on AMAT's extreme front-end backwardation (Jul-02 IV 169%, ratio 2.105) and per-name VRP -2.25 (realised >> implied), with a CONFIRM fundamentals overlay (beat streak + analyst-day catalyst). But the bear's phantom-catalyst case (Jul-02 unconfirmed, next earnings Aug-13) won the debate, and the tech-semis cluster gate fired — net to watch-only despite the strongest backtest support in the book (vol_realisation 0.80 capped, +35pp excess)."
+    },
+    {
+      "ticker": "SMH",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg directional structure repeated on >=2 days (term-structure-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "Bearish diagonal P600 (Jul-02) / P540 (Jul-17) repeated 2 days ($55M + $54M + $59M); P600 sits at the peak negative-GEX node."
+        },
+        {
+          "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days>=5) in trade direction",
+          "points": 3,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "PUT-dominated OI build all week (consec 54d); $55M Jul-02 P600 bid whale, opening_confirmed."
+        },
+        {
+          "rubric_line": "-3 flow_conflict — 30d cum_premium_flow clearly opposite dominant class",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d cum_flow +$161M BULLISH (> union-median magnitude) directly opposes the SHORT thesis -> full -3 flow_conflict. The bearish put structure is hedging against a bullish gross-premium book."
+        }
+      ],
+      "dominant_signal_class": "multileg_repeat",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 161000000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "fundamentals_verdict": "NA",
+      "final_size": "watch_only",
+      "thesis": "Strongest structural bear in the book (multileg diagonal + 54d PUT OI build + $55M opening whale) but KILLED by a full -3 flow_conflict: 30d gross premium is +$161M bullish against the short. The flow gate doing its job — the put structure reads as hedging on a bullish book, not conviction. Watch-only.",
+      "invalidation": "SMH reclaims 615 (above the major negative-GEX cluster) on a close; OR 30d cum_flow turns net bearish, removing the flow_conflict."
+    },
+    {
+      "ticker": "TSLA",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+1 MECHANIZED dex_flip / vanna_squeeze — verified sign change",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw options-structure dex",
+          "evidence": "dex_flip_short 6/23 (0.91x median) + GEX regime flip POSITIVE->NEGATIVE 6/26 (ZGL 399.31 now overhead resistance)."
+        },
+        {
+          "rubric_line": "+1 uw historical cumulative-premium-flow net directional accretion (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d cum_flow -$481M bearish-aligned, |.| >= $50M, no distribution_flag."
+        }
+      ],
+      "dominant_signal_class": "dex_flip_short",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -481000000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "fundamentals_verdict": "CAUTION",
+      "final_size": "watch_only",
+      "thesis": "DEX flip + GEX regime flip support a short, but near-term OI build is call-dominated (does not confirm the put side) so the +3 OI line is unearned; raw 2 = DROP. Fundamentals CAUTION (Jul-22 earnings binary after two straight beats; analyst PT $401.75 tilts above price). Watch-only.",
+      "invalidation": "Price reclaims the ZGL 399.31 on a sustained close; DEX flips positive >=3 sessions; a third earnings beat on Jul-22."
+    },
+    {
+      "ticker": "NOW",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (conditional: persistence>=0.6 AND cum_flow aligned AND |cum_flow_30d|>=$50M)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Software/enterprise leader; Technology persistence 1.0; cum_flow_30d +$79.5M aligned LONG, >= $50M gate."
+        },
+        {
+          "rubric_line": "+1 uw historical cumulative-premium-flow net directional accretion (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d cum_flow +$79.5M LONG-aligned, no distribution_flag, |.| >= $50M."
+        }
+      ],
+      "dominant_signal_class": "sector_leader",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 79500000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "fundamentals_verdict": "CONFIRM",
+      "final_size": "watch_only",
+      "thesis": "Best-quality LONG in the book on fundamentals (CONFIRM: beat streak, insider buying, +43% analyst PT upside, software-vs-chips rotation dip-buy +9.9% Jun-26) but only a single Phase-1 agent scored it; raw 2 = DROP. The software-long thesis is also undercut by leap-radar's 30d cum-flow reversal flag across the bullish funnel and the bearish IGV ETF structure. Watch-only; needs a second confirming agent.",
+      "invalidation": "cum_flow_30d turns negative; Jul-21 earnings miss; software rotation reverses back into semis."
+    }
+  ]
+}

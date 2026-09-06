@@ -1,0 +1,205 @@
+{
+  "results": [
+    {
+      "avg_iv": 18.397200465548476,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 956.298817175711,
+      "option_type": "call",
+      "strike": 46,
+      "total_premium": 99324,
+      "total_volume": 84,
+      "underlying_symbol": "XLF"
+    },
+    {
+      "avg_iv": 38.52160406538245,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 251.8189262951186,
+      "option_type": "call",
+      "strike": 85,
+      "total_premium": 576808,
+      "total_volume": 209,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 28.855760005386003,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 215.0615529794712,
+      "option_type": "call",
+      "strike": 90,
+      "total_premium": 472688,
+      "total_volume": 209,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 8.4229775328545,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 129.8734606235278,
+      "option_type": "call",
+      "strike": 42,
+      "total_premium": 117457,
+      "total_volume": 74,
+      "underlying_symbol": "XLF"
+    },
+    {
+      "avg_iv": 2.1947377095442326,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 126.8010628642581,
+      "option_type": "call",
+      "strike": 945,
+      "total_premium": 1260813,
+      "total_volume": 2214,
+      "underlying_symbol": "MU"
+    },
+    {
+      "avg_iv": 5.68067969506378,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 124.3579914491179,
+      "option_type": "call",
+      "strike": 185,
+      "total_premium": 216588,
+      "total_volume": 62,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 9.247613579230874,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 123.4649185916121,
+      "option_type": "call",
+      "strike": 41,
+      "total_premium": 109670,
+      "total_volume": 65,
+      "underlying_symbol": "XLF"
+    },
+    {
+      "avg_iv": 3.197036278128018,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 114.1397801774148,
+      "option_type": "call",
+      "strike": 215,
+      "total_premium": 375219,
+      "total_volume": 795,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 10.541129048245681,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 112.7764331374771,
+      "option_type": "call",
+      "strike": 766,
+      "total_premium": 4336.700000000001,
+      "total_volume": 170,
+      "underlying_symbol": "XSP"
+    },
+    {
+      "avg_iv": 3.486160824628736,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 112.4877874846047,
+      "option_type": "call",
+      "strike": 230,
+      "total_premium": 310,
+      "total_volume": 306,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 14.233722193866715,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 112.2619734165595,
+      "option_type": "call",
+      "strike": 707,
+      "total_premium": 45591,
+      "total_volume": 52,
+      "underlying_symbol": "QQQ"
+    },
+    {
+      "avg_iv": 6.449509775932377,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 92.5353312147052,
+      "option_type": "call",
+      "strike": 39,
+      "total_premium": 115705,
+      "total_volume": 210,
+      "underlying_symbol": "IBIT"
+    },
+    {
+      "avg_iv": 3.9410478003873464,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 89.9910345054743,
+      "option_type": "call",
+      "strike": 930,
+      "total_premium": 514740,
+      "total_volume": 290,
+      "underlying_symbol": "MU"
+    },
+    {
+      "avg_iv": 3.480301033222105,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 68.6696187580502,
+      "option_type": "call",
+      "strike": 467.5,
+      "total_premium": 54477,
+      "total_volume": 184,
+      "underlying_symbol": "AMD"
+    },
+    {
+      "avg_iv": 17.026319791729076,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 60.4981166246341,
+      "option_type": "call",
+      "strike": 36,
+      "total_premium": 92694,
+      "total_volume": 107,
+      "underlying_symbol": "IBIT"
+    },
+    {
+      "avg_iv": 1.9509691223835226,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 58.2255531201633,
+      "option_type": "call",
+      "strike": 113,
+      "total_premium": 376746,
+      "total_volume": 5982,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 14.311681035439943,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 55.9168551566309,
+      "option_type": "put",
+      "strike": 267.5,
+      "total_premium": 48635,
+      "total_volume": 61,
+      "underlying_symbol": "AMZN"
+    },
+    {
+      "avg_iv": 1.9075384140790699,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 54.22052655741,
+      "option_type": "call",
+      "strike": 585,
+      "total_premium": 1010,
+      "total_volume": 229,
+      "underlying_symbol": "META"
+    },
+    {
+      "avg_iv": 12.98968947172222,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 54.0221487003569,
+      "option_type": "call",
+      "strike": 715,
+      "total_premium": 308591,
+      "total_volume": 60,
+      "underlying_symbol": "SPY"
+    },
+    {
+      "avg_iv": 1.6352669561137243,
+      "expiry": "2026-08-31T00:00:00Z",
+      "max_iv": 50.8717512734484,
+      "option_type": "call",
+      "strike": 225,
+      "total_premium": 3725,
+      "total_volume": 3538,
+      "underlying_symbol": "NVDA"
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/All Options/bot-eod-report-2026-08-31.parquet"
+}

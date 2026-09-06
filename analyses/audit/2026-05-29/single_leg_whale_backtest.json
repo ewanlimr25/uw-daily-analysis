@@ -1,0 +1,307 @@
+{
+  "available": true,
+  "backtest_type": "single_leg_whale_next_session",
+  "as_of_date": "2026-05-28",
+  "parameters": {
+    "min_premium_usd": 500000,
+    "single_leg_conditions": [
+      "auto",
+      "isoi",
+      "slai",
+      "slan",
+      "slcn",
+      "slft"
+    ],
+    "side_filter": "ask",
+    "equity_type_filter": "Common Stock",
+    "aggregate_method": "max_premium_print_per_ticker_per_option_type_per_day"
+  },
+  "data_coverage": {
+    "trading_days_available": 34,
+    "consecutive_pairs_used": 32,
+    "days_with_signals": 32,
+    "total_graded_signals": 2815,
+    "ungraded_no_next_day_data": 0,
+    "gaps_skipped": [
+      {
+        "from": "2026-03-27",
+        "to": "2026-04-27",
+        "calendar_days": 31
+      }
+    ]
+  },
+  "spy_baseline": {
+    "n_days": 32,
+    "call_baseline_win_rate": 0.625,
+    "put_baseline_win_rate": 0.375
+  },
+  "overall": {
+    "n": 2815,
+    "wins": 1465,
+    "losses": 1350,
+    "win_rate": 0.5204,
+    "p_value_vs_50pct": 0.0158
+  },
+  "calls": {
+    "n": 1656,
+    "wins": 875,
+    "losses": 781,
+    "win_rate": 0.5284,
+    "spy_baseline": 0.625,
+    "excess": -0.0966,
+    "p_value": 0.0111,
+    "verdict": "NO_GO_NO_EDGE"
+  },
+  "puts": {
+    "n": 1159,
+    "wins": 590,
+    "losses": 569,
+    "win_rate": 0.5091,
+    "spy_baseline": 0.375,
+    "excess": 0.1341,
+    "p_value": 0.2784,
+    "verdict": "NO_GO_NO_EDGE"
+  },
+  "by_size_oi_ratio": {
+    "0.5_to_1": {
+      "n": 399,
+      "wins": 210,
+      "losses": 189,
+      "win_rate": 0.5263
+    },
+    "0_to_0.5": {
+      "n": 1463,
+      "wins": 743,
+      "losses": 720,
+      "win_rate": 0.5079
+    },
+    "1_to_2": {
+      "n": 196,
+      "wins": 93,
+      "losses": 103,
+      "win_rate": 0.4745
+    },
+    "2_plus": {
+      "n": 757,
+      "wins": 419,
+      "losses": 338,
+      "win_rate": 0.5535
+    }
+  },
+  "by_dte": {
+    "0_to_7": {
+      "n": 408,
+      "wins": 227,
+      "losses": 181,
+      "win_rate": 0.5564
+    },
+    "31_to_90": {
+      "n": 598,
+      "wins": 310,
+      "losses": 288,
+      "win_rate": 0.5184
+    },
+    "8_to_30": {
+      "n": 408,
+      "wins": 224,
+      "losses": 184,
+      "win_rate": 0.549
+    },
+    "91_plus": {
+      "n": 1401,
+      "wins": 704,
+      "losses": 697,
+      "win_rate": 0.5025
+    }
+  },
+  "by_condition_class": {
+    "auction": {
+      "n": 314,
+      "wins": 149,
+      "losses": 165,
+      "win_rate": 0.4745
+    },
+    "electronic": {
+      "n": 1657,
+      "wins": 847,
+      "losses": 810,
+      "win_rate": 0.5112
+    },
+    "floor": {
+      "n": 844,
+      "wins": 469,
+      "losses": 375,
+      "win_rate": 0.5557
+    }
+  },
+  "by_aggression": {
+    "aggressive": {
+      "n": 1386,
+      "wins": 722,
+      "losses": 664,
+      "win_rate": 0.5209
+    },
+    "passive": {
+      "n": 1429,
+      "wins": 743,
+      "losses": 686,
+      "win_rate": 0.5199
+    }
+  },
+  "by_option_type": {
+    "call": {
+      "n": 1656,
+      "wins": 875,
+      "losses": 781,
+      "win_rate": 0.5284
+    },
+    "put": {
+      "n": 1159,
+      "wins": 590,
+      "losses": 569,
+      "win_rate": 0.5091
+    }
+  },
+  "sample_recent_signals": [
+    {
+      "trade_date": "2026-05-26",
+      "ticker": "MU",
+      "option_type": "call",
+      "strike": 210.0,
+      "dte": 23,
+      "premium_usd": 13300000,
+      "size_oi_ratio": 0.2181,
+      "condition": "auto",
+      "signal_price": 874.85,
+      "next_close": 928.14,
+      "holding_return": 0.0609,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-26",
+      "ticker": "SNDK",
+      "option_type": "put",
+      "strike": 1400.0,
+      "dte": 234,
+      "premium_usd": 11212500,
+      "size_oi_ratio": 0.1557,
+      "condition": "auto",
+      "signal_price": 1603.3,
+      "next_close": 1589.95,
+      "holding_return": 0.0083,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-27",
+      "ticker": "MU",
+      "option_type": "call",
+      "strike": 700.0,
+      "dte": 233,
+      "premium_usd": 9839200,
+      "size_oi_ratio": 0.0308,
+      "condition": "slft",
+      "signal_price": 911.65,
+      "next_close": 923.0,
+      "holding_return": 0.0124,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-27",
+      "ticker": "VSAT",
+      "option_type": "call",
+      "strike": 100.0,
+      "dte": 114,
+      "premium_usd": 7830000,
+      "size_oi_ratio": 0.9524,
+      "condition": "slft",
+      "signal_price": 87.1,
+      "next_close": 86.69,
+      "holding_return": -0.0047,
+      "won": false
+    },
+    {
+      "trade_date": "2026-05-22",
+      "ticker": "RKLB",
+      "option_type": "call",
+      "strike": 120.0,
+      "dte": 609,
+      "premium_usd": 6467500,
+      "size_oi_ratio": 0.5832,
+      "condition": "auto",
+      "signal_price": 134.89,
+      "next_close": 143.26,
+      "holding_return": 0.0621,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-27",
+      "ticker": "GOOGL",
+      "option_type": "call",
+      "strike": 400.0,
+      "dte": 933,
+      "premium_usd": 6254000,
+      "size_oi_ratio": 0.1815,
+      "condition": "auto",
+      "signal_price": 392.8,
+      "next_close": 390.19,
+      "holding_return": -0.0066,
+      "won": false
+    },
+    {
+      "trade_date": "2026-05-22",
+      "ticker": "PEN",
+      "option_type": "put",
+      "strike": 300.0,
+      "dte": 238,
+      "premium_usd": 5900000,
+      "size_oi_ratio": 50.0,
+      "condition": "slft",
+      "signal_price": 328.77,
+      "next_close": 329.25,
+      "holding_return": -0.0015,
+      "won": false
+    },
+    {
+      "trade_date": "2026-05-27",
+      "ticker": "DELL",
+      "option_type": "call",
+      "strike": 250.0,
+      "dte": 86,
+      "premium_usd": 5600000,
+      "size_oi_ratio": 0.5319,
+      "condition": "slft",
+      "signal_price": 298.57,
+      "next_close": 317.66,
+      "holding_return": 0.0639,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-26",
+      "ticker": "ALAB",
+      "option_type": "call",
+      "strike": 400.0,
+      "dte": 115,
+      "premium_usd": 5454900,
+      "size_oi_ratio": 0.3919,
+      "condition": "slft",
+      "signal_price": 309.42,
+      "next_close": 325.27,
+      "holding_return": 0.0512,
+      "won": true
+    },
+    {
+      "trade_date": "2026-05-26",
+      "ticker": "MU",
+      "option_type": "put",
+      "strike": 1200.0,
+      "dte": 234,
+      "premium_usd": 4473600,
+      "size_oi_ratio": 48.0,
+      "condition": "auto",
+      "signal_price": 854.09,
+      "next_close": 928.14,
+      "holding_return": -0.0867,
+      "won": false
+    }
+  ]
+}

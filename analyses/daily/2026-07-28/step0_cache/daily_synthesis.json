@@ -1,0 +1,1845 @@
+{
+  "date": "2026-07-28",
+  "market_regime": {
+    "date": "2026-07-28",
+    "market_breadth": {
+      "bearish_flow_tickers": 3959,
+      "bullish_flow_tickers": 2320,
+      "bullish_pct": 36.9,
+      "tickers_with_options": 6279
+    },
+    "regime": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "sector_rotation": {
+      "money_flowing_in": {
+        "Communication Services": 59588662,
+        "Healthcare": 13533377,
+        "Technology": 143583470
+      },
+      "money_flowing_out": {
+        "Basic Materials": -11916641,
+        "Consumer Cyclical": -30760165,
+        "Industrials": -28464792
+      }
+    },
+    "spy": {
+      "above_20sma": false,
+      "above_50sma": false,
+      "change_30d_pct": 1.63,
+      "current": 740.86,
+      "pct_from_90d_high": -2.57,
+      "sma_20": 746.65,
+      "sma_50": 744.86
+    },
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range.",
+    "trend": "CHOPPY"
+  },
+  "top_bearish_signals": {
+    "direction": "bearish",
+    "min_score": 3,
+    "results": [
+      {
+        "close": 286.04,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "dp_distribution",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 73.5413,
+        "net_flow": -599684,
+        "put_call_ratio": 4.451988360814743,
+        "score": 6,
+        "sector": "Industrials",
+        "ticker": "HWM",
+        "volume_ratio": 2.67
+      },
+      {
+        "close": 190.8,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "dp_distribution",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 91.0149,
+        "net_flow": -234319,
+        "put_call_ratio": 2.343062415806017,
+        "score": 6,
+        "sector": "Technology",
+        "ticker": "KLAC",
+        "volume_ratio": 2.05
+      },
+      {
+        "close": 33.82,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "dp_distribution",
+          "oi_building_puts"
+        ],
+        "iv_rank": 39.3252,
+        "net_flow": -7130365,
+        "put_call_ratio": 2.0833333333333335,
+        "score": 5,
+        "sector": null,
+        "ticker": "VCX",
+        "volume_ratio": 2.84
+      },
+      {
+        "close": 44.09,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 82.5429,
+        "net_flow": -1493735,
+        "put_call_ratio": 10.087666263603385,
+        "score": 5,
+        "sector": "Consumer Cyclical",
+        "ticker": "IP",
+        "volume_ratio": 4.84
+      },
+      {
+        "close": 93.95,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "dp_distribution",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 86.5845,
+        "net_flow": -156174,
+        "put_call_ratio": 17.624489795918368,
+        "score": 5,
+        "sector": null,
+        "ticker": "EWT",
+        "volume_ratio": 1.63
+      },
+      {
+        "close": 44.67,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "dp_distribution",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 78.4626,
+        "net_flow": -70878,
+        "put_call_ratio": 5.121688741721854,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "VRNS",
+        "volume_ratio": 2.04
+      },
+      {
+        "close": 259.12,
+        "factors": [
+          "bearish_flow",
+          "volume_spike",
+          "dp_distribution",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 88.9899,
+        "net_flow": -525878,
+        "put_call_ratio": 1.1123829344432883,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "NXPI",
+        "volume_ratio": 2.28
+      },
+      {
+        "close": 272.42,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "dp_distribution",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 83.6722,
+        "net_flow": -570224,
+        "put_call_ratio": 4.1129310344827585,
+        "score": 5,
+        "sector": "Financial Services",
+        "ticker": "ALL",
+        "volume_ratio": 2.53
+      },
+      {
+        "close": 9.01,
+        "factors": [
+          "bearish_flow",
+          "high_pcr",
+          "volume_spike",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 84.8062,
+        "net_flow": -116984,
+        "put_call_ratio": 21.189931350114417,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "ADTN",
+        "volume_ratio": 3.59
+      },
+      {
+        "close": 35.11,
+        "factors": [
+          "bearish_flow",
+          "volume_spike",
+          "dp_distribution",
+          "oi_building_puts",
+          "high_iv_sell_premium"
+        ],
+        "iv_rank": 72.5376,
+        "net_flow": -106207,
+        "put_call_ratio": 0.45954788816180847,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "GLOB",
+        "volume_ratio": 5.09
+      }
+    ],
+    "tickers_found": 10
+  },
+  "top_bullish_signals": {
+    "direction": "bullish",
+    "min_score": 3,
+    "results": [
+      {
+        "close": 54.62,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "oi_building",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 22.0634,
+        "net_flow": 230364,
+        "put_call_ratio": 0.173850054328142,
+        "score": 6,
+        "sector": "Consumer Defensive",
+        "ticker": "LW",
+        "volume_ratio": 2.79
+      },
+      {
+        "close": 159.11,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 27.5117,
+        "net_flow": 628,
+        "put_call_ratio": 0,
+        "score": 5,
+        "sector": null,
+        "ticker": "VFVA",
+        "volume_ratio": 29.99
+      },
+      {
+        "close": 56.93,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "oi_building"
+        ],
+        "iv_rank": 56.0272,
+        "net_flow": 105785,
+        "put_call_ratio": 0.630466472303207,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "RNG",
+        "volume_ratio": 2.09
+      },
+      {
+        "close": 19.75,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "dp_accumulation",
+          "oi_building",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 24.7576,
+        "net_flow": 35830,
+        "put_call_ratio": 0.18229777256740914,
+        "score": 5,
+        "sector": "Consumer Defensive",
+        "ticker": "KVUE",
+        "volume_ratio": 0.39
+      },
+      {
+        "close": 166.22,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "oi_building"
+        ],
+        "iv_rank": 40.8187,
+        "net_flow": 161612,
+        "put_call_ratio": 0.16145833333333334,
+        "score": 5,
+        "sector": "Healthcare",
+        "ticker": "UHS",
+        "volume_ratio": 3.24
+      },
+      {
+        "close": 48.84,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "oi_building"
+        ],
+        "iv_rank": 86.2562,
+        "net_flow": 40343,
+        "put_call_ratio": 0.0027491408934707906,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "PCOR",
+        "volume_ratio": 3.08
+      },
+      {
+        "close": 27.35,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "oi_building"
+        ],
+        "iv_rank": 78.2506,
+        "net_flow": 121902,
+        "put_call_ratio": 0.10882956878850103,
+        "score": 5,
+        "sector": "Technology",
+        "ticker": "APPN",
+        "volume_ratio": 2.62
+      },
+      {
+        "close": 16.75,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 26.2986,
+        "net_flow": 74825,
+        "put_call_ratio": 0.20465116279069767,
+        "score": 5,
+        "sector": null,
+        "ticker": "IBX",
+        "volume_ratio": 2.28
+      },
+      {
+        "close": 102.64,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "volume_spike",
+          "dp_accumulation",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 0,
+        "net_flow": 27849,
+        "put_call_ratio": 0.27827380952380953,
+        "score": 5,
+        "sector": "Healthcare",
+        "ticker": "LNTH",
+        "volume_ratio": 3.88
+      },
+      {
+        "close": 84.24,
+        "factors": [
+          "bullish_flow",
+          "low_pcr",
+          "dp_accumulation",
+          "oi_building",
+          "low_iv_cheap_options"
+        ],
+        "iv_rank": 15.5642,
+        "net_flow": 2990422,
+        "put_call_ratio": 0.44599214229939194,
+        "score": 5,
+        "sector": null,
+        "ticker": "TLT",
+        "volume_ratio": 0.77
+      }
+    ],
+    "tickers_found": 10
+  },
+  "watchlist_alerts": [
+    {
+      "alert_count": 5,
+      "alerts": [
+        {
+          "detail": "3.6x average options volume",
+          "severity": "high",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "IV rank at 84.5 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "P/C ratio 0.13 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$83203322 single dark pool trade, 441 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 15523 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "SHOP"
+    },
+    {
+      "alert_count": 4,
+      "alerts": [
+        {
+          "detail": "1.5x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 0.26 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$180320000 single dark pool trade, 2879 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 48841 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "TSM"
+    },
+    {
+      "alert_count": 4,
+      "alerts": [
+        {
+          "detail": "2.8x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "IV rank at 97.3 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$8040510 single dark pool trade, 363 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 29021 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "BSX"
+    },
+    {
+      "alert_count": 4,
+      "alerts": [
+        {
+          "detail": "1.6x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 0.20 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$19133652 single dark pool trade, 316 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 41376 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "IGV"
+    },
+    {
+      "alert_count": 4,
+      "alerts": [
+        {
+          "detail": "1.5x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 0.24 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$17405264 single dark pool trade, 2742 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 87905 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "SOFI"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 86.9 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$105525354 single dark pool trade, 1800 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 15482 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "LRCX"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 85.4 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$16665915 single dark pool trade, 11053 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 124409 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "AMD"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "2.4x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "$8793260 single dark pool trade, 141 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 10772 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "CNC"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 81.8 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$181430360 single dark pool trade, 3665 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 32859 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "META"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "1.7x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 0.10 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$2336601 single dark pool trade, 22 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "LUMN"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 95.4 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$81670677 single dark pool trade, 548 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 11500 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "CSCO"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 89.4 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$52372236 single dark pool trade, 2148 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 33107 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "NBIS"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 83.5 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$2263996530 single dark pool trade, 31598 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 128274 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "MU"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 90.6 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$26288280 single dark pool trade, 550 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 11629 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "CRWD"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 91.0 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$199250000 single dark pool trade, 6038 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 70923 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "MSFT"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 82.3 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$461853792 single dark pool trade, 32569 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 42661 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "SNDK"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "1.8x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "$4695271 single dark pool trade, 1752 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 27068 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "F"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "1.7x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "IV rank at 85.8 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$216803427 single dark pool trade, 168 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "ADSK"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 88.3 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$20051139 single dark pool trade, 2320 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 35852 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "MRVL"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 92.6 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$291280000 single dark pool trade, 4888 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI decreasing by 49039 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "SMH"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "2.0x average options volume",
+          "severity": "medium",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 7.02 — heavy put activity",
+          "severity": "high",
+          "type": "HIGH_PUT_CALL"
+        },
+        {
+          "detail": "$1297178 single dark pool trade, 30 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "P"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "3.5x average options volume",
+          "severity": "high",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 0.20 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$5222339 single dark pool trade, 41 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "BRKR"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 83.5 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$79147500 single dark pool trade, 2749 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 11695 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "ASML"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "P/C ratio 0.23 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$4654920 single dark pool trade, 118 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 18254 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "EWZ"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 81.9 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$197092584 single dark pool trade, 640 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 54622 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "IREN"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 80.1 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$22944236 single dark pool trade, 537 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 36541 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "UBER"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 94.2 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$23298894 single dark pool trade, 1628 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 24204 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "AMAT"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "P/C ratio 0.25 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$19582300 single dark pool trade, 365 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 33936 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "BABA"
+    },
+    {
+      "alert_count": 3,
+      "alerts": [
+        {
+          "detail": "IV rank at 7.9 — options cheap",
+          "severity": "medium",
+          "type": "LOW_IV_RANK"
+        },
+        {
+          "detail": "$5986570 single dark pool trade, 439 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 50119 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "IBIT"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$287107598 single dark pool trade, 14896 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 513766 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "NVDA"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$15477123 single dark pool trade, 163 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 16153 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "KWEB"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$405215700 single dark pool trade, 14735 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 674491 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "QQQ"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "P/C ratio 3.67 — heavy put activity",
+          "severity": "high",
+          "type": "HIGH_PUT_CALL"
+        },
+        {
+          "detail": "$58928040 single dark pool trade, 481 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "URI"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$606038544 single dark pool trade, 10367 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 165783 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "AAPL"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$78191484 single dark pool trade, 1086 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 228010 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "TLT"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 92.2 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$23207660 single dark pool trade, 381 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "ETN"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 80.4 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$3783546 single dark pool trade, 723 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "SNOW"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 84.0 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$9177292 single dark pool trade, 139 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "TTWO"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$67243500 single dark pool trade, 2414 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 248169 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "IWM"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$23198267 single dark pool trade, 1733 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 16084 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "IBM"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$65486800 single dark pool trade, 3225 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 82216 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "PLTR"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "4.0x average options volume",
+          "severity": "high",
+          "type": "VOLUME_SPIKE"
+        },
+        {
+          "detail": "P/C ratio 11.45 — heavy put activity",
+          "severity": "high",
+          "type": "HIGH_PUT_CALL"
+        }
+      ],
+      "ticker": "BL"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$19764677 single dark pool trade, 966 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 14114 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "WMT"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$214308482 single dark pool trade, 2755 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 48556 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "GOOG"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$1231872 single dark pool trade, 586 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 25224 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "RKLB"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$134127460 single dark pool trade, 7902 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 150374 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "INTC"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 93.0 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$1487178 single dark pool trade, 62 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "OKTA"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 80.2 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$5094111 single dark pool trade, 1097 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "PANW"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$25646669 single dark pool trade, 379 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 20501 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "ASTS"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$222458296 single dark pool trade, 3441 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 36980 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "AVGO"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 82.0 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$12783495 single dark pool trade, 106 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "CMG"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 94.7 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$59680950 single dark pool trade, 48 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "TPR"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$50193539 single dark pool trade, 2042 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 13591 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "LLY"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$32873103 single dark pool trade, 226 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 18524 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "FCX"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$501634187 single dark pool trade, 12986 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 1087443 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "SPY"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "P/C ratio 0.08 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        },
+        {
+          "detail": "$2251125 single dark pool trade, 18 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "CZR"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$163299290 single dark pool trade, 1493 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI decreasing by 78933 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "HYG"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$147888592 single dark pool trade, 4543 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 72265 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "GOOGL"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$18743970 single dark pool trade, 294 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 15399 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "NKE"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 90.3 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$50782156 single dark pool trade, 2450 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "WDC"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$159704140 single dark pool trade, 1281 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 63686 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "NFLX"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$58786897 single dark pool trade, 2152 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 16682 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "NOW"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$13905744 single dark pool trade, 151 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 14420 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "XLB"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$24053410 single dark pool trade, 704 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 39938 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "HOOD"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$37764094 single dark pool trade, 915 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 10844 contracts",
+          "severity": "medium",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "JPM"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "$163509504 single dark pool trade, 8445 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        },
+        {
+          "detail": "Net OI increasing by 229700 contracts",
+          "severity": "high",
+          "type": "OI_SHIFT"
+        }
+      ],
+      "ticker": "TSLA"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 99.3 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$11961530 single dark pool trade, 149 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "AKAM"
+    },
+    {
+      "alert_count": 2,
+      "alerts": [
+        {
+          "detail": "IV rank at 100.0 — options expensive",
+          "severity": "medium",
+          "type": "HIGH_IV_RANK"
+        },
+        {
+          "detail": "$30133237 single dark pool trade, 148 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "FSLR"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "P/C ratio 0.16 — heavy call activity",
+          "severity": "medium",
+          "type": "LOW_PUT_CALL"
+        }
+      ],
+      "ticker": "GTLB"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$25076140 single dark pool trade, 798 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "MA"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$4940000 single dark pool trade, 101 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "ZS"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$10991500 single dark pool trade, 292 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "HPE"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$223757196 single dark pool trade, 224 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "NEE"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$39872419 single dark pool trade, 601 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "ACN"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$107082226 single dark pool trade, 1345 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "JNJ"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$36440320 single dark pool trade, 112 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "PGR"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$3121245 single dark pool trade, 90 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "DXCM"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$3632494 single dark pool trade, 38 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "FIVE"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$10064425 single dark pool trade, 89 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "STM"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$8234572 single dark pool trade, 126 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "KR"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$1510700 single dark pool trade, 80 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "JBL"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$7115686 single dark pool trade, 161 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "FDX"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$15545600 single dark pool trade, 29 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "BJ"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$119406960 single dark pool trade, 423 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "PEP"
+    },
+    {
+      "alert_count": 1,
+      "alerts": [
+        {
+          "detail": "$44411880 single dark pool trade, 182 total trades",
+          "severity": "high",
+          "type": "LARGE_DARK_POOL"
+        }
+      ],
+      "ticker": "BMY"
+    }
+  ]
+}

@@ -1,0 +1,1279 @@
+{
+ "tools": [
+  {
+   "tool": "biggest_increases",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "confluence_gate_(Step_3)",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "dark_pool_block_stratified",
+   "n": 26,
+   "marg_contrib_pp": 0.9,
+   "wr_with": 0.423,
+   "wr_without": 0.414,
+   "frac_of_winners": 0.046,
+   "frac_of_losers": 0.045,
+   "ubiquity": 0.045,
+   "p_raw": 0.9262127365195055,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -8.9,
+     8,
+     112
+    ],
+    [
+     "dark_pool_accumulation",
+     4.6,
+     15,
+     38
+    ],
+    [
+     "multileg_directional",
+     12.8,
+     2,
+     78
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NO-INFO"
+  },
+  {
+   "tool": "dark_pool_block_stratified_+_uw_insights_institutional_accumulation",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "dark_pool_block_stratified_+_uw_insights_institutional_accumulation_+_uw_historical_cumulative_premium_flow",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "dark_pool_block_stratified_+_uw_insights_institutional_accumulation_+_uw_historical_oi_trend",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "front_end_iv_ratio",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_cumulative_premium_flow",
+   "n": 295,
+   "marg_contrib_pp": 5.1,
+   "wr_with": 0.437,
+   "wr_without": 0.39,
+   "frac_of_winners": 0.544,
+   "frac_of_losers": 0.496,
+   "ubiquity": 0.516,
+   "p_raw": 0.2501436509848313,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     1.8,
+     93,
+     27
+    ],
+    [
+     "bullish_flow",
+     -11.5,
+     39,
+     18
+    ],
+    [
+     "dark_pool_accumulation",
+     10.4,
+     39,
+     14
+    ],
+    [
+     "dealer_positioning",
+     21.1,
+     18,
+     10
+    ],
+    [
+     "high_iv_rank",
+     56.0,
+     2,
+     25
+    ],
+    [
+     "multi_day_sweep",
+     -30.0,
+     6,
+     5
+    ],
+    [
+     "multileg_directional",
+     8.2,
+     52,
+     28
+    ],
+    [
+     "oi_build",
+     -5.6,
+     9,
+     4
+    ],
+    [
+     "sector_rotation",
+     26.6,
+     23,
+     16
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "historical_cumulative_premium_flow_+_uw_oi_decrease_with_volume",
+   "n": 5,
+   "marg_contrib_pp": 8.2,
+   "wr_with": 0.6,
+   "wr_without": 0.413,
+   "frac_of_winners": 0.013,
+   "frac_of_losers": 0.006,
+   "ubiquity": 0.009,
+   "p_raw": 0.39728206362158186,
+   "class_contribs": [
+    [
+     "bullish_flow",
+     8.2,
+     2,
+     55
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE",
+   "provisional": true
+  },
+  {
+   "tool": "historical_cumulative_premium_flow___days_30",
+   "n": 7,
+   "marg_contrib_pp": -20.0,
+   "wr_with": 0.286,
+   "wr_without": 0.416,
+   "frac_of_winners": 0.008,
+   "frac_of_losers": 0.015,
+   "ubiquity": 0.012,
+   "p_raw": 0.48700453537003774,
+   "class_contribs": [
+    [
+     "bullish_flow",
+     8.2,
+     2,
+     55
+    ],
+    [
+     "multileg_directional",
+     -38.5,
+     2,
+     78
+    ],
+    [
+     "sector_rotation",
+     -29.7,
+     2,
+     37
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE",
+   "provisional": true
+  },
+  {
+   "tool": "historical_cumulative_premium_flow___symbol_META",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_cumulative_premium_flow___symbol_SMCI",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_gex_time_series",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_iv_percentile_zscore",
+   "n": 5,
+   "marg_contrib_pp": 0.6,
+   "wr_with": 0.4,
+   "wr_without": 0.414,
+   "frac_of_winners": 0.008,
+   "frac_of_losers": 0.009,
+   "ubiquity": 0.009,
+   "p_raw": 0.947887764408224,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     0.6,
+     5,
+     104
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NO-INFO",
+   "provisional": true
+  },
+  {
+   "tool": "historical_oi_trend",
+   "n": 157,
+   "marg_contrib_pp": -5.0,
+   "wr_with": 0.408,
+   "wr_without": 0.417,
+   "frac_of_winners": 0.27,
+   "frac_of_losers": 0.278,
+   "ubiquity": 0.274,
+   "p_raw": 0.8415986577060163,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     12.0,
+     33,
+     87
+    ],
+    [
+     "bullish_flow",
+     -3.2,
+     20,
+     37
+    ],
+    [
+     "dark_pool_accumulation",
+     -18.4,
+     35,
+     18
+    ],
+    [
+     "dealer_positioning",
+     -4.2,
+     4,
+     24
+    ],
+    [
+     "earnings_vol",
+     -16.9,
+     16,
+     93
+    ],
+    [
+     "event_vol",
+     -66.7,
+     2,
+     6
+    ],
+    [
+     "gamma_breakout",
+     37.5,
+     2,
+     8
+    ],
+    [
+     "multi_day_sweep",
+     6.7,
+     6,
+     5
+    ],
+    [
+     "multileg_directional",
+     -12.5,
+     18,
+     62
+    ],
+    [
+     "sector_rotation",
+     17.9,
+     7,
+     32
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "historical_oi_trend___days_5",
+   "n": 13,
+   "marg_contrib_pp": 15.5,
+   "wr_with": 0.538,
+   "wr_without": 0.411,
+   "frac_of_winners": 0.03,
+   "frac_of_losers": 0.018,
+   "ubiquity": 0.023,
+   "p_raw": 0.35808445149560114,
+   "class_contribs": [
+    [
+     "bullish_flow",
+     8.2,
+     2,
+     55
+    ],
+    [
+     "multileg_directional",
+     30.3,
+     3,
+     77
+    ],
+    [
+     "sector_rotation",
+     5.6,
+     3,
+     36
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING"
+  },
+  {
+   "tool": "historical_oi_trend___symbol_CRWV",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_oi_trend___symbol_META",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_oi_trend___symbol_SMCI",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_vrp",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_vrp___symbol_CRWV_+_scripts/term_structure_hygiene.py",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_vrp___symbol_SMCI_+_scripts/term_structure_hygiene.py",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_most_active",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg",
+   "n": 81,
+   "marg_contrib_pp": 8.4,
+   "wr_with": 0.407,
+   "wr_without": 0.415,
+   "frac_of_winners": 0.139,
+   "frac_of_losers": 0.143,
+   "ubiquity": 0.142,
+   "p_raw": 0.8913289454690516,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     9.0,
+     13,
+     107
+    ],
+    [
+     "dark_pool_accumulation",
+     -45.1,
+     2,
+     51
+    ],
+    [
+     "multileg_directional",
+     10.0,
+     60,
+     20
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "hot_chains_multileg_+_iv_term_structure_hygiene",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg_+_uw_oi_oi_by_strike",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg_+_uw_oi_smart_positioning_+_uw_options_structure_iv_term_structure",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg_+_uw_options_flow_greek_screener",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg_+_uw_options_flow_greek_screener_+_iv_term_structure_hygiene",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg_+_uw_options_flow_single_leg",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_sweep_persistence",
+   "n": 5,
+   "marg_contrib_pp": -44.4,
+   "wr_with": 0.0,
+   "wr_without": 0.418,
+   "frac_of_winners": 0.0,
+   "frac_of_losers": 0.015,
+   "ubiquity": 0.009,
+   "p_raw": 0.05888524379407205,
+   "class_contribs": [
+    [
+     "bullish_flow",
+     -44.4,
+     3,
+     54
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE",
+   "provisional": true
+  },
+  {
+   "tool": "insights_conviction_matrix",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_earnings_play",
+   "n": 12,
+   "marg_contrib_pp": -18.5,
+   "wr_with": 0.333,
+   "wr_without": 0.416,
+   "frac_of_winners": 0.017,
+   "frac_of_losers": 0.024,
+   "ubiquity": 0.021,
+   "p_raw": 0.5648221303828074,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -46.6,
+     2,
+     118
+    ],
+    [
+     "earnings_vol",
+     -15.0,
+     4,
+     105
+    ],
+    [
+     "high_iv_rank",
+     -10.0,
+     5,
+     22
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "insights_institutional_accumulation",
+   "n": 34,
+   "marg_contrib_pp": 5.4,
+   "wr_with": 0.471,
+   "wr_without": 0.411,
+   "frac_of_winners": 0.068,
+   "frac_of_losers": 0.054,
+   "ubiquity": 0.059,
+   "p_raw": 0.4923504097162218,
+   "class_contribs": [
+    [
+     "dark_pool_accumulation",
+     3.2,
+     29,
+     24
+    ],
+    [
+     "oi_build",
+     26.7,
+     3,
+     10
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "insights_institutional_accumulation_+_uw_dark_pool_block_stratified",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_price_vs_flow",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_signal_confluence",
+   "n": 50,
+   "marg_contrib_pp": 2.4,
+   "wr_with": 0.44,
+   "wr_without": 0.412,
+   "frac_of_winners": 0.093,
+   "frac_of_losers": 0.084,
+   "ubiquity": 0.087,
+   "p_raw": 0.699766481566763,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -35.7,
+     8,
+     112
+    ],
+    [
+     "bullish_flow",
+     23.7,
+     8,
+     49
+    ],
+    [
+     "dark_pool_accumulation",
+     26.8,
+     18,
+     35
+    ],
+    [
+     "dealer_positioning",
+     -25.8,
+     6,
+     22
+    ],
+    [
+     "earnings_vol",
+     -20.4,
+     5,
+     104
+    ],
+    [
+     "high_iv_rank",
+     2.0,
+     2,
+     25
+    ],
+    [
+     "multileg_directional",
+     -4.3,
+     3,
+     77
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "oi_biggest_increases",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "oi_biggest_increases___symbol_INTC_+_uw_options_structure_iv_term_structure_(hygiene_processed)",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "oi_pin_risk",
+   "n": 4,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "oi_position_rolls",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "oi_smart_positioning",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_sector_flow_persistence",
+   "n": 60,
+   "marg_contrib_pp": -4.3,
+   "wr_with": 0.367,
+   "wr_without": 0.42,
+   "frac_of_winners": 0.093,
+   "frac_of_losers": 0.113,
+   "ubiquity": 0.105,
+   "p_raw": 0.4282022816358284,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -0.4,
+     11,
+     109
+    ],
+    [
+     "bullish_flow",
+     -11.9,
+     15,
+     42
+    ],
+    [
+     "dark_pool_accumulation",
+     7.4,
+     6,
+     47
+    ],
+    [
+     "dealer_positioning",
+     14.7,
+     3,
+     25
+    ],
+    [
+     "gamma_breakout",
+     37.5,
+     2,
+     8
+    ],
+    [
+     "multileg_directional",
+     30.3,
+     3,
+     77
+    ],
+    [
+     "sector_rotation",
+     -18.7,
+     17,
+     22
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_flow_sector_flow_persistence_+_uw_historical_cumulative_premium_flow",
+   "n": 16,
+   "marg_contrib_pp": -0.3,
+   "wr_with": 0.312,
+   "wr_without": 0.417,
+   "frac_of_winners": 0.021,
+   "frac_of_losers": 0.033,
+   "ubiquity": 0.028,
+   "p_raw": 0.40162323970301317,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -12.8,
+     3,
+     117
+    ],
+    [
+     "oi_build",
+     4.5,
+     2,
+     11
+    ],
+    [
+     "sector_rotation",
+     2.4,
+     10,
+     29
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NO-INFO"
+  },
+  {
+   "tool": "options_flow_sector_flow_persistence_+_uw_risk_market_regime_(netted_sector_rotation)_+_uw_historical_cumulative_premium_flow",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_single_leg",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_sweeps",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_sweeps_+_uw_oi_biggest_increases",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex",
+   "n": 57,
+   "marg_contrib_pp": -8.2,
+   "wr_with": 0.421,
+   "wr_without": 0.414,
+   "frac_of_winners": 0.101,
+   "frac_of_losers": 0.099,
+   "ubiquity": 0.1,
+   "p_raw": 0.9136040796701013,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     29.0,
+     14,
+     106
+    ],
+    [
+     "bullish_flow",
+     -2.3,
+     5,
+     52
+    ],
+    [
+     "dark_pool_accumulation",
+     58.8,
+     2,
+     51
+    ],
+    [
+     "dealer_positioning",
+     -47.5,
+     20,
+     8
+    ],
+    [
+     "earnings_vol",
+     -40.2,
+     2,
+     107
+    ],
+    [
+     "gamma_breakout",
+     28.6,
+     7,
+     3
+    ],
+    [
+     "multileg_directional",
+     -39.0,
+     3,
+     77
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_dex_(dated)",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex_(dated_06_24..07_01)",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex___date",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex_via_scripts/dex_flip.py",
+   "n": 8,
+   "marg_contrib_pp": -13.2,
+   "wr_with": 0.375,
+   "wr_without": 0.415,
+   "frac_of_winners": 0.013,
+   "frac_of_losers": 0.015,
+   "ubiquity": 0.014,
+   "p_raw": 0.8200724371196043,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -13.2,
+     6,
+     114
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_front_end_iv_ratio",
+   "n": 21,
+   "marg_contrib_pp": -6.7,
+   "wr_with": 0.333,
+   "wr_without": 0.417,
+   "frac_of_winners": 0.03,
+   "frac_of_losers": 0.042,
+   "ubiquity": 0.037,
+   "p_raw": 0.442626264041511,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     -4.9,
+     17,
+     92
+    ],
+    [
+     "high_iv_rank",
+     -16.7,
+     3,
+     24
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_front_end_iv_ratio_+_term_skew",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_gex",
+   "n": 9,
+   "marg_contrib_pp": 15.5,
+   "wr_with": 0.333,
+   "wr_without": 0.416,
+   "frac_of_winners": 0.013,
+   "frac_of_losers": 0.018,
+   "ubiquity": 0.016,
+   "p_raw": 0.619023060110407,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     4.2,
+     2,
+     118
+    ],
+    [
+     "opex_pin",
+     20.0,
+     5,
+     4
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING"
+  },
+  {
+   "tool": "options_structure_iv_term_structure",
+   "n": 25,
+   "marg_contrib_pp": -0.9,
+   "wr_with": 0.44,
+   "wr_without": 0.413,
+   "frac_of_winners": 0.046,
+   "frac_of_losers": 0.042,
+   "ubiquity": 0.044,
+   "p_raw": 0.7899455180353128,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -30.7,
+     6,
+     114
+    ],
+    [
+     "earnings_vol",
+     16.3,
+     13,
+     96
+    ],
+    [
+     "high_iv_rank",
+     -10.0,
+     5,
+     22
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NO-INFO"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_(via_scripts/term_structure_hygiene.py)_+_uw_options_structure_term_skew",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_front_end_iv_ratio",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_front_end_iv_ratio_(via_scripts/term_structure_hygiene.py)",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_scripts/term_structure_hygiene.py",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_term_skew_+_front_end_iv_ratio",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_term_skew_via_scripts/term_structure_hygiene.py",
+   "n": 4,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_uw_historical_iv_percentile_zscore",
+   "n": 7,
+   "marg_contrib_pp": -11.6,
+   "wr_with": 0.286,
+   "wr_without": 0.416,
+   "frac_of_winners": 0.008,
+   "frac_of_losers": 0.015,
+   "ubiquity": 0.012,
+   "p_raw": 0.48700453537003774,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     -11.6,
+     7,
+     102
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE",
+   "provisional": true
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_uw_historical_vrp",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_uw_options_structure_term_skew_+_scripts/term_structure_hygiene.py",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_+_uw_options_structure_term_skew_+_uw_options_structure_front_end_iv_ratio",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_via_hygiene_+_uw_historical_vrp",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_via_scripts/term_structure_hygiene.py",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure_via_scripts/term_structure_hygiene.py_+_uw_options_structure_term_skew_+_uw_options_structure_front_end_iv_ratio___near_dte_7",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_term_skew",
+   "n": 65,
+   "marg_contrib_pp": 0.1,
+   "wr_with": 0.385,
+   "wr_without": 0.418,
+   "frac_of_winners": 0.105,
+   "frac_of_losers": 0.119,
+   "ubiquity": 0.114,
+   "p_raw": 0.6053950033888396,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -27.0,
+     5,
+     115
+    ],
+    [
+     "earnings_vol",
+     7.7,
+     48,
+     61
+    ],
+    [
+     "high_iv_rank",
+     -15.1,
+     8,
+     19
+    ],
+    [
+     "oi_build",
+     -54.5,
+     2,
+     11
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NO-INFO"
+  },
+  {
+   "tool": "options_structure_term_skew_+_front_end_iv_ratio",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_term_skew_+_scripts/term_structure_hygiene.py",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_term_skew_+_uw_historical_vrp",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_term_skew_+_uw_options_structure_front_end_iv_ratio_+_uw_historical_vrp",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_vanna_charm",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_vanna_charm_+_dated_Yahoo_chart_API_^VIX",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "risk_market_regime_(netted)_+_uw_historical_cumulative_premium_flow",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "risk_market_regime_(netted)_+_uw_options_flow_sector_flow_persistence_+_uw_historical_cumulative_premium_flow",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "risk_market_regime_(netted_sector_rotation)_+_uw_options_flow_sector_flow_persistence_+_uw_historical_cumulative_premium_flow",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "screener_bullish_bearish",
+   "n": 5,
+   "marg_contrib_pp": 36.5,
+   "wr_with": 0.6,
+   "wr_without": 0.413,
+   "frac_of_winners": 0.013,
+   "frac_of_losers": 0.006,
+   "ubiquity": 0.009,
+   "p_raw": 0.39728206362158186,
+   "class_contribs": [
+    [
+     "sector_rotation",
+     36.5,
+     5,
+     34
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING",
+   "provisional": true
+  },
+  {
+   "tool": "screener_earnings_catalyst",
+   "n": 8,
+   "marg_contrib_pp": 3.6,
+   "wr_with": 0.5,
+   "wr_without": 0.413,
+   "frac_of_winners": 0.017,
+   "frac_of_losers": 0.012,
+   "ubiquity": 0.014,
+   "p_raw": 0.6203604945410983,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     3.6,
+     7,
+     102
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "screener_earnings_catalyst_+_iv_term_structure_hygiene_+_uw_options_structure_term_skew",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "screener_earnings_catalyst_+_uw_options_structure_iv_term_structure_+_scripts/term_structure_hygiene.py",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "screener_iv_rank",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/dex_flip.py",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/dex_flip.py_(MECHANIZED)_over_dated_uw_options_structure_dex___date_calls",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/dex_flip.py_+_dated_uw_options_structure_dex",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/dex_flip.py_+_uw_options_structure_dex",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/dex_flip.py_+_uw_options_structure_dex___date",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/term_structure_hygiene.py",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "scripts/term_structure_hygiene.py_+_uw_historical_iv_percentile_zscore",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "term_skew",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  }
+ ],
+ "fz": {
+  "C15_squeeze_short": {
+   "n_short_with_fz": 20,
+   "n_hi_si": 0,
+   "hi_si_wr": null,
+   "lo_si_wr": 0.45,
+   "verdict": "INSUFFICIENT_N"
+  },
+  "squeeze_pressure_dist": {
+   "LOW": 106,
+   "unknown": 50,
+   "MODERATE": 11
+  },
+  "C17_flow_vs_analyst_divergence": {
+   "n_divergent": 14,
+   "divergent_wr": 0.571,
+   "verdict": "scored"
+  },
+  "C18_insider_clusters": {
+   "verdict": "NA \u2014 insider-cluster flag not carried in envelope calls[]"
+  },
+  "C16_float_normalized_block": {
+   "verdict": "NA \u2014 per-call DP-block/float ratio not in envelope"
+  },
+  "breadth_divergence": {
+   "n_with_flag": 177,
+   "n_total": 555,
+   "verdict": "advisory; structural only"
+  }
+ }
+}

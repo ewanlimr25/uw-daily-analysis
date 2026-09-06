@@ -1,0 +1,86 @@
+{
+  "date": "2026-08-26",
+  "note": "BACKDATED RUN — executed 2026-08-27. Next session = 2026-08-27. All uw calls pinned with --date 2026-08-26.",
+  "fz_available": false,
+  "fz_skip_reason": "fz cannot be date-pinned. Verified look-ahead: fz reports HPQ as worst mover -10.36% and DG top mover +10.65%, but on 2026-08-26 HPQ closed +3.39% and DG +0.16% (Yahoo, --as-of pinned). fz is showing 2026-08-27 pre-market. Breadth cross-check + squeeze/RS candidate lanes SKIPPED (advisory, 0 points). Lagged structural fields (short float = semi-monthly settlement, float) remain usable by fundamentals-gate with caveat.",
+  "regime": {
+    "label": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "PULLBACK_IN_UPTREND",
+    "spy": {"current": 766.08, "sma_20": 766.63, "sma_50": 752.97, "above_20sma": false, "above_50sma": true, "change_30d_pct": 3.4, "pct_from_90d_high": -1.71},
+    "market_breadth": {"bullish_flow_tickers": 2183, "bearish_flow_tickers": 4105, "bullish_pct": 34.7, "tickers_with_options": 6288},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+  "tape_2026_08_26": {
+    "SPY": {"close": 766.08, "chg_1d_pct": 0.02, "chg_5d_pct": -0.39, "rv20": 11.3},
+    "QQQ": {"close": 711.37, "chg_1d_pct": 0.09, "chg_5d_pct": -0.66, "rv20": 20.1},
+    "IWM": {"close": 298.93, "chg_1d_pct": -0.10, "chg_5d_pct": -0.92, "rv20": 14.1},
+    "RSP": {"close": 222.11, "chg_1d_pct": 0.15, "chg_5d_pct": 0.02, "rv20": 9.5},
+    "VIX": {"close": 15.21, "chg_1d_pct": -1.55, "chg_5d_pct": 2.15},
+    "framing": "FLAT, NARROW SESSION. Index moves all within +/-0.15%. Over 5d the cap-weighted indices bled (SPY -0.39, QQQ -0.66, IWM -0.92) while equal-weight RSP was flat (+0.02) => mild rotation OUT of mega-cap, not a broad decline. VIX 15.21 is low. NOTE the tension: uw market_breadth reports only 34.7% of optionable tickers with bullish flow (2183 bullish vs 4105 bearish) against a flat-to-green index tape -- flow breadth is materially weaker than price breadth.",
+    "sector_etf_1d_pct": {"XLK": 0.61, "XLI": 1.09, "XLE": 0.60, "XLU": 0.46, "XLB": 0.17, "XLF": -0.09, "XLP": -0.29, "XLC": -0.50, "XLRE": -0.60, "XLY": -0.67, "XLV": -1.00}
+  },
+  "vrp": {
+    "SPY": {"iv30d": 0.1268, "realised_vol": 0.1230, "vrp": 0.0038, "regime": "FAIR"},
+    "QQQ": {"iv30d": 0.1888, "realised_vol": 0.2166, "vrp": -0.0279, "regime": "FAIR"},
+    "read": "FAIR / no VRP edge either way at index level. QQQ VRP is mildly NEGATIVE (IV 18.9 < RV 21.7) -- premium selling on QQQ single names is NOT favoured; contrarian-scanner MUST respect its negative-VRP abort rule on QQQ-complex names."
+  },
+  "dte_share": {"regime_hint": "BALANCED", "share_0dte": 0.042, "share_weeklies": 0.218, "share_monthlies": 0.204, "share_leaps": 0.041, "read": "0DTE share only 4.2% -- NOT a retail-dominated tape. Monthlies+LEAPs 24.5% => institutional positioning present. Rotation calls get benefit of the doubt on the DTE overlay."},
+  "sector_netted_DIRECTIONAL": {
+    "source": "uw risk market-regime .sector_rotation (the ONLY netted/directional sector source)",
+    "money_flowing_in": {"Technology": 118262337, "Industrials": 8207856, "Financial Services": 6830444},
+    "money_flowing_out": {"Consumer Cyclical": -56941120, "Communication Services": -26825744, "Healthcare": -13642787},
+    "caveat": "This is a top-3/bottom-3 TRUNCATION, not a full ranking."
+  },
+  "sector_gross_TURNOVER": {
+    "source": "uw options-flow sector-flow + sector-flow-persistence -- ONE gross-turnover source, sign-agnostic, DURABILITY FILTER ONLY, cannot express direction",
+    "persistence_fired": "INFLOW on 11-of-11 sectors, persistence_score 0.8-1.0 across the board => ZERO DISCRIMINATION today. Do not read direction off this.",
+    "gross_net_flow_top": {"Technology": 1751778004, "Communication Services": 702567626, "Consumer Cyclical": 356350837},
+    "DISAGREEMENT_FLAG": "Communication Services is #2 GROSS inflow (+$702M) but NETTED OUTFLOW (-$26.8M). Healthcare is GROSS inflow (+$95M) but NETTED OUTFLOW (-$13.6M). Consumer Cyclical is GROSS inflow (+$356M) but the LARGEST netted outflow (-$56.9M). Per the netted-vs-gross rule these three route to watch_only, NOT to a rotation call. Only Technology agrees on both (netted IN + gross #1)."
+  },
+  "macro_snapshot": {
+    "yield_curve": "normal", "yield_curve_10y2y": 0.47,
+    "core_cpi_yoy_pct": 2.79, "core_pce_yoy_pct": 3.34,
+    "unemployment_rate": 4.1, "payrolls_mom_000s": -23.0,
+    "ten_year_yield": 4.64, "ten_year_30d_direction": "flat",
+    "usd_30d_direction": "weakening", "fed_funds": 3.63,
+    "read": "Curve normal (+47bp). Core PCE 3.34% YoY is well above target and ABOVE core CPI 2.79%. Payrolls NEGATIVE (-23k MoM) with unemployment 4.1%. That combination -- sticky core inflation plus contracting payrolls -- is the stagflationary quadrant and is the single most important macro fact on the board. USD weakening. Fed funds 3.63 vs 10Y 4.64."
+  },
+  "event_risk": [
+    {"event": "Initial jobless claims + Q2 GDP 2nd estimate", "date": "2026-08-27", "impact": "medium"},
+    {"event": "JOLTS (July)", "date": "2026-09-02", "impact": "medium"},
+    {"event": "ISM Services + jobless claims", "date": "2026-09-03", "impact": "medium"},
+    {"event": "Nonfarm Payrolls (August)", "date": "2026-09-04", "impact": "TIER-1"},
+    {"event": "PPI (August)", "date": "2026-09-10", "impact": "TIER-1"},
+    {"event": "CPI (August)", "date": "2026-09-11", "impact": "TIER-1"},
+    {"event": "FOMC decision + SEP + presser", "date": "2026-09-16", "impact": "TIER-1"}
+  ],
+  "zerodte_setup": {
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 15.21, "implied_move_pct": 0.94, "expected_range_pct": 1.12, "size_scalar": 0.5, "suggested_structure": "wider iron condor, wings ~ +/-1.12% (short-gamma: wider range / trendier) -- or reduce / stand aside", "stand_aside_reason": null, "caution": null, "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_open_pct": 0.212, "mean_pnl_open_net_pct": 0.112, "LOW_VIX_conditioned_gross": 0.132, "LOW_VIX_conditioned_net": 0.032},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 15.21, "implied_move_pct": 1.42, "expected_range_pct": 1.37, "size_scalar": 0.25, "suggested_structure": "iron fly / short straddle centred at 712.9, wings ~ +/-1.37% (long-gamma: quieter, mean-reverting)", "stand_aside_reason": null, "caution": "Front-end backwardation (0DTE IV 1.48x VIX) -- event/gap risk; half size.", "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_open_pct": 0.344, "mean_pnl_open_net_pct": 0.244, "LOW_VIX_conditioned_gross": 0.233, "LOW_VIX_conditioned_net": 0.133},
+    "CRITICAL_READ": "vol_state is LOW and the verdict/sell_premium flags are UNCONDITIONAL. Read the VIX-conditioned cell, not the headline: at LOW VIX, SPY nets +0.032%/day after the 0.1% round-trip cost -- statistically indistinguishable from zero. QQQ LOW nets +0.133%. The edge lives in the MID/HIGH terciles (bounds 15.9 / 17.3), and VIX 15.21 is BELOW the low-tercile bound. Advisory, 0 rubric points."
+  },
+  "single_leg_whale": {
+    "note": "ADVISORY, 0 rubric points PERMANENTLY (C19 closed as REFUTED 2026-07-25). Routing context only.",
+    "regime_passed": "neutral",
+    "tier1_opening_floor_puts": [
+      {"ticker": "MDB", "label": "OPENING_PUT_PRIME", "premium_usd": 1338975, "dte": 9, "strike": 392.5, "spot": 401.55, "size_oi": 999},
+      {"ticker": "DLTR", "label": "FLOOR_PUT_BLOCK", "premium_usd": 626400, "dte": 23, "strike": 140, "spot": 132.49, "size_oi": 1.097},
+      {"ticker": "DIS", "label": "OPENING_PUT_PRIME", "premium_usd": 580000, "dte": 23, "strike": 108, "spot": 109.93, "size_oi": 173.9}
+    ],
+    "tier4_avoid_closing_antisignal": ["PEN", "AAPL", "AVGO", "GOOG", "ORCL", "NVDA"],
+    "call_tier_label": "CALL_UNVALIDATED (neutral regime -- do NOT fade calls by default; the -9.7pp 'calls are beta' result was measured in a BULL window and is bull-regime-conditional)",
+    "tier_label_counts": {"CALL_UNVALIDATED": 28, "CLOSING_ANTISIGNAL": 108, "FLOOR_PUT_BLOCK": 2, "OPENING_PUT_PRIME": 6, "OPENING_PUT_STRONG": 4, "PUT_CONTEXT": 3}
+  },
+  "c12_floored_funnel": {
+    "rule": "price >= $5 AND 20d dollar-ADV >= $50M, --as-of 2026-08-26, fail-closed",
+    "pass_62": ["INTC","AMD","MSTR","PLTR","LITE","ARM","EWY","SOXX","STX","DKS","PANW","MRVL","MSFT","DELL","NVO","SPCX","SOXL","WBD","SMTC","ANET","ADBE","NVDA","AMZN","MU","TSLA","AAPL","LLY","MRNA","AVGO","GOOGL","IBIT","GLD","NBIS","OKTA","PEP","AZO","FSLR","GOOG","BURL","CAT","NKE","MTCH","CI","GEO","HPQ","URBN","EIX","JBTM","ROK","MDB","DLTR","DIS","XYZ","LULU","BKNG","BZ","CRCL","SNDK","META","ASTS","ORCL","PEN"],
+    "dropped_16": {"GRRR":"adv $15.6M","MSOS":"price 4.85","EWN":"adv $8.3M","CABA":"price 3.25","METC":"adv $25.0M","ZURA":"adv $8.0M","JMIA":"adv $12.3M","SHOE":"adv $8.0M","MEC":"adv $16.0M","BCAX":"adv $17.2M","FHTX":"adv $2.1M","VYX":"adv $18.7M","WHF":"adv $0.4M","AVD":"price 2.21","PSTL":"adv $7.3M","BEAM":"adv $46.5M"},
+    "IMPORTANT": "7 of the 10 uw bullish-confluence names failed the floor (GRRR, MSOS, EWN, CABA, METC, ZURA, JMIA). Today's bullish confluence funnel is dominated by illiquid micro-caps. Only MTCH, CI, GEO survive from that list. Treat the bullish funnel as THIN."
+  },
+  "funnel_top_bullish_net_premium": {"INTC": 43000404, "AMD": 22765439, "MSTR": 19119662, "QQQ": 17440367, "PLTR": 16501703, "LITE": 15447654, "ARM": 11238212, "EWY": 10652677, "SOXX": 10303769, "STX": 9157996, "DKS": 8933642, "PANW": 8635800, "XLK": 7851666, "MRVL": 7743385, "MSFT": 7725043, "DELL": 7663663, "NVO": 7154819, "SOXL": 6177118, "WBD": 6110150, "SMTC": 5337474, "ANET": 5141026, "ADBE": 4871834},
+  "funnel_top_bearish_net_premium": {"SPX": -776678458, "NVDA": -28163573, "AMZN": -19983963, "MU": -19487237, "TSLA": -16758309, "AAPL": -13804615, "LLY": -13122389, "MRNA": -11646547, "AVGO": -11110354, "GOOGL": -11062113, "IBIT": -7643903, "GLD": -7032344, "SPY": -6673401, "IWM": -6571408, "NBIS": -6043490, "OKTA": -5830328, "PEP": -5314705, "AZO": -5106008, "FSLR": -4799148, "GOOG": -4349392, "BURL": -4336258, "CAT": -4035533, "NKE": -3976093},
+  "confluence_bullish_scored": [{"MTCH": 6}, {"GRRR": 6}, {"MSOS": 6}, {"EWN": 5}, {"CABA": 5}, {"METC": 5}, {"ZURA": 5}, {"JMIA": 5}, {"CI": 5}, {"GEO": 5}],
+  "confluence_bearish_scored": [{"HPQ": 5}, {"BURL": 5}, {"URBN": 5}, {"SHOE": 5}, {"MEC": 4}, {"EIX": 4}, {"JBTM": 4}, {"BCAX": 4}, {"FHTX": 4}, {"ROK": 4}],
+  "breadth_cross_check": null,
+  "opex_status": "NOT OPEX WEEK. August monthly OPEX was 2026-08-21, five days BEFORE the data date -- that book has expired. Next monthly is 2026-09-18 (23 days out). opex-pin-strategist NOT spawned; 11 Phase 1 agents."
+}

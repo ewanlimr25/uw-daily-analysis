@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.3667,
+      "close": 19.45,
+      "full_name": "WESTWOOD HOLDINGS GROUP INC",
+      "iv_rank": 48.3836,
+      "put_call_ratio": 0.01968205904617714,
+      "sector": "Financial Services",
+      "ticker": "WHG",
+      "total_volume": 1347,
+      "volume_ratio": 3673.302427052086
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 28.5085,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RKT2",
+      "total_volume": 25,
+      "volume_ratio": 750.7507507507506
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "NDLS1",
+      "total_volume": 100,
+      "volume_ratio": 428.6326618088298
+    },
+    {
+      "avg_total_volume": 9,
+      "close": 62.75,
+      "full_name": "FULLER H B CO",
+      "iv_rank": 46.026,
+      "put_call_ratio": 0.0009657170449058426,
+      "sector": "Basic Materials",
+      "ticker": "FUL",
+      "total_volume": 2073,
+      "volume_ratio": 230.33333333333334
+    },
+    {
+      "avg_total_volume": 18.2333,
+      "close": 51,
+      "full_name": "CNA FINANCIAL CORP",
+      "iv_rank": 45.4689,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CNA",
+      "total_volume": 3382,
+      "volume_ratio": 185.48479978939633
+    },
+    {
+      "avg_total_volume": 28.7,
+      "close": 58.11,
+      "full_name": "CBL & ASSOCIATES PROPERTIES INC",
+      "iv_rank": 62.7776,
+      "put_call_ratio": 0,
+      "sector": "Real Estate",
+      "ticker": "CBL",
+      "total_volume": 4486,
+      "volume_ratio": 156.30662020905925
+    },
+    {
+      "avg_total_volume": 8.3666,
+      "close": 16.97,
+      "full_name": "THERAVANCE BIOPHARMA INC",
+      "iv_rank": 1.7388,
+      "put_call_ratio": 4.642857142857143,
+      "sector": "Healthcare",
+      "ticker": "TBPH",
+      "total_volume": 1185,
+      "volume_ratio": 141.63459469796572
+    },
+    {
+      "avg_total_volume": 85.4667,
+      "close": 71.79,
+      "full_name": "VANGUARD LONG-TERM CORPORATE BOND INDEX FUND",
+      "iv_rank": 44.3084,
+      "put_call_ratio": 42.91025641025641,
+      "sector": null,
+      "ticker": "VCLT",
+      "total_volume": 10275,
+      "volume_ratio": 120.22226200379797
+    },
+    {
+      "avg_total_volume": 10.6,
+      "close": 7.75,
+      "full_name": "SUNRISE REALTY TRUST INC",
+      "iv_rank": 8.8651,
+      "put_call_ratio": 0.0019940179461615153,
+      "sector": "Financial Services",
+      "ticker": "SUNS",
+      "total_volume": 1005,
+      "volume_ratio": 94.81132075471699
+    },
+    {
+      "avg_total_volume": 13.4666,
+      "close": 8.33,
+      "full_name": "IHS HOLDING LTD",
+      "iv_rank": 82.9464,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "IHS",
+      "total_volume": 1162,
+      "volume_ratio": 86.28755587898951
+    },
+    {
+      "avg_total_volume": 0.3667,
+      "close": 87.14,
+      "full_name": "ISHARES MSCI EAFE SMALL-CAP ETF",
+      "iv_rank": 32.6686,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SCZ",
+      "total_volume": 29,
+      "volume_ratio": 79.08371966184892
+    },
+    {
+      "avg_total_volume": 195.3,
+      "close": 31.51,
+      "full_name": "HIGHWOODS PROPERTIES INC",
+      "iv_rank": 17.49,
+      "put_call_ratio": 0.0008994050089940501,
+      "sector": "Real Estate",
+      "ticker": "HIW",
+      "total_volume": 14467,
+      "volume_ratio": 74.0757808499744
+    },
+    {
+      "avg_total_volume": 61.6666,
+      "close": 39.15,
+      "full_name": "SONIDA SENIOR LIVING INC",
+      "iv_rank": 38.8437,
+      "put_call_ratio": 0.0022316447221602323,
+      "sector": "Healthcare",
+      "ticker": "SNDA",
+      "total_volume": 4491,
+      "volume_ratio": 72.82710575903324
+    },
+    {
+      "avg_total_volume": 0.8999999999999999,
+      "close": 132.47,
+      "full_name": "AVANTIS US EQUITY ETF",
+      "iv_rank": 16.9678,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AVUS",
+      "total_volume": 60,
+      "volume_ratio": 66.66666666666667
+    },
+    {
+      "avg_total_volume": 2.2667,
+      "close": 63.65,
+      "full_name": "SPDR S&P 500 FOSSIL FUEL RESERVES FREE ETF",
+      "iv_rank": 24.9777,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPYX",
+      "total_volume": 151,
+      "volume_ratio": 66.61666740194997
+    },
+    {
+      "avg_total_volume": 1.5333,
+      "close": 44.53,
+      "full_name": "ISHARES MSCI AGRICULTURE PRODUCERS ETF",
+      "iv_rank": 22.3146,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VEGI",
+      "total_volume": 102,
+      "volume_ratio": 66.52318528663666
+    },
+    {
+      "avg_total_volume": 2.4333,
+      "close": 7.58,
+      "full_name": "KAMADA LTD",
+      "iv_rank": 54.0911,
+      "put_call_ratio": 0.00625,
+      "sector": "Healthcare",
+      "ticker": "KMDA",
+      "total_volume": 161,
+      "volume_ratio": 66.16528993547857
+    },
+    {
+      "avg_total_volume": 14,
+      "close": 41.88,
+      "full_name": "H WORLD GROUP LTD",
+      "iv_rank": 51.2674,
+      "put_call_ratio": 0.1039119804400978,
+      "sector": "Consumer Cyclical",
+      "ticker": "HTHT",
+      "total_volume": 903,
+      "volume_ratio": 64.5
+    },
+    {
+      "avg_total_volume": 3346.4332999999997,
+      "close": 55.76,
+      "full_name": "ISHARES US MEDICAL DEVICES ETF",
+      "iv_rank": 43.9881,
+      "put_call_ratio": 3184.030303030303,
+      "sector": null,
+      "ticker": "IHI",
+      "total_volume": 210212,
+      "volume_ratio": 62.81673087582532
+    },
+    {
+      "avg_total_volume": 35.9333,
+      "close": 2.6,
+      "full_name": "KinderCare Learning Companies",
+      "iv_rank": 39.3823,
+      "put_call_ratio": 0.4071478626489138,
+      "sector": "Consumer Defensive",
+      "ticker": "KLC",
+      "total_volume": 2008,
+      "volume_ratio": 55.881313433500395
+    },
+    {
+      "avg_total_volume": 61.7667,
+      "close": 42.08,
+      "full_name": "HEARTFLOW INC",
+      "iv_rank": 21.4748,
+      "put_call_ratio": 0.5646367521367521,
+      "sector": "Healthcare",
+      "ticker": "HTFL",
+      "total_volume": 2929,
+      "volume_ratio": 47.420373761266184
+    },
+    {
+      "avg_total_volume": 210.5667,
+      "close": 36.2,
+      "full_name": "ROIVANT SCIENCES LTD",
+      "iv_rank": 45.841,
+      "put_call_ratio": 0.9693857396800316,
+      "sector": "Healthcare",
+      "ticker": "ROIV",
+      "total_volume": 9971,
+      "volume_ratio": 47.353166478840194
+    },
+    {
+      "avg_total_volume": 6.8332999999999995,
+      "close": 8.1916,
+      "full_name": "Grayscale Dogecoin Trust ETF",
+      "iv_rank": 28.9305,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GDOG",
+      "total_volume": 316,
+      "volume_ratio": 46.244128020136685
+    },
+    {
+      "avg_total_volume": 1.4667,
+      "close": 1.94,
+      "full_name": "NEUROONE MEDICAL TECHNOLOGIES CORP",
+      "iv_rank": 6.4093,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "NMTC",
+      "total_volume": 64,
+      "volume_ratio": 43.63537192336538
+    },
+    {
+      "avg_total_volume": 2.8,
+      "close": 4.69,
+      "full_name": "CYTEK BIOSCIENCES INC",
+      "iv_rank": 58.9502,
+      "put_call_ratio": 0.2,
+      "sector": "Healthcare",
+      "ticker": "CTKB",
+      "total_volume": 120,
+      "volume_ratio": 42.85714285714286
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-14.parquet"
+}

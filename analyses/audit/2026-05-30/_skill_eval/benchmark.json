@@ -1,0 +1,217 @@
+{
+  "skill_name": "calibration-audit",
+  "iteration": 1,
+  "configs": {
+    "with_skill (edited C20-C25)": {
+      "overall_pass_rate": 1.0,
+      "capability_pass_rate": 1.0,
+      "invariant_pass_rate": 1.0
+    },
+    "old_skill (snapshot baseline)": {
+      "overall_pass_rate": 0.214,
+      "capability_pass_rate": 0.0,
+      "invariant_pass_rate": 1.0
+    }
+  },
+  "capability_delta_pp": 100.0,
+  "new_detail": [
+    {
+      "text": "Phase 2 resolves on daily OHLC via yahoo-finance + true-range ATR (C20)",
+      "id": "C20_daily_ohlc",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 2 explicitly retires the non-executable `uw historical trend --date`/high-low spec (C20)",
+      "id": "C20_kills_phantom_trend_spec",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 adds benchmark-excess (realised - SPY same-window) via excess_winrate.market_excess (C21)",
+      "id": "C21_benchmark_excess",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 verdict has a (d) calibrated-but-beta section (C21)",
+      "id": "C21_calibrated_but_beta",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 2/3 strips look-ahead: signal-backtest demoted from point-in-time benchmark (C22)",
+      "id": "C22_no_lookahead",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 raises the per-class floor to decided-N>=8 (C23)",
+      "id": "C23_nfloor_8",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Multiple-hypothesis (Benjamini-Hochberg FDR) control added (C23)",
+      "id": "C23_benjamini_hochberg",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 7 caps priority on reconstructed-citation findings (C23)",
+      "id": "C23_provenance_cap",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 6 measures gate effectiveness + VETO false-positive rate (C24)",
+      "id": "C24_gate_effectiveness",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 adds reliability diagram + log-loss beside Brier (C25)",
+      "id": "C25_reliability_logloss",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 6 sizing-map corrected to >=0.70 full and the `quarter` bucket mapped (false-positive fix)",
+      "id": "sizingmap_070_quarter",
+      "kind": "capability",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: propose-only \u2014 never Edit/Write outside the audit dir",
+      "id": "inv_propose_only",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: resumable per-phase checkpoint contract preserved",
+      "id": "inv_checkpoint_contract",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: all 7 phases still present",
+      "id": "inv_seven_phases",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    }
+  ],
+  "old_detail": [
+    {
+      "text": "Phase 2 resolves on daily OHLC via yahoo-finance + true-range ATR (C20)",
+      "id": "C20_daily_ohlc",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 2 explicitly retires the non-executable `uw historical trend --date`/high-low spec (C20)",
+      "id": "C20_kills_phantom_trend_spec",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 adds benchmark-excess (realised - SPY same-window) via excess_winrate.market_excess (C21)",
+      "id": "C21_benchmark_excess",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 verdict has a (d) calibrated-but-beta section (C21)",
+      "id": "C21_calibrated_but_beta",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 2/3 strips look-ahead: signal-backtest demoted from point-in-time benchmark (C22)",
+      "id": "C22_no_lookahead",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 raises the per-class floor to decided-N>=8 (C23)",
+      "id": "C23_nfloor_8",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Multiple-hypothesis (Benjamini-Hochberg FDR) control added (C23)",
+      "id": "C23_benjamini_hochberg",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 7 caps priority on reconstructed-citation findings (C23)",
+      "id": "C23_provenance_cap",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 6 measures gate effectiveness + VETO false-positive rate (C24)",
+      "id": "C24_gate_effectiveness",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 3 adds reliability diagram + log-loss beside Brier (C25)",
+      "id": "C25_reliability_logloss",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "Phase 6 sizing-map corrected to >=0.70 full and the `quarter` bucket mapped (false-positive fix)",
+      "id": "sizingmap_070_quarter",
+      "kind": "capability",
+      "passed": false,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: propose-only \u2014 never Edit/Write outside the audit dir",
+      "id": "inv_propose_only",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: resumable per-phase checkpoint contract preserved",
+      "id": "inv_checkpoint_contract",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "INVARIANT: all 7 phases still present",
+      "id": "inv_seven_phases",
+      "kind": "invariant",
+      "passed": true,
+      "evidence": ""
+    }
+  ]
+}

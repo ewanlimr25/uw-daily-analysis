@@ -1,0 +1,45 @@
+{
+  "date": "2026-08-25",
+  "verdicts": {
+    "EWZ":  {"fundamentals_verdict": "NA", "tier_adjustment": 0, "next_earnings_date": null, "days_to_earnings": null,
+             "reason": "Brazil COUNTRY ETF, not a company - Finnhub metrics/earnings_surprises/insider_mspr all empty; the gate's machinery is structurally inapplicable. NA NEVER PENALIZES.",
+             "non_finnhub_read": "EM equity funds drew $1.57B in a 6th straight week of inflows (08-21) - a tailwind consistent with the Nov-20 call-ladder long. fz: beta 0.61-0.65 (low vs SPX), RSI 58.78 (not overbought), price +2.3%/+2.4% above 20/50d SMA. No distress signature. No merger-arb or dividend-capture flags apply to an ETF.",
+             "fz_context": {"available": true, "short_float": null, "days_to_cover": 1.96, "float": null, "analyst_context": "recom/target upstream-unrecoverable (C17)"},
+             "key_risks": ["EM/Brazil macro and FX risk outside Finnhub's US-equity scope", "no company-level earnings/insider check possible on an ETF wrapper"]},
+
+    "NVDA": {"fundamentals_verdict": "CAUTION", "tier_adjustment": -1, "next_earnings_date": "2026-08-26", "days_to_earnings": 1,
+             "earnings_trend": "beat_streak 4/4, latest +4.34%", "insider_signal": "selling, MSPR -98.61 (3mo avg)", "catalyst_support": "contradictory",
+             "reasons": ["EARNINGS IS TOMORROW (2026-08-26) and the scored structure (08-28 230C/240C bull call spread) is sized to hold THROUGH the print - textbook imminent-binary-event exposure",
+                         "Insider MSPR -98.61 into a long call thesis",
+                         "IMPORTANT CAVEAT: NVDA's raw insider history shows near -100 MSPR in nearly every month back through 2025 - this reads as ROUTINE 10b5-1 scheduled comp selling, NOT opportunistic distribution (Cohen/Malloy/Pomorski, C10). Not elevated past its mechanical weight."],
+             "supporting_legs": "Revenue +70.68% YoY, EPS growth +110.34% YoY, gross margin 74.15%, debt/equity 0.05. 2 of 3 legs SUPPORT the long; only the insider leg contradicts, so this does NOT clear the >=2-of-3 VETO bar.",
+             "adjudication_of_S1": "Fundamentals do NOT explain away the flow-side protective posture (beat streak + strong growth argue AGAINST defensiveness), so the $77.4M 143-DTE deep-OTM put purchase and the call-selling look like EVENT-RISK HEDGING INTO A KNOWN BINARY rather than a fundamentals-driven bearish view. The trade as scored is nonetheless structurally exposed to that binary tomorrow.",
+             "fz_context": {"available": true, "short_float": 1.23, "days_to_cover": 2.04, "float": "23.28B shares", "squeeze_pressure": "LOW", "inst_own": 72.02},
+             "key_risks": ["Binary earnings 2026-08-26 held through", "protective put buying unexplained by fundamentals - read as event hedge", "insider MSPR chronically negative, low incremental information"]},
+
+    "META": {"fundamentals_verdict": "CAUTION", "tier_adjustment": -1, "next_earnings_date": "2026-10-27", "days_to_earnings": 63,
+             "earnings_trend": "beat_streak 3/4 - BUT THE MOST RECENT PRINT MISSED", "insider_signal": "selling, MSPR -55.84 (3mo avg)", "catalyst_support": "none",
+             "reasons": ["THE DISCRIMINATOR: the 'beat_streak' label is a majority-of-4 count, but the MOST RECENT and LARGEST-MAGNITUDE surprise was a 16% MISS (2026-06-30 actual $6.18 vs est $7.3594, -16.03%) - almost certainly the proximate driver of the -16.33%/30d decline. This is NOT a stale drawdown from unrelated macro; it lines up with a real fundamental disappointment.",
+                         "EPS growth YoY is NEGATIVE (-3.69%) despite revenue +27.65% - margin/cost pressure eating the top line",
+                         "Insider MSPR -55.84 is MORE INFORMATIVE than NVDA's: META shows genuine sign-flips month to month (+92.98 Mar-25, +99.59 Mar-26), so this is not a chronic-pattern artifact",
+                         "News lane has NO name-specific bullish catalyst - no upgrade cycle, no guidance raise, nothing corroborating a dip-buy"],
+             "fz_confirms_decline": "-27.91% off 52w high, -8.57% below 200d SMA, -3.85% below 50d SMA",
+             "verdict_logic": "Does not clear VETO (growth/margin leg is mixed, not a clean contradiction), but recent large miss + informative insider selling against accumulation-hunter's own 19.9% confidence tips to CAUTION. Fundamentals argue this is closer to 'declining name post-miss with light DP interest' than a clean buy-the-dip.",
+             "fz_context": {"available": true, "short_float": 1.27, "days_to_cover": 1.52, "float": "2.20B shares", "squeeze_pressure": "LOW", "inst_own": 69.1},
+             "key_risks": ["Most recent quarter missed by 16% - the decline is fundamentals-explained, not flow noise", "EPS growth negative despite revenue growth", "no corroborating catalyst"]},
+
+    "MU":   {"fundamentals_verdict": "CONFIRM", "tier_adjustment": 0, "next_earnings_date": "2026-09-21", "days_to_earnings": 27,
+             "earnings_trend": "beat_streak 4/4, LARGE magnitudes (+17.3%, +27.3%, +17.4%, +2.8%)", "insider_signal": "selling, MSPR -33.33 (mildest of the batch)", "catalyst_support": "corroborating (AI-memory cycle)",
+             "vol_thesis_test": "The long_vol thesis (IV 64.7% vs RV 97.7%) is fundamentally CORROBORATED. Revenue +166.98% YoY, EPS growth +700.71% YoY, beat magnitudes 17-27% - fundamentals genuinely moving fast, which is exactly what SUSTAINS high realized vol. Beta 2.21-2.25. News lane carries AI-bubble-pop / cyclicality debate pieces, itself a vol catalyst. No imminent earnings (27d) so current RV is NOT earnings-anticipation - it is genuine memory-cycle repricing.",
+             "fz_context": {"available": true, "short_float": 2.67, "days_to_cover": 0.62, "float": "1.13B shares", "squeeze_pressure": "LOW"},
+             "key_risks": ["27d to print - RV could compress if the AI-memory narrative stabilizes first", "beta 2.25 means vol-of-vol risk on macro prints (Core PCE tomorrow)"]},
+
+    "ZS":   {"fundamentals_verdict": "CONFIRM", "tier_adjustment": 0, "next_earnings_date": "2026-09-03", "days_to_earnings": 9,
+             "earnings_trend": "beat_streak 4/4, CONSISTENT not erratic (3.96%, 9.33%, 8.40%, 8.25%)", "insider_signal": "selling, MSPR -100.0 (strongest of the five)", "catalyst_support": "corroborating",
+             "vol_thesis_test": "On the erratic-vs-clean question: ZS's last 4 surprises are ALL POSITIVE and TIGHTLY CLUSTERED (3.96-9.33%) - a CONSISTENT beat pattern, the safer-to-sell-vol signature. The company reliably clears the bar by a moderate, non-explosive margin, arguing against a fat-tail surprise on 09-03. days_to_earnings=9 is NOT flagged as a standalone caution because the earnings event IS the basis of the short_vol thesis - it is the target, not an exposure. Insider MSPR -100 does not bear on move SIZE for a non-directional trade; it would matter if this were a directional short.",
+             "catalyst_stack": "Barclays, Guggenheim, Keybanc, Mizuho, Stifel all reiterated/raised PTs ($192-214) in the trailing week, all Buy/Overweight/Outperform. Consensus stable and bullish, no downgrade risk in the stack.",
+             "fz_context": {"available": true, "short_float": 5.94, "days_to_cover": 1.50, "float": "104.85M shares", "squeeze_pressure": "LOW"},
+             "key_risks": ["Insider MSPR -100 - if it presages an unexpected negative disclosure it breaks the clean-beat base rate this CONFIRM relies on", "float only 104.85M shares, thinnest of the five, can amplify a realized move", "consensus PTs 13-27% above spot raises the bar for a clean beat to still produce upside follow-through", "GAAP net margin -2.44% (normal for high-growth security SaaS)"]}
+  },
+  "macro_calendar_note_for_risk_monitor": "Core PCE prints 2026-08-26 08:30 ET - THE SAME SESSION AS NVDA'S EARNINGS, compounding NVDA's event-risk exposure. NFP 09-04 sits ONE DAY AFTER ZS's print (09-03). CPI 09-11, FOMC 09-15/16. Neither MU's (09-21) nor META's (10-27) earnings collide with the near-term macro cluster."
+}

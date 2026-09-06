@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.1,
+      "close": 1.75,
+      "full_name": "READING INTERNATIONAL INC",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "RDI",
+      "total_volume": 80,
+      "volume_ratio": 800
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PRTS1",
+      "total_volume": 10,
+      "volume_ratio": 300.30030030030025
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 96.1377,
+      "full_name": "FIRST TRUST DEVELOPED MARKETS EX-US ALPHADEX FUND",
+      "iv_rank": 17.7371,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FDT",
+      "total_volume": 16,
+      "volume_ratio": 160
+    },
+    {
+      "avg_total_volume": 86.9,
+      "close": 3.84,
+      "full_name": "FULCRUM THERAPEUTICS INC",
+      "iv_rank": 0,
+      "put_call_ratio": 1.0833054533288726,
+      "sector": "Healthcare",
+      "ticker": "FULC",
+      "total_volume": 12454,
+      "volume_ratio": 143.31415420023015
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 29.47,
+      "full_name": "Global X PureCap MSCI Communication Services ETF",
+      "iv_rank": 15.3846,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GXPC",
+      "total_volume": 9,
+      "volume_ratio": 134.93253373313345
+    },
+    {
+      "avg_total_volume": 0.16670000000000001,
+      "close": 58.09,
+      "full_name": "DIMENSIONAL INTERNATIONAL VALUE ETF",
+      "iv_rank": 3.0581,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFIV",
+      "total_volume": 22,
+      "volume_ratio": 131.9736052789442
+    },
+    {
+      "avg_total_volume": 57.2333,
+      "close": 9.45,
+      "full_name": "AMERICAN COASTAL INSURANCE CORP",
+      "iv_rank": 62.4227,
+      "put_call_ratio": 0.0026375945138034113,
+      "sector": "Financial Services",
+      "ticker": "ACIC",
+      "total_volume": 5702,
+      "volume_ratio": 99.62731486739364
+    },
+    {
+      "avg_total_volume": 41.3334,
+      "close": 1.93,
+      "full_name": "PROQR THERAPEUTICS NV",
+      "iv_rank": 18.4546,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "PRQR",
+      "total_volume": 4034,
+      "volume_ratio": 97.59661677965036
+    },
+    {
+      "avg_total_volume": 37.2666,
+      "close": 3.82,
+      "full_name": "OMNIAB INC",
+      "iv_rank": 41.2785,
+      "put_call_ratio": 0.008633521881512354,
+      "sector": "Healthcare",
+      "ticker": "OABI",
+      "total_volume": 3388,
+      "volume_ratio": 90.91250610466209
+    },
+    {
+      "avg_total_volume": 0.19999999999999998,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 23.2801,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FMX1",
+      "total_volume": 17,
+      "volume_ratio": 85
+    },
+    {
+      "avg_total_volume": 12.6667,
+      "close": 4.48,
+      "full_name": "ARMATA PHARMACEUTICALS INC",
+      "iv_rank": 4.345,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "ARMP",
+      "total_volume": 959,
+      "volume_ratio": 75.71032707808664
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 22.45,
+      "full_name": "FIRST TRUST NASDAQ BUYWRITE INCOME ETF",
+      "iv_rank": 30.2311,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FTQI",
+      "total_volume": 30,
+      "volume_ratio": 75
+    },
+    {
+      "avg_total_volume": 1.0667,
+      "close": 65.9,
+      "full_name": "VANGUARD WHITEHALL FUNDS",
+      "iv_rank": 28.1407,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VWOB",
+      "total_volume": 79,
+      "volume_ratio": 74.0601856191994
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 128.75,
+      "full_name": "VANGUARD RUSSELL 1000 GROWTH INDEX FUND",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VONG",
+      "total_volume": 7,
+      "volume_ratio": 70
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 23.9769,
+      "full_name": "Roundhill BABA WeeklyPay ETF",
+      "iv_rank": 68.1796,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "BABW",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 35.575,
+      "full_name": "DIMENSIONAL INTERNATIONAL HIGH PROFITABILITY ETF",
+      "iv_rank": 8.5636,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DIHP",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 112.16,
+      "full_name": "ISHARES US UTILITIES ETF",
+      "iv_rank": 55.4389,
+      "put_call_ratio": 0.5,
+      "sector": null,
+      "ticker": "IDU",
+      "total_volume": 30,
+      "volume_ratio": 60
+    },
+    {
+      "avg_total_volume": 0.5667,
+      "close": 38.345,
+      "full_name": "WEBs ETF Trust WEBs Technology XLK Defined Volatility ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0.03333333333333333,
+      "sector": null,
+      "ticker": "DVXK",
+      "total_volume": 31,
+      "volume_ratio": 54.70266454914417
+    },
+    {
+      "avg_total_volume": 14.4667,
+      "close": 6.74,
+      "full_name": "FOGHORN THERAPEUTICS INC",
+      "iv_rank": 61.8832,
+      "put_call_ratio": 0.0025974025974025974,
+      "sector": "Healthcare",
+      "ticker": "FHTX",
+      "total_volume": 772,
+      "volume_ratio": 53.36393234116972
+    },
+    {
+      "avg_total_volume": 39.099999999999994,
+      "close": 19.95,
+      "full_name": "AVALO THERAPEUTICS INC",
+      "iv_rank": 9.4358,
+      "put_call_ratio": 35.333333333333336,
+      "sector": "Healthcare",
+      "ticker": "AVTX",
+      "total_volume": 1962,
+      "volume_ratio": 50.179028132992336
+    },
+    {
+      "avg_total_volume": 128.6333,
+      "close": 39.77,
+      "full_name": "WISDOMTREE CLOUD COMPUTING FUND",
+      "iv_rank": 57.2288,
+      "put_call_ratio": 136.5,
+      "sector": null,
+      "ticker": "WCLD",
+      "total_volume": 6050,
+      "volume_ratio": 47.03292226818406
+    },
+    {
+      "avg_total_volume": 1.4667000000000001,
+      "close": 4.72,
+      "full_name": "ORCHESTRA BIOMED HOLDINGS INC",
+      "iv_rank": 20.0933,
+      "put_call_ratio": 0.014925373134328358,
+      "sector": "Healthcare",
+      "ticker": "OBIO",
+      "total_volume": 68,
+      "volume_ratio": 46.36258266857571
+    },
+    {
+      "avg_total_volume": 597.4667000000001,
+      "close": 12.1,
+      "full_name": "COMPASS DIVERSIFIED HOLDINGS",
+      "iv_rank": 5.0291,
+      "put_call_ratio": 0.006557624180296978,
+      "sector": "Industrials",
+      "ticker": "CODI",
+      "total_volume": 26708,
+      "volume_ratio": 44.702072935612975
+    },
+    {
+      "avg_total_volume": 0.4666,
+      "close": 350.19,
+      "full_name": "VANGUARD RUSSELL 1000 INDEX FUND",
+      "iv_rank": 25.2073,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VONE",
+      "total_volume": 20,
+      "volume_ratio": 42.86326618088298
+    },
+    {
+      "avg_total_volume": 121.36670000000001,
+      "close": 0.3266,
+      "full_name": "ACCURAY INC",
+      "iv_rank": 73.5459,
+      "put_call_ratio": 0.005226480836236934,
+      "sector": "Healthcare",
+      "ticker": "ARAY",
+      "total_volume": 5193,
+      "volume_ratio": 42.78768393636805
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-17.parquet"
+}

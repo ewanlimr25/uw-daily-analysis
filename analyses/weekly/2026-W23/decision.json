@@ -1,0 +1,412 @@
+{
+  "schema_version": "1.2",
+  "report_date": "2026-06-05",
+  "report_kind": "weekly",
+  "iso_week": "2026-W23",
+  "regime": "TRANSITIONAL — PULLBACK_IN_UPTREND (held WoW, internally deteriorated: breadth 40.1→29.4, VIX 21.51 +6.1, SPY/QQQ GEX FULLY_NEGATIVE Friday)",
+  "vrp_classification": "FAIR (SPY VRP +0.043; IV30 0.165 vs RV30 0.122) — mild premium-sell tilt on paper, overridden by market-wide front-end backwardation (panic gate fires)",
+  "macro_snapshot_signals": {
+    "available": true,
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.38,
+    "core_cpi_yoy_pct": 2.99,
+    "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 172.0,
+    "ten_year_yield": 4.47,
+    "ten_year_30d_direction": "flat",
+    "usd_30d_direction": "weakening",
+    "fed_funds": 3.62
+  },
+  "macro_event_risk": [
+    {"event": "CPI (May)", "date": "2026-06-10", "impact": "high"},
+    {"event": "PPI (May)", "date": "2026-06-11", "impact": "high"},
+    {"event": "Initial jobless claims", "date": "2026-06-11", "impact": "medium"},
+    {"event": "FOMC decision + SEP", "date": "2026-06-17", "impact": "high"},
+    {"event": "Initial jobless claims", "date": "2026-06-18", "impact": "medium"},
+    {"event": "Monthly OPEX", "date": "2026-06-19", "impact": "medium"}
+  ],
+  "watchlist_write_back": ["IWM", "DXCM", "SPY", "JNJ", "FCX"],
+  "report_path": "analyses/weekly/2026-W23/report.md",
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 237,
+    "decliners": 266,
+    "pct_green": 47.12,
+    "divergence_flag": false,
+    "note": "Red Friday tape (pct_green 47.1, median -0.11%) consistent with the uw TRANSITIONAL/deteriorating read — no green-tape distribution divergence. Worst SPX mover MU -13.25%."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-05",
+    "next_session_date": "2026-06-08",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 736.3,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -1809832792,
+        "call_wall": 755,
+        "put_wall": 735,
+        "read": "Book flipped FULLY_NEGATIVE 06-03 and deepened into Friday (-$1.81B). Put wall 735 sits 0.2% below spot — a gap lower opens directly into the heaviest negative-GEX cluster; the 755 call wall is token (+$15M). Dealers amplify both directions.",
+        "structure_bias": "Short-gamma trend regime — defined-risk directional with the gap, no premium-selling/pin structures.",
+        "caveats": "Backtest verdict NO_GO_NO_EDGE (walls anti-magnetic 25.6% vs 50%, n=78 pooled) — orientation only. EOD book = overnight prior; Mon 06-08 expiry ($420M volume) refreshes the map in the first 30-60 min. Gap risk dominates. ETF-not-index book; D+1 expiry not isolable."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 706.14,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -933898837,
+        "call_wall": null,
+        "put_wall": 700,
+        "read": "First FULLY_NEGATIVE print of the 10d window after a week of grinding GEX erosion (535M -> 88M -> -934M). No positive-GEX strike exists anywhere in the 0-45d grid — no call-wall absorber; put wall 700 is the only meaningful concentration, with air to ~683-685 below it.",
+        "structure_bias": "Trend/gap-continuation structure; long puts or put spreads targeting 700 are aligned with the dealer book — mean-reversion structures face an amplifying book.",
+        "caveats": "Backtest verdict NO_GO_NO_EDGE — dealer-structure prior, not a proven edge. Same EOD-prior/gap/ETF caveats as SPY; Mon 06-08 expiry carries $503M."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-05",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": false,
+        "vol_state": "HIGH",
+        "vix": 21.51,
+        "implied_move_pct": 1.0,
+        "expected_range_pct": 1.05,
+        "size_scalar": 0.0,
+        "suggested_structure": "wider iron condor, wings ~±1.05% (short-gamma: wider range / trendier) — or reduce / stand aside",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.",
+        "stand_aside_reason": "VIX spiking (+6.1) — short-vol left-tail regime; stand aside.",
+        "caution": "Backtest GO (94.9% open-entry, n=39) but validation sample has no vol shock; short-vol left tail is UNSAMPLED. STAND ASIDE rule honored this session."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": false,
+        "vol_state": "HIGH",
+        "vix": 21.51,
+        "implied_move_pct": 1.67,
+        "expected_range_pct": 1.53,
+        "size_scalar": 0.0,
+        "suggested_structure": "wider iron condor, wings ~±1.53% (short-gamma: wider range / trendier) — or reduce / stand aside",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.",
+        "stand_aside_reason": "VIX spiking (+6.1) — short-vol left-tail regime; stand aside.",
+        "caution": "Backtest GO (92.3% open-entry, n=39) but tail unsampled; QQQ weaker than SPY. STAND ASIDE rule honored this session."
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "IWM",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "MEDIUM",
+      "raw_score": 11,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5)", "points": 3, "source_agent": "accumulation-hunter", "source_tool": "uw historical oi-trend", "evidence": "Put OI BUILDING 5d; P290 Jan27 +113K contracts; diagonal book accreting all week (net +704K Friday)"},
+        {"rubric_line": "+2 multileg directional structure repeated >=2 days", "points": 2, "source_agent": "multileg-strategist", "source_tool": "uw hot-chains multileg", "evidence": "$524M bear put diagonal P290 Jan27/Jul17/Jun18 (Thu) rolled down to P282/P275 (Fri); 2 consecutive days, confidence 5/5"},
+        {"rubric_line": "+2 oi position-rolls institutional roll into longer-dated LEAP", "points": 2, "source_agent": "leap-positioning-radar", "source_tool": "uw oi position-rolls / biggest-increases", "evidence": "P290 Jan27 +113,047 contracts bid-side ($340M) — largest LEAP move of the week; P265 Mar27 +46K tail"},
+        {"rubric_line": "+3 cum-premium-flow net directional accretion (smooth 90d thesis-extension)", "points": 3, "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow", "evidence": "90d -$1,067.9M BEARISH smooth; 30d -$132.3M net bearish (tool-labeled MIXED)"},
+        {"rubric_line": "+2 dealer DEX flip in trade direction", "points": 2, "source_agent": "dealer-positioning-strategist", "source_tool": "uw options-structure dex", "evidence": "DEX +$7.6B -> -$15B confirmed flip; GEX FULLY_NEGATIVE 2 consecutive sessions (-$1.22B)"},
+        {"rubric_line": "-1 flow_conflict_lite", "points": -1, "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow", "evidence": "30d MIXED label (net -$132M bearish-aligned but large two-sided gross) — lite deduction per tool verdict"}
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": "-$132.3M (MIXED label, net bearish)",
+      "cum_premium_flow_90d": "-$1,067.9M (BEARISH, smooth)",
+      "win_rate": 0.0,
+      "win_rate_n": 2,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "starter",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "PASS — short aligns with deteriorating PULLBACK_IN_UPTREND",
+        "vrp": "PASS — directional short, no vol-structure contradiction",
+        "panic": "FIRE — front-end SPY 1.99/QQQ 1.85 backwardation, market-wide (-1)",
+        "cluster": "PASS — kept member of broad_market_index_cluster (highest raw score 11)",
+        "sector": "PASS — short benefits from cyclical->defensive rotation",
+        "event_risk": "FIRE — CPI 6/10 + PPI 6/11 + FOMC 6/16-17 stacked inside horizon (-1)",
+        "fundamentals": "NA — ETF (never penalizes)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {"available": false, "note": "ETF — no single-name Finviz context"},
+      "debate_residual_confidence": 0.65,
+      "structure": "Bear put spread (e.g. Jul 280/265) — TRIGGER-ONLY, not live",
+      "entry_or_trigger": "Post-CPI failure to reclaim 292 with GEX still FULLY_NEGATIVE; hard stop above week high on volume",
+      "invalidation": "Close above 292 (week high / original calendar strike) on above-average volume, or CPI core < 2.8%, or DEX positive >= 3 sessions",
+      "key_risks": [
+        "Debate gate FIRED (bear 0.65 = bull 0.65 tie): Friday floor prints were a mechanical hedge ROLL (BID near leg / ASK far leg); the $340M Thursday P290 prints were no_side cross-trades — direction unassignable",
+        "Backtest 0-for-2 with market-excess -0.733 vs short-SPY benchmark 73.3% — the class has been expensive beta, not edge",
+        "LB gate 2/5 (demoted HIGH->MEDIUM): no DP-block, no institutional-accumulation, no confluence citation — one-legged evidence base",
+        "Friday net put premium -$60M (puts SOLD) and PCR 1.89 — the hedge is already crowded; soft CPI = violent squeeze in the most-shorted index",
+        "Correlation cluster anchor: IWM/SPY 0.897, IWM/FCX 0.726"
+      ],
+      "thesis": "The week's strongest structural short: $524M institutional bear put diagonal actively managed lower, confirmed DEX flip, FULLY_NEGATIVE GEX, $340M Jan-27 LEAP put flood, and -$1.07B smooth 90d bearish flow into a CPI/FOMC catalyst stack on the most rate-sensitive index — but unproven as a signal class (n=2, WR 0.000) and possibly pure portfolio hedging; gated to watch-only."
+    },
+    {
+      "ticker": "DXCM",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 6,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5)", "points": 3, "source_agent": "accumulation-hunter", "source_tool": "uw historical oi-trend", "evidence": "OI BUILDING 5/5 sessions; DP shelf $72.86"},
+        {"rubric_line": "+3 accumulation conjunction C11 — HALVED to +1 (cum_flow sub-$50M)", "points": 1, "source_agent": "accumulation-hunter", "source_tool": "uw dark-pool block-stratified / uw insights institutional-accumulation", "evidence": "Mega DP 3/5 sessions institutional-tier + OI 5/5 + smart-positioning aligned; cum_flow_30d +$4.2M sign-aligned but < $50M -> +3 halved to +1"},
+        {"rubric_line": "+2 signal-confluence >=4 at WEEK_END", "points": 2, "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence", "evidence": "Score 5 bullish 2026-06-05: bullish_flow, low_pcr, dp_accumulation, oi_building, low_iv_cheap_options"}
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": "+$4.2M (BULLISH)",
+      "cum_premium_flow_90d": "-$0.7M (MIXED)",
+      "win_rate": 0.5,
+      "win_rate_n": 0,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "FIRE — long in deteriorating tape (-1)",
+        "vrp": "PASS — directional long, no contradiction",
+        "panic": "FIRE — market-wide backwardation (-1)",
+        "cluster": "PASS — no pairwise corr >= 0.70 with JNJ/UTHR",
+        "sector": "PASS — healthcare, rotation-supportive",
+        "event_risk": "FIRE — CPI/PPI/FOMC stacked (-1)",
+        "fundamentals": "PASS — CONFIRM (beat streak, dual PT raises, ADA catalyst, D/E 0.47, earnings 7/28)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 4.63,
+        "days_to_cover": 3.33,
+        "float_shares": 379130000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.39,
+        "upside_to_target_pct": 14.84,
+        "rsi": 63.97,
+        "note": "Advisory [FZ EOD 2026-06-05]: strong-buy consensus (1.39), target $83.67 (+14.8%); low squeeze pressure; RSI firm not overbought. 0 tier impact."
+      },
+      "distribution_flag": {"present": false, "source_tool": "uw oi decrease-with-volume", "closing_side": null, "closing_premium": null, "oi_decrease": null, "note": "C28 clean — no bullish-side OI closure detected"},
+      "debate_residual_confidence": 0.55,
+      "structure": "Conditional long / call debit spread post-ADA — TRIGGER-ONLY",
+      "entry_or_trigger": "Hold above $72.86 after ADA Sessions (6/5-8) read-through AND Jan-2028 $60 put-ladder OI flattens",
+      "invalidation": "DP shelf $72.86 breaks; ADA disappoints; put-ladder accumulation accelerates",
+      "key_risks": [
+        "Debate gate FIRED (bear 0.75 > bull 0.55): bull's cheap-options premise factually wrong — IV at 77th pctile (z +1.65), not 23rd; VRP -0.011 slightly negative",
+        "Systematic Jan-2028 $60 put ladder building underneath the DP buys (multi-session, +1,902 contracts Friday)",
+        "OI build is 60/40 call/put mixed, not clean accumulation; insider and institutional transactions both marginally negative",
+        "FDA Class II app recall + Q4-2025 guidance miss (-32%) = guidance tail risk; GLP-1 TAM overhang",
+        "Win-rate is an unvalidated 0.50 fallback (N=0 backtest matches)"
+      ],
+      "thesis": "Cleanest fundamentals on the book (CONFIRM: beat streak, Stifel $90 / Citi $84 raises, ADA window, healthcare rotation tailwind) backing institutional-tier DP accumulation with fresh 30d flow inflection — but the flow is tiny (+$4.2M), the signal class is unvalidated, and the bear surfaced a building long-dated put ladder; watch-only pending ADA + shelf hold."
+    },
+    {
+      "ticker": "SPY",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 6,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5)", "points": 3, "source_agent": "accumulation-hunter", "source_tool": "uw historical oi-trend", "evidence": "Put condor OI accreting across week (total OI 18.08M -> 18.56M)"},
+        {"rubric_line": "+2 multileg directional structure repeated >=2 days", "points": 2, "source_agent": "multileg-strategist", "source_tool": "uw hot-chains multileg", "evidence": "Jun-10 CPI put condor 735/725/720/700 (~111K/strike, $116M wk, conf 4/5) + Mon staggered Jun/Aug/Sep put ladder"},
+        {"rubric_line": "+2 dealer DEX flip in trade direction", "points": 2, "source_agent": "dealer-positioning-strategist", "source_tool": "uw options-structure dex", "evidence": "DEX +$56B -> -$46.6B Friday flip; GEX FULLY_NEGATIVE -$1.81B"},
+        {"rubric_line": "-1 flow_conflict_lite", "points": -1, "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow", "evidence": "30d -$1,045M and 90d -$941M both MIXED-labeled (net is 1.6-3.3% of gross) — lite deduction; +3 cum_flow line NOT awarded on MIXED verdict"}
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": "-$1,045.1M (MIXED label)",
+      "cum_premium_flow_90d": "-$940.6M (MIXED label)",
+      "win_rate": 0.69,
+      "win_rate_n": 6,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "PASS — defined-risk bearish structure in deteriorating tape",
+        "vrp": "FIRE — short-vol condor vs FAIR-POSITIVE VRP through three Tier-1 prints (-1)",
+        "panic": "FIRE — own front-end ratio 1.99 (-1)",
+        "cluster": "FIRE — broad_market_index_cluster member; IWM kept (raw 11 > 6) (-1)",
+        "sector": "PASS — index short aligned with cyclical outflows",
+        "event_risk": "FIRE — not structured as the event play by this desk; CPI/PPI/FOMC stacked (-1)",
+        "fundamentals": "NA — ETF"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {"available": false, "note": "ETF — no single-name Finviz context"},
+      "debate_residual_confidence": 0.55,
+      "structure": "None — the institutional Jun-10 condor is the observed hedge template, not this desk's trade",
+      "entry_or_trigger": "No re-entry trigger; hedge sleeve handles index downside (VIX call ladder)",
+      "invalidation": "Close above 750 pre-CPI (put-wall geometry fails)",
+      "key_risks": [
+        "Debate gate FIRED (bear 0.75 > bull 0.55): the condor reads as hedge-book insurance on a long book; theta bleeds into the print; negative EV if CPI is in-line",
+        "PULLBACK_IN_UPTREND base rate against a 2-4% single-print flush; 50SMA (713.51) held all year",
+        "n=6 capped at 0.69; excess +0.10 is the only positive-excess class on the book but statistically thin",
+        "Soft CPI + FULLY_NEGATIVE GEX = amplified relief rally (no meaningful call wall)"
+      ],
+      "thesis": "Institutional CPI event positioning ($116M Jun-10 put condor + put ladder) with a confirmed dealer DEX flip and -$1B net 30d flow — but the net is 1.6% of gross, the structure is most parsimoniously a hedge, and an intact uptrend argues against the flush; watch-only, hedge sleeve covers the exposure."
+    },
+    {
+      "ticker": "JNJ",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 5,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5)", "points": 3, "source_agent": "accumulation-hunter", "source_tool": "uw historical oi-trend", "evidence": "OI BUILDING 5/5 (+26,908 net); DP shelf $232.77"},
+        {"rubric_line": "+3 accumulation conjunction C11 — HALVED to +1 (cum_flow opposes + sub-$50M)", "points": 1, "source_agent": "accumulation-hunter", "source_tool": "uw dark-pool block-stratified / uw insights institutional-accumulation", "evidence": "Mega DP blocks 5/5 sessions, $164M Friday at 100% buy ratio, institutional tier — but cum_flow_30d -$7.4M MIXED opposes LONG and is sub-$50M; both C11 gates fail -> +1"},
+        {"rubric_line": "+2 signal-confluence >=4 at WEEK_END", "points": 2, "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence", "evidence": "Score 5 bullish 2026-06-05: bullish_flow, low_pcr, volume_spike, dp_accumulation, oi_building"},
+        {"rubric_line": "-1 flow_conflict_lite", "points": -1, "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow", "evidence": "30d -$7.4M MIXED vs LONG, 0.4x union median — lite (sub-median magnitude blocks the -3)"}
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": "-$7.4M (MIXED, opposes long)",
+      "cum_premium_flow_90d": "-$6.8M (MIXED)",
+      "win_rate": 0.5,
+      "win_rate_n": 0,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "FIRE — long in deteriorating tape (-1)",
+        "vrp": "PASS — directional long",
+        "panic": "FIRE — market-wide backwardation (-1)",
+        "cluster": "PASS — no healthcare pairwise corr >= 0.70",
+        "sector": "PASS — defensive rotation supportive",
+        "event_risk": "FIRE — CPI/PPI/FOMC stacked (-1)",
+        "fundamentals": "FIRE — CAUTION: premium-flow divergence + EPS -3.9% YoY + insider trend (-1)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 0.96,
+        "days_to_cover": 3.0,
+        "float_shares": 2400000000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.84,
+        "upside_to_target_pct": 12.51,
+        "rsi": 56.59,
+        "note": "Advisory [FZ EOD 2026-06-05]: moderate-buy consensus, target $261.90 (+12.5%). Insider_trans -9.80% is the notable advisory signal — corroborates the distribution concern. 0 tier impact."
+      },
+      "distribution_flag": {"present": false, "source_tool": "uw oi decrease-with-volume", "closing_side": null, "closing_premium": null, "oi_decrease": null, "note": "C28 clean mechanically — the distribution concern is an inference from premium-flow divergence + insider trend, not an OI-closure flag"},
+      "debate_residual_confidence": 0.65,
+      "structure": "None until flow confirms — TRIGGER-ONLY",
+      "entry_or_trigger": "5 consecutive sessions of positive net premium flow (confirming the DP blocks are directional, not overwritten); covered-call OI rolling off",
+      "invalidation": "DP shelf $232.77 breaks; soft CPI unwinds the defensive rotation bid; talc headline",
+      "key_risks": [
+        "Debate gate FIRED (bear 0.75 > bull 0.65): the covered-call-overwrite / pension-rebalance interpretation explains DP buys + negative premium flow + PCR collapse (1.40->0.20) simultaneously; bull conceded it cannot be ruled out",
+        "Fundamentals CAUTION: EPS -3.9% YoY despite revenue +7.9% (Stelara erosion, China MedTech pricing); beat streak is thin (3 of 4 sub-1%)",
+        "Crowded-long building per contrarian (PCR collapse = chase); +4.1% week already paid",
+        "Win-rate 0.50 fallback (N=0)"
+      ],
+      "thesis": "Healthcare rotation leader with the heaviest institutional DP tape of the week (5/5 mega blocks, $164M Friday 100% buy) and 5/5 OI build — but the options market never confirmed (30d net premium negative), fundamentals show margin compression and insider selling, and the overwrite interpretation is dominant; watch-only pending a flow flip."
+    },
+    {
+      "ticker": "FCX",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 5,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5)", "points": 3, "source_agent": "accumulation-hunter", "source_tool": "uw historical oi-trend", "evidence": "OI BUILDING 5/5 (+99,362 — largest build in candidate set)"},
+        {"rubric_line": "+3 accumulation conjunction C11 — HALVED to +1 (cum_flow sub-$50M)", "points": 1, "source_agent": "accumulation-hunter", "source_tool": "uw dark-pool block-stratified / uw insights institutional-accumulation", "evidence": "Block DP 5/5 sessions institutional tier; cum_flow_30d +$14.7M sign-aligned but MIXED-labeled and < $50M -> +1"},
+        {"rubric_line": "+2 signal-confluence >=4 at WEEK_END", "points": 2, "source_agent": "signal-confluence-quant", "source_tool": "uw insights signal-confluence", "evidence": "Score 5 bullish 2026-06-05: bullish_flow, low_pcr, volume_spike, dp_accumulation, oi_building; IV rank 76.6"},
+        {"rubric_line": "-1 flow_conflict_lite", "points": -1, "source_agent": "signal-confluence-quant", "source_tool": "uw historical cumulative-premium-flow", "evidence": "30d +$14.7M MIXED-labeled, 0.82x union median"}
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": "+$14.7M (MIXED)",
+      "cum_premium_flow_90d": "+$5.3M (MIXED — noise on $653M gross)",
+      "win_rate": 0.5,
+      "win_rate_n": 0,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "FIRE — long in deteriorating tape (-1)",
+        "vrp": "PASS — directional long",
+        "panic": "FIRE — market-wide backwardation (-1)",
+        "cluster": "FIRE — broad_market_index_cluster member (SPY/FCX 0.755, IWM/FCX 0.726); IWM kept (-1)",
+        "sector": "FIRE — cyclical long against confirmed cyclical->defensive rotation (-1)",
+        "event_risk": "FIRE — CPI/USD/copper nexus makes this directly event-sensitive (-1)",
+        "fundamentals": "FIRE — CAUTION: revenue -24.2% YoY + rising Q2 costs + insider trend (-1)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 2.05,
+        "days_to_cover": 1.82,
+        "float_shares": 1430000000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.65,
+        "upside_to_target_pct": 10.53,
+        "rsi": 47.83,
+        "note": "Advisory [FZ EOD 2026-06-05]: buy consensus, target $70.04 (+10.5% — well below GS/Citi copper euphoria). Insider_trans -7.34% advisory. RSI weakening post-flush. 0 tier impact."
+      },
+      "distribution_flag": {"present": false, "source_tool": "uw oi decrease-with-volume", "closing_side": null, "closing_premium": null, "oi_decrease": null, "note": "C28 clean"},
+      "debate_residual_confidence": 0.65,
+      "structure": "Bull put spread 60/55 (sell rich IV with cushion below shelf) — TRIGGER-ONLY",
+      "entry_or_trigger": "Shelf $63.02-63.42 holds through CPI 6/10 with continued bid-side DP blocks AND DEX stabilizing",
+      "invalidation": "Shelf $63.02 breaks on 1.5x ADV volume with no DP bid; DEX accelerates below -50% WoW; hot CPI -> USD -> copper gap",
+      "key_risks": [
+        "Debate gate FIRED (bear 0.75 > bull 0.65): shelf tested exactly once (Friday close $63.37, five cents above its bottom); below ZGL $65.73 dealers amplify downside; a hot-CPI gap can clear the $3 cushion to the short strike before management",
+        "Fundamentals CAUTION: revenue -24.2% YoY; rising Q2 production costs; insider selling trend",
+        "7 of 8 gates fire — the most-gated name on the book; cyclical long against the rotation",
+        "Conviction-matrix confidence 20.1%; 90d flow is noise; win-rate 0.50 fallback (N=0)"
+      ],
+      "thesis": "Genuine operational quality (4/4 real beats, EPS +54.7% YoY, copper >$14K with GS/Citi targets above) and the largest OI build in the set converging on a tested DP shelf — but the entry is mis-timed: below the zero-gamma level, against the rotation, into a CPI/USD/copper event nexus, with fundamentals CAUTION; watch-only pending a shelf hold through CPI."
+    },
+    {
+      "ticker": "UTHR",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 4,
+      "score_components": [
+        {"rubric_line": "+3 oi-trend BUILDING full week (days>=5; 10d window)", "points": 3, "source_agent": "leap-positioning-radar", "source_tool": "uw historical oi-trend", "evidence": "10 consecutive OI build days; DP buy/sell ratio 3.56 ACCUMULATION"},
+        {"rubric_line": "+3 accumulation conjunction C11 — HALVED to +1 (cum_flow sub-$50M)", "points": 1, "source_agent": "accumulation-hunter", "source_tool": "uw dark-pool block-stratified / uw insights institutional-accumulation", "evidence": "DP 3.56 buy ratio + block-stratified institutional + conviction-matrix DIRECTIONAL_LONG 77.9%; cum_flow_30d +$8.1M BULLISH but < $50M -> +1. Conviction-matrix +1 NOT awarded (dominant class is dark_pool_accumulation, not leap_directional)"}
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": null,
+      "cum_premium_flow_30d": "+$8.1M (BULLISH)",
+      "cum_premium_flow_90d": "+$9.4M (BULLISH, smooth)",
+      "win_rate": 0.5,
+      "win_rate_n": 0,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "FIRE — long in deteriorating tape (-1)",
+        "vrp": "PASS — directional long",
+        "panic": "FIRE — market-wide backwardation (-1)",
+        "cluster": "PASS — no pairwise corr >= 0.70",
+        "sector": "PASS — healthcare/defensive, rotation-supportive",
+        "event_risk": "FIRE — CPI/PPI/FOMC stacked (-1)",
+        "fundamentals": "NA — not in top-5 fundamentals pass (Phase 1 context: CAUTION-leaning, 3/4 EPS miss streak, earnings 7/28)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": null,
+      "distribution_flag": {"present": false, "source_tool": "uw oi decrease-with-volume", "closing_side": null, "closing_premium": null, "oi_decrease": null, "note": "C28 clean"},
+      "debate_residual_confidence": null,
+      "structure": "Jan-2027 500/600 call debit spread — pending LEAP-gate qualification (currently 5/9)",
+      "entry_or_trigger": "LEAP gates: fresh DTE>180 OI initiations > 500/day on 3 of 5 sessions AND 30d cum flow crossing $50M (re-run 2026-06-12)",
+      "invalidation": "DP shelf $547.60-550.38 breaks; conviction-matrix flips HEDGED_LONG or confidence < 70",
+      "key_risks": [
+        "Fewest gate-fires on the book (3) but the smallest score — flow scale (sub-$50M) keeps it honest",
+        "Phase-1 fundamentals context: 3/4 EPS miss streak (earnings 7/28); not vetted by 2b/2c this run (6th by raw score)",
+        "LEAP near-miss 5/9 — the options footprint is short-dated; the multi-quarter thesis is unexpressed in LEAPs yet"
+      ],
+      "thesis": "The cleanest qualitative accumulation on the book (DP 3.56 buy ratio, conviction-matrix DIRECTIONAL_LONG 77.9%, 10d OI build, smooth bullish 90d flow) at sub-threshold scale — a LEAP candidate in formation rather than a swing trade; watch-only, re-run the LEAP gates 6/12."
+    }
+  ]
+}

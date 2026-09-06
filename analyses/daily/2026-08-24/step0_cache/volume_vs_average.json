@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 46.71,
+      "full_name": "ISHARES ESG AWARE US AGGREGATE BOND ETF",
+      "iv_rank": 16.5358,
+      "put_call_ratio": 0.09082652134423251,
+      "sector": null,
+      "ticker": "EAGG",
+      "total_volume": 1201,
+      "volume_ratio": 36066.066066066065
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 184.7,
+      "full_name": "ISHARES MSCI USA SIZE FACTOR ETF",
+      "iv_rank": 22.5073,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SIZE",
+      "total_volume": 40,
+      "volume_ratio": 1201.201201201201
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 37.0521,
+      "full_name": "GUGGENHEIM S&P 500(R) EQUAL WEIGHT REAL ESTATE ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RSPR",
+      "total_volume": 200,
+      "volume_ratio": 749.9062617172854
+    },
+    {
+      "avg_total_volume": 0.36669999999999997,
+      "close": 2.93,
+      "full_name": "GOGORO INC",
+      "iv_rank": 12.8273,
+      "put_call_ratio": 0.13043478260869565,
+      "sector": "Consumer Cyclical",
+      "ticker": "GGR",
+      "total_volume": 104,
+      "volume_ratio": 283.6105808562858
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 22.0333,
+      "full_name": "The SPAC and New Issue ETF",
+      "iv_rank": 8.3477,
+      "put_call_ratio": 0.05,
+      "sector": null,
+      "ticker": "SPCK",
+      "total_volume": 105,
+      "volume_ratio": 262.5
+    },
+    {
+      "avg_total_volume": 0.9665999999999999,
+      "close": 30.4,
+      "full_name": "FIRST TRUST EXCHANGE-TRADED FUND VII",
+      "iv_rank": 8.0504,
+      "put_call_ratio": 1.875,
+      "sector": null,
+      "ticker": "FTGC",
+      "total_volume": 230,
+      "volume_ratio": 237.94744465135528
+    },
+    {
+      "avg_total_volume": 2.4667,
+      "close": 44.98,
+      "full_name": "FIDELITY TOTAL BOND ETF",
+      "iv_rank": 8.2057,
+      "put_call_ratio": 250,
+      "sector": null,
+      "ticker": "FBND",
+      "total_volume": 502,
+      "volume_ratio": 203.5107633680626
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": 73.2613,
+      "full_name": "FIRST TRUST DORSEY WRIGHT FOCUS 5 ETF",
+      "iv_rank": 19.7722,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FV",
+      "total_volume": 30,
+      "volume_ratio": 128.58979854264894
+    },
+    {
+      "avg_total_volume": 10.666699999999999,
+      "close": 28.1,
+      "full_name": "NATURAL GROCERS BY VITAMIN COTTAGE INC",
+      "iv_rank": 10.4366,
+      "put_call_ratio": 0.012345679012345678,
+      "sector": "Consumer Defensive",
+      "ticker": "NGVC",
+      "total_volume": 1066,
+      "volume_ratio": 99.93718769628846
+    },
+    {
+      "avg_total_volume": 5.8667,
+      "close": 74.08,
+      "full_name": "BRIGHT HORIZONS FAMILY SOLUTIONS INC",
+      "iv_rank": 21.5934,
+      "put_call_ratio": 0.003436426116838488,
+      "sector": "Consumer Cyclical",
+      "ticker": "BFAM",
+      "total_volume": 584,
+      "volume_ratio": 99.5448889494946
+    },
+    {
+      "avg_total_volume": 0.3333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VIXY2",
+      "total_volume": 30,
+      "volume_ratio": 90.00900090009002
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 22.01,
+      "full_name": "GLOBAL X VARIABLE RATE PREFERRED ETF",
+      "iv_rank": 1.3514,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PFFV",
+      "total_volume": 27,
+      "volume_ratio": 90
+    },
+    {
+      "avg_total_volume": 2.4667,
+      "close": 4.81,
+      "full_name": "MINERVA NEUROSCIENCES INC",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "NERV",
+      "total_volume": 200,
+      "volume_ratio": 81.07998540560263
+    },
+    {
+      "avg_total_volume": 27.6,
+      "close": 2.92,
+      "full_name": "PIONEER POWER SOLUTIONS INC",
+      "iv_rank": 17.6103,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "PPSI",
+      "total_volume": 2035,
+      "volume_ratio": 73.73188405797102
+    },
+    {
+      "avg_total_volume": 0.7,
+      "close": 22.02,
+      "full_name": "SPDR(R) PORTFOLIO MORTGAGE BACKED BOND ETF",
+      "iv_rank": 1.124,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPMB",
+      "total_volume": 50,
+      "volume_ratio": 71.42857142857143
+    },
+    {
+      "avg_total_volume": 0.8667,
+      "close": 49.43,
+      "full_name": "Strive 500 ETF",
+      "iv_rank": 38,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "STXF",
+      "total_volume": 59,
+      "volume_ratio": 68.07430483442944
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 107.11,
+      "full_name": "JPMORGAN BETABUILDERS CANADA ETF",
+      "iv_rank": 22.0997,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BBCA",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 37.39,
+      "full_name": "INVESCO S&P 500 (R) EQUAL WEIGHT COMMUNICATION SERVICES ETF",
+      "iv_rank": 36.3019,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RSPC",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 23.6505,
+      "full_name": "Corgi Crypto Infrastructure ETF",
+      "iv_rank": 35.567,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BLCK",
+      "total_volume": 8,
+      "volume_ratio": 59.97001499250375
+    },
+    {
+      "avg_total_volume": 62.7666,
+      "close": 34.33,
+      "full_name": "CARTERS INC",
+      "iv_rank": 35.3556,
+      "put_call_ratio": 0.03731113166820845,
+      "sector": "Consumer Cyclical",
+      "ticker": "CRI",
+      "total_volume": 3364,
+      "volume_ratio": 53.595383532005876
+    },
+    {
+      "avg_total_volume": 74.1,
+      "close": 313.74,
+      "full_name": "CLEAN HARBORS INC",
+      "iv_rank": 16.3732,
+      "put_call_ratio": 78.10204081632654,
+      "sector": "Industrials",
+      "ticker": "CLH",
+      "total_volume": 3876,
+      "volume_ratio": 52.307692307692314
+    },
+    {
+      "avg_total_volume": 1.2666,
+      "close": 26.01,
+      "full_name": "CITIZENS & NORTHERN CORP",
+      "iv_rank": 11.1889,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CZNC",
+      "total_volume": 60,
+      "volume_ratio": 47.37091425864519
+    },
+    {
+      "avg_total_volume": 1200.8,
+      "close": 28.3,
+      "full_name": "INVESCO DB MULTI-SECTOR COMMODITY TRUST",
+      "iv_rank": 39.6496,
+      "put_call_ratio": 0.010525915069379676,
+      "sector": null,
+      "ticker": "DBA",
+      "total_volume": 53090,
+      "volume_ratio": 44.21219187208528
+    },
+    {
+      "avg_total_volume": 1.4666000000000001,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "ETHU1",
+      "total_volume": 61,
+      "volume_ratio": 41.592799672712395
+    },
+    {
+      "avg_total_volume": 3.9666,
+      "close": 46.94,
+      "full_name": "ISHARES MSCI FRANCE ETF",
+      "iv_rank": 15.1697,
+      "put_call_ratio": 0.47706422018348627,
+      "sector": null,
+      "ticker": "EWQ",
+      "total_volume": 161,
+      "volume_ratio": 40.58891746079766
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-24.parquet"
+}

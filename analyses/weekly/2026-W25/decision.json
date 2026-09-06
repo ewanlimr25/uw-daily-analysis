@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-06-18",
+  "report_kind": "weekly",
+  "iso_week": "2026-W25",
+  "regime": "TRANSITIONAL — PULLBACK_IN_UPTREND (held WoW); OUT-OF-REGIME (rubric fitted UPTREND, ended 2026-06-12) — sizing capped at half",
+  "vrp_classification": "FAIR (SPY -0.005, QQQ -0.027; IV approx realized, slight premium-buying lean)",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.27,
+    "core_cpi_yoy_pct": 2.96,
+    "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 172.0,
+    "ten_year_yield": 4.49,
+    "ten_year_30d_direction": "falling",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.63,
+    "fomc_note": "2026-06-17 hawkish hold: held 3.50-3.75%, 2026 median dot 3.4->3.8%, 9/19 see a hike (first meeting under Chair Warsh)"
+  },
+  "macro_event_risk": [
+    {"event": "May Core PCE", "date": "2026-06-26", "impact": "high"},
+    {"event": "June NFP / payrolls", "date": "2026-07-02", "impact": "high"},
+    {"event": "INTC earnings", "date": "2026-07-22", "impact": "medium"}
+  ],
+  "watchlist_write_back": ["INTC", "MSFT", "PLTR"],
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-18",
+    "next_session_date": "2026-06-22",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 747.26,
+        "zero_gamma_level": 300.05,
+        "zgl_reliable": false,
+        "regime": "NEGATIVE",
+        "total_gex": -275776588,
+        "call_wall": 755,
+        "put_wall": 748,
+        "read": "Net short-gamma post-OPEX (tool label POSITIVE but total_gex negative 3 of last 4 sessions; 06-18 monthly mass expired off book). Put wall 748 essentially at spot; a break of 748 toward 735 can accelerate, not absorb. Backtest NO_GO_NO_EDGE (walls-as-magnet 26% pooled, n=96).",
+        "structure_bias": "Short-gamma favors debit verticals over premium-selling; if selling, anchor shorts inside the 735-755 band and expect realized vol to exceed implied.",
+        "caveats": "EOD prior not a live read; OPEX 06-18 mass expired off book; ETF-not-index; cannot isolate 06-22 expiry; 3-day holiday gap."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 740.0,
+        "zero_gamma_level": 270.79,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": 1692328452,
+        "call_wall": 750,
+        "put_wall": 720,
+        "read": "Headline +1.69B total_gex is inflated by the expired 740 OPEX pin (+1.34B); strip it and the Monday book is weakly positive gamma 730-745, short below 728. Settled exactly at 740. Range-trade above 730. Backtest NO_GO_NO_EDGE.",
+        "structure_bias": "Iron condor / range while above 728; flip to long straddle / debit put vertical on a break below 728.",
+        "caveats": "Headline total_gex unrepresentative of Monday book (740 +1.34B expired); EOD prior; ETF-not-index; holiday gap."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-18",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.4,
+        "implied_move_pct": 0.52,
+        "expected_range_pct": 1.22,
+        "size_scalar": 0.5,
+        "suggested_structure": "wider iron condor, wings +/-1.22% (short-gamma: trendier); net +0.207% of spot notional, gross +0.307%; win 93.8% n=48 — or reduce/stand aside",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold to the close — never carry overnight (overnight mean -0.192%).",
+        "stand_aside_reason": "Stand aside on a VIX spike or front-end backwardation.",
+        "caution": "VIX-LOW -> size_scalar 0.5; PnL is % of underlying spot notional, gross of costs; validation sample has NO vol shock, left tail UNSAMPLED; advisory 0 points permanently."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.4,
+        "implied_move_pct": 0.91,
+        "expected_range_pct": 1.23,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle centred ~740.1, wings +/-1.23% (long-gamma: quieter, mean-reverting); net +0.297% of spot notional, gross +0.397%; win 89.6% n=48",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold to the close — never carry overnight (overnight mean -0.42%).",
+        "stand_aside_reason": "Stand aside on a VIX spike or front-end backwardation.",
+        "caution": "VIX-LOW -> size_scalar 0.5; PnL is % of underlying spot notional, gross of costs; validation sample has NO vol shock, left tail UNSAMPLED; advisory 0 points permanently."
+      }
+    ]
+  },
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 264,
+    "decliners": 238,
+    "pct_green": 52.49,
+    "divergence_flag": false,
+    "note": "Mild green tape, mildly positive breadth; no divergence from the uw TRANSITIONAL regime. Top mover SNDK +11.5%, worst ACN -18.0% (earnings). 0 points."
+  },
+  "report_path": "analyses/weekly/2026-W25/report.md",
+  "calls": [
+    {
+      "ticker": "INTC",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "LOW",
+      "raw_score": 3,
+      "dominant_signal_class": "dark_pool_accumulation",
+      "thesis": "10-session OI build + 90d dark-pool accumulation (+$253.8M) into a foundry-revival thesis; but the +10% 06-18 spike on an unconfirmed Trump/Apple social-media catalyst, landing 25% above the analyst target with a Tier-1 72x opening put on the spike day, makes this a catalyst chase, not a clean accumulation entry. Net direction long, but no capital this week.",
+      "structure": "watch-only; if re-entered post-PCE, hedge the semi cluster with a 30-45 DTE SMH put spread (~50% notional delta).",
+      "score_components": [
+        {
+          "rubric_line": "+3 oi-trend BUILDING full week (--days>=5)",
+          "points": 3,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw oi smart-positioning / uw oi biggest-increases",
+          "evidence": "OI BUILDING 10 consecutive sessions; mega-tier DP buy_ratio 0.95 on 06-18; DP defense cluster $127-134. Caveat: fleet flags possible sector/index rebalancing; OPEX-week build partly far-OTM put opening (INTC260626P00070000 +25,687 ask-dominant)."
+        },
+        {
+          "rubric_line": "+3->+1 3+ aligned accumulation signals + dark-pool block-stratified institutional-tier — CONJUNCTION halved (cum_flow_30d +$37.1M LONG-aligned but < $50M floor)",
+          "points": 1,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw dark-pool block-stratified / uw insights institutional-accumulation",
+          "evidence": "OI BUILDING + DP defense $127-134 + mega buy_ratio 0.95 aligned; conjunction gate (b) |$37.1M| >= $50M FAILS and (c) 0.3% scale < 5% FAILS -> +3 halved to +1."
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite (30d cum-flow LONG-aligned but bottom-quartile magnitude)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$37.1M sign-aligned LONG but 0.28x union median ($130.5M), bottom-quartile -> -1 flow_conflict_lite (not -3, sign does not oppose). Mutually exclusive with flow_conflict."
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": 37100000,
+      "cum_premium_flow_90d": 253800000,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": 0,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": -0.1429,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "fundamentals_verdict": "CONFIRM",
+      "debate_residual_confidence": 0.55,
+      "debate_residuals": {"bull": 0.55, "bear": 0.85},
+      "key_risks": [
+        "Unconfirmed Trump/Apple social-media catalyst already +10% priced",
+        "Closed $133.99 vs analyst target $100.98 (market 25% over the Street)",
+        "Net margin -5.9% (unprofitable); beta 2.20",
+        "Tier-1 opening PUT strike 150, size/OI 72x on the spike day (fade/hedge signature)",
+        "Semi OI build flagged as likely sector/index rebalancing (conviction-matrix 22%)"
+      ],
+      "distribution_flag": {
+        "present": false,
+        "closing_side": "call",
+        "closing_premium": 25000000,
+        "oi_decrease": -4421,
+        "source_tool": "uw oi decrease-with-volume",
+        "note": "Largest call closes (~$25M) are DTE=0 OPEX-expiry, not institutional unwind; one non-OPEX Jul 130C ($4.5M) modest vs the $2.5B mega buy-side. Not flagged as distribution."
+      },
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 3.18,
+        "days_to_cover": 1.04,
+        "float_shares": 4250000000.0,
+        "squeeze_pressure": "LOW",
+        "recom": 2.53,
+        "upside_to_target_pct": -24.64,
+        "rsi": 64.21,
+        "note": "Advisory (0 tier impact). Close $133.99 vs analyst target $100.98 = -24.6% (market 25% ABOVE target after the +10% 06-18 catalyst spike). Beta 2.20. LOW squeeze pressure (no short-covering tailwind). Over-target + high beta = adverse-selection / mean-reversion risk."
+      },
+      "gate_verdicts": {
+        "regime": "no-op (TRANSITIONAL; long accumulation not regime-conflicted)",
+        "vrp": "no-op (FAIR; delta/stock play, not a vol-type structure)",
+        "panic": "no-op (SPY front-end-iv-ratio 0.635, CONTANGO)",
+        "cluster": "no-op (INTC kept as highest-scored member of SEMI_MEGACAP_CLUSTER; INTC/SMH 0.82 but no penalty to the kept name)",
+        "sector": "no-op (Technology persistence 0.8, trend INFLOW; adverse-rotation requires OUTFLOW)",
+        "fundamentals": "CONFIRM (4-of-4 beat streak, LOW leverage, earnings 07-22 outside horizon; tier_adj 0; key risks: unconfirmed catalyst, +25% over target, -5.9% net margin, beta 2.20, Tier-1 put 72x size/OI)",
+        "event_risk": "-0.5 (May Core PCE 2026-06-26 = T+4 from report date, inside swing horizon; execute post-PCE or minimum lot)",
+        "debate": "-1 tier (bear 0.85 >= bull 0.55; debate did not clear; Tier-1 opening PUT strike 150 size/OI 72x on the spike day is the strongest unrefuted bear signal)",
+        "rubric_regime": "cap-half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL; 0/30 post-freeze resolved calls). Moot here — debate already reached floor."
+      },
+      "invalidation": "Re-enter only if (a) INTC digests the +10% spike and holds, (b) a second Phase-1 agent confirms, and (c) 30d cum-flow clears $50M. Kill if stock breaks back below the $127-134 DP defense shelf or the 150 put is exercised (confirms directional short, not hedge)."
+    }
+  ]
+}

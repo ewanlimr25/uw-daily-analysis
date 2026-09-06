@@ -1,0 +1,1912 @@
+[
+{
+"report_date": "2026-05-25",
+"ticker": "PANW",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.213,
+"spy_rv_ratio": 0.979702852259963,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-26",
+"ticker": "SOXX",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.68,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-26",
+"ticker": "PANW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.226,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-26",
+"ticker": "MRVL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 2.712,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-26",
+"ticker": "CIEN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.177,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-26",
+"ticker": "CRDO",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.447,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-26",
+"ticker": "AVGO",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.394,
+"spy_rv_ratio": 1.3450787098057744,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-27",
+"ticker": "DLTR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.32,
+"spy_rv_ratio": 1.5025916732467364,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-27",
+"ticker": "CIEN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.152,
+"spy_rv_ratio": 1.5025916732467364,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-05-28",
+"ticker": "CIEN",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.098,
+"spy_rv_ratio": 1.7324378551136361,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-28",
+"ticker": "VEEV",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.443,
+"spy_rv_ratio": 1.7324378551136361,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-28",
+"ticker": "ADBE",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.401,
+"spy_rv_ratio": 1.7324378551136361,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-05-28",
+"ticker": "HPE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 2.876,
+"spy_rv_ratio": 1.7324378551136361,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-02",
+"ticker": "AVGO",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.172,
+"spy_rv_ratio": 1.8406850136387753,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-02",
+"ticker": "MDT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.046,
+"spy_rv_ratio": 1.8406850136387753,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-03",
+"ticker": "ORCL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.241,
+"spy_rv_ratio": 2.0532492511140563,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-04",
+"ticker": "MU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.49,
+"spy_rv_ratio": 2.0941490785774843,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-04",
+"ticker": "ORCL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.142,
+"spy_rv_ratio": 2.0941490785774843,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-04",
+"ticker": "ACN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.972,
+"spy_rv_ratio": 2.0941490785774843,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-05",
+"ticker": "ORCL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.031,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-05",
+"ticker": "CHWY",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.055,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-05",
+"ticker": "ADBE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.95,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-05",
+"ticker": "AMD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.236,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-05",
+"ticker": "MRVL",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.423,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-05",
+"ticker": "WDC",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.711,
+"spy_rv_ratio": 1.8855797426867413,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-10",
+"ticker": "LRCX",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.235,
+"spy_rv_ratio": 1.1302984745524887,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-12",
+"ticker": "ACN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.956,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-12",
+"ticker": "KR",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.279,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-12",
+"ticker": "MU",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.205,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-15",
+"ticker": "MU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.178,
+"spy_rv_ratio": 1.043412466884516,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-22",
+"ticker": "MU",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.145,
+"spy_rv_ratio": 0.9462793009234992,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-22",
+"ticker": "WDC",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.232,
+"spy_rv_ratio": 0.9462793009234992,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-22",
+"ticker": "FDX",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.066,
+"spy_rv_ratio": 0.9462793009234992,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-22",
+"ticker": "CBRS",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.981,
+"spy_rv_ratio": 0.9462793009234992,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-23",
+"ticker": "MU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.098,
+"spy_rv_ratio": 0.9291876838330868,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-24",
+"ticker": "NKE",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.087,
+"spy_rv_ratio": 0.8778407330276167,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-25",
+"ticker": "NKE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.087,
+"spy_rv_ratio": 0.8306663364510072,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-26",
+"ticker": "STZ",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.307,
+"spy_rv_ratio": 0.6812487434001415,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-26",
+"ticker": "TSCO",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.031,
+"spy_rv_ratio": 0.6812487434001415,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-26",
+"ticker": "ABT",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.039,
+"spy_rv_ratio": 0.6812487434001415,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-26",
+"ticker": "NKE",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.078,
+"spy_rv_ratio": 0.6812487434001415,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-29",
+"ticker": "PEP",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.303,
+"spy_rv_ratio": 0.6246505688028152,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-30",
+"ticker": "BMY",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.11,
+"spy_rv_ratio": 0.5991358745076989,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-30",
+"ticker": "GIS",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.596,
+"spy_rv_ratio": 0.5991358745076989,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-30",
+"ticker": "FDS",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.094,
+"spy_rv_ratio": 0.5991358745076989,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-30",
+"ticker": "FTNT",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.256,
+"spy_rv_ratio": 0.5991358745076989,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-01",
+"ticker": "GS",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.154,
+"spy_rv_ratio": 0.6712027848299486,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-01",
+"ticker": "PEP",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.09,
+"spy_rv_ratio": 0.6712027848299486,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-01",
+"ticker": "MU",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.76,
+"spy_rv_ratio": 0.6712027848299486,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-01",
+"ticker": "IWM",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.764,
+"spy_rv_ratio": 0.6712027848299486,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "JNJ",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.094,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "ABT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.092,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "PEP",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.136,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "ASML",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.851,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "FTNT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.341,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-02",
+"ticker": "MRNA",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.912,
+"spy_rv_ratio": 0.6504895522331848,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-06",
+"ticker": "MS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.328,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-06",
+"ticker": "NFLX",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.829,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-06",
+"ticker": "ABT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.004,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-06",
+"ticker": "PEP",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.127,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-06",
+"ticker": "STT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.287,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-06",
+"ticker": "BE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.816,
+"spy_rv_ratio": 0.6976541340202671,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "PEP",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.988,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "BE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.785,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "WDC",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.723,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-07",
+"ticker": "JNJ",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.999,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "MS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.345,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "SCHW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.998,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "GM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.891,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "IBKR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.801,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "STT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.201,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-07",
+"ticker": "ELV",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.315,
+"spy_rv_ratio": 0.7127919459632153,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-08",
+"ticker": "TSM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.722,
+"spy_rv_ratio": 0.6735539742024225,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-09",
+"ticker": "META",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.089,
+"spy_rv_ratio": 0.6786874363699691,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-13",
+"ticker": "NFLX",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.864,
+"spy_rv_ratio": 0.7327583003306158,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-15",
+"ticker": "META",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.83,
+"spy_rv_ratio": 0.8820790766426367,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-15",
+"ticker": "NFLX",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.985,
+"spy_rv_ratio": 0.8820790766426367,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-15",
+"ticker": "GOOGL",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.01,
+"spy_rv_ratio": 0.8820790766426367,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-15",
+"ticker": "MSFT",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.929,
+"spy_rv_ratio": 0.8820790766426367,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "MSFT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.046,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "AAPL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.798,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "GOOGL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.808,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "META",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.763,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "INTC",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.794,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "NOW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.23,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "TXN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.766,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "BE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.749,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "COHR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.808,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-16",
+"ticker": "ON",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.786,
+"spy_rv_ratio": 0.926190382535156,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "STX",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.948,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "GEV",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.027,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "SNDK",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.828,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-20",
+"ticker": "INTC",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.855,
+"spy_rv_ratio": 1.1943704999525468,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-20",
+"ticker": "BE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.878,
+"spy_rv_ratio": 1.1943704999525468,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-20",
+"ticker": "NOW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.308,
+"spy_rv_ratio": 1.1943704999525468,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-20",
+"ticker": "ARM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.812,
+"spy_rv_ratio": 1.1943704999525468,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-21",
+"ticker": "STX",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.066,
+"spy_rv_ratio": 1.3442607338673447,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-21",
+"ticker": "LRCX",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.855,
+"spy_rv_ratio": 1.3442607338673447,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-21",
+"ticker": "AMD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.14,
+"spy_rv_ratio": 1.3442607338673447,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-21",
+"ticker": "ETN",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.222,
+"spy_rv_ratio": 1.3442607338673447,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-22",
+"ticker": "META",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.765,
+"spy_rv_ratio": 1.4349007521348187,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-22",
+"ticker": "MSFT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.473,
+"spy_rv_ratio": 1.4349007521348187,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-22",
+"ticker": "LITE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.275,
+"spy_rv_ratio": 1.4349007521348187,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-22",
+"ticker": "OUST",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.72,
+"spy_rv_ratio": 1.4349007521348187,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-24",
+"ticker": "AKAM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.015,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-24",
+"ticker": "FSLR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.645,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-24",
+"ticker": "BE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.082,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-24",
+"ticker": "IREN",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.245,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-24",
+"ticker": "SOXL",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.952,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-24",
+"ticker": "SOXX",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.164,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-24",
+"ticker": "VLO",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.127,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-24",
+"ticker": "BSX",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.56,
+"spy_rv_ratio": 1.4754449811517572,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-29",
+"ticker": "TWLO",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.139,
+"spy_rv_ratio": 1.1066973113735838,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-30",
+"ticker": "AMD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.718,
+"spy_rv_ratio": 0.9858156704522053,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-30",
+"ticker": "PLTR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.296,
+"spy_rv_ratio": 0.9858156704522053,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-30",
+"ticker": "XOM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.214,
+"spy_rv_ratio": 0.9858156704522053,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-07-31",
+"ticker": "CRWV",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.269,
+"spy_rv_ratio": 0.8664994314888798,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-03",
+"ticker": "CRWV",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.111,
+"spy_rv_ratio": 0.7456202750654054,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-03",
+"ticker": "MCD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.056,
+"spy_rv_ratio": 0.7456202750654054,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-04",
+"ticker": "MU",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.671,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-04",
+"ticker": "SMCI",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.109,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-04",
+"ticker": "CSCO",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.04,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-04",
+"ticker": "IBM",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.699,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-04",
+"ticker": "DELL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.817,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-04",
+"ticker": "CRWV",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.026,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-04",
+"ticker": "AMAT",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.68,
+"spy_rv_ratio": 0.5751533723080329,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-05",
+"ticker": "ZTS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.557,
+"spy_rv_ratio": 0.5011090710969803,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-06",
+"ticker": "CRWV",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.021,
+"spy_rv_ratio": 0.5195595119517952,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-07",
+"ticker": "MU",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.625,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-07",
+"ticker": "AMD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.528,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-10",
+"ticker": "SNDK",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.745,
+"spy_rv_ratio": 0.5316440468812192,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-10",
+"ticker": "USO",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.867,
+"spy_rv_ratio": 0.5316440468812192,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-10",
+"ticker": "HD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.102,
+"spy_rv_ratio": 0.5316440468812192,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-10",
+"ticker": "LOW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.153,
+"spy_rv_ratio": 0.5316440468812192,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-10",
+"ticker": "MRVL",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.929,
+"spy_rv_ratio": 0.5316440468812192,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-11",
+"ticker": "TGT",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.477,
+"spy_rv_ratio": 0.5169973416817893,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-14",
+"ticker": "ROST",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.494,
+"spy_rv_ratio": 0.5769552742245098,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-14",
+"ticker": "MU",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.625,
+"spy_rv_ratio": 0.5769552742245098,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-14",
+"ticker": "CRWD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.357,
+"spy_rv_ratio": 0.5769552742245098,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-14",
+"ticker": "HPQ",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.895,
+"spy_rv_ratio": 0.5769552742245098,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-17",
+"ticker": "ULTA",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.285,
+"spy_rv_ratio": 0.6147620091211118,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "ULTA",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.238,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "GLD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.476,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "LITE",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.785,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "INTU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.102,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "CRWD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.535,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "BABA",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.336,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "NBIS",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.531,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "AMAT",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.633,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "CRWV",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.559,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "SNDK",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.672,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-18",
+"ticker": "ROST",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.356,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "DE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.611,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-18",
+"ticker": "DELL",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.734,
+"spy_rv_ratio": 0.6630822958824286,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-19",
+"ticker": "CRM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.509,
+"spy_rv_ratio": 0.7530930669150806,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-19",
+"ticker": "INTU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.154,
+"spy_rv_ratio": 0.7530930669150806,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-19",
+"ticker": "MRNA",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 4.523,
+"spy_rv_ratio": 0.7530930669150806,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-19",
+"ticker": "QQQ",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.703,
+"spy_rv_ratio": 0.7530930669150806,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-21",
+"ticker": "AVGO",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.693,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-21",
+"ticker": "HPQ",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.343,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-21",
+"ticker": "MRVL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.82,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-24",
+"ticker": "DELL",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.669,
+"spy_rv_ratio": 0.953382425126562,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-24",
+"ticker": "MRVL",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.816,
+"spy_rv_ratio": 0.953382425126562,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-24",
+"ticker": "SNPS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 2.435,
+"spy_rv_ratio": 0.953382425126562,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-25",
+"ticker": "MU",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.842,
+"spy_rv_ratio": 1.1893334024235382,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-25",
+"ticker": "ZS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.306,
+"spy_rv_ratio": 1.1893334024235382,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-25",
+"ticker": "AMD",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.772,
+"spy_rv_ratio": 1.1893334024235382,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-25",
+"ticker": "OKTA",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.908,
+"spy_rv_ratio": 1.1893334024235382,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-26",
+"ticker": "DLTR",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 3.001,
+"spy_rv_ratio": 1.4803954789098388,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-26",
+"ticker": "BURL",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 2.241,
+"spy_rv_ratio": 1.4803954789098388,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-26",
+"ticker": "LULU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.121,
+"spy_rv_ratio": 1.4803954789098388,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-26",
+"ticker": "PANW",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.819,
+"spy_rv_ratio": 1.4803954789098388,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-12",
+"ticker": "MU",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.205,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-12",
+"ticker": "ACN",
+"section": "watch_only",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.956,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-06-12",
+"ticker": "KR",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.279,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-12",
+"ticker": "JBL",
+"section": "watch_only",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.373,
+"spy_rv_ratio": 1.0607573581774654,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-06-26",
+"ticker": "AMAT",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.388,
+"spy_rv_ratio": 0.6812487434001415,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "INTC",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.85,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "AMD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.074,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-17",
+"ticker": "CDNS",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "WIN",
+"rv_ratio": 0.981,
+"spy_rv_ratio": 1.0134026833232488,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-07-31",
+"ticker": "SNDK",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.828,
+"spy_rv_ratio": 0.8664994314888798,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-07",
+"ticker": "DE",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.31,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-07",
+"ticker": "HD",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.093,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-07",
+"ticker": "ROST",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.276,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-07",
+"ticker": "COHR",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.14,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-07",
+"ticker": "IOVA",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "WIN",
+"rv_ratio": 1.741,
+"spy_rv_ratio": 0.5215474560572059,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-21",
+"ticker": "AVGO",
+"section": "vol_long",
+"thesis_direction": "vol_long",
+"outcome": "LOSS",
+"rv_ratio": 0.693,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": false
+},
+{
+"report_date": "2026-08-21",
+"ticker": "DG",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.232,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-21",
+"ticker": "INTU",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.313,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-21",
+"ticker": "CRM",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.685,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+},
+{
+"report_date": "2026-08-21",
+"ticker": "HPQ",
+"section": "vol_short",
+"thesis_direction": "vol_short",
+"outcome": "LOSS",
+"rv_ratio": 1.343,
+"spy_rv_ratio": 0.8163938423345044,
+"spy_vol_benchmark_win": true
+}
+]

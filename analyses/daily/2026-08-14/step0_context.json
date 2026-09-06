@@ -1,0 +1,243 @@
+{
+  "date": "2026-08-14",
+  "weekday": "Friday",
+  "opex_week": false,
+  "opex_note": "Third Friday = 2026-08-21, 7 calendar days out (> 5). opex-pin-strategist NOT spawned.",
+  "fz_available": true,
+  "fz_caveat": "CRITICAL — the upstream fz doubled-first-letter ticker bug is LIVE again on the `fz screen` surface this run (observed: AABCL=ABCL, AAEHR=AEHR, CCLYM=CLYM, QQMCO=QMCO, SSGMT=SGMT, NNEWP=NEWP, HHTFL=HTFL, AACHV=ACHV, AAVAH=AVAH). Never match an fz ticker with ==. De-double (ticker[0]==ticker[1] -> drop one) and cross-check against the Company field before using any fz ticker identity. All fz lanes are advisory / 0 rubric points.",
+
+  "regime": {
+    "label": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "spy": {"current": 776.34, "sma_20": 756.20, "sma_50": 748.93, "above_20sma": true, "above_50sma": true, "change_30d_pct": 3.41, "pct_from_90d_high": -0.39},
+    "market_breadth_uw": {"bullish_flow_tickers": 2214, "bearish_flow_tickers": 4098, "bullish_pct": 35.1, "tickers_with_options": 6312},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+
+  "tape_framing_ohlc": {
+    "note": "Cap-weighted vs equal-weight check (C12 module, --as-of pinned). FLAT-to-slightly-RED mega-cap tape, small caps leading, vol bleeding out. This is NOT a broad rally and NOT a distribution day — it is a low-energy, breadth-neutral drift.",
+    "SPY": {"close": 776.34, "chg_1d_pct": -0.20, "chg_5d_pct": 0.40, "rv20": 13.0},
+    "QQQ": {"close": 731.07, "chg_1d_pct": -0.14, "chg_5d_pct": 1.11, "rv20": 23.0},
+    "IWM": {"close": 305.09, "chg_1d_pct": 0.52, "chg_5d_pct": 1.17, "rv20": 14.9},
+    "RSP": {"close": 222.77, "chg_1d_pct": 0.02, "chg_5d_pct": 1.22, "rv20": 10.3},
+    "VIX": {"close": 14.25, "chg_1d_pct": -2.60, "chg_5d_pct": -4.36},
+    "SMH": {"close": 587.82, "chg_1d_pct": -0.22, "chg_5d_pct": 0.88, "rv20": 45.2},
+    "sector_etfs_1d_pct": {"XLE": 1.39, "XLU": 0.61, "XLB": 0.44, "XLI": 0.39, "XLC": 0.36, "XLRE": 0.33, "XLP": 0.10, "XLF": -0.17, "XLY": -0.21, "XLK": -0.40, "XLV": -0.60},
+    "sector_etfs_5d_pct": {"XLE": 7.67, "XLU": 1.61, "XLC": 1.53, "XLP": 1.14, "XLK": 1.09, "XLV": 1.02, "XLF": 0.97, "XLI": 0.72, "XLRE": 0.64, "XLB": -0.61, "XLY": -1.38}
+  },
+
+  "vrp_classification": {
+    "SPY": {"regime": "FAIR", "vrp": -0.0073, "iv30d": 0.1176, "realised_vol": 0.1249, "interpretation": "IV close to realised — no clear edge from VRP alone."},
+    "QQQ": {"regime": "PREMIUM_BUYING", "vrp": -0.0506, "iv30d": 0.1817, "realised_vol": 0.2324, "interpretation": "Vol cheap vs realised — favour premium BUYING."},
+    "desk_read": "BOTH indices carry NEGATIVE VRP. This is a premium-BUYING tape, not a premium-selling tape. contrarian-scanner: your spec aborts naked-short-premium fades in negative VRP — respect it. vol-surface-scout / earnings-scout: long-vol and calendar structures get the benefit of the doubt; short-vol structures need an explicit reason."
+  },
+
+  "dte_share": {
+    "regime_hint": "RETAIL_DRIVEN",
+    "share_0dte": 0.458, "share_weeklies": 0.253, "share_monthlies": 0.160, "share_leaps": 0.033,
+    "desk_read": "45.8% 0DTE = retail-dominated tape. Per sector-rotation-strategist spec this is a MARKET-level overlay (tool returns symbol=MARKET, NOT per-sector): downgrade ALL rotation conviction uniformly. Institutional monthly+ share only 19.3%."
+  },
+
+  "sector_summary_NETTED_authoritative": {
+    "source": "uw risk market-regime .sector_rotation — THE ONLY NETTED SOURCE (2026-07-31 correction / C55). Read every sector DIRECTION off this.",
+    "money_flowing_in": {"Technology": 40464017, "Financial Services": 24460999, "Utilities": 4105177},
+    "money_flowing_out": {"Consumer Cyclical": -118776282, "Industrials": -48793216, "Healthcare": -18942685}
+  },
+
+  "sector_summary_GROSS_turnover_only": {
+    "source": "uw options-flow sector-flow — GROSS call$ minus put$, sign-agnostic TURNOVER. NOT direction. `sector-flow` and `sector-flow-persistence` are ONE gross source (identical values), not two.",
+    "net_flow_by_sector": {"Technology": 3114621792, "Energy": 1311902158, "Consumer Cyclical": 652409433, "Communication Services": 562539038, "Financial Services": 344834072, "Industrials": 338618626, "Healthcare": 251750146, "Basic Materials": 72750143, "Utilities": 36059672, "Consumer Defensive": 32501602, "Real Estate": 10046682}
+  },
+
+  "sector_persistence": {
+    "source": "uw options-flow sector-flow-persistence (5d: 08-10..08-14)",
+    "ZERO_DISCRIMINATION_WARNING": "11 of 11 sectors return trend=INFLOW; 10 of 11 return persistence_score=1.0 (Real Estate 0.8). This line fires on ~100% of the population and therefore carries ~zero information this session. It is a DURABILITY filter only and CANNOT express direction. Do not treat a 1.0 persistence score as evidence.",
+    "scores": {"Technology": 1.0, "Energy": 1.0, "Consumer Cyclical": 1.0, "Communication Services": 1.0, "Financial Services": 1.0, "Industrials": 1.0, "Healthcare": 1.0, "Basic Materials": 1.0, "Utilities": 1.0, "Consumer Defensive": 1.0, "Real Estate": 0.8}
+  },
+
+  "netted_vs_gross_disagreements": {
+    "rule": "C55 — netted-vs-gross disagreement ⇒ watch_only for that sector's rotation call.",
+    "DISAGREE_watch_only": {
+      "Consumer Cyclical": "gross +$652M INFLOW vs netted -$118.8M OUT (price agrees with NETTED: XLY -0.21% 1d, -1.38% 5d, the weakest sector on the 5d tape)",
+      "Industrials": "gross +$339M INFLOW vs netted -$48.8M OUT (price: XLI +0.39% 1d)",
+      "Healthcare": "gross +$252M INFLOW vs netted -$18.9M OUT (price agrees with NETTED: XLV -0.60% 1d, worst 1d sector)"
+    },
+    "AGREE": {
+      "Technology": "gross +$3.11B / netted +$40.5M — both IN, but note XLK -0.40% on the day",
+      "Financial Services": "gross +$345M / netted +$24.5M — both IN",
+      "Utilities": "gross +$36M / netted +$4.1M — both IN, price confirms XLU +0.61% 1d / +1.61% 5d"
+    },
+    "NOT_IN_NETTED_TOP_OR_BOTTOM": "Energy — gross +$1.31B (2nd largest) and the single best price tape (XLE +1.39% 1d, +7.67% 5d) but absent from the netted top-3-in. Treat as a PRICE+GROSS-led rotation with no netted confirmation; instrument-level ETF work owns this call."
+  },
+
+  "macro_snapshot": {
+    "source": "FRED", "available": true, "retrieved": "2026-08-14",
+    "signals": {
+      "yield_curve": "normal", "yield_curve_10y2y": 0.51,
+      "core_cpi_yoy_pct": 2.79, "core_pce_yoy_pct": 3.29,
+      "unemployment_rate": 4.1, "payrolls_mom_000s": -23.0,
+      "ten_year_yield": 4.63, "ten_year_30d_direction": "flat",
+      "usd_30d_direction": "weakening", "fed_funds": 3.63
+    },
+    "desk_read": "STAGFLATIONARY TILT. Core PCE 3.29% YoY is sticky and well above target while payrolls printed -23k MoM (outright contraction) with unemployment 4.1%. Fed funds 3.63% vs core PCE 3.29% = ~34bp real policy rate — very little restraint left. Curve normal +51bp, 10Y 4.63% flat, USD weakening. This combination (soft labour + sticky core + weak dollar) is what is bidding Energy and Utilities and pressuring Consumer Cyclical."
+  },
+
+  "event_risk": [
+    {"event": "FOMC minutes (Jul 28-29 meeting)", "date": "2026-08-19", "impact": "MEDIUM-HIGH"},
+    {"event": "Weekly initial jobless claims", "date": "2026-08-20", "impact": "LOW-MEDIUM (elevated salience given -23k payrolls)"},
+    {"event": "Jackson Hole Symposium opens (Powell)", "date": "2026-08-21", "impact": "HIGH"},
+    {"event": "Flash S&P Global PMIs / Philly Fed / Existing Home Sales", "date": "2026-08-21", "impact": "MEDIUM"},
+    {"event": "MONTHLY OPEX (third Friday)", "date": "2026-08-21", "impact": "HIGH — structural"},
+    {"event": "Jackson Hole day 2", "date": "2026-08-22", "impact": "MEDIUM-HIGH"},
+    {"event": "Consumer Confidence / New Home Sales", "date": "2026-08-25", "impact": "LOW-MEDIUM"},
+    {"event": "Core PCE (July) + Q2 GDP 2nd estimate", "date": "2026-08-26", "impact": "HIGH"},
+    {"event": "Weekly initial jobless claims", "date": "2026-08-27", "impact": "LOW-MEDIUM"},
+    {"event": "NFP (August)", "date": "2026-09-04", "impact": "HIGH (just outside the 10-session window)"}
+  ],
+  "event_risk_desk_read": "A 1-6 week swing sized today eats FOUR Tier-1 events: FOMC minutes (Aug 19), Jackson Hole (Aug 21-22), monthly OPEX (Aug 21) and Core PCE (Aug 26). There is NO clean window. Every swing thesis must state how it survives Jackson Hole.",
+
+  "breadth_cross_check": {
+    "source": "fz breadth --group sector (advisory, 0 rubric points, independent lineage from uw)",
+    "advancers": 250, "decliners": 245, "unchanged": 8, "total": 503,
+    "pct_green": 49.7, "avg_change": 0.06, "median_change": 0.0,
+    "top_mover": "CPRT +7.55%", "worst_mover": "AVGO -5.94%",
+    "divergence_read": "NO classic divergence — the index is flat-to-red (SPY -0.20%) and breadth is 49.7%, i.e. breadth and price AGREE. The tell here is not divergence but ENERGY: median change exactly 0.00% and avg +0.06% on a 503-name base = a genuinely directionless tape. Contrast the uw flow breadth (35.1% bullish-flow tickers) with the fz price breadth (49.7% green): flow is materially more bearish than price. That gap — bearish flow into a flat tape — is the session's real signal."
+  },
+
+  "zerodte_setup": {
+    "available": true,
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "CRITICAL_CONDITIONAL_OVERRIDE": "The `verdict` and `sell_premium:true` fields are UNCONDITIONAL and MUST NOT be taken at face value. vol_state is LOW (VIX 14.25, below the 16.1 low-tercile bound). Reading mean_pnl_by_vix_state[LOW] net of the 0.1% round-trip cost: SPY 0.022% gross => -0.078% NET; QQQ 0.091% gross => -0.009% NET. BOTH ARE NEGATIVE-EXPECTANCY IN THE CURRENT VIX TERCILE. The headline unconditional net (+0.119% SPY / +0.241% QQQ) is a blend that borrows its edge entirely from the MID/HIGH terciles. Report the conditional number and STAND ASIDE.",
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 14.25, "implied_move_pct": 0.35, "expected_range_pct": 0.78, "size_scalar": 0.5, "mean_pnl_open_pct_uncond": 0.219, "mean_pnl_open_net_pct_uncond": 0.119, "mean_pnl_LOW_tercile_gross": 0.022, "mean_pnl_LOW_tercile_NET": -0.078, "suggested_structure": "iron fly / short straddle centred at 775.9, wings ~ ±0.78%", "worst_day_open_pct": -1.4},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 14.25, "implied_move_pct": 0.56, "expected_range_pct": 1.37, "size_scalar": 0.5, "mean_pnl_open_pct_uncond": 0.341, "mean_pnl_open_net_pct_uncond": 0.241, "mean_pnl_LOW_tercile_gross": 0.091, "mean_pnl_LOW_tercile_NET": -0.009, "suggested_structure": "iron fly / short straddle centred at 730.84, wings ~ ±1.37%", "worst_day_open_pct": -2.453},
+    "entry_rule": "Enter at/after the open once the overnight gap resolves; hold 0DTE to the close; never carry overnight.",
+    "tail_caveat": "Validation sample has NO vol shock; short-vol left tail is UNSAMPLED."
+  },
+
+  "TAPE_ARTIFACTS_MANDATORY_READ": {
+    "SNDK_deep_ITM_roll": "SNDK is the #1 single-name bullish net_flow (+$166.4M) and it is CONTAMINATED. The top-premium tape shows TWO offsetting deep-ITM prints: BUY 1500x Aug-28 900C @ ask for $108.0M (delta 0.985, underlying 1615.7) and SELL 900C Aug-14 (0DTE) @ bid for $107.6M (delta 0.99). That is a DEEP-ITM CALL ROLL — a position being extended, not opened. Delta ~0.99 means it is stock-equivalent financing with ~zero new directional information, and the two legs nearly cancel ($108.0M vs $107.6M). Any agent about to call SNDK 'massive bullish conviction' must net these first. Same artifact family as the documented put-sale-netting and dividend-capture blind spots.",
+    "SPX_box_financing": "SPX shows +$408.6M 'top bullish' net_flow built from ~15 near-identical $63.4M prints of the Feb/Mar-2027 4700 strike call with SPX at 7785 — delta 0.97-1.00, printed on BOTH ask and bid. Deep-ITM long-dated calls at 60% below spot on both sides of the market = BOX SPREAD / SYNTHETIC FINANCING, not directional conviction. Index-level, so out of the single-name funnel, but it means the headline 'index call premium' is financing flow. Do not read SPX/SPXW net premium as a bull signal today.",
+    "instruction": "Both artifacts are directives to NET BEFORE BELIEVING. If your thesis rests on a net-premium figure, check the `side` field and whether offsetting legs exist before reporting it."
+  },
+
+  "single_leg_whale_advisory": {
+    "note": "C19 CLOSED as REFUTED 2026-07-25. ADVISORY, 0 rubric points, PERMANENTLY. Routing/context only — do NOT auto-score.",
+    "regime_used": "bull",
+    "tier_label_counts": {"CLOSING_ANTISIGNAL": 228, "PUT_CONTEXT": 32, "CALL_BETA_NOEDGE": 27, "OPENING_PUT_STRONG": 18, "FLOOR_PUT_BLOCK": 15, "OPENING_PUT_PRIME": 6, "CALL_BETA_FADE_CHASE": 3},
+    "tier1_puts_CONTRARIAN_SHORT": [
+      {"ticker": "WDC", "label": "FLOOR_PUT_BLOCK", "strike": 555, "dte": 7, "premium_usd": 5571000, "size_oi": 0.86, "signal_price": 499.09},
+      {"ticker": "TSLA", "label": "FLOOR_PUT_BLOCK", "strike": 430, "dte": 7, "premium_usd": 3520000, "size_oi": 1.559, "signal_price": 342.08},
+      {"ticker": "GOOGL", "label": "FLOOR_PUT_BLOCK", "strike": 390, "dte": 7, "premium_usd": 2840000, "size_oi": 1.094, "signal_price": 345.28},
+      {"ticker": "AAPL", "label": "FLOOR_PUT_BLOCK", "strike": 335, "dte": 7, "premium_usd": 2620000, "size_oi": 0.612, "signal_price": 305.56},
+      {"ticker": "ADBE", "label": "FLOOR_PUT_BLOCK", "strike": 340, "dte": 7, "premium_usd": 2320000, "size_oi": 1.466, "signal_price": 265.01},
+      {"ticker": "META", "label": "FLOOR_PUT_BLOCK", "strike": 690, "dte": 7, "premium_usd": 2090000, "size_oi": 1.313, "signal_price": 590.30},
+      {"ticker": "NFLX", "label": "FLOOR_PUT_BLOCK", "strike": 96, "dte": 7, "premium_usd": 1470000, "size_oi": 1.499, "signal_price": 78.05},
+      {"ticker": "GOOG", "label": "FLOOR_PUT_BLOCK", "strike": 390, "dte": 7, "premium_usd": 840000, "size_oi": 1.496, "signal_price": 342.92},
+      {"ticker": "CRWD", "label": "OPENING_PUT_PRIME", "strike": 197.5, "dte": 14, "premium_usd": 610000, "size_oi": 12.935, "signal_price": 217.71}
+    ],
+    "structural_caveat": "ALL 8 FLOOR_PUT_BLOCKs share dte=7 and expiry 2026-08-21 — that is OPEX week. A synchronized 7-DTE floor-put block across WDC/TSLA/GOOGL/AAPL/ADBE/META/NFLX/GOOG on a single expiry is far more consistent with a dealer/index-hedge overlay or a basket roll into OPEX than with 8 independent bilateral bearish convictions. Treat the CLUSTER as one observation, not eight. CRWD (OPENING_PUT_PRIME, size/OI 12.9, dte 14, different expiry) is the one genuinely idiosyncratic Tier-1 put.",
+    "closing_antisignal_dominance": "228 of 329 graded prints (69%) are CLOSING_ANTISIGNAL (size/OI < 0.5). Position CLOSING, not opening, dominates today's clean single-leg tape — consistent with the flat, low-energy, pre-OPEX drift."
+  },
+
+  "funnel_c12_passed": ["SNDK","AMD","MSTR","MU","NBIS","META","STX","CAR","LITE","HOOD","LRCX","RBLX","ARM","MSFT","AVGO","LULU","INTC","NFLX","AMZN","APP","TSM","NVDA","COIN","LLY","XOM","AMAT","CRWD","BA","BE","AXTI","ADSK","FLEX","OKTA","KR","ROST","ARGX","BLDR","COR","HPQ","AAP","WDC","TSLA","GOOGL","AAPL","ADBE","GOOG","BLK","TTD","ROKU","GILD","SYF","TSN","IVZ","HOG","BTU","CIFR","RCAT","PSKY","VCYT","SPCX","SKHY","DRAM","BRK-B"],
+  "funnel_c12_failed": [
+    {"symbol": "EROC", "reason": "adv $31.9M < $50M"},
+    {"symbol": "SERV", "reason": "price 4.99 < 5.00"},
+    {"symbol": "TDOC", "reason": "adv $44.6M < $50M"},
+    {"symbol": "AMLX", "reason": "adv $42.3M < $50M"},
+    {"symbol": "HSAI", "reason": "adv $25.5M < $50M"}
+  ],
+  "c12_note": "EROC was the #1 bullish signal-confluence name (score 6) and is DROPPED on liquidity. XLU also scored 6 but is a sector ETF, not a single-name candidate. The volume_vs_average screen this session is almost entirely sub-floor micro-names (WHG ratio 3673x on 1,347 contracts) — treat that screen as noise today.",
+
+  "top_bullish_screener": [
+    {"ticker": "SNDK", "net_flow": 166356572, "close": 1641.11, "sector": "Technology", "FLAG": "deep-ITM roll artifact, see TAPE_ARTIFACTS"},
+    {"ticker": "AMD", "net_flow": 69902034, "close": 514.39, "sector": "Technology"},
+    {"ticker": "MSTR", "net_flow": 39487887, "close": 93.04, "sector": "Technology"},
+    {"ticker": "MU", "net_flow": 29350332, "close": 971.66, "sector": "Technology"},
+    {"ticker": "NBIS", "net_flow": 18164869, "close": 277.68, "sector": "Communication Services"},
+    {"ticker": "META", "net_flow": 12055609, "close": 589.85, "sector": "Communication Services"},
+    {"ticker": "STX", "net_flow": 11817056, "close": 973.44, "sector": "Technology"},
+    {"ticker": "CAR", "net_flow": 10231563, "close": 137.85, "sector": "Industrials"},
+    {"ticker": "LITE", "net_flow": 8324364, "close": 926.14, "sector": "Technology"},
+    {"ticker": "HOOD", "net_flow": 8266785, "close": 95.56, "sector": "Technology"},
+    {"ticker": "LRCX", "net_flow": 7030973, "close": 332.36, "sector": "Technology"},
+    {"ticker": "RBLX", "net_flow": 6475014, "close": 38.23, "sector": "Communication Services"},
+    {"ticker": "ARM", "net_flow": 6265680, "close": 279.44, "sector": "Technology"},
+    {"ticker": "MSFT", "net_flow": 5891444, "close": 495.40, "sector": "Technology"}
+  ],
+  "top_bearish_screener": [
+    {"ticker": "AVGO", "net_flow": -86520972, "close": 392.99, "sector": "Technology", "note": "also fz worst_mover -5.94% on the day"},
+    {"ticker": "LULU", "net_flow": -80821670, "close": 119.55, "sector": "Consumer Cyclical"},
+    {"ticker": "INTC", "net_flow": -37417772, "close": 102.50, "sector": "Technology"},
+    {"ticker": "NFLX", "net_flow": -32681649, "close": 78.16, "sector": "Communication Services"},
+    {"ticker": "SPCX", "net_flow": -31738354, "close": 140.00, "sector": "Industrials"},
+    {"ticker": "AMZN", "net_flow": -24279328, "close": 262.65, "sector": "Consumer Cyclical"},
+    {"ticker": "SKHY", "net_flow": -22409694, "close": 166.33, "sector": "Technology"},
+    {"ticker": "APP", "net_flow": -17404627, "close": 315.44, "sector": "Technology"},
+    {"ticker": "TSM", "net_flow": -16774506, "close": 426.35, "sector": "Technology"},
+    {"ticker": "NVDA", "net_flow": -14864841, "close": 225.16, "sector": "Technology"},
+    {"ticker": "COIN", "net_flow": -13273320, "close": 148.47, "sector": "Technology"},
+    {"ticker": "LLY", "net_flow": -11082695, "close": 1180.16, "sector": "Healthcare"},
+    {"ticker": "XOM", "net_flow": -10846304, "close": 160.10, "sector": "Energy"},
+    {"ticker": "AMAT", "net_flow": -10809014, "close": 507.18, "sector": "Technology"},
+    {"ticker": "CRWD", "net_flow": -8922831, "close": 216.95, "sector": "Technology"},
+    {"ticker": "BA", "net_flow": -8807742, "close": 231.67, "sector": "Industrials"},
+    {"ticker": "BE", "net_flow": -7989504, "close": 229.94, "sector": "Industrials"}
+  ],
+  "confluence_bullish_c12_passed": [
+    {"ticker": "PSKY", "score": 6, "close": 10.14, "iv_rank": 8.8},
+    {"ticker": "RCAT", "score": 6, "close": 11.13, "iv_rank": 26.3},
+    {"ticker": "ROKU", "score": 6, "close": 157.68, "iv_rank": 1.9},
+    {"ticker": "CIFR", "score": 6, "close": 17.855, "iv_rank": 9.1},
+    {"ticker": "IVZ", "score": 5, "close": 32.55, "iv_rank": 22.8},
+    {"ticker": "TSN", "score": 5, "close": 58.17, "iv_rank": 23.7},
+    {"ticker": "MSFT", "score": 5, "close": 495.40, "iv_rank": 24.6},
+    {"ticker": "HOG", "score": 5, "close": 27.78, "iv_rank": 19.4},
+    {"ticker": "BTU", "score": 5, "close": 25.48, "iv_rank": 7.5},
+    {"ticker": "SYF", "score": 5, "close": 81.00, "iv_rank": 17.6},
+    {"ticker": "GILD", "score": 5, "close": 138.36, "iv_rank": 24.2}
+  ],
+  "confluence_bearish_c12_passed": [
+    {"ticker": "ADSK", "score": 5, "close": 251.66, "iv_rank": 81.5, "pcr": 2.53},
+    {"ticker": "FLEX", "score": 5, "close": 126.16, "iv_rank": 49.0, "pcr": 1.68},
+    {"ticker": "OKTA", "score": 5, "close": 147.43, "iv_rank": 80.0, "pcr": 1.61},
+    {"ticker": "KR", "score": 5, "close": 56.69, "iv_rank": 70.7, "pcr": 2.83},
+    {"ticker": "ROST", "score": 5, "close": 245.36, "iv_rank": 93.2, "pcr": 2.95},
+    {"ticker": "ARGX", "score": 4, "close": 851.29, "iv_rank": 79.8, "pcr": 2.06},
+    {"ticker": "BLDR", "score": 4, "close": 72.51, "iv_rank": 43.0, "pcr": 1.79},
+    {"ticker": "COR", "score": 4, "close": 313.82, "iv_rank": 27.4, "pcr": 1.79},
+    {"ticker": "HPQ", "score": 4, "close": 30.11, "iv_rank": 86.7, "pcr": 4.57},
+    {"ticker": "AAP", "score": 4, "close": 56.55, "iv_rank": 73.6, "pcr": 3.48},
+    {"ticker": "VCYT", "score": 4, "close": 41.25, "iv_rank": 11.0, "pcr": 2.50}
+  ],
+  "iv_extremes_note": "iv_rank HIGH screen is entirely sub-floor micro-caps and leveraged/inverse ETFs (SOXS ivr=100, plus sub-$5 names) — no tradeable single-name signal. iv_rank LOW screen holds real names: IBIT, BAC, RKLB, NVO, JPM, WFC, XYZ, U, ECHO, ETHA all at ivr=0. Cheap-optionality candidates in a NEGATIVE-VRP (premium-buying) tape — vol-surface-scout and earnings-scout should look here.",
+
+  "fz_squeeze_candidates_RAW_CORRUPTED": "fz screen returned doubled-first-letter tickers (AABCL/AABEO/AABR/AABSI/AACHC/AACHV/AAESI...). De-doubled and cross-checked against Company field, the real squeeze names include ABCL (AbCellera, short float 20.5%, short ratio 5.99, float 236M) and ACHV (Achieve Life Sciences, SF 21.1%, SR 9.11). ADVISORY ONLY, 0 rubric points. Do not enter the rubric on an fz-only name.",
+  "fz_rs_candidates_RAW_CORRUPTED": "ta_newhigh screen also doubled. De-doubled: CLYM (+10.9%), QMCO (+5.8%), APMD (+10.3%), AEHR (+8.7%), AVAH (+9.1%), SGMT (+13.7%), NEWP (+1.8%), HTFL (+35.7%), ABCL (+3.7%), ACHV (+4.7%), HP (+2.6%). Heavily biotech/healthcare-skewed — note this sits AGAINST the netted Healthcare outflow (-$18.9M) and XLV being the worst 1d sector (-0.60%). New highs in single-name biotech inside a sector the netted tape is leaving = idiosyncratic catalyst names, not a sector bid. ADVISORY, 0 rubric points.",
+
+  "step0_cache_paths": {
+    "_dir": "analyses/daily/2026-08-14/step0_cache/",
+    "daily_synthesis": "analyses/daily/2026-08-14/step0_cache/daily_synthesis.json",
+    "market_regime": "analyses/daily/2026-08-14/step0_cache/market_regime.json",
+    "dte_volume_share": "analyses/daily/2026-08-14/step0_cache/dte_volume_share.json",
+    "sector_flow": "analyses/daily/2026-08-14/step0_cache/sector_flow.json",
+    "sector_flow_persistence": "analyses/daily/2026-08-14/step0_cache/sector_flow_persistence.json",
+    "screener_bullish": "analyses/daily/2026-08-14/step0_cache/screener_bullish.json",
+    "screener_bearish": "analyses/daily/2026-08-14/step0_cache/screener_bearish.json",
+    "signal_confluence_bullish": "analyses/daily/2026-08-14/step0_cache/signal_confluence_bullish.json",
+    "signal_confluence_bearish": "analyses/daily/2026-08-14/step0_cache/signal_confluence_bearish.json",
+    "iv_rank_high": "analyses/daily/2026-08-14/step0_cache/iv_rank_high.json",
+    "iv_rank_low": "analyses/daily/2026-08-14/step0_cache/iv_rank_low.json",
+    "volume_vs_average": "analyses/daily/2026-08-14/step0_cache/volume_vs_average.json",
+    "earnings_catalyst": "analyses/daily/2026-08-14/step0_cache/earnings_catalyst.json",
+    "expiry_heatmap": "analyses/daily/2026-08-14/step0_cache/expiry_heatmap.json",
+    "iv_outliers": "analyses/daily/2026-08-14/step0_cache/iv_outliers.json",
+    "greek_screener": "analyses/daily/2026-08-14/step0_cache/greek_screener.json",
+    "top_premium_trades": "analyses/daily/2026-08-14/step0_cache/top_premium_trades.json",
+    "most_active": "analyses/daily/2026-08-14/step0_cache/most_active.json",
+    "oi_smart_positioning": "analyses/daily/2026-08-14/step0_cache/oi_smart_positioning.json",
+    "single_leg": "analyses/daily/2026-08-14/step0_cache/single_leg.json",
+    "vrp_spy": "analyses/daily/2026-08-14/step0_cache/vrp_spy.json",
+    "vrp_qqq": "analyses/daily/2026-08-14/step0_cache/vrp_qqq.json"
+  }
+}

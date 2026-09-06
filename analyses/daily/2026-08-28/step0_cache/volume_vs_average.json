@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0667,
+      "close": 24.12,
+      "full_name": "BARRON'S 400 ETF",
+      "iv_rank": 2.2459,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BFOR",
+      "total_volume": 260,
+      "volume_ratio": 3898.050974512744
+    },
+    {
+      "avg_total_volume": 2.1,
+      "close": 36.58,
+      "full_name": "INNOVATOR IBD(R) 50 ETF",
+      "iv_rank": 21.7799,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FFTY",
+      "total_volume": 446,
+      "volume_ratio": 212.38095238095238
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 47.3369,
+      "full_name": "AMERICAN ENERGY INDEPENDENCE ETF",
+      "iv_rank": 16.7479,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "USAI",
+      "total_volume": 10,
+      "volume_ratio": 149.92503748125938
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 28.8664,
+      "full_name": "Corgi Beauty, Skincare & Aesthetics ETF",
+      "iv_rank": 1.5343,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GLAM",
+      "total_volume": 4,
+      "volume_ratio": 120.1201201201201
+    },
+    {
+      "avg_total_volume": 12.1667,
+      "close": 21.5,
+      "full_name": "PROSHARES ULTRASHORT RUSSELL2000",
+      "iv_rank": 15.8071,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TWM",
+      "total_volume": 1317,
+      "volume_ratio": 108.24627877731841
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 36.37,
+      "full_name": "XTRACKERS USD HIGH YIELD CORPORATE BOND ETF",
+      "iv_rank": 11.2489,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HYLB",
+      "total_volume": 11,
+      "volume_ratio": 82.45877061469265
+    },
+    {
+      "avg_total_volume": 35.9333,
+      "close": 61.5,
+      "full_name": "DOLBY LABORATORIES INC",
+      "iv_rank": 44.2356,
+      "put_call_ratio": 0.02170767004341534,
+      "sector": "Communication Services",
+      "ticker": "DLB",
+      "total_volume": 2824,
+      "volume_ratio": 78.59005435069976
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 69.59,
+      "full_name": "BLACKROCK US EQUITY FACTOR ROTATION ETF",
+      "iv_rank": 19.4213,
+      "put_call_ratio": 9,
+      "sector": null,
+      "ticker": "DYNF",
+      "total_volume": 20,
+      "volume_ratio": 74.99062617172854
+    },
+    {
+      "avg_total_volume": 6.4666999999999994,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0.66,
+      "sector": null,
+      "ticker": "XSPBW",
+      "total_volume": 411,
+      "volume_ratio": 63.55637342075557
+    },
+    {
+      "avg_total_volume": 1.2,
+      "close": 22.07,
+      "full_name": "GLOBAL X VARIABLE RATE PREFERRED ETF",
+      "iv_rank": 2.7027,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PFFV",
+      "total_volume": 50,
+      "volume_ratio": 41.66666666666667
+    },
+    {
+      "avg_total_volume": 23.8666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 42.8969,
+      "put_call_ratio": 0.04,
+      "sector": null,
+      "ticker": "VISN1",
+      "total_volume": 880,
+      "volume_ratio": 36.871611373216126
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 147.36,
+      "full_name": "ISHARES S&P MID-CAP 400 VALUE ETF",
+      "iv_rank": 26.4245,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IJJ",
+      "total_volume": 10,
+      "volume_ratio": 33.333333333333336
+    },
+    {
+      "avg_total_volume": 290.2667,
+      "close": 73.2,
+      "full_name": "SUNBELT RENTALS HOLDINGS INC",
+      "iv_rank": 75.2739,
+      "put_call_ratio": 0.024127255257820005,
+      "sector": "Industrials",
+      "ticker": "SUNB",
+      "total_volume": 9593,
+      "volume_ratio": 33.04891673760717
+    },
+    {
+      "avg_total_volume": 0.7,
+      "close": 113.7,
+      "full_name": "ISHARES S&P MID-CAP 400 GROWTH ETF",
+      "iv_rank": 16.7976,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IJK",
+      "total_volume": 22,
+      "volume_ratio": 31.42857142857143
+    },
+    {
+      "avg_total_volume": 1.6333,
+      "close": 63.16,
+      "full_name": "COMMUNITY BANK SYSTEM INC",
+      "iv_rank": 19.1406,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CBU",
+      "total_volume": 50,
+      "volume_ratio": 30.61286965040103
+    },
+    {
+      "avg_total_volume": 8.1666,
+      "close": 4.84,
+      "full_name": "MINERVA NEUROSCIENCES INC",
+      "iv_rank": 6.3291,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "NERV",
+      "total_volume": 250,
+      "volume_ratio": 30.612494795875882
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 75.12,
+      "full_name": "JOHN HANCOCK MULTIFACTOR MID CAP ETF",
+      "iv_rank": 12.9831,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "JHMM",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 54.4237,
+      "full_name": "PACER LUNT MIDCAP MULTI-FACTOR ALTERNATOR ETF",
+      "iv_rank": 31.6503,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PAMC",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 115.17,
+      "full_name": "ISHARES MORNINGSTAR GROWTH ETF",
+      "iv_rank": 34.6834,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "ILCG",
+      "total_volume": 8,
+      "volume_ratio": 30.00750187546887
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 41.89,
+      "full_name": "DIMENSIONAL US LARGE CAP VALUE ETF",
+      "iv_rank": 0.729,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFLV",
+      "total_volume": 2,
+      "volume_ratio": 29.985007496251875
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 37.62,
+      "full_name": "DIMENSIONAL INTERNATIONAL SMALL CAP ETF",
+      "iv_rank": 9.4763,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFIS",
+      "total_volume": 2,
+      "volume_ratio": 29.985007496251875
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 35.365,
+      "full_name": "DIMENSIONAL INTERNATIONAL HIGH PROFITABILITY ETF",
+      "iv_rank": 9.402,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DIHP",
+      "total_volume": 2,
+      "volume_ratio": 29.985007496251875
+    },
+    {
+      "avg_total_volume": 4.1333,
+      "close": 34.58,
+      "full_name": "GLOBAL X AUTONOMOUS & ELECTRIC VEHICLES ETF",
+      "iv_rank": 27.4462,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DRIV",
+      "total_volume": 120,
+      "volume_ratio": 29.03249219751772
+    },
+    {
+      "avg_total_volume": 35.1,
+      "close": 14.53,
+      "full_name": "LYELL IMMUNOPHARMA INC",
+      "iv_rank": 47.2708,
+      "put_call_ratio": 111.33333333333333,
+      "sector": "Healthcare",
+      "ticker": "LYEL",
+      "total_volume": 1011,
+      "volume_ratio": 28.8034188034188
+    },
+    {
+      "avg_total_volume": 976.5334,
+      "close": 0.398,
+      "full_name": "FINGERMOTION INC",
+      "iv_rank": 37.2799,
+      "put_call_ratio": 0.03195370950503077,
+      "sector": "Communication Services",
+      "ticker": "FNGR",
+      "total_volume": 28000,
+      "volume_ratio": 28.672854405184708
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-28.parquet"
+}

@@ -1,0 +1,122 @@
+{
+ "bullish_flow|lb3": {
+  "win_rate": "75.9%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 4.07,
+  "total_signals": 29,
+  "n_results": 29,
+  "note": null
+ },
+ "bullish_flow|lb5": {
+  "win_rate": "79.3%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 6.16,
+  "total_signals": 29,
+  "n_results": 29,
+  "note": null
+ },
+ "bullish_flow|lb10": {
+  "win_rate": "82.8%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 8.08,
+  "total_signals": 29,
+  "n_results": 29,
+  "note": null
+ },
+ "bearish_flow|lb3": {
+  "win_rate": "41.9%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 1.64,
+  "total_signals": 31,
+  "n_results": 31,
+  "note": null
+ },
+ "bearish_flow|lb5": {
+  "win_rate": "41.9%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 3.1,
+  "total_signals": 31,
+  "n_results": 31,
+  "note": null
+ },
+ "bearish_flow|lb10": {
+  "win_rate": "41.9%",
+  "vol_realisation_rate": null,
+  "avg_move_pct": 4.52,
+  "total_signals": 31,
+  "n_results": 31,
+  "note": null
+ },
+ "high_iv_rank|lb3": {
+  "win_rate": null,
+  "vol_realisation_rate": "79.5%",
+  "avg_move_pct": 6.88,
+  "total_signals": 39,
+  "n_results": 39,
+  "note": null
+ },
+ "high_iv_rank|lb5": {
+  "win_rate": null,
+  "vol_realisation_rate": "89.7%",
+  "avg_move_pct": 10.74,
+  "total_signals": 39,
+  "n_results": 39,
+  "note": null
+ },
+ "high_iv_rank|lb10": {
+  "win_rate": null,
+  "vol_realisation_rate": "89.7%",
+  "avg_move_pct": 12.75,
+  "total_signals": 39,
+  "n_results": 39,
+  "note": null
+ },
+ "volume_spike|lb3": {
+  "win_rate": null,
+  "vol_realisation_rate": "45.7%",
+  "avg_move_pct": 2.93,
+  "total_signals": 35,
+  "n_results": 35,
+  "note": null
+ },
+ "volume_spike|lb5": {
+  "win_rate": null,
+  "vol_realisation_rate": "57.1%",
+  "avg_move_pct": 2.87,
+  "total_signals": 35,
+  "n_results": 35,
+  "note": null
+ },
+ "volume_spike|lb10": {
+  "win_rate": null,
+  "vol_realisation_rate": "60.0%",
+  "avg_move_pct": 4.16,
+  "total_signals": 35,
+  "n_results": 35,
+  "note": null
+ },
+ "dark_pool_accumulation|lb3": {
+  "win_rate": null,
+  "vol_realisation_rate": null,
+  "avg_move_pct": null,
+  "total_signals": 0,
+  "n_results": null,
+  "note": "no backtest results"
+ },
+ "dark_pool_accumulation|lb5": {
+  "win_rate": null,
+  "vol_realisation_rate": null,
+  "avg_move_pct": null,
+  "total_signals": 0,
+  "n_results": null,
+  "note": "no backtest results"
+ },
+ "dark_pool_accumulation|lb10": {
+  "win_rate": null,
+  "vol_realisation_rate": null,
+  "avg_move_pct": null,
+  "total_signals": 0,
+  "n_results": null,
+  "note": "no backtest results"
+ }
+}

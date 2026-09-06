@@ -1,0 +1,159 @@
+{
+  "iso_week": "2026-W31",
+  "week_end": "2026-07-31",
+  "covered_dates": ["2026-07-27","2026-07-28","2026-07-29","2026-07-30","2026-07-31"],
+  "agents_run": 11,
+  "opex_week": false,
+
+  "CRITICAL_CROSS_CUTTING_FINDINGS": {
+    "F1_dex_flips_all_same_session": "ALL SIX mechanized DEX flips (SPY, NVDA, PLTR, AAPL, MRVL, COIN) fired on the SAME session, 2026-07-31 — the 48.2%-0DTE RETAIL_DRIVEN Friday. Six independent names flipping sign simultaneously on the highest-0DTE day of the week is a signature of expiry contamination, not six independent dealer repositionings. dealer-positioning-strategist flagged this itself and cross-checked each against gex-time-series. TREAT EVERY +1 DEX-FLIP AWARD THIS WEEK AS PROVISIONAL pending a Monday 08-03 second-session confirmation.",
+    "F2_front_end_iv_ratio_unusable": "front-end-iv-ratio returned BACKWARDATION with near_dte_actual=0 on EVERY name pulled (SPY 1.611, QQQ 1.696, AAPL 3.373, COIN 2.348, MRVL 2.183, NVDA 1.715, PLTR 1.422). This is Friday-0DTE contamination, the same artifact as 2026-07-24. THE PANIC GATE HAS NO VALID INPUT THIS WEEK — risk-monitor must record panic gate as NA(substrate), not PASS.",
+    "F3_C47_saturation_universal": "EVERY ticker checked by accumulation-hunter AND leap-positioning-radar returned consecutive_build_days == --days at BOTH --days 5 AND --days 10 (LITE, STX, MRVL, NBIS, MU, SNDK). The +3 weekly oi-trend BUILDING line has ZERO discrimination this week — it is a ceiling artifact. When awarding it, you MUST state saturated=true and treat the read as a FLOOR, not a count.",
+    "F4_sector_tool_identity": "sector-rotation-strategist PROVED that sector-flow-persistence's by_day values are LITERALLY IDENTICAL to sector-flow's classified split (same formula: gross call$ - put$, verified on 07-27/28/29). They are NOT two independent sources. market-regime's sector_rotation block is the properly-NETTED figure (Technology -$187.7M on 07-31 vs sector-flow's +$2.78B). Use market-regime for net direction; treat sector-flow/persistence as a TURNOVER gauge only.",
+    "F5_implied_move_field_broken": "uw screener earnings-catalyst's implied_move_perc is BROKEN on multiple names: PLTR 0.14% (term-structure-derived 14.7%), SNDK 0.83% (25.1%), CRWV 0.68% (24.3%). Independently found by vol-surface-scout AND earnings-scout. Do NOT emit the raw field into the envelope's implied_move; use the term-structure-derived value or null.",
+    "F6_iv_percentile_below_floor": "Every uw historical iv-percentile-zscore call returned dates_used: 77, BELOW the 120-day floor. All percentile reads this week are PROVISIONAL.",
+    "F7_iv_outliers_contaminated": "uw options-flow iv-outliers on 07-31 returned 20/20 results ALL in the 2026-07-31 0DTE bucket — 100% contaminated, zero usable single-contract outliers. Do not cite.",
+    "F8_fleet_was_wrong_way_short": "SCORECARD CONTEXT: this week's daily envelopes were systematically SHORT into a V-reversal and graded badly — AMZN short -6.00xATR, BE short -1.65xATR, WDC short -1.64xATR, SMH short -1.44xATR. DROP pile 3W/10L = 23.1%. Non-DROP 1W/3L = 25%. NOTHING WAS SIZED so nothing was lost. THE CANDIDATE UNION BELOW IS AGAIN HEAVILY SHORT. Weigh that base rate."
+  },
+
+  "confluence_gate_passers": [
+    {
+      "ticker": "AAPL", "direction": "short", "agents": ["dealer-positioning-strategist", "sector-rotation-strategist", "earnings-scout(recap)"], "agent_count": 2,
+      "evidence": {
+        "dex_flip": "QUALIFIES. dex_flip.py: prior_run_len=14 (LONGEST clean run in the set, 07-13..07-30 all positive), 07-31 net_dex -4.91B, magnitude_ratio 2.32x floor, sign_changes_in_window=1, whipsaw_warning=FALSE. CLEANEST flip of the six. BUT see F1 — fired on the 0DTE Friday.",
+        "gex_confirm": "total_gex flipped positive->negative same day (176M->76M->-199.7M). Top strike 310 = 30% of total, well distributed, NOT a single-strike artifact.",
+        "sector_leader": "ALL THREE LEGS PASS. Technology, sector persistence 1.0, cum_premium_flow_30d = -$90.4M (aligned bearish, clears $50M).",
+        "price": "-7.35% on 07-31 (earnings miss + guide-down), -7.24% wk.",
+        "earnings_recap": "07-27 institutional DISTRIBUTION flag (buy_sell_ratio 0.60, 91% sell at top DP tier, 9,440-trade sample, NOT closing-cross) three sessions BEFORE the print. Graded CONFIRMING.",
+        "vol_surface": "hygiene shows base flipped BACKWARDATION->CONTANGO (raw label hid it). front_end_ratio easing 1.215->1.181. Term skew TAIL_HEDGING->NORMAL (hedge unwind).",
+        "sweep_tracker": "did NOT surface AAPL - tool-tagged 'mixed', explicit disqualifier. cum-flow ~flat (6.92B vs 6.83B).",
+        "next_earnings": "ALREADY REPORTED 2026-07-30. No event inside horizon."
+      },
+      "conflicts": ["sweep-tracker mixed/no-surface", "AAPL vs GOOGL identical distribution signal gave OPPOSITE outcomes - earnings-scout says this line is not a standalone edge", "post-earnings gap-down shorts chase a move already made"]
+    },
+    {
+      "ticker": "TSLA", "direction": "short", "agents": ["sweep-tracker", "sector-rotation-strategist"], "agent_count": 2,
+      "evidence": {
+        "sweeps": "bearish 5/5 sessions, premium $3.34B, cum-flow ALIGNED bearish (19.87B vs 19.24B, +3.2%). BUT price only -0.58% wk = muted vs premium size, consistent with HEDGE/OVERLAY flow rather than fresh directional conviction (sweep-tracker's own words).",
+        "sector_leader": "ALL THREE LEGS PASS and it is the CLEANEST, LARGEST-MAGNITUDE leader in the entire set. Consumer Cyclical, persistence 0.8 (OUTFLOW, durably negative 07-27..07-29: -386M/-250M/-313M), cum_premium_flow_30d = -$634.9M.",
+        "dex": "NO FLIP. net_dex negative every single session in the 15-day window, zero sign changes. Persistently short-pressured but never crosses zero - a LEVEL, not a flip. Correctly excluded from the +1.",
+        "single_leg": "Tier-1 opening PUT on 07-29 and 07-30 (2 sessions, advisory only, C19 CLOSED).",
+        "price": "-0.58% wk, +0.76% on 07-31. Flat.",
+        "next_earnings": "not in the 14-day window."
+      },
+      "conflicts": ["price did NOT confirm - flat week against $3.34B of bearish premium", "TSLA short was called on 07-28 (LOW) and 07-29 (DROP) this week and graded INCONCLUSIVE/LOSS", "W30 also carried TSLA short watch_only - this is a repeat call that has not worked"]
+    },
+    {
+      "ticker": "AMD", "direction": "short", "agents": ["sweep-tracker", "sector-rotation-strategist"], "agent_count": 2,
+      "evidence": {
+        "sweeps": "bearish 5/5 sessions, premium $1.81B, price confirms -8.77% wk. HOWEVER sweep-tracker states flow-side corroboration is ABSENT (AMD never cleared smart-money-flow top-50 on any day) and the only OI-trend contract available was a Friday 0DTE call = retail noise. 'Moderate confidence: good price/persistence alignment, but genuinely uncorroborated by flow-side tools.'",
+        "sector_leader": "ALL THREE LEGS PASS. Technology, persistence 1.0, cum_premium_flow_30d = -$125.4M aligned bearish.",
+        "dex": "NO FLIP. prior run only 2 sessions (07-28, 07-29 negative), one session short of the 3-session floor. 07-31 net_dex +2.76B POSITIVE.",
+        "leap": "dropped - 90d cum flow +$64.2M positive but 30d -$125.4M = momentum reversal.",
+        "accumulation": "rejected - mega tier n=1-12/day, buy ratio bouncing 0.24-1.0 with no persistence.",
+        "next_earnings": "2026-08-04 (d=4) AMC. INSIDE HORIZON.",
+        "earnings_scout_says": "AMD is a BUY VOL / vol_long candidate, NOT a directional short. Real liquid IV step dte3 72.6% -> dte5 109.3% spanning the print. Its dte5 (08-05) tenor is the ONLY one in the lookahead that clears NFP 08-07. Term skew COMPLACENT (flat back-month) = don't oversize."
+      },
+      "conflicts": ["DIRECTION CONFLICT: sector/sweeps say directional SHORT; earnings-scout says vol_long BUY VOL. These are different trades.", "reports in 4 days - a directional short carries the binary", "flow-side corroboration absent per sweep-tracker's own admission", "DEX turned POSITIVE on 07-31"]
+    },
+    {
+      "ticker": "IWM", "direction": "short", "agents": ["sweep-tracker", "multileg-strategist"], "agent_count": 2,
+      "evidence": {
+        "multileg": "THE WEEK'S ONLY TRUE FIVE-DAY PROGRAM. repeat_day_count 5 (4 non-Friday). Aug-21 put debit spread ladder, re-struck DOWNWARD all week. 07-27 long P286 46,497 @ 99.6% ASK, OI 889 -> v/OI 52.3 = OPENING. 07-29 long P275/P276 ask vs short P277/P279 bid = genuine two-sided vertical. 07-31 opened P274 130,443, OI 918 -> v/OI 142. THE POSITION WAS MAINTAINED AND RE-STRUCK THROUGH THE +2.4% Thu/Fri RIP, NOT UNWOUND, and rolled down+cheaper ($1.02 vs $1.46). Risk cap: 07-27 286/281 ~$1.08 debit on $5.00 width (4.6:1).",
+        "term_structure_HYGIENE": "KINKED at 2026-08-07 (d7, IV 0.2022, n=8,669), base CONTANGO. Raw label said BACKWARDATION - FLIPPED by hygiene. The kink IS the NFP print.",
+        "play_type": "EVENT PLAY - Aug-21 expiry straddles BOTH NFP 08-07 and CPI 08-12.",
+        "sweeps": "bearish. sweep-tracker OVERRODE the tool's 'mixed' tag on corroboration strength: its own smart-money sample was PUT-dominant on ALL 5 days, including an $82.7M single-day put concentration on 07-29 (the FOMC trough). Premium $991.3M. cum-flow aligned bearish (3.20B vs 2.97B).",
+        "dealer_context": "IWM GEX -$1.47B FULLY_NEGATIVE, no zero-gamma level - dealers short gamma across the whole ladder. ADVISORY ONLY (walls are anti-magnets, GEX verdict NO_GO).",
+        "price": "-0.48% 1d, +0.01% wk. rv20 13.1.",
+        "c12": "PASS, ADV $6.33B."
+      },
+      "conflicts": ["IWM short was called 07-30 as DROP watch_only and graded INCONCLUSIVE (+0.37 ATR in thesis direction)", "this is an index short and the 06-27 audit REFUTED index-relative bearish expression (sized money bled on index ETFs; single-name shorts won)", "the multileg program IS the trade - but it is a DEFINED-RISK DEBIT SPREAD, not a naked short"]
+    },
+    {
+      "ticker": "SPY", "direction": "short", "agents": ["sweep-tracker", "multileg-strategist"], "agent_count": 2,
+      "evidence": {
+        "multileg": "repeat 5 days (4 non-Friday), structure-class repeat (strikes vary daily). 07-27 is THE CLEANEST SINGLE PRINT OF THE WEEK: Aug-21 P750/P715 put debit spread, long P750 25,763 @ 98% ASK / short P715 25,703 @ 98% BID, sizes matched to 0.2%, OPPOSITE SIDES = textbook vertical. ~$10.70 debit on $35 width, 25,700 lots = $27.5M at risk vs $89.9M max (3.3:1). Subsequent days roll the long leg DOWN (P735 bought 07-28 and 07-31 at ask).",
+        "term_structure_HYGIENE": "KINKED, base CONTANGO. Thick kink d7 Aug-07 (IV 0.1504, n=69,958). EVENT PLAY into NFP/CPI.",
+        "sweeps": "bearish 5/5, premium $10.5B, cum-flow aligned bearish (29.16B vs 28.46B). sweep-tracker's own verdict: 'pure index hedge flow - context only, not a tradeable single-name idea.'",
+        "gamma": "SPY flipped to POSITIVE/long-gamma with a reliable ZGL 746.93 vs spot 747.06 ONLY on 07-31, after being FULLY_NEGATIVE 07-27..07-30 with null ZGL. Flip is ONE SESSION OLD and fragile.",
+        "price": "+0.72% 1d, +1.10% wk, closed 747.03 back above both 20SMA 745.69 and 50SMA 744.99."
+      },
+      "conflicts": ["DIRECT CONFLICT: dealer-positioning-strategist has SPY as a QUALIFYING DEX flip LONG (prior_run_len=11 all negative, 07-31 +19.68B, magnitude_ratio 2.28x, whipsaw FALSE) with swing_bias LONG moderate conviction. The multileg book says short, the DEX says long.", "sweep-tracker itself declines to treat it as tradeable", "SPY short called 07-30 as LOW watch_only and graded LOSS (-0.66 ATR)", "06-27 audit: no short alpha-sizing anywhere, and index-ETF shorts specifically bled"]
+    },
+    {
+      "ticker": "COIN", "direction": "short", "agents": ["dealer-positioning-strategist", "earnings-scout"], "agent_count": 2,
+      "evidence": {
+        "dex_flip": "QUALIFIES mechanically: prior_run_len=4, 07-31 net_dex -469M, magnitude_ratio 6.14x floor. BUT sign_changes_in_window=6 = THE MOST WHIPSAWED NAME IN THE ENTIRE SET (6 flips in 14 sessions), whipsaw_warning=TRUE.",
+        "gex_confirm": "total_gex flipped same day 18.5M -> -17.1M (POSITIVE -> FULLY_NEGATIVE), genuinely confirms.",
+        "vanna_conflict": "put-heavy book (net_vanna +1,463) CONFLICTS with the DEX/GEX short.",
+        "dealer_verdict": "swing_bias FLAT / no clean thesis. Agent explicitly says 'do not present as an actionable short' despite the mechanized pass.",
+        "earnings": "printed 07-30, -10.59% on 07-31. Fundamentals-confirmed: 3 consecutive quarterly misses with DEEPENING magnitude, revenue AND EPS both negative YoY, persistent insider selling. IV rank 72.7 -> 48.9 = clean crush, event RESOLVED.",
+        "price": "-10.59% 1d, -7.60% wk."
+      },
+      "conflicts": ["dealer-positioning explicitly refuses to call it actionable", "heaviest whipsaw in the set", "vanna disagrees with DEX/GEX", "chasing a -10.6% gap-down"]
+    },
+    {
+      "ticker": "MRVL", "direction": "long", "agents": ["sector-rotation-strategist", "dealer-positioning-strategist(mechanical only)"], "agent_count": 2,
+      "evidence": {
+        "sector_leader": "ALL THREE LEGS PASS. Technology, persistence 1.0, cum_premium_flow_30d = +$115.0M. THE ONLY TECHNOLOGY LONG clearing the bar.",
+        "dex_flip": "QUALIFIES mechanically: prior_run_len=5, magnitude_ratio 1.59x floor (THIN margin), sign_changes_in_window=4, whipsaw_warning=TRUE.",
+        "dealer_verdict": "DISQUALIFIED by the agent. GEX regime CONFLICTS - flipped POSITIVE->NEGATIVE on 07-30, the day BEFORE the DEX flip, and stayed negative. Per-strike GEX 72% concentrated at ONE strike (185, below spot 191.31) = single-strike artifact risk. swing_bias FLAT.",
+        "accumulation_CONTRADICTS": "accumulation-hunter REJECTED MRVL outright: institutional-accumulation signal REVERSED (ACCUMULATION 07-27 ratio 2.24 -> NEUTRAL 07-31 ratio 0.90); mega-tier buy ratio 1.0/1.0/1.0 Mon-Wed COLLAPSED to 0/0 (all-sell) Thu/Fri; C28 distribution confirmed with THREE institutional-size call closes on 07-31 ($1.53M 0DTE, $622K 0DTE, $281K LEAP). Verdict: 'classic early-week-build-then-distribute-into-strength pattern, NOT current accumulation.'",
+        "price": "+2.32% 1d, -3.43% wk, rv20 89.4."
+      },
+      "conflicts": ["accumulation-hunter's C28 distribution evidence DIRECTLY CONTRADICTS the long thesis", "dealer-positioning disqualifies its own mechanized pass on GEX disagreement + whipsaw + single-strike concentration", "this is a long inside the semis complex that was the week's funding source"],
+      "distribution_flag": {"present": true, "closing_side": "call", "closing_premium": 2433000, "oi_decrease": null, "note": "Three institutional-size call closes on 07-31 ($1.53M 0DTE, $622K 0DTE, $281K LEAP) after mega-tier DP buy ratio collapsed from 1.0 (Mon-Wed) to 0.0 (Thu/Fri). Build-then-distribute-into-strength."}
+    },
+    {
+      "ticker": "SNDK", "direction": "vol_long", "agents": ["earnings-scout", "vol-surface-scout", "leap-positioning-radar(near-miss long)", "sweep-tracker(bearish - CONFLICT)"], "agent_count": 3,
+      "evidence": {
+        "earnings": "reports 2026-08-05 (d=5). IV rank 75.7. Term structure BACKWARDATION, SMOOTH (181%->156%->146%->140% across 7/14/21/28dte). front_end_ratio 1.30 EXTREME. Term skew NORMAL (0.060, borderline, NOT clearly stretched). Play: BUY VOL cautious - IV is extraordinarily elevated in ABSOLUTE terms (7dte ATM 181% vs RV20 154%) so it roughly matches realized behavior, not obviously overpriced.",
+        "SELL_VOL_disqualifier": "extreme front (>1.10) AND flat back-month = DOUBLE SELL VOL DISQUALIFIER. Cannot short vol here.",
+        "leap": "5-of-9 gates. cum_premium_flow_30d +$1.01B / 90d +$2.60B, smooth thesis-extension accretion. BUT institutional-accumulation NEUTRAL (ratio 1.11), conviction-matrix MIXED 2.7%, ZERO position rolls, fresh LEAP OI is PUT-dominated. leap-radar explicitly says EXCLUDE until past the 08-05 print.",
+        "sweeps_CONFLICT": "sweep-tracker has SNDK BEARISH 5/5, $2.66B premium, price -15.43% wk. BUT flags that Friday's single largest whale print was a $70.3M CALL bought aggressively on the ask (size 1,500, strike 800, exp 08-07, deep ITM) - a live contradiction on the last session.",
+        "accumulation": "REJECTED - mega-tier buy ratio <0.5 (net selling) 4 of 5 days despite $34.96B gross weekly premium; TWO large C28 call-close hits (-754 OI $47.6M, -752 OI $48.2M).",
+        "contrarian": "closest miss to -2 sigma of the whole scan (z=-0.996). Price -44.4% 30d vs flow net +$20.9M BULLISH = best raw divergence of the week. But sub-threshold, and term structure genuinely BACKWARDATION post-hygiene = real structural NAND/flash stress.",
+        "artifact_warning": "SNDK 260807 C800: IV 2.309 with vega 0.20 on a 0.942-delta call = degenerate pricing. Print's spot ($1,256.86) diverges 3.5% from C12 close ($1,214.83). multileg-strategist REJECTED this contract as an artifact.",
+        "macro": "its 08-07 event tenor IS NFP day.",
+        "price": "-5.09% 1d, -15.43% wk, rv20 154.0, close $1,214.83."
+      },
+      "conflicts": ["bearish sweeps vs bullish cum-flow vs put-dominated LEAP OI - three directions", "accumulation-hunter rejected on C28 distribution", "leap-radar says exclude until post-print", "event tenor is NFP day", "known artifact contract in its chain"]
+    }
+  ],
+
+  "failed_confluence_watch_only": [
+    {"ticker": "SPCX", "note": "sweep-tracker bullish 5/5 with 66.8% OI-opening confirmation, $952.9M premium, C330 08-07. BUT sector-rotation has it as a BEARISH Industrials leader (-$181.9M 30d) and leap-radar dropped it on Gate 4 (90d -$414.7M). VERIFIED REAL: Space Exploration Technologies, NasdaqGS, 55-82M sh/day, ADV $9.3B genuine (sector-rotation's data-quality caution was wrong). BUT IPO'd 2026-06-12 = only ~33 trading days of history, so 30d/90d flow reads are structurally unreliable. 1 positive agent vs 2 negative -> FAILS confluence for long."},
+    {"ticker": "INTC", "direction": "long", "note": "sweep-tracker bullish lean 5/5 (overriding tool's 'mixed'), OI-opening confirmed 75.9% on C100 08-07. BUT leap-radar hard-dropped it: cum_premium_flow 30d -$914.7M, 90d -$753.2M, BOTH bearish. Also W30 carried INTC SHORT at starter size (the only sized call in 20 weeks) - still open, currently -2.30% in thesis direction (+0.28 ATR, INCONCLUSIVE). A long here directly contradicts a live position. 1 positive agent -> FAILS."},
+    {"ticker": "NVDA", "direction": "long", "note": "dealer-positioning DEX flip LONG qualifies (prior_run_len=4, magnitude 6.2x floor, whipsaw FALSE, GEX already POSITIVE since 07-22). BUT sector-rotation leg (b) FAILS: cum_premium_flow_30d -$64.8M contradicts the bullish thesis; leap-radar dropped it (30d -$64.8M, 90d -$258.1M, conviction-matrix confidence only 13.2%). 1 positive -> FAILS."},
+    {"ticker": "PLTR", "direction": "long", "note": "dealer-positioning DEX flip LONG, best internal alignment (DEX+GEX+vanna all agree, put-heavy vanna reinforces) BUT whipsaw_warning=TRUE (4 sign changes). sector-rotation leg (b) FAILS: cum_premium_flow_30d -$160.0M. earnings-scout: NO PLAY + EXPLICIT HEDGE FLAG - reports 2026-08-03 (Monday, d=3) with the MOST EXTREME front-end panic in the lookahead (1.46) AND the MOST COMPLACENT back-month (0.995) = textbook double SELL-VOL disqualifier, meaning a swing long carries an UNCOMPENSATED, UN-HEDGED binary with ZERO tail pricing. 1 positive vs 2 negative -> FAILS."},
+    {"ticker": "SMH", "direction": "short", "note": "sweep-tracker bearish 4/5, PUT-dominant on every sampled day, $1.075B premium, plus a structural $51.7M 2027-06-17 LEAP put. BUT sector-rotation labels SMH MIXED / non-persistent / appendix-only and disqualifies it from the rotation call; multileg says the SMH put spreads were a ROLL of an existing 76k-OI book with ~99% volume unattributed, and that expiry has now PASSED. 1 solid agent -> FAILS. Also SMH short graded LOSS (-1.44 ATR) on 07-29 this week."},
+    {"ticker": "MU", "note": "FIVE agents touched it and CONTRADICT each other. leap-radar near-miss 5-of-9 (long). accumulation-hunter REJECTED: closing-cross leak, 84.5%/86.4% of Mon/Tue top-30 premium inside 20:00-20:25Z; ex-cross recompute flips Monday to 91% SELL. sector-rotation caution: 30d flow +$466.9M BULLISH against -10.63% price = dip-accumulation, NOT a clean short. vol-surface DISQUALIFIED it: the 08-07 kink is NFP-priced macro risk, prominence 19.2%->26.9%, 'do not fade or calendar this one.' sweep-tracker: tool-tagged 'mixed' = explicit disqualifier despite the LARGEST single-name book in the scan ($5.77B). NO CLEAN DIRECTION -> watch only."},
+    {"ticker": "RDDT", "direction": "short", "note": "earnings-scout flags STILL-LIVE (not resolved): post-crash term structure REMAINS backwardated post-hygiene (front_end 1.116) with GEX FULLY_NEGATIVE (pro-cyclical amplifier) - structurally different from a completed IV crush. 15.43x DEX short flip on 07-31. vol-surface reads its vol as cheap post-event (favours OWNING vol, not shorting stock). -20.99% 1d / -16.63% wk. RDDT short was VETO'd in the 07-31 daily envelope. Carry as watch."},
+    {"ticker": "ARM", "note": "vol-surface-scout's HEADLINE FINDING and the cleanest VOL structure of the week - but a VOL trade, not directional, and only 1 agent. Genuine liquid KINKED at 2026-08-21 (IV 173.7% on 5,517 contracts vs neighbours 08-14 96.7% / 08-28 88.8% - clears the liquidity floor by 300x, NOT a thin-tenor artifact). Prominence GREW 54.2% -> 79.7% across the week. NO earnings catalyst (verified absent from the <=14d universe). front_end_ratio FALLING 1.238 -> 1.164 = front-end panic is NOT building while the mid-curve OPEX hump grows. Calendar candidate: sell 08-21 / buy 08-14 or 09-18 (both liquid, 796 and 1,513 contracts). Raw label said BACKWARDATION both days and HID the growing kink - hygiene is the only thing that surfaced it."},
+    {"ticker": "QGEN", "note": "multileg-strategist's highest-quality single-name find, 1 agent. Aug-21 1x2 call backspread 40/45, ratio EXACTLY 1:2 on both 07-27 and 07-28 (10,321:20,318 and 10,454:20,485). C45 bought at 96% ASK (07-27, OI 6,577, v/OI 3.23 OPENING) and 97% ask (07-28, OI now 27,182 confirming the prior day opened it). Net ~$0.52 CREDIT. Profits if QGEN < $40 or > $50.52 (+22%); max loss $4.48 at $45. C12 PASS (close $41.40, ADV $119M). CAVEAT: term-structure anchor tenor n=62 - thin, clears floor but low confidence."},
+    {"ticker": "WOLF", "note": "multileg only, 1 agent. Two coordinated books: Sep-18 put debit spread 22.5/17.5 (07-27 bought P22.5 40,220 @ 100% ask, OI 46 -> v/OI 874; sold P17.5 @ 100% bid) rolled down 07-29; plus a long-dated call diagonal (bought Jan-2027 C45 @ 99.7% ask / sold Jun-2027 C50 @ 100% bid). BACKWARDATION ~130% IV flat. Bimodal/distressed positioning, defined risk both ways. C12 PASS (close $23.62, ADV $114M). Note WOLF short was a raw-4 DROP on 07-27 and graded INCONCLUSIVE."},
+    {"ticker": "LITE", "note": "accumulation-hunter sub-threshold: DP price shelf $693.24 (37 trades, $252.5M, ~2.9% below Fri close $713.94) is a GENUINE C34 invalidation anchor. cum_premium_flow_30d +$104.77M clears the conjunction mechanically BUT net is only 3.4% of $3.04B gross = thin skew. HARD FAIL on conviction-matrix (MIXED 1.6% -> BULLISH_ACCUMULATION 17.9%, never DIRECTIONAL_LONG)."},
+    {"ticker": "STX", "note": "accumulation-hunter sub-threshold. Mega tier NET SELL (0.225) while block tier NET BUY (0.613) - tiers disagree. cum_premium_flow_30d -$17.24M FAILS the $50M/sign test (conjunction would halve to +1). conviction-matrix = COVERED_CALL (17.1%) which is an explicit disqualifier category. DP shelf $856.13 (57 trades) exactly at Friday's close."},
+    {"ticker": "EA", "note": "vol-surface DISQUALIFIED as a MERGER-ARB PIN, not a vol trade. rv20 3.8% and term-structure IVs 3.6-12.7% at every liquid tenor are REAL - EA close $209.86 is pinned near a cash-deal price. iv_percentile z = -2.048, lowest in the scan. Same class as the NUVL 2026-06-24 GSK-tender VETO. Do NOT surface."},
+    {"ticker": "WBD", "note": "leap-radar flagged the MERGER-ARB signature: equity ACCUMULATION (DP buy_sell 2.44) + BEARISH options premium (30d -$17.4M, 90d -$24.8M) + inconsistent OI (consecutive_build_days=1) + conviction-matrix DIRECTIONAL_LONG at only 28.1%. Classic own-stock-plus-protective-puts deal hedge. NOT a LEAP long."},
+    {"ticker": "UCTT", "note": "contrarian-scanner: hit BEARISH_EXTREME (pc 4.18, z=6.14) but DISQUALIFIED - reports 2026-08-03 (d=3), so this is a structural insurance bid into a known catalyst, a real hedge not a fade. Also earnings-scout SKIP: NO_NEAR_TENOR (unmeasurable). -10.18% wk."},
+    {"ticker": "EQIX", "note": "contrarian-scanner: BEARISH_EXTREME (pc 21.88, z=6.40) but DISQUALIFIED - price -6.7% and flow -$236K are ALIGNED, no divergence to fade. Flow+price agreeing = continuation per Pan-Poteshman."},
+    {"ticker": "AMZN/GOOGL", "note": "contrarian-scanner SOFT crowded-long flags only - neither crossed +/-2 sigma, so NO hard -2 penalty is statistically justified. AMZN z=-0.42, GOOGL z=-0.24. AMZN flow CONFIRMS the rally (+$89.6M net on 07-31) = informed-continuation risk for NEW longs. MSFT explicitly CLEARED (z=+1.06, MORE put-hedged than its own 20d norm despite +21.8% - do NOT penalize)."}
+  ],
+
+  "advisory_zero_points": {
+    "single_leg_whale_persistence": "C19 CLOSED as REFUTED 2026-07-25 - descriptive colour ONLY, no accrual, no promotion path. Repeat Tier-1 opening PUT names this week: AAPL 3 sessions (07-27, 07-29, 07-31) - and AAPL fell -7.24% wk; BE 2 sessions (07-28, 07-29) - and BE ROSE +11.31% wk (the puts were badly wrong); TSLA 2 sessions (07-29, 07-30) - TSLA flat -0.58% wk. Tier-1 counts by day: 3/6/11/4/6.",
+    "gex_next_session": "NO_GO_NO_EDGE. Walls are ANTI-magnets: next close closer to nearest wall in only 24/118 = 20.3% (p vs 50% = 1.0). H1 ran BACKWARDS pooled (long-gamma mean |ret| 0.776 > short-gamma 0.731, n=40). SPY: ZGL 746.93 reliable (0.02% from spot), regime POSITIVE, total_gex +1.19B, call wall 748 (+0.13%), put wall 730 (-2.28%); flip is ONE SESSION OLD after 4 FULLY_NEGATIVE sessions with null ZGL. QQQ: ZGL null, zgl_reliable FALSE, FULLY_NEGATIVE but total_gex only -2.19M (essentially flat), call wall 688 (= spot), put wall 680 (-1.16%); ZGL unresolvable 4 of 5 sessions.",
+    "zerodte_setup": "GO_PREMIUM_SELL_INTRADAY. VIX 15.99 LOW, size_scalar 0.5 both indices. SPY: implied_move 0.49%, expected_range 0.79%, iron fly centred 747.07, net PnL 0.148%/gross 0.248%. QQQ: implied_move 0.97%, expected_range 2.01%, wider condor, net 0.282%/gross 0.382%, worst day -2.453%. Tail UNSAMPLED - no vol shock in the 60-day sample. Advisory, 0 points, PERMANENTLY.",
+    "breadth_cross_check": "finviz: 221 advancers / 281 decliners, pct_green 43.94%, avg -0.13%, median -0.24%, top AMZN +15.32%, worst GDDY -16.70%. DIVERGENCE FLAG TRUE - SPY +0.72% on a day the median S&P member FELL.",
+    "fz_lanes_skipped": "fz screen ticker field CORRUPTED this run (synthetic/doubled symbols: AABEO, NNWL for Newell, CCDNA for CaredX, AARXS). fz_squeeze_candidates and fz_rs_candidates GRACEFUL-SKIPPED. fz breadth (aggregate, no ticker field) worked fine."
+  },
+
+  "rotation_call": {
+    "regime": "cyclical->defensive",
+    "confidence": "medium",
+    "downgrades_applied": "0DTE share 16.8%->48.2% (BALANCED->RETAIL_DRIVEN) forces a uniform conviction downgrade on ALL rotation calls.",
+    "cracks": "Utilities (3rd defensive leg) is choppy and trending NEGATIVE by day 3, not confirming. Financial Services has the strongest GICS number (monotonic +150M/+167M/+188M) but is flatly disconfirmed by BOTH its ETFs (XLF -$0.69M MIXED, KRE -$3.32M BEARISH) with ZERO bullish single-name leaders. Flow breadth WORSENED 35.2%->34.1% while price ripped.",
+    "real_story": "The dominant flow - semis/AI-capex funding mega-cap platform earnings winners - is NOT a GICS-level phenomenon (intra-Technology, and intra-Consumer-Cyclical for AMZN)."
+  }
+}

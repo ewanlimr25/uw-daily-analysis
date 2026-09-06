@@ -1,0 +1,205 @@
+{
+  "results": [
+    {
+      "avg_iv": 6.098036136810889,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 182.1428804443128,
+      "option_type": "put",
+      "strike": 390,
+      "total_premium": 1020385,
+      "total_volume": 375,
+      "underlying_symbol": "AVGO"
+    },
+    {
+      "avg_iv": 21.48556484066983,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 131.7956797767228,
+      "option_type": "call",
+      "strike": 110,
+      "total_premium": 747921,
+      "total_volume": 68,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 19.894236795016866,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 124.1741126907962,
+      "option_type": "call",
+      "strike": 115,
+      "total_premium": 1246519,
+      "total_volume": 119,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 5.95103727978383,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 119.5710380813336,
+      "option_type": "put",
+      "strike": 135,
+      "total_premium": 343695,
+      "total_volume": 269,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 4.130889384765797,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 107.3402417846582,
+      "option_type": "call",
+      "strike": 327.5,
+      "total_premium": 357891,
+      "total_volume": 190,
+      "underlying_symbol": "TSLA"
+    },
+    {
+      "avg_iv": 19.44958183703596,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 99.639543583088,
+      "option_type": "call",
+      "strike": 120,
+      "total_premium": 676638,
+      "total_volume": 68,
+      "underlying_symbol": "NVDA"
+    },
+    {
+      "avg_iv": 13.161284651793514,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 97.4295098345151,
+      "option_type": "put",
+      "strike": 145,
+      "total_premium": 203721,
+      "total_volume": 90,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 9.052823418784802,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 92.9194381862931,
+      "option_type": "call",
+      "strike": 345,
+      "total_premium": 3424819,
+      "total_volume": 241,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 9.107539821360682,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 88.3882117211107,
+      "option_type": "call",
+      "strike": 350,
+      "total_premium": 7562511,
+      "total_volume": 562,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 4.284946514845469,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 81.0070147319387,
+      "option_type": "put",
+      "strike": 130,
+      "total_premium": 748505,
+      "total_volume": 1098,
+      "underlying_symbol": "SOXL"
+    },
+    {
+      "avg_iv": 17.723601899100696,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 72.0478056211138,
+      "option_type": "call",
+      "strike": 500,
+      "total_premium": 5309425,
+      "total_volume": 197,
+      "underlying_symbol": "SPY"
+    },
+    {
+      "avg_iv": 9.66168342665272,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 69.9417243558943,
+      "option_type": "call",
+      "strike": 315,
+      "total_premium": 4671957,
+      "total_volume": 278,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 8.852948377721374,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 69.2674687750867,
+      "option_type": "call",
+      "strike": 310,
+      "total_premium": 3407683,
+      "total_volume": 197,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 11.38387211601027,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 67.7396050792399,
+      "option_type": "call",
+      "strike": 320,
+      "total_premium": 4707419,
+      "total_volume": 287,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 4.735252253380813,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 62.2226011200581,
+      "option_type": "put",
+      "strike": 400,
+      "total_premium": 961365,
+      "total_volume": 263,
+      "underlying_symbol": "AVGO"
+    },
+    {
+      "avg_iv": 52.812783152540945,
+      "expiry": "2026-08-21T00:00:00Z",
+      "max_iv": 57.0970444182557,
+      "option_type": "call",
+      "strike": 2,
+      "total_premium": 48780,
+      "total_volume": 90,
+      "underlying_symbol": "CAPR"
+    },
+    {
+      "avg_iv": 2.9090472855196565,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 56.0498752014944,
+      "option_type": "put",
+      "strike": 100,
+      "total_premium": 379663,
+      "total_volume": 562,
+      "underlying_symbol": "INTC"
+    },
+    {
+      "avg_iv": 35.16732692362614,
+      "expiry": "2026-08-21T00:00:00Z",
+      "max_iv": 54.534854448983,
+      "option_type": "call",
+      "strike": 5,
+      "total_premium": 5909930,
+      "total_volume": 63,
+      "underlying_symbol": "MU"
+    },
+    {
+      "avg_iv": 9.32915374863079,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 53.8872819730622,
+      "option_type": "call",
+      "strike": 330,
+      "total_premium": 2510935,
+      "total_volume": 164,
+      "underlying_symbol": "MSFT"
+    },
+    {
+      "avg_iv": 4.465219171826012,
+      "expiry": "2026-08-19T00:00:00Z",
+      "max_iv": 53.7710134706805,
+      "option_type": "put",
+      "strike": 720,
+      "total_premium": 118738,
+      "total_volume": 305,
+      "underlying_symbol": "QQQ"
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/All Options/bot-eod-report-2026-08-19.parquet"
+}

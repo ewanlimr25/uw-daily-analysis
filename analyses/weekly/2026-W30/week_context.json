@@ -1,0 +1,235 @@
+{
+  "iso_week": "2026-W30",
+  "monday": "2026-07-20",
+  "week_end": "2026-07-24",
+  "today": "2026-07-25",
+  "covered_dates": ["2026-07-20", "2026-07-21", "2026-07-22", "2026-07-23", "2026-07-24"],
+  "covered_days_count": 5,
+  "coverage_note": "FULL 5-day week. All uw data groups (darkpool, hotchains, oi, options, screener) cover all 5 weekdays. No gaps.",
+
+  "fz_available": true,
+  "fz_degraded": true,
+  "fz_degradation_note": "fz breadth works. `fz screen` is returning the KNOWN synthetic-ticker artifact (doubled first letter: TTRV->TRV, NNVCR->NVCR, OOII->OII, WWKC->WKC, FFAF->FAF). The fz_squeeze and fz_rs candidate lanes are therefore SKIPPED this week (advisory, 0 rubric points, graceful-skip per spec). Do NOT use fz screen ticker output as a candidate source.",
+
+  "regime_today": {
+    "date": "2026-07-24",
+    "regime": "TRANSITIONAL - Mixed signals, reduce position size, wait for clarity",
+    "trend": "CHOPPY",
+    "bullish_pct": 33.0,
+    "bullish_flow_tickers": 2074,
+    "bearish_flow_tickers": 4215,
+    "spy": {"current": 738.93, "sma_20": 746.15, "sma_50": 745.07, "above_20sma": false, "above_50sma": false, "change_30d_pct": 0.78, "pct_from_90d_high": -2.82},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+  "regime_monday": {
+    "date": "2026-07-20",
+    "regime": "TRANSITIONAL - Mixed signals, reduce position size, wait for clarity",
+    "trend": "CHOPPY",
+    "bullish_pct": 34.1,
+    "bullish_flow_tickers": 2140,
+    "bearish_flow_tickers": 4135
+  },
+  "regime_delta": "HELD. TRANSITIONAL/CHOPPY both Monday and Friday - no regime flip. Breadth deteriorated marginally (34.1% -> 33.0% bullish flow tickers). SPY closed the week BELOW both its 20d (746.15) and 50d (745.07) SMA, -2.82% from the 90d high. This is the 2nd consecutive week in a genuine non-uptrend tape. NOTE: the `spy` price block returned by `uw risk market-regime` is IDENTICAL for both dates (738.93) - the tool appears to return current spot regardless of --date, so do NOT read a WoW price delta off it; use `uw historical trend` or scripts/market_data.py for dated prices.",
+
+  "vrp_classification": {
+    "SPY": {"vrp": 0.0177, "iv30d": 0.1534, "realised_vol": 0.1357, "regime": "FAIR", "interpretation": "IV close to realised - no clear edge from VRP alone."},
+    "QQQ": {"vrp": -0.0138, "iv30d": 0.2619, "realised_vol": 0.2757, "regime": "FAIR", "interpretation": "IV close to realised - no clear edge from VRP alone."},
+    "week_label": "FAIR / NEUTRAL - neither a premium-selling nor a premium-buying week at the index level. SPY VRP marginally positive (+0.0177), QQQ marginally NEGATIVE (-0.0138). Treat as NO VRP EDGE. contrarian-scanner: QQQ-side VRP is negative, so fade calls resting on a premium-selling assumption must be gated/aborted per your negative-VRP rule; SPY-side is marginally positive but inside noise."
+  },
+
+  "sector_persistence": {
+    "source": "uw options-flow sector-flow-persistence --days 5",
+    "note": "persistence_score is the tool's 0-1 sign-consistency scale. The rubric's conditional sector-leader +1 requires persistence_score >= 0.6 AND cum_flow_30d direction aligned AND |cum_flow_30d| >= $50M.",
+    "results": [
+      {"sector": "Consumer Defensive", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 45038145, "2026-07-21": 49117248, "2026-07-22": 36132966, "2026-07-23": 133621392, "2026-07-24": 35829397}},
+      {"sector": "Utilities", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 22140031, "2026-07-21": 20338213, "2026-07-22": 38332414, "2026-07-23": 9782157, "2026-07-24": 3552790}},
+      {"sector": "Real Estate", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 14213785, "2026-07-21": 10228349, "2026-07-22": 5527306, "2026-07-23": 9155173, "2026-07-24": 23461066}},
+      {"sector": "Basic Materials", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 10562103.5, "2026-07-21": 29016426, "2026-07-22": 35671894, "2026-07-23": 15463762, "2026-07-24": 18306754}},
+      {"sector": "Technology", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 1423537638, "2026-07-21": 2462533451, "2026-07-22": 3234855760, "2026-07-23": 767224280, "2026-07-24": 966664074}},
+      {"sector": "Healthcare", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 101213630.5, "2026-07-21": 144738703, "2026-07-22": 456668829, "2026-07-23": 30655689, "2026-07-24": 132521380}},
+      {"sector": "Energy", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 66286437, "2026-07-21": 84333292, "2026-07-22": 108050339, "2026-07-23": 104285475, "2026-07-24": 77972131}},
+      {"sector": "Financial Services", "trend": "INFLOW", "persistence_score": 1.0, "net_flow_by_day": {"2026-07-20": 236278250, "2026-07-21": 251098426, "2026-07-22": 184507045, "2026-07-23": 136231128, "2026-07-24": 145109489}},
+      {"sector": "Industrials", "trend": "OUTFLOW", "persistence_score": 0.8, "net_flow_by_day": {"2026-07-20": -5348093, "2026-07-21": 33518516, "2026-07-22": -68685700, "2026-07-23": -125360085, "2026-07-24": -194007419}},
+      {"sector": "Communication Services", "trend": "INFLOW", "persistence_score": 0.8, "net_flow_by_day": {"2026-07-20": 618376173, "2026-07-21": 591916304, "2026-07-22": 501209575, "2026-07-23": -784049691, "2026-07-24": 75444212}},
+      {"sector": "Consumer Cyclical", "trend": "ROTATING", "persistence_score": 0.6, "net_flow_by_day": {"2026-07-20": 311120359, "2026-07-21": 307711395, "2026-07-22": 154728464, "2026-07-23": -3043205363, "2026-07-24": -672695388}}
+    ],
+    "CONFLICT_TO_RESOLVE": "uw risk market-regime's own sector_rotation block for 2026-07-24 reports Technology as money FLOWING OUT (-$392.5M), Consumer Cyclical -$160.6M and Industrials -$50.3M out; Consumer Defensive +$7.5M and Energy +$2.2M in. That DIRECTLY CONTRADICTS sector-flow-persistence, which has Technology at +$966M INFLOW on the same date with persistence 1.0. Different data lineages/aggregations. sector-rotation-strategist MUST resolve or explicitly flag this rather than quoting one silently."
+  },
+
+  "sector_flow_week_end": "See analyses/weekly/2026-W30/step0_cache/sector_flow.json (uw options-flow sector-flow for 2026-07-24).",
+
+  "dte_volume_share": {
+    "symbol": "MARKET",
+    "regime_hint": "BALANCED",
+    "share_0dte": 0.0,
+    "share_weeklies": 0.241,
+    "share_monthlies": 0.138,
+    "share_leaps": 0.021,
+    "note": "MARKET-level only per P1.5. share_0dte reported as 0.0 on 2026-07-24 - treat as a data quirk, not a real zero. Monthlies+LEAPs = 15.9% vs weeklies 24.1%."
+  },
+
+  "top_bullish_funnel": ["MSTR", "AAPL", "GOOGL", "WULF", "MSFT", "AMZN", "CAR", "SMMT", "CBRS", "PLTR", "IBM", "PEP", "ARM", "CAT", "XOM", "NOW", "HUT", "LLY", "IGV", "USO", "COPX", "VOO"],
+  "top_bearish_funnel": ["MU", "TSLA", "SNDK", "BE", "LULU", "AMD", "ORCL", "TSM", "NBIS", "INTC", "NFLX", "AVGO", "META", "IREN", "ISRG", "NVDA", "SOXL", "TQQQ", "SMH", "GLD", "SPY", "IWM"],
+  "confluence_bullish_top": [
+    {"ticker": "SMMT", "score": 6, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building", "low_iv_cheap_options"], "iv_rank": 20.5, "net_flow": 7854624},
+    {"ticker": "VZ", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building"], "iv_rank": 60.4, "net_flow": 1773922},
+    {"ticker": "S", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building"], "iv_rank": 66.8, "net_flow": 2241192},
+    {"ticker": "EA", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "low_iv_cheap_options"], "iv_rank": 0.35, "net_flow": 589622},
+    {"ticker": "LBRT", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building"], "iv_rank": 58.0, "net_flow": 382752},
+    {"ticker": "CBRE", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building"], "iv_rank": 68.2, "net_flow": 51866},
+    {"ticker": "BAC", "score": 5, "factors": ["bullish_flow", "low_pcr", "dp_accumulation", "oi_building", "low_iv_cheap_options"], "iv_rank": 26.3, "net_flow": 88698},
+    {"ticker": "C", "score": 5, "factors": ["bullish_flow", "low_pcr", "dp_accumulation", "oi_building", "low_iv_cheap_options"], "iv_rank": 28.4, "net_flow": 1892889},
+    {"ticker": "CZR", "score": 5, "factors": ["bullish_flow", "low_pcr", "dp_accumulation", "oi_building", "low_iv_cheap_options"], "iv_rank": 11.9, "net_flow": 46126},
+    {"ticker": "IBRX", "score": 5, "factors": ["bullish_flow", "low_pcr", "dp_accumulation", "oi_building", "low_iv_cheap_options"], "iv_rank": 29.8, "net_flow": 416729},
+    {"ticker": "LOPE", "score": 5, "factors": ["bullish_flow", "low_pcr", "volume_spike", "dp_accumulation", "oi_building"], "iv_rank": 59.9, "net_flow": 435654}
+  ],
+  "confluence_bearish_top": [
+    {"ticker": "ONON", "score": 6, "factors": ["bearish_flow", "high_pcr", "volume_spike", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 73.0, "net_flow": -53186, "pcr": 2.72},
+    {"ticker": "IREN", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 72.0, "net_flow": -12039962, "pcr": 2.00},
+    {"ticker": "BE", "score": 5, "factors": ["bearish_flow", "high_pcr", "volume_spike", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 88.0, "net_flow": -59635067, "pcr": 1.78},
+    {"ticker": "SOXX", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 94.4, "net_flow": -5809986, "pcr": 3.18},
+    {"ticker": "BSX", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 95.4, "net_flow": -2000171, "pcr": 1.65},
+    {"ticker": "VLO", "score": 5, "factors": ["bearish_flow", "volume_spike", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 77.6, "net_flow": -1005200},
+    {"ticker": "WHR", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 93.0, "net_flow": -348568, "pcr": 2.98},
+    {"ticker": "FTNT", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 94.3, "net_flow": -520798, "pcr": 2.38},
+    {"ticker": "VRTX", "score": 5, "factors": ["bearish_flow", "high_pcr", "dp_distribution", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 70.4, "net_flow": -226117, "pcr": 5.55},
+    {"ticker": "DELL", "score": 4, "factors": ["bearish_flow", "high_pcr", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 89.9, "net_flow": -6806299, "pcr": 1.68},
+    {"ticker": "NBIS", "score": 4, "factors": ["bearish_flow", "high_pcr", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 92.6, "net_flow": -29323307, "pcr": 1.62},
+    {"ticker": "SOXL", "score": 4, "factors": ["bearish_flow", "high_pcr", "oi_building_puts", "high_iv_sell_premium"], "iv_rank": 95.7, "net_flow": -67063181, "pcr": 2.31}
+  ],
+
+  "iv_extremes": {
+    "high_iv_rank_100": ["FSLR", "AKAM", "LDOS", "ENS", "DIOD", "EEFT", "EQR", "SNEX", "ADNT", "SPCX", "CDNL"],
+    "low_iv_rank_0": ["SKHY", "WEX", "GME", "SAFT", "ZROZ", "SCHP", "BLFS", "NWG", "OBK"],
+    "note": "Most iv_rank=100 names are small/mid caps. FSLR (202.82) and AKAM (115.37) were both already flagged LOW-tier vol_short on the 07-24 daily."
+  },
+
+  "c12_liquidity_floor": {
+    "rule": "price >= $5 AND 20d dollar-ADV >= $50M, as-of 2026-07-24. Fail closed.",
+    "passed": ["MU", "NVDA", "SNDK", "AAPL", "TSLA", "MSFT", "AMD", "AMZN", "INTC", "META", "GOOGL", "AVGO", "TSM", "ORCL", "PLTR", "BE", "NBIS", "NFLX", "LLY", "CAT", "IBM", "NOW", "XOM", "MSTR", "ARM", "IREN", "ISRG", "PEP", "CBRS", "WULF", "HUT", "LULU", "CAR", "SMMT", "SPY", "QQQ", "SMH", "IWM", "SOXX", "DELL", "GLD", "BAC", "C", "VZ", "IGV", "VRTX", "VLO", "BSX", "USO", "FTNT", "MPC", "EA", "FLUT", "CBRE", "XLRE", "COPX", "ONON", "S", "KGS", "KBE", "CZR", "LBRT", "IBRX", "WHR", "BAND", "LOPE"],
+    "FAILED_DROPPED": [{"ticker": "UTI", "adv_usd_millions": 44.2}, {"ticker": "NVCR", "adv_usd_millions": 33.9}, {"ticker": "LXU", "adv_usd_millions": 8.7}],
+    "note": "The `volume_vs_average` screen was again dominated by sub-floor micro-ETFs/bond funds (SAFT, CLIP, HEEM, JPEM, KEMX, HEFA, IGOV, HYMB, NAN, RSPF, FENY, EUM) - all excluded from the funnel. Do NOT reintroduce them.",
+    "notable_5d_moves": {"TSLA": -17.81, "BE": -13.99, "LBRT": -27.18, "BAND": -16.72, "HUT": 20.27, "CBRS": 15.19, "DELL": 10.39, "IREN": 10.26, "USO": 10.27, "MU": 8.48, "META": -7.87, "GOOGL": -7.79, "PLTR": -7.15, "ORCL": -9.03, "AMZN": -6.12}
+  },
+
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 363,
+    "decliners": 140,
+    "pct_green": 72.17,
+    "total": 503,
+    "avg_change": 0.77,
+    "median_change": 0.97,
+    "timeframe": "1d",
+    "divergence_flag": true,
+    "note": "DIVERGENCE, but the INVERSE of the usual distribution tell. Equal-weight breadth was strongly GREEN (72.2% of S&P constituents up, median +0.97%) while cap-weighted SPY closed at 738.93, BELOW both its 20d and 50d SMA, and `uw risk market-regime` shows only 33% bullish FLOW tickers. Green equal-weight tape + heavy mega-cap-tech outflow = ROTATION out of the cap-weighted index leaders, not broad distribution. Read every breadth number this week against CAP-WEIGHTED prints before calling it risk-on."
+  },
+
+  "fz_squeeze_candidates": [],
+  "fz_rs_candidates": [],
+
+  "earnings_lookahead": {
+    "note": "NEXT WEEK IS THE HEAVIEST EARNINGS WEEK OF THE QUARTER, stacked on top of FOMC + Core PCE. Any swing horizon that spans 2026-07-28..07-31 carries both single-name event risk AND Tier-1 macro risk.",
+    "week_of_2026_07_27": [
+      {"date": "2026-07-26", "postmarket": ["BKR"]},
+      {"date": "2026-07-27", "postmarket": ["APLD", "AMKR", "WHR", "CLS", "CDNS", "SANM", "NUE", "RMBS", "WELL", "UHS", "FFIV"], "premarket": ["AZN", "VOD", "ARLP"]},
+      {"date": "2026-07-28", "premarket": ["PYPL", "GLW", "BA", "KO", "JBLU", "UPS", "CNC"], "postmarket": ["BE", "F", "STX", "V", "ENPH"]},
+      {"date": "2026-07-29", "postmarket": ["MSFT", "META", "ARM", "QCOM", "LRCX", "HOOD", "CVNA"], "premarket": ["BSX"]},
+      {"date": "2026-07-30", "postmarket": ["AAPL", "AMZN", "COIN", "RDDT", "RIVN", "RIOT"], "note": "AAPL implied move 0.18%, AMZN 0.21% per screener implied_move_perc (in PERCENT units)"},
+      {"date": "2026-07-31", "premarket": ["XOM", "CVX", "MRNA"]}
+    ],
+    "week_of_2026_08_03": [
+      {"date": "2026-08-03", "postmarket": ["PLTR"]},
+      {"date": "2026-08-04", "postmarket": ["AMD", "SPCX"]},
+      {"date": "2026-08-05", "postmarket": ["SNDK", "WDC", "OXY", "FIG"], "premarket": ["LLY", "UBER", "DIS", "CRCL", "SHOP", "GLXY", "WULF", "IONQ"]},
+      {"date": "2026-08-06", "postmarket": ["MARA", "AAOI", "RKT", "TTD"], "unknown": ["NBIS", "CLSK", "CELH"]}
+    ],
+    "high_iv_rank_into_print": [
+      {"ticker": "BSX", "d": 5, "iv_rank": 95.4}, {"ticker": "CDNS", "d": 3, "iv_rank": 93.9},
+      {"ticker": "RMBS", "d": 3, "iv_rank": 95.0}, {"ticker": "WHR", "d": 3, "iv_rank": 93.0},
+      {"ticker": "STX", "d": 4, "iv_rank": 89.1}, {"ticker": "NBIS", "d": 13, "iv_rank": 92.6},
+      {"ticker": "BE", "d": 4, "iv_rank": 88.0}, {"ticker": "MSFT", "d": 5, "iv_rank": 87.1},
+      {"ticker": "WDC", "d": 12, "iv_rank": 86.9}, {"ticker": "ARM", "d": 5, "iv_rank": 86.3},
+      {"ticker": "AMD", "d": 11, "iv_rank": 85.4}, {"ticker": "UBER", "d": 12, "iv_rank": 85.1},
+      {"ticker": "SHOP", "d": 12, "iv_rank": 84.2}, {"ticker": "LRCX", "d": 5, "iv_rank": 84.1},
+      {"ticker": "GLW", "d": 4, "iv_rank": 83.2}, {"ticker": "CVX", "d": 7, "iv_rank": 82.4},
+      {"ticker": "AMKR", "d": 3, "iv_rank": 82.2}, {"ticker": "XOM", "d": 7, "iv_rank": 81.5},
+      {"ticker": "META", "d": 5, "iv_rank": 79.7}, {"ticker": "AAPL", "d": 6, "iv_rank": 71.1},
+      {"ticker": "AMZN", "d": 6, "iv_rank": 70.1}, {"ticker": "PLTR", "d": 10, "iv_rank": 74.8}
+    ]
+  },
+
+  "opex_pin_candidates": null,
+  "opex_note": "opex-pin-strategist NOT spawned. Monthly third-Friday OPEX was 2026-07-17 (LAST week, W29). WEEK_END 2026-07-24 is exactly 7 calendar days AFTER it, but the agent's output feeds §9 'Setups for NEXT week' and the coming week (2026-07-27..07-31) contains NO monthly OPEX - the next is 2026-08-21, 28 days out. Spawning it would produce a pin book for an expiry that already printed. 11 agents this run.",
+
+  "macro_snapshot": {
+    "source": "FRED",
+    "available": true,
+    "retrieved": "2026-07-25",
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.36,
+    "core_cpi_yoy_pct": 2.81,
+    "core_pce_yoy_pct": 3.41,
+    "headline_cpi_yoy_pct": 3.73,
+    "unemployment_rate": 4.2,
+    "payrolls_mom_000s": 57.0,
+    "ten_year_yield": 4.71,
+    "ten_year_30d_direction": "rising",
+    "ten_year_delta_30d": 0.21,
+    "two_year_yield": 4.37,
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.63,
+    "read": "TIGHTENING FINANCIAL CONDITIONS INTO A CHOPPY TAPE. Core PCE 3.41% YoY is well above the Fed's 2% target and running ABOVE core CPI (2.81%) - the Fed's preferred gauge is the hotter one. 10Y +21bp over 30d to 4.71%, 2Y +21bp to 4.37% (parallel shift, curve still normal at +36bp), USD strengthening. Payrolls +57k is soft. That combination - sticky inflation, rising long rates, firm dollar, softening labour - is the stagflation-lite backdrop that argues against adding beta-long duration risk here."
+  },
+
+  "event_risk": [
+    {"event": "US Consumer Confidence (Conference Board)", "date": "2026-07-28", "impact": "medium"},
+    {"event": "FOMC rate decision (2:00pm ET) + Powell presser (2:30pm ET). NO Summary of Economic Projections / no dot plot at this meeting. Fed funds currently 3.50-3.75%, held through multiple 2026 meetings on above-target PCE.", "date": "2026-07-29", "impact": "high"},
+    {"event": "US Q2 GDP (advance) + PCE / Core PCE price index + Initial Claims (8:30am ET)", "date": "2026-07-30", "impact": "high"},
+    {"event": "Employment Cost Index (8:30am ET)", "date": "2026-07-31", "impact": "medium"},
+    {"event": "Nonfarm Payrolls (first Friday)", "date": "2026-08-07", "impact": "high"},
+    {"event": "MEGA-CAP EARNINGS CLUSTER: MSFT + META (07-29 post), AAPL + AMZN (07-30 post) - the four largest index weights all print inside 48 hours, straddling the FOMC and the Core PCE release.", "date": "2026-07-29/30", "impact": "high"}
+  ],
+
+  "gex_advisory_backtest": {
+    "verdict": "NO_GO_NO_EDGE",
+    "pooled": {"h2_n": 118, "closer_to_nearest_wall_pct": 22.0, "p_vs_50": 1.0, "moved_in_pin_direction_pct": 52.5, "contained_within_walls_pct": 53.4, "h1_zgl_testable_n": 46, "h1_long_gamma_mean_abs_ret": 0.835, "h1_short_gamma_mean_abs_ret": 0.787, "h1_short_gt_long_as_theory": false},
+    "read": "Walls are ANTI-magnets in this sample: the next close landed closer to the nearest EOD wall only 22.0% of the time (n=118) versus a 50% baseline - materially WORSE than chance, p=1.0 one-sided. H1 also ran backwards pooled (short-gamma mean |ret| 0.787 < long-gamma 0.835). The SPY leg alone did satisfy H1 (0.603 vs 0.485) but QQQ inverted it. Present the §9 GEX map as dealer CONTEXT ONLY, with this verdict stated up front. It is not an edge."
+  },
+
+  "zerodte_setup": {
+    "available": true,
+    "as_of": "2026-07-24",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "SPY": {"n": 60, "premium_sell_win_open_pct": 93.3, "mean_pnl_open_pct": 0.275, "mean_pnl_open_net_pct": 0.175, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -1.4, "gex_to_range_corr": -0.37, "mean_pnl_by_vix_state": {"LOW": 0.073, "MID": 0.378, "HIGH": 0.375}, "sell_premium": true, "vol_state": "HIGH", "vix": 18.58, "implied_move_pct": 0.62, "expected_range_pct": 1.18, "size_scalar": 1.5, "suggested_structure": "wider iron condor, wings ~ +/-1.18% (short-gamma: wider range / trendier)"},
+    "QQQ": {"n": 60, "premium_sell_win_open_pct": 88.3, "mean_pnl_open_pct": 0.404, "mean_pnl_open_net_pct": 0.304, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -2.453, "gex_to_range_corr": -0.36, "mean_pnl_by_vix_state": {"LOW": 0.11, "MID": 0.51, "HIGH": 0.593}, "sell_premium": true, "vol_state": "HIGH", "vix": 18.58, "implied_move_pct": 1.1, "expected_range_pct": 1.95, "size_scalar": 1.5, "suggested_structure": "wider iron condor, wings ~ +/-1.95%"},
+    "pnl_basis": "percent-of-underlying-spot-notional, GROSS of transaction costs; not premium-collected, not margin-relative",
+    "tail_caveat": "Validation sample has NO vol shock; the short-vol left tail is UNSAMPLED. Advisory, 0 rubric points, permanently so until a vol-shock day enters the sample AND net expectancy clears a tail-aware bar. Win-rate is NOT the promotion metric.",
+    "IMPORTANT_OVERLAY": "VIX 18.58 puts both indices in the HIGH vol_state with size_scalar 1.5 - but next week's calendar (FOMC 07-29, GDP+Core PCE 07-30, MSFT/META/AAPL/AMZN) is exactly the unsampled-tail scenario. Do NOT lean on the 1.5x scalar into those sessions; the entry_rule (enter at the open after the gap resolves, never carry overnight) is doing the real risk work."
+  },
+
+  "rubric_regime_status": "OUT-OF-REGIME. The rubric was fitted entirely in the UPTREND regime that ended 2026-06-12; current regime is TRANSITIONAL/CHOPPY. P0.6 guard active: every conviction-tier size is CAPPED AT HALF. rubric_version 2026-06-12 (FROZEN).",
+
+  "prior_week_context": {
+    "streak": "20 consecutive empty conviction boards through 2026-07-24 (no name has been sized with live capital).",
+    "this_week_daily_envelopes": "All 5 exist. 58 total calls, only 4 non-DROP: MU long LOW (07-23, watch_only), TSLA short LOW / AKAM vol_short LOW / FSLR vol_short LOW (07-24, all watch_only). Watchlist write-backs: MU (07-23), TSLA+AKAM+FSLR (07-24).",
+    "recurring_kill_mechanism": "The dominant kill all week was -3 flow_conflict: 30d cumulative premium flow running OPPOSITE the Phase-1 short thesis on semis/AI names (MU, NBIS, SMH, SNDK). Second most common: fundamentals-gate CAUTION."
+  },
+
+  "HARD_RULES_FOR_ALL_AGENTS": [
+    "Do NOT re-fetch `uw risk market-regime`, `uw historical vrp`, or `uw options-structure front-end-iv-ratio` - consume them from this context block only.",
+    "Do NOT call `uw historical signal-backtest` - it is quant-only and quarantined (P0.3).",
+    "Do NOT write any files. Do NOT touch the watchlist. Return your findings as your final message text only. (risk-monitor is the sole exception and only in Phase 2d.)",
+    "Restrict every query to covered_dates 2026-07-20..2026-07-24. Prefer multi-day/persistence tools over single-day equivalents - the WEEK is the unit of analysis.",
+    "Every candidate you surface must be on the c12_liquidity_floor.passed list, or you must run scripts/market_data.py --as-of 2026-07-24 yourself and show it clears price>=$5 AND 20d dollar-ADV>=$50M. Fail closed.",
+    "Use the cached Step-0 payloads in analyses/weekly/2026-W30/step0_cache/ instead of re-issuing those market-wide commands.",
+    "Canonical CLI form: uw <group> <sub> [--flags] --json --quiet. Sort tie-prone lists by an explicit key (Go map order is non-deterministic).",
+    "For IV term structure, classify through `python3 scripts/term_structure_hygiene.py` - never off the raw label."
+  ],
+
+  "step0_cache_paths": {
+    "dir": "analyses/weekly/2026-W30/step0_cache/",
+    "files": ["daily_synthesis.json", "dte_volume_share.json", "earnings_catalyst.json", "expiry_heatmap.json", "greek_screener.json", "iv_outliers.json", "iv_rank_high.json", "iv_rank_low.json", "market_regime.json", "most_active.json", "oi_smart_positioning.json", "screener_bearish.json", "screener_bullish.json", "sector_flow_persistence.json", "sector_flow.json", "signal_confluence_bearish.json", "signal_confluence_bullish.json", "single_leg.json", "top_premium_trades.json", "volume_vs_average.json", "vrp_qqq.json", "vrp_spy.json"]
+  }
+}

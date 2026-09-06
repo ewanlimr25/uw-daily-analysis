@@ -1,0 +1,59 @@
+{
+ "single_regime": true,
+ "frozen_era_decided": 18,
+ "frozen_era_decided_raw_ge9": 0,
+ "frozen_cut_bands": {
+  "HIGH_ge9": {
+   "w": 5,
+   "n": 13,
+   "wr": 0.385
+  },
+  "MED_7_8": {
+   "w": 6,
+   "n": 13,
+   "wr": 0.462
+  },
+  "LOW_3_6": {
+   "w": 28,
+   "n": 62,
+   "wr": 0.452
+  },
+  "DROP_le2": {
+   "w": 32,
+   "n": 72,
+   "wr": 0.444
+  }
+ },
+ "monotone": false,
+ "pre_registrations": [
+  {
+   "id": "C40",
+   "target": "+2 multileg_directional weight",
+   "direction": "reduce to +1 or add confirmation leg",
+   "evidence": "class realised 0.17 n=12 claimed 0.56 BH-surviving excess -8.3",
+   "bar": "cross-regime & n>=30/arm & BH FDR0.10"
+  },
+  {
+   "id": "C41",
+   "target": ">=9 HIGH cut re-confirm",
+   "direction": "HIGH-band WR must >= MED-band",
+   "evidence": "2 consecutive audits HIGH<=MED (06-12 0.222, 06-20 0.385 n13)",
+   "bar": "n>=30 post-freeze raw>=9 cross-regime monotone; today 0"
+  },
+  {
+   "id": "C42",
+   "target": "vol component weights",
+   "direction": "hold-ungradeable",
+   "evidence": "substrate-fabricated claims + RV-proxy outcomes",
+   "bar": "substrate clean backtest + implied_move in envelope"
+  },
+  {
+   "id": "C43",
+   "target": "schema-additive dp_block_to_float_ratio + insider_cluster_flag",
+   "direction": "enable C16/C18 testing",
+   "evidence": "C16/C18 NA on current envelope",
+   "bar": "additive schema bump, backward-compatible"
+  }
+ ],
+ "freeze_lift": "KEEP freeze + KEEP P0.6 half-cap (<30 resolved post-freeze, single-regime, HIGH inverted)"
+}

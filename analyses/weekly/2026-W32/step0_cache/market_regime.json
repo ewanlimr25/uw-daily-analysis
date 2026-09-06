@@ -1,0 +1,33 @@
+{
+  "date": "latest",
+  "market_breadth": {
+    "bearish_flow_tickers": 3913,
+    "bullish_flow_tickers": 2368,
+    "bullish_pct": 37.7,
+    "tickers_with_options": 6281
+  },
+  "regime": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+  "sector_rotation": {
+    "money_flowing_in": {
+      "Consumer Defensive": 8638806,
+      "Industrials": 79482725,
+      "Technology": 110410371
+    },
+    "money_flowing_out": {
+      "Communication Services": -18907148,
+      "Consumer Cyclical": -30812229,
+      "Healthcare": -7477652
+    }
+  },
+  "spy": {
+    "above_20sma": true,
+    "above_50sma": true,
+    "change_30d_pct": 2.87,
+    "current": 773.26,
+    "pct_from_90d_high": -0.46,
+    "sma_20": 750.17,
+    "sma_50": 747.19
+  },
+  "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range.",
+  "trend": "UPTREND"
+}

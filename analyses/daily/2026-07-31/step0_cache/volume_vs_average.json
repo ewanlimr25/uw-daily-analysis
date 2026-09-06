@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 2.4,
+      "close": 29.46,
+      "full_name": "FIRST INTERNET BANCORP",
+      "iv_rank": 24.2514,
+      "put_call_ratio": 0.001863238308179616,
+      "sector": "Financial Services",
+      "ticker": "INBK",
+      "total_volume": 5377,
+      "volume_ratio": 2240.416666666667
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 118.62,
+      "full_name": "FIRST TRUST SMALL CAP GROWTH ALPHADEX FUND",
+      "iv_rank": 19.1723,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FYC",
+      "total_volume": 60,
+      "volume_ratio": 600
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 19.575,
+      "full_name": "Kurv Yield Premium Strategy Microsoft (MSFT) ETF",
+      "iv_rank": 24.5599,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MSFY",
+      "total_volume": 30,
+      "volume_ratio": 300
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 50.32,
+      "full_name": "ISHARES BROAD USD INVESTMENT GRADE CORPORATE BOND ETF",
+      "iv_rank": 55.8059,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "USIG",
+      "total_volume": 20,
+      "volume_ratio": 299.85007496251876
+    },
+    {
+      "avg_total_volume": 2.2666,
+      "close": 4.84,
+      "full_name": "SCYNEXIS INC",
+      "iv_rank": 0.6831,
+      "put_call_ratio": 0.15904139433551198,
+      "sector": "Healthcare",
+      "ticker": "SCYX",
+      "total_volume": 532,
+      "volume_ratio": 234.71278567016677
+    },
+    {
+      "avg_total_volume": 0.16670000000000001,
+      "close": 23.2439,
+      "full_name": "ISHARES MSCI CHINA MULTISECTOR TECH ETF",
+      "iv_rank": 14.4169,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TCHI",
+      "total_volume": 27,
+      "volume_ratio": 161.96760647870425
+    },
+    {
+      "avg_total_volume": 7.5333,
+      "close": 17.65,
+      "full_name": "PERELLA WEINBERG PARTNERS",
+      "iv_rank": 40.0674,
+      "put_call_ratio": 0.006958250497017893,
+      "sector": "Financial Services",
+      "ticker": "PWP",
+      "total_volume": 1013,
+      "volume_ratio": 134.469621546998
+    },
+    {
+      "avg_total_volume": 87.8,
+      "close": 45.01,
+      "full_name": "HNI CORP",
+      "iv_rank": 34.1317,
+      "put_call_ratio": 0.000368052999631947,
+      "sector": "Industrials",
+      "ticker": "HNI",
+      "total_volume": 10872,
+      "volume_ratio": 123.82687927107062
+    },
+    {
+      "avg_total_volume": 173.8667,
+      "close": 162.3,
+      "full_name": "MARKETAXESS HOLDINGS INC",
+      "iv_rank": 2.8571,
+      "put_call_ratio": 0.00640346653827636,
+      "sector": "Financial Services",
+      "ticker": "MKTX",
+      "total_volume": 20903,
+      "volume_ratio": 120.22428676681618
+    },
+    {
+      "avg_total_volume": 4.6,
+      "close": 88.24,
+      "full_name": "PATHWARD FINANCIAL INC",
+      "iv_rank": 38.7212,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CASH",
+      "total_volume": 525,
+      "volume_ratio": 114.1304347826087
+    },
+    {
+      "avg_total_volume": 19.833299999999998,
+      "close": 1.65,
+      "full_name": "HELIUS MEDICAL TECHNOLOGIES INC",
+      "iv_rank": 55.1321,
+      "put_call_ratio": 61.73913043478261,
+      "sector": "Healthcare",
+      "ticker": "HSDT",
+      "total_volume": 1443,
+      "volume_ratio": 72.75642480071396
+    },
+    {
+      "avg_total_volume": 164.8333,
+      "close": 60.31,
+      "full_name": "DELEK LOGISTICS PARTNERS LP",
+      "iv_rank": 24.1974,
+      "put_call_ratio": 0.01482805762961405,
+      "sector": "Energy",
+      "ticker": "DKL",
+      "total_volume": 9650,
+      "volume_ratio": 58.54399566107091
+    },
+    {
+      "avg_total_volume": 5.2334,
+      "close": 13.5,
+      "full_name": "DBV TECHNOLOGIES SA",
+      "iv_rank": 12.5,
+      "put_call_ratio": 48.666666666666664,
+      "sector": "Healthcare",
+      "ticker": "DBVT",
+      "total_volume": 298,
+      "volume_ratio": 56.941949784079185
+    },
+    {
+      "avg_total_volume": 0.9166000000000001,
+      "close": 31.15,
+      "full_name": "FIRST WESTERN FINANCIAL INC",
+      "iv_rank": 29.9213,
+      "put_call_ratio": 0.11363636363636363,
+      "sector": "Financial Services",
+      "ticker": "MYFW",
+      "total_volume": 49,
+      "volume_ratio": 53.45843334060658
+    },
+    {
+      "avg_total_volume": 412.5,
+      "close": 12.5,
+      "full_name": "TAL EDUCATION GROUP",
+      "iv_rank": 10.2148,
+      "put_call_ratio": 0.020331079505712286,
+      "sector": "Consumer Defensive",
+      "ticker": "TAL",
+      "total_volume": 21881,
+      "volume_ratio": 53.04484848484849
+    },
+    {
+      "avg_total_volume": 0.8333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TRIB1",
+      "total_volume": 41,
+      "volume_ratio": 49.20196807872315
+    },
+    {
+      "avg_total_volume": 2.8,
+      "close": 133.57,
+      "full_name": "INVESCO DWA MOMENTUM ETF",
+      "iv_rank": 60.1643,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PDP",
+      "total_volume": 135,
+      "volume_ratio": 48.214285714285715
+    },
+    {
+      "avg_total_volume": 57.9333,
+      "close": 54.57,
+      "full_name": "LGI HOMES INC",
+      "iv_rank": 52.3468,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "LGIH",
+      "total_volume": 2511,
+      "volume_ratio": 43.342947838289895
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": 70.73,
+      "full_name": "DIMENSIONAL US TARGETED VALUE ETF",
+      "iv_rank": 36.6188,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFAT",
+      "total_volume": 10,
+      "volume_ratio": 42.86326618088298
+    },
+    {
+      "avg_total_volume": 6.2,
+      "close": 63.14,
+      "full_name": "ISHARES US ENERGY ETF",
+      "iv_rank": 65.0097,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IYE",
+      "total_volume": 232,
+      "volume_ratio": 37.41935483870968
+    },
+    {
+      "avg_total_volume": 6.7667,
+      "close": 28,
+      "full_name": "CASTLE BIOSCIENCES INC",
+      "iv_rank": 50.7723,
+      "put_call_ratio": 0.004329004329004329,
+      "sector": "Healthcare",
+      "ticker": "CSTL",
+      "total_volume": 232,
+      "volume_ratio": 34.28554539140201
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 28.05,
+      "full_name": "SPDR(R) DOW JONES INTERNATIONAL REAL ESTATE ETF",
+      "iv_rank": 50.0107,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RWX",
+      "total_volume": 10,
+      "volume_ratio": 33.333333333333336
+    },
+    {
+      "avg_total_volume": 78.19999999999999,
+      "close": 2.86,
+      "full_name": "MYRIAD GENETICS INC",
+      "iv_rank": 15.7845,
+      "put_call_ratio": 0.08315745040101309,
+      "sector": "Healthcare",
+      "ticker": "MYGN",
+      "total_volume": 2566,
+      "volume_ratio": 32.813299232736576
+    },
+    {
+      "avg_total_volume": 677.2667,
+      "close": 3.39,
+      "full_name": "LIFEZONE METALS LTD",
+      "iv_rank": 80.4775,
+      "put_call_ratio": 0,
+      "sector": "Basic Materials",
+      "ticker": "LZM",
+      "total_volume": 21090,
+      "volume_ratio": 31.139874439419508
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 24.0954,
+      "full_name": "Corgi Robots & Humanoids ETF",
+      "iv_rank": 16.798,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CBOT",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-07-31.parquet"
+}

@@ -1,0 +1,228 @@
+{
+ "cells": {
+  "tape=UP/long": {
+   "n": 112,
+   "book_wr": 0.473,
+   "spy_wr": 0.455,
+   "excess_pp": 1.8
+  },
+  "tape=UP/short": {
+   "n": 131,
+   "book_wr": 0.359,
+   "spy_wr": 0.427,
+   "excess_pp": -6.9
+  },
+  "tape=DOWN/long": {
+   "n": 159,
+   "book_wr": 0.377,
+   "spy_wr": 0.22,
+   "excess_pp": 15.7
+  },
+  "tape=DOWN/short": {
+   "n": 82,
+   "book_wr": 0.488,
+   "spy_wr": 0.671,
+   "excess_pp": -18.3
+  },
+  "regime=uptrend/long": {
+   "n": 122,
+   "book_wr": 0.41,
+   "spy_wr": 0.238,
+   "excess_pp": 17.2
+  },
+  "regime=uptrend/short": {
+   "n": 73,
+   "book_wr": 0.438,
+   "spy_wr": 0.658,
+   "excess_pp": -21.9
+  },
+  "regime=pullback_in_uptrend/long": {
+   "n": 55,
+   "book_wr": 0.509,
+   "spy_wr": 0.491,
+   "excess_pp": 1.8
+  },
+  "regime=pullback_in_uptrend/short": {
+   "n": 56,
+   "book_wr": 0.357,
+   "spy_wr": 0.518,
+   "excess_pp": -16.1
+  },
+  "regime=choppy/long": {
+   "n": 18,
+   "book_wr": 0.667,
+   "spy_wr": 0.778,
+   "excess_pp": -11.1
+  },
+  "regime=choppy/short": {
+   "n": 36,
+   "book_wr": 0.222,
+   "spy_wr": 0.472,
+   "excess_pp": -25.0
+  },
+  "regime=transitional_other/long": {
+   "n": 76,
+   "book_wr": 0.303,
+   "spy_wr": 0.211,
+   "excess_pp": 9.2
+  },
+  "regime=transitional_other/short": {
+   "n": 48,
+   "book_wr": 0.562,
+   "spy_wr": 0.354,
+   "excess_pp": 20.8
+  },
+  "class=bearish_flow": {
+   "n": 134,
+   "book_wr": 0.425,
+   "spy_wr": 0.545,
+   "excess_pp": -11.9
+  },
+  "class=bullish_flow": {
+   "n": 66,
+   "book_wr": 0.439,
+   "spy_wr": 0.318,
+   "excess_pp": 12.1
+  },
+  "class=dark_pool_accumulation": {
+   "n": 57,
+   "book_wr": 0.404,
+   "spy_wr": 0.368,
+   "excess_pp": 3.5
+  },
+  "class=dealer_positioning": {
+   "n": 31,
+   "book_wr": 0.516,
+   "spy_wr": 0.484,
+   "excess_pp": 3.2
+  },
+  "class=gamma_breakout": {
+   "n": 10,
+   "book_wr": 0.2,
+   "spy_wr": 0.6,
+   "excess_pp": -40.0
+  },
+  "class=multi_day_sweep": {
+   "n": 10,
+   "book_wr": 0.7,
+   "spy_wr": 0.3,
+   "excess_pp": 40.0
+  },
+  "class=multileg_directional": {
+   "n": 92,
+   "book_wr": 0.391,
+   "spy_wr": 0.37,
+   "excess_pp": 2.2
+  },
+  "class=oi_build": {
+   "n": 20,
+   "book_wr": 0.45,
+   "spy_wr": 0.3,
+   "excess_pp": 15.0
+  },
+  "class=sector_rotation": {
+   "n": 48,
+   "book_wr": 0.292,
+   "spy_wr": 0.292,
+   "excess_pp": 0.0
+  },
+  "class=bearish_flow/tape=UP": {
+   "n": 74,
+   "book_wr": 0.378,
+   "spy_wr": 0.446,
+   "excess_pp": -6.8
+  },
+  "class=bearish_flow/tape=DOWN": {
+   "n": 60,
+   "book_wr": 0.483,
+   "spy_wr": 0.667,
+   "excess_pp": -18.3
+  },
+  "class=bullish_flow/tape=UP": {
+   "n": 24,
+   "book_wr": 0.458,
+   "spy_wr": 0.458,
+   "excess_pp": 0.0
+  },
+  "class=bullish_flow/tape=DOWN": {
+   "n": 42,
+   "book_wr": 0.429,
+   "spy_wr": 0.238,
+   "excess_pp": 19.0
+  },
+  "class=dark_pool_accumulation/tape=UP": {
+   "n": 20,
+   "book_wr": 0.45,
+   "spy_wr": 0.6,
+   "excess_pp": -15.0
+  },
+  "class=dark_pool_accumulation/tape=DOWN": {
+   "n": 37,
+   "book_wr": 0.378,
+   "spy_wr": 0.243,
+   "excess_pp": 13.5
+  },
+  "class=multileg_directional/tape=UP": {
+   "n": 58,
+   "book_wr": 0.431,
+   "spy_wr": 0.397,
+   "excess_pp": 3.4
+  },
+  "class=multileg_directional/tape=DOWN": {
+   "n": 34,
+   "book_wr": 0.324,
+   "spy_wr": 0.324,
+   "excess_pp": 0.0
+  },
+  "tier=LOW": {
+   "n": 105,
+   "book_wr": 0.419,
+   "spy_wr": 0.41,
+   "excess_pp": 1.0
+  },
+  "tier=MEDIUM": {
+   "n": 19,
+   "book_wr": 0.526,
+   "spy_wr": 0.368,
+   "excess_pp": 15.8
+  },
+  "tier=DROP": {
+   "n": 353,
+   "book_wr": 0.411,
+   "spy_wr": 0.408,
+   "excess_pp": 0.3
+  },
+  "era=era_0525_0529": {
+   "n": 40,
+   "book_wr": 0.55,
+   "spy_wr": 0.45,
+   "excess_pp": 10.0
+  },
+  "era=era_0530_0605": {
+   "n": 56,
+   "book_wr": 0.429,
+   "spy_wr": 0.429,
+   "excess_pp": 0.0
+  },
+  "era=pre_freeze_post_0606": {
+   "n": 25,
+   "book_wr": 0.4,
+   "spy_wr": 0.4,
+   "excess_pp": 0.0
+  },
+  "era=2026-06-12": {
+   "n": 363,
+   "book_wr": 0.397,
+   "spy_wr": 0.399,
+   "excess_pp": -0.3
+  }
+ },
+ "slope_pp_per_spywr": -84.0,
+ "intercept": 36.1,
+ "r2": 0.581,
+ "sd_book_wr": 0.1,
+ "sd_spy_wr": 0.1368,
+ "dispersion_ratio": 0.731,
+ "benchmark_share_of_excess_variance_pct": 65.2,
+ "n_cells": 36
+}

@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0667,
+      "close": 59.5963,
+      "full_name": "WISDOMTREE INTERNATIONAL AI ENHANCED VALUE FUND",
+      "iv_rank": 10.3492,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AIVI",
+      "total_volume": 35,
+      "volume_ratio": 524.7376311844079
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 72.2,
+      "full_name": "FIRST BUSINESS FINANCIAL SERVICES INC",
+      "iv_rank": 41.0737,
+      "put_call_ratio": 1.2,
+      "sector": "Financial Services",
+      "ticker": "FBIZ",
+      "total_volume": 22,
+      "volume_ratio": 165.04126031507877
+    },
+    {
+      "avg_total_volume": 3.4,
+      "close": 15.3,
+      "full_name": "Tradr 2X Long MPWR Daily ETF",
+      "iv_rank": 60.2911,
+      "put_call_ratio": 74.33333333333333,
+      "sector": null,
+      "ticker": "MPWX",
+      "total_volume": 452,
+      "volume_ratio": 132.94117647058823
+    },
+    {
+      "avg_total_volume": 4.3333,
+      "close": 240.45,
+      "full_name": "VANGUARD EXTENDED MARKET INDEX FUND",
+      "iv_rank": 18.1462,
+      "put_call_ratio": 50.90909090909091,
+      "sector": null,
+      "ticker": "VXF",
+      "total_volume": 571,
+      "volume_ratio": 131.77024438649528
+    },
+    {
+      "avg_total_volume": 11.433399999999999,
+      "close": 2.73,
+      "full_name": "ORION OFFICE REIT INC",
+      "iv_rank": 12.1609,
+      "put_call_ratio": 655,
+      "sector": "Real Estate",
+      "ticker": "ONL",
+      "total_volume": 1312,
+      "volume_ratio": 114.75151748386308
+    },
+    {
+      "avg_total_volume": 29.066699999999997,
+      "close": 13.31,
+      "full_name": "GREEN DOT CORP",
+      "iv_rank": 37.986,
+      "put_call_ratio": 1,
+      "sector": "Financial Services",
+      "ticker": "GDOT",
+      "total_volume": 3000,
+      "volume_ratio": 103.21089081319862
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 26.0044,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RGTU1",
+      "total_volume": 6,
+      "volume_ratio": 90.09009009009009
+    },
+    {
+      "avg_total_volume": 5.3,
+      "close": 277.29,
+      "full_name": "VANGUARD MEGA CAP INDEX FUND",
+      "iv_rank": 36.1735,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MGC",
+      "total_volume": 428,
+      "volume_ratio": 80.75471698113208
+    },
+    {
+      "avg_total_volume": 2.6666000000000003,
+      "close": 90.51,
+      "full_name": "1ST SOURCE CORP",
+      "iv_rank": 24.9597,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "SRCE",
+      "total_volume": 210,
+      "volume_ratio": 78.75196879921997
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 77.54,
+      "full_name": "INVESCO S&P 500 VALUE WITH MOMENTUM ETF",
+      "iv_rank": 10.7509,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPVM",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 20.13,
+      "full_name": "INVESCO CEF INCOME COMPOSITE ETF",
+      "iv_rank": 12.7662,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PCEF",
+      "total_volume": 14,
+      "volume_ratio": 52.51312828207052
+    },
+    {
+      "avg_total_volume": 2.7,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "NVRI1",
+      "total_volume": 140,
+      "volume_ratio": 51.85185185185185
+    },
+    {
+      "avg_total_volume": 3.0667,
+      "close": 10.6,
+      "full_name": "MEDALLION FINANCIAL CORP",
+      "iv_rank": 9.368,
+      "put_call_ratio": 0.3652173913043478,
+      "sector": "Financial Services",
+      "ticker": "MFIN",
+      "total_volume": 157,
+      "volume_ratio": 51.195095705481464
+    },
+    {
+      "avg_total_volume": 258.7333,
+      "close": 105.79,
+      "full_name": "MERCURY SYSTEMS INC",
+      "iv_rank": 98.914,
+      "put_call_ratio": 0.035384250849064054,
+      "sector": "Industrials",
+      "ticker": "MRCY",
+      "total_volume": 13109,
+      "volume_ratio": 50.66607197450038
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": 37.1193,
+      "full_name": "iShares Technology Opportunities Active ETF",
+      "iv_rank": 43.294,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TEK",
+      "total_volume": 9,
+      "volume_ratio": 45
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 67.1809,
+      "full_name": "VICTORYSHARES US SMALL CAP HIGH DIV VOLATILITY WTD ETF",
+      "iv_rank": 15.7243,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CSB",
+      "total_volume": 4,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 160.3333,
+      "close": 41.17,
+      "full_name": "OPENLANE",
+      "iv_rank": 59.7586,
+      "put_call_ratio": 1.7308524448290783,
+      "sector": "Consumer Cyclical",
+      "ticker": "OPLN",
+      "total_volume": 6311,
+      "volume_ratio": 39.36175454506331
+    },
+    {
+      "avg_total_volume": 97.8,
+      "close": 36.74,
+      "full_name": "MYERS INDUSTRIES INC",
+      "iv_rank": 51.793,
+      "put_call_ratio": 0.0037056643726839597,
+      "sector": "Consumer Cyclical",
+      "ticker": "MYE",
+      "total_volume": 3792,
+      "volume_ratio": 38.77300613496933
+    },
+    {
+      "avg_total_volume": 67.6,
+      "close": 1.82,
+      "full_name": "AUTOLUS THERAPEUTICS PLC",
+      "iv_rank": 20.366,
+      "put_call_ratio": 0.06355063550635506,
+      "sector": "Healthcare",
+      "ticker": "AUTL",
+      "total_volume": 2594,
+      "volume_ratio": 38.37278106508876
+    },
+    {
+      "avg_total_volume": 179.8,
+      "close": 15.42,
+      "full_name": "Shoe Station Group",
+      "iv_rank": 86.2259,
+      "put_call_ratio": 22.529411764705884,
+      "sector": "Consumer Cyclical",
+      "ticker": "SHOE",
+      "total_volume": 6400,
+      "volume_ratio": 35.595105672969964
+    },
+    {
+      "avg_total_volume": 478.7333,
+      "close": 142.9,
+      "full_name": "HARTFORD FINANCIAL SERVICES GROUP INC",
+      "iv_rank": 59.8326,
+      "put_call_ratio": 0.008090926603737237,
+      "sector": "Financial Services",
+      "ticker": "HIG",
+      "total_volume": 15699,
+      "volume_ratio": 32.792788803285674
+    },
+    {
+      "avg_total_volume": 961.3333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 5.73,
+      "sector": null,
+      "ticker": "GME1",
+      "total_volume": 30057,
+      "volume_ratio": 31.26595115346571
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 26.36,
+      "full_name": "INVESCO TAXABLE MUNICIPAL BOND ETF",
+      "iv_rank": 35.2858,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BAB",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 52.46,
+      "full_name": "DIMENSIONAL US CORE EQUITY MARKET ETF",
+      "iv_rank": 13.8382,
+      "put_call_ratio": 0.5,
+      "sector": null,
+      "ticker": "DFAU",
+      "total_volume": 3,
+      "volume_ratio": 30
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 81.57,
+      "full_name": "FIDELITY VALUE FACTOR ETF",
+      "iv_rank": 12.5247,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FVAL",
+      "total_volume": 5,
+      "volume_ratio": 29.99400119976005
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-03.parquet"
+}

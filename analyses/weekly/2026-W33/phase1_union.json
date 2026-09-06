@@ -1,0 +1,136 @@
+{
+  "iso_week": "2026-W33",
+  "week_end": "2026-08-14",
+  "covered_dates": ["2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14"],
+  "phase1_agents_run": 11,
+  "note": "Consolidated Phase 1 findings. 11 of 11 Phase 1 agents returned. TWO agents returned EMPTY BOARDS (accumulation-hunter, leap-positioning-radar) and one ABORTED its primary lane (contrarian-scanner, VRP gate). Those are graded-correct null results, not gaps.",
+
+  "AGENT_VERDICTS": {
+    "accumulation-hunter": "EMPTY BOARD. All 6 mega-tier candidates REJECTED. MSFT = closing-cross contamination (47.6-93.4% of daily DP premium inside the 20:00-20:25Z window at ONE repeated price; 08-12's $492.43 level alone = $2.998B of $4.67B daily DP). SNDK/MU/NBIS = institutional-accumulation reads NEUTRAL on every one of 5 days (buy_sell_ratio 0.74-1.23) => melt-up CHASE, not accumulation. AVGO = whipsaw (DISTRIBUTION->ACCUM->NEUTRAL) into the Friday -5.94% break. AMAT = actively DISTRIBUTION 3 straight days. NO name earns the +3 accumulation conjunction.",
+    "leap-positioning-radar": "EMPTY BOARD. Zero candidates cleared Gate 4 (cum-flow accretion), let alone 6-of-9. biggest-increases --min-dte 180 returned only 20 rows, ALL ETF/index. MSTR/QQQ/GLD/FXI all FAIL 90d accretion. No name shows rolls recurring on >=2 of 5 dates. Context: market LEAP share DECAYED 3.9%->3.3% across the week while 0DTE tripled.",
+    "contrarian-scanner": "PRIMARY LANE ABORTED (VRP negative => no premium to fade). NO fade candidates. pc-ratio-zscore has NO --date flag => the -2 'rising crowding' clause is STRUCTURALLY UNSATISFIABLE; level-only reported. NO name breached +/-2 sigma. Output = fragile-long ranking only.",
+    "sweep-tracker": "Zero high-conviction directional names after stripping mixed-direction and mega-cap hedge flow. The +3 sweep line was REMOVED 2026-05-23; contributes 0 points.",
+    "gamma-flip-tracker": "SPY/QQQ advisory only, 0 rubric points, NO_GO_NO_EDGE backtest.",
+    "opex-pin-strategist": "2 names clear the 2% pin gate (SPY 780, MSFT 500). Lane verdict: marginally tradeable, defined-risk only, small size. Recommends 'no structure this cycle' as the better-calibrated alternative."
+  },
+
+  "CANDIDATE_UNION": {
+    "SNDK": {
+      "agents_positive": ["dealer-positioning-strategist (dex_flip_long, MECHANIZED PASS)", "sector-rotation-strategist (memory-cohort leader, long)", "vol-surface-scout (long vol, BACKWARDATION held)"],
+      "agents_negative": ["accumulation-hunter (REJECT - institutional-accumulation NEUTRAL 5/5 days, net/gross only 2.9%)", "contrarian-scanner (FRAGILE LONG rank #1, z=-1.392, most call-crowded of set)", "sweep-tracker (persistence 5/5 but direction MIXED; largest Friday ticket is a same-strike same-second calendar ROLL, not directional)"],
+      "confluence_count": 3,
+      "direction": "long",
+      "dex_flip": "QUALIFIES - fired 2026-08-12, magnitude_ratio 2.52, sign_changes_in_window 3, whipsaw_warning FALSE. Flip has HELD and GROWN (+$1.43B 08-12 -> +$7.80B 08-13 -> +$12.20B 08-14).",
+      "cum_flow_30d": {"net": 1577000000, "gross": 54290000000, "net_pct_of_gross": 2.9, "trend": "MIXED"},
+      "oi_trend": "BUILDING but SATURATED (consecutive_build_days == --days at BOTH 5 and 10). Top building contracts are 0DTE calls = expiry mechanics.",
+      "front_end_iv_ratio_at_7dte": 1.15,
+      "tape": "+35.4% 5d, rv20 149.8, ATR14 9.77% of spot",
+      "PUT_SALE_NETTING_CHECK": "No single >20%-of-net ticket isolated this week (unlike 2026-08-06's $388M single put sale). BUT net is only 2.9% of a $54.29B gross - enormous two-way churn, thin net. Does NOT qualify as directional accretion.",
+      "distribution_flag": {"present": false}
+    },
+    "AVGO": {
+      "agents_positive_for_SHORT": ["dealer-positioning-strategist (dex_flip_short, MECHANIZED PASS + GEX regime flip POSITIVE->NEGATIVE 08-10 confirming)", "sector-rotation-strategist (AI-infra bleed cohort, persistent sell)", "contrarian-scanner (bearish price-vs-flow divergence: flow -$86.5M net while 30d price +5.1%, resolved into Friday's -5.94% break - flow was AHEAD of the crack)"],
+      "agents_negative": ["accumulation-hunter (whipsaw, no persistence; cum_flow +$34.8M FAILS the $50M C11 floor)"],
+      "confluence_count": 3,
+      "direction": "short",
+      "ROUTING": "SHORT => watch_only MANDATORY per 2026-08-01 audit P0 #1. Never sized. Thesis still generated/scored/serialized so the counterfactual keeps resolving.",
+      "dex_flip": "QUALIFIES - 2026-08-13 +$2.75B -> 2026-08-14 -$938.5M; prior 11 sessions ALL positive; |flip| $938.5M vs floor $805.2M; magnitude_ratio 1.17; sign_changes_in_window 3; whipsaw_warning FALSE. CLEAN.",
+      "cum_flow_30d": {"net": 34800000, "gross": 5510000000, "net_pct_of_gross": 0.6, "trend": "MIXED"},
+      "front_end_iv_ratio_at_7dte": 0.823,
+      "tape": "-8.1% 5d, -5.94% Friday alone (worst S&P mover)",
+      "vol_surface": "base_shape BACKWARDATION->CONTANGO (calming). iv-percentile 41.38 = the ONLY name near the middle of its own distribution (least dislocated)."
+    },
+    "MU": {
+      "agents_positive": ["sector-rotation-strategist (memory-cohort leader, long)", "vol-surface-scout (long vol)", "dealer-positioning-strategist (LONG-leaning ADVISORY ONLY - DEX is a LEVEL not a flip, 0 points)"],
+      "agents_negative": ["sweep-tracker (bearish persistence 5/5 AGAINST a +10.7% week => hedging/profit-protection, DIVERGENCE)", "accumulation-hunter (REJECT - NEUTRAL 5/5, net/gross 1.0% = thinnest of the set)", "contrarian-scanner (fragile long)"],
+      "confluence_count": 2,
+      "direction": "long",
+      "DIRECTION_CONFLICT": "sweep-tracker reads BEARISH persistence while sector-rotation/vol-surface read LONG. Also the week's daily envelopes called MU SHORT twice (08-11, 08-13) and it rose +11.88% and +2.30%.",
+      "dex_flip": "FAILS - level not flip (the exact P0.4 error the mechanization exists to prevent).",
+      "cum_flow_30d": {"net": 684900000, "gross": 66770000000, "net_pct_of_gross": 1.0, "trend": "MIXED"},
+      "oi_trend": "SATURATED 5/5 and 10/10.",
+      "front_end_iv_ratio_at_7dte": 1.184,
+      "tape": "+10.7% 5d, rv20 101.5"
+    },
+    "NBIS": {
+      "agents_positive": ["vol-surface-scout (long vol - DEEPEST and DEEPENING backwardation, front_end_ratio 1.178->1.215)", "dealer-positioning-strategist (LONG advisory, anchored on GEX regime flip 08-12 NEG->POS, NOT a DEX flip)"],
+      "agents_negative": ["accumulation-hunter (REJECT - the biggest chase of the week; distribution_flag PRESENT: call OI CLOSING into the melt-up, $5.7M 250C + $4.0M 190C; the one 'strong buy' DP day was only 3 mega trades)", "contrarian-scanner (fragile long)", "sweep-tracker (4/5 but MIXED direction)"],
+      "confluence_count": 2,
+      "direction": "long",
+      "dex_flip": "FAILS magnitude floor - flip value $25.3M vs floor $196.8M, ratio 0.13 = whipsaw-around-zero, correctly rejected.",
+      "cum_flow_30d": {"net": 305500000, "gross": 9140000000, "net_pct_of_gross": 3.3, "trend": "MIXED"},
+      "front_end_iv_ratio_at_7dte": 1.215,
+      "tape": "+47.7% 5d (the week's largest move), rv20 183.5, ATR14 9.97% of spot",
+      "fz_context": {"short_float_pct": 29.79, "days_to_cover": 2.89, "squeeze_pressure": "MODERATE", "rsi": 64.63, "beta": 4.5, "insider_trans": "-1.60%"},
+      "distribution_flag": {"present": true, "closing_side": "call", "closing_premium": 5700000, "note": "Institutional-size SHORT-DATED call unwind while price melts up - clearest chase-not-accumulation tell in the set."}
+    },
+    "STX": {
+      "agents_positive": ["sector-rotation-strategist (memory-cohort leader, long)", "vol-surface-scout (long vol, BACKWARDATION held; also a secondary CALENDAR candidate)"],
+      "agents_negative": ["contrarian-scanner (fragile long, z=-1.117, but flow-endorsed => LOWER fragility than SNDK/AMD)"],
+      "confluence_count": 2,
+      "direction": "long",
+      "front_end_iv_ratio_at_7dte": 1.08,
+      "tape": "+19.8% 5d, rv20 80.2",
+      "note": "price-vs-flow ALIGNED (no divergence) - the healthiest of the melt-up cohort alongside NBIS on that specific metric."
+    },
+    "AMD": {
+      "agents_positive": ["sector-rotation-strategist (memory-cohort leader, long)", "sweep-tracker (bullish 5/5 sessions, single clean direction, underlying only +6.4% 5d => least-exhausted of the cohort)"],
+      "agents_negative": ["contrarian-scanner (FRAGILE LONG rank #2, z=-1.267, most call-dominant raw P/C 0.591, price-vs-flow divergence -6.8% price vs +$69.9M bullish flow)", "accumulation-hunter (secondary screen: buy-ratio OSCILLATES 0.186->0.882->0.636->0.033->0.585, no persistence)"],
+      "confluence_count": 2,
+      "direction": "long",
+      "front_end_iv_ratio_at_7dte": 1.06,
+      "tape": "+6.4% 5d, rv20 81.3",
+      "note": "sweep-tracker explicitly flagged NO day-level whale/imbalance corroboration - 'treat as a watch, not a confirmed thesis'."
+    },
+    "SPY": {
+      "agents_positive": ["multileg-strategist (repeat_count 2 - TWO independent structures: OTM put-fly ladder 1:2:1 across Oct30/Nov20/Dec18 + 780/78x call vertical rolled into the 08-21 event tenor)", "vol-surface-scout (short/flat vol leg of the dispersion trade)", "opex-pin-strategist (780 pin, 0.48% distance, +$389.6M gex_at_pin)"],
+      "confluence_count": 3,
+      "direction": "mixed/structural",
+      "note": "The put-fly ladder is a TAIL HEDGE (strikes 15-55% OTM below spot), NOT a directional short. The call vertical is a tactical bullish lean into the event wall. These are opposite-signed structures from (probably) different books - do NOT net them into a directional call.",
+      "vol_surface": "Genuine TAIL_HEDGING skew (skew_ratio 1.415->1.426, rising). base_shape CONTANGO both ends. iv-percentile 0, z -1.271, LOW_IV."
+    },
+    "IWM": {
+      "agents_positive_for_SHORT": ["multileg-strategist (repeat_count 2 - 295P calendar 08-12 rolling into 289/290P Sep18 vertical; MASSIVE standalone -$105.4M negative-gex wall at strike 295 corroborates)", "top_bearish_screener membership"],
+      "agents_conflicting": ["dealer-positioning-strategist (LONG-leaning advisory - DEX level BUILDING +$8.34B->+$11.26B and total_gex building to +$1.17B, regime POSITIVE all week)"],
+      "confluence_count": 2,
+      "direction": "short",
+      "ROUTING": "SHORT => watch_only MANDATORY (2026-08-01 P0 #1).",
+      "DIRECTION_CONFLICT": "multileg says bearish build; dealer-positioning says dealer book is building LONG. Flag explicitly.",
+      "tape": "+1.17% 5d, but 8 of 10 bearish flow days vs SPY/QQQ 5/5. IV rank 1.1 (lowest of the three indices)."
+    },
+    "GLD": {
+      "agents_positive": ["multileg-strategist (repeat_count 2 - bullish OTM call ladder Sep18 400/420/425/445C, 3-21% OTM, rolled/tightened 08-12; separate 330P downside financing leg)"],
+      "confluence_count": 1,
+      "direction": "long",
+      "GATE_STATUS": "FAILS the >=2-agent confluence gate => Section 10 watch-only, single signal.",
+      "note": "Macro backdrop (stagflationary tilt, USD weakening, core PCE 3.29%) independently supports a structural gold thesis. But one agent is one agent - the gate exists to stop exactly this kind of narrative-assisted single-tool entry. GLD was ALSO a DROP call on 08-10 that graded INCONCLUSIVE."
+    },
+    "OTHER_SINGLE_SIGNAL_OR_REJECTED": {
+      "LRCX": "sector-rotation leader + vol-surface mention. Marginal 2. base_shape BACKWARDATION->FLAT.",
+      "APP": "vol-surface BEST calendar candidate (front_end_ratio 1.104->1.06, panic resolving, no earnings in 14d) BUT sector-rotation flags it AI-infra-bleed avoid (-9.0% 5d). Direction conflict; vol-lane only.",
+      "AMAT": "accumulation-hunter DISTRIBUTION 3 straight days + sector-rotation avoid. Bearish, but SHORT => watch_only. base_shape BACKWARDATION->CONTANGO.",
+      "MSFT": "accumulation-hunter REJECT (closing-cross). opex-pin 500 strike. multileg single-day rejected. Was the 08-10 daily's LOW call and LOST -2.11%.",
+      "MSTR": "dealer-positioning DISQUALIFIED (sign_changes_in_window 7, whipsaw_warning TRUE). multileg single-day 95C calendar, LOW/descriptive only.",
+      "EWY": "sector-rotation ETF-tape clean BULLISH +$22.6M multi-day - independent geographic confirmation of the memory thesis (Samsung/SK Hynix). Single agent. Was the 08-12 daily's LOW call, graded INCONCLUSIVE (+2.20%, 0.82x ATR).",
+      "CIFR": "only C12-passing Financial-Services bullish name. Single agent, thin.",
+      "XLU": "confluence_bullish 6/6 + only tradeable Utilities vehicle. Single agent, sector sign-flipped mid-week.",
+      "IGV": "sector-rotation: clean persistent BEARISH -$13.9M with BID-SIDE CALL SELLING (distribution signature, not crash hedge). ETF, advisory."
+    }
+  },
+
+  "CONFLUENCE_GATE_RESULT": {
+    "rule": ">=2 distinct Phase 1 agents flag positively across the week",
+    "passed": ["SNDK (3)", "AVGO (3, SHORT)", "SPY (3, structural)", "MU (2, direction-conflicted)", "NBIS (2)", "STX (2)", "AMD (2)", "IWM (2, SHORT, direction-conflicted)"],
+    "failed_single_signal": ["GLD", "LRCX", "APP", "AMAT", "MSFT", "MSTR", "EWY", "CIFR", "XLU", "IGV"]
+  },
+
+  "CROSS_CUTTING_SUBSTRATE_FINDINGS": [
+    "oi-trend BUILDING SATURATED at the --days ceiling on 6-of-6 names at BOTH 5d and 10d windows = 100% population firing rate, ZERO discrimination (C47). The +3 weekly OI line can be earned by expiry mechanics. Every award must be reported as a FLOOR, not a count.",
+    "sector-flow-persistence returned INFLOW / persistence 1.0 on 11-of-11 sectors = zero discrimination. It and sector-flow are ONE gross source. Direction read off netted market-regime.sector_rotation ONLY - which is available for just TWO days (Mon/Fri), below the >=3-day persistence bar.",
+    "cum_premium_flow net-to-gross is 0.6%-4.2% on EVERY candidate examined (MSFT 4.2, SNDK 2.9, NBIS 3.3, MU 1.0, AVGO 0.6, AMAT -0.12) - all labeled MIXED. No name shows genuine directional accretion; the +1 cum_flow line should not be awarded on magnitude alone.",
+    "front_end_iv_ratio at the CLI default --near-dte 1 is contaminated (AVGO printed 1.731 BACKWARDATION = artifact; re-read at 7 = 0.823 CONTANGO). At --near-dte 7 it fires 8/12 (66.7%) and DISCRIMINATES correctly (separates index/AVGO/MSTR calm from memory-complex elevated). ALWAYS re-read at 7.",
+    "iv-percentile-zscore returned dates_used=87 against a 252-day request on EVERY name - all percentile reads are PROVISIONAL, below the >=120-day first-class bar.",
+    "fz screen lanes are 100% ticker-corrupted (20/20 doubled first letter, A-tickers only, truncated page-1). Per-ticker fz_enrich is HEALTHY (MU/NBIS cross-matched uw prices exactly). Squeeze lane unrecoverable (no Company field); RS lane recoverable by name.",
+    "The 08-21 event tenor shows up INDEPENDENTLY in five separate term structures (SPY/QQQ/MU/AMD/AVGO kink convergence) AND in the multileg roll targets (SPY 780C vertical rolled to 08-21; IWM 295P calendar front leg = 08-21). The book is pricing that date coherently."
+  ]
+}

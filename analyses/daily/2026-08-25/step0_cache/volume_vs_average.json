@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 45.13,
+      "full_name": "CAPITAL GROUP CORE EQUITY ETF",
+      "iv_rank": 20.1666,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CGUS",
+      "total_volume": 30,
+      "volume_ratio": 900.9009009009009
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 44.865,
+      "full_name": "SPDR(R) NUVEEN BLOOMBERG MUNICIPAL BOND ETF",
+      "iv_rank": 28.0612,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TFI",
+      "total_volume": 50,
+      "volume_ratio": 749.625187406297
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 19.0383,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TASK1",
+      "total_volume": 26,
+      "volume_ratio": 389.8050974512744
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 13.9109,
+      "full_name": "PROSHARES ULTRASHORT HEALTH CARE",
+      "iv_rank": 0.1203,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RXD",
+      "total_volume": 12,
+      "volume_ratio": 179.91004497751126
+    },
+    {
+      "avg_total_volume": 3.2,
+      "close": 20.2,
+      "full_name": "PONCE FINANCIAL GROUP INC",
+      "iv_rank": 24.6356,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "PDLB",
+      "total_volume": 470,
+      "volume_ratio": 146.875
+    },
+    {
+      "avg_total_volume": 26.766599999999997,
+      "close": 33.29,
+      "full_name": "G III APPAREL GROUP LTD",
+      "iv_rank": 40.1378,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "GIII",
+      "total_volume": 3800,
+      "volume_ratio": 141.96797501363642
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 42.47,
+      "full_name": "DIMENSIONAL US HIGH PROFITABILITY ETF",
+      "iv_rank": 23.2521,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DUHP",
+      "total_volume": 4,
+      "volume_ratio": 120.1201201201201
+    },
+    {
+      "avg_total_volume": 0.4333,
+      "close": 82.38,
+      "full_name": "FIRST TRUST RISING DIVIDEND ACHIEVERS ETF",
+      "iv_rank": 12.6918,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RDVY",
+      "total_volume": 50,
+      "volume_ratio": 115.39349180706208
+    },
+    {
+      "avg_total_volume": 2.8333,
+      "close": 49.53,
+      "full_name": "Strive 500 ETF",
+      "iv_rank": 42,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "STXF",
+      "total_volume": 299,
+      "volume_ratio": 105.53065330180355
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 19.5289,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CRMX1",
+      "total_volume": 5,
+      "volume_ratio": 75.07507507507506
+    },
+    {
+      "avg_total_volume": 7.5,
+      "close": 10.695,
+      "full_name": "CRESCENT CAPITAL BDC INC",
+      "iv_rank": 7.4365,
+      "put_call_ratio": 167.66666666666666,
+      "sector": "Financial Services",
+      "ticker": "CCAP",
+      "total_volume": 506,
+      "volume_ratio": 67.46666666666667
+    },
+    {
+      "avg_total_volume": 0.7,
+      "close": 3.16,
+      "full_name": "ZHIHU INC",
+      "iv_rank": 43.8979,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "ZH",
+      "total_volume": 44,
+      "volume_ratio": 62.85714285714286
+    },
+    {
+      "avg_total_volume": 2777.2333,
+      "close": 124.31,
+      "full_name": "DICK'S SPORTING GOODS INC",
+      "iv_rank": 54.2272,
+      "put_call_ratio": 0.6807410154962084,
+      "sector": "Consumer Cyclical",
+      "ticker": "DKS",
+      "total_volume": 163126,
+      "volume_ratio": 58.736873131976346
+    },
+    {
+      "avg_total_volume": 395.1667,
+      "close": 4.11,
+      "full_name": "Opus Genetics",
+      "iv_rank": 36.9183,
+      "put_call_ratio": 0.0009129085265656381,
+      "sector": "Healthcare",
+      "ticker": "IRD",
+      "total_volume": 21928,
+      "volume_ratio": 55.49050565242466
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 51.55,
+      "full_name": "Reckoner BBB-B CLO Reinvesting ETF",
+      "iv_rank": 52,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RCLR",
+      "total_volume": 7,
+      "volume_ratio": 52.51312828207052
+    },
+    {
+      "avg_total_volume": 1.0667,
+      "close": 212.53,
+      "full_name": "FIRST TRUST TECHNOLOGY ALPHADEX FUND",
+      "iv_rank": 50.4593,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FXL",
+      "total_volume": 46,
+      "volume_ratio": 43.12365238586294
+    },
+    {
+      "avg_total_volume": 105.1,
+      "close": 93.26,
+      "full_name": "DONALDSON CO INC",
+      "iv_rank": 83.4179,
+      "put_call_ratio": 0.07653307580878803,
+      "sector": "Industrials",
+      "ticker": "DCI",
+      "total_volume": 4459,
+      "volume_ratio": 42.42626070409134
+    },
+    {
+      "avg_total_volume": 33.8667,
+      "close": 126.74,
+      "full_name": "DT MIDSTREAM INC",
+      "iv_rank": 56.8334,
+      "put_call_ratio": 0.0014534883720930232,
+      "sector": "Energy",
+      "ticker": "DTM",
+      "total_volume": 1378,
+      "volume_ratio": 40.688936329787076
+    },
+    {
+      "avg_total_volume": 100.7,
+      "close": 3.92,
+      "full_name": "1 800 FLOWERS COM INC",
+      "iv_rank": 35.8051,
+      "put_call_ratio": 0.0012787723785166241,
+      "sector": "Consumer Cyclical",
+      "ticker": "FLWS",
+      "total_volume": 3915,
+      "volume_ratio": 38.87785501489573
+    },
+    {
+      "avg_total_volume": 48.1666,
+      "close": 117.93,
+      "full_name": "JBT Marel Corporation",
+      "iv_rank": 24.9455,
+      "put_call_ratio": 120.13333333333334,
+      "sector": "Industrials",
+      "ticker": "JBTM",
+      "total_volume": 1817,
+      "volume_ratio": 37.72323560309426
+    },
+    {
+      "avg_total_volume": 28.566699999999997,
+      "close": 21.62,
+      "full_name": "ENVIRI CORP",
+      "iv_rank": 30.2848,
+      "put_call_ratio": 0.0019102196752626551,
+      "sector": "Industrials",
+      "ticker": "NVRI",
+      "total_volume": 1049,
+      "volume_ratio": 36.721077338299494
+    },
+    {
+      "avg_total_volume": 21.3,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 2,
+      "sector": null,
+      "ticker": "HIMZ1",
+      "total_volume": 774,
+      "volume_ratio": 36.33802816901408
+    },
+    {
+      "avg_total_volume": 149.9333,
+      "close": 20.81,
+      "full_name": "NCINO INC",
+      "iv_rank": 59.4842,
+      "put_call_ratio": 0.050825648723997426,
+      "sector": "Technology",
+      "ticker": "NCNO",
+      "total_volume": 4900,
+      "volume_ratio": 32.681198906447065
+    },
+    {
+      "avg_total_volume": 1.2333,
+      "close": 73.82,
+      "full_name": "FIRST TRUST DORSEY WRIGHT FOCUS 5 ETF",
+      "iv_rank": 17.0387,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FV",
+      "total_volume": 38,
+      "volume_ratio": 30.811643557933998
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 22.81,
+      "full_name": "RPAR RISK PARITY ETF",
+      "iv_rank": 33.843,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RPAR",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-25.parquet"
+}

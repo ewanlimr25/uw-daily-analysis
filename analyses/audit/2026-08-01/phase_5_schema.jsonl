@@ -1,0 +1,261 @@
+{
+ "component_lines": [
+  {
+   "line": "oi_trend_building(+1)[+1]",
+   "n": 104,
+   "frozen_points": 1,
+   "wr_with": 0.49,
+   "wr_without": 0.421,
+   "marginal_pp": 7.0,
+   "p_raw": 0.1809,
+   "tape_conditioned_marginal_pp": {
+    "UP": 12.2,
+    "DOWN": 3.1
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "cum_flow_intent(+1)[-1]",
+   "n": 97,
+   "frozen_points": -1,
+   "wr_with": 0.402,
+   "wr_without": 0.443,
+   "marginal_pp": -4.1,
+   "p_raw": 0.4786,
+   "tape_conditioned_marginal_pp": {
+    "UP": -2.2,
+    "DOWN": -6.6
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "vol_term_structure(+/-)[+1]",
+   "n": 96,
+   "frozen_points": 1,
+   "wr_with": 0.396,
+   "wr_without": 0.444,
+   "marginal_pp": -4.9,
+   "p_raw": 0.3928,
+   "tape_conditioned_marginal_pp": {
+    "UP": 3.8,
+    "DOWN": -11.2
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "multileg_structure(+2)[+2]",
+   "n": 79,
+   "frozen_points": 2,
+   "wr_with": 0.443,
+   "wr_without": 0.434,
+   "marginal_pp": 0.9,
+   "p_raw": 0.9523,
+   "tape_conditioned_marginal_pp": {
+    "UP": 8.2,
+    "DOWN": -7.5
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "cum_flow_intent(+1)[+1]",
+   "n": 75,
+   "frozen_points": 1,
+   "wr_with": 0.453,
+   "wr_without": 0.432,
+   "marginal_pp": 2.1,
+   "p_raw": 0.793,
+   "tape_conditioned_marginal_pp": {
+    "UP": 0.3,
+    "DOWN": 3.6
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "cum_flow_intent(+1)[-3]",
+   "n": 61,
+   "frozen_points": -3,
+   "wr_with": 0.475,
+   "wr_without": 0.43,
+   "marginal_pp": 4.6,
+   "p_raw": 0.55,
+   "tape_conditioned_marginal_pp": {
+    "UP": 7.1,
+    "DOWN": 3.2
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "sector_persistence(+1)[+1]",
+   "n": 49,
+   "frozen_points": 1,
+   "wr_with": 0.449,
+   "wr_without": 0.434,
+   "marginal_pp": 1.5,
+   "p_raw": 0.9371,
+   "tape_conditioned_marginal_pp": {
+    "UP": -0.8,
+    "DOWN": 3.6
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "signal_confluence(+1)[+2]",
+   "n": 46,
+   "frozen_points": 2,
+   "wr_with": 0.391,
+   "wr_without": 0.44,
+   "marginal_pp": -4.8,
+   "p_raw": 0.6131,
+   "tape_conditioned_marginal_pp": {
+    "UP": 9.3,
+    "DOWN": -8.4
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "cum_flow_intent(+1)[+3]",
+   "n": 42,
+   "frozen_points": 3,
+   "wr_with": 0.476,
+   "wr_without": 0.431,
+   "marginal_pp": 4.5,
+   "p_raw": 0.663,
+   "tape_conditioned_marginal_pp": {
+    "DOWN": 8.3
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "accumulation_conjunction(+3)[+1]",
+   "n": 42,
+   "frozen_points": 1,
+   "wr_with": 0.452,
+   "wr_without": 0.434,
+   "marginal_pp": 1.9,
+   "p_raw": 0.9225,
+   "tape_conditioned_marginal_pp": {
+    "UP": -1.3,
+    "DOWN": 4.6
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "dealer_dex_flip(+1)[+3]",
+   "n": 31,
+   "frozen_points": 3,
+   "wr_with": 0.355,
+   "wr_without": 0.44,
+   "marginal_pp": -8.6,
+   "p_raw": 0.4382,
+   "tape_conditioned_marginal_pp": {
+    "UP": -36.0,
+    "DOWN": 4.2
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "dealer_dex_flip(+1)[+1]",
+   "n": 30,
+   "frozen_points": 1,
+   "wr_with": 0.467,
+   "wr_without": 0.433,
+   "marginal_pp": 3.4,
+   "p_raw": 0.8461,
+   "tape_conditioned_marginal_pp": {
+    "UP": -6.1,
+    "DOWN": 12.4
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "earnings_catalyst(+/-)[+1]",
+   "n": 19,
+   "frozen_points": 1,
+   "wr_with": 0.368,
+   "wr_without": 0.438,
+   "marginal_pp": -6.9,
+   "p_raw": 0.7129,
+   "tape_conditioned_marginal_pp": {
+    "DOWN": -6.8
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "oi_trend_building(+1)[+3]",
+   "n": 19,
+   "frozen_points": 3,
+   "wr_with": 0.474,
+   "wr_without": 0.434,
+   "marginal_pp": 4.0,
+   "p_raw": 0.896,
+   "tape_conditioned_marginal_pp": {
+    "UP": 18.8,
+    "DOWN": -17.1
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "accumulation_conjunction(+3)[+3]",
+   "n": 14,
+   "frozen_points": 3,
+   "wr_with": 0.429,
+   "wr_without": 0.435,
+   "marginal_pp": -0.7,
+   "p_raw": 1.0,
+   "tape_conditioned_marginal_pp": {
+    "DOWN": 1.3
+   },
+   "bh_survives": false
+  },
+  {
+   "line": "dealer_dex_flip(+1)[+2]",
+   "n": 9,
+   "frozen_points": 2,
+   "wr_with": 0.667,
+   "wr_without": 0.431,
+   "marginal_pp": 23.6,
+   "p_raw": 0.2757,
+   "tape_conditioned_marginal_pp": {},
+   "bh_survives": false
+  },
+  {
+   "line": "sector_persistence(+1)[00]",
+   "n": 8,
+   "frozen_points": 0,
+   "wr_with": 0.0,
+   "wr_without": 0.442,
+   "marginal_pp": -44.2,
+   "p_raw": 0.0187,
+   "tape_conditioned_marginal_pp": {
+    "DOWN": -42.9
+   },
+   "bh_survives": false
+  }
+ ],
+ "tier_bands": {
+  "DROP(<=2)": {
+   "n": 377,
+   "wr": 0.43
+  },
+  "LOW(3-6)": {
+   "n": 97,
+   "wr": 0.454
+  },
+  "MED(7-8)": {
+   "n": 14,
+   "wr": 0.5
+  },
+  "HIGH(>=9)": {
+   "n": 13,
+   "wr": 0.385
+  }
+ },
+ "monotone": false,
+ "halfcap": {
+  "oor_n": 43,
+  "oor_wr": 0.326,
+  "in_n": 458,
+  "in_wr": 0.445,
+  "delta_pp": -12.0
+ }
+}

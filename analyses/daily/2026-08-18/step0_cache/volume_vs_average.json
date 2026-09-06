@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 26.985,
+      "full_name": "ISHARES FALLEN ANGELS USD BOND ETF",
+      "iv_rank": 3.9691,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FALN",
+      "total_volume": 75,
+      "volume_ratio": 2252.252252252252
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 0.9301,
+      "full_name": "IRIDEX CORP",
+      "iv_rank": 29.9458,
+      "put_call_ratio": 0.3076923076923077,
+      "sector": "Healthcare",
+      "ticker": "IRIX",
+      "total_volume": 17,
+      "volume_ratio": 127.53188297074269
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 82.4702,
+      "full_name": "S&P 500 EX-ENERGY ETF",
+      "iv_rank": 0.108,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPXE",
+      "total_volume": 10,
+      "volume_ratio": 100
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 64.62,
+      "full_name": "ISHARES CURRENCY HEDGED MSCI JAPAN ETF",
+      "iv_rank": 20.2193,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HEWJ",
+      "total_volume": 5,
+      "volume_ratio": 74.96251874062969
+    },
+    {
+      "avg_total_volume": 488.03330000000005,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 987.86,
+      "sector": null,
+      "ticker": "SOXS1",
+      "total_volume": 34610,
+      "volume_ratio": 70.91729191430174
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 15.324,
+      "full_name": "GLOBAL X NASDAQ 100 RISK MANAGED INCOME ETF",
+      "iv_rank": 15.1251,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "QRMI",
+      "total_volume": 27,
+      "volume_ratio": 67.5
+    },
+    {
+      "avg_total_volume": 3.9333,
+      "close": 38.5794,
+      "full_name": "US TREASURY 30 YEAR BOND ETF",
+      "iv_rank": 21.6931,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UTHY",
+      "total_volume": 250,
+      "volume_ratio": 63.5598606767854
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 27.505,
+      "full_name": "FIRST TRUST CHINA ALPHADEX FUND",
+      "iv_rank": 46.1346,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FCA",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 103.91,
+      "full_name": "ISHARES GLOBAL HEALTHCARE ETF",
+      "iv_rank": 12.9603,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IXJ",
+      "total_volume": 6,
+      "volume_ratio": 60
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 27.2846,
+      "full_name": "Corgi Ports, Rail & Freight ETF",
+      "iv_rank": 4.7712,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "DOCK",
+      "total_volume": 4,
+      "volume_ratio": 59.97001499250375
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 1.79,
+      "full_name": "MARCHEX INC",
+      "iv_rank": 19.0416,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "MCHX",
+      "total_volume": 4,
+      "volume_ratio": 59.97001499250375
+    },
+    {
+      "avg_total_volume": 239.9,
+      "close": 4.09,
+      "full_name": "ALGOMA STEEL GROUP INC",
+      "iv_rank": 2.533,
+      "put_call_ratio": 0.0007119464616260857,
+      "sector": "Basic Materials",
+      "ticker": "ASTL",
+      "total_volume": 14056,
+      "volume_ratio": 58.591079616506875
+    },
+    {
+      "avg_total_volume": 3.7333000000000003,
+      "close": 5.66,
+      "full_name": "ORCHESTRA BIOMED HOLDINGS INC",
+      "iv_rank": 38.9756,
+      "put_call_ratio": 1.9047619047619047,
+      "sector": "Healthcare",
+      "ticker": "OBIO",
+      "total_volume": 183,
+      "volume_ratio": 49.01829480620362
+    },
+    {
+      "avg_total_volume": 0.9667,
+      "close": 195.0299,
+      "full_name": "Tradr 2X Long SPY Quarterly Investment Managers Series Trust II ETF",
+      "iv_rank": 0.0822,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPYQ",
+      "total_volume": 40,
+      "volume_ratio": 41.377883521257885
+    },
+    {
+      "avg_total_volume": 3.7334,
+      "close": 66.82,
+      "full_name": "WISDOMTREE EFFICIENT GOLD PLUS EQUITY STRATEGY FUND",
+      "iv_rank": 56.5135,
+      "put_call_ratio": 0.006622516556291391,
+      "sector": null,
+      "ticker": "GDE",
+      "total_volume": 152,
+      "volume_ratio": 40.713558686452025
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 112.8134,
+      "full_name": "WISDOMTREE JAPAN SMALLCAP DIVIDEND FUND",
+      "iv_rank": 34.3296,
+      "put_call_ratio": 0.1,
+      "sector": null,
+      "ticker": "DFJ",
+      "total_volume": 11,
+      "volume_ratio": 36.66666666666667
+    },
+    {
+      "avg_total_volume": 25.5667,
+      "close": 22.01,
+      "full_name": "NATIONAL RESEARCH CORP",
+      "iv_rank": 42.7914,
+      "put_call_ratio": 0.024830699774266364,
+      "sector": "Healthcare",
+      "ticker": "NRC",
+      "total_volume": 908,
+      "volume_ratio": 35.51494717738308
+    },
+    {
+      "avg_total_volume": 26.8666,
+      "close": 4.97,
+      "full_name": "ZIPRECRUITER INC",
+      "iv_rank": 44.8138,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "ZIP",
+      "total_volume": 935,
+      "volume_ratio": 34.80157519001288
+    },
+    {
+      "avg_total_volume": 521.3667,
+      "close": 10.65,
+      "full_name": "OLEMA PHARMACEUTICALS INC",
+      "iv_rank": 33.0309,
+      "put_call_ratio": 20.813027744270205,
+      "sector": "Healthcare",
+      "ticker": "OLMA",
+      "total_volume": 18083,
+      "volume_ratio": 34.683841526510996
+    },
+    {
+      "avg_total_volume": 2.8,
+      "close": 23.27,
+      "full_name": "SPDR PORTFOLIO HIGH YIELD BOND ETF",
+      "iv_rank": 56.9339,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPHY",
+      "total_volume": 95,
+      "volume_ratio": 33.92857142857143
+    },
+    {
+      "avg_total_volume": 797,
+      "close": 2.39,
+      "full_name": "COMPASS THERAPEUTICS INC",
+      "iv_rank": 16.1755,
+      "put_call_ratio": 0.00016317206494248184,
+      "sector": "Healthcare",
+      "ticker": "CMPX",
+      "total_volume": 24518,
+      "volume_ratio": 30.762860727728985
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 68.64,
+      "full_name": "ISHARES ESG ADVANCED MSCI USA ETF",
+      "iv_rank": 25.1751,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "USXF",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.3333,
+      "close": 25.47,
+      "full_name": "KRANESHARES EMERGING MARKETS CONSUMER TECHNOLOGY INDEX ETF",
+      "iv_rank": 26.1297,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "KEMQ",
+      "total_volume": 10,
+      "volume_ratio": 30.003000300030003
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 22,
+      "full_name": "GLOBAL X VARIABLE RATE PREFERRED ETF",
+      "iv_rank": 10.5974,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PFFV",
+      "total_volume": 9,
+      "volume_ratio": 30
+    },
+    {
+      "avg_total_volume": 1.5667,
+      "close": 37.16,
+      "full_name": "Global X PureCap MSCI Energy ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GXPE",
+      "total_volume": 47,
+      "volume_ratio": 29.999361715708176
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-18.parquet"
+}

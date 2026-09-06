@@ -1,0 +1,177 @@
+{
+ "quant": {
+  "scored_rows": 569,
+  "sum_points_ok": 569,
+  "sum_points_total": 569,
+  "provenance_complete": true,
+  "sizing_violations": [
+   {
+    "date": "2026-06-05",
+    "ticker": "LLY",
+    "claimed_wr": 0.392,
+    "implied": "starter",
+    "pre_risk": "half"
+   }
+  ]
+ },
+ "gate_firing": {
+  "regime": {
+   "present": 416,
+   "fired": 399,
+   "fire_rate": 0.959
+  },
+  "vrp": {
+   "present": 411,
+   "fired": 386,
+   "fire_rate": 0.939
+  },
+  "panic": {
+   "present": 411,
+   "fired": 395,
+   "fire_rate": 0.961
+  },
+  "cluster": {
+   "present": 415,
+   "fired": 396,
+   "fire_rate": 0.954
+  },
+  "sector": {
+   "present": 410,
+   "fired": 387,
+   "fire_rate": 0.944
+  },
+  "fundamentals": {
+   "present": 418,
+   "fired": 335,
+   "fire_rate": 0.801
+  },
+  "event_risk": {
+   "present": 424,
+   "fired": 415,
+   "fire_rate": 0.979
+  },
+  "debate": {
+   "present": 309,
+   "fired": 296,
+   "fire_rate": 0.958
+  },
+  "rubric_regime": {
+   "present": 316,
+   "fired": 316,
+   "fire_rate": 1.0
+  }
+ },
+ "gate_effectiveness": {
+  "regime": {
+   "fired_decided": 333,
+   "fired_wr": 0.396,
+   "notfired_decided": 17,
+   "notfired_wr": 0.471,
+   "delta_pp": -7.5,
+   "advisory_thin_n": false
+  },
+  "vrp": {
+   "fired_decided": 320,
+   "fired_wr": 0.388,
+   "notfired_decided": 25,
+   "notfired_wr": 0.52,
+   "delta_pp": -13.2,
+   "advisory_thin_n": false
+  },
+  "panic": {
+   "fired_decided": 329,
+   "fired_wr": 0.392,
+   "notfired_decided": 16,
+   "notfired_wr": 0.562,
+   "delta_pp": -17.0,
+   "advisory_thin_n": false
+  },
+  "cluster": {
+   "fired_decided": 330,
+   "fired_wr": 0.382,
+   "notfired_decided": 19,
+   "notfired_wr": 0.632,
+   "delta_pp": -25.0,
+   "advisory_thin_n": false
+  },
+  "sector": {
+   "fired_decided": 321,
+   "fired_wr": 0.393,
+   "notfired_decided": 23,
+   "notfired_wr": 0.478,
+   "delta_pp": -8.5,
+   "advisory_thin_n": false
+  },
+  "fundamentals": {
+   "fired_decided": 281,
+   "fired_wr": 0.399,
+   "notfired_decided": 71,
+   "notfired_wr": 0.408,
+   "delta_pp": -0.9,
+   "advisory_thin_n": false
+  },
+  "event_risk": {
+   "fired_decided": 349,
+   "fired_wr": 0.393,
+   "notfired_decided": 9,
+   "notfired_wr": 0.778,
+   "delta_pp": -38.5,
+   "advisory_thin_n": true
+  },
+  "debate": {
+   "fired_decided": 232,
+   "fired_wr": 0.371,
+   "notfired_decided": 13,
+   "notfired_wr": 0.538,
+   "delta_pp": -16.7,
+   "advisory_thin_n": false
+  },
+  "rubric_regime": {
+   "fired_decided": 252,
+   "fired_wr": 0.377,
+   "notfired_decided": 0,
+   "notfired_wr": null,
+   "delta_pp": null,
+   "advisory_thin_n": true
+  }
+ },
+ "veto_fp": {
+  "veto_decided": 19,
+  "veto_wr": 0.474,
+  "caution_decided": 102,
+  "caution_wr": 0.382,
+  "confirm_decided": 99,
+  "confirm_wr": 0.404,
+  "advisory_thin_n": false
+ },
+ "debate_eff": {
+  "n_with_residuals": 104,
+  "bear_won_wr": 0.347,
+  "bear_won_n": 95,
+  "bull_won_wr": 0.111,
+  "bull_won_n": 9,
+  "advisory_thin_n": false
+ },
+ "missed_gate": {
+  "regime": {
+   "scored_dir": 546,
+   "missing_key": 163,
+   "missed_rate": 0.299
+  },
+  "vrp": {
+   "scored_dir": 546,
+   "missing_key": 167,
+   "missed_rate": 0.306
+  },
+  "event_risk": {
+   "scored_dir": 546,
+   "missing_key": 157,
+   "missed_rate": 0.288
+  },
+  "fundamentals": {
+   "scored_dir": 546,
+   "missing_key": 160,
+   "missed_rate": 0.293
+  }
+ }
+}

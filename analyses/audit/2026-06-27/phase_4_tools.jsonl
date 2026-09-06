@@ -1,0 +1,583 @@
+{
+ "tools": [
+  {
+   "tool": "biggest_increases",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "confluence_gate_(Step_3)",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "dark_pool_block_stratified",
+   "n": 20,
+   "marg_contrib_pp": 7.7,
+   "wr_with": 0.5,
+   "wr_without": 0.465,
+   "frac_of_winners": 0.104,
+   "frac_of_losers": 0.092,
+   "ubiquity": 0.098,
+   "p_raw": 0.7648352946507664,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -13.6,
+     7,
+     39
+    ],
+    [
+     "dark_pool_accumulation",
+     20.9,
+     10,
+     23
+    ],
+    [
+     "multileg_directional",
+     16.7,
+     2,
+     15
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "historical_cumulative_premium_flow",
+   "n": 120,
+   "marg_contrib_pp": 7.8,
+   "wr_with": 0.5,
+   "wr_without": 0.424,
+   "frac_of_winners": 0.625,
+   "frac_of_losers": 0.55,
+   "ubiquity": 0.585,
+   "p_raw": 0.2797005594034723,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     11.4,
+     33,
+     13
+    ],
+    [
+     "bullish_flow",
+     -14.5,
+     22,
+     10
+    ],
+    [
+     "dark_pool_accumulation",
+     22.2,
+     23,
+     10
+    ],
+    [
+     "dealer_positioning",
+     20.5,
+     13,
+     3
+    ],
+    [
+     "multi_day_sweep",
+     -33.3,
+     3,
+     4
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "historical_iv_percentile_zscore",
+   "n": 3,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_oi_trend",
+   "n": 62,
+   "marg_contrib_pp": -8.9,
+   "wr_with": 0.452,
+   "wr_without": 0.476,
+   "frac_of_winners": 0.292,
+   "frac_of_losers": 0.312,
+   "ubiquity": 0.302,
+   "p_raw": 0.7526572697622318,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     12.2,
+     11,
+     35
+    ],
+    [
+     "bullish_flow",
+     -6.5,
+     13,
+     19
+    ],
+    [
+     "dark_pool_accumulation",
+     -13.6,
+     22,
+     11
+    ],
+    [
+     "dealer_positioning",
+     -57.1,
+     2,
+     14
+    ],
+    [
+     "gamma_breakout",
+     25.0,
+     2,
+     4
+    ],
+    [
+     "multi_day_sweep",
+     -25.0,
+     4,
+     3
+    ],
+    [
+     "multileg_directional",
+     -21.7,
+     5,
+     12
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "hot_chains_multileg",
+   "n": 31,
+   "marg_contrib_pp": -12.7,
+   "wr_with": 0.387,
+   "wr_without": 0.483,
+   "frac_of_winners": 0.125,
+   "frac_of_losers": 0.174,
+   "ubiquity": 0.151,
+   "p_raw": 0.32541942025433485,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -5.6,
+     10,
+     36
+    ],
+    [
+     "dark_pool_accumulation",
+     -48.4,
+     2,
+     31
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "hot_chains_sweep_persistence",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_conviction_matrix",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_earnings_play",
+   "n": 11,
+   "marg_contrib_pp": -3.0,
+   "wr_with": 0.364,
+   "wr_without": 0.474,
+   "frac_of_winners": 0.042,
+   "frac_of_losers": 0.064,
+   "ubiquity": 0.054,
+   "p_raw": 0.47457158673601274,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     -15.0,
+     4,
+     25
+    ],
+    [
+     "high_iv_rank",
+     6.7,
+     5,
+     6
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "insights_institutional_accumulation",
+   "n": 23,
+   "marg_contrib_pp": 13.6,
+   "wr_with": 0.522,
+   "wr_without": 0.462,
+   "frac_of_winners": 0.125,
+   "frac_of_losers": 0.101,
+   "ubiquity": 0.112,
+   "p_raw": 0.5856391537499048,
+   "class_contribs": [
+    [
+     "dark_pool_accumulation",
+     13.6,
+     22,
+     11
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING"
+  },
+  {
+   "tool": "insights_signal_confluence",
+   "n": 50,
+   "marg_contrib_pp": 2.1,
+   "wr_with": 0.44,
+   "wr_without": 0.477,
+   "frac_of_winners": 0.229,
+   "frac_of_losers": 0.257,
+   "ubiquity": 0.244,
+   "p_raw": 0.6447420272748319,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -50.7,
+     8,
+     38
+    ],
+    [
+     "bullish_flow",
+     16.7,
+     8,
+     24
+    ],
+    [
+     "dark_pool_accumulation",
+     34.4,
+     18,
+     15
+    ],
+    [
+     "dealer_positioning",
+     -26.7,
+     6,
+     10
+    ],
+    [
+     "earnings_vol",
+     -21.7,
+     5,
+     24
+    ],
+    [
+     "high_iv_rank",
+     16.7,
+     2,
+     9
+    ],
+    [
+     "multileg_directional",
+     -2.4,
+     3,
+     14
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "SUPPORTIVE"
+  },
+  {
+   "tool": "oi_position_rolls",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_sector_flow_persistence",
+   "n": 30,
+   "marg_contrib_pp": -3.4,
+   "wr_with": 0.467,
+   "wr_without": 0.469,
+   "frac_of_winners": 0.146,
+   "frac_of_losers": 0.147,
+   "ubiquity": 0.146,
+   "p_raw": 0.9845879125295656,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -16.1,
+     5,
+     41
+    ],
+    [
+     "bullish_flow",
+     -13.3,
+     12,
+     20
+    ],
+    [
+     "dark_pool_accumulation",
+     5.6,
+     6,
+     27
+    ],
+    [
+     "dealer_positioning",
+     20.5,
+     3,
+     13
+    ],
+    [
+     "gamma_breakout",
+     25.0,
+     2,
+     4
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_flow_single_leg",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_flow_sweeps",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex",
+   "n": 39,
+   "marg_contrib_pp": -19.8,
+   "wr_with": 0.462,
+   "wr_without": 0.47,
+   "frac_of_winners": 0.188,
+   "frac_of_losers": 0.193,
+   "ubiquity": 0.19,
+   "p_raw": 0.9251594097527888,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     37.0,
+     7,
+     39
+    ],
+    [
+     "bullish_flow",
+     -11.9,
+     5,
+     27
+    ],
+    [
+     "dark_pool_accumulation",
+     58.1,
+     2,
+     31
+    ],
+    [
+     "dealer_positioning",
+     -57.1,
+     14,
+     2
+    ],
+    [
+     "multileg_directional",
+     -42.9,
+     3,
+     14
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_front_end_iv_ratio",
+   "n": 11,
+   "marg_contrib_pp": -23.1,
+   "wr_with": 0.182,
+   "wr_without": 0.485,
+   "frac_of_winners": 0.021,
+   "frac_of_losers": 0.083,
+   "ubiquity": 0.054,
+   "p_raw": 0.05030904111785018,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     -31.2,
+     7,
+     22
+    ],
+    [
+     "high_iv_rank",
+     -4.2,
+     3,
+     8
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_gex",
+   "n": 6,
+   "marg_contrib_pp": -4.5,
+   "wr_with": 0.5,
+   "wr_without": 0.467,
+   "frac_of_winners": 0.031,
+   "frac_of_losers": 0.028,
+   "ubiquity": 0.029,
+   "p_raw": 0.8744758837140374,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -4.5,
+     2,
+     44
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE",
+   "provisional": true
+  },
+  {
+   "tool": "options_structure_iv_term_structure",
+   "n": 6,
+   "marg_contrib_pp": 10.3,
+   "wr_with": 0.5,
+   "wr_without": 0.467,
+   "frac_of_winners": 0.031,
+   "frac_of_losers": 0.028,
+   "ubiquity": 0.029,
+   "p_raw": 0.8744758837140374,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     66.7,
+     2,
+     27
+    ],
+    [
+     "high_iv_rank",
+     -17.9,
+     4,
+     7
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING",
+   "provisional": true
+  },
+  {
+   "tool": "options_structure_term_skew",
+   "n": 20,
+   "marg_contrib_pp": -18.8,
+   "wr_with": 0.25,
+   "wr_without": 0.492,
+   "frac_of_winners": 0.052,
+   "frac_of_losers": 0.138,
+   "ubiquity": 0.098,
+   "p_raw": 0.0394516104235384,
+   "class_contribs": [
+    [
+     "bearish_flow",
+     -56.8,
+     2,
+     44
+    ],
+    [
+     "earnings_vol",
+     -7.8,
+     12,
+     17
+    ],
+    [
+     "high_iv_rank",
+     -30.0,
+     5,
+     6
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "NEGATIVE"
+  },
+  {
+   "tool": "options_structure_vanna_charm",
+   "n": 1,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "screener_earnings_catalyst",
+   "n": 6,
+   "marg_contrib_pp": 15.2,
+   "wr_with": 0.5,
+   "wr_without": 0.467,
+   "frac_of_winners": 0.031,
+   "frac_of_losers": 0.028,
+   "ubiquity": 0.029,
+   "p_raw": 0.8744758837140374,
+   "class_contribs": [
+    [
+     "earnings_vol",
+     15.2,
+     6,
+     23
+    ]
+   ],
+   "bh_survives": false,
+   "assigned_tier": "LOAD-BEARING",
+   "provisional": true
+  },
+  {
+   "tool": "screener_iv_rank",
+   "n": 2,
+   "tier": "INSUFFICIENT_N",
+   "assigned_tier": "INSUFFICIENT_N"
+  }
+ ],
+ "fz": {
+  "C15_squeeze_short": {
+   "n_short_with_fz": 13,
+   "n_hi_si": 0,
+   "hi_si_wr": null,
+   "lo_si_wr": 0.615,
+   "verdict": "INSUFFICIENT_N"
+  },
+  "squeeze_pressure_dist": {
+   "LOW": 59,
+   "unknown": 9,
+   "MODERATE": 2
+  },
+  "C17_flow_vs_analyst_divergence": {
+   "n_divergent": 10,
+   "divergent_wr": 0.7,
+   "verdict": "scored"
+  },
+  "C18_insider_clusters": {
+   "verdict": "NA \u2014 insider-cluster flag not carried in envelope calls[]"
+  },
+  "C16_float_normalized_block": {
+   "verdict": "NA \u2014 per-call DP-block/float ratio not in envelope"
+  },
+  "breadth_divergence": {
+   "n_with_flag": 50,
+   "n_total": 188,
+   "verdict": "advisory; structural only"
+  }
+ }
+}

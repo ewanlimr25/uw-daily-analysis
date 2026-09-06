@@ -1,0 +1,9 @@
+{
+  "interpretation": "Options pricing more vol than realised — favour premium selling.",
+  "iv30d": 0.173,
+  "realised_vol": 0.1219,
+  "realised_window_days": 30,
+  "regime": "PREMIUM_SELLING",
+  "symbol": "SPY",
+  "vrp": 0.0511
+}

@@ -1,0 +1,731 @@
+{
+  "schema_version": "1.1",
+  "report_date": "2026-05-27",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL/UPTREND",
+  "vrp_classification": "FAIR",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.48,
+    "core_cpi_yoy_pct": 2.99,
+    "core_pce_yoy_pct": 3.2,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 115.0,
+    "ten_year_yield": 4.5,
+    "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.62
+  },
+  "macro_event_risk": [
+    {
+      "event": "PCE (April)",
+      "date": "2026-05-29",
+      "impact": "high"
+    },
+    {
+      "event": "Initial Jobless Claims",
+      "date": "2026-05-28",
+      "impact": "medium"
+    },
+    {
+      "event": "Nonfarm Payrolls (May)",
+      "date": "2026-06-05",
+      "impact": "high"
+    },
+    {
+      "event": "CPI (May)",
+      "date": "2026-06-10",
+      "impact": "high"
+    },
+    {
+      "event": "FOMC decision + SEP/dots",
+      "date": "2026-06-17",
+      "impact": "high"
+    }
+  ],
+  "watchlist_write_back": [
+    "AAPL",
+    "TSLA",
+    "AMZN",
+    "IWM",
+    "SMH"
+  ],
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 236,
+    "decliners": 263,
+    "pct_green": 46.92,
+    "divergence_flag": true,
+    "note": "S&P500 more decliners than advancers (pct_green 46.92<50) while index near highs \u2014 mild distribution/breadth-divergence tell vs the UPTREND label; corroborates 37.1% bullish flow breadth. Advisory, 0 points."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-05-27",
+    "next_session_date": "2026-05-28",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 750.62,
+        "zero_gamma_level": 751.87,
+        "zgl_reliable": true,
+        "regime": "NEGATIVE",
+        "total_gex": 821610141,
+        "call_wall": 752,
+        "put_wall": 730,
+        "read": "Knife-edge fresh POSITIVE->NEGATIVE flip today; spot ~on ZGL 751.87 but total_gex net +821M with near-money +GEX stack (750/751/752) at/above spot. 751.87-752 is the hinge: hold above = long-gamma pin into 752 call wall; clean break below = short-gamma toward wide 730 put wall.",
+        "structure_bias": "Long-gamma-while-above-ZGL favors pin/iron-fly centred ~751 (aligns 0DTE 750.85); abandon to debit put vertical 740/735 if 751.87 breaks at the open. Walls asymmetric: call wall razor-tight +0.18%, put wall wide -2.75%.",
+        "caveats": "EOD is a prior not a target (fresh 0DTE OI re-sets walls in first 30-60min); ZGL reliable (near spot); gap risk \u2014 PCE T+2 2026-05-29 + Jobless Claims T+1 can leap the tight 752 call wall; ETF book not SPX; fresh same-day flip = low regime persistence, May tape whippy."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 729.48,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": 127672193,
+        "call_wall": 740,
+        "put_wall": 715,
+        "read": "Reported ZGL 247.87 is a deep-OTM extrapolation artifact, discarded. total_gex +128M net long-gamma; spot 729.48 buffered inside a 731/735/740 +GEX shelf, channeled between 715 put wall and 740 call wall. POSITIVE regime HELD 4 sessions (since 05-22) \u2014 genuinely stable, unlike SPY's same-day flip.",
+        "structure_bias": "Range/pin: iron fly ~730 (aligns 0DTE 729.76) or wider condor selling 740 call wall and 715 put wall. No reliable intraday short-gamma trigger (ZGL unreliable) \u2014 use 715 break as proxy.",
+        "caveats": "ZGL UNRELIABLE (extrapolated, discarded) \u2014 read rests on total_gex sign + wall position; EOD prior re-sets on fresh 0DTE OI; gap risk \u2014 QQQ higher-beta/rate-sensitive, gaps harder on hot PCE with 10Y rising; ETF book not NDX; cannot isolate D+1 expiry (0-45d proxy)."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-05-27",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.29,
+        "implied_move_pct": 0.7,
+        "expected_range_pct": 0.71,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle centred 750.85, wings +/-0.71% (long-gamma: quieter, mean-reverting)",
+        "entry_rule": "Enter at/after open once overnight gap resolves; if gaps beyond wings stand aside. Hold 0DTE to close \u2014 never carry overnight.",
+        "stand_aside_reason": null,
+        "caution": null
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.29,
+        "implied_move_pct": 1.16,
+        "expected_range_pct": 1.19,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle centred 729.76, wings +/-1.19% (long-gamma)",
+        "entry_rule": "Enter at/after open once gap resolves; hold to close; never overnight.",
+        "stand_aside_reason": null,
+        "caution": "lower confidence than SPY \u2014 Nasdaq index book unavailable"
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "AAPL",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "HIGH",
+      "raw_score": 11,
+      "score_components": [
+        {
+          "rubric_line": "+3 3+ aligned accumulation signals (DP+OI+smart-positioning, block-stratified) \u2014 C11 conjunction (cum_flow_30d aligned >=$50M -> full)",
+          "points": 3,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw insights institutional-accumulation",
+          "evidence": "mega-tier DP br0.87 n20 + block0.634 + OI BUILDING 5/5 +131k call-heavy; ACCUMULATION 1.77 DIRECTIONAL_LONG; cum_flow_30d +494.5M LONG aligned"
+        },
+        {
+          "rubric_line": "+3 cum-premium-flow net directional accretion (30d)",
+          "points": 3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d +494.5M aligned LONG, 9.97x union median; 90d +586.9M BULLISH"
+        },
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bullish confluence score 4: bullish_flow,low_pcr,dp_accumulation,oi_building"
+        },
+        {
+          "rubric_line": "+2 multileg directional structure (term-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "bullish Sep ITM call ladder 260C/285C $373M leveraged-long delta"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "consecutive_build_days 7, net +131k call-heavy"
+        }
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": 4,
+      "cum_premium_flow_30d": 494465948,
+      "cum_premium_flow_90d": 586919130,
+      "win_rate": 0.65,
+      "win_rate_n": 5,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "-1 (CAUTION: insider MSPR -50.5 + RSI 78.85 into accumulation)",
+        "event_risk": "-1 (PCE T+2 inside swing horizon)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 0.92,
+        "days_to_cover": 3.05,
+        "float_shares": 14670000000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.98,
+        "upside_to_target_pct": 1.68,
+        "rsi": 78.85,
+        "note": "No squeeze; analyst buy 1.98 but only +1.68% to target \u2014 upside nearly exhausted at 52w high. Advisory, 0 points."
+      },
+      "debate_residual_confidence": 0.65,
+      "structure": "Long calls / Jun call debit spread",
+      "entry_or_trigger": "defends 310.85 DP shelf under 52w high 311.82",
+      "invalidation": "breaks 310.85 DP support; OI build stalls; mega-tier share collapses to retail",
+      "key_risks": [
+        "insider net selling MSPR -50.5 3mo into accumulation = distribution-vs-accumulation risk",
+        "RSI 78.85 overbought, +1.68% to analyst target = thin upside to consensus",
+        "win_rate 0.65 is n=5 fallback proxy not a backtest (CI ~0.22-0.94)",
+        "PCE T+2 macro risk"
+      ],
+      "thesis": "Only name clearing all accumulation gates: mega-tier DP br0.87 + OI BUILDING 5/5 + institutional-accumulation 1.77 + cum-flow +494.5M, defending 310.85 under the 52w high. HIGH by score but gated to watch-only by 3 stacked cuts (CAUTION fundamentals + debate-tie + PCE event-risk)."
+    },
+    {
+      "ticker": "AMZN",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "MEDIUM",
+      "raw_score": 7,
+      "score_components": [
+        {
+          "rubric_line": "+3 cum-premium-flow net directional accretion (30d)",
+          "points": 3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d +65.5M aligned LONG >=$50M; 90d +120.3M"
+        },
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bullish confluence 5: bullish_flow,low_pcr,dp_accumulation,oi_building,low_iv_cheap_options"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "sweep-tracker",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "7 consec build days, Jul 290C/300C OTM calls building (opening-confirmed)"
+        },
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (CONDITIONAL: persistence>=0.6 AND cum_flow aligned AND |>=$50M|)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "ConsCyclical persistence 1.0 INFLOW + cum_flow +65.5M LONG aligned + >=$50M"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": 65474617,
+      "cum_premium_flow_90d": 120336365,
+      "win_rate": 0.525,
+      "win_rate_n": 120,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "starter",
+      "gate_verdicts": {
+        "regime": "no-op",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op (absent from high-corr list)",
+        "sector": "no-op (ConsCyclical INFLOW favorable)",
+        "fundamentals": "CONFIRM (no-op)",
+        "event_risk": "-1 (PCE T+2 inside swing horizon)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 0.93,
+        "days_to_cover": 2.02,
+        "float_shares": 9790000000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.24,
+        "upside_to_target_pct": 16.79,
+        "rsi": 62.65,
+        "note": "Recom 1.24 strong-buy + +16.79% to target fully corroborate the long \u2014 strongest non-flow confluence in the set. Advisory, 0 points."
+      },
+      "debate_residual_confidence": 0.75,
+      "structure": "Jun/Jul call debit spread",
+      "entry_or_trigger": "opening-confirmed Jul 290/300C OTM build; AWS-AI catalyst stack",
+      "invalidation": "loses 265; Jul 290-300C OI build reverses",
+      "key_risks": [
+        "crowded consensus long into negative-skew PCE event (T+2)",
+        "win_rate 0.525 barely beats coin flip, C2 excess only +0.03",
+        "batch-scan flags has_edge=false (rule-based scan disagrees with fleet promotion)"
+      ],
+      "thesis": "The ONLY name to clear the bull/bear debate (bull 0.75 > bear 0.55). Opening-confirmed Jul OTM call build + confluence 5 + ConsCyclical leader + strongest fundamentals (strong-buy 1.24, +16.8% upside, rev +14.2%/EPS +36.5%). Top sized directional position post-gate; cut to starter on PCE event gate."
+    },
+    {
+      "ticker": "TSLA",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "MEDIUM",
+      "raw_score": 7,
+      "score_components": [
+        {
+          "rubric_line": "+3 cum-premium-flow net directional accretion (30d)",
+          "points": 3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d +1144.4M aligned LONG (23x union median, largest in set); 90d +1033.7M"
+        },
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bullish confluence 4: bullish_flow,low_pcr,oi_building,low_iv_cheap_options; net prem +54.8M (2nd leaderboard)"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "7 consec build days, call-dominant"
+        },
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (CONDITIONAL)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "ConsCyclical persistence 1.0 + cum_flow +1144M LONG aligned + >=$50M"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": 4,
+      "cum_premium_flow_30d": 1144376601,
+      "cum_premium_flow_90d": 1033711077,
+      "win_rate": 0.525,
+      "win_rate_n": 120,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no-op",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op (top pair 0.567 <0.60)",
+        "sector": "no-op (ConsCyclical INFLOW favorable)",
+        "fundamentals": "CONFIRM (no-op)",
+        "event_risk": "-1 (PCE T+2 inside swing horizon, high-beta crowded)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 2.63,
+        "days_to_cover": 1.24,
+        "float_shares": 2910000000,
+        "squeeze_pressure": "LOW",
+        "recom": 2.5,
+        "upside_to_target_pct": -10.25,
+        "rsi": 63.05,
+        "note": "Flow-vs-analyst divergence: bullish flow but Recom 2.50 hold and spot 10.25% ABOVE target \u2014 analysts see overvaluation. Advisory, 0 points."
+      },
+      "debate_residual_confidence": 0.65,
+      "structure": "Call debit spread (if entered)",
+      "entry_or_trigger": "n/a \u2014 skipped post-gate",
+      "invalidation": "loses 50SMA; flow rolls",
+      "key_risks": [
+        "win_rate 0.525 + C2 excess +0.03 = leveraged beta proxy, no isolated alpha",
+        "+1144M cum-flow may be MM churn on most-traded options name, not directional",
+        "no valuation floor (spot 10% above $395 target, EPS -39% YoY, PE 422, beta 1.80) into PCE T+2"
+      ],
+      "thesis": "Largest cum-flow in set (+1144M) + confluence 4 + ConsCyclical leader, but debate tied (0.65/0.65 \u2014 flow may be hedging churn not conviction) and PCE T+2 hits a high-beta crowded long hardest. Skipped post-gate (half -2)."
+    },
+    {
+      "ticker": "IWM",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 6,
+      "score_components": [
+        {
+          "rubric_line": "+3 cum-premium-flow net directional accretion (30d)",
+          "points": 3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d -145.7M aligned SHORT >=$50M (2.94x median); 90d -1102.6M BEARISH"
+        },
+        {
+          "rubric_line": "+2 multileg directional structure (term-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "bearish Jun18 put ladder 282/277/270P repeat_count 3 (highest-conviction structure)"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "sweep-tracker",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "7 consec build days, put-dominant (opening-confirmed short)"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": 3,
+      "cum_premium_flow_30d": -145714073,
+      "cum_premium_flow_90d": -1102559532,
+      "win_rate": 0.5,
+      "win_rate_n": 124,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op (short-as-hedge in UPTREND)",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op (KEPT member of IWM/SMH 0.749 \u2014 larger directional flow)",
+        "sector": "no-op",
+        "fundamentals": "NA (no-op)",
+        "event_risk": "-1 (PCE T+2 \u2014 soft PCE squeezes the short)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": true,
+        "squeeze_pressure": "unknown",
+        "rsi": 65.45,
+        "note": "ETF \u2014 no short-interest/analyst. RSI 65.45, +14.65% above SMA200 at 52w high = extended into strength. Advisory, 0 points."
+      },
+      "debate_residual_confidence": 0.55,
+      "structure": "Jun put spread (hedge)",
+      "entry_or_trigger": "n/a \u2014 watch-only",
+      "invalidation": "reclaims/holds above 290; dealer gamma stays positive; soft PCE squeeze",
+      "key_risks": [
+        "win_rate 0.500 = no edge",
+        "put ladder more plausibly a HEDGE on long small-cap books than directional short",
+        "fights 52w-high uptrend AND long-gamma dealers (+21M GEX); soft PCE squeezes"
+      ],
+      "thesis": "Highest-conviction structure on the tape (Jun18 put ladder repeat3) + persistent bearish cum-flow, but debate revealed it as more-hedge-than-conviction (bear 0.75 > bull 0.55, coin-flip win_rate, dealer-positioning conflict mild LONG). Watch-only."
+    },
+    {
+      "ticker": "SMH",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 6,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg directional structure (term-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "bearish put calendar 530P repeat_count 3, front IV 80.8% vs back 58%"
+        },
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bearish confluence 4: bearish_flow,high_pcr,oi_building_puts,high_iv_sell_premium"
+        },
+        {
+          "rubric_line": "+1 vol-surface KINKED/BACKWARDATION VRP-aligned",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "front 530P IV 80.8% vs back 58% backwardation, protective/bearish VRP-aligned"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "sweep-tracker",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "7 consec build days, Aug-530P/Aug-475P/Jun-530P ask-side put build"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": 4,
+      "cum_premium_flow_30d": -49641312.5,
+      "cum_premium_flow_90d": -79139126.5,
+      "win_rate": 0.5,
+      "win_rate_n": 124,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "half",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op (short-as-hedge)",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "-1 (IWM/SMH 0.749 >=0.70, SMH NOT kept member \u2014 lower directional flow)",
+        "sector": "no-op (Tech INFLOW not adverse-out)",
+        "fundamentals": "NA (no-op)",
+        "event_risk": "-1 (PCE T+2)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": true,
+        "squeeze_pressure": "unknown",
+        "rsi": 70.54,
+        "note": "ETF \u2014 no short-interest/analyst. RSI 70.54 overbought, +54.4% above SMA200 = very extended; supports protective-put-calendar read, but live AI-memory catalysts cut against an outright short. Advisory, 0 points."
+      },
+      "debate_residual_confidence": 0.55,
+      "structure": "530P put calendar (insurance)",
+      "entry_or_trigger": "n/a \u2014 watch-only",
+      "invalidation": "semis melt-up continues; AI-memory catalyst persists; cum-flow stays below floor",
+      "key_risks": [
+        "cum_flow_30d -49.6M fails its own -$50M floor",
+        "win_rate 0.500 = no edge",
+        "shorting hottest momentum sector into live AI-memory catalyst = theta bleed in modal grind-up"
+      ],
+      "thesis": "Put calendar repeat3 + confluence 4 + backwardation + semis distribution @595.5, but cum-flow fails its own floor, win_rate is a coin flip, and the debate (bear 0.75 > bull 0.55) framed it as insurance not alpha. Cut to watch-only (debate + cluster + PCE)."
+    },
+    {
+      "ticker": "DLTR",
+      "horizon": "vol",
+      "section": "vol_short",
+      "direction": "vol_short",
+      "tier": "LOW",
+      "raw_score": 4,
+      "score_components": [
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bearish confluence 5: bearish_flow,volume_spike,dp_distribution,oi_building_puts,high_iv_sell_premium"
+        },
+        {
+          "rubric_line": "+1 earnings-scout BUY/SELL VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw options-structure front-end-iv-ratio",
+          "evidence": "CALENDAR earnings 2026-05-28, front-panic ratio 2.55, impl move 7.3%"
+        },
+        {
+          "rubric_line": "+1 vol-surface KINKED/BACKWARDATION VRP-aligned",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "IVR100 backwardation, ConsDef"
+        }
+      ],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": -6089285,
+      "cum_premium_flow_90d": -6287410,
+      "win_rate": null,
+      "win_rate_n": 148,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "full",
+      "final_size": "starter",
+      "gate_verdicts": {
+        "regime": "no-op (vol play)",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "event_risk": "no-op (earnings 05-28 IS the event play)"
+      },
+      "fundamentals_verdict": null,
+      "debate_residual_confidence": null,
+      "structure": "Calendar \u2014 sell 05-29 / buy 06-18",
+      "entry_or_trigger": "earnings 2026-05-28 BMO",
+      "invalidation": "front-end ratio collapses pre-print; back-month skew steepens to stretched",
+      "key_risks": [
+        "earnings prints tomorrow (binary)",
+        "complacent back-month tail = not a clean short",
+        "PCE 05-29 contaminates the front bucket"
+      ],
+      "thesis": "Earnings-vol CALENDAR (sell panicked front ratio 2.55, own normalized back). vol_realisation_rate 0.824 (n=148). Event-defined-risk starter OUTSIDE the conviction book; prints 05-28."
+    },
+    {
+      "ticker": "CIEN",
+      "horizon": "vol",
+      "section": "vol_short",
+      "direction": "vol_short",
+      "tier": "LOW",
+      "raw_score": 4,
+      "score_components": [
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bearish confluence 5: bearish_flow,high_pcr,dp_distribution,oi_building_puts,high_iv_sell_premium"
+        },
+        {
+          "rubric_line": "+1 earnings-scout BUY/SELL VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw options-structure front-end-iv-ratio",
+          "evidence": "CALENDAR earnings 2026-06-04, front-panic ratio 1.97, impl move 5.5%, PCR 1.77"
+        },
+        {
+          "rubric_line": "+1 vol-surface KINKED/BACKWARDATION VRP-aligned",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "backwardation event cluster, IVR high"
+        }
+      ],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": 5,
+      "cum_premium_flow_30d": -3836418,
+      "cum_premium_flow_90d": -2789262,
+      "win_rate": null,
+      "win_rate_n": 148,
+      "win_rate_source": "backtest",
+      "pre_risk_size": "full",
+      "final_size": "starter",
+      "gate_verdicts": {
+        "regime": "no-op (vol play)",
+        "vrp": "no-op",
+        "panic": "no-op",
+        "cluster": "no-op (soft-watch IWM/CIEN 0.641)",
+        "sector": "no-op",
+        "event_risk": "no-op (earnings 06-04 IS the event play; NFP 06-05 next day)"
+      },
+      "fundamentals_verdict": null,
+      "debate_residual_confidence": null,
+      "structure": "Calendar \u2014 sell 06-05 / buy 07",
+      "entry_or_trigger": "earnings 2026-06-04",
+      "invalidation": "front ratio collapses pre-print; NFP 06-05 macro noise dominates",
+      "key_risks": [
+        "prints after NFP 06-05 (macro noise in the front)",
+        "calendar = vol not directional"
+      ],
+      "thesis": "Earnings-vol CALENDAR (front ratio 1.97, impl 5.5%, put-heavy PCR 1.77). vol_realisation_rate 0.824 (n=148). Event-defined-risk starter OUTSIDE the conviction book."
+    },
+    {
+      "ticker": "META",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+2 signal-confluence >=4",
+          "points": 2,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw insights signal-confluence",
+          "evidence": "bullish confluence 4; net prem +61.7M (largest leaderboard)"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "BUILDING near-dated"
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite (cum_flow_30d opposes LONG, sub-median)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d -42.4M opposes LONG (0.85x median); mega-tier DP distribution br0.238"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": 4,
+      "cum_premium_flow_30d": -42400000,
+      "cum_premium_flow_90d": -381100000,
+      "win_rate": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {},
+      "fundamentals_verdict": null,
+      "debate_residual_confidence": null,
+      "structure": null,
+      "entry_or_trigger": null,
+      "invalidation": "n/a \u2014 dropped",
+      "key_risks": [
+        "bullish leaderboard +61.7M but mega-tier DP SELLING br0.238 = distribution at top tier",
+        "90d cum-flow -381M"
+      ],
+      "thesis": "AVOID \u2014 the textbook flow_conflict trap: largest net-premium on the leaderboard but mega-tier dark-pool distribution and negative cum-flow. Dropped below the floor."
+    },
+    {
+      "ticker": "NVDA",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg directional structure (term-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "bullish diagonal 170C Jun + 190C Sep $452M (single-day, repeat 1)"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build (BUILDING, days>=5)",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "BUILDING; positive charm +2.07M"
+        },
+        {
+          "rubric_line": "-3 flow_conflict (30d cum-flow clearly opposite dominant class)",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d -386.4M OPPOSES bullish multileg (7.79x union median \u2014 NVDA 2026-05-08 precedent)"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": 2,
+      "cum_premium_flow_30d": -386400000,
+      "cum_premium_flow_90d": -386400000,
+      "win_rate": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {},
+      "fundamentals_verdict": null,
+      "debate_residual_confidence": null,
+      "structure": null,
+      "entry_or_trigger": null,
+      "invalidation": "n/a \u2014 dropped",
+      "key_risks": [
+        "bullish diagonal but cum-flow -386M opposes (full -3 flow_conflict)",
+        "today flipped bearish \u2014 adverse-flow exit candidate ($712M DP block, OI +555k)"
+      ],
+      "thesis": "AVOID \u2014 single-day bullish multileg overwhelmed by -386M opposing cum-flow (full flow_conflict), and flipped bearish today (adverse-flow exit from yesterday's conviction group)."
+    }
+  ],
+  "report_path": "analyses/daily/2026-05-27/report.md"
+}

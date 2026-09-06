@@ -1,0 +1,216 @@
+{
+ "cells": {
+  "tape=UP/long": {
+   "n": 62,
+   "book_wr": 0.5,
+   "spy_wr": 0.274,
+   "excess_pp": 22.6
+  },
+  "tape=UP/short": {
+   "n": 57,
+   "book_wr": 0.421,
+   "spy_wr": 0.439,
+   "excess_pp": -1.8
+  },
+  "tape=DOWN/long": {
+   "n": 124,
+   "book_wr": 0.371,
+   "spy_wr": 0.306,
+   "excess_pp": 6.5
+  },
+  "tape=DOWN/short": {
+   "n": 73,
+   "book_wr": 0.507,
+   "spy_wr": 0.644,
+   "excess_pp": -13.7
+  },
+  "regime=uptrend/long": {
+   "n": 73,
+   "book_wr": 0.452,
+   "spy_wr": 0.233,
+   "excess_pp": 21.9
+  },
+  "regime=uptrend/short": {
+   "n": 50,
+   "book_wr": 0.48,
+   "spy_wr": 0.8,
+   "excess_pp": -32.0
+  },
+  "regime=pullback_in_uptrend/long": {
+   "n": 51,
+   "book_wr": 0.51,
+   "spy_wr": 0.451,
+   "excess_pp": 5.9
+  },
+  "regime=pullback_in_uptrend/short": {
+   "n": 44,
+   "book_wr": 0.432,
+   "spy_wr": 0.659,
+   "excess_pp": -22.7
+  },
+  "regime=choppy/short": {
+   "n": 11,
+   "book_wr": 0.182,
+   "spy_wr": 0.0,
+   "excess_pp": 18.2
+  },
+  "regime=transitional_other/long": {
+   "n": 56,
+   "book_wr": 0.268,
+   "spy_wr": 0.161,
+   "excess_pp": 10.7
+  },
+  "regime=transitional_other/short": {
+   "n": 25,
+   "book_wr": 0.64,
+   "spy_wr": 0.12,
+   "excess_pp": 52.0
+  },
+  "class=bearish_flow": {
+   "n": 87,
+   "book_wr": 0.529,
+   "spy_wr": 0.598,
+   "excess_pp": -6.9
+  },
+  "class=bullish_flow": {
+   "n": 50,
+   "book_wr": 0.42,
+   "spy_wr": 0.28,
+   "excess_pp": 14.0
+  },
+  "class=dark_pool_accumulation": {
+   "n": 45,
+   "book_wr": 0.4,
+   "spy_wr": 0.378,
+   "excess_pp": 2.2
+  },
+  "class=dealer_positioning": {
+   "n": 23,
+   "book_wr": 0.478,
+   "spy_wr": 0.478,
+   "excess_pp": 0.0
+  },
+  "class=multi_day_sweep": {
+   "n": 8,
+   "book_wr": 0.75,
+   "spy_wr": 0.25,
+   "excess_pp": 50.0
+  },
+  "class=multileg_directional": {
+   "n": 53,
+   "book_wr": 0.396,
+   "spy_wr": 0.302,
+   "excess_pp": 9.4
+  },
+  "class=oi_build": {
+   "n": 9,
+   "book_wr": 0.333,
+   "spy_wr": 0.333,
+   "excess_pp": 0.0
+  },
+  "class=sector_rotation": {
+   "n": 24,
+   "book_wr": 0.25,
+   "spy_wr": 0.167,
+   "excess_pp": 8.3
+  },
+  "class=bearish_flow/tape=UP": {
+   "n": 30,
+   "book_wr": 0.533,
+   "spy_wr": 0.5,
+   "excess_pp": 3.3
+  },
+  "class=bearish_flow/tape=DOWN": {
+   "n": 57,
+   "book_wr": 0.526,
+   "spy_wr": 0.649,
+   "excess_pp": -12.3
+  },
+  "class=bullish_flow/tape=UP": {
+   "n": 15,
+   "book_wr": 0.4,
+   "spy_wr": 0.2,
+   "excess_pp": 20.0
+  },
+  "class=bullish_flow/tape=DOWN": {
+   "n": 35,
+   "book_wr": 0.429,
+   "spy_wr": 0.314,
+   "excess_pp": 11.4
+  },
+  "class=dark_pool_accumulation/tape=UP": {
+   "n": 15,
+   "book_wr": 0.4,
+   "spy_wr": 0.533,
+   "excess_pp": -13.3
+  },
+  "class=dark_pool_accumulation/tape=DOWN": {
+   "n": 30,
+   "book_wr": 0.4,
+   "spy_wr": 0.3,
+   "excess_pp": 10.0
+  },
+  "class=multileg_directional/tape=UP": {
+   "n": 28,
+   "book_wr": 0.5,
+   "spy_wr": 0.25,
+   "excess_pp": 25.0
+  },
+  "class=multileg_directional/tape=DOWN": {
+   "n": 25,
+   "book_wr": 0.28,
+   "spy_wr": 0.36,
+   "excess_pp": -8.0
+  },
+  "tier=LOW": {
+   "n": 75,
+   "book_wr": 0.413,
+   "spy_wr": 0.413,
+   "excess_pp": 0.0
+  },
+  "tier=MEDIUM": {
+   "n": 19,
+   "book_wr": 0.526,
+   "spy_wr": 0.368,
+   "excess_pp": 15.8
+  },
+  "tier=DROP": {
+   "n": 215,
+   "book_wr": 0.447,
+   "spy_wr": 0.4,
+   "excess_pp": 4.7
+  },
+  "era=era_0525_0529": {
+   "n": 40,
+   "book_wr": 0.55,
+   "spy_wr": 0.45,
+   "excess_pp": 10.0
+  },
+  "era=era_0530_0605": {
+   "n": 56,
+   "book_wr": 0.429,
+   "spy_wr": 0.429,
+   "excess_pp": 0.0
+  },
+  "era=pre_freeze_post_0606": {
+   "n": 25,
+   "book_wr": 0.4,
+   "spy_wr": 0.4,
+   "excess_pp": 0.0
+  },
+  "era=2026-06-12": {
+   "n": 195,
+   "book_wr": 0.421,
+   "spy_wr": 0.385,
+   "excess_pp": 3.6
+  }
+ },
+ "slope_pp_per_spywr": -80.0,
+ "intercept": 36.5,
+ "r2": 0.636,
+ "sd_book_wr": 0.1065,
+ "sd_spy_wr": 0.167,
+ "dispersion_ratio": 0.638,
+ "benchmark_share_of_excess_variance_pct": 71.1,
+ "n_cells": 34
+}

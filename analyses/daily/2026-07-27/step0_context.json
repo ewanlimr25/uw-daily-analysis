@@ -1,0 +1,139 @@
+{
+  "date": "2026-07-27",
+  "fz_available": true,
+  "fz_caveat": "fz breadth OK. fz `screen` endpoint ticker field is CORRUPTED this run (leading char doubled: RRTX->RTX, BBBY->BBY, CCPAY->CPAY, DDYN->DYN). Squeeze/RS candidate lanes are de-mangled and treated as ADVISORY SURFACE ONLY; do not trust a raw fz screen ticker without cross-checking against a uw payload.",
+
+  "regime": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+  "trend": "CHOPPY",
+  "spy": {"close": 739.09, "sma_20": 746.66, "sma_50": 745.0, "above_20sma": false, "above_50sma": false, "change_30d_pct": 0.65, "pct_from_90d_high": -2.8},
+  "market_breadth_uw": {"bullish_flow_tickers": 2208, "bearish_flow_tickers": 4071, "bullish_pct": 35.2, "tickers_with_options": 6279},
+  "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range.",
+  "vix": 18.67,
+
+  "TAPE_FRAMING_READ_THIS_FIRST": {
+    "headline": "TODAY IS A SEMIS/HARDWARE UNWIND INSIDE A BROAD-GREEN ROTATION TAPE — NOT A RISK-OFF DAY AND NOT A BROAD RALLY.",
+    "cap_weighted_vs_equal_weight": {
+      "SPY_1d_pct": 0.02, "QQQ_1d_pct": -0.31, "RSP_1d_pct": 0.75, "IWM_1d_pct": 0.60,
+      "interpretation": "Equal-weight (RSP +0.75%) and small-cap (IWM +0.60%) beat cap-weighted (SPY +0.02%, QQQ -0.31%). Money rotated DOWN the cap stack and OUT of the mega-cap semis complex."
+    },
+    "sector_etfs_1d_pct": {"XLK": -2.33, "SMH": -2.25, "SOXX": -2.05, "XLE": -2.11, "XLU": -1.32, "XLRE": -0.41, "XLB": 0.25, "XLI": 0.30, "XLV": 0.51, "XLF": 1.01, "XLC": 1.28, "XLY": 1.31, "XLP": 1.46},
+    "sector_etfs_5d_pct": {"XLI": 2.85, "XLB": 2.72, "XLV": 2.61, "XLU": 1.65, "XLF": 1.50, "XLRE": 1.17, "XLE": 0.72, "XLP": 0.59, "XLK": -0.73, "SOXX": -1.51, "SMH": -1.84, "XLC": -2.83, "XLY": -3.29},
+    "semis_carnage_1d_pct": {"SNDK": -11.02, "MU": -9.09, "INTC": -8.54, "LITE": -6.69, "AMKR": -6.54, "SOXL": -6.33, "ASML": -5.80, "AMD": -5.17, "NVDA": -4.99, "LRCX": -4.46, "STX": -4.07, "COHR": -3.92, "ENTG": -2.15},
+    "green_leaders_1d_pct": {"MSTR": 7.61, "LW": 7.12, "PLTR": 7.00, "NOW": 6.86, "GLOB": 6.63, "GM": 5.32, "DBX": 4.62, "BSX": 4.43, "ORCL": 4.27, "TCOM": 4.07, "COIN": 3.93, "ARM": 2.43, "GOOGL": 2.13, "MSFT": 1.94, "JPM": 1.80, "BE": 1.78, "COST": 1.77, "AAPL": 1.17},
+    "other": {"USO_1d_pct": -8.73, "GLD_1d_pct": 0.73, "TLT_1d_pct": 0.60, "note": "Crude collapsed -8.7% (USO). Energy equities only -2.1% — equities lagged the commodity move."},
+    "rotation_call": "Within-tech rotation SEMIS/HARDWARE -> SOFTWARE/AI-APPLICATION (PLTR/NOW/ORCL/GLOB/DBX up 4-7% while MU/SNDK/INTC/ASML down 5-11%), PLUS a broad rotation into financials/defensives/consumer. 5d confirms: XLI/XLB/XLV up 2.6-2.9% vs XLY -3.3%, XLC -2.8%, QQQ -2.0%.",
+    "hard_instruction": "Do NOT describe today as 'broad risk-off' (fz breadth is 65.2% GREEN, 328 advancers vs 175 decliners) and do NOT describe it as a 'broad rally' (XLK -2.33%). Any thesis you write must be consistent with BOTH facts. A bullish semis thesis today must explain the -5% to -11% prints; a bearish broad-market thesis must explain 65% green breadth."
+  },
+
+  "breadth_cross_check": {
+    "advisory": true, "source": "finviz", "advancers": 328, "decliners": 175, "unchanged": 0, "total": 503,
+    "pct_green": 65.21, "avg_change": 0.77, "median_change": 0.82,
+    "top_mover": "WDAY (+9.01%)", "worst_mover": "SNDK (-11.02%)",
+    "divergence_flag": false,
+    "note": "REVERSE divergence vs the uw regime label: uw market-breadth reads 35.2% bullish FLOW while finviz price breadth reads 65.2% green. Flow is bearish-tilted while price is broadly green -> hedging/put-buying into a rotation, not distribution across the whole tape. Reconcile against the cap-weighted prints above."
+  },
+
+  "vrp": {
+    "SPY": {"iv30d": 0.1571, "realised_vol": 0.1266, "vrp": 0.0305, "regime": "FAIR", "interpretation": "IV close to realised — no clear edge from VRP alone."},
+    "QQQ": {"iv30d": 0.2602, "realised_vol": 0.2769, "vrp": -0.0167, "regime": "FAIR", "interpretation": "QQQ VRP is NEGATIVE (realised > implied) — premium selling on QQQ single-names is NOT favoured; vol BUYING is the cheaper side on the Nasdaq complex."}
+  },
+
+  "dte_volume_share": {"share_0dte": 0.406, "share_weeklies": 0.270, "share_monthlies": 0.165, "share_leaps": 0.028, "regime_hint": "RETAIL_DRIVEN", "interpretation": "40.6% 0DTE share = retail/short-dated dominated tape. Only 19.3% is monthly+ (institutional positioning). DOWNGRADE conviction on any multi-week rotation or swing call sourced from today's single-day flow — the tape is dominated by same-week paper."},
+
+  "sector_flow_gics_today": {
+    "Technology": 366844565, "Communication Services": 348281698, "Financial Services": 149843233,
+    "Healthcare": 85410184, "Consumer Defensive": 53427583, "Energy": 38919696, "Real Estate": 16437881,
+    "Utilities": 15012374, "Basic Materials": 8993131, "Industrials": -47026950, "Consumer Cyclical": -386132358,
+    "WARNING": "This is gross call$ minus put$ — it is NOT aggressor-classified and NOT accumulation. Technology reads +$367M net_flow on a day XLK fell 2.33%. Do not read direction off this alone."
+  },
+  "sector_flow_persistence": {
+    "days": 5, "dates_covered": ["2026-07-27","2026-07-24","2026-07-23","2026-07-22","2026-07-21"],
+    "scores": {"Financial Services": {"score": 1, "trend": "INFLOW"}, "Consumer Defensive": {"score": 1, "trend": "INFLOW"}, "Basic Materials": {"score": 1, "trend": "INFLOW"}, "Energy": {"score": 1, "trend": "INFLOW"}, "Technology": {"score": 1, "trend": "INFLOW"}, "Utilities": {"score": 1, "trend": "INFLOW"}, "Healthcare": {"score": 1, "trend": "INFLOW"}, "Real Estate": {"score": 1, "trend": "INFLOW"}, "Industrials": {"score": 0.8, "trend": "OUTFLOW"}, "Consumer Cyclical": {"score": null, "trend": "MIXED"}},
+    "WARNING": "persistence_score is a SIGN-CONSISTENCY / TURNOVER measure, NOT accumulation. 8 of 11 sectors read score=1 INFLOW simultaneously — that is near-zero discrimination and cannot support a rotation call on its own. Technology reads score=1 INFLOW on a -2.33% XLK day. Cross-check every rotation claim against the aggressor-classified source and the price tape above."
+  },
+
+  "macro_snapshot": {
+    "source": "FRED", "available": true,
+    "yield_curve": "normal", "yield_curve_10y2y": 0.34,
+    "core_cpi_yoy_pct": 2.81, "core_pce_yoy_pct": 3.41,
+    "unemployment_rate": 4.2, "payrolls_mom_000s": 57.0,
+    "ten_year_yield": 4.69, "ten_year_30d_direction": "rising (4.41 -> 4.69, +28bp)",
+    "usd_30d_direction": "weakening (-0.70 broad index)",
+    "fed_funds": 3.63, "sofr": 3.64,
+    "read": "Core PCE 3.41% YoY is running well ABOVE core CPI 2.81% and far above target, while 10Y has backed up 28bp in 30 days to 4.69% and fed funds sits at 3.63%. Curve normal (+34bp). Payrolls soft at +57k, unemployment 4.2%. This is a sticky-inflation / rising-long-rate backdrop going INTO an FOMC — hostile to long-duration growth multiples, which is consistent with today's semis/high-multiple unwind."
+  },
+
+  "event_risk": [
+    {"event": "FOMC two-day meeting begins", "date": "2026-07-28", "impact": "HIGH"},
+    {"event": "CB Consumer Confidence, Case-Shiller HPI", "date": "2026-07-28", "impact": "MEDIUM"},
+    {"event": "FOMC rate decision 2:00pm ET + Chair Warsh press conference 2:30pm ET", "date": "2026-07-29", "impact": "HIGH"},
+    {"event": "Core PCE price index (June) 8:30am ET", "date": "2026-07-30", "impact": "HIGH"},
+    {"event": "Q2 GDP advance release + initial jobless claims 8:30am ET", "date": "2026-07-30", "impact": "HIGH"},
+    {"event": "Employment Cost Index Q2, Chicago PMI, Michigan sentiment final", "date": "2026-07-31", "impact": "MEDIUM"},
+    {"event": "July CPI", "date": "2026-08-12", "impact": "HIGH"},
+    {"event": "FOMC minutes", "date": "2026-08-19", "impact": "MEDIUM"}
+  ],
+  "event_risk_hard_instruction": "THE ENTIRE TIER-1 MACRO STACK LANDS IN THE NEXT 3 SESSIONS: FOMC decision Wed 7/29, Core PCE + Q2 GDP Thu 7/30. Every swing (1-6wk) directional call made today carries un-priced binary event risk inside its horizon. State this explicitly in any directional thesis. Front-end IV is elevated for a reason — it is not a free premium-selling opportunity.",
+
+  "zerodte_setup": {
+    "available": true, "as_of": "2026-07-27", "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "SPY": {"sell_premium": true, "vol_state": "HIGH", "vix": 18.67, "implied_move_pct": 0.97, "expected_range_pct": 1.2, "size_scalar": 1.5, "suggested_structure": "wider iron condor, wings ~ +/-1.2%", "entry_rule": "Enter at/after the open once the overnight gap resolves; hold to close; never carry overnight.", "stand_aside_reason": null, "caution": null, "backtest": {"n": 60, "win_open_pct": 91.7, "mean_pnl_open_pct": 0.258, "mean_pnl_open_net_pct": 0.158, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -1.4, "pnl_basis": "percent-of-underlying-spot-notional, GROSS"}},
+    "QQQ": {"sell_premium": true, "vol_state": "HIGH", "vix": 18.67, "implied_move_pct": 1.68, "expected_range_pct": 2.0, "size_scalar": 0.75, "suggested_structure": "wider iron condor, wings ~ +/-2.0%", "entry_rule": "same", "stand_aside_reason": null, "caution": "Front-end backwardation (0DTE IV 1.43x VIX) — event/gap risk; half size.", "backtest": {"n": 60, "win_open_pct": 86.7, "mean_pnl_open_pct": 0.381, "mean_pnl_open_net_pct": 0.281, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -2.453, "pnl_basis": "percent-of-underlying-spot-notional, GROSS"}},
+    "ORCHESTRATOR_OVERRIDE": "The size_scalar values above are computed from VIX level ALONE and are BLIND to the FOMC/PCE calendar. Tomorrow (7/28) is FOMC day-1 and Wednesday is the decision. Treat the SPY 1.5x scalar as NOT ACTIONABLE at face value on 7/28-7/30 and say so."
+  },
+
+  "c12_liquidity_floor": {
+    "rule": "price >= $5 AND 20d dollar-ADV >= $50M; fail-closed",
+    "as_of": "2026-07-27",
+    "passed_n": 61,
+    "failed": [{"symbol": "MTX", "reason": "adv $18.9M < $50M"}, {"symbol": "ZIM", "reason": "adv $26.6M < $50M"}],
+    "note": "The uw volume-vs-average screen was ~entirely sub-floor micro-ETFs this run (XMVM, ECOW, DFNL, DTH, COWS, CLIP, RMTI1, VNRX1, TRIB1 etc) and has been dropped from the funnel wholesale. Index symbols (^VIX) always fail on zero share volume — expected, they are tape context not candidates."
+  },
+
+  "funnel_c12_passed": ["MU","NVDA","SNDK","TSLA","AAPL","AMD","MSFT","INTC","SOXL","GOOGL","AMZN","ORCL","PLTR","STX","LRCX","EWY","NBIS","ASML","NFLX","JPM","BE","LITE","LLY","DELL","TXN","GLD","NOW","COST","BAC","MSTR","TLT","ARM","XLE","ABBV","EEM","COHR","COIN","BSX","USO","DE","GM","PH","ENTG","AMKR","RF","CNC","RIO","SU","LII","TRU","WOLF","TCOM","QGEN","KGS","DBX","LW","WAL","XENE","HRI","GLOB","FAF"],
+
+  "top_bullish_net_premium": {"SNDK": 58.1e6, "SPY": 45.3e6, "PLTR": 31.3e6, "MSFT": 29.4e6, "GOOG": 25.0e6, "GOOGL": 19.6e6, "MU": 17.9e6, "NBIS": 15.7e6, "ASML": 15.1e6, "NOW": 14.3e6, "MSTR": 13.4e6, "ORCL": 11.5e6, "NFLX": 11.1e6, "BE": 11.0e6, "EWY": 8.9e6, "COHR": 8.3e6, "COST": 7.9e6, "AAPL": 7.9e6, "DELL": 7.9e6, "HRI": 7.1e6, "LLY": 7.0e6, "BSX": 6.4e6, "QGEN": 5.6e6},
+  "top_bearish_net_premium": {"TSLA": -71.3e6, "WOLF": -69.9e6, "AMD": -65.7e6, "GLD": -54.4e6, "NVDA": -41.9e6, "AMZN": -31.6e6, "SMH": -27.3e6, "QQQ": -25.9e6, "SOXX": -17.8e6, "IWM": -14.2e6, "INTC": -13.7e6, "USO": -13.3e6, "SOXL": -13.3e6, "XLE": -11.3e6, "LITE": -10.5e6, "LRCX": -9.7e6, "STX": -7.8e6, "BAC": -5.9e6, "TLT": -5.2e6, "TXN": -5.1e6, "JPM": -5.0e6, "EEM": -4.9e6},
+
+  "PRICE_VS_FLOW_DIVERGENCES_TO_INVESTIGATE": {
+    "note": "These are the highest-information rows on the tape today. Net options premium and the price print disagree violently. Someone is wrong, or the flow is hedging/closing rather than opening.",
+    "bullish_flow_but_price_collapsed": {"SNDK": "+$58.1M net bullish premium, stock -11.02%", "MU": "+$17.9M net bullish premium, stock -9.09%", "ASML": "+$15.1M net bullish premium, stock -5.80%", "COHR": "+$8.3M net bullish premium, stock -3.92%", "DELL": "+$7.9M net bullish premium, stock -2.42%"},
+    "bearish_flow_but_price_rose": {"WOLF": "-$69.9M net bearish premium, stock +3.07% (but -18.99% over 5d)", "BAC": "-$5.9M, +0.13%", "JPM": "-$5.0M, +1.80%", "TLT": "-$5.2M, +0.60%"},
+    "instruction": "Do not resolve these by assuming the options flow is informed. Check whether the bullish premium is OPENING (uw historical oi-trend BUILDING / OI up) or CLOSING/hedging (uw oi decrease-with-volume). On a -9% to -11% print, 'bullish net premium' is very often put-selling into the fall, deep-ITM call closing, or dealer hedge unwind — NOT accumulation."
+  },
+
+  "confluence_bullish_top": [{"XENE": 6}, {"RF": 5}, {"GM": 5}, {"GLOB": 5}, {"LW": 5}, {"FAF": 5}, {"WAL": 4}, {"CNC": 4}],
+  "confluence_bearish_top": [{"WOLF": 5}, {"SU": 5}, {"TCOM": 5}, {"DE": 5}, {"AMKR": 5}, {"ABBV": 5}, {"RIO": 5}, {"ARM": 5}, {"KGS": 5}, {"ENTG": 5}, {"COIN": 4}, {"LII": 4}, {"PH": 4}],
+  "confluence_note": "The uw insights signal-confluence tool is FUNNEL-SEED ONLY (2026-06-12 audit P0.2). It earns 0 rubric points, gates no entry, and is NOT a second opinion — it is a server-side re-count of dp_accumulation / oi_building / bullish_flow, the same quantities the rubric already scores. Use it to find names, never to confirm them.",
+
+  "fz_squeeze_candidates_advisory": ["ACHC","AI","AMPX","ABSI","AESI","ABR"],
+  "fz_rs_candidates_advisory": ["RTX","BBY","CPAY","SJM","KFY","TOWN","RNG","DYN","AMLX","SNDA"],
+  "fz_lane_caveat": "ADVISORY, 0 rubric points. Tickers de-mangled from the fz leading-char-doubling corruption and NOT independently verified. These are candidate SURFACE only — they still require >=2 distinct Phase 1 agents to flag them before entering the rubric.",
+
+  "opex_guard": {"in_opex_window": false, "third_friday_july_2026": "2026-07-17", "days_past": 10, "note": "opex-pin-strategist NOT spawned — 11 Phase 1 agents this run."},
+
+  "step0_cache_paths": {
+    "daily_synthesis": "analyses/daily/2026-07-27/step0_cache/daily_synthesis.json",
+    "market_regime": "analyses/daily/2026-07-27/step0_cache/market_regime.json",
+    "dte_volume_share": "analyses/daily/2026-07-27/step0_cache/dte_volume_share.json",
+    "sector_flow": "analyses/daily/2026-07-27/step0_cache/sector_flow.json",
+    "sector_flow_persistence": "analyses/daily/2026-07-27/step0_cache/sector_flow_persistence.json",
+    "screener_bullish": "analyses/daily/2026-07-27/step0_cache/screener_bullish.json",
+    "screener_bearish": "analyses/daily/2026-07-27/step0_cache/screener_bearish.json",
+    "signal_confluence_bullish": "analyses/daily/2026-07-27/step0_cache/signal_confluence_bullish.json",
+    "signal_confluence_bearish": "analyses/daily/2026-07-27/step0_cache/signal_confluence_bearish.json",
+    "iv_rank_high": "analyses/daily/2026-07-27/step0_cache/iv_rank_high.json",
+    "iv_rank_low": "analyses/daily/2026-07-27/step0_cache/iv_rank_low.json",
+    "volume_vs_average": "analyses/daily/2026-07-27/step0_cache/volume_vs_average.json",
+    "earnings_catalyst": "analyses/daily/2026-07-27/step0_cache/earnings_catalyst.json",
+    "expiry_heatmap": "analyses/daily/2026-07-27/step0_cache/expiry_heatmap.json",
+    "iv_outliers": "analyses/daily/2026-07-27/step0_cache/iv_outliers.json",
+    "greek_screener": "analyses/daily/2026-07-27/step0_cache/greek_screener.json",
+    "top_premium_trades": "analyses/daily/2026-07-27/step0_cache/top_premium_trades.json",
+    "most_active": "analyses/daily/2026-07-27/step0_cache/most_active.json",
+    "oi_smart_positioning": "analyses/daily/2026-07-27/step0_cache/oi_smart_positioning.json",
+    "single_leg": "analyses/daily/2026-07-27/step0_cache/single_leg.json",
+    "vrp_spy": "analyses/daily/2026-07-27/step0_cache/vrp_spy.json",
+    "vrp_qqq": "analyses/daily/2026-07-27/step0_cache/vrp_qqq.json"
+  }
+}

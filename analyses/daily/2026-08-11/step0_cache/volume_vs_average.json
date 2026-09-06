@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 19.4667,
+      "close": 81.11,
+      "full_name": "VANGUARD INTERMEDIATE-TERM CORPORATE BOND INDEX FUND",
+      "iv_rank": 69.7897,
+      "put_call_ratio": 2813.375,
+      "sector": null,
+      "ticker": "VCIT",
+      "total_volume": 45030,
+      "volume_ratio": 2313.18097058053
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 120.0715,
+      "full_name": "INVESCO S&P SMALLCAP CONSUMER DISCRETIONARY ETF",
+      "iv_rank": 0.1854,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PSCD",
+      "total_volume": 20,
+      "volume_ratio": 600.6006006006005
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 34.87,
+      "full_name": "BLACKROCK ADVANTAGE LARGE CAP INCOME ETF",
+      "iv_rank": 4.9356,
+      "put_call_ratio": 15,
+      "sector": null,
+      "ticker": "BALI",
+      "total_volume": 32,
+      "volume_ratio": 320
+    },
+    {
+      "avg_total_volume": 6.7,
+      "close": 917.09,
+      "full_name": "NEWMARKET CORP",
+      "iv_rank": 46.9786,
+      "put_call_ratio": 0.003798670465337132,
+      "sector": "Basic Materials",
+      "ticker": "NEU",
+      "total_volume": 1057,
+      "volume_ratio": 157.76119402985074
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 6.8549,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MXWLD",
+      "total_volume": 10,
+      "volume_ratio": 149.92503748125938
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 102.1239,
+      "full_name": "INVESCO DWA CONSUMER CYCLICALS MOMENTUM ETF",
+      "iv_rank": 36.9433,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PEZ",
+      "total_volume": 12,
+      "volume_ratio": 120
+    },
+    {
+      "avg_total_volume": 0.9667,
+      "close": 137.37,
+      "full_name": "ISHARES US FINANCIALS ETF",
+      "iv_rank": 18.1387,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IYF",
+      "total_volume": 97,
+      "volume_ratio": 100.34136753905038
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 25.69,
+      "full_name": "ISHARES INFLATION HEDGED CORPORATE BOND ETF",
+      "iv_rank": 9.3407,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "LQDI",
+      "total_volume": 3,
+      "volume_ratio": 90.09009009009009
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 36.8687,
+      "full_name": "FIDELITY DISRUPTIVE FINANCE ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FDFF",
+      "total_volume": 6,
+      "volume_ratio": 89.95502248875563
+    },
+    {
+      "avg_total_volume": 264.4,
+      "close": 166.14,
+      "full_name": "VANGUARD HIGH DIVIDEND YIELD INDEX FUND",
+      "iv_rank": 39.1119,
+      "put_call_ratio": 0.009971580994166625,
+      "sector": null,
+      "ticker": "VYM",
+      "total_volume": 20257,
+      "volume_ratio": 76.61497730711045
+    },
+    {
+      "avg_total_volume": 49.566700000000004,
+      "close": 28.39,
+      "full_name": "ARTIVION INC",
+      "iv_rank": 34.8039,
+      "put_call_ratio": 0.0017421602787456446,
+      "sector": "Healthcare",
+      "ticker": "AORT",
+      "total_volume": 3450,
+      "volume_ratio": 69.6031811680019
+    },
+    {
+      "avg_total_volume": 0.4667,
+      "close": 33.12,
+      "full_name": "HAMILTON BEACH BRANDS HOLDING CO",
+      "iv_rank": 29.8114,
+      "put_call_ratio": 30,
+      "sector": "Technology",
+      "ticker": "HBB",
+      "total_volume": 31,
+      "volume_ratio": 66.42382686950933
+    },
+    {
+      "avg_total_volume": 239.3,
+      "close": 19.4,
+      "full_name": "QUANTUM CORP",
+      "iv_rank": 1.3937,
+      "put_call_ratio": 0.3893453724604966,
+      "sector": "Technology",
+      "ticker": "QMCO",
+      "total_volume": 15387,
+      "volume_ratio": 64.30004178854993
+    },
+    {
+      "avg_total_volume": 24.3333,
+      "close": 95.39,
+      "full_name": "TRANSCAT INC",
+      "iv_rank": 12.2368,
+      "put_call_ratio": 0.001336898395721925,
+      "sector": "Industrials",
+      "ticker": "TRNS",
+      "total_volume": 1498,
+      "volume_ratio": 61.56172816675091
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 31.42,
+      "full_name": "FIRST TRUST S&P REIT INDEX FUND",
+      "iv_rank": 32.3682,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FRI",
+      "total_volume": 17,
+      "volume_ratio": 56.66666666666667
+    },
+    {
+      "avg_total_volume": 484.33329999999995,
+      "close": 94.83,
+      "full_name": "ISHARES JP MORGAN USD EMERGING MARKETS BOND ETF",
+      "iv_rank": 38.9275,
+      "put_call_ratio": 364.7971014492754,
+      "sector": null,
+      "ticker": "EMB",
+      "total_volume": 25240,
+      "volume_ratio": 52.112873510865356
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": 21.538,
+      "full_name": "AXS ASTORIA INFLATION SENSITIVE ETF",
+      "iv_rank": 16.6163,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PPI",
+      "total_volume": 10,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 56.0667,
+      "close": 7.7,
+      "full_name": "FREIGHTCAR AMERICA INC",
+      "iv_rank": 38.4493,
+      "put_call_ratio": 213.69230769230768,
+      "sector": "Industrials",
+      "ticker": "RAIL",
+      "total_volume": 2791,
+      "volume_ratio": 49.77999418549692
+    },
+    {
+      "avg_total_volume": 34.5,
+      "close": 23.76,
+      "full_name": "Bicara Therapeutics",
+      "iv_rank": 14.9852,
+      "put_call_ratio": 0.3740234375,
+      "sector": "Healthcare",
+      "ticker": "BCAX",
+      "total_volume": 1407,
+      "volume_ratio": 40.78260869565217
+    },
+    {
+      "avg_total_volume": 36.533300000000004,
+      "close": 16.58,
+      "full_name": "NUVEEN INTERMEDIATE DURATION QUALITY MUNICIPAL TERM FUND",
+      "iv_rank": 13.7082,
+      "put_call_ratio": 1.0276243093922652,
+      "sector": "Financial Services",
+      "ticker": "NIQ",
+      "total_volume": 1468,
+      "volume_ratio": 40.18251841470658
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 30.0875,
+      "full_name": "CORGI DATA & SURVEILLANCE ETF",
+      "iv_rank": 22.4922,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "EYES",
+      "total_volume": 10,
+      "volume_ratio": 37.49531308586427
+    },
+    {
+      "avg_total_volume": 14,
+      "close": 10.01,
+      "full_name": "908 DEVICES INC",
+      "iv_rank": 45.7042,
+      "put_call_ratio": 0.020242914979757085,
+      "sector": "Healthcare",
+      "ticker": "MASS",
+      "total_volume": 504,
+      "volume_ratio": 36
+    },
+    {
+      "avg_total_volume": 12.0333,
+      "close": 63.97,
+      "full_name": "INVESCO GLOBAL LISTED PRIVATE EQUITY ETF",
+      "iv_rank": 26.8681,
+      "put_call_ratio": 4.783783783783784,
+      "sector": null,
+      "ticker": "PSP",
+      "total_volume": 428,
+      "volume_ratio": 35.56796556223147
+    },
+    {
+      "avg_total_volume": 24.2667,
+      "close": 74.96,
+      "full_name": "KONTOOR BRANDS INC",
+      "iv_rank": 42.6829,
+      "put_call_ratio": 21.025641025641026,
+      "sector": "Consumer Cyclical",
+      "ticker": "KTB",
+      "total_volume": 859,
+      "volume_ratio": 35.39830302430903
+    },
+    {
+      "avg_total_volume": 282.6333,
+      "close": 12.32,
+      "full_name": "COMPASS DIVERSIFIED HOLDINGS",
+      "iv_rank": 7.2584,
+      "put_call_ratio": 0.010267579340385812,
+      "sector": "Industrials",
+      "ticker": "CODI",
+      "total_volume": 9741,
+      "volume_ratio": 34.46515325688799
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-11.parquet"
+}

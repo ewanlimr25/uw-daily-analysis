@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 3,
+      "close": 1.89,
+      "full_name": "KALTURA INC",
+      "iv_rank": 30.8961,
+      "put_call_ratio": 0.00885148687538153,
+      "sector": "Technology",
+      "ticker": "KLTR",
+      "total_volume": 46274,
+      "volume_ratio": 15424.666666666666
+    },
+    {
+      "avg_total_volume": 9.8667,
+      "close": 14.89,
+      "full_name": "CANNAE HOLDINGS INC",
+      "iv_rank": 24.0838,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "CNNE",
+      "total_volume": 4087,
+      "volume_ratio": 414.221573575765
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 20,
+      "full_name": "VANECK EMERGING MARKETS HIGH YIELD BOND ETF",
+      "iv_rank": 12.1625,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HYEM",
+      "total_volume": 30,
+      "volume_ratio": 300
+    },
+    {
+      "avg_total_volume": 1.1666,
+      "close": 39.52,
+      "full_name": "BYLINE BANCORP INC",
+      "iv_rank": 17.025,
+      "put_call_ratio": 0.00398406374501992,
+      "sector": "Financial Services",
+      "ticker": "BY",
+      "total_volume": 252,
+      "volume_ratio": 216.01234356248926
+    },
+    {
+      "avg_total_volume": 15.0333,
+      "close": 26.86,
+      "full_name": "OceanaGold Corp",
+      "iv_rank": 38.5856,
+      "put_call_ratio": 0.00032206119162640903,
+      "sector": "Basic Materials",
+      "ticker": "OGC",
+      "total_volume": 3106,
+      "volume_ratio": 206.60799691351866
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 111.826,
+      "full_name": "WISDOMTREE JAPAN SMALLCAP DIVIDEND FUND",
+      "iv_rank": 36.0376,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFJ",
+      "total_volume": 5,
+      "volume_ratio": 150.15015015015013
+    },
+    {
+      "avg_total_volume": 11.366700000000002,
+      "close": 30.76,
+      "full_name": "CONCENTRA GROUP HOLDINGS PARENT INC",
+      "iv_rank": 45.6073,
+      "put_call_ratio": 74.38095238095238,
+      "sector": "Healthcare",
+      "ticker": "CON",
+      "total_volume": 1583,
+      "volume_ratio": 139.26645376406518
+    },
+    {
+      "avg_total_volume": 52.333299999999994,
+      "close": 65.52,
+      "full_name": "BRP",
+      "iv_rank": 47.3187,
+      "put_call_ratio": 0.0008527572484366117,
+      "sector": "Consumer Cyclical",
+      "ticker": "DOO",
+      "total_volume": 7042,
+      "volume_ratio": 134.56059526152566
+    },
+    {
+      "avg_total_volume": 40.5,
+      "close": 50.29,
+      "full_name": "XPEL INC",
+      "iv_rank": 42.2064,
+      "put_call_ratio": 0.008925029750099168,
+      "sector": "Consumer Cyclical",
+      "ticker": "XPEL",
+      "total_volume": 5087,
+      "volume_ratio": 125.60493827160494
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 36.95,
+      "full_name": "PROSHARES ULTRAPRO MIDCAP400",
+      "iv_rank": 17.1918,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UMDD",
+      "total_volume": 4,
+      "volume_ratio": 120.1201201201201
+    },
+    {
+      "avg_total_volume": 12.2,
+      "close": 39.83,
+      "full_name": "SONIDA SENIOR LIVING INC",
+      "iv_rank": 60.8853,
+      "put_call_ratio": 0.0034411562284927736,
+      "sector": "Healthcare",
+      "ticker": "SNDA",
+      "total_volume": 1458,
+      "volume_ratio": 119.50819672131148
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 50.09,
+      "full_name": "SCHWAB INTERNATIONAL SMALL-CAP EQUITY ETF",
+      "iv_rank": 23.794,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SCHC",
+      "total_volume": 10,
+      "volume_ratio": 100
+    },
+    {
+      "avg_total_volume": 260.3,
+      "close": 40.12,
+      "full_name": "HESS MIDSTREAM LP",
+      "iv_rank": 31.2829,
+      "put_call_ratio": 0.004386489611995055,
+      "sector": "Energy",
+      "ticker": "HESM",
+      "total_volume": 25187,
+      "volume_ratio": 96.76142912024586
+    },
+    {
+      "avg_total_volume": 109.9,
+      "close": 23.03,
+      "full_name": "NATIONAL VISION HOLDINGS INC",
+      "iv_rank": 55.4617,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "EYE",
+      "total_volume": 10155,
+      "volume_ratio": 92.40218380345769
+    },
+    {
+      "avg_total_volume": 0.7333,
+      "close": 42.62,
+      "full_name": "FIDELITY ENHANCED LARGE CAP VALUE ETF",
+      "iv_rank": 9.9658,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FELV",
+      "total_volume": 58,
+      "volume_ratio": 79.09450429564981
+    },
+    {
+      "avg_total_volume": 361.2333,
+      "close": 13.27,
+      "full_name": "PERRIGO CO PLC",
+      "iv_rank": 34.951,
+      "put_call_ratio": 0.6052067026149476,
+      "sector": "Healthcare",
+      "ticker": "PRGO",
+      "total_volume": 27685,
+      "volume_ratio": 76.64022115347616
+    },
+    {
+      "avg_total_volume": 37.7,
+      "close": 34.16,
+      "full_name": "KENNAMETAL INC",
+      "iv_rank": 66.8401,
+      "put_call_ratio": 0.03897254207263064,
+      "sector": "Industrials",
+      "ticker": "KMT",
+      "total_volume": 2346,
+      "volume_ratio": 62.22811671087533
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 85.92,
+      "full_name": "ISHARES MSCI EAFE SMALL-CAP ETF",
+      "iv_rank": 36.2944,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SCZ",
+      "total_volume": 8,
+      "volume_ratio": 60.01500375093774
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 38.0562,
+      "full_name": "ADVISORSHARES HOTEL ETF",
+      "iv_rank": 0.2915,
+      "put_call_ratio": 0.75,
+      "sector": null,
+      "ticker": "BEDZ",
+      "total_volume": 7,
+      "volume_ratio": 52.51312828207052
+    },
+    {
+      "avg_total_volume": 643.5333,
+      "close": 79.24,
+      "full_name": "ISHARES CORE DIVIDEND GROWTH ETF",
+      "iv_rank": 42.7928,
+      "put_call_ratio": 0.00018759379689844922,
+      "sector": null,
+      "ticker": "DGRO",
+      "total_volume": 31990,
+      "volume_ratio": 49.70993731015939
+    },
+    {
+      "avg_total_volume": 22.9,
+      "close": 4.62,
+      "full_name": "ALTI GLOBAL INC",
+      "iv_rank": 19.4215,
+      "put_call_ratio": 0.3235653235653236,
+      "sector": "Financial Services",
+      "ticker": "ALTI",
+      "total_volume": 1084,
+      "volume_ratio": 47.33624454148472
+    },
+    {
+      "avg_total_volume": 26.700000000000003,
+      "close": 83.6,
+      "full_name": "HAEMONETICS CORP",
+      "iv_rank": 56.1878,
+      "put_call_ratio": 0.986863711001642,
+      "sector": "Healthcare",
+      "ticker": "HAE",
+      "total_volume": 1210,
+      "volume_ratio": 45.31835205992509
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 55.76,
+      "full_name": "XTRACKERS MSCI EAFE HEDGED EQUITY ETF",
+      "iv_rank": 5.0589,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DBEF",
+      "total_volume": 4,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 210.0334,
+      "close": 9.44,
+      "full_name": "GRAN TIERRA ENERGY INC",
+      "iv_rank": 46.9033,
+      "put_call_ratio": 0.28873348873348875,
+      "sector": "Energy",
+      "ticker": "GTE",
+      "total_volume": 8293,
+      "volume_ratio": 39.484196323061
+    },
+    {
+      "avg_total_volume": 2.7666000000000004,
+      "close": 0.0636,
+      "full_name": "RECON TECHNOLOGY LTD",
+      "iv_rank": 100,
+      "put_call_ratio": 35.333333333333336,
+      "sector": "Energy",
+      "ticker": "RCON",
+      "total_volume": 109,
+      "volume_ratio": 39.398539723848764
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-05.parquet"
+}

@@ -1,0 +1,563 @@
+{
+ "schema_version": "1.3",
+ "rubric_version": "2026-06-12",
+ "report_date": "2026-07-10",
+ "report_kind": "weekly",
+ "iso_week": "2026-W28",
+ "regime": "TRANSITIONAL \u2014 Mixed signals, reduce position size (held Mon->Fri). Trend UPTREND intact: SPY 754.95 > 20sma 743.81 > 50sma 741.24, -0.72% from 90d high; options-flow bullish_pct deteriorated 37.4->33.4. OUT-OF-REGIME (rubric fitted UPTREND, ended 2026-06-12) \u2014 sizing capped at half.",
+ "vrp_classification": "MIXED / premium-buying-lean \u2014 SPY FAIR (vrp -0.028), QQQ PREMIUM_BUYING (vrp -0.073, vol cheap vs realized)",
+ "macro_snapshot_signals": {
+  "yield_curve": "normal",
+  "yield_curve_10y2y": 0.35,
+  "core_cpi_yoy_pct": 2.96,
+  "core_pce_yoy_pct": 3.41,
+  "unemployment_rate": 4.2,
+  "payrolls_mom_000s": 57.0,
+  "ten_year_yield": 4.54,
+  "ten_year_30d_direction": "flat",
+  "usd_30d_direction": "strengthening",
+  "fed_funds": 3.62
+ },
+ "macro_event_risk": [
+  {
+   "event": "CPI",
+   "date": "2026-07-14",
+   "impact": "high"
+  },
+  {
+   "event": "JPM + bank cohort earnings",
+   "date": "2026-07-14",
+   "impact": "high"
+  },
+  {
+   "event": "PPI",
+   "date": "2026-07-15",
+   "impact": "medium"
+  },
+  {
+   "event": "Fed Chair Warsh testimony",
+   "date": "2026-07-14",
+   "impact": "medium"
+  },
+  {
+   "event": "NFLX earnings",
+   "date": "2026-07-16",
+   "impact": "medium"
+  },
+  {
+   "event": "July OPEX",
+   "date": "2026-07-17",
+   "impact": "medium"
+  }
+ ],
+ "watchlist_write_back": [
+  "SNDK",
+  "NVDA",
+  "JPM",
+  "SOFI",
+  "META"
+ ],
+ "breadth_cross_check": {
+  "advisory": true,
+  "source": "finviz",
+  "advancers": 338,
+  "decliners": 163,
+  "pct_green": 67.2,
+  "divergence_flag": false,
+  "note": "S&P 500 1d as of 2026-07-10 close (captured 2026-07-11). Green cash tape, no divergence vs the TRANSITIONAL/UPTREND uw label; the softness is in options-flow breadth (33.4% bullish tickers), not cash."
+ },
+ "next_session_gex": {
+  "advisory": true,
+  "as_of_eod_date": "2026-07-10",
+  "next_session_date": "2026-07-13",
+  "indices": [
+   {
+    "symbol": "SPY",
+    "spot": 754.93,
+    "zero_gamma_level": 754.15,
+    "zgl_reliable": true,
+    "regime": "POSITIVE",
+    "total_gex": 3180000000,
+    "call_wall": 755,
+    "put_wall": 740,
+    "read": "Spot pinned to the ZGL (754.15, within 0.1%) with a dominant +$2.03B long-gamma wall essentially at spot (755); mean-revert/pin bias 748-755 into Monday's open. Backtest NO_GO_NO_EDGE (next close closer-to-nearest-wall 24.6% vs 50%, n~118 \u2014 walls repel).",
+    "structure_bias": "Iron-fly / short-straddle framing on the 754-755 pin, not a wide condor; low conviction and fragile to the 07-14 CPI print.",
+    "caveats": "EOD book refreshes after the open; CPI/PPI gap risk through the walls; ETF-not-index book; D+1 expiry cannot be isolated; NO backtested predictive claim (NO_GO_NO_EDGE)."
+   },
+   {
+    "symbol": "QQQ",
+    "spot": 725.62,
+    "zero_gamma_level": null,
+    "zgl_reliable": false,
+    "regime": "NEGATIVE",
+    "total_gex": 83000000,
+    "call_wall": 730,
+    "put_wall": 705,
+    "read": "ZGL is the recurring grid artifact (do not cite the level). A -$147M negative-gamma pocket sits at-the-money (726) despite a small positive aggregate; short-gamma ATM => trend-amplifying microstructure, not a clean pin. Backtest NO_GO_NO_EDGE.",
+    "structure_bias": "Favor debit verticals / long-straddle framing over pin trades; walls 730/705 are wide and one-sided in reliability.",
+    "caveats": "EOD book refreshes after the open; CPI/PPI gap risk; ETF-not-index book; D+1 expiry cannot be isolated; QQQ ZGL is a known tool artifact."
+   }
+  ]
+ },
+ "next_session_0dte_setup": {
+  "advisory": true,
+  "as_of_eod_date": "2026-07-10",
+  "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+  "indices": [
+   {
+    "symbol": "SPY",
+    "sell_premium": true,
+    "vol_state": "LOW",
+    "vix": 15.03,
+    "implied_move_pct": 0.45,
+    "expected_range_pct": 0.79,
+    "size_scalar": 0.5,
+    "suggested_structure": "Iron condor, wings ~+/-0.8% (long-gamma: tighter/mean-revert). Backtest n=60: mean PnL +0.286% gross / +0.186% net of 0.10% assumed round-trip, percent-of-underlying-spot-notional basis; LOW-VIX tercile weakest expectancy.",
+    "entry_rule": "Enter at/after the open once the overnight gap resolves; hold 0DTE to the close, never carry overnight.",
+    "stand_aside_reason": null,
+    "caution": "CPI 07-14 / PPI 07-15 / OPEX 07-17 all in the coming week \u2014 stand aside on a VIX spike or front-end backwardation. Short-vol left tail UNSAMPLED (no vol shock in window); gross win-rate overstates a negatively-skewed edge. Advisory, 0 rubric points, permanent promotion bar."
+   },
+   {
+    "symbol": "QQQ",
+    "sell_premium": true,
+    "vol_state": "LOW",
+    "vix": 15.03,
+    "implied_move_pct": 0.9,
+    "expected_range_pct": 1.91,
+    "size_scalar": 0.5,
+    "suggested_structure": "Iron condor, wings ~+/-1.9% (short-gamma ATM: wider/trendier \u2014 or reduce/stand aside). Backtest n=60: mean PnL +0.386% gross / +0.286% net of 0.10% round-trip, percent-of-underlying-spot-notional basis.",
+    "entry_rule": "Enter at/after the open once the gap resolves; hold to the close, never carry overnight.",
+    "stand_aside_reason": null,
+    "caution": "Short-gamma ATM = trendier open; CPI/PPI/OPEX week. Left tail UNSAMPLED. Advisory, 0 rubric points."
+   }
+  ]
+ },
+ "calls": [
+  {
+   "ticker": "SNDK",
+   "horizon": "swing",
+   "section": "swing_long",
+   "direction": "long",
+   "tier": "LOW",
+   "raw_score": 5,
+   "score_components": [
+    {
+     "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days >= 5)",
+     "points": 3,
+     "source_agent": "orchestrator-substitute (accumulation-hunter lane)",
+     "source_tool": "uw historical oi-trend",
+     "evidence": "BUILDING 5/5 covered days BUT consecutive_build_days==5==--days -> SATURATED (C47: floor not count; $444M same-day 07-10 expiry \u2014 plausibly expiry mechanics, not accumulation)"
+    },
+    {
+     "rubric_line": "+1 uw historical cumulative-premium-flow net directional accretion (fresh-thesis) \u2014 INTENT-SCREENED",
+     "points": 1,
+     "source_agent": "signal-confluence-quant",
+     "source_tool": "uw historical cumulative-premium-flow",
+     "evidence": "30d +$1.038B LONG-aligned (12.1x union median $86.07M); 90d +$2.00B same sign; intent screen passed (no distribution_flag, non-payer). Caveat: ~2% of ~$48B post-earnings gross"
+    },
+    {
+     "rubric_line": "+1 dealer-positioning MECHANIZED DEX flip in trade direction (verified sign change)",
+     "points": 1,
+     "source_agent": "dealer-positioning-strategist",
+     "source_tool": "uw options-structure dex",
+     "evidence": "net_dex -3.06/-6.59/-2.82B (3 consecutive) -> +3.53B flip day; flip-day |net_dex| ~1.0x median >= 0.25x floor. CAVEAT: 5-session proxy median, not trailing-10; gamma thinning"
+    }
+   ],
+   "dominant_signal_class": "oi_build",
+   "confluence_score": null,
+   "cum_premium_flow_30d": 1037823259.5,
+   "cum_premium_flow_90d": 2001134184,
+   "win_rate": null,
+   "win_rate_uncapped": null,
+   "win_rate_n": null,
+   "win_rate_source": "NA(substrate)",
+   "market_excess": null,
+   "pre_risk_size": "starter",
+   "final_size": "watch_only",
+   "gate_verdicts": {
+    "regime": "no-op (LONG vs TRANSITIONAL/UPTREND)",
+    "vrp": "no-op (SPY FAIR/QQQ PREMIUM_BUYING; long-vol-friendly)",
+    "panic": "no-op (SPY front-end-iv-ratio 0.568 CONTANGO)",
+    "cluster": "no-op (KEPT member semis_memory_cluster: SNDK/MU 0.861, SNDK/AMD 0.751, SNDK/INTC 0.705)",
+    "sector": "no-op (no adverse rotation >=0.6)",
+    "fundamentals": "-1 tier (CAUTION: stale post-print data + chronic insider selling + split news)",
+    "event_risk": "-1 tier (CPI 2026-07-14 = T+2, undefined-risk swing)",
+    "debate": "-1 tier (bear 0.85 >= bull 0.55)",
+    "rubric_regime": "capped half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL/UPTREND, 0/30 post-freeze HIGH-MED resolved) \u2014 non-binding at watch-only"
+   },
+   "fundamentals_verdict": "CAUTION",
+   "fz_context": {
+    "available": true,
+    "short_float_pct": 4.93,
+    "days_to_cover": 0.54,
+    "float_shares": 146130000,
+    "squeeze_pressure": "LOW",
+    "recom": null,
+    "upside_to_target_pct": null,
+    "rsi": 52.12,
+    "note": "No squeeze tailwind (0.54 d-to-cover). Analyst axis NA (fz upstream gap C17). RSI 52 neutral, cooled from the post-earnings spike."
+   },
+   "distribution_flag": {
+    "present": false,
+    "source_tool": null,
+    "closing_side": null,
+    "closing_premium": null,
+    "oi_decrease": null,
+    "note": "No C28 distribution_flag: uw oi decrease-with-volume showed no bullish-side closing signature on this name across the week."
+   },
+   "debate_residual_confidence": 0.55,
+   "debate_residuals": {
+    "bull": 0.55,
+    "bear": 0.85
+   },
+   "structure": "watch-only; if traded discretionarily, defined-risk only into the event week",
+   "entry_or_trigger": "none \u2014 watch-only",
+   "invalidation": "DEX flip reverts negative >=3 sessions, or break of the dark-pool support shelf; escalating single-leg PUTs (4/5 sessions) resolve bearish",
+   "key_risks": [
+    "Whole-week move is post-earnings crush residue + broad-semis relief bounce, not name-specific conviction",
+    "Escalating opening PUTs 4/5 sessions = bearish informed flow",
+    "PE 62.9x/PS 38.6x cyclical memory, beta ~4, zero room for guide-down",
+    "Finnhub surprise data lags the 07-10 print \u2014 quality unconfirmable"
+   ],
+   "thesis": "Long via oi-build + cum-flow + mechanized DEX flip, but cut to watch-only: post-earnings residue, bearish single-leg conflict, CAUTION fundamentals, and the debate bear won 0.85."
+  },
+  {
+   "ticker": "NVDA",
+   "horizon": "swing",
+   "section": "swing_long",
+   "direction": "long",
+   "tier": "LOW",
+   "raw_score": 4,
+   "score_components": [
+    {
+     "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days >= 5)",
+     "points": 3,
+     "source_agent": "orchestrator-substitute (accumulation-hunter lane)",
+     "source_tool": "uw historical oi-trend",
+     "evidence": "BUILDING 5/5 but consecutive_build_days==5==--days -> SATURATED (C47: floor not count)"
+    },
+    {
+     "rubric_line": "+1 uw historical cumulative-premium-flow net directional accretion (fresh-thesis) \u2014 INTENT-SCREENED",
+     "points": 1,
+     "source_agent": "signal-confluence-quant",
+     "source_tool": "uw historical cumulative-premium-flow",
+     "evidence": "30d +$157M LONG-aligned (1.8x union median), 90d -$161M \u2014 sharp 30d/90d sign-flip = fresh-thesis; intent screen passed. Caveat: sub-1% of mega-cap gross"
+    }
+   ],
+   "dominant_signal_class": "oi_build",
+   "confluence_score": null,
+   "cum_premium_flow_30d": 157000000,
+   "cum_premium_flow_90d": -161000000,
+   "win_rate": null,
+   "win_rate_uncapped": null,
+   "win_rate_n": null,
+   "win_rate_source": "NA(substrate)",
+   "market_excess": null,
+   "pre_risk_size": "starter",
+   "final_size": "watch_only",
+   "gate_verdicts": {
+    "regime": "no-op (LONG vs TRANSITIONAL/UPTREND)",
+    "vrp": "no-op (directional oi_build; QQQ PREMIUM_BUYING long-vol-friendly)",
+    "panic": "no-op (SPY 0.568 CONTANGO)",
+    "cluster": "no-op (max pairwise 0.512 vs AMD \u2014 below soft-watch; NVDA NOT in semis cluster this week)",
+    "sector": "no-op (Tech ETF-disconfirmed, no scored rotation award)",
+    "fundamentals": "no-op (CONFIRM; 90d cum-flow -$161M noted not gated)",
+    "event_risk": "-1 tier (CPI 2026-07-14 = T+2)",
+    "debate": "-1 tier (bear 0.75 >= bull 0.65)",
+    "rubric_regime": "capped half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL/UPTREND, 0/30 post-freeze HIGH-MED resolved) \u2014 non-binding at watch-only"
+   },
+   "fundamentals_verdict": "CONFIRM",
+   "fz_context": {
+    "available": true,
+    "short_float_pct": 1.33,
+    "days_to_cover": 1.95,
+    "float_shares": 23270000000,
+    "squeeze_pressure": "LOW",
+    "recom": null,
+    "upside_to_target_pct": null,
+    "rsi": 56.97,
+    "note": "No squeeze context (float huge, SI negligible). Analyst axis NA (fz upstream gap). RSI 57 neutral-bullish, not stretched."
+   },
+   "distribution_flag": {
+    "present": false,
+    "source_tool": null,
+    "closing_side": null,
+    "closing_premium": null,
+    "oi_decrease": null,
+    "note": "No C28 distribution_flag: uw oi decrease-with-volume showed no bullish-side closing signature on this name across the week."
+   },
+   "debate_residual_confidence": 0.65,
+   "debate_residuals": {
+    "bull": 0.65,
+    "bear": 0.75
+   },
+   "structure": "watch-only",
+   "entry_or_trigger": "none \u2014 watch-only",
+   "invalidation": "30d cum-flow reverts to the 90d bearish sign; DEX +20B level reverses; loss of broad-semis bid",
+   "key_risks": [
+    "Score stands on a saturated OI floor + a thin, possibly-reverting 30d cum-flow sign-flip",
+    "Multileg repeat is a vol calendar, not directional (withheld)",
+    "Mega-cap beta 2.24 \u2014 index de-rate risk in a TRANSITIONAL tape",
+    "Near-continuous insider selling (MSPR -98.6, read routine)"
+   ],
+   "thesis": "Cleanest fundamentals of the five (CONFIRM) but the directional evidence is a saturated OI artifact plus a one-week flow sign-flip; debate bear won; watch-only."
+  },
+  {
+   "ticker": "JPM",
+   "horizon": "swing",
+   "section": "swing_long",
+   "direction": "long",
+   "tier": "LOW",
+   "raw_score": 4,
+   "score_components": [
+    {
+     "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days >= 5)",
+     "points": 3,
+     "source_agent": "signal-confluence-quant (direct pull)",
+     "source_tool": "uw historical oi-trend",
+     "evidence": "consecutive_build_days=5==--days -> BUILDING but SATURATED (C47); top builds in 0-DTE/07-17 strikes = pre-earnings/OPEX mechanics"
+    },
+    {
+     "rubric_line": "+1 earnings-scout BUY VOL/SELL VOL next 2wk (term-skew aligned)",
+     "points": 1,
+     "source_agent": "earnings-scout",
+     "source_tool": "uw options-structure term-skew",
+     "evidence": "CALENDAR (long back-vol) into 07-14 earnings, inside 2-week window; term-skew full-size qualifier not documented (moot at watch-only)"
+    }
+   ],
+   "dominant_signal_class": "oi_build",
+   "confluence_score": null,
+   "cum_premium_flow_30d": 31508149,
+   "cum_premium_flow_90d": -91565124,
+   "win_rate": null,
+   "win_rate_uncapped": null,
+   "win_rate_n": null,
+   "win_rate_source": "NA(substrate)",
+   "market_excess": null,
+   "pre_risk_size": "starter",
+   "final_size": "watch_only",
+   "gate_verdicts": {
+    "regime": "no-op (LONG vs TRANSITIONAL/UPTREND)",
+    "vrp": "no-op (directional; not a vol structure as scored)",
+    "panic": "no-op (SPY 0.568 CONTANGO)",
+    "cluster": "no-op (financial, uncorrelated to semis cluster)",
+    "sector": "no-op (Financials XLF-confirmed but cum_flow +$31.5M < $50M floor \u2014 sector +1 withheld)",
+    "fundamentals": "-1 tier (CAUTION \u2014 own earnings 07-14 inside horizon)",
+    "event_risk": "-1 tier (OWN EARNINGS 2026-07-14 = T+2 stacked with CPI same session; naked long untouchable, re-underwrite as earnings-vol calendar for exposure)",
+    "debate": "-1 tier (bear 0.75 >= bull 0.55)",
+    "rubric_regime": "capped half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL/UPTREND, 0/30 post-freeze HIGH-MED resolved) \u2014 non-binding at watch-only"
+   },
+   "fundamentals_verdict": "CAUTION",
+   "fz_context": {
+    "available": true,
+    "short_float_pct": 1.01,
+    "days_to_cover": 2.91,
+    "float_shares": 2670000000,
+    "squeeze_pressure": "LOW",
+    "recom": null,
+    "upside_to_target_pct": null,
+    "rsi": 60.89,
+    "note": "No squeeze context. Analyst axis NA (fz upstream gap). RSI 60.9 steady uptrend into the print, not overbought."
+   },
+   "distribution_flag": {
+    "present": false,
+    "source_tool": null,
+    "closing_side": null,
+    "closing_premium": null,
+    "oi_decrease": null,
+    "note": "No C28 distribution_flag: uw oi decrease-with-volume showed no bullish-side closing signature on this name across the week."
+   },
+   "debate_residual_confidence": 0.55,
+   "debate_residuals": {
+    "bull": 0.55,
+    "bear": 0.75
+   },
+   "structure": "watch-only; any exposure must be an explicit earnings-vol calendar through earnings-scout, not a naked long",
+   "entry_or_trigger": "none \u2014 watch-only",
+   "invalidation": "CPI 07-14 or JPM print resolves against; OI build unwinds post-OPEX; loss of Financials rotation leadership",
+   "key_risks": [
+    "Binary earnings 07-14 stacked on CPI same session, PPI next day, OPEX 07-17 \u2014 triple-binary in 4 days",
+    "Score is a saturated OI floor + a vol-calendar read, zero clean directional points",
+    "Rev +109% YoY is a bank line-item artifact, not organic"
+   ],
+   "thesis": "Clean fundamentals but pure event-risk CAUTION; a directional long into a triple-binary week is uncompensated. Watch-only; the real expression is a calendar."
+  },
+  {
+   "ticker": "SOFI",
+   "horizon": "swing",
+   "section": "swing_long",
+   "direction": "long",
+   "tier": "LOW",
+   "raw_score": 3,
+   "score_components": [
+    {
+     "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days >= 5)",
+     "points": 3,
+     "source_agent": "orchestrator-substitute (accumulation-hunter lane)",
+     "source_tool": "uw historical oi-trend",
+     "evidence": "BUILDING 5/5 but consecutive_build_days==5==--days -> SATURATED (C47: floor not count)"
+    },
+    {
+     "rubric_line": "+3 accumulation conjunction \u2014 C11-halved to +1 on non-confirming flow",
+     "points": 1,
+     "source_agent": "accumulation-hunter (substitute)",
+     "source_tool": "uw insights institutional-accumulation",
+     "evidence": "institutional-accumulation ACCUMULATION buy/sell 1.78 (ONLY genuine accumulation read in the union) + OI BUILDING; BUT cum_flow_30d -$0.7M not sign-aligned AND << $50M -> +3 halved to +1; dark-pool block-stratified institutional-tier not separately documented"
+    },
+    {
+     "rubric_line": "-1 flow_conflict_lite",
+     "points": -1,
+     "source_agent": "signal-confluence-quant",
+     "source_tool": "uw historical cumulative-premium-flow",
+     "evidence": "cum_flow_30d -$0.7M MIXED vs LONG; 0.01x union median \u2014 signed sum near zero"
+    }
+   ],
+   "dominant_signal_class": "oi_build",
+   "confluence_score": null,
+   "cum_premium_flow_30d": -708555,
+   "cum_premium_flow_90d": -45506526,
+   "win_rate": null,
+   "win_rate_uncapped": null,
+   "win_rate_n": null,
+   "win_rate_source": "NA(substrate)",
+   "market_excess": null,
+   "pre_risk_size": "starter",
+   "final_size": "watch_only",
+   "gate_verdicts": {
+    "regime": "no-op (LONG vs TRANSITIONAL/UPTREND)",
+    "vrp": "no-op (directional oi_build)",
+    "panic": "no-op (SPY 0.568 CONTANGO)",
+    "cluster": "no-op (SOFI/MSFT 0.576 below soft-watch)",
+    "sector": "no-op (Financials XLF-confirmed but flow sign fails gate b \u2014 sector +1 withheld)",
+    "fundamentals": "-1 tier (CAUTION \u2014 insider MSPR -39.5 into the accum read; distribution-dressed-as-accumulation)",
+    "event_risk": "-1 tier (CPI 2026-07-14 = T+2)",
+    "debate": "-1 tier (bear 0.75 >= bull 0.55)",
+    "rubric_regime": "capped half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL/UPTREND, 0/30 post-freeze HIGH-MED resolved) \u2014 non-binding at watch-only"
+   },
+   "fundamentals_verdict": "CAUTION",
+   "fz_context": {
+    "available": true,
+    "short_float_pct": 14.94,
+    "days_to_cover": 2.54,
+    "float_shares": 1260000000,
+    "squeeze_pressure": "MODERATE",
+    "recom": null,
+    "upside_to_target_pct": null,
+    "rsi": 60.34,
+    "note": "MODERATE squeeze pressure (14.94% short float, 2.54 d-to-cover) \u2014 two-edged tailwind. Analyst axis NA (fz upstream gap; GS Neutral per Finnhub). "
+   },
+   "distribution_flag": {
+    "present": false,
+    "source_tool": null,
+    "closing_side": null,
+    "closing_premium": null,
+    "oi_decrease": null,
+    "note": "No C28 distribution_flag: uw oi decrease-with-volume showed no bullish-side closing signature on this name across the week."
+   },
+   "debate_residual_confidence": 0.55,
+   "debate_residuals": {
+    "bull": 0.55,
+    "bear": 0.75
+   },
+   "structure": "watch-only",
+   "entry_or_trigger": "none \u2014 watch-only",
+   "invalidation": "insider selling continues; cum-flow stays flat/negative; loss of Financials leadership; GAAP profitability deteriorates",
+   "key_risks": [
+    "Insider MSPR -39.5 selling INTO the dark-pool accumulation read \u2014 distribution-dressed-as-accumulation",
+    "cum-flow dead flat (-$0.7M) does not confirm the accumulation",
+    "GAAP unprofitable -19.8% net margin; +205% rev growth is loan-platform volume",
+    "MODERATE short-float is two-edged (squeeze fuel OR informed shorts)"
+   ],
+   "thesis": "The union's only genuine accumulation read (1.78), but undercut by insider selling into it and flat confirming flow \u2014 the exact pattern the fundamentals gate flags. Watch-only."
+  },
+  {
+   "ticker": "META",
+   "horizon": "swing",
+   "section": "swing_long",
+   "direction": "long",
+   "tier": "LOW",
+   "raw_score": 3,
+   "score_components": [
+    {
+     "rubric_line": "+3 uw historical oi-trend BUILDING full week (--days >= 5)",
+     "points": 3,
+     "source_agent": "orchestrator-substitute (accumulation-hunter lane)",
+     "source_tool": "uw historical oi-trend",
+     "evidence": "BUILDING 5/5 but consecutive_build_days==5==--days -> SATURATED (C47: floor not count)"
+    },
+    {
+     "rubric_line": "+1 vol-surface KINKED/BACKWARDATION worsening WoW; iv-percentile-zscore extreme; VRP-aligned",
+     "points": 1,
+     "source_agent": "vol-surface-scout",
+     "source_tool": "uw options-structure term-skew",
+     "evidence": "KINKED(07-31) front-IV RISING WoW (worsening) + IV rank 100 (extreme) + VRP-aligned (QQQ PREMIUM_BUYING favors owning the kink)"
+    },
+    {
+     "rubric_line": "-1 flow_conflict_lite",
+     "points": -1,
+     "source_agent": "signal-confluence-quant",
+     "source_tool": "uw historical cumulative-premium-flow",
+     "evidence": "cum_flow_30d +$12.7M MIXED vs LONG; 0.15x union median \u2014 aligned but signed sum near zero on ~$19B gross"
+    }
+   ],
+   "dominant_signal_class": "oi_build",
+   "confluence_score": null,
+   "cum_premium_flow_30d": 12702500,
+   "cum_premium_flow_90d": -368402825,
+   "win_rate": null,
+   "win_rate_uncapped": null,
+   "win_rate_n": null,
+   "win_rate_source": "NA(substrate)",
+   "market_excess": null,
+   "pre_risk_size": "starter",
+   "final_size": "watch_only",
+   "gate_verdicts": {
+    "regime": "no-op (LONG vs TRANSITIONAL/UPTREND)",
+    "vrp": "no-op (QQQ PREMIUM_BUYING favorable if long-vol; sign gate no fire)",
+    "panic": "no-op (QQQ front-end-iv-ratio 0.650 CONTANGO)",
+    "cluster": "no-op (below cluster thresholds)",
+    "sector": "no-op (Comm-Services XLC thin agree, no scored award)",
+    "fundamentals": "no-op (CONFIRM; dated AI-infra catalyst)",
+    "event_risk": "-1 tier (CPI 2026-07-14 = T+2; earnings 07-31 outside week)",
+    "debate": "-1 tier (bear 0.65 >= bull 0.65 tie)",
+    "rubric_regime": "capped half (OUT-OF-REGIME; rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL/UPTREND, 0/30 post-freeze HIGH-MED resolved) \u2014 non-binding at watch-only"
+   },
+   "fundamentals_verdict": "CONFIRM",
+   "fz_context": {
+    "available": true,
+    "short_float_pct": 1.57,
+    "days_to_cover": 1.99,
+    "float_shares": 2190000000,
+    "squeeze_pressure": "LOW",
+    "recom": null,
+    "upside_to_target_pct": null,
+    "rsi": 66.34,
+    "note": "No squeeze tailwind. Analyst axis NA (fz upstream gap). RSI 66 approaching overbought, SMA20 +14.5% \u2014 momentum hot into the 19-day earnings window."
+   },
+   "distribution_flag": {
+    "present": false,
+    "source_tool": null,
+    "closing_side": null,
+    "closing_premium": null,
+    "oi_decrease": null,
+    "note": "No C28 distribution_flag: uw oi decrease-with-volume showed no bullish-side closing signature on this name across the week."
+   },
+   "debate_residual_confidence": 0.65,
+   "debate_residuals": {
+    "bull": 0.65,
+    "bear": 0.65
+   },
+   "structure": "watch-only; the KINK/IV-rank-100 read is a vol-surface question, not a directional long",
+   "entry_or_trigger": "none \u2014 watch-only",
+   "invalidation": "break below the week's breakout; front-end IV collapses pre-07-29; EU regulatory action",
+   "key_risks": [
+    "+1 is a vol-surface read (IV rank 100 = expensive/crowded), not a directional long",
+    "Price already ran +11.5% on the week, RSI 66 \u2014 chasing extended",
+    "90d cum-flow -$368M = multi-month flow trend is down",
+    "EU 'Addiction Design Scrutiny' regulatory tail (07-10 headline)"
+   ],
+   "thesis": "CONFIRM fundamentals and a dated catalyst, but the directional score is a saturated OI floor + a vol read into a crowded-expensive earnings print; chasing an extended move. Watch-only."
+  }
+ ],
+ "report_path": "analyses/weekly/2026-W28/report.md"
+}

@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 28.91,
+      "full_name": "INVESCO S&P EMERGING MARKETS LOW VOLATILITY ETF",
+      "iv_rank": 12.477,
+      "put_call_ratio": 0.5,
+      "sector": null,
+      "ticker": "EELV",
+      "total_volume": 150,
+      "volume_ratio": 4504.504504504504
+    },
+    {
+      "avg_total_volume": 10.9667,
+      "close": 2.1,
+      "full_name": "CELULARITY INC",
+      "iv_rank": 34.6769,
+      "put_call_ratio": 0.09644670050761421,
+      "sector": "Healthcare",
+      "ticker": "CELU",
+      "total_volume": 6264,
+      "volume_ratio": 571.1836742137563
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 47.96,
+      "full_name": "WISDOMTREE EMERGING MARKETS EX-STATE-OWNED ENTERPRISES FUND",
+      "iv_rank": 29.2962,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "XSOE",
+      "total_volume": 100,
+      "volume_ratio": 200
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 51.27,
+      "full_name": "O'SHARES GLOBAL INTERNET GIANTS ETF",
+      "iv_rank": 28.0108,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "OGIG",
+      "total_volume": 16,
+      "volume_ratio": 160
+    },
+    {
+      "avg_total_volume": 3.7667,
+      "close": 47.89,
+      "full_name": "BARCLAYS IPATH B S&P 500 VIX MID-TERM FUT",
+      "iv_rank": 31.3275,
+      "put_call_ratio": 0.43256997455470736,
+      "sector": null,
+      "ticker": "VXZ",
+      "total_volume": 563,
+      "volume_ratio": 149.46770382562985
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 47.823,
+      "full_name": "INVESCO DYNAMIC FOOD & BEVERAGE ETF",
+      "iv_rank": 0.0289,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PBJ",
+      "total_volume": 14,
+      "volume_ratio": 140
+    },
+    {
+      "avg_total_volume": 3.8666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UP1",
+      "total_volume": 533,
+      "volume_ratio": 137.84720426214244
+    },
+    {
+      "avg_total_volume": 3,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPXU2",
+      "total_volume": 400,
+      "volume_ratio": 133.33333333333334
+    },
+    {
+      "avg_total_volume": 0.7666,
+      "close": 34.814,
+      "full_name": "GLOBAL X AUTONOMOUS & ELECTRIC VEHICLES ETF",
+      "iv_rank": 30.137,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DRIV",
+      "total_volume": 101,
+      "volume_ratio": 131.75058700756588
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 2.055,
+      "full_name": "Themes ETF Trust Leverage Shares 2X Long OPEN Daily ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "OPEG",
+      "total_volume": 20,
+      "volume_ratio": 119.9760047990402
+    },
+    {
+      "avg_total_volume": 6.1667000000000005,
+      "close": 37.84,
+      "full_name": "CENTRAL PACIFIC FINANCIAL CORP",
+      "iv_rank": 23.8025,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CPF",
+      "total_volume": 650,
+      "volume_ratio": 105.40483564953702
+    },
+    {
+      "avg_total_volume": 373.76660000000004,
+      "close": 49.96,
+      "full_name": "HNI CORP",
+      "iv_rank": 53.0616,
+      "put_call_ratio": 0.000027760812836599856,
+      "sector": "Industrials",
+      "ticker": "HNI",
+      "total_volume": 36023,
+      "volume_ratio": 96.37832807960903
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 112.99,
+      "full_name": "VANGUARD RUSSELL 1000 VALUE INDEX FUND",
+      "iv_rank": 8.7304,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VONV",
+      "total_volume": 40,
+      "volume_ratio": 80
+    },
+    {
+      "avg_total_volume": 1.4,
+      "close": 31.8475,
+      "full_name": "FIRST TRUST S&P REIT INDEX FUND",
+      "iv_rank": 6.3425,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FRI",
+      "total_volume": 100,
+      "volume_ratio": 71.42857142857143
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FIGG1",
+      "total_volume": 15,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 2.1333,
+      "close": 11.3,
+      "full_name": "ADS-TEC ENERGY PUBLIC LTD CO",
+      "iv_rank": 36.3457,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "ADSE",
+      "total_volume": 100,
+      "volume_ratio": 46.875732433319264
+    },
+    {
+      "avg_total_volume": 1.1665999999999999,
+      "close": 127.38,
+      "full_name": "NELNET INC",
+      "iv_rank": 45.0088,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "NNI",
+      "total_volume": 50,
+      "volume_ratio": 42.859591976684385
+    },
+    {
+      "avg_total_volume": 4.566599999999999,
+      "close": 41.9472,
+      "full_name": "Corgi AI Cybersecurity ETF",
+      "iv_rank": 23.0347,
+      "put_call_ratio": 0.94,
+      "sector": null,
+      "ticker": "XA",
+      "total_volume": 194,
+      "volume_ratio": 42.48237200543074
+    },
+    {
+      "avg_total_volume": 133,
+      "close": 2.72,
+      "full_name": "UNISYS CORP",
+      "iv_rank": 17.5839,
+      "put_call_ratio": 9.756335282651072,
+      "sector": "Technology",
+      "ticker": "UIS",
+      "total_volume": 5518,
+      "volume_ratio": 41.48872180451128
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 30.2,
+      "full_name": "MVB FINANCIAL CORP",
+      "iv_rank": 20.9048,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "MVBF",
+      "total_volume": 20,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 58.7992,
+      "full_name": "QRAFT AI-ENHANCED US LARGE CAP MOMENTUM ETF",
+      "iv_rank": 50.602,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AMOM",
+      "total_volume": 12,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 4.7667,
+      "close": 5.43,
+      "full_name": "T-REX 2X Long SMR Daily Target ETF",
+      "iv_rank": 0.1501,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SMUP",
+      "total_volume": 184,
+      "volume_ratio": 38.601128663435915
+    },
+    {
+      "avg_total_volume": 2.6334,
+      "close": 11.92,
+      "full_name": "GraniteShares YieldBOOST NVDA ETF",
+      "iv_rank": 6.7046,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "NVYY",
+      "total_volume": 100,
+      "volume_ratio": 37.9737221842485
+    },
+    {
+      "avg_total_volume": 74.5,
+      "close": 16.28,
+      "full_name": "MGP INGREDIENTS INC",
+      "iv_rank": 31.7815,
+      "put_call_ratio": 2.767253044654939,
+      "sector": "Consumer Defensive",
+      "ticker": "MGPI",
+      "total_volume": 2784,
+      "volume_ratio": 37.369127516778526
+    },
+    {
+      "avg_total_volume": 6.9667,
+      "close": 55.38,
+      "full_name": "WISDOMTREE EMERGING MARKETS HIGH DIVIDEND FUND",
+      "iv_rank": 24.0604,
+      "put_call_ratio": 0.004,
+      "sector": null,
+      "ticker": "DEM",
+      "total_volume": 251,
+      "volume_ratio": 36.02853574863278
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-27.parquet"
+}

@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 5.1334,
+      "close": 32.64,
+      "full_name": "NEWS CORP",
+      "iv_rank": 27.2269,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "NWS",
+      "total_volume": 2686,
+      "volume_ratio": 523.2399579226244
+    },
+    {
+      "avg_total_volume": 14.2,
+      "close": 21.79,
+      "full_name": "FIRST COMMONWEALTH FINANCIAL CORP",
+      "iv_rank": 37.9831,
+      "put_call_ratio": 0.0015295197308045274,
+      "sector": "Financial Services",
+      "ticker": "FCF",
+      "total_volume": 6548,
+      "volume_ratio": 461.1267605633803
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": 92.34,
+      "full_name": "ISHARES INTEREST RATE HEDGED CORPORATE BOND ETF",
+      "iv_rank": 32.4508,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "LQDH",
+      "total_volume": 20,
+      "volume_ratio": 300.30030030030025
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 17.3874,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "ITUB2",
+      "total_volume": 28,
+      "volume_ratio": 210.05251312828207
+    },
+    {
+      "avg_total_volume": 14.8333,
+      "close": 11.17,
+      "full_name": "HACKETT GROUP INC",
+      "iv_rank": 50.442,
+      "put_call_ratio": 0.006195786864931847,
+      "sector": "Technology",
+      "ticker": "HCKT",
+      "total_volume": 1624,
+      "volume_ratio": 109.48339209751033
+    },
+    {
+      "avg_total_volume": 9.333300000000001,
+      "close": 26.68,
+      "full_name": "OLD NATIONAL BANCORP",
+      "iv_rank": 37.3665,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "ONB",
+      "total_volume": 791,
+      "volume_ratio": 84.75030267965242
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 18.0853,
+      "full_name": "Invesco Bloomberg Enhanced Fallen Angels ETF",
+      "iv_rank": 17.8456,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IFLN",
+      "total_volume": 14,
+      "volume_ratio": 83.98320335932814
+    },
+    {
+      "avg_total_volume": 20.5333,
+      "close": 22.37,
+      "full_name": "CTO REALTY GROWTH INC",
+      "iv_rank": 37.9916,
+      "put_call_ratio": 0,
+      "sector": "Real Estate",
+      "ticker": "CTO",
+      "total_volume": 1650,
+      "volume_ratio": 80.35727330726186
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 36.13,
+      "full_name": "SPDR Bloomberg Enhanced Roll Yield Commodity Strategy No K-1 ETF",
+      "iv_rank": 18.1012,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CERY",
+      "total_volume": 13,
+      "volume_ratio": 77.98440311937613
+    },
+    {
+      "avg_total_volume": 5.2333,
+      "close": 15.97,
+      "full_name": "Titan America SA",
+      "iv_rank": 26.4501,
+      "put_call_ratio": 46,
+      "sector": "Basic Materials",
+      "ticker": "TTAM",
+      "total_volume": 376,
+      "volume_ratio": 71.84759138593239
+    },
+    {
+      "avg_total_volume": 0.30000000000000004,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 34.6021,
+      "put_call_ratio": 0.05,
+      "sector": null,
+      "ticker": "COUR1",
+      "total_volume": 21,
+      "volume_ratio": 69.99999999999999
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 28.84,
+      "full_name": "VANECK FALLEN ANGEL HIGH YIELD BOND ETF",
+      "iv_rank": 24.9363,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "ANGL",
+      "total_volume": 25,
+      "volume_ratio": 62.5
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 25.7356,
+      "full_name": "Global X Nasdaq-100 Income Edge ETF",
+      "iv_rank": 32.7869,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "EDGQ",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 84.66,
+      "full_name": "CAMBRIA SHAREHOLDER YIELD ETF",
+      "iv_rank": 13.7964,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "SYLD",
+      "total_volume": 10,
+      "volume_ratio": 59.9880023995201
+    },
+    {
+      "avg_total_volume": 5.2,
+      "close": 24.54,
+      "full_name": "SHORE BANCSHARES INC",
+      "iv_rank": 13.8484,
+      "put_call_ratio": 1.8958333333333333,
+      "sector": "Financial Services",
+      "ticker": "SHBI",
+      "total_volume": 278,
+      "volume_ratio": 53.46153846153846
+    },
+    {
+      "avg_total_volume": 67.0334,
+      "close": 22.9,
+      "full_name": "ISHARES MSCI HONG KONG ETF",
+      "iv_rank": 56.8158,
+      "put_call_ratio": 21.41304347826087,
+      "sector": null,
+      "ticker": "EWH",
+      "total_volume": 3093,
+      "volume_ratio": 46.14117738321494
+    },
+    {
+      "avg_total_volume": 1.7,
+      "close": 25.7008,
+      "full_name": "VANECK AFRICA INDEX ETF",
+      "iv_rank": 34.5451,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AFK",
+      "total_volume": 76,
+      "volume_ratio": 44.70588235294118
+    },
+    {
+      "avg_total_volume": 0.7,
+      "close": 26.68,
+      "full_name": "GLOBAL X VIDEO GAMES & ESPORTS ETF",
+      "iv_rank": 49.9573,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HERO",
+      "total_volume": 27,
+      "volume_ratio": 38.57142857142858
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 158.7,
+      "full_name": "VANGUARD US VALUE FACTOR ETF",
+      "iv_rank": 43.0047,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VFVA",
+      "total_volume": 5,
+      "volume_ratio": 37.481259370314845
+    },
+    {
+      "avg_total_volume": 2.8,
+      "close": 5.29,
+      "full_name": "RIVERVIEW BANCORP INC",
+      "iv_rank": 23.2606,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "RVSB",
+      "total_volume": 100,
+      "volume_ratio": 35.714285714285715
+    },
+    {
+      "avg_total_volume": 41.5,
+      "close": 105.63,
+      "full_name": "CHEFS' WAREHOUSE INC",
+      "iv_rank": 43.3037,
+      "put_call_ratio": 0.02139406487232574,
+      "sector": "Consumer Defensive",
+      "ticker": "CHEF",
+      "total_volume": 1480,
+      "volume_ratio": 35.66265060240964
+    },
+    {
+      "avg_total_volume": 9.7333,
+      "close": 23.87,
+      "full_name": "AMPLIFY SEYMOUR CANNABIS ETF",
+      "iv_rank": 6.7269,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CNBS",
+      "total_volume": 334,
+      "volume_ratio": 34.315186010911
+    },
+    {
+      "avg_total_volume": 0.8999999999999999,
+      "close": 28.44,
+      "full_name": "SPDR PORTFOLIO CORPORATE BOND ETF",
+      "iv_rank": 38.4483,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPBO",
+      "total_volume": 30,
+      "volume_ratio": 33.333333333333336
+    },
+    {
+      "avg_total_volume": 3.6333,
+      "close": 14.85,
+      "full_name": "PERELLA WEINBERG PARTNERS",
+      "iv_rank": 31.577,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "PWP",
+      "total_volume": 118,
+      "volume_ratio": 32.47736217763465
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 42.17,
+      "full_name": "SPDR(R) S&P(R) INTERNATIONAL SMALL CAP ETF",
+      "iv_rank": 36.0153,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GWX",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-07-29.parquet"
+}

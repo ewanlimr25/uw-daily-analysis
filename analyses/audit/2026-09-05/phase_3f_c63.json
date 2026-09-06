@@ -1,0 +1,81 @@
+{
+ "peer_dates": 63,
+ "arms": [
+  {
+   "label": "vol_short  ALL",
+   "n": 129,
+   "book_wr": 0.2868,
+   "peer_wr": 0.5806,
+   "excess_pp": -29.38
+  },
+  {
+   "label": "vol_long   ALL",
+   "n": 56,
+   "book_wr": 0.5,
+   "peer_wr": 0.4153,
+   "excess_pp": 8.47
+  },
+  {
+   "label": "vol_short  choppy",
+   "n": 17,
+   "book_wr": 0.4118,
+   "peer_wr": 0.6399,
+   "excess_pp": -22.81
+  },
+  {
+   "label": "vol_short  pullback_in_uptrend",
+   "n": 18,
+   "book_wr": 0.1667,
+   "peer_wr": 0.5332,
+   "excess_pp": -36.65
+  },
+  {
+   "label": "vol_short  transitional_other",
+   "n": 40,
+   "book_wr": 0.325,
+   "peer_wr": 0.572,
+   "excess_pp": -24.7
+  },
+  {
+   "label": "vol_short  uptrend",
+   "n": 54,
+   "book_wr": 0.2593,
+   "peer_wr": 0.5841,
+   "excess_pp": -32.48
+  },
+  {
+   "label": "vol_long   choppy",
+   "n": 2,
+   "book_wr": 0.5,
+   "peer_wr": 0.3836,
+   "excess_pp": 11.64
+  },
+  {
+   "label": "vol_long   pullback_in_uptrend",
+   "n": 5,
+   "book_wr": 0.8,
+   "peer_wr": 0.5016,
+   "excess_pp": 29.84
+  },
+  {
+   "label": "vol_long   transitional_other",
+   "n": 15,
+   "book_wr": 0.4,
+   "peer_wr": 0.4146,
+   "excess_pp": -1.46
+  },
+  {
+   "label": "vol_long   uptrend",
+   "n": 34,
+   "book_wr": 0.5,
+   "peer_wr": 0.4048,
+   "excess_pp": 9.52
+  }
+ ],
+ "c63": {
+  "post_change_decided": 10,
+  "regime_buckets": 1,
+  "excess_pp": null,
+  "cleared": false
+ }
+}

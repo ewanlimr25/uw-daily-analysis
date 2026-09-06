@@ -1,0 +1,122 @@
+{
+  "iso_week": "2026-W33",
+  "week_end": "2026-08-14",
+  "stage": "2a signal-confluence-quant OUTPUT",
+  "rubric_version": "2026-06-12",
+
+  "backtest_substrate": {
+    "protocol": "P0.3 clean-query, --lookback-days 5 --top-n 200 pinned, headline never quoted. Latest complete forward window = signal_date <= 2026-08-07.",
+    "bullish_flow": {"clean_wr": 0.4848, "n": 132, "spy_same_direction_bench": 0.5758, "market_excess": -0.0909},
+    "bearish_flow": {"clean_wr": 0.5188, "n": 133, "spy_same_direction_bench": 0.4286, "market_excess": 0.0902},
+    "high_iv_rank": {"clean_wr_raw": 0.8218, "n": 174, "class_ceiling_applied": 0.60},
+    "dark_pool_accumulation": {"signals_returned": 0, "note": "ZERO rows market-wide - independently corroborates accumulation-hunter's empty board from a second substrate"},
+    "DECISIVE_FACT": "signal-backtest supports only 5 classes (bullish_flow|bearish_flow|high_iv_rank|volume_spike|dark_pool_accumulation). Neither oi_build nor multileg_directional is among them. ALL 8 names carry win_rate=null / win_rate_source=NA(substrate). The rubric's highest-weight lines attach to classes the substrate cannot measure. The sizing ladder is bypassed by the tier-default path on 100% of rows.",
+    "LANE_REFERENCE": "The LONG lane had NO measured edge over simply being long SPY: bullish_flow 0.4848 vs 0.5758 bench = -9.1pp, one-tenth of a point from the C2 starter trigger. Six of eight names are long. The SHORT lane ran +9.0pp - and both shorts route to watch_only by P0 #1."
+  },
+
+  "C47_saturation": {
+    "finding": "consecutive_build_days == days_analyzed at BOTH 5/5 AND 10/10 on 8 of 8 names. 100% population firing rate at both windows. Extends the 6-of-6 observation to 8-of-8.",
+    "composition_put_share_of_OI_added": {"SNDK": 0.441, "AVGO": 0.594, "SPY": 0.763, "MU": 0.609, "NBIS": 0.483, "STX": 0.540, "AMD": 0.464, "IWM": 0.808},
+    "composition_le7DTE_share_of_top_contracts": {"SNDK": 0.78, "AVGO": 0.46, "SPY": 0.36, "MU": 0.78, "NBIS": 0.46, "STX": 0.54, "AMD": 0.54, "IWM": 0.46},
+    "verdict": "MU and STX are nominally LONG theses whose OI build is MAJORITY PUT. SNDK/MU are 78% inside 7DTE = expiry mechanics. Every award is a FLOOR, not a count. This one saturated line was the SOLE source of points on 8 of 8 names; strip it and the entire book scores between -1 and +3."
+  },
+
+  "cum_flow_table": {
+    "union_median_abs_net30": 208300000,
+    "quarter_of_median": 52100000,
+    "bottom_quartile_cut": 37900000,
+    "SNDK": {"net30": 1577404910, "pct_gross": 2.91, "trend": "MIXED", "net90": 3215900000, "pct_gross90": 2.55},
+    "MU": {"net30": 684900000, "pct_gross": 1.03, "trend": "MIXED", "net90": 439200000, "pct_gross90": 0.19},
+    "NBIS": {"net30": 305500000, "pct_gross": 3.34, "trend": "MIXED", "net90": 374500000, "pct_gross90": 1.75},
+    "IWM": {"net30": -271300000, "pct_gross": -5.16, "trend": "BEARISH", "net90": -1284500000, "pct_gross90": -4.62},
+    "SPY": {"net30": -145200000, "pct_gross": -0.26, "trend": "MIXED", "net90": -2163100000, "pct_gross90": -1.01},
+    "AMD": {"net30": -47200000, "pct_gross": -0.22, "trend": "MIXED", "net90": 39900000, "pct_gross90": 0.06},
+    "AVGO": {"net30": 34800000, "pct_gross": 0.63, "trend": "MIXED", "net90": 21900000, "pct_gross90": 0.09},
+    "STX": {"net30": 17900000, "pct_gross": 0.51, "trend": "MIXED", "net90": 105800000, "pct_gross90": 1.34},
+    "IWM_EXCEPTION": "IWM is the ONLY non-MIXED read, the only name above 4.2% net-of-gross, sign-consistent at 30d and 90d, and thesis-aligned. It is the only name earning the +1 accretion line."
+  },
+
+  "CENTRAL_ADJUDICATION": "A MIXED cum-flow read supplies NO direction, and must supply no direction CONSISTENTLY to every line that queries it. Seven of eight names print MIXED at 0.5-3.3% net-of-gross. That single read is queried by three rubric lines (+3 conjunction confirm-clause, +1 accretion, +1 sector-leader condition (b)). On every MIXED name all three resolve the same way - conjunction unconfirmed, accretion 0, sector-leader 0 - and the name takes the -1 flow_conflict_lite the label triggers. No double-dip; the rubric_sector_cumflow_double_count trap does not fire anywhere this week because the sector line scores zero on all eight.",
+
+  "ZEROED_LINES_ACROSS_THE_BOARD": {
+    "+3 conjunction": "0 on all 8 - accumulation-hunter EMPTY BOARD rejected all six mega-tier candidates. The base award was never earned so the halving-to-+1 path never opens. dark_pool_accumulation returning 0 backtest signals is independent corroboration.",
+    "-2 contrarian crowded long": "0 on all 8 on BOTH qualifiers: the RISING-pc-z clause is structurally unsatisfiable (no --date flag) AND the line requires VRP POSITIVE while this week is decisively VRP-negative.",
+    "+1 opex-pin": "0 on all 8 - is_opex_week=false. The 7-day guard spawned the agent but the pin book is forward-looking into W34.",
+    "+1 sector-leader": "0 on all 8 - condition (a) non-discriminating (11-of-11 sectors persistence 1.0), (b) fails on MIXED, (c) fails on magnitude for STX ($17.9M) and AVGO ($34.8M)."
+  },
+
+  "calls": [
+    {"rank": 1, "ticker": "IWM", "direction": "short", "raw_score": 6, "tier": "LOW",
+     "arithmetic": "+3 oi +2 multileg +1 accretion = 6",
+     "dominant_signal_class": "multileg_directional",
+     "pre_risk_size": "watch_only", "binding_constraint": "SHORT-ROUTING (ladder would have said starter)",
+     "why": "The only name whose evidence is internally consistent across three independent tools. Bearish multileg roll (295P calendar -> 289/290P Sep18 vertical), a standalone -$105.4M negative-gex wall at 295, AND the OI tape itself: IWM260918P00289000 +38,016 = the single largest OI build on 08-14. Only non-MIXED cum-flow in the union.",
+     "C13_OVERLAP_FLAG": "The oi line and the multileg line are reading the SAME 289P positioning through two tools. Both awarded per the frozen rubric, but risk-monitor should DISCOUNT rather than compound.",
+     "UNRESOLVED_CONFLICT": "dealer-positioning-strategist reads the dealer book building LONG (DEX +$8.34B->+$11.26B, total_gex to +$1.17B, regime POSITIVE all week) directly against the multileg bearish build."},
+
+    {"rank": 2, "ticker": "SNDK", "direction": "long", "raw_score": 3, "tier": "LOW",
+     "arithmetic": "+3 oi +1 dex_flip -1 flow_conflict_lite = 3",
+     "dominant_signal_class": "oi_build", "pre_risk_size": "starter",
+     "why": "+1 mechanized DEX flip long is the ONLY non-saturated evidence: fired 08-12, magnitude_ratio 2.52, whipsaw FALSE, and the flip HELD and GREW ~9x across three sessions (+$1.43B -> +$7.80B -> +$12.20B).",
+     "risk_flags": "+35.4% in 5 days, rv20 149.8, ATR14 9.77% of spot. oi build is 78% inside 7DTE = expiry mechanics. contrarian ranks it FRAGILE-LONG #1 (z -1.392, most call-crowded). accumulation-hunter REJECT (institutional-accumulation NEUTRAL 5/5). ORCHESTRATOR ADDITION: its top two premium tickets are a same-strike $900 CALENDAR ROLL ($108.0M ask Aug-28 / $107.6M bid Aug-14 = $215.6M gross, ~$0.4M net intent); it carries bid-side PUT SALES (2028 1500P $28.1M, 2027 2750P $14.2M) that the netting convention books as BULLISH; and its flow shows TWO INCOMPATIBLE STRIKE GRIDS at the same 2026-12-18 expiry (120/330 alongside 900-3520 on a $1641 stock) = un-split-adjusted grid artifact."},
+
+    {"rank": 3, "ticker": "AVGO", "direction": "short", "raw_score": 3, "tier": "LOW",
+     "arithmetic": "+3 oi +1 dex_flip -1 flow_conflict_lite = 3",
+     "dominant_signal_class": "oi_build", "pre_risk_size": "watch_only",
+     "binding_constraint": "SHORT-ROUTING (ladder would have said starter)",
+     "why": "Structurally the cleanest flip in the set: eleven consecutive positive sessions then a decisive negative print, |flip| $938.5M vs floor $805.2M, ratio 1.17, whipsaw FALSE, independently confirmed by the 08-10 GEX regime flip POSITIVE->NEGATIVE.",
+     "vol_line_explicitly_declined": "base_shape BACKWARDATION->CONTANGO = CALMING, the opposite of 'worsening WoW'. iv-percentile 41.38 = the only name near the middle of its own distribution.",
+     "corroboration": "contrarian's bearish price-vs-flow divergence (-$86.5M flow while 30d price +5.1%) resolved into Friday's -5.94%, the worst S&P move of the day. Flow led the crack. ORCHESTRATOR ADDITION: insider MSPR is -100 or near it in essentially EVERY month across 19 months - relentless uninterrupted insider selling. AND per earnings-scout the -8.1% week was NOT an earnings reaction (next print 09-02) but a BofA AI-chip-financing note plus Third Point dissolving its stake."},
+
+    {"rank": 4, "ticker": "SPY", "direction": "mixed/structural", "raw_score": 3, "tier": "LOW",
+     "arithmetic": "+3 oi = 3",
+     "dominant_signal_class": "structural_hedge", "pre_risk_size": "watch_only",
+     "binding_constraint": "NO DIRECTION TO SIZE",
+     "MULTILEG_LINE_DECLINED": "+2 explicitly NOT awarded. repeat_count 2 counts TWO DIFFERENT, OPPOSITE-SIGNED structures - a 1:2:1 put-fly ladder 15-55% OTM (tail hedge) plus a 780/78x call vertical rolled into 08-21 - not one directional structure repeated on >=2 days, which is what the line requires. Netting opposite-signed books from different desks would FABRICATE a direction no book in the tape holds.",
+     "why_no_deduction": "With no directional thesis the flow_conflict switch's non-directional branch applies, so SPY takes no deduction either - which is why it lands at 3 on a single line.",
+     "note": "SPY's own OI build is 76.3% put with a 300,046-contract Dec18 480P as its largest single print - the tail-hedge ladder showing up in the OI tape. Carry as §9 structural/hedge context, NOT a trade-book entry."},
+
+    {"rank": 5, "ticker": "NBIS", "direction": "long", "raw_score": 3, "tier": "LOW",
+     "arithmetic": "+3 oi +1 vol_surface -1 flow_conflict_lite = 3",
+     "dominant_signal_class": "oi_build", "pre_risk_size": "starter",
+     "distribution_flag": {"present": true, "closing_side": "call", "closing_premium": 5700000},
+     "why": "The ONLY name genuinely earning the +1 vol line: front_end_iv_ratio at --near-dte 7 DEEPENED 1.178 -> 1.215, the deepest and only WORSENING backwardation in the set, and long-vol is VRP-aligned in a decisively VRP-negative week.",
+     "accretion_line_failed_twice": "Not directional (MIXED 3.34%), AND the P1.4 intent screen is breached by a LIVE C28 distribution_flag - institutional-size SHORT-DATED CALL OI CLOSING ($5.7M 250C + $4.0M 190C) while the stock melts up +47.7%.",
+     "LOUD_RISK_FLAG": "The most dangerous name in the book on tape mechanics: +47.7% in 5 days (largest in set), rv20 183.5, ATR14 9.97% of spot, beta 4.50, short_float 29.79% with days_to_cover only 2.89 (MODERATE squeeze, thin cover), RSI 64.63, insider transactions -1.60%. A distribution flag under a 47% five-day melt-up in a 4.5-beta name argues for the gate."},
+
+    {"rank": 6, "ticker": "MU", "direction": "long", "raw_score": 2, "tier": "DROP", "pre_risk_size": "skip",
+     "arithmetic": "+3 oi -1 flow_conflict_lite = 2",
+     "why_dropped": "Everything it has is the saturated oi line, and that line actively ARGUES AGAINST the long thesis: 60.9% of OI added is PUT-side and 78% of top building contracts are inside 7DTE. +$684.9M is 1.03% net-of-gross, the THINNEST in the set, thinning to 0.19% at 90d. DEX correctly FAILED as a level not a flip (the exact P0.4 error the mechanization exists to catch).",
+     "sharpest_conflict_in_union": "sweep-tracker reads BEARISH persistence 5-of-5 against a +10.7% week (hedging/profit-protection into strength) while sector-rotation and vol-surface read LONG. The week's daily envelopes called MU SHORT twice (08-11, 08-13) into moves of +11.88% and +2.30%."},
+
+    {"rank": 7, "ticker": "STX", "direction": "long", "raw_score": 2, "tier": "DROP", "pre_risk_size": "skip",
+     "arithmetic": "+3 oi -1 flow_conflict_lite = 2",
+     "why_dropped": "+$17.9M is the SMALLEST |net30| in the union, 0.51% of gross, below BOTH the bottom-quartile cut ($37.9M) and 25%-of-median ($52.1M). The sector-leader line fails on two INDEPENDENT gates - the $50M magnitude floor is missed by nearly 3x on its own merits, so it does not even depend on the MIXED adjudication.",
+     "note": "STX is otherwise the HEALTHIEST of the melt-up cohort on contrarian's metric - price-vs-flow ALIGNED, no divergence, fragility z -1.117 vs SNDK -1.392. But 'least fragile in an extended cohort' is not a thesis."},
+
+    {"rank": 8, "ticker": "AMD", "direction": "long", "raw_score": 2, "tier": "DROP", "pre_risk_size": "skip",
+     "arithmetic": "+3 oi -1 flow_conflict_lite = 2",
+     "why_dropped": "The cleanest illustration of why the REMOVED lines matter: AMD's best evidence is sweep-tracker's bullish 5-of-5 single-direction persistence, and that line was DELETED 2026-05-23 P0.3 after two consecutive audits measured it negative. Under the frozen rubric it earns nothing. Flow is bearish-signed at 30d (-$47.2M) AGAINST the long thesis, thin at -0.22% of gross, and SIGN-FLIPS to +$39.9M at 90d.",
+     "note": "AMD is the LEAST extended of the memory cohort (+6.4% 5d, rv20 81.3) - a genuine point on entry risk, but not a scored one."}
+  ],
+
+  "instrumentation_trio": {
+    "implied_move": "null on the one vol row (NBIS). INSTRUMENTATION GAP: vol-surface-scout did not surface implied_move_pct per candidate. NOT synthesized - the CLI field is pinned to a sub-1-day horizon (~16x too small) and emitting it would be worse than null. Vol resolution stays RV-proxy-only for a 3rd cycle.",
+    "dp_block_to_float_ratio": "null on all 8. Correctly null, not a gap - no name has dark_pool_accumulation as dominant class, so C16 has no row to grade this week.",
+    "insider_cluster_flag": "null on all 8. Lane skipped (accumulation-hunter empty board before reaching it). null = skipped, NOT false. C18 has zero variance across all 15 populations to date."
+  },
+
+  "SUMMARY": {
+    "scored_ge3": ["IWM 6", "SNDK 3", "AVGO 3", "SPY 3", "NBIS 3"],
+    "dropped": ["MU 2", "STX 2", "AMD 2"],
+    "reached_MEDIUM_ge7": 0,
+    "reached_HIGH_ge9": 0,
+    "note": "Post-freeze HIGH/MEDIUM bands structurally empty for the NINTH consecutive cycle - the frozen rubric behaving as calibrated, not a data failure. Only two names carry a `starter`; the board is effectively empty again."
+  },
+
+  "THREE_THINGS_FOR_THE_RECORD": [
+    "The +3 OI line was the SOLE source of points on 8 of 8 names and is now measurably worthless - 100% population firing at both windows (C47's 6-of-6 extended to 8-of-8), with put-heavy short-dated composition on names whose thesis is long. Strip that one line and the entire book scores between -1 and +3. It is the only thing holding five names above the drop floor.",
+    "The LONG lane had NO measured edge over the index: bullish_flow 0.4848 (n=132) vs 0.5758 SPY-long bench = -9.1pp, a hair inside the C2 starter trigger. Six of eight names are long. The SHORT lane ran +9.0pp and both shorts are routed to watch_only by P0 #1 - intended behaviour, but it is now costing the desk the one lane with positive measured excess this week. A legitimate item for the next audit, not something to act on here.",
+    "win_rate is NA(substrate) on all 8 for a STRUCTURAL reason: the rubric's highest-weight lines attach to classes (oi_build, multileg_directional) the backtest substrate cannot measure at all, and dark_pool_accumulation returns zero rows market-wide. The sizing ladder is bypassed by the tier-default path on 100% of rows."
+  ]
+}

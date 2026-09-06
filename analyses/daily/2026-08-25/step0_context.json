@@ -1,0 +1,75 @@
+{
+  "date": "2026-08-25",
+  "fz_available": true,
+  "fz_caveat": "BULK `fz screen` surfaces carry the known doubled-first-letter ticker bug (20/20 rows). Decode by stripping a doubled leading char (AABEO->ABEO, KKURA->KURA). Per-ticker fz_enrich is healthy.",
+  "regime": {
+    "label": "TRANSITIONAL - Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "spy": {"current": 765.91, "sma20": 764.80, "sma50": 752.75, "above_20sma": true, "above_50sma": true, "change_30d_pct": 3.63, "pct_from_90d_high": -1.73},
+    "market_breadth_flow": {"bullish_flow_tickers": 2239, "bearish_flow_tickers": 4041, "bullish_pct": 35.7, "tickers_with_options": 6280},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+  "vrp_classification": {"SPY": {"regime": "FAIR", "vrp": 0.0038, "iv30d": 0.1272, "realised_vol": 0.1234}, "QQQ_see_cache": "step0_cache/vrp_qqq.json"},
+  "dte_share": {"share_0dte": 0.286, "share_weeklies": 0.290, "share_monthlies": 0.206, "share_leaps": 0.039, "regime_hint": "BALANCED"},
+  "tape_framing_C12_OHLC": {
+    "note": "CAP-WEIGHTED ADVANCE ON NEGATIVE BREADTH. SPY +0.32% / QQQ +0.62% / IWM +0.42% but EQUAL-WEIGHT RSP -0.07% and only 41.15% of S&P names green (207 adv / 294 dec). Treat 'green tape' claims with suspicion - this is narrow-leadership distribution, not a broad bid.",
+    "1d_pct": {"SPY": 0.32, "QQQ": 0.62, "IWM": 0.42, "RSP": -0.07, "VIX": -2.52, "XLK": 0.94, "XLF": 0.15, "XLV": 0.34, "XLY": -0.30, "XLP": -1.06, "XLE": -1.66, "XLI": -0.34, "XLB": 0.00, "XLU": 0.21, "XLRE": 0.07, "XLC": 0.77, "SMH": 1.65, "IGV": -0.59, "GLD": 0.32},
+    "5d_pct": {"SPY": -0.20, "QQQ": -0.95, "IWM": -0.33, "RSP": 0.90, "XLK": -2.09, "XLF": 0.81, "XLV": 3.28, "XLY": 1.37, "XLP": 1.10, "XLE": -2.54, "XLI": -2.82, "XLB": 3.48, "XLU": -1.61, "XLRE": 1.64, "XLC": 2.44, "SMH": -2.45, "IGV": -0.11, "GLD": 7.41},
+    "vix_close": 15.45,
+    "realized_vol_20d_pct": {"SPY": 12.9, "QQQ": 21.7, "SMH": 42.4, "GLD": 23.4},
+    "five_day_rotation_read": "Over 5 sessions: defensives + materials + healthcare + gold UP (XLB +3.5, XLV +3.3, XLC +2.4, GLD +7.4); cyclicals + tech + semis DOWN (XLI -2.8, XLE -2.5, SMH -2.5, XLK -2.1). Today partially reversed that (SMH +1.65, XLK +0.94) on ONE session."
+  },
+  "sector_summary_NETTED_authoritative": {
+    "source": "uw risk market-regime .sector_rotation (the ONLY netted/directional sector source; top-3/bottom-3 truncated)",
+    "money_flowing_in": {"Technology": 122418810, "Financial Services": 31507912, "Communication Services": 27585178},
+    "money_flowing_out": {"Consumer Cyclical": -21073490, "Consumer Defensive": -9900300, "Energy": -432918}
+  },
+  "sector_gross_turnover_NOT_directional": {
+    "warning": "`sector-flow` and `sector-flow-persistence` are ONE gross-turnover source, sign-agnostic. They CANNOT express direction. TODAY sector-flow-persistence fires INFLOW on 10 of 11 sectors (persistence_score 1.0 or 0.8) - near-zero discrimination. Use ONLY as a durability filter. NOTE the direct contradiction: gross sector-flow shows Consumer Cyclical +$390.9M while NETTED market-regime shows Consumer Cyclical -$21.1M.",
+    "persistence_scores": {"Financial Services": 1.0, "Consumer Defensive": 1.0, "Healthcare": 1.0, "Real Estate": 1.0, "Energy": 1.0, "Basic Materials": 1.0, "Technology": 0.8, "Consumer Cyclical": 0.8, "Industrials": 0.8, "Communication Services": 0.8, "Utilities": 0.6},
+    "utilities_trend": "ROTATING (only non-INFLOW label)"
+  },
+  "breadth_cross_check": {"advisory": true, "source": "finviz", "advancers": 207, "decliners": 294, "unchanged": 2, "total": 503, "pct_green": 41.15, "avg_change": -0.09, "median_change": -0.24, "top_mover": "MRNA +14.36%", "worst_mover": "ALB -5.89%", "divergence_flag": true, "note": "Index green, pct_green 41.15% < 50 - DISTRIBUTION TELL. Corroborated independently by equal-weight RSP -0.07% vs SPY +0.32%."},
+  "macro_snapshot": {
+    "yield_curve": "normal", "yield_curve_10y2y": 0.47,
+    "core_cpi_yoy_pct": 2.79, "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.1, "payrolls_mom_000s": -23.0,
+    "ten_year_yield": 4.70, "ten_year_30d_direction": "flat",
+    "usd_30d_direction": "weakening", "fed_funds": 3.63,
+    "read": "STAGFLATIONARY TENSION: core PCE 3.29% YoY (well above 2% target) while July payrolls CONTRACTED -23k and unemployment sits 4.1%. Curve normal +47bp, 10Y 4.70 flat, broad USD -2.5 over 30d (weakening). Fed funds 3.63 vs core PCE 3.29 = ~34bp real policy rate - thin."
+  },
+  "event_risk": [
+    {"event": "PCE / Personal Income & Outlays (July) - CORE PCE", "date": "2026-08-26", "impact": "TIER-1 HIGH", "note": "TOMORROW, 8:30am ET. Next session. Gaps the 0DTE prior and sits inside EVERY swing horizon."},
+    {"event": "Initial jobless claims", "date": "2026-08-27", "impact": "TIER-2 MEDIUM"},
+    {"event": "Initial jobless claims", "date": "2026-09-03", "impact": "TIER-2 MEDIUM"},
+    {"event": "Employment Situation / NFP (August)", "date": "2026-09-04", "impact": "TIER-1 HIGH", "note": "Elevated salience - July payrolls printed NEGATIVE (-23k)."},
+    {"event": "CPI (August)", "date": "2026-09-11", "impact": "TIER-1 HIGH"},
+    {"event": "FOMC decision + SEP dot plot", "date": "2026-09-15/16", "impact": "TIER-1 HIGH"}
+  ],
+  "opex_context": {"third_friday_august": "2026-08-21", "today_offset_calendar_days": 4, "status": "MONTHLY OPEX HAS PASSED - today is OPEX+2 trading sessions. Nearest listed expiry is the 2026-08-28 weekly.", "next_monthly_opex": "2026-09-18"},
+  "zerodte_setup": {
+    "available": true,
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 15.45, "implied_move_pct": 0.76, "expected_range_pct": 1.13, "size_scalar": 0.5, "suggested_structure": "wider iron condor, wings ~ +/-1.13% (short-gamma: wider range / trendier) - or reduce / stand aside", "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold to the close - never carry overnight.", "backtest": {"n": 60, "win_open_pct": 86.7, "mean_pnl_open_pct_GROSS": 0.204, "mean_pnl_open_net_pct": 0.104, "cost_assumed_pct": 0.1, "worst_day_open_pct": -1.4, "verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_by_vix_state": {"LOW": 0.11, "MID": 0.172, "HIGH": 0.331}}},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 15.45, "implied_move_pct": 1.17, "expected_range_pct": 1.39, "size_scalar": 0.5, "suggested_structure": "iron fly / short straddle centred at 711.04, wings ~ +/-1.39% (long-gamma: quieter, mean-reverting)", "entry_rule": "same as SPY", "backtest": {"n": 60, "win_open_pct": 85.0, "mean_pnl_open_pct_GROSS": 0.333, "mean_pnl_open_net_pct": 0.233, "cost_assumed_pct": 0.1, "worst_day_open_pct": -2.453, "verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_by_vix_state": {"LOW": 0.201, "MID": 0.305, "HIGH": 0.493}}},
+    "CRITICAL_LOW_VIX_CAVEAT": "vol_state is LOW (VIX 15.45, below the 15.9 tercile bound). Per the 0DTE-low-VIX finding: mean_pnl_by_vix_state LOW is 0.11 (SPY) / 0.201 (QQQ) GROSS - net of the 0.1 cost assumption that is ~0.01 (SPY, essentially ZERO) and ~0.10 (QQQ). The GO_PREMIUM_SELL_INTRADAY verdict and sell_premium:true are UNCONDITIONAL flags and DO NOT condition on VIX state. SPY 0DTE premium selling is net-flat-to-negative at this VIX. Say so explicitly.",
+    "EVENT_CAVEAT": "Core PCE prints 2026-08-26 08:30 ET - i.e. BEFORE the next session's open. The overnight-gap risk this stack explicitly stands aside for is scheduled."
+  },
+  "single_leg_whale_scan": {
+    "advisory": true, "rubric_points": 0, "regime_passed": "neutral",
+    "note": "C19 CLOSED as REFUTED 2026-07-25. Routing context only, never scored. In a NON-BULL regime the call tier is CALL_UNVALIDATED, not a fade.",
+    "tier_label_counts": {"OPENING_PUT_PRIME": 3, "FLOOR_PUT_BLOCK": 2, "OPENING_PUT_STRONG": 8, "PUT_CONTEXT": 9, "CALL_UNVALIDATED": 15, "CLOSING_ANTISIGNAL": 126},
+    "tier1_puts": [
+      {"ticker": "SPCX", "label": "FLOOR_PUT_BLOCK", "strike": 180, "dte": 3, "premium_usd": 11353500, "size_oi": 1.087, "action": "CONTRARIAN_SHORT"},
+      {"ticker": "TSLA", "label": "FLOOR_PUT_BLOCK", "strike": 400, "dte": 3, "premium_usd": 1700000, "size_oi": 1.101, "action": "CONTRARIAN_SHORT"},
+      {"ticker": "OKTA", "label": "OPENING_PUT_PRIME", "strike": 129, "dte": 3, "premium_usd": 700000, "size_oi": 2.088, "action": "CONTRARIAN_SHORT"},
+      {"ticker": "BBWI", "label": "OPENING_PUT_PRIME", "strike": 17, "dte": 3, "premium_usd": 500000, "size_oi": 23.821, "action": "CONTRARIAN_SHORT"}
+    ],
+    "closing_antisignal_dominance": "126 of 163 raw signals are CLOSING_ANTISIGNAL (size/OI < 0.5) - the tape is dominated by position CLOSING, not opening. Weigh any 'big flow' thesis against this."
+  },
+  "fz_squeeze_candidates_advisory": ["ABEO","ABR","ABSI","ACHC","ACHV","AESI","AI","ALMU","AMCX","ANNX","APLD","ARCT","ARQQ","ASAN","ASST","ASTS","AVBP","AVTX","BBNX","BCAX"],
+  "fz_rs_candidates_advisory": ["KURA","TWST","IDYA","LIFE","XNCR","EOLS","ABCL","CDNA","ZYME","CGEM","KMX","TXG","TGB","MRVI","CORT","IMMX"],
+  "fz_rs_note": "RS/new-high lane is 13-of-16 HEALTHCARE/BIOTECH - an orthogonal, non-flow breakout cluster the options funnel is not surfacing. Advisory, 0 points.",
+  "C12_liquidity_floor_PASSED_universe": ["NVDA","AMD","EWZ","SMH","MSTR","MU","APP","AMZN","HOOD","NVO","MRNA","MSFT","GOOG","MRVL","STX","LITE","SMCI","CRCL","META","DKS","ALAB","XOP","AAPL","CRWD","RKLB","ORCL","TQQQ","GLXY","USO","WDC","CBRS","TSLA","BABA","PATH","TEAM","QCOM","QBTS","GEV","JETS","IBKR","UPS","SMR","UNG","AAL","TSLL","VTI","VOO","VICI","HOG","BBWI","ZS","KSS","CRM","ARGX","SBET","HPQ","INTU","CNK","PVH","DINO","ADBE","DCI","DTM","NVS","RGTI","NEE","JOBY","KLAR","OHI","QNT","APLD","ASTS","ACHC","KMX","TWST","CORT","ABCL","CDNA","TXG","LIFE","XE","SPY","QQQ","IWM"],
+  "C12_liquidity_floor_FAILED_dropped": {"DYN": "adv $47.7M", "PPLT": "adv $43.7M", "CRSR": "adv $28.3M", "URNM": "adv $28.7M", "HLF": "adv $18.9M", "BKKT": "adv $11.6M", "QFIN": "adv $23.0M", "VIPS": "adv $35.5M", "RUM": "adv $32.2M", "MDA": "adv $37.8M", "NCNO": "adv $44.5M", "GIII": "adv $14.0M", "NVRI": "adv $7.2M", "AI": "adv $43.3M", "ASAN": "adv $40.7M", "ABR": "adv $22.1M", "ABSI": "adv $23.5M", "MRVI": "adv $29.2M", "KURA": "adv $23.5M", "IDYA": "adv $28.0M", "XNCR": "adv $28.6M", "ZYME": "adv $16.2M", "GCO": "adv $7.3M", "RR": "price 1.97", "CRON": "price 3.51"},
+  "step0_cache_dir": "analyses/daily/2026-08-25/step0_cache/"
+}

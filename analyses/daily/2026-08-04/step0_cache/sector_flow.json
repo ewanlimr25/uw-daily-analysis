@@ -1,0 +1,93 @@
+{
+  "results": [
+    {
+      "net_flow": 7584268703,
+      "sector": "Technology",
+      "total_premium_call": 12044358972,
+      "total_premium_put": 4460090269,
+      "total_volume_call": 12913149,
+      "total_volume_put": 5519980
+    },
+    {
+      "net_flow": 1381742784,
+      "sector": "Communication Services",
+      "total_premium_call": 1822181323,
+      "total_premium_put": 440438539,
+      "total_volume_call": 2558159,
+      "total_volume_put": 1086013
+    },
+    {
+      "net_flow": 742223371,
+      "sector": "Consumer Cyclical",
+      "total_premium_call": 1525845513,
+      "total_premium_put": 783622142,
+      "total_volume_call": 3079884,
+      "total_volume_put": 1546698
+    },
+    {
+      "net_flow": 441480011,
+      "sector": "Industrials",
+      "total_premium_call": 1161749713,
+      "total_premium_put": 720269702,
+      "total_volume_call": 2080696,
+      "total_volume_put": 1359212
+    },
+    {
+      "net_flow": 382368188,
+      "sector": "Financial Services",
+      "total_premium_call": 649817427,
+      "total_premium_put": 267449239,
+      "total_volume_call": 2499635,
+      "total_volume_put": 1011253
+    },
+    {
+      "net_flow": 167586120,
+      "sector": "Healthcare",
+      "total_premium_call": 363387260,
+      "total_premium_put": 195801140,
+      "total_volume_call": 915127,
+      "total_volume_put": 519656
+    },
+    {
+      "net_flow": 54320414,
+      "sector": "Consumer Defensive",
+      "total_premium_call": 104100177,
+      "total_premium_put": 49779763,
+      "total_volume_call": 463330,
+      "total_volume_put": 227466
+    },
+    {
+      "net_flow": 54084294,
+      "sector": "Basic Materials",
+      "total_premium_call": 100475743,
+      "total_premium_put": 46391449,
+      "total_volume_call": 606638,
+      "total_volume_put": 205172
+    },
+    {
+      "net_flow": 49286114,
+      "sector": "Utilities",
+      "total_premium_call": 111877495,
+      "total_premium_put": 62591381,
+      "total_volume_call": 556414,
+      "total_volume_put": 129644
+    },
+    {
+      "net_flow": 41395816,
+      "sector": "Energy",
+      "total_premium_call": 80708695,
+      "total_premium_put": 39312879,
+      "total_volume_call": 414285,
+      "total_volume_put": 247501
+    },
+    {
+      "net_flow": 10736440,
+      "sector": "Real Estate",
+      "total_premium_call": 21015098,
+      "total_premium_put": 10278658,
+      "total_volume_call": 234657,
+      "total_volume_put": 95699
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/All Options/bot-eod-report-2026-08-04.parquet"
+}

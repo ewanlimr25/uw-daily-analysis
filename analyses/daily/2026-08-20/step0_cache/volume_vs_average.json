@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0666,
+      "close": 38.2809,
+      "full_name": "Corgi AI Cybersecurity ETF",
+      "iv_rank": 17.1846,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "XA",
+      "total_volume": 50,
+      "volume_ratio": 750.7507507507506
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 42.27,
+      "full_name": "Fidelity Fundamental Emerging Markets ETF",
+      "iv_rank": 31.4773,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FFEM",
+      "total_volume": 7,
+      "volume_ratio": 210.2102102102102
+    },
+    {
+      "avg_total_volume": 5.5667,
+      "close": 9.82,
+      "full_name": "SILVERCREST ASSET MANAGEMENT GROUP INC",
+      "iv_rank": 23.5774,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "SAMG",
+      "total_volume": 1000,
+      "volume_ratio": 179.63964287638996
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 0.869,
+      "full_name": "INTERCURE LTD",
+      "iv_rank": 22.6754,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "INCR",
+      "total_volume": 50,
+      "volume_ratio": 166.66666666666669
+    },
+    {
+      "avg_total_volume": 1.8,
+      "close": 2.1,
+      "full_name": "SIEBERT FINANCIAL CORP",
+      "iv_rank": 67.9875,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "SIEB",
+      "total_volume": 250,
+      "volume_ratio": 138.88888888888889
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0.05,
+      "sector": null,
+      "ticker": "UXRP1",
+      "total_volume": 60,
+      "volume_ratio": 120
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 22.4333,
+      "full_name": "GLOBAL X SUPERDIVIDEND REIT ETF",
+      "iv_rank": 45.4853,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SRET",
+      "total_volume": 27,
+      "volume_ratio": 101.23734533183352
+    },
+    {
+      "avg_total_volume": 33.0334,
+      "close": 24,
+      "full_name": "CROSSAMERICA PARTNERS LP",
+      "iv_rank": 34.8198,
+      "put_call_ratio": 0,
+      "sector": "Energy",
+      "ticker": "CAPL",
+      "total_volume": 2642,
+      "volume_ratio": 79.97965695326548
+    },
+    {
+      "avg_total_volume": 12.8333,
+      "close": 0.645,
+      "full_name": "LOOP INDUSTRIES INC",
+      "iv_rank": 2.0502,
+      "put_call_ratio": 0.01664932362122789,
+      "sector": "Basic Materials",
+      "ticker": "LOOP",
+      "total_volume": 977,
+      "volume_ratio": 76.13006787030616
+    },
+    {
+      "avg_total_volume": 15.100000000000001,
+      "close": 38.8916,
+      "full_name": "US TREASURY 30 YEAR BOND ETF",
+      "iv_rank": 20.3704,
+      "put_call_ratio": 0.001932367149758454,
+      "sector": null,
+      "ticker": "UTHY",
+      "total_volume": 1037,
+      "volume_ratio": 68.67549668874172
+    },
+    {
+      "avg_total_volume": 2794.0334000000003,
+      "close": 12.18,
+      "full_name": "PATTERSON UTI ENERGY INC",
+      "iv_rank": 73.0056,
+      "put_call_ratio": 0.0009404683532399135,
+      "sector": "Energy",
+      "ticker": "PTEN",
+      "total_volume": 191574,
+      "volume_ratio": 68.56539367066979
+    },
+    {
+      "avg_total_volume": 32.0667,
+      "close": 92.44,
+      "full_name": "DONALDSON CO INC",
+      "iv_rank": 79.0186,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "DCI",
+      "total_volume": 1984,
+      "volume_ratio": 61.871037556094024
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": null,
+      "full_name": "WM TECHNOLOGY INC",
+      "iv_rank": 18.5971,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "MAPS",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 1.8333,
+      "close": 34.74,
+      "full_name": "DIREXION AUSPICE BROAD COMMODITY STRATEGY ETF",
+      "iv_rank": 19.5039,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "COM",
+      "total_volume": 100,
+      "volume_ratio": 54.54644629902362
+    },
+    {
+      "avg_total_volume": 119.6333,
+      "close": 104.02,
+      "full_name": "AGCO CORP",
+      "iv_rank": 25.8524,
+      "put_call_ratio": 0.022943297279580464,
+      "sector": "Industrials",
+      "ticker": "AGCO",
+      "total_volume": 6242,
+      "volume_ratio": 52.17610815717697
+    },
+    {
+      "avg_total_volume": 5.1333,
+      "close": 25.73,
+      "full_name": "Grayscale Hyperliquid Staking ETF",
+      "iv_rank": 61.9247,
+      "put_call_ratio": 0.04296875,
+      "sector": null,
+      "ticker": "HYPG",
+      "total_volume": 267,
+      "volume_ratio": 52.0133247618491
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 26.0044,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RGTU1",
+      "total_volume": 10,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 59.4667,
+      "close": 1.63,
+      "full_name": "KLX ENERGY SERVICES HOLDINGS INC",
+      "iv_rank": 28.6932,
+      "put_call_ratio": 420.42857142857144,
+      "sector": "Energy",
+      "ticker": "KLXE",
+      "total_volume": 2950,
+      "volume_ratio": 49.60759551143749
+    },
+    {
+      "avg_total_volume": 166.1,
+      "close": 47.44,
+      "full_name": "FIDELITY NATIONAL FINANCIAL INC",
+      "iv_rank": 38.1193,
+      "put_call_ratio": 157.35294117647058,
+      "sector": "Financial Services",
+      "ticker": "FNF",
+      "total_volume": 8076,
+      "volume_ratio": 48.62131246237207
+    },
+    {
+      "avg_total_volume": 1.2,
+      "close": 39.38,
+      "full_name": "BAR HARBOR BANKSHARES",
+      "iv_rank": 14.0919,
+      "put_call_ratio": 0.02,
+      "sector": "Financial Services",
+      "ticker": "BHB",
+      "total_volume": 51,
+      "volume_ratio": 42.5
+    },
+    {
+      "avg_total_volume": 22.1333,
+      "close": 34.37,
+      "full_name": "AMERICAN HOMES 4 RENT",
+      "iv_rank": 30.8454,
+      "put_call_ratio": 0.989010989010989,
+      "sector": "Real Estate",
+      "ticker": "AMH",
+      "total_volume": 905,
+      "volume_ratio": 40.88861579610813
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": 52.19,
+      "full_name": "ISHARES 5-10 YEAR INVESTMENT GRADE CORPORATE BOND ETF",
+      "iv_rank": 34.9486,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IGIB",
+      "total_volume": 8,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 50.6666,
+      "close": 78,
+      "full_name": "U S PHYSICAL THERAPY INC",
+      "iv_rank": 23.4815,
+      "put_call_ratio": 0.0035335689045936395,
+      "sector": "Healthcare",
+      "ticker": "USPH",
+      "total_volume": 1988,
+      "volume_ratio": 39.23689373275491
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 124.6756,
+      "full_name": "Global X NYSE 100 ETF",
+      "iv_rank": 18.5567,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "NYSX",
+      "total_volume": 10,
+      "volume_ratio": 37.50937734433608
+    },
+    {
+      "avg_total_volume": 1671.8,
+      "close": 20.59,
+      "full_name": "INVESCO SENIOR LOAN ETF",
+      "iv_rank": 56.6441,
+      "put_call_ratio": 0.5580172456761202,
+      "sector": null,
+      "ticker": "BKLN",
+      "total_volume": 62517,
+      "volume_ratio": 37.3950233281493
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-20.parquet"
+}

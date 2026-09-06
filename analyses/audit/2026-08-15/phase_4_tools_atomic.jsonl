@@ -1,0 +1,292 @@
+[
+{
+"tool": "screener bullish-bearish",
+"n": 5,
+"marginal_contribution_pp": 36.470588235294116,
+"wr_with": 0.6,
+"wr_without": 0.4126984126984127,
+"ubiquity": 0.008741258741258742,
+"p": 0.6792119423196208,
+"bh_survives": false
+},
+{
+"tool": "scripts/term structure hygiene.py",
+"n": 9,
+"marginal_contribution_pp": 34.11003236245955,
+"wr_with": 0.6666666666666666,
+"wr_without": 0.4103019538188277,
+"ubiquity": 0.015734265734265736,
+"p": 0.22256745370442169,
+"bh_survives": false
+},
+{
+"tool": "risk market-regime",
+"n": 5,
+"marginal_contribution_pp": 29.05820105820106,
+"wr_with": 0.6,
+"wr_without": 0.4126984126984127,
+"ubiquity": 0.008741258741258742,
+"p": 0.6792119423196208,
+"bh_survives": false
+},
+{
+"tool": "options-structure gex",
+"n": 8,
+"marginal_contribution_pp": 21.716950669156553,
+"wr_with": 0.375,
+"wr_without": 0.4148936170212766,
+"ubiquity": 0.013986013986013986,
+"p": 1.0,
+"bh_survives": false
+},
+{
+"tool": "oi decrease-with-volume",
+"n": 5,
+"marginal_contribution_pp": 21.713273081694133,
+"wr_with": 0.6,
+"wr_without": 0.4126984126984127,
+"ubiquity": 0.008741258741258742,
+"p": 0.6792119423196208,
+"bh_survives": false
+},
+{
+"tool": "scripts/dex flip.py",
+"n": 6,
+"marginal_contribution_pp": 19.400352733686066,
+"wr_with": 0.5,
+"wr_without": 0.4134275618374558,
+"ubiquity": 0.01048951048951049,
+"p": 0.9670121277237864,
+"bh_survives": false
+},
+{
+"tool": "dark-pool block-stratified / uw insights institutional-accumulation",
+"n": 5,
+"marginal_contribution_pp": 18.33333333333333,
+"wr_with": 0.6,
+"wr_without": 0.4126984126984127,
+"ubiquity": 0.008741258741258742,
+"p": 0.6792119423196208,
+"bh_survives": false
+},
+{
+"tool": "historical cumulative premium flow",
+"n": 10,
+"marginal_contribution_pp": 14.301016861470814,
+"wr_with": 0.6,
+"wr_without": 0.4110320284697509,
+"ubiquity": 0.017482517482517484,
+"p": 0.3705517003955162,
+"bh_survives": false
+},
+{
+"tool": "insights institutional-accumulation",
+"n": 37,
+"marginal_contribution_pp": 7.717426962951262,
+"wr_with": 0.4864864864864865,
+"wr_without": 0.4093457943925234,
+"ubiquity": 0.06468531468531469,
+"p": 0.429317881605884,
+"bh_survives": false
+},
+{
+"tool": "historical vrp",
+"n": 8,
+"marginal_contribution_pp": 7.581476156242513,
+"wr_with": 0.5,
+"wr_without": 0.41312056737588654,
+"ubiquity": 0.013986013986013986,
+"p": 0.8730525505301066,
+"bh_survives": false
+},
+{
+"tool": "historical iv-percentile-zscore",
+"n": 13,
+"marginal_contribution_pp": 6.695366489180923,
+"wr_with": 0.46153846153846156,
+"wr_without": 0.41323792486583183,
+"ubiquity": 0.022727272727272728,
+"p": 0.9296645855221222,
+"bh_survives": false
+},
+{
+"tool": "front-end-iv-ratio",
+"n": 5,
+"marginal_contribution_pp": 6.518812755158335,
+"wr_with": 0.4,
+"wr_without": 0.4144620811287478,
+"ubiquity": 0.008741258741258742,
+"p": 1.0,
+"bh_survives": false
+},
+{
+"tool": "historical cumulative-premium-flow",
+"n": 304,
+"marginal_contribution_pp": 5.5047487225542255,
+"wr_with": 0.4276315789473684,
+"wr_without": 0.39925373134328357,
+"ubiquity": 0.5314685314685315,
+"p": 0.34104517737325063,
+"bh_survives": false
+},
+{
+"tool": "dark-pool block-stratified",
+"n": 29,
+"marginal_contribution_pp": 3.003058328243835,
+"wr_with": 0.4482758620689655,
+"wr_without": 0.4125230202578269,
+"ubiquity": 0.050699300699300696,
+"p": 0.8316308757486041,
+"bh_survives": false
+},
+{
+"tool": "options-structure iv-term-structure",
+"n": 43,
+"marginal_contribution_pp": -1.0980328488992255,
+"wr_with": 0.3953488372093023,
+"wr_without": 0.4158790170132325,
+"ubiquity": 0.07517482517482517,
+"p": 0.9127663191485923,
+"bh_survives": false
+},
+{
+"tool": "insights signal-confluence",
+"n": 46,
+"marginal_contribution_pp": -2.7855477855477857,
+"wr_with": 0.391304347826087,
+"wr_without": 0.41634980988593157,
+"ubiquity": 0.08041958041958042,
+"p": 0.8519991992881292,
+"bh_survives": false
+},
+{
+"tool": "historical oi-trend",
+"n": 169,
+"marginal_contribution_pp": -2.8785446159362067,
+"wr_with": 0.42011834319526625,
+"wr_without": 0.4119106699751861,
+"ubiquity": 0.29545454545454547,
+"p": 0.886220453642351,
+"bh_survives": false
+},
+{
+"tool": "screener earnings-catalyst",
+"n": 11,
+"marginal_contribution_pp": -4.263413354322446,
+"wr_with": 0.36363636363636365,
+"wr_without": 0.41532976827094475,
+"ubiquity": 0.019230769230769232,
+"p": 0.9810942342773157,
+"bh_survives": false
+},
+{
+"tool": "hot-chains multileg",
+"n": 86,
+"marginal_contribution_pp": -4.317254394712253,
+"wr_with": 0.37209302325581395,
+"wr_without": 0.4218106995884774,
+"ubiquity": 0.15034965034965034,
+"p": 0.41088676953022985,
+"bh_survives": false
+},
+{
+"tool": "options-structure term-skew",
+"n": 71,
+"marginal_contribution_pp": -7.19041266064826,
+"wr_with": 0.352112676056338,
+"wr_without": 0.4231536926147705,
+"ubiquity": 0.12412587412587413,
+"p": 0.2744058135679199,
+"bh_survives": false
+},
+{
+"tool": "options-flow sector-flow-persistence",
+"n": 80,
+"marginal_contribution_pp": -7.296142901626607,
+"wr_with": 0.3625,
+"wr_without": 0.42276422764227645,
+"ubiquity": 0.13986013986013987,
+"p": 0.328229531608856,
+"bh_survives": false
+},
+{
+"tool": "options-structure front-end-iv-ratio",
+"n": 26,
+"marginal_contribution_pp": -7.313131242159375,
+"wr_with": 0.34615384615384615,
+"wr_without": 0.4175824175824176,
+"ubiquity": 0.045454545454545456,
+"p": 0.5958404587017712,
+"bh_survives": false
+},
+{
+"tool": "options-structure dex via scripts/dex flip.py",
+"n": 8,
+"marginal_contribution_pp": -7.32358982900289,
+"wr_with": 0.375,
+"wr_without": 0.4148936170212766,
+"ubiquity": 0.013986013986013986,
+"p": 1.0,
+"bh_survives": false
+},
+{
+"tool": "options-structure dex",
+"n": 61,
+"marginal_contribution_pp": -9.4272515903391,
+"wr_with": 0.4262295081967213,
+"wr_without": 0.41291585127201563,
+"ubiquity": 0.10664335664335664,
+"p": 0.929393332898764,
+"bh_survives": false
+},
+{
+"tool": "insights earnings play",
+"n": 5,
+"marginal_contribution_pp": -9.999999999999998,
+"wr_with": 0.4,
+"wr_without": 0.4144620811287478,
+"ubiquity": 0.008741258741258742,
+"p": 1.0,
+"bh_survives": false
+},
+{
+"tool": "insights earnings-play",
+"n": 7,
+"marginal_contribution_pp": -15.010312976414669,
+"wr_with": 0.2857142857142857,
+"wr_without": 0.415929203539823,
+"ubiquity": 0.012237762237762238,
+"p": 0.7714235716827249,
+"bh_survives": false
+},
+{
+"tool": "term-skew",
+"n": 5,
+"marginal_contribution_pp": -16.444444444444446,
+"wr_with": 0.2,
+"wr_without": 0.41622574955908287,
+"ubiquity": 0.008741258741258742,
+"p": 0.6190007007082216,
+"bh_survives": false
+},
+{
+"tool": "iv-term-structure hygiene",
+"n": 6,
+"marginal_contribution_pp": -39.7114281029677,
+"wr_with": 0.0,
+"wr_without": 0.41872791519434627,
+"ubiquity": 0.01048951048951049,
+"p": 0.0771448246511747,
+"bh_survives": false
+},
+{
+"tool": "hot-chains sweep-persistence",
+"n": 5,
+"marginal_contribution_pp": -49.910364145658264,
+"wr_with": 0.0,
+"wr_without": 0.41798941798941797,
+"ubiquity": 0.008741258741258742,
+"p": 0.13356245727691396,
+"bh_survives": false
+}
+]

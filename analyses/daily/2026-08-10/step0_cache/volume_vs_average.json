@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 69.5,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HRZN1",
+      "total_volume": 50,
+      "volume_ratio": 1501.5015015015013
+    },
+    {
+      "avg_total_volume": 1.4,
+      "close": 26.39,
+      "full_name": "ALLIANCE LAUNDRY HOLDINGS INC",
+      "iv_rank": 66.4215,
+      "put_call_ratio": 6,
+      "sector": "Consumer Cyclical",
+      "ticker": "ALH",
+      "total_volume": 427,
+      "volume_ratio": 305
+    },
+    {
+      "avg_total_volume": 0.7333999999999999,
+      "close": 50.1782,
+      "full_name": "ISHARES BROAD USD INVESTMENT GRADE CORPORATE BOND ETF",
+      "iv_rank": 55.8059,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "USIG",
+      "total_volume": 200,
+      "volume_ratio": 272.7024815925825
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 83.9386,
+      "full_name": "SPDR S&P GLOBAL DIVIDEND ETF",
+      "iv_rank": 27.4025,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "WDIV",
+      "total_volume": 14,
+      "volume_ratio": 209.89505247376314
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 114.5,
+      "full_name": "ISHARES CORE S&P US VALUE ETF",
+      "iv_rank": 20.7854,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IUSV",
+      "total_volume": 18,
+      "volume_ratio": 180
+    },
+    {
+      "avg_total_volume": 8,
+      "close": 64.67,
+      "full_name": "AMERCO",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "UHALB",
+      "total_volume": 1201,
+      "volume_ratio": 150.125
+    },
+    {
+      "avg_total_volume": 524.3667,
+      "close": 11.68,
+      "full_name": "HAWAIIAN ELECTRIC INDUSTRIES INC",
+      "iv_rank": 43.5432,
+      "put_call_ratio": 0.9895326335542133,
+      "sector": "Utilities",
+      "ticker": "HE",
+      "total_volume": 67855,
+      "volume_ratio": 129.40371690269424
+    },
+    {
+      "avg_total_volume": 24.3,
+      "close": 9.45,
+      "full_name": "WEBTOON ENTERTAINMENT INC",
+      "iv_rank": 35.4579,
+      "put_call_ratio": 0.012926391382405745,
+      "sector": "Technology",
+      "ticker": "WBTN",
+      "total_volume": 2821,
+      "volume_ratio": 116.09053497942386
+    },
+    {
+      "avg_total_volume": 0.4333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 95.3151,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RYN2",
+      "total_volume": 50,
+      "volume_ratio": 115.39349180706208
+    },
+    {
+      "avg_total_volume": 94.93339999999999,
+      "close": 0.7868,
+      "full_name": "LARGO INC",
+      "iv_rank": 22.3635,
+      "put_call_ratio": 0.00048003072196620584,
+      "sector": "Basic Materials",
+      "ticker": "LGO",
+      "total_volume": 10421,
+      "volume_ratio": 109.7716925760586
+    },
+    {
+      "avg_total_volume": 28.0333,
+      "close": 40.05,
+      "full_name": "WISDOMTREE CLOUD COMPUTING FUND",
+      "iv_rank": 57.8059,
+      "put_call_ratio": 200,
+      "sector": null,
+      "ticker": "WCLD",
+      "total_volume": 3015,
+      "volume_ratio": 107.55066296154929
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 51.86,
+      "full_name": "PIMCO INTERMEDIATE MUNICIPAL BOND ACTIVE EXCHANGE-TRADED FUND",
+      "iv_rank": 73.0453,
+      "put_call_ratio": 22,
+      "sector": null,
+      "ticker": "MUNI",
+      "total_volume": 23,
+      "volume_ratio": 86.27156789197299
+    },
+    {
+      "avg_total_volume": 6.9667,
+      "close": 18.46,
+      "full_name": "VAREX IMAGING CORP",
+      "iv_rank": 0,
+      "put_call_ratio": 1.137546468401487,
+      "sector": "Healthcare",
+      "ticker": "VREX",
+      "total_volume": 575,
+      "volume_ratio": 82.53549026081214
+    },
+    {
+      "avg_total_volume": 65.1,
+      "close": 83.38,
+      "full_name": "GRACO INC",
+      "iv_rank": 31.5376,
+      "put_call_ratio": 627.125,
+      "sector": "Industrials",
+      "ticker": "GGG",
+      "total_volume": 5025,
+      "volume_ratio": 77.18894009216591
+    },
+    {
+      "avg_total_volume": 2.6333,
+      "close": 9.435,
+      "full_name": "HOYA CAPITAL HIGH DIVIDEND YIELD ETF",
+      "iv_rank": 62.2698,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RIET",
+      "total_volume": 200,
+      "volume_ratio": 75.95032848517069
+    },
+    {
+      "avg_total_volume": 201.73329999999999,
+      "close": 28.95,
+      "full_name": "HAVERTY FURNITURE COMPANIES INC",
+      "iv_rank": 34.2383,
+      "put_call_ratio": 0.0016386726751331422,
+      "sector": "Consumer Cyclical",
+      "ticker": "HVT",
+      "total_volume": 12225,
+      "volume_ratio": 60.59981173162785
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 6.2878,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FMX4",
+      "total_volume": 6,
+      "volume_ratio": 60
+    },
+    {
+      "avg_total_volume": 22.200000000000003,
+      "close": 4.17,
+      "full_name": "CS DISCO INC",
+      "iv_rank": 35.1569,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "LAW",
+      "total_volume": 1230,
+      "volume_ratio": 55.405405405405396
+    },
+    {
+      "avg_total_volume": 32,
+      "close": 19.64,
+      "full_name": "HEALTHCARE REALTY TRUST INC",
+      "iv_rank": 40.3531,
+      "put_call_ratio": 0.012132822477650063,
+      "sector": "Real Estate",
+      "ticker": "HR",
+      "total_volume": 1585,
+      "volume_ratio": 49.53125
+    },
+    {
+      "avg_total_volume": 1.1667,
+      "close": 77.95,
+      "full_name": "PROSHARES RUSSELL 2000 DIVIDEND GROWERS ETF",
+      "iv_rank": 4.3668,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SMDV",
+      "total_volume": 54,
+      "volume_ratio": 46.284391874517866
+    },
+    {
+      "avg_total_volume": 0.6666,
+      "close": 38.93,
+      "full_name": "ARROW FINANCIAL CORP",
+      "iv_rank": 16.5103,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "AROW",
+      "total_volume": 30,
+      "volume_ratio": 45.00450045004501
+    },
+    {
+      "avg_total_volume": 14.4334,
+      "close": 43.38,
+      "full_name": "WALKER & DUNLOP INC",
+      "iv_rank": 40.9119,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "WD",
+      "total_volume": 618,
+      "volume_ratio": 42.81735419235939
+    },
+    {
+      "avg_total_volume": 146.8667,
+      "close": 32.11,
+      "full_name": "ATN INTERNATIONAL INC",
+      "iv_rank": 23.2494,
+      "put_call_ratio": 0.0018640908320623623,
+      "sector": "Communication Services",
+      "ticker": "ATNI",
+      "total_volume": 5912,
+      "volume_ratio": 40.2541896835702
+    },
+    {
+      "avg_total_volume": 0.5667,
+      "close": 14.2801,
+      "full_name": "GRANITESHARES YIELDBOOST AMD ETF",
+      "iv_rank": 37.3401,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AMYY",
+      "total_volume": 21,
+      "volume_ratio": 37.056643726839596
+    },
+    {
+      "avg_total_volume": 160,
+      "close": 42.42,
+      "full_name": "BOWMAN CONSULTING GROUP LTD",
+      "iv_rank": 0,
+      "put_call_ratio": 0.21778886118038238,
+      "sector": "Industrials",
+      "ticker": "BWMN",
+      "total_volume": 5860,
+      "volume_ratio": 36.625
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-10.parquet"
+}

@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 41.0654,
+      "full_name": "Roundhill Treasury Bond WeeklyPay ETF",
+      "iv_rank": 4.2173,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TSYW",
+      "total_volume": 25,
+      "volume_ratio": 750.7507507507506
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 20.02,
+      "full_name": "Invesco India ETF",
+      "iv_rank": 13.2075,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IMVP",
+      "total_volume": 12,
+      "volume_ratio": 360.36036036036035
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 98.87,
+      "full_name": "ISHARES CORE AGGRESSIVE ALLOCATION ETF",
+      "iv_rank": 1.7485,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AOA",
+      "total_volume": 24,
+      "volume_ratio": 179.91004497751126
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 49.76,
+      "full_name": "FIRST MID BANCSHARES INC",
+      "iv_rank": 5.3244,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "FMBH",
+      "total_volume": 9,
+      "volume_ratio": 134.93253373313345
+    },
+    {
+      "avg_total_volume": 936.1333000000001,
+      "close": 5.42,
+      "full_name": "DRAGANFLY INC",
+      "iv_rank": 49.3844,
+      "put_call_ratio": 0.013815000946232942,
+      "sector": "Industrials",
+      "ticker": "DPRO",
+      "total_volume": 96428,
+      "volume_ratio": 103.00669787091218
+    },
+    {
+      "avg_total_volume": 0.5333,
+      "close": 21.1572,
+      "full_name": "AXS ASTORIA INFLATION SENSITIVE ETF",
+      "iv_rank": 13.0916,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PPI",
+      "total_volume": 50,
+      "volume_ratio": 93.75585974123383
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 69.4146,
+      "full_name": "FIDELITY DIVIDEND ETF FOR RISING RATES",
+      "iv_rank": 21.9501,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FDRR",
+      "total_volume": 3,
+      "volume_ratio": 90.09009009009009
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 6.07,
+      "full_name": "PROSHARES ULTRASHORT MIDCAP400",
+      "iv_rank": 7.4099,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MZZ",
+      "total_volume": 22,
+      "volume_ratio": 82.48968878890139
+    },
+    {
+      "avg_total_volume": 32.2333,
+      "close": 35.16,
+      "full_name": "OMNICELL INC",
+      "iv_rank": 28.3219,
+      "put_call_ratio": 0.0017490161783996502,
+      "sector": "Healthcare",
+      "ticker": "OMCL",
+      "total_volume": 2291,
+      "volume_ratio": 71.07556471102866
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 34.2665,
+      "full_name": "PROSHARES ULTRAPRO MIDCAP400",
+      "iv_rank": 25.5021,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UMDD",
+      "total_volume": 20,
+      "volume_ratio": 66.66666666666667
+    },
+    {
+      "avg_total_volume": 161.5,
+      "close": 3.39,
+      "full_name": "LG DISPLAY CO LTD",
+      "iv_rank": 73.7266,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "LPL",
+      "total_volume": 10070,
+      "volume_ratio": 62.35294117647059
+    },
+    {
+      "avg_total_volume": 0.1666,
+      "close": 17.57,
+      "full_name": "KRANESHARES CALIFORNIA CARBON ALLOWANCE STRATEGY ETF",
+      "iv_rank": 41.2942,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "KCCA",
+      "total_volume": 10,
+      "volume_ratio": 60.024009603841534
+    },
+    {
+      "avg_total_volume": 0.16670000000000001,
+      "close": 45.959,
+      "full_name": "ISHARES BLOCKCHAIN AND TECH ETF",
+      "iv_rank": 66.7996,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IBLC",
+      "total_volume": 10,
+      "volume_ratio": 59.98800239952009
+    },
+    {
+      "avg_total_volume": 0.5333,
+      "close": 17.86,
+      "full_name": "VANECK PREFERRED SECURITIES EX FINANCIALS ETF",
+      "iv_rank": 39.4273,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PFXF",
+      "total_volume": 30,
+      "volume_ratio": 56.2535158447403
+    },
+    {
+      "avg_total_volume": 2215.9667,
+      "close": 0.8762,
+      "full_name": "GOPRO INC",
+      "iv_rank": 100,
+      "put_call_ratio": 0.04778507931463184,
+      "sector": "Technology",
+      "ticker": "GPRO",
+      "total_volume": 112091,
+      "volume_ratio": 50.58334134714209
+    },
+    {
+      "avg_total_volume": 8.066600000000001,
+      "close": 327.64,
+      "full_name": "RENAISSANCERE HOLDINGS LTD",
+      "iv_rank": 19.1304,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "RNR",
+      "total_volume": 401,
+      "volume_ratio": 49.71115463764163
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 93.77,
+      "full_name": "ISHARES RESIDENTIAL AND MULTISECTOR REAL ESTATE ETF",
+      "iv_rank": 8.0972,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "REZ",
+      "total_volume": 24,
+      "volume_ratio": 48
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 52.19,
+      "full_name": "ISHARES 5-10 YEAR INVESTMENT GRADE CORPORATE BOND ETF",
+      "iv_rank": 20.2643,
+      "put_call_ratio": 2,
+      "sector": null,
+      "ticker": "IGIB",
+      "total_volume": 24,
+      "volume_ratio": 48
+    },
+    {
+      "avg_total_volume": 43.5334,
+      "close": 48.72,
+      "full_name": "SEADRILL LTD",
+      "iv_rank": 34.8837,
+      "put_call_ratio": 0.007223942208462332,
+      "sector": "Energy",
+      "ticker": "SDRL",
+      "total_volume": 1952,
+      "volume_ratio": 44.83913500898161
+    },
+    {
+      "avg_total_volume": 17.0334,
+      "close": 0.3879,
+      "full_name": "COLLPLANT BIOTECHNOLOGIES LTD",
+      "iv_rank": 12.5708,
+      "put_call_ratio": 0.024161073825503355,
+      "sector": "Healthcare",
+      "ticker": "CLGN",
+      "total_volume": 763,
+      "volume_ratio": 44.794345227611636
+    },
+    {
+      "avg_total_volume": 2.3,
+      "close": 3.58,
+      "full_name": "OFS CAPITAL CORP",
+      "iv_rank": 14.9406,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "OFS",
+      "total_volume": 100,
+      "volume_ratio": 43.47826086956522
+    },
+    {
+      "avg_total_volume": 24.3666,
+      "close": 2.91,
+      "full_name": "SO-YOUNG INTERNATIONAL INC",
+      "iv_rank": 49.0797,
+      "put_call_ratio": 0.4170337738619677,
+      "sector": "Healthcare",
+      "ticker": "SY",
+      "total_volume": 965,
+      "volume_ratio": 39.603391527747
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 8.5035,
+      "full_name": "PROSHARES ULTRASHORT SMALLCAP600",
+      "iv_rank": 5.3683,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SDD",
+      "total_volume": 10,
+      "volume_ratio": 37.50937734433608
+    },
+    {
+      "avg_total_volume": 12.0667,
+      "close": 53.26,
+      "full_name": "RENAISSANCE CAPITAL GREENWICH FUNDS",
+      "iv_rank": 58.5841,
+      "put_call_ratio": 221,
+      "sector": null,
+      "ticker": "IPO",
+      "total_volume": 444,
+      "volume_ratio": 36.7954784655291
+    },
+    {
+      "avg_total_volume": 293.6,
+      "close": 70.51,
+      "full_name": "LOUISIANA-PACIFIC CORP",
+      "iv_rank": 28.0908,
+      "put_call_ratio": 2008.2,
+      "sector": "Industrials",
+      "ticker": "LPX",
+      "total_volume": 10046,
+      "volume_ratio": 34.21662125340599
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-31.parquet"
+}

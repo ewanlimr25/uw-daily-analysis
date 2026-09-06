@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 38.92,
+      "full_name": "SPDR DOUBLELINE TOTAL RETURN TACTICAL ETF",
+      "iv_rank": 11.5186,
+      "put_call_ratio": 2,
+      "sector": null,
+      "ticker": "TOTL",
+      "total_volume": 150,
+      "volume_ratio": 4504.504504504504
+    },
+    {
+      "avg_total_volume": 0.5,
+      "close": 24.505,
+      "full_name": "WEBs Health Care XLV Defined Volatility ETF",
+      "iv_rank": 52.2973,
+      "put_call_ratio": 1115,
+      "sector": null,
+      "ticker": "DVXV",
+      "total_volume": 1116,
+      "volume_ratio": 2232
+    },
+    {
+      "avg_total_volume": 0.8333,
+      "close": 20.36,
+      "full_name": "WEBs Materials XLB Defined Volatility ET",
+      "iv_rank": 100,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DVXB",
+      "total_volume": 1214,
+      "volume_ratio": 1456.8582743309732
+    },
+    {
+      "avg_total_volume": 1.4,
+      "close": 20.34,
+      "full_name": "WEBs Industrials XLI Defined Volatility ETF",
+      "iv_rank": 100,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DVIN",
+      "total_volume": 1806,
+      "volume_ratio": 1290
+    },
+    {
+      "avg_total_volume": 0.1666,
+      "close": 100.7,
+      "full_name": "Roundhill Ultra Short Duration No Dividend Target ETF",
+      "iv_rank": 79.3651,
+      "put_call_ratio": 200,
+      "sector": null,
+      "ticker": "XBOX",
+      "total_volume": 201,
+      "volume_ratio": 1206.4825930372149
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": 18.6828,
+      "full_name": "FIRST TRUST INDXX GLOBAL NATURAL RESOURCES INCOME ETF",
+      "iv_rank": 7.3813,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FTRI",
+      "total_volume": 150,
+      "volume_ratio": 642.9489927132447
+    },
+    {
+      "avg_total_volume": 26.5,
+      "close": 23.82,
+      "full_name": "POSTAL REALTY TRUST INC",
+      "iv_rank": 26.6811,
+      "put_call_ratio": 0.0012059089538739825,
+      "sector": "Real Estate",
+      "ticker": "PSTL",
+      "total_volume": 3321,
+      "volume_ratio": 125.32075471698113
+    },
+    {
+      "avg_total_volume": 4.3334,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 62.7094,
+      "put_call_ratio": 0.7,
+      "sector": null,
+      "ticker": "SGMOQ",
+      "total_volume": 414,
+      "volume_ratio": 95.53699173858864
+    },
+    {
+      "avg_total_volume": 6.9333,
+      "close": 36.7517,
+      "full_name": "GUGGENHEIM S&P 500(R) EQUAL WEIGHT REAL ESTATE ETF",
+      "iv_rank": 14.7702,
+      "put_call_ratio": 0.5714285714285714,
+      "sector": null,
+      "ticker": "RSPR",
+      "total_volume": 550,
+      "volume_ratio": 79.3273044581945
+    },
+    {
+      "avg_total_volume": 66.4666,
+      "close": 266.65,
+      "full_name": "SPDR(R) S&P(R) AEROSPACE & DEFENSE ETF",
+      "iv_rank": 72.4349,
+      "put_call_ratio": 173.06896551724137,
+      "sector": null,
+      "ticker": "XAR",
+      "total_volume": 5048,
+      "volume_ratio": 75.94791970704082
+    },
+    {
+      "avg_total_volume": 4.2667,
+      "close": 30.1742,
+      "full_name": "FIRST TRUST INDXX GLOBAL AGRICULTURE ETF",
+      "iv_rank": 26.3962,
+      "put_call_ratio": 0.5,
+      "sector": null,
+      "ticker": "FTAG",
+      "total_volume": 300,
+      "volume_ratio": 70.31195068788524
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 63.5943,
+      "full_name": "XTRACKERS MSCI EUROZONE HEDGED EQUITY ETF",
+      "iv_rank": 22.1007,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DBEZ",
+      "total_volume": 9,
+      "volume_ratio": 67.51687921980495
+    },
+    {
+      "avg_total_volume": 4.6667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 12.63,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "LEN1",
+      "total_volume": 288,
+      "volume_ratio": 61.713844901107855
+    },
+    {
+      "avg_total_volume": 0.19999999999999998,
+      "close": 50.7239,
+      "full_name": "AI POWERED EQUITY ETF",
+      "iv_rank": 13.2135,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AIEQ",
+      "total_volume": 11,
+      "volume_ratio": 55.00000000000001
+    },
+    {
+      "avg_total_volume": 3.9333,
+      "close": 7.04,
+      "full_name": "WHITEHORSE FINANCE INC",
+      "iv_rank": 32.1109,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "WHF",
+      "total_volume": 210,
+      "volume_ratio": 53.39028296849973
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": 25.44,
+      "full_name": "WEBs Financial XLF Defined Volatility ETF",
+      "iv_rank": 49.5599,
+      "put_call_ratio": 1.5,
+      "sector": null,
+      "ticker": "DVXF",
+      "total_volume": 10,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 396.4,
+      "close": 8.88,
+      "full_name": "NCR VOYIX CORP",
+      "iv_rank": 61.2855,
+      "put_call_ratio": 0.016731233507383078,
+      "sector": "Technology",
+      "ticker": "VYX",
+      "total_volume": 18109,
+      "volume_ratio": 45.68365287588295
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 6.1598,
+      "full_name": "Leverage Shares 2x Long GRAB Daily ETF",
+      "iv_rank": 13.7573,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GRAG",
+      "total_volume": 7,
+      "volume_ratio": 41.99160167966407
+    },
+    {
+      "avg_total_volume": 47.0334,
+      "close": 29.74,
+      "full_name": "ISHARES CORE HIGH DIVIDEND ETF",
+      "iv_rank": 25.7353,
+      "put_call_ratio": 0.06262104583602324,
+      "sector": null,
+      "ticker": "HDV",
+      "total_volume": 1646,
+      "volume_ratio": 34.996406808778445
+    },
+    {
+      "avg_total_volume": 0.8666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "LILA1",
+      "total_volume": 30,
+      "volume_ratio": 34.618047542118624
+    },
+    {
+      "avg_total_volume": 29.700000000000003,
+      "close": 2.21,
+      "full_name": "AMERICAN VANGUARD CORP",
+      "iv_rank": 41.021,
+      "put_call_ratio": 0,
+      "sector": "Basic Materials",
+      "ticker": "AVD",
+      "total_volume": 1001,
+      "volume_ratio": 33.7037037037037
+    },
+    {
+      "avg_total_volume": 143.8,
+      "close": 18.84,
+      "full_name": "KANZHUN LTD",
+      "iv_rank": 43.3043,
+      "put_call_ratio": 0.02813852813852814,
+      "sector": "Industrials",
+      "ticker": "BZ",
+      "total_volume": 4750,
+      "volume_ratio": 33.031988873435324
+    },
+    {
+      "avg_total_volume": 4.6,
+      "close": 23.92,
+      "full_name": "FIRST TRUST GLOBAL WIND ENERGY ETF",
+      "iv_rank": 29.8851,
+      "put_call_ratio": 1.2205882352941178,
+      "sector": null,
+      "ticker": "FAN",
+      "total_volume": 151,
+      "volume_ratio": 32.82608695652174
+    },
+    {
+      "avg_total_volume": 38.5667,
+      "close": 85.41,
+      "full_name": "GLOBAL X MSCI GREECE ETF",
+      "iv_rank": 39.3174,
+      "put_call_ratio": 6.483870967741935,
+      "sector": null,
+      "ticker": "GREK",
+      "total_volume": 1160,
+      "volume_ratio": 30.077761384821624
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": 36.21,
+      "full_name": "Corgi Genomics & Precision Medicine ETF",
+      "iv_rank": 11.6393,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "GNMX",
+      "total_volume": 2,
+      "volume_ratio": 30.030030030030026
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-26.parquet"
+}

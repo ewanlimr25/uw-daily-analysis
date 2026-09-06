@@ -1,0 +1,210 @@
+{
+ "regime": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 234,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0,
+  "drop_missed": 234,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "vrp": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 238,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0076,
+  "drop_missed": 238,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "event_risk": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 226,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0,
+  "drop_missed": 226,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "fundamentals": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 2,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 230,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 2,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0153,
+  "drop_missed": 230,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "panic": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 239,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0,
+  "drop_missed": 239,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "cluster": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 234,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0076,
+  "drop_missed": 234,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "sector": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 239,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.0076,
+  "drop_missed": 239,
+  "drop_n": 447,
+  "drift_flag": false
+ },
+ "debate": {
+  "per_tier": {
+   "HIGH": {
+    "missed": 7,
+    "n": 7
+   },
+   "MEDIUM": {
+    "missed": 20,
+    "n": 20
+   },
+   "LOW": {
+    "missed": 62,
+    "n": 104
+   },
+   "DROP": {
+    "missed": 252,
+    "n": 447
+   }
+  },
+  "non_drop_missed": 89,
+  "non_drop_n": 131,
+  "non_drop_rate": 0.6794,
+  "drop_missed": 252,
+  "drop_n": 447,
+  "drift_flag": true
+ }
+}

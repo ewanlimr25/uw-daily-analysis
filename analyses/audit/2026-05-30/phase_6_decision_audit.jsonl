@@ -1,0 +1,61 @@
+{
+ "sigma_ok": 63,
+ "sigma_n": 63,
+ "sizing_compliant": 204,
+ "sizing_n": 213,
+ "gate_firing": {
+  "vrp": 3,
+  "fundamentals": 14,
+  "regime": 5,
+  "event_risk": 18,
+  "cluster": 4
+ },
+ "gate_effectiveness": {
+  "regime": {
+   "down_n": 0,
+   "down_wr": null,
+   "ungated_n": 7,
+   "ungated_wr": 0.5714285714285714
+  },
+  "vrp": {
+   "down_n": 4,
+   "down_wr": 1.0,
+   "ungated_n": 3,
+   "ungated_wr": 0.0
+  },
+  "panic": {
+   "down_n": 0,
+   "down_wr": null,
+   "ungated_n": 7,
+   "ungated_wr": 0.5714285714285714
+  },
+  "cluster": {
+   "down_n": 1,
+   "down_wr": 1.0,
+   "ungated_n": 6,
+   "ungated_wr": 0.5
+  },
+  "sector": {
+   "down_n": 0,
+   "down_wr": null,
+   "ungated_n": 7,
+   "ungated_wr": 0.5714285714285714
+  },
+  "event_risk": {
+   "down_n": 4,
+   "down_wr": 0.25,
+   "ungated_n": 3,
+   "ungated_wr": 1.0
+  },
+  "fundamentals": {
+   "down_n": 3,
+   "down_wr": 0.6666666666666666,
+   "ungated_n": 4,
+   "ungated_wr": 0.5
+  }
+ },
+ "fund_fp_n": 3,
+ "fund_fp_won": 2,
+ "debate_decided": 2,
+ "missed_event_n": 0
+}

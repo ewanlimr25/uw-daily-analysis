@@ -1,0 +1,120 @@
+{
+ "rubric_version": "2026-06-12",
+ "freeze_in_force": true,
+ "provenance": "verbatim_envelope_335_of_335",
+ "bh_survivor_tools": 0,
+ "component_grading": {
+  "accumulation_conjunction_p3": {
+   "marginal_pp": 12.5,
+   "n": 26,
+   "strata": {
+    "uptrend": -4.6,
+    "pullback": 12.0,
+    "choppy": -30.8
+   },
+   "grade": "SUPPORTED"
+  },
+  "mechanized_dex_p1": {
+   "marginal_pp": -6.9,
+   "n": 43,
+   "strata": {
+    "uptrend": 18.2,
+    "pullback": -13.3,
+    "choppy": -33.3,
+    "transitional": -41.7
+   },
+   "grade": "OUTCOME_CONTRADICTED",
+   "prereg": "C44"
+  },
+  "cum_flow_p1": {
+   "marginal_pp": 13.7,
+   "n": 149,
+   "ubiquity": 0.56,
+   "grade": "MEASUREMENT_CONFOUNDED",
+   "prereg": "C45"
+  },
+  "multileg_p2": {
+   "marginal_pp": 26.5,
+   "n": 45,
+   "history": [
+    -38.8,
+    -12.7,
+    26.5
+   ],
+   "grade": "SIGN_UNSTABLE",
+   "prereg": "C40"
+  },
+  "oi_trend_building_p3_weekly": {
+   "marginal_pp": -9.2,
+   "n": 69,
+   "strata": {
+    "uptrend": -6.1,
+    "pullback": 7.4,
+    "choppy": -36.4,
+    "transitional": -17.9
+   },
+   "grade": "NEWLY_FLAGGED",
+   "prereg": "C47"
+  },
+  "sector_leader_p1": {
+   "marginal_pp": 0.1,
+   "n": 36,
+   "grade": "NO_INFO"
+  },
+  "signal_confluence_p1": {
+   "marginal_pp": 6.1,
+   "n": 50,
+   "grade": "CONTEXT_ONLY"
+  }
+ },
+ "tier_cut_grading": {
+  "post_freeze_LOW": {
+   "n": 11,
+   "wr": 0.455
+  },
+  "post_freeze_DROP": {
+   "n": 106,
+   "wr": 0.415
+  },
+  "post_freeze_raw_ge7": 0,
+  "monotone_low_vs_drop": true
+ },
+ "freeze_lift": {
+  "post_freeze_decided": 117,
+  "high_n": 0,
+  "medium_n": 0,
+  "verdict": "CANNOT_RUN_KEEP_FREEZE",
+  "revised_criterion": {
+   "low_vs_drop_monotone": true,
+   "post_freeze_book_excess_pp": -8.8,
+   "verdict": "FAILS_SECOND_LEG_KEEP"
+  }
+ },
+ "halfcap_p06": {
+  "oor_decided": 20,
+  "oor_wr": 0.25,
+  "oor_excess_pp": -21.5,
+  "in_regime_wr": 0.455,
+  "in_regime_excess_pp": 0.6,
+  "status": "ACTIONABLE_PROTECTIVE_KEEP"
+ },
+ "preregistrations": {
+  "C40": "NOT_CLEARED_sign_unstable",
+  "C41": "NOT_CLEARED_no_post_freeze_high",
+  "C42": "HYGIENE_APPLIED_VERIFIED_bar_open",
+  "C43": "STILL_OPEN_fields_absent",
+  "C44": "NOT_CLEARED_mechanism_reinforced",
+  "C45": "NOT_CLEARED_ubiquity_0.56",
+  "C46": {
+   "status": "NEW",
+   "claim": "multi_day_sweep under-claim + 0.0-claim emission bug",
+   "bar": ">=15 distinct underlyings, cross-regime, BH FDR 0.10, non-degenerate claims"
+  },
+  "C47": {
+   "status": "NEW",
+   "claim": "weekly +3 oi-trend rides negative-marginal artifact-prone tool",
+   "bar": "cross-regime AND n>=30/arm AND BH on artifact-corrected read"
+  }
+ },
+ "w27_caveats_logged": 8
+}

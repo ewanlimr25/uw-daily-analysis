@@ -1,0 +1,152 @@
+{
+ "quant": {
+  "rows_with_dict_components": 63,
+  "rows_with_string_components_skipped": 190,
+  "sum_eq_rawscore": 63,
+  "sum_mismatch": 0,
+  "sum_mismatch_examples": [],
+  "all_components_named": 51,
+  "components_unnamed": 12,
+  "compliance_rate": 1.0
+ },
+ "sizing_map": {
+  "rows": 213,
+  "compliant_or_downgraded": 201,
+  "upgrade_violations": 12,
+  "examples": [
+   [
+    "2026-05-06",
+    "CELH",
+    0.0,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-06",
+    "WRBY",
+    0.0,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-06",
+    "DDOG",
+    0.0,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-06",
+    "ABNB",
+    0.0,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-07",
+    "SPY",
+    0.375,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-07",
+    "META",
+    0.375,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-07",
+    "IWM",
+    0.375,
+    "half",
+    "starter_or_skip"
+   ],
+   [
+    "2026-05-11",
+    "MU",
+    0.0,
+    "full",
+    "starter_or_skip"
+   ],
+   [
+    "2026-W18",
+    "MU",
+    0.8,
+    "quarter",
+    "full"
+   ],
+   [
+    "2026-W18",
+    "INTC",
+    0.778,
+    "quarter",
+    "full"
+   ]
+  ],
+  "compliance_rate": 0.944
+ },
+ "risk_gates": {
+  "envelope_rows": 32,
+  "gate_fire_rate": {
+   "regime": "8/32",
+   "vrp": "5/32",
+   "panic": "4/32",
+   "cluster": "8/32",
+   "sector": "4/32",
+   "event_risk": "21/32",
+   "fundamentals": "17/30"
+  },
+  "event_risk_missed_ledger": [
+   [
+    "2026-05-28",
+    "SMH",
+    "Nonfarm payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-28",
+    "ASTS",
+    "Nonfarm payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-28",
+    "P",
+    "Nonfarm payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-28",
+    "MSFT",
+    "Nonfarm payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-28",
+    "BRKR",
+    "Nonfarm payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-29",
+    "MSFT",
+    "Nonfarm Payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-05-29",
+    "SMH",
+    "Nonfarm Payrolls (May)",
+    "2026-06-05"
+   ],
+   [
+    "2026-W22",
+    "MSFT",
+    "AVGO earnings (amc)",
+    "2026-06-03"
+   ]
+  ]
+ }
+}

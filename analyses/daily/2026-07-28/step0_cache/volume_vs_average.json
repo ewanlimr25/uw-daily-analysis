@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 3.4667,
+      "close": 32.56,
+      "full_name": "SMITH & NEPHEW PLC",
+      "iv_rank": 18.7972,
+      "put_call_ratio": 1.0004,
+      "sector": "Healthcare",
+      "ticker": "SNN",
+      "total_volume": 10002,
+      "volume_ratio": 2885.16456572533
+    },
+    {
+      "avg_total_volume": 6.2666,
+      "close": 20.55,
+      "full_name": "ZUMIEZ INC",
+      "iv_rank": 52.7166,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "ZUMZ",
+      "total_volume": 4231,
+      "volume_ratio": 675.1667570931605
+    },
+    {
+      "avg_total_volume": 1.2666000000000002,
+      "close": 14.1,
+      "full_name": "Meridian Holdings Inc",
+      "iv_rank": 31.0802,
+      "put_call_ratio": 0.033444816053511704,
+      "sector": "Communication Services",
+      "ticker": "MRDN",
+      "total_volume": 309,
+      "volume_ratio": 243.9602084320227
+    },
+    {
+      "avg_total_volume": 5.300000000000001,
+      "close": 34.44,
+      "full_name": "FARMERS & MERCHANTS BANCORP INC",
+      "iv_rank": 17.213,
+      "put_call_ratio": 0.0009199632014719411,
+      "sector": "Financial Services",
+      "ticker": "FMAO",
+      "total_volume": 1088,
+      "volume_ratio": 205.2830188679245
+    },
+    {
+      "avg_total_volume": 6.4,
+      "close": 27.01,
+      "full_name": "ARTIVION INC",
+      "iv_rank": 87.8563,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "AORT",
+      "total_volume": 1152,
+      "volume_ratio": 180
+    },
+    {
+      "avg_total_volume": 0.037,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FLZH1",
+      "total_volume": 5,
+      "volume_ratio": 135.13513513513513
+    },
+    {
+      "avg_total_volume": 24.4,
+      "close": 42.52,
+      "full_name": "BROOKFIELD INFRASTRUCTURE CORP",
+      "iv_rank": 46.8395,
+      "put_call_ratio": 0.0003621876131836291,
+      "sector": "Utilities",
+      "ticker": "BIPC",
+      "total_volume": 2762,
+      "volume_ratio": 113.19672131147541
+    },
+    {
+      "avg_total_volume": 2.2667,
+      "close": 28.08,
+      "full_name": "VANECK ETHEREUM ETF",
+      "iv_rank": 20.9823,
+      "put_call_ratio": 8.32,
+      "sector": null,
+      "ticker": "ETHV",
+      "total_volume": 233,
+      "volume_ratio": 102.79260599108837
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 46.425,
+      "full_name": "JPMORGAN CORE PLUS BOND ETF",
+      "iv_rank": 33.6226,
+      "put_call_ratio": 20,
+      "sector": null,
+      "ticker": "JCPB",
+      "total_volume": 21,
+      "volume_ratio": 78.76969242310578
+    },
+    {
+      "avg_total_volume": 159.23329999999999,
+      "close": 79,
+      "full_name": "WARRIOR MET COAL INC",
+      "iv_rank": 64.2493,
+      "put_call_ratio": 404,
+      "sector": "Basic Materials",
+      "ticker": "HCC",
+      "total_volume": 10530,
+      "volume_ratio": 66.12938374071253
+    },
+    {
+      "avg_total_volume": 71.9,
+      "close": 6.35,
+      "full_name": "DESIGNER BRANDS INC",
+      "iv_rank": 0.3097,
+      "put_call_ratio": 0.089111328125,
+      "sector": "Consumer Cyclical",
+      "ticker": "DBI",
+      "total_volume": 4461,
+      "volume_ratio": 62.04450625869262
+    },
+    {
+      "avg_total_volume": 0.7,
+      "close": 35.81,
+      "full_name": "METROCITY BANKSHARES INC",
+      "iv_rank": 20.1733,
+      "put_call_ratio": 0.023809523809523808,
+      "sector": "Financial Services",
+      "ticker": "MCBS",
+      "total_volume": 43,
+      "volume_ratio": 61.42857142857143
+    },
+    {
+      "avg_total_volume": 200.63330000000002,
+      "close": 86.17,
+      "full_name": "Solventum Corporation",
+      "iv_rank": 56.0583,
+      "put_call_ratio": 0.0030904663794718112,
+      "sector": "Healthcare",
+      "ticker": "SOLV",
+      "total_volume": 10711,
+      "volume_ratio": 53.385953378626574
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 35.42,
+      "full_name": "SPDR Bloomberg Enhanced Roll Yield Commodity Strategy No K-1 ETF",
+      "iv_rank": 15.3846,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CERY",
+      "total_volume": 3,
+      "volume_ratio": 44.977511244377816
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 49.97,
+      "full_name": "EMPLOYERS HOLDINGS INC",
+      "iv_rank": 24.3955,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "EIG",
+      "total_volume": 3,
+      "volume_ratio": 44.977511244377816
+    },
+    {
+      "avg_total_volume": 1.2667,
+      "close": 9.92,
+      "full_name": "INFUSYSTEM HOLDINGS INC",
+      "iv_rank": 42.4232,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "INFU",
+      "total_volume": 52,
+      "volume_ratio": 41.05155127496645
+    },
+    {
+      "avg_total_volume": 1.3667,
+      "close": 49.985,
+      "full_name": "US TREASURY 6 MONTH BILL ETF",
+      "iv_rank": 5.0865,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "XBIL",
+      "total_volume": 55,
+      "volume_ratio": 40.242920904368184
+    },
+    {
+      "avg_total_volume": 330.1333,
+      "close": 1.65,
+      "full_name": "OPKO HEALTH INC",
+      "iv_rank": 28.1122,
+      "put_call_ratio": 0.02786137268226386,
+      "sector": "Healthcare",
+      "ticker": "OPK",
+      "total_volume": 10588,
+      "volume_ratio": 32.071893383672595
+    },
+    {
+      "avg_total_volume": 211.1,
+      "close": 40.88,
+      "full_name": "ARTISAN PARTNERS ASSET MANAGEMENT INC",
+      "iv_rank": 46.193,
+      "put_call_ratio": 0.08779857972885732,
+      "sector": "Financial Services",
+      "ticker": "APAM",
+      "total_volume": 6740,
+      "volume_ratio": 31.92799621032686
+    },
+    {
+      "avg_total_volume": 100.6667,
+      "close": 19.63,
+      "full_name": "FULGENT GENETICS INC",
+      "iv_rank": 71.6658,
+      "put_call_ratio": 1.0773809523809523,
+      "sector": "Healthcare",
+      "ticker": "FLGT",
+      "total_volume": 3141,
+      "volume_ratio": 31.201976423186615
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 39,
+      "full_name": "CENTRAL GARDEN & PET CO",
+      "iv_rank": 22.6669,
+      "put_call_ratio": 0,
+      "sector": "Consumer Defensive",
+      "ticker": "CENTA",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 96.19,
+      "full_name": "SPDR(R) S & P 400 MID CAP VALUE ETF",
+      "iv_rank": 27.3861,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MDYV",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 115.49,
+      "full_name": "HSBC Holdings plc ADRhedged",
+      "iv_rank": 46.5988,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HSBH",
+      "total_volume": 4,
+      "volume_ratio": 30.00750187546887
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 21.55,
+      "full_name": "FIRST TRUST NASDAQ BUYWRITE INCOME ETF",
+      "iv_rank": 26.2262,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FTQI",
+      "total_volume": 3,
+      "volume_ratio": 30
+    },
+    {
+      "avg_total_volume": 1.3334000000000001,
+      "close": 40.84,
+      "full_name": "CARRIAGE SERVICES INC",
+      "iv_rank": 60.1659,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "CSV",
+      "total_volume": 40,
+      "volume_ratio": 29.998500074996247
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-07-28.parquet"
+}

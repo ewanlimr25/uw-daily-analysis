@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 1.9666000000000001,
+      "close": 28.28,
+      "full_name": "HAVERTY FURNITURE COMPANIES INC",
+      "iv_rank": 31.8309,
+      "put_call_ratio": 0.004134366925064599,
+      "sector": "Consumer Cyclical",
+      "ticker": "HVT",
+      "total_volume": 5829,
+      "volume_ratio": 2963.998779619648
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 49.655,
+      "full_name": "VANGUARD ULTRA-SHORT BOND ETF",
+      "iv_rank": 56.7233,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VUSB",
+      "total_volume": 16,
+      "volume_ratio": 480.4804804804804
+    },
+    {
+      "avg_total_volume": 14.9667,
+      "close": 237.85,
+      "full_name": "INSTALLED BUILDING PRODUCTS INC",
+      "iv_rank": 87.2076,
+      "put_call_ratio": 4800,
+      "sector": "Industrials",
+      "ticker": "IBP",
+      "total_volume": 4801,
+      "volume_ratio": 320.7787955928829
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 99.91,
+      "full_name": "GOLDMAN SACHS ACCESS TREASURY 0-1 YEAR ETF",
+      "iv_rank": 15.2071,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GBIL",
+      "total_volume": 9,
+      "volume_ratio": 270.27027027027026
+    },
+    {
+      "avg_total_volume": 1.0666,
+      "close": 0.8331,
+      "full_name": "SACHEM CAPITAL CORP",
+      "iv_rank": 81.3421,
+      "put_call_ratio": 0,
+      "sector": "Real Estate",
+      "ticker": "SACH",
+      "total_volume": 280,
+      "volume_ratio": 262.5164072754547
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 22.505,
+      "full_name": "PROSHARES ULTRA UTILITIES",
+      "iv_rank": 0.2477,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "UPW",
+      "total_volume": 84,
+      "volume_ratio": 210
+    },
+    {
+      "avg_total_volume": 289.9,
+      "close": 11.89,
+      "full_name": "GRAPHIC PACKAGING HOLDING CO",
+      "iv_rank": 64.4469,
+      "put_call_ratio": 0.003115537430206711,
+      "sector": "Consumer Cyclical",
+      "ticker": "GPK",
+      "total_volume": 57311,
+      "volume_ratio": 197.6923076923077
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 50.83,
+      "full_name": "JPMORGAN ULTRA-SHORT MUNICIPAL INCOME ETF",
+      "iv_rank": 26.3658,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "JMST",
+      "total_volume": 17,
+      "volume_ratio": 170
+    },
+    {
+      "avg_total_volume": 1.2,
+      "close": 59.07,
+      "full_name": "GUGGENHEIM S&P 500(R) PURE GROWTH ETF",
+      "iv_rank": 78.1451,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RPG",
+      "total_volume": 200,
+      "volume_ratio": 166.66666666666669
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 40.6466,
+      "full_name": "Roundhill BRKB WeeklyPay ETF",
+      "iv_rank": 12.0501,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BRKW",
+      "total_volume": 20,
+      "volume_ratio": 150.03750937734432
+    },
+    {
+      "avg_total_volume": 7.2667,
+      "close": 0.456,
+      "full_name": "MILESTONE SCIENTIFIC INC",
+      "iv_rank": 3.5206,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "MLSS",
+      "total_volume": 1011,
+      "volume_ratio": 139.12780216604511
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 215.16,
+      "full_name": "FIRST TRUST TECHNOLOGY ALPHADEX FUND",
+      "iv_rank": 65.5512,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FXL",
+      "total_volume": 20,
+      "volume_ratio": 119.9760047990402
+    },
+    {
+      "avg_total_volume": 0.8667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0.02,
+      "sector": null,
+      "ticker": "SQQQ1",
+      "total_volume": 103,
+      "volume_ratio": 118.84158301603784
+    },
+    {
+      "avg_total_volume": 170.1667,
+      "close": 1.05,
+      "full_name": "BRC INC",
+      "iv_rank": 60.1758,
+      "put_call_ratio": 0.01023174911751164,
+      "sector": "Consumer Defensive",
+      "ticker": "BRCC",
+      "total_volume": 19747,
+      "volume_ratio": 116.04503113711438
+    },
+    {
+      "avg_total_volume": 12.533299999999999,
+      "close": 85.325,
+      "full_name": "LIVANOVA PLC",
+      "iv_rank": 56.1736,
+      "put_call_ratio": 0.989409984871407,
+      "sector": "Healthcare",
+      "ticker": "LIVN",
+      "total_volume": 1315,
+      "volume_ratio": 104.92049180981866
+    },
+    {
+      "avg_total_volume": 4,
+      "close": 64.96,
+      "full_name": "FEDERATED HERMES INC",
+      "iv_rank": 38.9027,
+      "put_call_ratio": 0.0392156862745098,
+      "sector": "Financial Services",
+      "ticker": "FHI",
+      "total_volume": 318,
+      "volume_ratio": 79.5
+    },
+    {
+      "avg_total_volume": 41.7,
+      "close": 145.22,
+      "full_name": "ARCOSA INC",
+      "iv_rank": 19.292,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "ACA",
+      "total_volume": 2926,
+      "volume_ratio": 70.16786570743405
+    },
+    {
+      "avg_total_volume": 139.5667,
+      "close": 25.6,
+      "full_name": "ELANCO ANIMAL HEALTH INC",
+      "iv_rank": 90.4539,
+      "put_call_ratio": 3.5977788507967166,
+      "sector": "Healthcare",
+      "ticker": "ELAN",
+      "total_volume": 9522,
+      "volume_ratio": 68.22544346179998
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 52.68,
+      "full_name": "S&T BANCORP INC",
+      "iv_rank": 20.5525,
+      "put_call_ratio": 1,
+      "sector": "Financial Services",
+      "ticker": "STBA",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 30.1,
+      "close": 46.17,
+      "full_name": "UNITED PARKS & RESORTS INC",
+      "iv_rank": 43.4441,
+      "put_call_ratio": 7.193396226415095,
+      "sector": "Consumer Cyclical",
+      "ticker": "PRKS",
+      "total_volume": 1737,
+      "volume_ratio": 57.707641196013284
+    },
+    {
+      "avg_total_volume": 3.3333999999999997,
+      "close": 12.32,
+      "full_name": "INFUSYSTEM HOLDINGS INC",
+      "iv_rank": 94.4523,
+      "put_call_ratio": 0.1910828025477707,
+      "sector": "Healthcare",
+      "ticker": "INFU",
+      "total_volume": 187,
+      "volume_ratio": 56.09887802243956
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 85.21,
+      "full_name": "INVESCO S&P SMALLCAP INFORMATION TECHNOLOGY ETF",
+      "iv_rank": 56.1532,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PSCT",
+      "total_volume": 21,
+      "volume_ratio": 52.5
+    },
+    {
+      "avg_total_volume": 2.6333,
+      "close": 81.94,
+      "full_name": "WSFS FINANCIAL CORP",
+      "iv_rank": 29.3574,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "WSFS",
+      "total_volume": 138,
+      "volume_ratio": 52.405726654767776
+    },
+    {
+      "avg_total_volume": 23,
+      "close": 37.34,
+      "full_name": "Ibotta, INC",
+      "iv_rank": 34.8002,
+      "put_call_ratio": 1.6263982102908277,
+      "sector": "Technology",
+      "ticker": "IBTA",
+      "total_volume": 1174,
+      "volume_ratio": 51.04347826086956
+    },
+    {
+      "avg_total_volume": 18.4,
+      "close": 15,
+      "full_name": "Tradr 2X Long MPWR Daily ETF",
+      "iv_rank": 66.5281,
+      "put_call_ratio": 102.22222222222223,
+      "sector": null,
+      "ticker": "MPWX",
+      "total_volume": 929,
+      "volume_ratio": 50.48913043478261
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-04.parquet"
+}

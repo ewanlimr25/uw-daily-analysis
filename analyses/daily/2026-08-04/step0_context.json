@@ -1,0 +1,218 @@
+{
+  "date": "2026-08-04",
+  "fz_available": true,
+  "fz_screen_lane_status": "DEGRADED — `fz screen` emits corrupted doubled-first-letter tickers (AABEO/AABR/BBLZE/ZZBRA/DDDOG/MMSFT class). Known bug, 2026-08-01 audit. fz_squeeze_candidates and fz_rs_candidates are GRACEFUL-SKIPPED this run (advisory, 0 rubric points). `fz breadth` is unaffected and IS used.",
+
+  "regime": {
+    "label": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "spy": {"current": 771.33, "sma_20": 747.20, "sma_50": 745.89, "above_20sma": true, "above_50sma": true, "change_30d_pct": 2.67, "pct_from_90d_high": -0.27},
+    "market_breadth_flow": {"bullish_flow_tickers": 2585, "bearish_flow_tickers": 3701, "bullish_pct": 41.1, "tickers_with_options": 6286},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+
+  "TAPE_FRAMING_READ_THIS_FIRST": {
+    "verdict": "BROAD TECH-LED MELT-UP — not a rotation, not a narrow squeeze.",
+    "SPY": {"close": 771.33, "chg_1d_pct": 1.80, "chg_5d_pct": 4.11, "rv20": 14.1},
+    "QQQ": {"close": 723.85, "chg_1d_pct": 3.40, "chg_5d_pct": 7.16, "rv20": 25.5},
+    "IWM": {"close": 301.71, "chg_1d_pct": 1.85, "chg_5d_pct": 2.84, "rv20": 15.5},
+    "RSP_equal_weight": {"close": 220.23, "chg_1d_pct": 1.44, "chg_5d_pct": 1.17, "rv20": 11.3},
+    "VIX": {"close": 16.50, "chg_1d_pct": 4.04, "chg_5d_pct": -9.39},
+    "SMH": {"close": 575.71, "chg_1d_pct": 5.55, "chg_5d_pct": 8.71},
+    "sector_etfs_1d_pct": {"XLK": 4.98, "XLB": 1.94, "XLI": 1.77, "XLF": 0.87, "XLC": 0.63, "XLP": 0.60, "XLY": 0.07, "XLRE": -0.02, "XLV": -0.09, "XLE": -0.46, "XLU": -0.56},
+    "ai_semis_complex_1d_pct": {"PLTR": 29.45, "ARM": 17.36, "ALAB": 12.65, "INTC": 10.84, "DELL": 8.92, "LRCX": 7.85, "MU": 7.62, "CRWV": 7.16, "AMD": 7.00, "AVGO": 6.61, "NBIS": 6.19, "AMAT": 5.48, "IBM": 3.91, "NOW": 3.46, "TSM": 2.72},
+    "laggards_1d_pct": {"VST": -8.15, "DVA": -2.43, "AMZN": -2.32, "UNH": -1.88, "PODD": -1.70, "TWLO": -1.29, "ZBH": -1.21, "META": -0.39},
+    "notes": [
+      "1d is broad (IWM +1.85, RSP +1.44, 71.4% of S&P green) BUT 5d is heavily cap-weighted: SPY +4.11 vs RSP +1.17. The WEEK is a mega-cap-tech event; TODAY is broad.",
+      "VIX +4.04% on a +1.8% SPY day is a divergence — vol bid INTO a rally. Treat as a hedging/gap-risk tell, not calm.",
+      "Options flow breadth is BEARISH-skewed (41.1% bullish flow tickers) against a 71.4%-green tape. Flow and tape disagree — surface this."
+    ]
+  },
+
+  "vrp": {
+    "SPY": {"iv30d": 0.1394, "realised_vol": 0.1414, "vrp": -0.002, "regime": "FAIR", "interpretation": "IV close to realised — no clear edge from VRP alone."},
+    "QQQ": {"iv30d": 0.2297, "realised_vol": 0.2732, "vrp": -0.0435, "regime": "FAIR", "interpretation": "IV BELOW realised on QQQ — mildly NEGATIVE VRP. Premium-buying tilt on the Nasdaq complex; do NOT run naked short-vol on QQQ names."}
+  },
+
+  "dte_share": {"regime_hint": "BALANCED", "share_0dte": 0.262, "share_weeklies": 0.309, "share_monthlies": 0.294, "share_leaps": 0.036},
+
+  "sector_layer": {
+    "AUTHORITATIVE_DIRECTION_SOURCE": "uw risk market-regime .sector_rotation (NETTED). Per 2026-08-01 C55: `sector-flow` and `sector-flow-persistence` are ONE GROSS-turnover source (net_flow = gross call$ − put$, sign-agnostic) and CANNOT express direction. Use gross only as a DURABILITY filter.",
+    "netted_flowing_in": {"Technology": 839208557, "Industrials": 41037976, "Basic Materials": 2592790},
+    "netted_flowing_out": {"Communication Services": -102836812, "Consumer Cyclical": -63145355, "Healthcare": -27610504},
+    "gross_sector_flow_ranked": {"Technology": 7584268703, "Communication Services": 1381742784, "Consumer Cyclical": 742223371, "Industrials": 441480011, "Financial Services": 382368188, "Healthcare": 167586120, "Consumer Defensive": 54320414, "Basic Materials": 54084294, "Utilities": 49286114, "Energy": 41395816, "Real Estate": 10736440},
+    "gross_persistence_score": {"Technology": 1.0, "Healthcare": 1.0, "Financial Services": 1.0, "Energy": 1.0, "Basic Materials": 1.0, "Consumer Defensive": 1.0, "Communication Services": 0.8, "Industrials": 0.6, "Consumer Cyclical": 0.6},
+    "NETTED_VS_GROSS_DISAGREEMENT_watch_only": ["Communication Services", "Consumer Cyclical", "Healthcare"],
+    "clean_agreement_inflow": ["Technology", "Industrials", "Basic Materials"]
+  },
+
+  "top_bullish_screener": [
+    {"ticker": "SPY", "close": 771.33, "net_flow": 275764156, "iv_rank": 17.6},
+    {"ticker": "PLTR", "close": 162.66, "net_flow": 164666068, "iv_rank": 40.4, "sector": "Technology"},
+    {"ticker": "MSFT", "close": 492.81, "net_flow": 104129695, "iv_rank": 44.7, "sector": "Technology"},
+    {"ticker": "MU", "close": 892.67, "net_flow": 91243372, "iv_rank": 76.7, "sector": "Technology"},
+    {"ticker": "QQQ", "close": 723.85, "net_flow": 79082804, "iv_rank": 54.1},
+    {"ticker": "AVGO", "close": 418.16, "net_flow": 60643420, "iv_rank": 78.6, "sector": "Technology"},
+    {"ticker": "SOXL", "close": 139.90, "net_flow": 53064694, "iv_rank": 87.4},
+    {"ticker": "INTC", "close": 100.86, "net_flow": 40878425, "iv_rank": 73.9, "sector": "Technology"},
+    {"ticker": "ORCL", "close": 145.74, "net_flow": 39244037, "iv_rank": 59.7, "sector": "Technology"},
+    {"ticker": "CRWV", "close": 91.90, "net_flow": 32498155, "iv_rank": 84.8, "sector": "Technology"},
+    {"ticker": "SPCX", "close": 125.33, "net_flow": 29126615, "iv_rank": 96.0, "sector": "Industrials"},
+    {"ticker": "IBM", "close": 235.15, "net_flow": 28404977, "iv_rank": 53.5, "sector": "Technology"},
+    {"ticker": "GOOG", "close": 375.35, "net_flow": 27086939, "iv_rank": 40.3, "sector": "Communication Services"},
+    {"ticker": "SOXX", "close": 542.21, "net_flow": 25729590, "iv_rank": 87.5},
+    {"ticker": "DELL", "close": 467.27, "net_flow": 22656111, "iv_rank": 100.0, "sector": "Technology"},
+    {"ticker": "AMD", "close": 518.58, "net_flow": 21605773, "iv_rank": 84.0, "sector": "Technology"},
+    {"ticker": "XOP", "close": 171.95, "net_flow": 20096441, "iv_rank": 51.5},
+    {"ticker": "SKHY", "close": 154.38, "net_flow": 19435034, "iv_rank": 8.1, "sector": "Technology"},
+    {"ticker": "ECHO", "close": 91.60, "net_flow": 19433638, "iv_rank": 71.8, "sector": "Technology"},
+    {"ticker": "ARM", "close": 280.56, "net_flow": 17791771, "iv_rank": 76.2, "sector": "Technology"},
+    {"ticker": "NOW", "close": 118.14, "net_flow": 15377728, "iv_rank": 70.7, "sector": "Technology"},
+    {"ticker": "LRCX", "close": 317.74, "net_flow": 15154666, "iv_rank": 79.1, "sector": "Technology"},
+    {"ticker": "ALAB", "close": 361.67, "net_flow": 13252768, "iv_rank": 87.7, "sector": "Technology"},
+    {"ticker": "SMH", "close": 575.71, "net_flow": 12778958, "iv_rank": 84.9}
+  ],
+
+  "top_bearish_screener": [
+    {"ticker": "SPX", "net_flow": -2788199425}, {"ticker": "NDX", "net_flow": -149409490},
+    {"ticker": "GOOGL", "close": 377.65, "net_flow": -106624346, "iv_rank": 43.8},
+    {"ticker": "AMZN", "close": 277.42, "net_flow": -42633171, "iv_rank": 39.4},
+    {"ticker": "TSM", "close": 417.17, "net_flow": -29179701, "iv_rank": 66.5},
+    {"ticker": "IWM", "close": 301.71, "net_flow": -26021797, "iv_rank": 12.6},
+    {"ticker": "TSLA", "close": 327.35, "net_flow": -21684976, "iv_rank": 26.5},
+    {"ticker": "META", "close": 587.94, "net_flow": -18553428, "iv_rank": 45.4},
+    {"ticker": "LULU", "close": 123.03, "net_flow": -16289495, "iv_rank": 61.4},
+    {"ticker": "NBIS", "close": 225.74, "net_flow": -15835425, "iv_rank": 73.9},
+    {"ticker": "EWZ", "close": 36.09, "net_flow": -15579510}, {"ticker": "USO", "close": 115.78, "net_flow": -15101569},
+    {"ticker": "EEM", "close": 66.00, "net_flow": -12200737}, {"ticker": "GLD", "close": 374.16, "net_flow": -11776434},
+    {"ticker": "CTAS", "close": 203.65, "net_flow": -10161374, "iv_rank": 69.0},
+    {"ticker": "AMAT", "close": 546.62, "net_flow": -8581282, "iv_rank": 90.8},
+    {"ticker": "DVA", "close": 227.99, "net_flow": -7597916, "iv_rank": 87.8},
+    {"ticker": "VST", "close": 143.23, "net_flow": -7277789, "iv_rank": 62.4},
+    {"ticker": "UNH", "close": 407.55, "net_flow": -6460835, "iv_rank": 12.9},
+    {"ticker": "XYZ", "close": 84.64, "net_flow": -5323120, "iv_rank": 58.8}
+  ],
+
+  "confluence_bullish_top": [
+    {"ticker": "UFO", "score": 6}, {"ticker": "LAC", "score": 6, "close": 3.08}, {"ticker": "VOO", "score": 6},
+    {"ticker": "SDOW", "score": 6}, {"ticker": "SRAD", "score": 6, "close": 12.91},
+    {"ticker": "IRM", "score": 5, "close": 125.51, "iv_rank": 100}, {"ticker": "SOFI", "score": 5, "close": 18.70},
+    {"ticker": "PCG", "score": 5, "close": 17.45, "iv_rank": 81.6}, {"ticker": "DECK", "score": 5, "close": 99.87},
+    {"ticker": "CROX", "score": 5, "close": 141.19}, {"ticker": "SNAP", "score": 5, "close": 5.79},
+    {"ticker": "WEC", "score": 5, "close": 109.25}, {"ticker": "RYTM", "score": 5, "close": 105.78},
+    {"ticker": "IJR", "score": 5}, {"ticker": "RVTY", "score": 5, "close": 111.39}
+  ],
+
+  "confluence_bearish_top": [
+    {"ticker": "WMB", "score": 6, "close": 71.51, "pcr": 5.06, "iv_rank": 70.7, "vol_ratio": 4.3},
+    {"ticker": "FDS", "score": 5, "close": 274.49, "pcr": 33.68, "iv_rank": 73.7},
+    {"ticker": "ADI", "score": 5, "close": 380.29, "pcr": 3.51, "iv_rank": 90.2},
+    {"ticker": "TWLO", "score": 5, "close": 194.05, "iv_rank": 99.3, "vol_ratio": 2.93},
+    {"ticker": "ELAN", "score": 5, "close": 25.60, "iv_rank": 90.5, "vol_ratio": 68.2},
+    {"ticker": "DVA", "score": 5, "close": 227.99, "iv_rank": 87.8, "vol_ratio": 6.95},
+    {"ticker": "ITT", "score": 5, "close": 204.65, "iv_rank": 75.5, "vol_ratio": 14.5},
+    {"ticker": "EXPE", "score": 5, "close": 312.06, "iv_rank": 81.5, "vol_ratio": 3.14},
+    {"ticker": "KTOS", "score": 5, "close": 51.87, "iv_rank": 76.2},
+    {"ticker": "ZBH", "score": 5, "close": 95.81, "iv_rank": 72.9},
+    {"ticker": "ROST", "score": 5, "close": 251.06, "iv_rank": 97.8},
+    {"ticker": "NXT", "score": 5, "close": 98.44, "iv_rank": 58.1},
+    {"ticker": "PODD", "score": 4, "close": 166.82, "iv_rank": 70.7},
+    {"ticker": "ARGX", "score": 4, "close": 844.50, "iv_rank": 72.5}
+  ],
+
+  "c12_liquidity_floor": {
+    "rule": "price >= $5 AND 20d dollar-ADV >= $50M. Fail-closed.",
+    "as_of": "2026-08-04",
+    "pass": ["SPY","QQQ","IWM","RSP","XLK","XLF","XLV","XLE","XLI","XLY","XLP","XLU","XLB","XLC","XLRE","SMH","PLTR","MSFT","MU","AVGO","INTC","ORCL","CRWV","IBM","GOOG","DELL","AMD","ARM","NOW","LRCX","ALAB","GOOGL","AMZN","TSM","TSLA","META","LULU","NBIS","AMAT","DVA","VST","UNH","XYZ","WMB","ADI","TWLO","FDS","ITT","EXPE","KTOS","ZBH","ROST","PODD","ARGX","ELAN","SOFI","PCG","IRM","DECK","CROX","SNAP","NXT","SPCX","ECHO","SKHY","SOXL","SOXX","XOP"],
+    "fail": [{"symbol": "^VIX", "reason": "adv $0.0M — index, no share volume; tape context only, not a candidate"}],
+    "unverified_do_not_pass": ["UFO","LAC","SDOW","SRAD","DGXX","XENE","LW","ELVN","MLKN","RYTM","CIFU","FOTO","GRND","EC","ONIT","NHI","SHOE","TENX","EYPT","VCX","BIRK","IAUI","RPG","NUS","MLSS","BRCC","SACH","HVT","INFU","MPWX"]
+  },
+
+  "breadth_cross_check": {
+    "advisory": true, "source": "finviz", "dataset": "sec_all",
+    "advancers": 359, "decliners": 141, "unchanged": 3, "total": 503,
+    "pct_green": 71.37, "avg_change": 1.46, "median_change": 0.88,
+    "top_mover": "PLTR", "top_pct": 29.46, "worst_mover": "APTV", "worst_pct": -16.62,
+    "divergence_flag": false,
+    "note": "Tape breadth CONFIRMS the green index (71.4% green, median +0.88%). BUT it CONTRADICTS uw options-flow breadth (41.1% bullish-flow tickers). Equity tape broad-green vs options flow bearish-skewed = the day's key divergence."
+  },
+
+  "fz_squeeze_candidates": null,
+  "fz_rs_candidates": null,
+
+  "opex_guard": {"third_friday_aug_2026": "2026-08-21", "days_away": 17, "within_5_days": false, "opex_pin_strategist_spawned": false},
+
+  "macro_snapshot": {
+    "available": true, "source": "FRED",
+    "signals": {"yield_curve": "normal", "yield_curve_10y2y": 0.43, "core_cpi_yoy_pct": 2.81, "core_pce_yoy_pct": 3.29, "unemployment_rate": 4.2, "payrolls_mom_000s": 57.0, "ten_year_yield": 4.70, "ten_year_30d_direction": "rising", "usd_30d_direction": "weakening", "fed_funds": 3.63},
+    "read": "Curve normal (+43bp). Core PCE 3.29% YoY still well above target while core CPI 2.81%. 10Y at 4.70% and RISING (+21bp/30d) — a rising-long-end melt-up in tech is a fragile combination. USD weakening. Fed funds 3.63%. Payrolls +57k (June) = decelerating labour."
+  },
+
+  "event_risk": [
+    {"event": "Employment Situation / NFP (July)", "date": "2026-08-07", "impact": "HIGH", "trading_days_out": 3, "note": "Inside every swing horizon. Prior +57k = decelerating. Gates any 1-6wk directional sizing."},
+    {"event": "Initial jobless claims", "date": "2026-08-06", "impact": "MEDIUM", "trading_days_out": 2},
+    {"event": "CPI (July)", "date": "2026-08-12", "impact": "HIGH", "trading_days_out": 6},
+    {"event": "PPI (July, est.)", "date": "2026-08-13", "impact": "MEDIUM", "trading_days_out": 7, "note": "date estimated — BLS typically 1 day after CPI"},
+    {"event": "Initial jobless claims", "date": "2026-08-13", "impact": "MEDIUM", "trading_days_out": 7},
+    {"event": "Core PCE (July, est.)", "date": "2026-08-28", "impact": "HIGH", "trading_days_out": 17, "note": "outside 10d but inside a 3-4wk swing horizon"},
+    {"event": "FOMC + SEP", "date": "2026-09-16", "impact": "HIGH", "trading_days_out": 30, "note": "outside daily horizon; LEAP/long-swing context only"}
+  ],
+
+  "zerodte_setup": {
+    "available": true, "as_of": "2026-08-04",
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 16.5, "implied_move_pct": 0.89, "expected_range_pct": 0.83, "size_scalar": 0.5, "suggested_structure": "iron fly / short straddle centred at 772.3, wings ≈ ±0.83% (long-gamma: quieter, mean-reverting)", "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.", "stand_aside_reason": null, "caution": null, "backtest": {"n": 60, "win_open_pct": 88.3, "mean_pnl_open_pct": 0.223, "mean_pnl_open_net_pct": 0.123, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -1.4, "verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_by_vix_state": {"LOW": -0.049, "MID": 0.383, "HIGH": 0.335}}},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 16.5, "implied_move_pct": 1.83, "expected_range_pct": 1.45, "size_scalar": 0.25, "suggested_structure": "iron fly / short straddle centred at 722.25, wings ≈ ±1.45% (long-gamma: quieter, mean-reverting)", "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.", "stand_aside_reason": null, "caution": "Front-end backwardation (0DTE IV 1.76× VIX) — event/gap risk; half size.", "backtest": {"n": 60, "win_open_pct": 83.3, "mean_pnl_open_pct": 0.341, "mean_pnl_open_net_pct": 0.241, "round_trip_cost_pct_assumed": 0.1, "worst_day_open_pct": -2.453, "verdict": "GO_PREMIUM_SELL_INTRADAY", "mean_pnl_by_vix_state": {"LOW": -0.014, "MID": 0.52, "HIGH": 0.515}}},
+    "CRITICAL_CAVEAT": "vol_state is LOW on BOTH indices and the LOW-VIX tercile mean PnL is NEGATIVE (SPY -0.049%, QQQ -0.014%) BEFORE costs. Net of the 0.10% assumed round-trip this lane is a LOSER at today's VIX. Lead with that, not the 88%/83% gross win-rate. Advisory, 0 rubric points."
+  },
+
+  "single_leg_whale_advisory": {
+    "note": "ADVISORY, 0 rubric points — PERMANENTLY. C19 CLOSED as REFUTED 2026-07-25 (register C53). Routing/context only; no accrual.",
+    "regime_arg": "bull",
+    "raw_signal_count": 455,
+    "tier_label_counts": {"OPENING_PUT_PRIME": 7, "OPENING_PUT_STRONG": 16, "PUT_CONTEXT": 24, "CALL_BETA_NOEDGE": 50, "CALL_BETA_FADE_CHASE": 13, "CLOSING_ANTISIGNAL": 345},
+    "tier1_prime": [{"ticker": "NVDA", "label": "OPENING_PUT_PRIME", "option_type": "put", "strike": 217.5, "expiry": "2026-08-21", "dte": 17, "premium_usd": 960000, "size_oi_ratio": 7.519, "action": "CONTRARIAN_SHORT"}],
+    "tier2_strong_puts": [
+      {"ticker": "PLTR", "strike": 155, "expiry": "2027-02-19", "dte": 199, "premium_usd": 3633120, "size_oi_ratio": 25.588},
+      {"ticker": "MRNA", "strike": 37, "expiry": "2027-01-15", "dte": 164, "premium_usd": 1875000, "size_oi_ratio": 9.843},
+      {"ticker": "ON", "strike": 70, "expiry": "2026-09-18", "dte": 45, "premium_usd": 1295000, "size_oi_ratio": 3.017},
+      {"ticker": "VST", "strike": 115, "expiry": "2026-09-18", "dte": 45, "premium_usd": 1233540, "size_oi_ratio": 4.248},
+      {"ticker": "LRCX", "strike": 560, "expiry": "2027-06-17", "dte": 317, "premium_usd": 1049295, "size_oi_ratio": 6.5},
+      {"ticker": "SNOW", "strike": 340, "expiry": "2026-12-18", "dte": 136, "premium_usd": 979640, "size_oi_ratio": 12.667},
+      {"ticker": "GOOGL", "strike": 375, "expiry": "2026-09-04", "dte": 31, "premium_usd": 677500, "size_oi_ratio": 12.195}
+    ],
+    "call_beta_noedge_largest": [
+      {"ticker": "MSFT", "strike": 510, "expiry": "2026-09-18", "premium_usd": 10987400, "size_oi_ratio": 1.208},
+      {"ticker": "SNDK", "strike": 1830, "expiry": "2026-09-18", "premium_usd": 5120000, "size_oi_ratio": 0.964},
+      {"ticker": "HD", "strike": 300, "expiry": "2027-01-15", "premium_usd": 2940200, "size_oi_ratio": 0.531},
+      {"ticker": "COHR", "strike": 430, "expiry": "2026-11-20", "premium_usd": 2622000, "size_oi_ratio": 35.294},
+      {"ticker": "DELL", "strike": 580, "expiry": "2027-01-15", "premium_usd": 1295000, "size_oi_ratio": 2.652},
+      {"ticker": "ALAB", "strike": 400, "expiry": "2026-08-07", "premium_usd": 1092750, "size_oi_ratio": 1.042}
+    ],
+    "structural_read": "345 of 455 prints are CLOSING_ANTISIGNAL (size/OI<0.5) — three-quarters of today's whale tape is position CLOSING, not opening. In a +1.8% SPY / +3.4% QQQ melt-up that is a distribution-into-strength tell. Only 7 OPENING_PUT_PRIME. Calls are CALL_BETA_NOEDGE in a bull regime (-9.7pp)."
+  },
+
+  "step0_cache_paths": {
+    "daily_synthesis": "analyses/daily/2026-08-04/step0_cache/daily_synthesis.json",
+    "market_regime": "analyses/daily/2026-08-04/step0_cache/market_regime.json",
+    "dte_volume_share": "analyses/daily/2026-08-04/step0_cache/dte_volume_share.json",
+    "sector_flow": "analyses/daily/2026-08-04/step0_cache/sector_flow.json",
+    "sector_flow_persistence": "analyses/daily/2026-08-04/step0_cache/sector_flow_persistence.json",
+    "screener_bullish": "analyses/daily/2026-08-04/step0_cache/screener_bullish.json",
+    "screener_bearish": "analyses/daily/2026-08-04/step0_cache/screener_bearish.json",
+    "signal_confluence_bullish": "analyses/daily/2026-08-04/step0_cache/signal_confluence_bullish.json",
+    "signal_confluence_bearish": "analyses/daily/2026-08-04/step0_cache/signal_confluence_bearish.json",
+    "iv_rank_high": "analyses/daily/2026-08-04/step0_cache/iv_rank_high.json",
+    "iv_rank_low": "analyses/daily/2026-08-04/step0_cache/iv_rank_low.json",
+    "volume_vs_average": "analyses/daily/2026-08-04/step0_cache/volume_vs_average.json",
+    "earnings_catalyst": "analyses/daily/2026-08-04/step0_cache/earnings_catalyst.json",
+    "expiry_heatmap": "analyses/daily/2026-08-04/step0_cache/expiry_heatmap.json",
+    "iv_outliers": "analyses/daily/2026-08-04/step0_cache/iv_outliers.json",
+    "greek_screener": "analyses/daily/2026-08-04/step0_cache/greek_screener.json",
+    "top_premium_trades": "analyses/daily/2026-08-04/step0_cache/top_premium_trades.json",
+    "most_active": "analyses/daily/2026-08-04/step0_cache/most_active.json",
+    "oi_smart_positioning": "analyses/daily/2026-08-04/step0_cache/oi_smart_positioning.json",
+    "single_leg": "analyses/daily/2026-08-04/step0_cache/single_leg.json",
+    "vrp_spy": "analyses/daily/2026-08-04/step0_cache/vrp_spy.json",
+    "vrp_qqq": "analyses/daily/2026-08-04/step0_cache/vrp_qqq.json"
+  }
+}

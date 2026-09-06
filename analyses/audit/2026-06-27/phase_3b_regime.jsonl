@@ -1,0 +1,148 @@
+{
+ "tier_by_regime": {
+  "uptrend": {
+   "HIGH": {
+    "n": 5,
+    "wr": 0.2
+   },
+   "MEDIUM": {
+    "n": 17,
+    "wr": 0.529
+   },
+   "LOW": {
+    "n": 35,
+    "wr": 0.486
+   },
+   "DROP": {
+    "n": 56,
+    "wr": 0.464
+   }
+  },
+  "pullback_in_uptrend": {
+   "HIGH": {
+    "n": 2,
+    "wr": 0.0
+   },
+   "MEDIUM": {
+    "n": 2,
+    "wr": 0.5
+   },
+   "LOW": {
+    "n": 31,
+    "wr": 0.419
+   },
+   "DROP": {
+    "n": 57,
+    "wr": 0.509
+   }
+  },
+  "choppy": {
+   "HIGH": {
+    "n": 0,
+    "wr": null
+   },
+   "MEDIUM": {
+    "n": 0,
+    "wr": null
+   },
+   "LOW": {
+    "n": 0,
+    "wr": null
+   },
+   "DROP": {
+    "n": 0,
+    "wr": null
+   }
+  }
+ },
+ "dir_by_regime": {
+  "uptrend": {
+   "long": {
+    "n": 55,
+    "wr": 0.491,
+    "excess_pp": 29.1,
+    "excess_n": 55
+   },
+   "short": {
+    "n": 35,
+    "wr": 0.486,
+    "excess_pp": -34.3,
+    "excess_n": 35
+   }
+  },
+  "pullback_in_uptrend": {
+   "long": {
+    "n": 41,
+    "wr": 0.537,
+    "excess_pp": 4.9,
+    "excess_n": 41
+   },
+   "short": {
+    "n": 34,
+    "wr": 0.471,
+    "excess_pp": -8.8,
+    "excess_n": 34
+   }
+  },
+  "choppy": {
+   "long": {
+    "n": 0,
+    "wr": null,
+    "excess_pp": null,
+    "excess_n": 0
+   },
+   "short": {
+    "n": 0,
+    "wr": null,
+    "excess_pp": null,
+    "excess_n": 0
+   }
+  }
+ },
+ "halfcap_out_of_regime": {
+  "n": 10,
+  "wr": 0.3,
+  "excess_pp": -16.7
+ },
+ "halfcap_in_regime": {
+  "n": 195,
+  "wr": 0.477,
+  "excess_pp": 2.5
+ },
+ "halfcap_rubric_regime_gated": {
+  "n": 24,
+  "wr": 0.542,
+  "excess_pp": 5.5
+ },
+ "halfcap_rubric_regime_ungated": {
+  "n": 181,
+  "wr": 0.459,
+  "excess_pp": 1.4
+ },
+ "halfcap_advisory": false,
+ "post_freeze_tier": {
+  "HIGH": {
+   "n": 0,
+   "wr": null
+  },
+  "MEDIUM": {
+   "n": 0,
+   "wr": null
+  },
+  "LOW": {
+   "n": 5,
+   "wr": 0.6
+  },
+  "DROP": {
+   "n": 53,
+   "wr": 0.491
+  }
+ },
+ "post_freeze_decided": 58,
+ "post_freeze_book": {
+  "wr": 0.5,
+  "n": 58,
+  "excess_pp": -2.3
+ },
+ "note": "vol resolution is rv_direction_proxy; vol_short collapse tracks RV expansion in the pullback, not a true IV-vs-RV miss"
+}

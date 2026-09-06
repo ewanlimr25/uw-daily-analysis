@@ -1,0 +1,1973 @@
+{
+ "iso_week": "2026-W34",
+ "monday": "2026-08-17",
+ "week_end": "2026-08-21",
+ "today": "2026-08-21",
+ "covered_dates": [
+  "2026-08-17",
+  "2026-08-18",
+  "2026-08-19",
+  "2026-08-20",
+  "2026-08-21"
+ ],
+ "covered_days": 5,
+ "full_week": true,
+ "is_opex_week": true,
+ "opex_note": "WEEK_END 2026-08-21 IS the monthly third Friday (Aug OPEX expired today). Next monthly OPEX = 2026-09-18 (28d out). pin-risk has NO expiry-selection flag -> returns nearest expiry; on OPEX day all dte_to_opex=0. Use opex-concentration for any forward book.",
+ "fz_available": true,
+ "fz_ticker_bug": "CONFIRMED AGAIN 2026-08-21: every `fz screen` surface returns doubled-first-letter tickers (AABEO, FFCX, MMRVI, TTX...). 20/20 rows corrupt on both squeeze and RS lanes. Per-ticker fz_enrich is HEALTHY. Never match with ==; use scripts/fz_enrich.py:_screen_row_matches.",
+ "regime_today": {
+  "date": "2026-08-21",
+  "regime": "TRANSITIONAL",
+  "trend": "UPTREND",
+  "bullish_pct": 39.2,
+  "bullish_flow_tickers": 2479,
+  "bearish_flow_tickers": 3837,
+  "spy": {
+   "current": 765.72,
+   "sma_20": 762.33,
+   "sma_50": 751.75,
+   "above_20sma": true,
+   "above_50sma": true,
+   "pct_from_90d_high": -1.75,
+   "change_30d_pct": 3.73
+  },
+  "sector_rotation_NETTED": {
+   "in": {
+    "Healthcare": 38036535,
+    "Basic Materials": 16639160,
+    "Financial Services": 15653239
+   },
+   "out": {
+    "Technology": -328591380,
+    "Consumer Cyclical": -16280843,
+    "Consumer Defensive": -10944254
+   }
+  }
+ },
+ "regime_monday": {
+  "date": "2026-08-17",
+  "regime": "TRANSITIONAL",
+  "trend": "UPTREND",
+  "bullish_pct": 33.6,
+  "sector_rotation_NETTED": {
+   "in": {
+    "Technology": 222583904,
+    "Industrials": 41613381,
+    "Basic Materials": 2797023
+   },
+   "out": {
+    "Consumer Cyclical": -124564886,
+    "Communication Services": -121653834,
+    "Healthcare": -41152539
+   }
+  }
+ },
+ "regime_delta": "HELD at TRANSITIONAL/UPTREND. Flow breadth IMPROVED 33.6%->39.2% bullish but still <50% (bearish-skewed all week). NETTED sector rotation FLIPPED HARD: Technology +222.6M IN (Mon) -> -328.6M OUT (Fri); Healthcare -41.2M OUT -> +38.0M IN; Basic Materials + Financials accreting. Read: money leaving semis/AI complex into Healthcare/Materials/Financials. CAVEAT: the `spy` sub-block of market-regime is NOT date-pinned (identical bytes on both dates) - only market_breadth and sector_rotation are dated.",
+ "vrp_classification": {
+  "label": "FAIR / NEUTRAL-TO-NEGATIVE - no premium-selling edge",
+  "SPY": {
+   "vrp": 0.0016,
+   "iv30d": 0.127,
+   "realised_vol": 0.1254,
+   "regime": "FAIR"
+  },
+  "QQQ": {
+   "vrp": -0.0307,
+   "iv30d": 0.1928,
+   "realised_vol": 0.2235,
+   "regime": "FAIR"
+  },
+  "implication": "SPY VRP ~0 (no edge). QQQ VRP NEGATIVE (IV below realised) = premium-BUYING environment on the Nasdaq complex. contrarian-scanner: your negative-VRP abort condition is LIVE for QQQ/semis-correlated fades. Favours gamma-flip-tracker + earnings-scout over vol-selling lanes."
+ },
+ "dte_volume_share_week_end": {
+  "share_0dte": 0.459,
+  "share_weeklies": 0.201,
+  "share_monthlies": 0.19,
+  "share_leaps": 0.036,
+  "regime_hint": "RETAIL_DRIVEN",
+  "note": "0DTE share 45.9% on OPEX Friday - expiry mechanics inflate this. MARKET-level only."
+ },
+ "sector_persistence_GROSS": {
+  "note": "ZERO DISCRIMINATION AGAIN: 10-of-11 sectors INFLOW, 1 ROTATING (Utilities 0.6). This tool is sign-agnostic GROSS TURNOVER, not accumulation. It is a DURABILITY filter only and CANNOT express direction. Direction comes ONLY from regime_today.sector_rotation_NETTED above. sector-flow and sector-flow-persistence are ONE source, not two.",
+  "scores": {
+   "Consumer Defensive": 1.0,
+   "Financial Services": 1.0,
+   "Healthcare": 1.0,
+   "Real Estate": 1.0,
+   "Basic Materials": 1.0,
+   "Energy": 1.0,
+   "Industrials": 0.8,
+   "Communication Services": 0.8,
+   "Technology": 0.8,
+   "Consumer Cyclical": 0.8,
+   "Utilities": 0.6
+  }
+ },
+ "breadth_cross_check": {
+  "advisory": true,
+  "source": "finviz",
+  "advancers": 332,
+  "decliners": 169,
+  "pct_green": 66,
+  "total": 503,
+  "top_mover": "HOOD +13.7%",
+  "worst_mover": "MRVL -5.57%",
+  "divergence_flag": true,
+  "note": "PRICE breadth 66% green vs OPTIONS-FLOW breadth 39.2% bullish. Different lineages, but the gap is the tell: broad price participation on OPEX Friday while flow stays put-skewed = hedged/distribution tape, not conviction buying."
+ },
+ "macro_snapshot": {
+  "yield_curve": "normal",
+  "yield_curve_10y2y": 0.5,
+  "core_cpi_yoy_pct": 2.79,
+  "core_pce_yoy_pct": 3.29,
+  "unemployment_rate": 4.1,
+  "payrolls_mom_000s": -23.0,
+  "ten_year_yield": 4.69,
+  "ten_year_30d_direction": "rising",
+  "usd_30d_direction": "weakening",
+  "fed_funds": 3.63,
+  "read": "Core PCE 3.29% YoY still well above target and ABOVE core CPI 2.79%. Payrolls NEGATIVE -23k. 10Y rising to 4.69 while USD weakens. Stagflation-lite tilt: sticky inflation + softening labour + rising long rates."
+ },
+ "event_risk": [
+  {
+   "event": "Jackson Hole Economic Symposium - Kevin Warsh's FIRST as Fed Chair",
+   "date": "2026-08-27 to 2026-08-29",
+   "impact": "TIER-1 / HIGHEST. New Fed chair debut policy speech. Theme 'Financial Innovation'. Historical Jackson Hole single-day moves: -3.4% SPX (2022), +1.5% SPX (2025). Unhedged directional risk into this is uncompensated."
+  },
+  {
+   "event": "July PCE / Personal Income & Outlays (core PCE)",
+   "date": "2026-08-28",
+   "impact": "TIER-1. Core PCE running 3.29% YoY - the Fed's preferred gauge, hot."
+  },
+  {
+   "event": "Q2 GDP 2nd estimate",
+   "date": "2026-08-27",
+   "impact": "TIER-2"
+  },
+  {
+   "event": "Initial jobless claims",
+   "date": "2026-08-27",
+   "impact": "TIER-2 (weekly; elevated salience given -23k payrolls)"
+  },
+  {
+   "event": "Durable goods orders",
+   "date": "2026-08-26",
+   "impact": "TIER-2"
+  },
+  {
+   "event": "Conference Board consumer confidence",
+   "date": "2026-08-25",
+   "impact": "TIER-2"
+  },
+  {
+   "event": "FOMC meeting + SEP",
+   "date": "2026-09-15 to 2026-09-16",
+   "impact": "TIER-1, outside next week but inside a 4wk swing horizon"
+  },
+  {
+   "event": "August CPI",
+   "date": "2026-09-11",
+   "impact": "TIER-1, inside a 3-4wk swing horizon"
+  }
+ ],
+ "gex_advisory_backtest": {
+  "verdict": "NO_GO_NO_EDGE",
+  "pooled_n": 118,
+  "closer_to_nearest_wall_pct": 19.5,
+  "p_vs_50": 1.0,
+  "closer_to_dominant_gex_pct": 24.6,
+  "moved_in_pin_direction_pct": 50.0,
+  "contained_within_walls_pct": 55.1,
+  "h1_short_gt_long_as_theory": true,
+  "h1_long_gamma_mean_abs_ret": 0.775,
+  "h1_short_gamma_mean_abs_ret": 0.838,
+  "read": "Walls are ANTI-MAGNETS: next close landed closer to the nearest wall only 19.5% of the time vs a 50% baseline (p=1.0 in the magnet direction). Pin direction is a coin flip (50.0%). H1 now runs the RIGHT way (short-gamma 0.838 > long-gamma 0.775 mean abs return) but the effect is small. GEX walls are DEALER CONTEXT ONLY - never quote them as a backtested edge."
+ },
+ "zerodte_setup": {
+  "available": true,
+  "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+  "as_of": "2026-08-21",
+  "SPY": {
+   "sell_premium": true,
+   "vol_state": "LOW",
+   "vix": 15.13,
+   "implied_move_pct": 0.38,
+   "expected_range_pct": 1.18,
+   "size_scalar": 0.5,
+   "mean_pnl_open_pct": 0.202,
+   "mean_pnl_open_net_pct": 0.102,
+   "mean_pnl_by_vix_state": {
+    "LOW": 0.06,
+    "MID": 0.215,
+    "HIGH": 0.331
+   },
+   "worst_day_open_pct": -1.4,
+   "n": 60
+  },
+  "QQQ": {
+   "sell_premium": true,
+   "vol_state": "LOW",
+   "vix": 15.13,
+   "implied_move_pct": 0.66,
+   "expected_range_pct": 1.98,
+   "size_scalar": 0.5,
+   "mean_pnl_open_pct": 0.336,
+   "mean_pnl_open_net_pct": 0.236,
+   "mean_pnl_by_vix_state": {
+    "LOW": 0.151,
+    "MID": 0.365,
+    "HIGH": 0.493
+   },
+   "worst_day_open_pct": -2.453,
+   "n": 60
+  },
+  "CRITICAL": "vol_state is LOW (VIX 15.13; tercile bounds 16.0/17.3). The `sell_premium:true` flag is UNCONDITIONAL and must NOT be read as a green light. Read mean_pnl_by_vix_state[LOW] MINUS the 0.1% round-trip cost: SPY 0.06-0.10 = NET NEGATIVE -0.04%. QQQ 0.151-0.10 = +0.05%, marginal. The 0DTE edge lives in MID/HIGH VIX terciles only. Tail is UNSAMPLED (no vol shock in 60d)."
+ },
+ "funnel_floored": [
+  "A",
+  "AAPL",
+  "ADSK",
+  "AEO",
+  "AGX",
+  "ALKS",
+  "AMD",
+  "ANF",
+  "ARM",
+  "AVGO",
+  "AXTX",
+  "BA",
+  "BABA",
+  "BBWI",
+  "BBY",
+  "BJ",
+  "BTG",
+  "BYD",
+  "CBRS",
+  "CCJ",
+  "CG",
+  "CM",
+  "COIN",
+  "COPX",
+  "CRM",
+  "CRWD",
+  "DCI",
+  "DELL",
+  "DG",
+  "DKS",
+  "DOCU",
+  "DOW",
+  "DY",
+  "ECHO",
+  "ED",
+  "ETHA",
+  "FCX",
+  "FIGR",
+  "FISV",
+  "FUTU",
+  "GAP",
+  "GDX",
+  "GEO",
+  "GEV",
+  "GLD",
+  "HEI",
+  "HOOD",
+  "HPQ",
+  "HUT",
+  "IBIT",
+  "INFQ",
+  "INTC",
+  "INTU",
+  "IOT",
+  "IWM",
+  "JCPB",
+  "JNJ",
+  "KLAR",
+  "KNTK",
+  "KOLD",
+  "LGND",
+  "LULU",
+  "LYV",
+  "MANE",
+  "MDB",
+  "MDT",
+  "MINT",
+  "MRNA",
+  "MRVL",
+  "MSTR",
+  "MTZ",
+  "MU",
+  "MUZ",
+  "NEE",
+  "NTAP",
+  "NTSK",
+  "NVDA",
+  "OKTA",
+  "ORCL",
+  "PANW",
+  "PATH",
+  "PDD",
+  "PLTR",
+  "POWL",
+  "QQQ",
+  "RAM",
+  "RGTI",
+  "RRC",
+  "RY",
+  "S",
+  "SCHR",
+  "SKDD",
+  "SKHX",
+  "SKHY",
+  "SKUU",
+  "SNDG",
+  "SNDK",
+  "SNDU",
+  "SNOW",
+  "SNXX",
+  "SOFI",
+  "SOXX",
+  "SPCF",
+  "SPCH",
+  "SPCX",
+  "SPDN",
+  "SPY",
+  "SPYG",
+  "SRE",
+  "SSPC",
+  "TD",
+  "TM",
+  "TSLA",
+  "ULTA",
+  "URA",
+  "VGSH",
+  "VSXY",
+  "WMT",
+  "XLF",
+  "ZM",
+  "ZS"
+ ],
+ "funnel_note": "220 raw funnel names -> 121 pass C12 (price>=$5 AND 20d dollar ADV >=$50M, as-of 2026-08-21, fail-closed). THIS is the authoritative candidate universe. Do NOT reintroduce dropped names.",
+ "funnel_detail": {
+  "A": {
+   "close": 159.0,
+   "adv_m": 254.1,
+   "chg5d": 7.05,
+   "chg1d": 1.73,
+   "rv": {
+    "rv20": 22.1,
+    "rv60": 27.1
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "AAPL": {
+   "close": 309.35,
+   "adv_m": 16620.3,
+   "chg5d": 1.12,
+   "chg1d": -0.63,
+   "rv": {
+    "rv20": 32.5,
+    "rv60": 35.2
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "ADSK": {
+   "close": 253.825,
+   "adv_m": 474.3,
+   "chg5d": 0.86,
+   "chg1d": 1.12,
+   "rv": {
+    "rv20": 44.3,
+    "rv60": 39.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "AEO": {
+   "close": 16.17,
+   "adv_m": 71.1,
+   "chg5d": 0.0,
+   "chg1d": 1.06,
+   "rv": {
+    "rv20": 44.7,
+    "rv60": 45.8
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "AGX": {
+   "close": 501.63,
+   "adv_m": 162.7,
+   "chg5d": -13.25,
+   "chg1d": -2.89,
+   "rv": {
+    "rv20": 78.0,
+    "rv60": 78.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "ALKS": {
+   "close": 48.33,
+   "adv_m": 81.1,
+   "chg5d": -1.49,
+   "chg1d": 0.65,
+   "rv": {
+    "rv20": 34.4,
+    "rv60": 39.1
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "AMD": {
+   "close": 473.25,
+   "adv_m": 12800.1,
+   "chg5d": -8.0,
+   "chg1d": 0.81,
+   "rv": {
+    "rv20": 77.5,
+    "rv60": 73.8
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "ANF": {
+   "close": 109.01,
+   "adv_m": 107.4,
+   "chg5d": 0.81,
+   "chg1d": 3.8,
+   "rv": {
+    "rv20": 52.4,
+    "rv60": 48.6
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "ARM": {
+   "close": 243.32,
+   "adv_m": 1366.6,
+   "chg5d": -12.93,
+   "chg1d": -2.95,
+   "rv": {
+    "rv20": 85.8,
+    "rv60": 82.3
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "AVGO": {
+   "close": 368.45,
+   "adv_m": 7828.8,
+   "chg5d": -6.24,
+   "chg1d": 1.21,
+   "rv": {
+    "rv20": 43.5,
+    "rv60": 42.6
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "AXTX": {
+   "close": 8.37,
+   "adv_m": 129.4,
+   "chg5d": -30.48,
+   "chg1d": -7.51,
+   "rv": {
+    "rv20": 387.9,
+    "rv60": 350.5
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "BA": {
+   "close": 214.2,
+   "adv_m": 1361.5,
+   "chg5d": -7.54,
+   "chg1d": -0.42,
+   "rv": {
+    "rv20": 42.8,
+    "rv60": 35.8
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "BABA": {
+   "close": 119.34,
+   "adv_m": 1460.5,
+   "chg5d": -3.61,
+   "chg1d": -8.57,
+   "rv": {
+    "rv20": 47.0,
+    "rv60": 48.2
+   },
+   "sources": [
+    "bear",
+    "conf_bear"
+   ]
+  },
+  "BBWI": {
+   "close": 19.45,
+   "adv_m": 106.8,
+   "chg5d": 0.21,
+   "chg1d": -0.97,
+   "rv": {
+    "rv20": 48.2,
+    "rv60": 49.6
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "BBY": {
+   "close": 85.89,
+   "adv_m": 272.7,
+   "chg5d": -0.61,
+   "chg1d": 0.19,
+   "rv": {
+    "rv20": 36.3,
+    "rv60": 31.8
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "BJ": {
+   "close": 96.42,
+   "adv_m": 165.8,
+   "chg5d": 3.22,
+   "chg1d": 5.61,
+   "rv": {
+    "rv20": 28.8,
+    "rv60": 28.0
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "BTG": {
+   "close": 5.52,
+   "adv_m": 120.1,
+   "chg5d": 7.39,
+   "chg1d": 2.6,
+   "rv": {
+    "rv20": 79.7,
+    "rv60": 65.7
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "BYD": {
+   "close": 80.78,
+   "adv_m": 71.8,
+   "chg5d": -3.98,
+   "chg1d": -0.21,
+   "rv": {
+    "rv20": 26.8,
+    "rv60": 23.2
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "CBRS": {
+   "close": 196.13,
+   "adv_m": 1667.5,
+   "chg5d": -10.43,
+   "chg1d": -6.54,
+   "rv": {
+    "rv20": 136.9,
+    "rv60": 138.2
+   },
+   "sources": [
+    "bear",
+    "ivlow"
+   ]
+  },
+  "CCJ": {
+   "close": 102.51,
+   "adv_m": 276.6,
+   "chg5d": 4.88,
+   "chg1d": 7.24,
+   "rv": {
+    "rv20": 42.7,
+    "rv60": 41.8
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "CG": {
+   "close": 49.37,
+   "adv_m": 219.0,
+   "chg5d": 0.18,
+   "chg1d": 2.88,
+   "rv": {
+    "rv20": 45.3,
+    "rv60": 40.2
+   },
+   "sources": [
+    "bear",
+    "conf_bear"
+   ]
+  },
+  "CM": {
+   "close": 116.49,
+   "adv_m": 111.1,
+   "chg5d": -5.86,
+   "chg1d": 0.69,
+   "rv": {
+    "rv20": 22.0,
+    "rv60": 20.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "COIN": {
+   "close": 186.49,
+   "adv_m": 1493.2,
+   "chg5d": 25.61,
+   "chg1d": 8.2,
+   "rv": {
+    "rv20": 76.3,
+    "rv60": 71.2
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "COPX": {
+   "close": 94.59,
+   "adv_m": 251.8,
+   "chg5d": 10.37,
+   "chg1d": 5.18,
+   "rv": {
+    "rv20": 37.6,
+    "rv60": 45.9
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "CRM": {
+   "close": 209.17,
+   "adv_m": 2443.8,
+   "chg5d": 6.61,
+   "chg1d": 1.82,
+   "rv": {
+    "rv20": 45.6,
+    "rv60": 44.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "CRWD": {
+   "close": 191.95,
+   "adv_m": 1552.1,
+   "chg5d": -11.52,
+   "chg1d": 0.85,
+   "rv": {
+    "rv20": 50.1,
+    "rv60": 53.2
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "DCI": {
+   "close": 93.25,
+   "adv_m": 60.7,
+   "chg5d": -2.81,
+   "chg1d": 0.88,
+   "rv": {
+    "rv20": 21.7,
+    "rv60": 22.3
+   },
+   "sources": [
+    "conf_bear",
+    "earn"
+   ]
+  },
+  "DELL": {
+   "close": 442.08,
+   "adv_m": 2565.8,
+   "chg5d": -9.93,
+   "chg1d": 1.68,
+   "rv": {
+    "rv20": 80.6,
+    "rv60": 77.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "DG": {
+   "close": 123.41,
+   "adv_m": 238.9,
+   "chg5d": 0.11,
+   "chg1d": 2.35,
+   "rv": {
+    "rv20": 30.0,
+    "rv60": 33.8
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "DKS": {
+   "close": 183.23,
+   "adv_m": 315.7,
+   "chg5d": -9.28,
+   "chg1d": 2.17,
+   "rv": {
+    "rv20": 41.9,
+    "rv60": 36.3
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "DOCU": {
+   "close": 62.0,
+   "adv_m": 174.4,
+   "chg5d": -0.06,
+   "chg1d": -0.45,
+   "rv": {
+    "rv20": 60.2,
+    "rv60": 54.6
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "DOW": {
+   "close": 32.35,
+   "adv_m": 279.7,
+   "chg5d": 4.12,
+   "chg1d": -1.67,
+   "rv": {
+    "rv20": 38.5,
+    "rv60": 38.0
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "DY": {
+   "close": 392.95,
+   "adv_m": 172.1,
+   "chg5d": -6.23,
+   "chg1d": -1.82,
+   "rv": {
+    "rv20": 62.6,
+    "rv60": 56.4
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "ECHO": {
+   "close": 86.81,
+   "adv_m": 387.1,
+   "chg5d": -5.53,
+   "chg1d": -0.13,
+   "rv": {
+    "rv20": 42.5,
+    "rv60": 41.5
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "ED": {
+   "close": 106.35,
+   "adv_m": 256.0,
+   "chg5d": -2.25,
+   "chg1d": -1.81,
+   "rv": {
+    "rv20": 14.7,
+    "rv60": 18.4
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "ETHA": {
+   "close": 18.24,
+   "adv_m": 548.1,
+   "chg5d": 28.63,
+   "chg1d": 3.93,
+   "rv": {
+    "rv20": 53.3,
+    "rv60": 51.1
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "FCX": {
+   "close": 76.66,
+   "adv_m": 913.5,
+   "chg5d": 15.3,
+   "chg1d": 7.64,
+   "rv": {
+    "rv20": 49.0,
+    "rv60": 51.1
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "FIGR": {
+   "close": 39.1,
+   "adv_m": 142.0,
+   "chg5d": 24.4,
+   "chg1d": 8.43,
+   "rv": {
+    "rv20": 83.6,
+    "rv60": 83.5
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "FISV": {
+   "close": 52.58,
+   "adv_m": 457.3,
+   "chg5d": -3.33,
+   "chg1d": 2.34,
+   "rv": {
+    "rv20": 43.4,
+    "rv60": 39.2
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "FUTU": {
+   "close": 123.64,
+   "adv_m": 149.9,
+   "chg5d": 17.5,
+   "chg1d": 9.68,
+   "rv": {
+    "rv20": 48.5,
+    "rv60": 50.2
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "GAP": {
+   "close": 19.8,
+   "adv_m": 106.2,
+   "chg5d": -3.88,
+   "chg1d": 0.76,
+   "rv": {
+    "rv20": 31.7,
+    "rv60": 36.6
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "GDX": {
+   "close": 102.83,
+   "adv_m": 2164.4,
+   "chg5d": 14.29,
+   "chg1d": 2.98,
+   "rv": {
+    "rv20": 53.1,
+    "rv60": 49.9
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "GEO": {
+   "close": 32.71,
+   "adv_m": 59.5,
+   "chg5d": 4.77,
+   "chg1d": 3.12,
+   "rv": {
+    "rv20": 33.5,
+    "rv60": 30.8
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "GEV": {
+   "close": 956.85,
+   "adv_m": 2258.2,
+   "chg5d": -10.01,
+   "chg1d": -0.95,
+   "rv": {
+    "rv20": 52.0,
+    "rv60": 59.2
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "GLD": {
+   "close": 423.36,
+   "adv_m": 3832.6,
+   "chg5d": 5.45,
+   "chg1d": 1.95,
+   "rv": {
+    "rv20": 24.6,
+    "rv60": 24.6
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "HEI": {
+   "close": 355.04,
+   "adv_m": 150.3,
+   "chg5d": -5.24,
+   "chg1d": 1.27,
+   "rv": {
+    "rv20": 23.5,
+    "rv60": 23.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "HOOD": {
+   "close": 108.13,
+   "adv_m": 1856.0,
+   "chg5d": 13.15,
+   "chg1d": 13.7,
+   "rv": {
+    "rv20": 63.4,
+    "rv60": 67.6
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "HPQ": {
+   "close": 29.71,
+   "adv_m": 413.9,
+   "chg5d": -1.33,
+   "chg1d": 0.81,
+   "rv": {
+    "rv20": 54.3,
+    "rv60": 45.1
+   },
+   "sources": [
+    "conf_bear",
+    "earn"
+   ]
+  },
+  "HUT": {
+   "close": 80.86,
+   "adv_m": 474.7,
+   "chg5d": -5.36,
+   "chg1d": -8.79,
+   "rv": {
+    "rv20": 120.6,
+    "rv60": 107.6
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "IBIT": {
+   "close": 43.68,
+   "adv_m": 1789.2,
+   "chg5d": 22.59,
+   "chg1d": 6.02,
+   "rv": {
+    "rv20": 38.5,
+    "rv60": 37.1
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "INFQ": {
+   "close": 14.12,
+   "adv_m": 114.8,
+   "chg5d": 9.8,
+   "chg1d": 12.51,
+   "rv": {
+    "rv20": 90.5,
+    "rv60": 99.2
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "INTC": {
+   "close": 90.07,
+   "adv_m": 10887.6,
+   "chg5d": -12.13,
+   "chg1d": -2.24,
+   "rv": {
+    "rv20": 71.5,
+    "rv60": 75.1
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "INTU": {
+   "close": 367.0,
+   "adv_m": 1245.6,
+   "chg5d": 6.17,
+   "chg1d": 1.42,
+   "rv": {
+    "rv20": 47.4,
+    "rv60": 45.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "IOT": {
+   "close": 39.94,
+   "adv_m": 193.7,
+   "chg5d": 0.38,
+   "chg1d": 2.46,
+   "rv": {
+    "rv20": 58.4,
+    "rv60": 62.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "IWM": {
+   "close": 299.96,
+   "adv_m": 5751.5,
+   "chg5d": -1.68,
+   "chg1d": 0.77,
+   "rv": {
+    "rv20": 15.2,
+    "rv60": 13.3
+   },
+   "sources": [
+    "bear",
+    "conf_bear"
+   ]
+  },
+  "JCPB": {
+   "close": 46.16,
+   "adv_m": 81.7,
+   "chg5d": -0.12,
+   "chg1d": -0.11,
+   "rv": {
+    "rv20": 4.0,
+    "rv60": 3.8
+   },
+   "sources": [
+    "volspike"
+   ]
+  },
+  "JNJ": {
+   "close": 270.24,
+   "adv_m": 1833.9,
+   "chg5d": 3.8,
+   "chg1d": 1.07,
+   "rv": {
+    "rv20": 21.9,
+    "rv60": 26.6
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "KLAR": {
+   "close": 14.33,
+   "adv_m": 110.4,
+   "chg5d": -31.07,
+   "chg1d": 2.36,
+   "rv": {
+    "rv20": 105.8,
+    "rv60": 79.3
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "KNTK": {
+   "close": 54.5,
+   "adv_m": 56.0,
+   "chg5d": 1.98,
+   "chg1d": 0.2,
+   "rv": {
+    "rv20": 32.2,
+    "rv60": 32.0
+   },
+   "sources": [
+    "volspike"
+   ]
+  },
+  "KOLD": {
+   "close": 30.77,
+   "adv_m": 65.4,
+   "chg5d": 0.79,
+   "chg1d": -0.52,
+   "rv": {
+    "rv20": 62.2,
+    "rv60": 61.2
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "LGND": {
+   "close": 286.29,
+   "adv_m": 78.7,
+   "chg5d": -2.82,
+   "chg1d": -0.38,
+   "rv": {
+    "rv20": 28.3,
+    "rv60": 34.7
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "LULU": {
+   "close": 121.07,
+   "adv_m": 315.4,
+   "chg5d": 1.27,
+   "chg1d": 4.65,
+   "rv": {
+    "rv20": 37.0,
+    "rv60": 36.4
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "LYV": {
+   "close": 181.82,
+   "adv_m": 385.0,
+   "chg5d": -3.52,
+   "chg1d": -0.11,
+   "rv": {
+    "rv20": 31.9,
+    "rv60": 26.4
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "MANE": {
+   "close": 102.82,
+   "adv_m": 89.1,
+   "chg5d": -8.77,
+   "chg1d": -2.37,
+   "rv": {
+    "rv20": 47.9,
+    "rv60": 79.5
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "MDB": {
+   "close": 430.83,
+   "adv_m": 592.8,
+   "chg5d": -6.41,
+   "chg1d": 2.49,
+   "rv": {
+    "rv20": 58.1,
+    "rv60": 60.6
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "MDT": {
+   "close": 93.35,
+   "adv_m": 635.6,
+   "chg5d": 2.28,
+   "chg1d": 1.14,
+   "rv": {
+    "rv20": 21.5,
+    "rv60": 28.1
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "MINT": {
+   "close": 100.73,
+   "adv_m": 150.3,
+   "chg5d": 0.06,
+   "chg1d": 0.04,
+   "rv": {
+    "rv20": 1.2,
+    "rv60": 1.2
+   },
+   "sources": [
+    "ivhigh"
+   ]
+  },
+  "MRNA": {
+   "close": 145.13,
+   "adv_m": 3307.8,
+   "chg5d": 129.2,
+   "chg1d": 8.86,
+   "rv": {
+    "rv20": 371.0,
+    "rv60": 263.3
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "MRVL": {
+   "close": 237.04,
+   "adv_m": 5080.5,
+   "chg5d": 6.77,
+   "chg1d": -5.57,
+   "rv": {
+    "rv20": 93.9,
+    "rv60": 93.9
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "MSTR": {
+   "close": 119.25,
+   "adv_m": 2113.7,
+   "chg5d": 28.17,
+   "chg1d": 6.1,
+   "rv": {
+    "rv20": 73.1,
+    "rv60": 81.7
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "MTZ": {
+   "close": 266.26,
+   "adv_m": 474.9,
+   "chg5d": -10.53,
+   "chg1d": -2.06,
+   "rv": {
+    "rv20": 103.3,
+    "rv60": 83.8
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "MU": {
+   "close": 966.78,
+   "adv_m": 34514.5,
+   "chg5d": -0.5,
+   "chg1d": -0.77,
+   "rv": {
+    "rv20": 94.7,
+    "rv60": 100.2
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "MUZ": {
+   "close": 9.19,
+   "adv_m": 153.5,
+   "chg5d": -1.18,
+   "chg1d": 1.55,
+   "rv": {
+    "rv20": 213.8,
+    "rv60": 219.3
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "NEE": {
+   "close": 83.65,
+   "adv_m": 968.8,
+   "chg5d": -2.95,
+   "chg1d": -1.62,
+   "rv": {
+    "rv20": 12.4,
+    "rv60": 14.8
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "NTAP": {
+   "close": 192.27,
+   "adv_m": 477.4,
+   "chg5d": -7.15,
+   "chg1d": -0.28,
+   "rv": {
+    "rv20": 35.4,
+    "rv60": 41.3
+   },
+   "sources": [
+    "earn",
+    "ivhigh"
+   ]
+  },
+  "NTSK": {
+   "close": 14.51,
+   "adv_m": 57.6,
+   "chg5d": -8.22,
+   "chg1d": 0.9,
+   "rv": {
+    "rv20": 62.5,
+    "rv60": 69.4
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "NVDA": {
+   "close": 214.72,
+   "adv_m": 24596.8,
+   "chg5d": -4.64,
+   "chg1d": -0.98,
+   "rv": {
+    "rv20": 37.3,
+    "rv60": 36.5
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "OKTA": {
+   "close": 135.14,
+   "adv_m": 363.4,
+   "chg5d": -8.34,
+   "chg1d": 0.73,
+   "rv": {
+    "rv20": 42.1,
+    "rv60": 51.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "ORCL": {
+   "close": 146.47,
+   "adv_m": 4045.9,
+   "chg5d": -2.69,
+   "chg1d": 3.1,
+   "rv": {
+    "rv20": 55.3,
+    "rv60": 57.3
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "PANW": {
+   "close": 357.87,
+   "adv_m": 2015.8,
+   "chg5d": -6.87,
+   "chg1d": 2.38,
+   "rv": {
+    "rv20": 43.8,
+    "rv60": 51.4
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "PATH": {
+   "close": 16.39,
+   "adv_m": 956.6,
+   "chg5d": 2.37,
+   "chg1d": 2.95,
+   "rv": {
+    "rv20": 58.0,
+    "rv60": 60.2
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "PDD": {
+   "close": 88.38,
+   "adv_m": 523.2,
+   "chg5d": 4.23,
+   "chg1d": -1.27,
+   "rv": {
+    "rv20": 32.9,
+    "rv60": 36.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "PLTR": {
+   "close": 179.94,
+   "adv_m": 7522.5,
+   "chg5d": 3.39,
+   "chg1d": 3.44,
+   "rv": {
+    "rv20": 103.2,
+    "rv60": 80.4
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "POWL": {
+   "close": 197.67,
+   "adv_m": 150.5,
+   "chg5d": -7.41,
+   "chg1d": 0.14,
+   "rv": {
+    "rv20": 73.5,
+    "rv60": 70.8
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "QQQ": {
+   "close": 713.44,
+   "adv_m": 27797.7,
+   "chg5d": -2.41,
+   "chg1d": 0.35,
+   "rv": {
+    "rv20": 21.8,
+    "rv60": 23.4
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "RAM": {
+   "close": 13.15,
+   "adv_m": 188.5,
+   "chg5d": -0.38,
+   "chg1d": 0.54,
+   "rv": {
+    "rv20": 179.0,
+    "rv60": 197.0
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "RGTI": {
+   "close": 17.91,
+   "adv_m": 337.1,
+   "chg5d": -4.84,
+   "chg1d": 11.48,
+   "rv": {
+    "rv20": 98.4,
+    "rv60": 86.8
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "RRC": {
+   "close": 41.06,
+   "adv_m": 100.1,
+   "chg5d": 1.84,
+   "chg1d": 0.96,
+   "rv": {
+    "rv20": 33.7,
+    "rv60": 31.3
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "RY": {
+   "close": 205.23,
+   "adv_m": 260.5,
+   "chg5d": -5.23,
+   "chg1d": 0.01,
+   "rv": {
+    "rv20": 19.2,
+    "rv60": 18.5
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "S": {
+   "close": 21.19,
+   "adv_m": 136.2,
+   "chg5d": -8.31,
+   "chg1d": 1.19,
+   "rv": {
+    "rv20": 50.9,
+    "rv60": 53.1
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "SCHR": {
+   "close": 24.38,
+   "adv_m": 55.0,
+   "chg5d": -0.25,
+   "chg1d": -0.16,
+   "rv": {
+    "rv20": 2.9,
+    "rv60": 3.3
+   },
+   "sources": [
+    "volspike"
+   ]
+  },
+  "SKDD": {
+   "close": 10.11,
+   "adv_m": 159.4,
+   "chg5d": 0.3,
+   "chg1d": -0.49,
+   "rv": {
+    "rv20": 223.2,
+    "rv60": 236.4
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SKHX": {
+   "close": 13.94,
+   "adv_m": 78.2,
+   "chg5d": -5.23,
+   "chg1d": 0.36,
+   "rv": {
+    "rv20": 198.0,
+    "rv60": 221.9
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SKHY": {
+   "close": 163.41,
+   "adv_m": 4694.1,
+   "chg5d": -1.76,
+   "chg1d": 0.2,
+   "rv": {
+    "rv20": 100.8,
+    "rv60": 131.8
+   },
+   "sources": [
+    "bull",
+    "ivlow"
+   ]
+  },
+  "SKUU": {
+   "close": 23.325,
+   "adv_m": 198.2,
+   "chg5d": -4.83,
+   "chg1d": 0.37,
+   "rv": {
+    "rv20": 198.1,
+    "rv60": 222.1
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SNDG": {
+   "close": 9.3,
+   "adv_m": 62.6,
+   "chg5d": -7.74,
+   "chg1d": -1.38,
+   "rv": {
+    "rv20": 281.9,
+    "rv60": 297.4
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SNDK": {
+   "close": 1596.08,
+   "adv_m": 23479.8,
+   "chg5d": -2.74,
+   "chg1d": -0.28,
+   "rv": {
+    "rv20": 144.5,
+    "rv60": 149.1
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "SNDU": {
+   "close": 23.26,
+   "adv_m": 271.6,
+   "chg5d": -7.59,
+   "chg1d": -0.94,
+   "rv": {
+    "rv20": 287.9,
+    "rv60": 301.3
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SNOW": {
+   "close": 332.78,
+   "adv_m": 1543.2,
+   "chg5d": 1.17,
+   "chg1d": 3.58,
+   "rv": {
+    "rv20": 36.2,
+    "rv60": 36.9
+   },
+   "sources": [
+    "bull",
+    "earn"
+   ]
+  },
+  "SNXX": {
+   "close": 15.01,
+   "adv_m": 1510.1,
+   "chg5d": -7.29,
+   "chg1d": -0.86,
+   "rv": {
+    "rv20": 284.9,
+    "rv60": 296.2
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SOFI": {
+   "close": 18.91,
+   "adv_m": 1084.2,
+   "chg5d": 3.39,
+   "chg1d": 5.52,
+   "rv": {
+    "rv20": 65.9,
+    "rv60": 54.4
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "SOXX": {
+   "close": 520.05,
+   "adv_m": 4969.7,
+   "chg5d": -5.52,
+   "chg1d": -0.44,
+   "rv": {
+    "rv20": 53.2,
+    "rv60": 59.2
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "SPCF": {
+   "close": 14.33,
+   "adv_m": 60.8,
+   "chg5d": -5.04,
+   "chg1d": 4.45,
+   "rv": {
+    "rv20": 200.2,
+    "rv60": 165.9
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SPCH": {
+   "close": 8.57,
+   "adv_m": 325.0,
+   "chg5d": -4.78,
+   "chg1d": 4.51,
+   "rv": {
+    "rv20": 198.8,
+    "rv60": 165.1
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "SPCX": {
+   "close": 136.97,
+   "adv_m": 15270.3,
+   "chg5d": -2.16,
+   "chg1d": 2.22,
+   "rv": {
+    "rv20": 98.9,
+    "rv60": 82.3
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "SPDN": {
+   "close": 8.53,
+   "adv_m": 333.3,
+   "chg5d": 1.55,
+   "chg1d": -0.47,
+   "rv": {
+    "rv20": 12.6,
+    "rv60": 11.7
+   },
+   "sources": [
+    "volspike"
+   ]
+  },
+  "SPY": {
+   "close": 765.72,
+   "adv_m": 35085.8,
+   "chg5d": -1.37,
+   "chg1d": 0.41,
+   "rv": {
+    "rv20": 12.8,
+    "rv60": 12.3
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "SPYG": {
+   "close": 120.21,
+   "adv_m": 336.5,
+   "chg5d": -2.2,
+   "chg1d": 0.33,
+   "rv": {
+    "rv20": 19.3,
+    "rv60": 19.3
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "SRE": {
+   "close": 82.89,
+   "adv_m": 345.1,
+   "chg5d": -4.07,
+   "chg1d": -5.14,
+   "rv": {
+    "rv20": 25.7,
+    "rv60": 22.1
+   },
+   "sources": [
+    "conf_bear"
+   ]
+  },
+  "SSPC": {
+   "close": 11.3,
+   "adv_m": 308.5,
+   "chg5d": 2.73,
+   "chg1d": -4.48,
+   "rv": {
+    "rv20": 218.6,
+    "rv60": 176.3
+   },
+   "sources": [
+    "ivlow"
+   ]
+  },
+  "TD": {
+   "close": 117.15,
+   "adv_m": 249.5,
+   "chg5d": -5.8,
+   "chg1d": 0.26,
+   "rv": {
+    "rv20": 21.7,
+    "rv60": 20.7
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "TM": {
+   "close": 197.35,
+   "adv_m": 76.0,
+   "chg5d": 3.27,
+   "chg1d": 2.66,
+   "rv": {
+    "rv20": 24.0,
+    "rv60": 23.5
+   },
+   "sources": [
+    "conf_bull"
+   ]
+  },
+  "TSLA": {
+   "close": 362.86,
+   "adv_m": 11503.5,
+   "chg5d": 6.02,
+   "chg1d": 5.14,
+   "rv": {
+    "rv20": 36.0,
+    "rv60": 61.4
+   },
+   "sources": [
+    "bull"
+   ]
+  },
+  "ULTA": {
+   "close": 521.46,
+   "adv_m": 298.3,
+   "chg5d": 2.1,
+   "chg1d": 1.23,
+   "rv": {
+    "rv20": 41.0,
+    "rv60": 36.3
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "URA": {
+   "close": 46.07,
+   "adv_m": 135.8,
+   "chg5d": 2.54,
+   "chg1d": 5.09,
+   "rv": {
+    "rv20": 45.5,
+    "rv60": 42.5
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "VGSH": {
+   "close": 58.13,
+   "adv_m": 175.4,
+   "chg5d": -0.02,
+   "chg1d": -0.02,
+   "rv": {
+    "rv20": 1.4,
+    "rv60": 1.5
+   },
+   "sources": [
+    "ivhigh"
+   ]
+  },
+  "VSXY": {
+   "close": 85.39,
+   "adv_m": 139.0,
+   "chg5d": -4.08,
+   "chg1d": -1.62,
+   "rv": {
+    "rv20": 48.7,
+    "rv60": 51.0
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "WMT": {
+   "close": 103.7,
+   "adv_m": 2915.4,
+   "chg5d": -10.04,
+   "chg1d": -0.13,
+   "rv": {
+    "rv20": 38.1,
+    "rv60": 31.8
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "XLF": {
+   "close": 57.48,
+   "adv_m": 1736.2,
+   "chg5d": -1.17,
+   "chg1d": 0.93,
+   "rv": {
+    "rv20": 11.7,
+    "rv60": 12.4
+   },
+   "sources": [
+    "bear"
+   ]
+  },
+  "ZM": {
+   "close": 107.43,
+   "adv_m": 294.6,
+   "chg5d": 1.39,
+   "chg1d": 1.06,
+   "rv": {
+    "rv20": 34.2,
+    "rv60": 37.7
+   },
+   "sources": [
+    "earn"
+   ]
+  },
+  "ZS": {
+   "close": 181.745,
+   "adv_m": 380.6,
+   "chg5d": -1.01,
+   "chg1d": 3.88,
+   "rv": {
+    "rv20": 45.9,
+    "rv60": 48.7
+   },
+   "sources": [
+    "earn"
+   ]
+  }
+ },
+ "fz_squeeze_candidates": {
+  "advisory": true,
+  "usable": false,
+  "reason": "All 20 rows carry the doubled-first-letter corruption; none matched the floored funnel. Lane recorded as SKIPPED, 0 points."
+ },
+ "fz_rs_candidates": {
+  "advisory": true,
+  "usable": "partial",
+  "matched": [
+   "FCX"
+  ],
+  "note": "FFCX->FCX is the only new-high row that de-corrupts onto the floored funnel. FCX is +15.3% on the week AND sits in the BEARISH confluence screen - flag the conflict."
+ },
+ "step0_cache_dir": "analyses/weekly/2026-W34/step0_cache/",
+ "step0_cache_files": [
+  "daily_synthesis",
+  "dte_volume_share",
+  "earnings_catalyst",
+  "expiry_heatmap",
+  "greek_screener",
+  "iv_outliers",
+  "iv_rank_high",
+  "iv_rank_low",
+  "market_regime",
+  "most_active",
+  "oi_smart_positioning",
+  "screener_bearish",
+  "screener_bullish",
+  "sector_flow",
+  "sector_flow_persistence",
+  "signal_confluence_bearish",
+  "signal_confluence_bullish",
+  "single_leg",
+  "top_premium_trades",
+  "volume_vs_average",
+  "vrp_qqq",
+  "vrp_spy"
+ ]
+}

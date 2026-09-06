@@ -1,0 +1,9 @@
+{
+  "regime_hint": "BALANCED",
+  "share_0dte": 0.24,
+  "share_leaps": 0.036,
+  "share_monthlies": 0.25,
+  "share_weeklies": 0.327,
+  "source": "/Users/ewan/Documents/Stocks/All Options/bot-eod-report-2026-08-27.parquet",
+  "symbol": "MARKET"
+}

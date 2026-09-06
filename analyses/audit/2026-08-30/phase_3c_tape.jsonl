@@ -1,0 +1,86 @@
+{
+ "tape_UP": {
+  "n": 357,
+  "wr": 0.373,
+  "excess_pp": -2.8
+ },
+ "tape_DOWN": {
+  "n": 336,
+  "wr": 0.399,
+  "excess_pp": 4.2
+ },
+ "dir_by_tape": {
+  "UP_long": {
+   "n": 112,
+   "wr": 0.473,
+   "spy_wr": 0.455,
+   "excess_pp": 1.8
+  },
+  "UP_short": {
+   "n": 131,
+   "wr": 0.359,
+   "spy_wr": 0.427,
+   "excess_pp": -6.8
+  },
+  "DOWN_long": {
+   "n": 159,
+   "wr": 0.377,
+   "spy_wr": 0.22,
+   "excess_pp": 15.7
+  },
+  "DOWN_short": {
+   "n": 82,
+   "wr": 0.488,
+   "spy_wr": 0.671,
+   "excess_pp": -18.3
+  }
+ },
+ "with_tape_UP": {
+  "n": 248,
+  "with": 116,
+  "pct": 46.8
+ },
+ "with_tape_DOWN": {
+  "n": 245,
+  "with": 84,
+  "pct": 34.3
+ },
+ "bearish_flow_UP": {
+  "n": 74,
+  "wr": 0.378,
+  "spy_wr": 0.446,
+  "excess_pp": -6.8
+ },
+ "bearish_flow_DOWN": {
+  "n": 60,
+  "wr": 0.483,
+  "spy_wr": 0.667,
+  "excess_pp": -18.4
+ },
+ "post_freeze_tape_UP": {
+  "n": 330,
+  "wr": 0.37,
+  "excess_pp": -2.2
+ },
+ "post_freeze_tape_DOWN": {
+  "n": 216,
+  "wr": 0.361,
+  "excess_pp": 2.8
+ },
+ "drop_vs_book_UP": {
+  "drop_wr": 0.377,
+  "drop_n": 308,
+  "book_wr": 0.347,
+  "book_n": 49,
+  "sized_wr": 0.5,
+  "sized_n": 30
+ },
+ "drop_vs_book_DOWN": {
+  "drop_wr": 0.385,
+  "drop_n": 234,
+  "book_wr": 0.431,
+  "book_n": 102,
+  "sized_wr": 0.294,
+  "sized_n": 17
+ }
+}

@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-08-28",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL \u2014 Mixed signals, reduce position size, wait for clarity (trend UPTREND)",
+  "vrp_classification": "FAIR (SPY -0.0027, IV30 11.63% vs realised 11.90%) / FAIR (QQQ -0.0418, IV30 16.87% vs realised 21.05%) \u2014 IV at-or-below realised, premium-BUYING tilt book-wide",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.39,
+    "core_cpi_yoy_pct": 2.79,
+    "core_pce_yoy_pct": 3.34,
+    "unemployment_rate": 4.1,
+    "payrolls_mom_000s": -23.0,
+    "ten_year_yield": 4.67,
+    "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "weakening",
+    "fed_funds": 3.63
+  },
+  "macro_event_risk": [
+    {
+      "event": "JOLTS (July)",
+      "date": "2026-09-02",
+      "impact": "medium"
+    },
+    {
+      "event": "Nonfarm Payrolls (August)",
+      "date": "2026-09-04",
+      "impact": "high"
+    },
+    {
+      "event": "PPI (August)",
+      "date": "2026-09-10",
+      "impact": "high"
+    },
+    {
+      "event": "CPI (August)",
+      "date": "2026-09-11",
+      "impact": "high"
+    },
+    {
+      "event": "FOMC decision + SEP",
+      "date": "2026-09-16",
+      "impact": "high"
+    },
+    {
+      "event": "Monthly OPEX",
+      "date": "2026-09-18",
+      "impact": "medium"
+    },
+    {
+      "event": "Core PCE (August)",
+      "date": "2026-09-25",
+      "impact": "high"
+    }
+  ],
+  "watchlist_write_back": [],
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 229,
+    "decliners": 273,
+    "pct_green": 45.53,
+    "divergence_flag": false,
+    "note": "SPY closed RED (-0.23%) with 45.53% of S&P constituents green (229 adv / 273 dec, median constituent -0.13%, avg -0.34%). Index and breadth AGREE that the tape is mildly negative, so no hidden-distribution divergence today (contrast 08-27, which flagged true). Independent lineage from uw, which reports 30.5% bullish-flow tickers \u2014 both sources agree breadth is weak. Advisory, 0 rubric points."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-08-28",
+    "next_session_date": "2026-08-31",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 769.3,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -139770000,
+        "call_wall": 772,
+        "put_wall": 765,
+        "read": "SHORT GAMMA into Monday's open. Label and total_gex sign AGREE today (-$139.77M) \u2014 notable, because the documented label-vs-sign defect fired on 4 of 4 sessions earlier this week, so today's read is more trustworthy than the week's. ZGL is null (extrapolation failed) so there is no anchor level; the read rests on the total_gex sign plus spot-vs-wall position only. Spot sits inside a tight ~1.3%-wide cage (call wall 772 at +0.35%, put wall 765 at -0.56%) but the negative sign argues trend/breakout on a breach rather than mean-reversion. Regime is FRESH and UNSTABLE: 5 flips in 30 sessions (08-05, 08-07, 08-10, 08-13, 08-27), and 08-27's +$690M reversed to -$139.8M in a single session.",
+        "structure_bias": "Short-gamma: debit verticals / directional 0DTE, or a long straddle on a breach of 765 or 772. NOT a premium-selling setup; if premium is sold anyway keep wings inside 765/772 and size down, because dealer hedging amplifies rather than dampens.",
+        "caveats": "EOD is a prior, not a target \u2014 fresh 0DTE OI re-computes ZGL and walls in the first 30-60 minutes. ZGL null => zgl_reliable false. Gap risk: no Tier-1 print before Monday's open (NFP is T+5) but Friday's semis-led flush (SMH -3.47%) is a fresh overnight-holdable shock already reflected here. Tooling cannot isolate the D+1 expiry (gex --dte-max 1 errors) \u2014 this is the standing 0-45 DTE book. ETF book, not the cleaner SPX index book."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 716.31,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -90140000,
+        "call_wall": 730,
+        "put_wall": 716,
+        "read": "SHORT GAMMA and structurally more fragile than SPY. Label and sign agree (-$90.14M). Spot 716.31 is sitting DIRECTLY ON the largest-magnitude negative-GEX strike (716, -0.04% away) \u2014 the least stable place a short-gamma book can open. A push below 716 has no meaningful dealer support until 700 (-$77.5M shelf, -2.3% away), while 730 (+1.91%) is the nearest upside magnet. Regime is fresher and more unstable than SPY: 8 flips in 30 sessions, and 08-27 printed +$1.15B against today's -$90.1M \u2014 a violent one-day swing. Reads as coiled post the semis flush, not a calm pin.",
+        "structure_bias": "Short-gamma with spot on the wall: debit verticals or a long straddle, skewed to respect the downside air pocket to 700. Avoid short premium centred at spot.",
+        "caveats": "Same standing caveats as SPY: EOD prior not a target; ZGL null so zgl_reliable false; 0-45 DTE proxy book (D+1 expiry not isolable); ETF book, not the NDX index book \u2014 and the Nasdaq index book is unavailable, so QQQ reads carry lower confidence than SPY throughout."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-08-28",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 14.43,
+        "implied_move_pct": 0.39,
+        "expected_range_pct": 1.1,
+        "size_scalar": 0.5,
+        "suggested_structure": "wider iron condor, wings ~ +/-1.1% (short-gamma: wider range / trendier) \u2014 or reduce / stand aside. Gross backtest win 86.7% (n=60) overstates a negatively-skewed seller's edge; lead with the net +0.122% and the LOW-tercile conditional of +0.05%.",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close \u2014 never carry overnight (overnight entry backtested +0.028%, effectively nil).",
+        "stand_aside_reason": null,
+        "caution": "vol_state LOW (VIX 14.43): the GO_PREMIUM_SELL_INTRADAY verdict and sell_premium:true are UNCONDITIONAL and must NOT be read as a live green light. Conditional net-of-cost expectancy at the observed vol state is 0.15 - 0.10 = +0.05%, effectively ZERO; the edge lives in the MID/HIGH VIX terciles (bounds 15.8 / 17.3), not here. PnL basis is percent-of-underlying-spot-notional GROSS (gross +0.222% / net +0.122%, worst day -1.40%, n=60) \u2014 not premium-collected, not margin-relative \u2014 so the 86.7% gross win-rate overstates a negatively-skewed seller's edge. Compounding this, the SPY dealer book is freshly SHORT GAMMA (total_gex -$139.77M), i.e. amplifying rather than dampening, which is the wrong backdrop for short premium into an NFP at T+5. Validation sample contains NO vol shock, so the short-vol left tail is UNSAMPLED. Delta-neutral only \u2014 do not add a directional tilt. Treat as thin-to-nil today."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 14.43,
+        "implied_move_pct": 0.59,
+        "expected_range_pct": 1.91,
+        "size_scalar": 0.5,
+        "suggested_structure": "wider iron condor, wings ~ +/-1.91% (short-gamma: wider range / trendier) \u2014 or reduce / stand aside. QQQ is the WEAKER of the two (Nasdaq index book unavailable) \u2014 flag lower confidence than SPY, which is validated identical to SPX.",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close \u2014 never carry overnight (QQQ overnight entry backtested NEGATIVE at -0.102%).",
+        "stand_aside_reason": null,
+        "caution": "vol_state LOW (VIX 14.43): verdict and sell_premium:true are UNCONDITIONAL, not a live green light. Conditional net-of-cost expectancy is 0.22 - 0.10 = +0.12%, thin; the edge lives in the MID/HIGH VIX terciles (bounds 15.8 / 17.3). PnL basis is percent-of-underlying-spot-notional GROSS (gross +0.345% / net +0.245%, worst day -2.453%, n=60); the 85.0% gross win-rate overstates a negatively-skewed short-vol edge. QQQ is the WEAKER of the two indices (Nasdaq index book unavailable) \u2014 lower confidence than SPY, which is validated identical to SPX. Spot 716.31 is sitting directly ON the 716 put wall with an air pocket down to 700, so a condor centred at spot is badly placed. Book is freshly SHORT GAMMA (total_gex -$90.14M), amplifying. No vol shock in the validation sample \u2014 left tail UNSAMPLED. Delta-neutral only."
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "MRNA",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "+3 3+ aligned signals in accumulation-hunter (DP + OI + smart-positioning, block-stratified institutional-tier confirmed) \u2014 C11 conjunction",
+          "points": 1,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw insights institutional-accumulation",
+          "evidence": "C11 conjunction FAILED => +3 HALVED to +1. Three aligned signals present with institutional tier confirmed: mega tier buy_ratio 0.67 (n=10, $307.0M), block tier 0.649 (n=262, $592.2M), highest_tier mega. But cum_flow_30d +$2,843,383 fails BOTH the $50M absolute bar (by 18x) and the 5% scale-relative bar: +0.109% of $2,597.8M gross (by 46x). Footprint DECAYS as the window widens: 10d +1.5% of gross -> 30d +0.109% -> 90d +1.108%, the inverse of a real accumulation program."
+        },
+        {
+          "rubric_line": "+3 accumulation conjunction \u2014 corroborating institutional-tier leg (0 points, carried on dominant tool)",
+          "points": 0,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw dark-pool block-stratified",
+          "evidence": "Institutional-vs-retail filter confirms mega as highest tier. Contamination screens BOTH PASS: prices vary genuinely intraday $135.80->$142.77, NOT pinned to the close \u2014 MRNA is the notable name that passed on a session where AMZN/META/TSLA/AVGO/PLTR all failed the closing-cross screen and GOOGL's mega tier was sell-dominated (0.091). Largest institutional block $56.54M (19:54:24Z, 410,300 sh @ $137.80) = 0.112% of the 365.28M float."
+        },
+        {
+          "rubric_line": "+3 accumulation conjunction \u2014 flow-confirmation leg (base_rate_citation, 0 points)",
+          "points": 0,
+          "source_agent": "accumulation-hunter",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d +$2.84M MIXED, 90d +$38.69M MIXED. Non-scored context per 2026-06-20 register #6; it is the failure of this leg that halved the line above."
+        },
+        {
+          "rubric_line": "+1 vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "Hygiene-corrected KINKED (raw BACKWARDATION -> base_shape CONTANGO, flipped). Real kink at 14DTE (2026-09-11), prominence 37.1% (14d IV 144.4% vs 7d 105.3% and 21d 88.8% neighbours). IV-vs-RV gap -301.7pp (iv30d 73.46% vs rv20 375.2%) => decisively negative VRP => BUY VOL, aligned with the book-wide premium-buying tilt (SPY -0.0027 / QQQ -0.0418). CAVEAT: rv20 375.2 is likely single-jump inflated by the 08-28 debt-offering move, which would make this gap an artifact \u2014 gap SIGN unambiguous, magnitude unreliable. iv_percentile 37.11 NORMAL but PROVISIONAL (dates_used 97, not the requested 252)."
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite (MIXED 30d cum-premium-flow read)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$2.84M MIXED against a LONG dark_pool_accumulation thesis; magnitude 0.10x the union median ($2.84M vs $27.73M), far below the 25% lite threshold ($6.93M), and only +0.109% of the name's own gross. Textbook MIXED/near-zero signature. Mutually exclusive with the -3; the -3 was NOT also applied."
+        }
+      ],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 2843383,
+      "cum_premium_flow_90d": 38694561,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": 0,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "fundamentals_verdict": "CAUTION",
+      "debate_residual_confidence": 0.25,
+      "debate_residuals": {
+        "bull": 0.25,
+        "bear": 0.65
+      },
+      "implied_move": 22.6,
+      "dp_block_to_float_ratio": 0.001123,
+      "insider_cluster_flag": null,
+      "distribution_flag": {
+        "present": false,
+        "closing_side": null,
+        "closing_premium": null,
+        "oi_decrease": -2950,
+        "source_tool": "uw oi decrease-with-volume",
+        "note": "No distribution signature. The only long-dated OI decrease is a 203-DTE PUT (-2,950 contracts, ~$4.5M notional at open) \u2014 protection being LIFTED, which is CONFIRMING per C28, not contradicting. All other decreases are same-day (dte=0) expiry noise. NOTE the separate and opposite concern: the oi-trend BUILDING label is PUT-LED (Sep-04 125P +9,526; 120P +9,432, ~19,000 contracts of fresh protection vs ~10.5K calls scattered), which is why the +1 OI-build rubric line was WITHHELD."
+      },
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 14.46,
+        "days_to_cover": 3.68,
+        "float_shares": 365280000.0,
+        "squeeze_pressure": "MODERATE",
+        "recom": null,
+        "upside_to_target_pct": null,
+        "rsi": 63.54,
+        "note": "recom/upside upstream-unrecoverable (fz upstream gap) \u2014 analyst axis NA, not absent-by-choice. 14.46% short float / 3.68 days-to-cover is a mild squeeze tailwind IF the accumulation read were genuine, but it is two-way risk, not a long thesis. Float independently CONFIRMS the 365,280,000 denominator used for dp_block_to_float_ratio (C16). Advisory, 0 rubric points."
+      },
+      "gate_verdicts": {
+        "regime": "no-op (trend UPTREND aligned with LONG direction; TRANSITIONAL label imposes half-size discipline but no directional conflict)",
+        "vrp": "no-op (SPY -0.0027 / QQQ -0.0418 FAIR, premium-BUYING tilt; single-name IV-vs-RV gap -301.7pp = negative VRP, ALIGNED with the BUY-VOL leg and non-contradicting for the directional long. Caveat: rv20 375.2 may be jump-inflated by the 08-28 debt offering)",
+        "panic": "-1 tier (front_end_iv_ratio@7 = 1.198, past the 1.10 bar; index-level CONTANGO SPY 0.876 / QQQ 0.863 => idiosyncratic, not systemic. Read at --near-dte 7, never the default 1)",
+        "cluster": "no-op (no pairwise corr >= 0.70 on today's candidate set; MRNA does not pair with MRVL above the 0.506 reporting floor. sector_breakdown returned the documented {\"Unknown\": 10} defect with a spurious 100%-concentration warning \u2014 DISCARDED, not propagated)",
+        "sector": "no-op (Healthcare appears in neither the netted top-3 IN nor bottom-3 OUT of market-regime.sector_rotation; absence = UNMEASURED per the top-3/bottom-3 truncation defect, not neutrality. sector-flow-persistence discarded as a gross-turnover source \u2014 fired INFLOW on 7-of-11 sectors)",
+        "fundamentals": "-1 tier (CAUTION: revenue -27.62% YoY, net margin -141.4%, dilutive private debt offering announced 08-28, insider sale -499,246 sh MSPR -24.93 into the accumulation print; 4-of-4 EPS beat streak supports the long but does not meet the VETO bar. No dated catalyst identified for the 09-11 vol kink)",
+        "event_risk": "-1 tier (NFP 2026-09-04 = T+5; PPI 2026-09-10 = T+8; CPI 2026-09-11 = T+9 \u2014 three named dated Tier-1 prints inside the 1-4wk swing horizon on an undefined-risk directional expression, stacked from -0.5 to -1. Own earnings 2026-11-04 = T+68, outside. The unidentified ~09-11 binary corroborates but was NOT counted, since the gate requires a NAMED event)",
+        "debate": "-1 tier (bear 0.65 >= bull 0.25 \u2014 the widest gap on the board. Bear unrefuted: the accumulation footprint decays as the window widens, the OI build is put-led ~19,000 vs ~10.5K calls, and BOTH positive components trace to the same one-day debt-offering event \u2014 one load-bearing signal wearing two scorecard lines. Bull unrefuted: the DP prints genuinely survived the closing-cross screen)",
+        "rubric_regime": "capped half (OUT-OF-REGIME \u2014 rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL). Non-binding here \u2014 the call floors at skip on raw_score before the cap can bite",
+        "excess": "NA(substrate) \u2014 dark_pool_accumulation IS a backtest-supported class but returned 0 rows market-wide (total_signals: 0), so there are no kept windows and no same-window SPY benchmark. market_excess is null rather than fabricated; no beta flag is assessable in either direction"
+      },
+      "key_risks": [
+        "Both positive score components trace to a single 08-28 dilutive private debt offering \u2014 convertible-arb/dealer hedging around a financing event produces large two-sided DP blocks that mimic accumulation, and the same event likely inflates rv20 375.2 behind the vol +1",
+        "Revenue -27.62% YoY with net margin -141.4% \u2014 the accumulation thesis is not backed by an improving business; the 4-of-4 beat streak is against a shrinking revenue base",
+        "Unidentified binary priced into the 2026-09-11 vol kink (37.1% prominence) \u2014 no PDUFA, trial readout or ACIP vote could be found to explain it; any position held through that date carries unknown event risk",
+        "Insider sold 499,246 shares in Aug-2026 (MSPR -24.93) into the same tape as the DP prints",
+        "cum_flow_30d is +0.109% of gross and DECAYS as the window widens \u2014 the inverse of a genuine accumulation program",
+        "dark_pool_accumulation backtest returns 0 rows market-wide, so this signal class is structurally unmeasurable \u2014 there is no base rate"
+      ],
+      "structure": "None \u2014 no structure proposed. Score 1 vs a drop floor of 3; final_size skip.",
+      "entry_or_trigger": "No entry. Would require a genuine cum_flow_30d confirmation (sign aligned AND >= $50M, currently +$2.84M), a direction-verified bullish OI build (currently put-led), and identification of the 09-11 catalyst before this becomes scoreable.",
+      "invalidation": "Loses the $137.50 second-tier dark-pool shelf ($108.8M premium, 21 trades) \u2014 C34-anchored on the SECOND-tier shelf, deliberately NOT the $137.99 closing-adjacent bucket, which is the day's closing print and carries the documented closing-cross contamination.",
+      "thesis": "Quiet institutional dark-pool accumulation: three aligned signals with institutional (mega) tier confirmed, and the rare clean tape of the session \u2014 prices ranged genuinely $135.80-$142.77 rather than pinning to the close, so it survived the contamination screen that eliminated AMZN/META/TSLA/AVGO/PLTR/GOOGL. A separate vol-surface leg reads BUY VOL on a 14DTE kink. DROPPED at raw_score 1: the +3 conjunction halved on its own flow test (+0.109% of gross), the OI-build line was withheld because the build is put-led, the debate gate fired 0.65 vs 0.25, and fundamentals returned CAUTION \u2014 with the bear's decisive point being that both positive components trace to a single dilutive debt offering rather than to two independent confirmations."
+    },
+    {
+      "ticker": "MRVL",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "+1 MECHANIZED DEX flip / vanna-squeeze in trade direction",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "scripts/dex_flip.py",
+          "evidence": "qualifies=true direction=short: net_dex 2026-08-27 +1,918,988,168 -> 2026-08-28 -497,529,185, after a prior run of 13 consecutive positive sessions (08-11..08-27); |flip| 497,529,185 vs floor 494,192,533 (0.25x trailing-10 median |net_dex| 1,976,770,134); magnitude_ratio 1.01 \u2014 clears its own floor by ONE PERCENT; sign_changes_in_window 1; whipsaw_warning FALSE. The only mechanically-qualifying DEX flip in the entire fleet today."
+        },
+        {
+          "rubric_line": "+1 MECHANIZED DEX flip \u2014 corroborating GEX leg (0 points, carried on dominant tool)",
+          "points": 0,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw options-structure gex",
+          "evidence": "GEX flipped sign the SAME session (POSITIVE 9 straight sessions 08-17..08-27 -> NEGATIVE 08-28). Broad, not a single-strike artifact: top strike is only ~30% of the -$21.7M total across 50 strikes. Dealers are therefore short gamma below spot, so further weakness is mechanically amplified rather than dampened."
+        },
+        {
+          "rubric_line": "+1 vol-surface-scout KINKED or BACKWARDATION watch with VRP-aligned bias",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "Genuine UNFLIPPED BACKWARDATION \u2014 raw and base_shape both backwardated, so it survives the hygiene filter that flipped 14 of 16 sampled names. IV-vs-RV gap -30.3pp (iv30d 57.57% vs rv20 87.9%) => negative VRP => BUY VOL, VRP-aligned. iv_percentile 11.34 LOW_IV despite a -10.28% session (PROVISIONAL: dates_used 97, not 252). NOT a calendar \u2014 front_end_ratio is not falling, so the calendar disqualifier applies."
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite (MIXED 30d cum-premium-flow read)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$52,611,564 with the tool's own trend_direction = MIXED, against a SHORT dealer_positioning thesis. JUDGMENT CALL, disclosed: literal branch-1 arithmetic gives -3 (|+$52.6M| exceeds both the $27.73M union median and the $50M bar, sign opposes short). -1 applied instead because (a) the tool declined to assign the sign branch 1 presupposes, returning MIXED; (b) net is 1.094% of the name's own $4,810.3M gross \u2014 the award side has a 5% scale-relative floor for exactly this reason, the deduction side's lack of one is a documented defect not a licence; (c) WINDOW STALENESS \u2014 the structure scored is a DEX flip dated TODAY, yet 29 of the 30 sessions in the flow window pre-date it (the GLD 2026-08-21 pattern both debate sides conceded); (d) the union median is degenerate at n=2. NOT LOAD-BEARING: under -3 the score is -1, under -1 it is 1, under a non-directional vol class it is 2 \u2014 all three are below the floor of 3 and all three produce DROP."
+        }
+      ],
+      "dominant_signal_class": "dealer_positioning",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 52611564,
+      "cum_premium_flow_90d": 283617965,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": 0,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "VETO",
+      "debate_residual_confidence": 0.65,
+      "debate_residuals": {
+        "bull": 0.65,
+        "bear": 0.25
+      },
+      "implied_move": 7.7,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 3.26,
+        "days_to_cover": 0.71,
+        "float_shares": 871180000.0,
+        "squeeze_pressure": "LOW",
+        "recom": null,
+        "upside_to_target_pct": null,
+        "rsi": 47.16,
+        "note": "recom/upside upstream-unrecoverable (fz upstream gap). Low short interest (3.26%) and days-to-cover (0.71) mean this is NOT a crowded short and there is no squeeze fuel either way \u2014 neutral context, and explicitly not a factor in the VETO. RSI 47.16 is neutral, not oversold. Advisory, 0 rubric points."
+      },
+      "gate_verdicts": {
+        "regime": "-1 tier (trend UPTREND vs SHORT direction \u2014 directional conflict). Moot: sizing already overridden by the VETO and the short-routing rule",
+        "vrp": "no-op (IV-vs-RV gap -30.3pp = negative VRP, ALIGNED with the BUY-VOL leg; does not contradict the directional short. iv_percentile 11.34 LOW_IV despite the -10.28% session). Moot",
+        "panic": "-1 tier (front_end_iv_ratio@7 = 1.126, past the 1.10 bar \u2014 re-confirmed this session at --near-dte 7. Index-level is CONTANGO, so idiosyncratic not systemic). Moot",
+        "cluster": "no-op (highest pair MRVL/SNDK 0.673 = SOFT WATCH band 0.60-0.70, explicitly NO penalty and NOT discretionarily upgraded to a cluster; both are semis de-rating expressions and this is the pair to watch if a future session scores both. MRVL/IWM 0.595 below threshold)",
+        "sector": "no-op (Technology -$387.4M is the largest NETTED outflow \u2014 ALIGNED with, not adverse to, a short. Gates cut only; alignment awards nothing. The gross sector-flow-persistence reading of 1.0/INFLOW on Technology was DISCARDED as the documented gross-turnover contradiction \u2014 the tape, SMH -3.47%, sides with the netted read)",
+        "fundamentals": "VETO -> watch-only (textbook SHORT TRAP: the -10.28% followed a Q2 BEAT AND RAISE \u2014 record revenue $2.74B +37% YoY, Data Center +46% at 79% of mix, Q3 guided $3.15B +/-5%, FY27 raised to ~$11.5B and FY28 to ~$16.5B; revenue +34.07% YoY with 51.5/36.6/29.0% margins; FOUR analyst PT RAISES on the day of the drop, to $300/$300/$300/$315, with TD Cowen's $245 trim still above spot. 2-of-3 fundamental legs contradict the short; only insider selling MSPR -30.71 supports it)",
+        "event_risk": "-1 tier (NFP 2026-09-04 = T+5; PPI 09-10 = T+8; CPI 09-11 = T+9; FOMC 09-16 = T+12 \u2014 four named dated Tier-1 prints inside the 1-4wk horizon. next_earnings_date returned null: a post-print cache gap, treated as ~late Nov 2026 and explicitly NOT as absence of event risk). Moot",
+        "debate": "-1 tier, DIRECTION-ADJUSTED (literal formula no-ops: bear 0.25 < bull 0.65; but direction == short, so the trade-ADVOCATING side is the bear at 0.25 and the trade-OPPOSING side is the bull at 0.65 \u2014 the disconfirmation step decisively did NOT clear this trade; it is the worst debate outcome on the board, not the best. The bear conceded the DEX flip is most likely a MECHANICAL post-earnings unwind \u2014 13 positive DEX sessions into a binary print, flip on earnings day, magnitude_ratio 1.01 on the most IV-crushing session of the quarter \u2014 and that flow actively FADED the drop at +$7.6M bullish net premium. FLAGGED FOR AUDIT: the live 'bear >= bull' formula is written in long-oriented framing and INVERTS its meaning on short calls; not discretionarily rewritten here, and moot since sizing is overridden)",
+        "rubric_regime": "capped half (OUT-OF-REGIME \u2014 rubric 2026-06-12 fitted UPTREND, current TRANSITIONAL). Moot: sizing overridden",
+        "excess": "NA(substrate) \u2014 dealer_positioning is NOT among the five backtest-supported classes, so the clean-query protocol could not run at all. The tool was not called and no proxy rate was derived. Deliberately NOT relabelled bearish_flow (which IS supported and would have produced a number) because MRVL's flow is BULLISH on every window measured \u2014 that relabel would have manufactured a measured-looking quote for an unmeasured signal"
+      },
+      "key_risks": [
+        "The short is fighting a Q2 beat AND raise, +34% YoY revenue growth, 29% net margins, and four same-day analyst PT raises clustering 38-45% above spot \u2014 asymmetric squeeze/mean-reversion risk",
+        "The DEX/GEX sign flip is most plausibly a mechanical post-earnings dealer-hedging unwind (positive-DEX call book built into the print, unwound on IV crush) carrying no information about deteriorating fundamentals \u2014 conceded by the bear",
+        "magnitude_ratio 1.01 clears the qualifying floor by only 1%, on the single most IV-crushing session of MRVL's quarter",
+        "Options flow contradicts the thesis on every window: cum_flow_30d +$52.6M bullish, and +$7.6M bullish net premium on the -10.28% day itself",
+        "dealer_positioning is not a backtest-supported class \u2014 there is no measured base rate that this signal type predicts anything for single names",
+        "What genuinely survives is only a beta/mechanical short (short-gamma complex, Technology the largest netted outflow, semis de-rating with AMAT carrying a multi-day-confirmed negative GEX regime since 08-18) \u2014 not a fundamental or flow-confirmed distribution thesis"
+      ],
+      "structure": "None \u2014 no structure sized. Directional shorts route to watch_only (2026-08-01 P0 #1) regardless of tier, score or win_rate, and the fundamentals VETO independently blocks any residual sizing path.",
+      "entry_or_trigger": "No entry. This is ROUTING, NOT SUPPRESSION: the thesis is generated, scored, fully gate-verdicted and serialized so /calibration-audit keeps resolving it and the counterfactual stays gradeable. Today's board is 1 short of 2 scored names (50% short share) against a semis-flush tape \u2014 the Phase-1 short lane is producing, not being screened away.",
+      "invalidation": "DEX flips back positive for >= 3 consecutive sessions, or front_end_iv_ratio@7 cools back below 1.05 (currently 1.126). On the anti-short side: a hold above the post-earnings range with the analyst PT cluster ($300-315) intact would confirm the short-trap read outright.",
+      "thesis": "SHORT on the only mechanically-qualifying DEX sign flip in the fleet: net_dex reversed from +$1.919B to -$497.5M after 13 consecutive positive sessions, corroborated by a same-session broad GEX sign flip leaving dealers short gamma below spot, with front-end IV at 1.126 past the panic bar. DROPPED and VETO'd: the -10.28% followed a Q2 beat-and-raise, not a miss; four analysts raised PTs to $300-315 on the day of the drop; flow faded the move (+$7.6M bullish net premium on the down day); and the short lost its own debate 0.25 vs 0.65 when the bear conceded the flip is most likely a mechanical post-earnings unwind that cleared its floor by 1% on the most IV-crushing session of the quarter. A textbook short trap that the fundamentals gate correctly caught."
+    }
+  ],
+  "report_path": "analyses/daily/2026-08-28/report.md"
+}

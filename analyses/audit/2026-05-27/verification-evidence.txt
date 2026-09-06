@@ -1,0 +1,31 @@
+# Verification evidence — MCP vs CLI output equivalence
+# Generated 2026-05-27 12:08:08 on data date 2026-05-26
+# Method: uw <cmd> --json  vs  mcp__uw-pp__<tool>  (identical args), normalized diff.
+
+## byte-identical (jq -S diff empty):
+  - cumflow : IDENTICAL
+  - backtest : IDENTICAL
+  - conf : IDENTICAL
+  - batch : IDENTICAL
+
+## dark-pool ticker-summary float round-trip (same double, diff last digits):
+12c12
+<       "avg_price": 214.70224538449582,
+---
+>       "avg_price": 214.7022453844958,
+20c20
+<       "avg_price": 750.015029668425,
+---
+>       "avg_price": 750.0150296684251,
+23c23
+<       "total_premium": 7293059448.399291,
+
+## sector-flow-persistence: content-identical when sorted by .sector:
+  IDENTICAL (array order non-deterministic in BOTH faces — Go map iteration)
+
+## live-quote fields tick by wall-clock (NOT a port diff):
+  risk market-regime SPY current: CLI=748.96  MCP=748.98 (ticked between calls)
+  options-structure gex SPY: zero_gamma_level=749.65 (IDENTICAL); total_gex scales with full-precision live S
+
+## watchlist: shared XDG state file (CLI list == MCP list, byte-identical)
+  ~/.config/unusual-whales-pp-cli/watchlist.json — written/read by both faces

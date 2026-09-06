@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.4333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UVIX3",
+      "total_volume": 280,
+      "volume_ratio": 646.2035541195477
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 42.6,
+      "full_name": "FIRST TRUST NASDAQ PHARMACEUTICALS ETF",
+      "iv_rank": 31.5211,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FTXH",
+      "total_volume": 14,
+      "volume_ratio": 209.89505247376314
+    },
+    {
+      "avg_total_volume": 0.7667,
+      "close": 1.27,
+      "full_name": "SKYDECK ACQUISITION CORP",
+      "iv_rank": 94.7636,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "SKYA",
+      "total_volume": 155,
+      "volume_ratio": 202.16512325551062
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 34.17,
+      "full_name": "XTRACKERS MSCI EAFE HIGH DIVIDEND YIELD EQUITY ETF",
+      "iv_rank": 20.7108,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HDEF",
+      "total_volume": 50,
+      "volume_ratio": 187.5468867216804
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HIBS1",
+      "total_volume": 12,
+      "volume_ratio": 180.18018018018017
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 73.7712,
+      "full_name": "Invesco Bloomberg Financial Data Providers ETF",
+      "iv_rank": 25.4507,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FDIQ",
+      "total_volume": 12,
+      "volume_ratio": 179.91004497751126
+    },
+    {
+      "avg_total_volume": 13.7333,
+      "close": 8.4,
+      "full_name": "ASURE SOFTWARE INC",
+      "iv_rank": 44.374,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "ASUR",
+      "total_volume": 2402,
+      "volume_ratio": 174.9033371440222
+    },
+    {
+      "avg_total_volume": 4,
+      "close": 40.75,
+      "full_name": "ISHARES GENOMICS IMMUNOLOGY AND HEALTHCARE ETF",
+      "iv_rank": 82.373,
+      "put_call_ratio": 0.028720626631853787,
+      "sector": null,
+      "ticker": "IDNA",
+      "total_volume": 394,
+      "volume_ratio": 98.5
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": 69.78,
+      "full_name": "SPDR S&P KENSHO NEW ECONOMIES COMPOSITE ETF",
+      "iv_rank": 12.4319,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "KOMP",
+      "total_volume": 20,
+      "volume_ratio": 85.72653236176596
+    },
+    {
+      "avg_total_volume": 8.933399999999999,
+      "close": 7.14,
+      "full_name": "CONTROLADORA VUELA COMPANIA DE AVIACION SAB DE CV",
+      "iv_rank": 20.2336,
+      "put_call_ratio": 0.13114754098360656,
+      "sector": "Industrials",
+      "ticker": "VLRS",
+      "total_volume": 690,
+      "volume_ratio": 77.23822956545101
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 23.9934,
+      "full_name": "WISDOMTREE BIOREVOLUTION FUND",
+      "iv_rank": 1.4669,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "WDNA",
+      "total_volume": 10,
+      "volume_ratio": 75.01875468867216
+    },
+    {
+      "avg_total_volume": 3,
+      "close": 16.06,
+      "full_name": "PEARSON PLC",
+      "iv_rank": 43.6165,
+      "put_call_ratio": 0,
+      "sector": "Communication Services",
+      "ticker": "PSO",
+      "total_volume": 225,
+      "volume_ratio": 75
+    },
+    {
+      "avg_total_volume": 2.1,
+      "close": 24.06,
+      "full_name": "LSI INDUSTRIES INC",
+      "iv_rank": 29.0258,
+      "put_call_ratio": 0.22,
+      "sector": "Technology",
+      "ticker": "LYTS",
+      "total_volume": 122,
+      "volume_ratio": 58.095238095238095
+    },
+    {
+      "avg_total_volume": 53.9667,
+      "close": 19.45,
+      "full_name": "MISTRAS GROUP INC",
+      "iv_rank": 38.3114,
+      "put_call_ratio": 0.0003215434083601286,
+      "sector": "Industrials",
+      "ticker": "MG",
+      "total_volume": 3111,
+      "volume_ratio": 57.64665988470668
+    },
+    {
+      "avg_total_volume": 210.3333,
+      "close": 86.92,
+      "full_name": "VALARIS LTD",
+      "iv_rank": 63.6378,
+      "put_call_ratio": 0.00024914874179885393,
+      "sector": "Energy",
+      "ticker": "VAL",
+      "total_volume": 12044,
+      "volume_ratio": 57.26149877361311
+    },
+    {
+      "avg_total_volume": 9.6,
+      "close": 27.06,
+      "full_name": "iShares Staked Ethereum Trust ETF Shares of Fractional Undivided Beneficial Interest",
+      "iv_rank": 61.1053,
+      "put_call_ratio": 12.24390243902439,
+      "sector": null,
+      "ticker": "ETHB",
+      "total_volume": 543,
+      "volume_ratio": 56.5625
+    },
+    {
+      "avg_total_volume": 17.4,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 14.1087,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "GFI1",
+      "total_volume": 927,
+      "volume_ratio": 53.27586206896552
+    },
+    {
+      "avg_total_volume": 0.2333,
+      "close": 56.8281,
+      "full_name": "NEOS S&P 500 Hedged Equity Income ETF",
+      "iv_rank": 22.2753,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPYH",
+      "total_volume": 11,
+      "volume_ratio": 47.14959279897128
+    },
+    {
+      "avg_total_volume": 2.3,
+      "close": 31.3,
+      "full_name": "Central Bancompany",
+      "iv_rank": 26.8239,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CBC",
+      "total_volume": 108,
+      "volume_ratio": 46.95652173913044
+    },
+    {
+      "avg_total_volume": 23.533299999999997,
+      "close": 2.17,
+      "full_name": "TORRID HOLDINGS INC",
+      "iv_rank": 5.8839,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "CURV",
+      "total_volume": 1075,
+      "volume_ratio": 45.67995138803313
+    },
+    {
+      "avg_total_volume": 961.4666,
+      "close": 37.4,
+      "full_name": "ROIVANT SCIENCES LTD",
+      "iv_rank": 37.9093,
+      "put_call_ratio": 0.004001005967214614,
+      "sector": "Healthcare",
+      "ticker": "ROIV",
+      "total_volume": 43914,
+      "volume_ratio": 45.67397349008276
+    },
+    {
+      "avg_total_volume": 8.6334,
+      "close": 140.65,
+      "full_name": "VANGUARD FINANCIALS INDEX FUND",
+      "iv_rank": 18.313,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VFH",
+      "total_volume": 394,
+      "volume_ratio": 45.63671323001367
+    },
+    {
+      "avg_total_volume": 0.2,
+      "close": 35.772,
+      "full_name": "WEBs Health Care XLV Defined Volatility ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DVXV",
+      "total_volume": 9,
+      "volume_ratio": 45
+    },
+    {
+      "avg_total_volume": 1.7999999999999998,
+      "close": 0.356,
+      "full_name": "CYTOSORBENTS CORP",
+      "iv_rank": 57.0137,
+      "put_call_ratio": 0.12857142857142856,
+      "sector": "Healthcare",
+      "ticker": "CTSO",
+      "total_volume": 79,
+      "volume_ratio": 43.88888888888889
+    },
+    {
+      "avg_total_volume": 11.9,
+      "close": 45.8111,
+      "full_name": "Roundhill Gold Miners WeeklyPay ETF",
+      "iv_rank": 36.1328,
+      "put_call_ratio": 0.02766798418972332,
+      "sector": null,
+      "ticker": "GDXW",
+      "total_volume": 520,
+      "volume_ratio": 43.69747899159664
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-19.parquet"
+}

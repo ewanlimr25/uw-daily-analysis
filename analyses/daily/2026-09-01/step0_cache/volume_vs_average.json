@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0667,
+      "close": 35.79,
+      "full_name": "INVESCO S&P INTERNATIONAL DEVELOPED LOW VOLATILITY ETF",
+      "iv_rank": 12.639,
+      "put_call_ratio": 2,
+      "sector": null,
+      "ticker": "IDLV",
+      "total_volume": 150,
+      "volume_ratio": 2248.8755622188905
+    },
+    {
+      "avg_total_volume": 0.7333999999999999,
+      "close": 9.24,
+      "full_name": "CONSUMER PORTFOLIO SERVICES INC",
+      "iv_rank": 15.7278,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CPSS",
+      "total_volume": 1600,
+      "volume_ratio": 2181.61985274066
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 26.17,
+      "full_name": "INVESCO TAXABLE MUNICIPAL BOND ETF",
+      "iv_rank": 13.0558,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BAB",
+      "total_volume": 200,
+      "volume_ratio": 2000
+    },
+    {
+      "avg_total_volume": 11.1,
+      "close": 30.9,
+      "full_name": "JANONE INC",
+      "iv_rank": 28.5714,
+      "put_call_ratio": 0.0007414730598121602,
+      "sector": "Industrials",
+      "ticker": "JAN",
+      "total_volume": 8098,
+      "volume_ratio": 729.5495495495496
+    },
+    {
+      "avg_total_volume": 5.0333,
+      "close": 13.04,
+      "full_name": "ERMENEGILDO ZEGNA NV",
+      "iv_rank": 75.8324,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "ZGN",
+      "total_volume": 2501,
+      "volume_ratio": 496.8907078854827
+    },
+    {
+      "avg_total_volume": 6.9667,
+      "close": 57.85,
+      "full_name": "TXNM Energy, Inc.",
+      "iv_rank": 33.3333,
+      "put_call_ratio": 0,
+      "sector": "Utilities",
+      "ticker": "TXNM",
+      "total_volume": 2356,
+      "volume_ratio": 338.1802000947364
+    },
+    {
+      "avg_total_volume": 435.2333,
+      "close": 60.81,
+      "full_name": "VAXCYTE INC",
+      "iv_rank": 24.1778,
+      "put_call_ratio": 1.246633752244165,
+      "sector": "Healthcare",
+      "ticker": "PCVX",
+      "total_volume": 90099,
+      "volume_ratio": 207.0131122779438
+    },
+    {
+      "avg_total_volume": 12.1667,
+      "close": 3.19,
+      "full_name": "VERA BRADLEY INC",
+      "iv_rank": 13.61,
+      "put_call_ratio": 84.18518518518519,
+      "sector": "Consumer Cyclical",
+      "ticker": "VRA",
+      "total_volume": 2300,
+      "volume_ratio": 189.04057797101925
+    },
+    {
+      "avg_total_volume": 57.1667,
+      "close": 49.68,
+      "full_name": "STEPSTONE GROUP INC",
+      "iv_rank": 58.8182,
+      "put_call_ratio": 0.00009966115208291808,
+      "sector": "Financial Services",
+      "ticker": "STEP",
+      "total_volume": 10035,
+      "volume_ratio": 175.53925624533164
+    },
+    {
+      "avg_total_volume": 0.6,
+      "close": 42.12,
+      "full_name": "CENTRAL GARDEN & PET CO",
+      "iv_rank": 14.9298,
+      "put_call_ratio": 0,
+      "sector": "Consumer Defensive",
+      "ticker": "CENT",
+      "total_volume": 100,
+      "volume_ratio": 166.66666666666669
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 80.7143,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AD1",
+      "total_volume": 10,
+      "volume_ratio": 149.92503748125938
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 24.04,
+      "full_name": "INVESCO GALAXY ETHEREUM ETF",
+      "iv_rank": 28.7717,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "QETH",
+      "total_volume": 13,
+      "volume_ratio": 130
+    },
+    {
+      "avg_total_volume": 1.2000000000000002,
+      "close": 77.11,
+      "full_name": "VANGUARD SHORT-TERM BOND INDEX FUND",
+      "iv_rank": 19.2308,
+      "put_call_ratio": 100,
+      "sector": null,
+      "ticker": "BSV",
+      "total_volume": 101,
+      "volume_ratio": 84.16666666666666
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": 194.4531,
+      "full_name": "SPDR FACTSET INNOVATIVE TECHNOLOGY ETF",
+      "iv_rank": 45.3168,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "XITK",
+      "total_volume": 22,
+      "volume_ratio": 82.48968878890139
+    },
+    {
+      "avg_total_volume": 0.8666,
+      "close": 32.19,
+      "full_name": "BlackRock ETF Trust iShares Defense Industrials Active ETF",
+      "iv_rank": 84.6154,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IDEF",
+      "total_volume": 70,
+      "volume_ratio": 80.77544426494346
+    },
+    {
+      "avg_total_volume": 315.2667,
+      "close": 9.3,
+      "full_name": "Acuren Corporation",
+      "iv_rank": 17.1767,
+      "put_call_ratio": 8202,
+      "sector": "Industrials",
+      "ticker": "TIC",
+      "total_volume": 24609,
+      "volume_ratio": 78.05772065365609
+    },
+    {
+      "avg_total_volume": 51.0334,
+      "close": 31.22,
+      "full_name": "TECTONIC THERAPEUTIC INC",
+      "iv_rank": 38.0794,
+      "put_call_ratio": 0.4306382978723404,
+      "sector": "Healthcare",
+      "ticker": "TECX",
+      "total_volume": 3362,
+      "volume_ratio": 65.87842471792983
+    },
+    {
+      "avg_total_volume": 5909.933300000001,
+      "close": 1.23,
+      "full_name": "GOPRO INC",
+      "iv_rank": 31.021,
+      "put_call_ratio": 0.3537619042424375,
+      "sector": "Technology",
+      "ticker": "GPRO",
+      "total_volume": 372294,
+      "volume_ratio": 62.99461958394691
+    },
+    {
+      "avg_total_volume": 66.2667,
+      "close": 5.72,
+      "full_name": "ALTA EQUIPMENT GROUP INC",
+      "iv_rank": 45.0421,
+      "put_call_ratio": 0.0007431260837255387,
+      "sector": "Industrials",
+      "ticker": "ALTG",
+      "total_volume": 4040,
+      "volume_ratio": 60.96576410172832
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 31.5572,
+      "full_name": "FIDELITY DISRUPTIVE MEDICINE ETF",
+      "iv_rank": 8.3636,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FMED",
+      "total_volume": 3,
+      "volume_ratio": 44.977511244377816
+    },
+    {
+      "avg_total_volume": 72.9334,
+      "close": 9.35,
+      "full_name": "PUMA BIOTECHNOLOGY INC",
+      "iv_rank": 34.2037,
+      "put_call_ratio": 0.0017123287671232876,
+      "sector": "Healthcare",
+      "ticker": "PBYI",
+      "total_volume": 2925,
+      "volume_ratio": 40.105082170857244
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 75.58,
+      "full_name": "ISHARES MSCI EMERGING MARKETS MIN VOL FACTOR ETF",
+      "iv_rank": 30.9497,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "EEMV",
+      "total_volume": 5,
+      "volume_ratio": 37.481259370314845
+    },
+    {
+      "avg_total_volume": 27.9333,
+      "close": 21.02,
+      "full_name": "Jade Biosciences",
+      "iv_rank": 12.4502,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "JBIO",
+      "total_volume": 1009,
+      "volume_ratio": 36.12176148181561
+    },
+    {
+      "avg_total_volume": 50.4666,
+      "close": 27.55,
+      "full_name": "NATURAL GROCERS BY VITAMIN COTTAGE INC",
+      "iv_rank": 32.9605,
+      "put_call_ratio": 0.0011855364552459987,
+      "sector": "Consumer Defensive",
+      "ticker": "NGVC",
+      "total_volume": 1689,
+      "volume_ratio": 33.467679613843615
+    },
+    {
+      "avg_total_volume": 2.1,
+      "close": 11.1,
+      "full_name": "BRIGHTVIEW HOLDINGS INC",
+      "iv_rank": 25.517,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "BV",
+      "total_volume": 70,
+      "volume_ratio": 33.33333333333333
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-09-01.parquet"
+}

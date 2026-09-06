@@ -1,0 +1,347 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-06-12",
+  "report_kind": "weekly",
+  "iso_week": "2026-W24",
+  "regime": "TRANSITIONAL / PULLBACK_IN_UPTREND (held WoW; breadth 34.0%->38.6% bullish, sub-50%)",
+  "vrp_classification": "FAIR_NEUTRAL",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.39,
+    "core_cpi_yoy_pct": 2.96,
+    "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 172.0,
+    "ten_year_yield": 4.45,
+    "ten_year_30d_direction": "flat",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.62
+  },
+  "macro_event_risk": [
+    {
+      "event": "Retail Sales (May)",
+      "date": "2026-06-16",
+      "impact": "high"
+    },
+    {
+      "event": "FOMC decision + SEP (Warsh 1st mtg; ~98% no-move priced)",
+      "date": "2026-06-17",
+      "impact": "high"
+    },
+    {
+      "event": "Monthly OPEX (pulled to Thu; Juneteenth closes Fri 06-19)",
+      "date": "2026-06-18",
+      "impact": "high"
+    },
+    {
+      "event": "Jobless claims",
+      "date": "2026-06-18",
+      "impact": "medium"
+    },
+    {
+      "event": "Juneteenth holiday (market closed)",
+      "date": "2026-06-19",
+      "impact": "low"
+    },
+    {
+      "event": "PCE (May) + Michigan final",
+      "date": "2026-06-26",
+      "impact": "high"
+    }
+  ],
+  "watchlist_write_back": [
+    "HYG",
+    "MU",
+    "ACN",
+    "KR",
+    "JBL"
+  ],
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-12",
+    "next_session_date": "2026-06-15",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 741.77,
+        "zero_gamma_level": 334.92,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": 39600000,
+        "call_wall": 743,
+        "put_wall": 735,
+        "read": "Freshly-flipped fragile POSITIVE after a week of FULLY_NEGATIVE; spot pressing call wall. Backtest verdict NO_GO_NO_EDGE (walls not magnets, 27.3% < 50%).",
+        "structure_bias": "Soft long-gamma pin 735-743 with no OI mass to enforce; prefer defined-risk into FOMC.",
+        "caveats": "EOD=prior refreshed after open; gap risk into FOMC; ETF-not-index book; cannot isolate D+1 expiry."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 721.93,
+        "zero_gamma_level": 211.16,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": 424900000,
+        "call_wall": 723,
+        "put_wall": 715,
+        "read": "POSITIVE and better-supported than SPY; pinned between 720/723. Backtest NO_GO_NO_EDGE (29.5% < 50%).",
+        "structure_bias": "Range 715-723; marginally defensible pin but FOMC overrides.",
+        "caveats": "EOD=prior; gap risk into FOMC; ETF-not-index; D+1 not isolable."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-12",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "MID",
+        "vix": 17.68,
+        "implied_move_pct": 0.75,
+        "expected_range_pct": 0.77,
+        "size_scalar": 1.0,
+        "suggested_structure": "iron fly / short straddle centred 742.5, wings +/-0.77% (net +0.219% of spot notional, gross +0.319%)",
+        "entry_rule": "Enter at/after the open; never carry overnight (overnight mean -0.193%).",
+        "stand_aside_reason": "Stand aside on the FOMC 06-17 session (live vol-shock catalyst).",
+        "caution": "No vol shock in sample; tail unsampled; advisory 0 points permanently."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "MID",
+        "vix": 17.68,
+        "implied_move_pct": 1.19,
+        "expected_range_pct": 1.21,
+        "size_scalar": 1.0,
+        "suggested_structure": "iron fly / short straddle centred 722.8, wings +/-1.21%",
+        "entry_rule": "Enter at/after the open; never carry overnight.",
+        "stand_aside_reason": "Stand aside on FOMC 06-17; QQQ edge weaker than SPY.",
+        "caution": "Weaker than SPY; advisory 0 points."
+      }
+    ]
+  },
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 397,
+    "decliners": 106,
+    "pct_green": 78.93,
+    "divergence_flag": false,
+    "note": "Green tape, no divergence (pct_green>50). 0 rubric points."
+  },
+  "report_path": "analyses/weekly/2026-W24/report.md",
+  "calls": [
+    {
+      "ticker": "HYG",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 3,
+      "dominant_signal_class": "multileg_directional",
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg-strategist >=2-day repeat directional structure",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "4-day rolling put-spread Jun18->Sep18->Jan27, max-negative-GEX zone, BEARISH"
+        },
+        {
+          "rubric_line": "+1 OI building in trade direction",
+          "points": 1,
+          "source_agent": "opex-pin-strategist",
+          "source_tool": "uw oi biggest-increases",
+          "evidence": "net +124.6k new put OI, opening-dominant 0.86-1.0 OI/vol across Jul17/Sep18/Nov20"
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": -17098959,
+      "cum_premium_flow_90d": -30951520,
+      "win_rate": 0.4676,
+      "win_rate_uncapped": 0.4676,
+      "win_rate_n": 139,
+      "win_rate_source": "fallback_proxy",
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "market_excess": -0.032,
+      "fundamentals_verdict": "CAUTION",
+      "debate_residual_confidence": 0.55,
+      "debate_residuals": {
+        "bull": 0.55,
+        "bear": 0.85
+      },
+      "gate_verdicts": {
+        "regime": "no-op (TRANSITIONAL; bearish credit not regime-conflicted)",
+        "vrp": "no-op (FAIR/NEUTRAL)",
+        "panic": "no-op (SPY front-end IV 0.905 contango)",
+        "cluster": "no-op (HYG/IWM 0.853 but IWM watch-only, no live book member)",
+        "sector": "no-op (credit ETF, not in equities sector-flow)",
+        "fundamentals": "-1 tier (CAUTION: FOMC dovish-squeeze risk on Jun18 leg)",
+        "event_risk": "-1 tier (FOMC 06-17 + OPEX 06-18 both inside horizon)",
+        "debate": "-1 tier (bear 0.85 >= bull 0.55; standing hedge program not alpha)",
+        "rubric_regime": "cap-half (OUT-OF-REGIME; rubric fitted UPTREND, current TRANSITIONAL)"
+      },
+      "thesis": "Institutional 4-day rolling put-spread credit hedge (Jun18->Sep18->Jan27); bearish HY-credit / spread-widening. Adjudicated a standing hedge program, not tradable alpha.",
+      "invalidation": "Dovish FOMC 06-17 compresses HY spreads and squeezes the Jun18 leg; HYG sustains above 81."
+    },
+    {
+      "ticker": "MU",
+      "horizon": "vol",
+      "section": "watch_only",
+      "direction": "vol_long",
+      "tier": "DROP",
+      "raw_score": 2,
+      "dominant_signal_class": "earnings_vol",
+      "score_components": [
+        {
+          "rubric_line": "+1 vol-surface front-end-iv / BUY VOL pre-event",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure front-end-iv-ratio",
+          "evidence": "VRP -0.057 PREMIUM_BUYING, BACKWARDATION 1.149, IVR 99.6"
+        },
+        {
+          "rubric_line": "+1 dealer BACKWARDATION confirmation (event-driven)",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "sustained positive DEX + 1.149 front-end backwardation = event vol premium"
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": 439300000,
+      "cum_premium_flow_90d": -143600000,
+      "win_rate": null,
+      "win_rate_source": "NA",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "CAUTION",
+      "thesis": "Earnings-vol into 06-24 PM print (IVR 99.6, VRP negative). OPENING_PUT_PRIME whale gives a near-term bearish tilt; 4/4 beat streak fights a directional short.",
+      "invalidation": "Below floor (raw 2); re-evaluate post-earnings 06-24."
+    },
+    {
+      "ticker": "ACN",
+      "horizon": "vol",
+      "section": "watch_only",
+      "direction": "vol_long",
+      "tier": "DROP",
+      "raw_score": 2,
+      "dominant_signal_class": "earnings_vol",
+      "score_components": [
+        {
+          "rubric_line": "+1 vol-surface CALENDAR structure",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "KINKED 06-18 pivot, front-ratio 1.891"
+        },
+        {
+          "rubric_line": "+1 earnings-scout BUY/SELL VOL next 2wk",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw screener earnings-catalyst",
+          "evidence": "CALENDAR verdict, earnings 06-18 BMO confirmed"
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": -8600000,
+      "cum_premium_flow_90d": -123700000,
+      "win_rate": null,
+      "win_rate_source": "NA",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "CONFIRM",
+      "thesis": "Earnings-vol CALENDAR into 06-18 BMO (front-ratio 1.891 too hot for naked short). Insider buying (MSPR +44.7) confirms; cleanest fundamentals in the watch set.",
+      "invalidation": "Below floor (raw 2); highest-quality re-entry candidate if it re-clears post-earnings."
+    },
+    {
+      "ticker": "KR",
+      "horizon": "vol",
+      "section": "watch_only",
+      "direction": "vol_short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "dominant_signal_class": "earnings_vol",
+      "score_components": [
+        {
+          "rubric_line": "+1 vol-surface SELL VOL",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure term-skew",
+          "evidence": "BACKWARDATION 1.674, COMPLACENT back-month"
+        },
+        {
+          "rubric_line": "+1 earnings-scout SELL VOL next 2wk",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw screener earnings-catalyst",
+          "evidence": "earnings 06-18 BMO confirmed"
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": 900000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_source": "NA",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "CAUTION",
+      "thesis": "Earnings-vol SELL VOL into 06-18 BMO. EPS -57.8% YoY + analyst PT cuts raise event-move tail risk.",
+      "invalidation": "Below floor (raw 2); CAUTION on larger-than-implied move."
+    },
+    {
+      "ticker": "JBL",
+      "horizon": "vol",
+      "section": "watch_only",
+      "direction": "vol_short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "dominant_signal_class": "earnings_vol",
+      "score_components": [
+        {
+          "rubric_line": "+1 vol-surface SELL VOL",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure front-end-iv-ratio",
+          "evidence": "front-ratio 1.350, COMPLACENT back skew +0.012"
+        },
+        {
+          "rubric_line": "+1 earnings-scout SELL VOL next 2wk",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw screener earnings-catalyst",
+          "evidence": "earnings 06-17 BMO confirmed (FOMC same day)"
+        }
+      ],
+      "confluence_score": null,
+      "cum_premium_flow_30d": -6700000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_source": "NA",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "CAUTION",
+      "thesis": "Earnings-vol SELL VOL into 06-17 BMO = FOMC same day (compound event). Insider selling -9.33%.",
+      "invalidation": "Below floor (raw 2); FOMC-same-day compound event adverse to short vol."
+    },
+    {
+      "ticker": "IWM",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "dominant_signal_class": "directional_conflict",
+      "score_components": [],
+      "confluence_score": null,
+      "cum_premium_flow_30d": null,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_source": "NA",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "NA",
+      "thesis": "Failed confluence gate: dealer mechanized DEX-flip LONG vs multileg 3-day put-vertical BEARISH vs accumulation DISTRIBUTION. No net direction.",
+      "invalidation": "n/a (watch-only; resolve on the 06-13 SPY/IWM DEX print)."
+    }
+  ]
+}

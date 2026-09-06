@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 4.7667,
+      "close": 32.04,
+      "full_name": "Beacon Financial Corporation",
+      "iv_rank": 9.6207,
+      "put_call_ratio": 0.001639344262295082,
+      "sector": "Financial Services",
+      "ticker": "BBT",
+      "total_volume": 6110,
+      "volume_ratio": 1281.8092181173558
+    },
+    {
+      "avg_total_volume": 0.3334,
+      "close": 41.55,
+      "full_name": "SPDR(R) MSCI ACWI EX-US ETF",
+      "iv_rank": 28.4527,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CWI",
+      "total_volume": 200,
+      "volume_ratio": 599.880023995201
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RNA1",
+      "total_volume": 37,
+      "volume_ratio": 555.5555555555555
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 39.48,
+      "full_name": "SPDR(R) FTSE INTERNATIONAL GOVERNMENT INFLATION-PROTECTED BOND ETF",
+      "iv_rank": 21.8411,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "WIP",
+      "total_volume": 5,
+      "volume_ratio": 150.15015015015013
+    },
+    {
+      "avg_total_volume": 2.1,
+      "close": 12.34,
+      "full_name": "BENITEC BIOPHARMA INC",
+      "iv_rank": 51.3373,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "BNTC",
+      "total_volume": 302,
+      "volume_ratio": 143.8095238095238
+    },
+    {
+      "avg_total_volume": 43.9334,
+      "close": 2.91,
+      "full_name": "IHEARTMEDIA INC",
+      "iv_rank": 48.1965,
+      "put_call_ratio": 1104.2,
+      "sector": "Communication Services",
+      "ticker": "IHRT",
+      "total_volume": 5526,
+      "volume_ratio": 125.78129623475533
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 206.5939,
+      "full_name": "ISHARES GLOBAL INDUSTRIALS ETF",
+      "iv_rank": 39.5297,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "EXI",
+      "total_volume": 10,
+      "volume_ratio": 100
+    },
+    {
+      "avg_total_volume": 21.3333,
+      "close": 66.83,
+      "full_name": "TRINET GROUP INC",
+      "iv_rank": 46.7739,
+      "put_call_ratio": 0.0005277044854881266,
+      "sector": "Industrials",
+      "ticker": "TNET",
+      "total_volume": 1896,
+      "volume_ratio": 88.87513886740447
+    },
+    {
+      "avg_total_volume": 8.7,
+      "close": 5.81,
+      "full_name": "AUDIOEYE INC",
+      "iv_rank": 68.284,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "AEYE",
+      "total_volume": 761,
+      "volume_ratio": 87.4712643678161
+    },
+    {
+      "avg_total_volume": 13.866700000000002,
+      "close": 2.22,
+      "full_name": "NATIONAL CINEMEDIA INC",
+      "iv_rank": 18.5625,
+      "put_call_ratio": 0.11602209944751381,
+      "sector": "Communication Services",
+      "ticker": "NCMI",
+      "total_volume": 1212,
+      "volume_ratio": 87.4036360489518
+    },
+    {
+      "avg_total_volume": 0.16670000000000001,
+      "close": 161.13,
+      "full_name": "INVESCO DYNAMIC LARGE CAP GROWTH ETF",
+      "iv_rank": 30.9496,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PWB",
+      "total_volume": 13,
+      "volume_ratio": 77.98440311937611
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "MST2",
+      "total_volume": 10,
+      "volume_ratio": 75.01875468867216
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": 153.7428,
+      "full_name": "SOFI SELECT 500 ETF",
+      "iv_rank": 28.586,
+      "put_call_ratio": 0.05,
+      "sector": null,
+      "ticker": "SFY",
+      "total_volume": 21,
+      "volume_ratio": 70
+    },
+    {
+      "avg_total_volume": 71.5333,
+      "close": 25.26,
+      "full_name": "Liftoff Mobile",
+      "iv_rank": 62.1495,
+      "put_call_ratio": 0.8472699503627339,
+      "sector": "Communication Services",
+      "ticker": "LFTO",
+      "total_volume": 4838,
+      "volume_ratio": 67.63283673477947
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 29.6851,
+      "full_name": "GLOBAL X S&P 500 COVERED CALL & GROWTH ETF",
+      "iv_rank": 1.7905,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "XYLG",
+      "total_volume": 6,
+      "volume_ratio": 60
+    },
+    {
+      "avg_total_volume": 1.9334,
+      "close": 21.13,
+      "full_name": "INVESCO EMERGING MARKETS SOVEREIGN DEBT ETF",
+      "iv_rank": 13.1677,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PCY",
+      "total_volume": 100,
+      "volume_ratio": 51.72235440157236
+    },
+    {
+      "avg_total_volume": 3.2,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 15.7114,
+      "put_call_ratio": 3.05,
+      "sector": null,
+      "ticker": "COF1",
+      "total_volume": 162,
+      "volume_ratio": 50.625
+    },
+    {
+      "avg_total_volume": 8.0667,
+      "close": 21.3,
+      "full_name": "SUTRO BIOPHARMA INC",
+      "iv_rank": 20.956,
+      "put_call_ratio": 14.115384615384615,
+      "sector": "Healthcare",
+      "ticker": "STRO",
+      "total_volume": 393,
+      "volume_ratio": 48.718806947078725
+    },
+    {
+      "avg_total_volume": 329.8334,
+      "close": 36.46,
+      "full_name": "PHARVARIS NV",
+      "iv_rank": 60.9086,
+      "put_call_ratio": 1.9952257807837677,
+      "sector": "Healthcare",
+      "ticker": "PHVS",
+      "total_volume": 15057,
+      "volume_ratio": 45.65031922176469
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 52.18,
+      "full_name": "ALPS EQUAL SECTOR WEIGHT ETF",
+      "iv_rank": 2.9441,
+      "put_call_ratio": 2,
+      "sector": null,
+      "ticker": "EQL",
+      "total_volume": 3,
+      "volume_ratio": 44.977511244377816
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 40.74,
+      "full_name": "SIERRA BANCORP",
+      "iv_rank": 23.4108,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "BSRR",
+      "total_volume": 4,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 25.5334,
+      "close": 24.75,
+      "full_name": "MASTERCRAFT BOAT HOLDINGS INC",
+      "iv_rank": 45.3642,
+      "put_call_ratio": 1020,
+      "sector": "Consumer Cyclical",
+      "ticker": "MCFT",
+      "total_volume": 1021,
+      "volume_ratio": 39.98684076542881
+    },
+    {
+      "avg_total_volume": 23196.3333,
+      "close": 12.22,
+      "full_name": "BLUE OWL CAPITAL INC",
+      "iv_rank": 21.6018,
+      "put_call_ratio": 0.006092687667842254,
+      "sector": "Financial Services",
+      "ticker": "OWL",
+      "total_volume": 908882,
+      "volume_ratio": 39.18214091190008
+    },
+    {
+      "avg_total_volume": 366.7667,
+      "close": 40.21,
+      "full_name": "HUB GROUP INC",
+      "iv_rank": 60.2573,
+      "put_call_ratio": 0.02321760251464495,
+      "sector": "Industrials",
+      "ticker": "HUBG",
+      "total_volume": 14323,
+      "volume_ratio": 39.05207315713231
+    },
+    {
+      "avg_total_volume": 68.0333,
+      "close": 2.62,
+      "full_name": "PROTALIX BIOTHERAPEUTICS INC",
+      "iv_rank": 0.261,
+      "put_call_ratio": 0.011480601741884403,
+      "sector": "Healthcare",
+      "ticker": "PLX",
+      "total_volume": 2555,
+      "volume_ratio": 37.55513843955828
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-12.parquet"
+}

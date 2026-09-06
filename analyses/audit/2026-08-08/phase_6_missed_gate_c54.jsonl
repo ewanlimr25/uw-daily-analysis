@@ -1,0 +1,263 @@
+{
+ "regime": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 111,
+    "rate": 0.0
+   },
+   "DROP": {
+    "missed": 256,
+    "n": 488,
+    "rate": 0.5246
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0,
+  "drift_flag": false
+ },
+ "vrp": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 111,
+    "rate": 0.009
+   },
+   "DROP": {
+    "missed": 260,
+    "n": 488,
+    "rate": 0.5328
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0072,
+  "drift_flag": false
+ },
+ "panic": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 111,
+    "rate": 0.0
+   },
+   "DROP": {
+    "missed": 261,
+    "n": 488,
+    "rate": 0.5348
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0,
+  "drift_flag": false
+ },
+ "cluster": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 111,
+    "rate": 0.009
+   },
+   "DROP": {
+    "missed": 256,
+    "n": 488,
+    "rate": 0.5246
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0072,
+  "drift_flag": false
+ },
+ "sector": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 1,
+    "n": 111,
+    "rate": 0.009
+   },
+   "DROP": {
+    "missed": 261,
+    "n": 488,
+    "rate": 0.5348
+   }
+  },
+  "non_drop_missed": 1,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0072,
+  "drift_flag": false
+ },
+ "fundamentals": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 2,
+    "n": 111,
+    "rate": 0.018
+   },
+   "DROP": {
+    "missed": 252,
+    "n": 488,
+    "rate": 0.5164
+   }
+  },
+  "non_drop_missed": 2,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0145,
+  "drift_flag": false
+ },
+ "event_risk": {
+  "live_from": "2026-05-25",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 7,
+    "rate": 0.0
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 20,
+    "rate": 0.0
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 111,
+    "rate": 0.0
+   },
+   "DROP": {
+    "missed": 248,
+    "n": 488,
+    "rate": 0.5082
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 138,
+  "non_drop_rate": 0.0,
+  "drift_flag": false
+ },
+ "debate": {
+  "live_from": "2026-06-12",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 0,
+    "rate": null
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 0,
+    "rate": null
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 49,
+    "rate": 0.0
+   },
+   "DROP": {
+    "missed": 212,
+    "n": 426,
+    "rate": 0.4977
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 49,
+  "non_drop_rate": 0.0,
+  "drift_flag": false
+ },
+ "rubric_regime": {
+  "live_from": "2026-06-12",
+  "per_tier": {
+   "HIGH": {
+    "missed": 0,
+    "n": 0,
+    "rate": null
+   },
+   "MEDIUM": {
+    "missed": 0,
+    "n": 0,
+    "rate": null
+   },
+   "LOW": {
+    "missed": 0,
+    "n": 49,
+    "rate": 0.0
+   },
+   "DROP": {
+    "missed": 205,
+    "n": 426,
+    "rate": 0.4812
+   }
+  },
+  "non_drop_missed": 0,
+  "non_drop_n": 49,
+  "non_drop_rate": 0.0,
+  "drift_flag": false
+ }
+}

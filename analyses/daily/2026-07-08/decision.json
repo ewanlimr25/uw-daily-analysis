@@ -1,0 +1,429 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-07-08",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL \u2014 Mixed signals, reduce size (trend UPTREND); breadth strongly divergent (22% green, 391 decliners vs 112 advancers)",
+  "vrp_classification": "FAIR",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.35,
+    "core_cpi_yoy_pct": 2.96,
+    "core_pce_yoy_pct": 3.41,
+    "unemployment_rate": 4.2,
+    "payrolls_mom_000s": 57.0,
+    "ten_year_yield": 4.55,
+    "ten_year_30d_direction": "flat",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.63
+  },
+  "macro_event_risk": [
+    {
+      "event": "FOMC Minutes (Jun 16-17)",
+      "date": "2026-07-08",
+      "impact": "medium"
+    },
+    {
+      "event": "CPI (June)",
+      "date": "2026-07-14",
+      "impact": "high"
+    },
+    {
+      "event": "PPI (June)",
+      "date": "2026-07-15",
+      "impact": "high"
+    },
+    {
+      "event": "Beige Book",
+      "date": "2026-07-15",
+      "impact": "low"
+    },
+    {
+      "event": "Initial Jobless Claims",
+      "date": "2026-07-16",
+      "impact": "low"
+    },
+    {
+      "event": "FOMC Meeting + SEP",
+      "date": "2026-07-28",
+      "impact": "high"
+    }
+  ],
+  "watchlist_write_back": [
+    "SPY",
+    "PLTR",
+    "AMZN",
+    "SNDK",
+    "TSM"
+  ],
+  "report_path": "analyses/daily/2026-07-08/report.md",
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 112,
+    "decliners": 391,
+    "pct_green": 22.27,
+    "divergence_flag": true,
+    "note": "Index green / UPTREND trend label but only 22.3% of S&P names green (391 decliners vs 112 advancers, avg -1.1%). Narrow mega-cap/semi-led tape masking broad distribution \u2014 corroborates the index-short read and caps long conviction. Advisory, 0 points."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-07-08",
+    "next_session_date": "2026-07-09",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 744.98,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -1179000000,
+        "call_wall": 760,
+        "put_wall": 740,
+        "read": "All strikes negative net GEX (total_gex -1.18B); deepest negative pocket sits right at spot (745 strike -487.6M). Dealers short gamma across the visible range \u2014 hedging amplifies moves either direction through the pin, not a stable mean-revert setup. Put wall 740 (~0.7% below) thin/close; call wall 760 (~2.0% above) far/thin. 30d book chronically unstable (flipped regime 6 of last 8 sessions).",
+        "structure_bias": "Short-gamma, walls wide/asymmetric -> favor debit verticals or long-straddle-leaning 0DTE over premium-selling; a short straddle/iron fly at 745 is mispriced for the risk (dealers chase, not dampen).",
+        "caveats": "EOD prior only, refreshed by fresh 0DTE OI in first 30-60min; SPY ETF book not SPX; uw cannot isolate D+1 expiry (0-45d proxy, validated by 07-09/07-10 expiry share). No scheduled overnight event (CPI is 07-14). Regime instability flag."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 710.25,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": -372600000,
+        "call_wall": 730,
+        "put_wall": 700,
+        "read": "ANOMALY: tool regime label reads POSITIVE while total_gex is negative (-372.6M) \u2014 internally inconsistent, treat regime label as low-confidence. Falling back to total_gex sign: short-gamma-leaning in a noisy, thin at-the-money band (700-715 flips strike-to-strike). Put wall 700 (~1.4% below) is the nearest firm support; call wall 730 (~2.8% above) far/thin, upside not well capped. Choppier and more fragile than SPY.",
+        "structure_bias": "Do NOT trade a clean long-gamma pin off the POSITIVE label. Treat as short-gamma-leaning: prefer a defined-risk condor or debit structure bracketing 700-730 over a naked short-gamma pin at spot.",
+        "caveats": "Same EOD-staleness / gap-risk / ETF-not-index / 0-45d-proxy caveats. Regime label anomaly flagged for /calibration-audit (POSITIVE label vs negative total_gex; ZGL 300.24 is a garbage extrapolated value >50% from spot)."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-07-08",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.9,
+        "implied_move_pct": 0.91,
+        "expected_range_pct": 1.23,
+        "size_scalar": 0.5,
+        "suggested_structure": "Wider iron condor, wings ~+/-1.23%. Rolling backtest n=60: 95% open-entry win rate, mean +0.308%/day GROSS of underlying spot notional, +0.208% NET of assumed 0.1% round-trip cost (lead with net \u2014 tiny in absolute terms). Size scalar 0.5 (VIX LOW = thin edge). Advisory, 0 rubric points; short-vol left tail UNSAMPLED (no vol shock in window).",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close \u2014 never carry overnight (overnight entry backtested -0.139%).",
+        "stand_aside_reason": null,
+        "caution": null
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.9,
+        "implied_move_pct": 1.66,
+        "expected_range_pct": 1.89,
+        "size_scalar": 0.25,
+        "suggested_structure": "Wider iron condor, wings ~+/-1.89%. Backtest n=60: 88.3% open win rate, mean +0.399% GROSS / +0.299% NET. Weaker than SPY (Nasdaq index book unavailable) \u2014 lower confidence. Size scalar 0.25.",
+        "entry_rule": "Enter at/after the open once the gap resolves; hold to close, never overnight.",
+        "stand_aside_reason": null,
+        "caution": "Front-end backwardation (0DTE IV 1.56x VIX) \u2014 event/gap risk; half size."
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "SPY",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "LOW",
+      "raw_score": 3,
+      "score_components": [
+        {
+          "rubric_line": "dealer-positioning MECHANIZED DEX flip in trade direction",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "uw options-structure dex",
+          "evidence": "MECHANIZED sign flip +3.69B (07-07) -> -6.56B (07-08); prior 3 sessions positive; |flip| 6.56B >= 4.28B (0.25x trailing-10 median 17.12B) floor. Verified sign change, not level."
+        },
+        {
+          "rubric_line": "cum_premium_flow net directional accretion in trade direction (30d), intent-screened",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d net -1.309B (bearish 35.15B vs bullish 33.84B), aligned SHORT, magnitude >> 50M and top-of-union; intent screen passes (index, no distribution_flag, no ex-div arb). Tool trend_direction MIXED caveat noted."
+        },
+        {
+          "rubric_line": "multi-day OI build (oi-trend BUILDING, --days >=5)",
+          "points": 1,
+          "source_agent": "sweep-tracker",
+          "source_tool": "uw historical oi-trend",
+          "evidence": "consecutive_build_days 10; net OI +670k on 07-08 (3182 increases vs 1129 decreases); largest single add 728P +30.6k (put-led)."
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -1309458349,
+      "cum_premium_flow_90d": -1998350081,
+      "win_rate": 0.5746,
+      "win_rate_uncapped": 0.5746,
+      "win_rate_n": 134,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.1493,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "-1 tier (SHORT vs UPTREND trend label; 22% breadth-green divergence corroborates the short but does not cancel the mechanical conflict gate)",
+        "vrp": "no-op (VRP FAIR -0.0124 near-flat; directional swing, no vol-class bias)",
+        "panic": "no-op (front_iv_ratio 1.036 FLAT < 1.10)",
+        "cluster": "no-op (SPY is kept member of SPY_TSM_cluster corr 0.744, raw 3 > TSM 1)",
+        "sector": "no-op (index-level; sector persistence undifferentiated, no >=0.6 outflow anywhere)",
+        "fundamentals": "NA (index, not applicable)",
+        "event_risk": "-0.5 one size-step (CPI 07-14 = T+4; PPI 07-15 = T+5 stacks in-window; use defined-risk put spread not naked short per debate)",
+        "debate": "-1 tier (bear 0.65 >= bull 0.40; both sides flag CPI as two-sided)",
+        "rubric_regime": "capped half (OUT-OF-REGIME: fitted UPTREND, current TRANSITIONAL, 0/30 post-freeze HIGH/MED resolved) \u2014 moot, floored below half by regime+debate stack",
+        "excess": "+14.9pp over matched SPY-short benchmark (WR 0.575 vs 0.425, n=134) \u2014 genuine measured edge, no excess penalty"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false
+      },
+      "debate_residual_confidence": 0.55,
+      "debate_residuals": {
+        "bull": 0.55,
+        "bear": 0.65
+      },
+      "structure": "Defined-risk bearish: short-dated SPY put debit spread (e.g. buy 743P / sell 735P, 1-2wk) \u2014 NOT a naked short. Sized to survive a dovish-CPI squeeze leg.",
+      "entry_or_trigger": "DEX stays negative / breadth stays sub-30% green; invalidate if DEX flips positive >=3 sessions.",
+      "invalidation": "SPY reclaims and holds above the 745 short-gamma pin with DEX flipping back positive for >=3 sessions, or a dovish CPI (07-14) squeezes the index through 750 into the short-gamma book.",
+      "key_risks": [
+        "CPI 07-14 (T+4) is a two-sided Tier-1 event inside the horizon \u2014 dovish print + short-gamma book = violent squeeze against the short",
+        "Index short vs an intact UPTREND price structure (above 20/50 SMA)",
+        "DEX flip is 1 session old on a chronically unstable book (flipped 6 of 8 sessions)"
+      ],
+      "thesis": "Mechanized dealer DEX flip to SHORT under a narrow, breadth-divergent (22% green) tape sitting on a fully-negative-gamma book, corroborated by 5/5 bearish sweep persistence, aligned 30d cum-flow, and an institutional index-hedging multileg stack (VIX ladder into CPI, IWM/HYG/SPY put spreads). Real +14.9pp measured edge but gates to SKIP: regime conflict + debate + CPI event risk stack floors it. Defined-risk expression only if traded at all."
+    },
+    {
+      "ticker": "TSM",
+      "horizon": "vol",
+      "section": "vol_short",
+      "direction": "vol_short",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "earnings-scout BUY VOL or SELL VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "SELL VOL / calendar, 07-16 premarket earnings (8d), kink dte9 07-17, implied_move 3.03%, lean CALENDAR. vol-surface KINKED flag collapsed by C13 router (same kink, one point)."
+        }
+      ],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -246414221,
+      "cum_premium_flow_90d": 302496020,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no-op (SELL_VOL vol-neutral calendar, not directional vs trend)",
+        "vrp": "-1 tier (short-vol in VRP FAIR/-0.028 contradicts short-vol size-up) \u2014 moot, at DROP floor",
+        "panic": "no-op (ratio 1.036 FLAT)",
+        "cluster": "-1 tier (TSM non-kept member of SPY_TSM_cluster corr 0.744) \u2014 moot, at floor",
+        "sector": "no-op (Technology, regime_money_in / inflow-favorable)",
+        "fundamentals": "CONFIRM (low-confidence ADR insider coverage, not a downgrade)",
+        "event_risk": "exempt (own earnings 07-16 = T+6 IS the event play by design)",
+        "debate": "no-op (not debated \u2014 below top-2 threshold)",
+        "rubric_regime": "capped half (OUT-OF-REGIME) \u2014 moot, at DROP floor from raw 1"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": false,
+        "note": "Finviz ADR coverage thin; fz lane not run for TSM"
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "Calendar (sell 07-17 leg / buy 08-07) over outright short strangle \u2014 captures term-structure normalization without betting on one expiry's event richness. \u00a75 vol item only.",
+      "entry_or_trigger": "N/A \u2014 below LOW floor, not a directional/sized call; \u00a75 vol watch.",
+      "invalidation": "Front-end kink dissipates before the 07-16 print, or VRP flips further negative pre-earnings.",
+      "key_risks": [
+        "07-16 earnings sits directly between CPI 07-14 and PPI 07-15 \u2014 compounded macro vol overlaps the single-name event",
+        "VRP FAIR (-0.028) mutes any short-vol edge",
+        "ADR/foreign name, thin fundamentals coverage"
+      ],
+      "thesis": "Genuine earnings-vol kink (07-16 print, dte9 07-17 bump) flagged by both earnings-scout and vol-surface, but the two agents read ONE kink (C13 router collapses to +1), it is non-directional, VRP is FAIR, and raw 1 is below the LOW floor. Drops from the directional book to a \u00a75 vol watch."
+    },
+    {
+      "ticker": "PLTR",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": null,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": null,
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op (LONG aligned with UPTREND trend; breadth divergence is a standing caution not a mechanical conflict)",
+        "vrp": "no-op (directional call-sweep/LEAP mix, not a vol class)",
+        "panic": "no-op (ratio 1.036 FLAT)",
+        "cluster": "no-op (no PLTR pair reached the 0.60 soft-watch floor)",
+        "sector": "no-op (Technology, regime_money_in)",
+        "fundamentals": "CONFIRM (tier_adj 0; earnings 2026-08-03, 26d, no contradicting facts)",
+        "event_risk": "-0.5 if sized (CPI 07-14 = T+4 inside the near-dated Jul17 leg) \u2014 moot, unscored",
+        "debate": "-1 tier (bear 0.65 >= bull 0.55; debate did not clear the long)",
+        "rubric_regime": "capped half (OUT-OF-REGIME) \u2014 moot, unscored"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 3.49,
+        "days_to_cover": 1.65,
+        "float_shares": 2190000000,
+        "squeeze_pressure": "LOW",
+        "recom": null,
+        "upside_to_target_pct": null,
+        "rsi": 53.56,
+        "note": "No squeeze tailwind (LOW pressure, low short float). inst_trans -0.19%, insider_trans -2.03% mildly net-negative. recom/upside NA (upstream Finviz quote-grid gap, C17 frozen)."
+      },
+      "debate_residual_confidence": 0.55,
+      "debate_residuals": {
+        "bull": 0.55,
+        "bear": 0.65
+      },
+      "structure": "None sized \u2014 watch-only.",
+      "entry_or_trigger": "Needs a second Phase-1 confluence flag (dark-pool accumulation confirm) before it enters the rubric.",
+      "invalidation": "Loses the intraday resistance shelf it faded off today; call-sweep persistence flips negative next session.",
+      "key_risks": [
+        "Failed confluence (1 agent only \u2014 accumulation-hunter NEUTRAL, no DP confirm)",
+        "Extreme valuation (PE 139x, PS 70.9x) \u2014 beat streak fully priced",
+        "FT political-standing headline knocked it lower intraday; sweeps may be chasing a local top"
+      ],
+      "thesis": "Cleanest bullish tape on the board (sweep-tracker Tier-A: ask-side call buys Jul17/Sep18/Dec27-LEAP, OI-confirmed opening, $577.7M cum premium; fundamentals CONFIRM 4/4 beats +67.7% rev). But single-agent (confluence FAIL), extreme multiple, sold off intraday on a political headline, and the debate did not clear it (bear 0.65 >= bull 0.55). Watch-only; strongest name to re-check if a second signal confirms tomorrow."
+    },
+    {
+      "ticker": "AMZN",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": null,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": null,
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "-1 tier (SHORT vs UPTREND trend label)",
+        "vrp": "no-op (directional weekly-put structure, not a vol class)",
+        "panic": "no-op (ratio 1.036 FLAT)",
+        "cluster": "no-op (SPY/AMZN corr 0.511, below 0.60 soft-watch floor)",
+        "sector": "no-op (Consumer Cyclical, unflagged; persistence undifferentiated)",
+        "fundamentals": "CONFIRM (2 straight misses + insider selling support, not contradict, the short)",
+        "event_risk": "no-op (structure Jul13 weekly puts expires T+3 before CPI T+4 and own earnings 07-30)",
+        "debate": "no-op (not debated \u2014 outside debate scope this run)",
+        "rubric_regime": "capped half (OUT-OF-REGIME) \u2014 moot, unscored"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 1.01,
+        "days_to_cover": 1.93,
+        "float_shares": 9790000000,
+        "squeeze_pressure": "LOW",
+        "recom": null,
+        "upside_to_target_pct": null,
+        "rsi": 49.41,
+        "note": "Short float 1.01% \u2014 not a crowded short, negligible squeeze risk. inst_trans flat, insider_trans -0.03%. recom/upside NA (upstream gap)."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "None sized \u2014 watch-only.",
+      "entry_or_trigger": "Needs a second Phase-1 confluence flag before rubric entry.",
+      "invalidation": "cum_flow_30d crosses back bullish or tomorrow's sweeps flip to net call-buying.",
+      "key_risks": [
+        "Failed confluence (1 agent); also caught in the 13:03Z stale-NBBO artifact cluster",
+        "Valuation not stretched (PE 28.9x) \u2014 soft fundamental short",
+        "Q3 earnings 07-30 (22d) inside a swing hold"
+      ],
+      "thesis": "Bearish sweep persistence (4/5, cum_flow aligned) with fundamentals CONFIRMING (2 straight misses, insider selling, $25B bond-sale framed as an AI-boom warning). But single-agent (confluence FAIL) and a soft short at 28.9x PE. Watch-only."
+    },
+    {
+      "ticker": "SNDK",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 877000000,
+      "cum_premium_flow_90d": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": null,
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "regime": "no-op (direction CONFLICTED, no directional call to gate)",
+        "vrp": "no-op (C19 single-leg advisory only, not a scored structure)",
+        "panic": "no-op (ratio 1.036 FLAT)",
+        "cluster": "no-op (SNDK/TSM 0.561, SPY/SNDK 0.522, both below 0.60 floor)",
+        "sector": "no-op (Technology inflow-favorable; doesn't resolve name-level conflict)",
+        "fundamentals": "-1 tier (CAUTION: persistent -100 insider MSPR + China margin threat)",
+        "event_risk": "no-op (earnings 2026-08-12, 35d, outside horizon)",
+        "debate": "no-op (not debated \u2014 outside debate scope this run)",
+        "rubric_regime": "capped half (OUT-OF-REGIME) \u2014 moot, unscored"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 7.47,
+        "days_to_cover": 0.8,
+        "float_shares": 146130000,
+        "squeeze_pressure": "LOW",
+        "recom": null,
+        "upside_to_target_pct": null,
+        "rsi": 46.96,
+        "note": "Days-to-cover 0.80 despite 7.47% short float \u2014 shorts (incl. put whale if hedged) can exit fast, no squeeze either direction. inst_trans -4.87% (institutions net-reducing). recom/upside NA."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "None sized \u2014 C19 single-leg advisory watch only.",
+      "entry_or_trigger": "N/A \u2014 conflicted tape; watch the Tier-1 whale put vs bullish headline resolution.",
+      "invalidation": "N/A (unsized). Whale put entry ~1621 already underwater vs 1727 close.",
+      "key_risks": [
+        "Genuinely two-sided tape: Tier-1 OPENING_PUT_PRIME (1770P, $1.24M, size/OI 6.17) vs top bullish net flow (+$49M, ranking artifact ~5% skew)",
+        "Persistent -100 insider MSPR + China domestic-memory margin threat (fundamentals CAUTION)",
+        "Beta 5.05, IVR 99, -20% week then +6.8% bounce \u2014 exhaustion/whipsaw"
+      ],
+      "thesis": "Conflicted: a clean Tier-1 opening-put whale (C19 advisory short-lean) against a noise-level bullish net-flow headline, with a multi-strike protective-put ladder that reads as post-crash hedging rather than one directional bet. Fundamentals CAUTION (insider selling + China threat) sharpens rather than resolves the conflict. Watch-only, no size; flagged for tomorrow's adverse-flow scan."
+    }
+  ]
+}

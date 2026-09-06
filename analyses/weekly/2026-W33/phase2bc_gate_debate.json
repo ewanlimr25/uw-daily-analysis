@@ -1,0 +1,70 @@
+{
+  "iso_week": "2026-W33",
+  "week_end": "2026-08-14",
+  "stage": "2b fundamentals-gate + 2c bull/bear debate OUTPUT",
+
+  "fundamentals_gate": {
+    "IWM": {"verdict": "NA", "tier_adjustment": 0, "next_earnings_date": null, "reason": "Russell 2000 index ETF - no issuer, no earnings, no insiders. NA never penalizes.",
+      "fz_context": {"available": true, "days_to_cover": 2.94, "rsi": 63.41, "note": "RSI 63.41 near overbought AGAINST the multileg short thesis - a friction point, but no issuer to veto."}},
+    "SPY": {"verdict": "NA", "tier_adjustment": 0, "next_earnings_date": null, "reason": "S&P 500 index ETF. Quant already scored it structural_hedge/no-direction, so there is no directional thesis to test.",
+      "fz_context": {"available": true, "days_to_cover": 1.80, "rsi": 65.70}},
+    "SNDK": {"verdict": "CAUTION", "tier_adjustment": -1, "next_earnings_date": "2026-11-04", "days_to_earnings": 82,
+      "earnings_trend": "beat_streak", "insider_signal": "selling", "insider_mspr_3mo_avg": -100.0, "leverage_flag": "low", "catalyst_support": "corroborating",
+      "key_reasons": [
+        "4/4 EPS beats (11.7 / 57.9 / 76.3 / 27.8% surprise), +175.3% YoY revenue, LOW leverage - earnings and growth STRONGLY support the long; NOT a VETO signature.",
+        "BUT insider MSPR reads -100 or near it in 13 of the last 18 months, including EVERY month since 2026-01 without exception - the exact 'insider selling into a long-accumulation call' pattern CAUTION exists to flag.",
+        "Real dated catalyst: post-Investor-Day re-rate - JPMorgan resumed at $2,250 PT, Citi reiterated bullish, Wedbush says targets understate FY28 earnings power.",
+        "NOT a squeeze: short_float 4.67%, days_to_cover 0.5, squeeze_pressure LOW - genuine buy-side demand, which distinguishes it from NBIS."],
+      "fz_context": {"available": true, "short_float_pct": 4.67, "days_to_cover": 0.5, "float_shares": 146000000, "squeeze_pressure": "LOW", "rsi": 57.0}},
+    "AVGO": {"verdict": "CONFIRM", "tier_adjustment": 0, "next_earnings_date": "2026-09-02", "days_to_earnings": 19,
+      "earnings_trend": "mixed", "insider_signal": "selling", "insider_mspr_3mo_avg": -94.62, "leverage_flag": "low", "catalyst_support": "corroborating",
+      "key_reasons": [
+        "CONFIRMED the -5.94% Friday / -8.1% week was NOT an earnings reaction - next print 2026-09-02, 19 days out. Last two quarters show slight EPS misses (-0.24%, -0.87%) after two beats => 'mixed', not a clean miss_streak.",
+        "IMPORTANT DISCRIMINATION: insider MSPR near -100 almost every month for 19 months is a cadence far more consistent with SCHEDULED 10b5-1 decumulation than fresh opportunistic bearish conviction. Weighted DOWN accordingly - it corroborates but must NOT be read as 'insiders panic-selling ahead of a miss.'",
+        "The real corroboration is the news stack: BofA note flagging a potential $370B AI-chip financing vehicle by 2029, and Third Point DISSOLVING its stake - partially offset by Soros RAISING +6.5% (165,246 sh) the same window. Genuinely two-sided.",
+        "Fundamentals do NOT fight the short the way a full contradiction would: revenue +32.29% YoY, gross margin 68.35%, operating margin 43.43%. An excellent business hit on financing-structure/positioning risk, NOT a business breaking down - hence CONFIRM rather than anything stronger; there is no deteriorating-margins leg to add."],
+      "fz_context": {"available": true, "short_float_pct": 1.31, "days_to_cover": 2.39, "float_shares": 4670000000, "squeeze_pressure": "LOW", "rsi": 46.5}},
+    "NBIS": {"verdict": "CAUTION", "tier_adjustment": -1, "next_earnings_date": "2026-11-09", "days_to_earnings": 87,
+      "earnings_trend": "beat_streak", "insider_signal": "selling", "insider_mspr_3mo_avg": -73.42, "leverage_flag": "low", "catalyst_support": "corroborating",
+      "key_reasons": [
+        "Mechanical VETO test does NOT clear: requires miss_streak AND insider selling AND (imminent earnings OR negative growth). Only the insider leg is present = 1-of-3, not the required >=2-of-3. beat_streak 4/4 with NARROWING losses (82.7 / 59.1 / 39.9 / 26.0%), revenue +488.15% YoY, earnings 87 days out.",
+        "Insider MSPR -73.42 trailing-3mo average with two of the last three months at -100 / -86.1 - genuine populated selling, weighted at full CAUTION strength.",
+        "Business quality is FRAGILE despite the beat streak: operating margin -50.48% (deeply unprofitable), net margin 3.13% thin and likely non-recurring, PE 1,513, PS 121. A story stock riding a real AI-infra demand cycle, not a de-risked one.",
+        "Catalyst is genuinely CONTESTED in the same news window: Citi raised PT to $324 and Q2 revenue +454% YoY beat, AGAINST Michael Burry publicly adding to NBIS shorts ('shooting fish in a barrel', 2028 compute-oversupply thesis) and a 'fully valued despite 274% run' piece.",
+        "Advisory (0 tier impact): the live C28 distribution_flag - institutional short-dated CALL OI CLOSING ($5.7M 250C + $4.0M 190C) while price melts up +47.7% - sharpens the CAUTION narrative but the -1 is earned on the insider contradiction alone."],
+      "fz_context": {"available": true, "short_float_pct": 29.79, "days_to_cover": 2.89, "float_shares": 202060000, "squeeze_pressure": "MODERATE", "rsi": 64.63,
+        "note": "MODERATE squeeze on a thin 202M float is a real ALTERNATIVE EXPLANATION for part of the +47.7% move - short-covering-amplified rather than pure fresh conviction."}},
+    "lookahead_cross_check": "None of the three fundamentals-bearing names report inside the 2026-08-17 -> 2026-08-28 window. SNDK 11-04 (82d), AVGO 09-02 (19d, just outside), NBIS 11-09 (87d). No earnings-driven event-risk override needed; the relevant wall (FOMC minutes 08-20, OPEX + Jackson Hole 08-21/22) is macro/index-level."
+  },
+
+  "debate_residuals": {
+    "IWM":  {"bull": 0.35, "bear": 0.35, "gate_fires": true,
+      "bull_strongest": "bearish_flow is the week's only lane with positive measured excess (+9.0pp, n=133) and IWM's cum-flow is the union's only non-MIXED, sign-consistent read at both 30d and 90d.",
+      "bear_strongest": "The dealer book built LONG all week (DEX +$8.34B->+$11.26B, total_gex to +$1.17B, regime POSITIVE, 305 wall at +$921.3M essentially at spot) - a legitimate structural conflict that most plausibly means the puts are a HEDGE on a long book, not fresh net-short conviction.",
+      "note": "A BOTH-SIDES-LOW 0.35/0.35 pair - 'neither advocate can make their case', which the 2026-07-25 P1 #5 bin-ladder extension exists to preserve. The BEAR (arguing FOR the short) conceded the dealer-book conflict outright and reframed the put ladder as insurance on a long book."},
+    "SNDK": {"bull": 0.35, "bear": 0.65, "gate_fires": true,
+      "bull_strongest": "The mechanized DEX flip held and GREW ~9x across three sessions with whipsaw FALSE, confirmed by five days of price/flow co-movement and a real fundamental base that is NOT squeeze-fuelled.",
+      "bear_strongest": "accumulation-hunter read institutional-accumulation NEUTRAL on ALL FIVE days (buy_sell 0.74-1.07) - zero block-tape confirmation of a +35.4% five-day move - and the $1,577.4M net-30 is triply contaminated (a $215.6M-gross calendar roll netting ~$0.4M of intent, bid-side deep-ITM put sales booked as bullish, and an un-split-adjusted dual strike grid). Strip those and no coherent bullish premium signal remains.",
+      "note": "The bear offered a specific alternative causal story for the DEX flip: dealers short gamma on short-dated calls getting run over and re-hedging - i.e. the flip FOLLOWS price rather than predicting it. Conceded it cannot PROVE that reading over the bull's, but both are consistent with the data."},
+    "AVGO": {"bull": 0.35, "bear": 0.45, "gate_fires": true,
+      "bull_strongest": "The DEX flip's GEX corroboration landed THREE SESSIONS BEFORE Friday's news catalyst - dealer positioning turned ahead of the tape, not in reaction to one speculative note - and it sits inside a genuine multi-name AI-infra cohort selloff.",
+      "bear_strongest": "Strip the C47-saturated +3 OI line and AVGO's arithmetic collapses to +1 dex_flip -1 flow_conflict_lite = 0. The short's entire rubric support is one flip netted against a penalty.",
+      "note": "The BEAR (arguing FOR the short) conceded its own score is fragile, but argued the two sides of that zero are NOT evidentiarily equal: a GEX-corroborated 11-session reversal vs a +$34.8M cum-flow that is 0.63% of gross and sits BELOW the union's own $37.9M bottom-quartile noise cut. Also argued the CALMING vol surface is consistent with an orderly pre-positioned institutional exit rather than evidence against distribution."},
+    "NBIS": {"bull": 0.25, "bear": 0.75, "gate_fires": true,
+      "bull_strongest": "front_end_iv_ratio DEEPENED 1.178->1.215 at the clean 7DTE read - the only genuinely worsening backwardation in the union - plus a GEX flip to POSITIVE and extraordinary growth (+488% YoY, narrowing losses, $40B backlog).",
+      "bear_strongest": "Two deep-ITM 7DTE call OI closures (250C -775/$5.7M, 190C -2,161/$4.0M) against a $277.68 spot, independently corroborated by accumulation-hunter's DISTRIBUTION/NEUTRAL reads and a bearish-skewed oi smart-positioning tape - the live C28 signature into a +47.7% melt-up. And the bull's own strongest evidence (deepening backwardation) is a VOL-STRUCTURE / event-fear signal, not a directional-conviction one.",
+      "note": "WIDEST SPREAD IN THE BOOK (0.50). The BULL conceded in its own opening that 'smart money is trimming into retail-driven momentum, with squeeze mechanics as the most charitable alternative explanation.' The bear also inverted the squeeze argument: 29.79% short float with only 2.89 days to cover means covering fuel is close to EXHAUSTED, not fresh."},
+    "SPY": {"bull": null, "bear": null, "gate_fires": null,
+      "note": "DEBATE NOT RUN - deliberate, documented. SPY was scored non-directional (structural_hedge); a bull/bear debate requires a directional proposition to argue over. Running one would have manufactured a direction the quant explicitly declined to assign. Residuals serialize as null, not as a low pair."}
+  },
+
+  "DEBATE_GATE_RESULT": "FIRES ON 4 OF 4 DEBATED NAMES (bear_residual >= bull_residual in every case). The debate can only CUT size, never add it. Combined with fundamentals CAUTION on both names that carried a `starter`, the post-gate book is FLAT.",
+
+  "SIZING_STATE_ENTERING_2d": {
+    "IWM": {"pre_risk": "watch_only", "reason": "SHORT-ROUTING P0 #1", "fundamentals": "NA", "debate_gate": "fires"},
+    "SNDK": {"pre_risk": "starter", "fundamentals": "CAUTION -1", "debate_gate": "fires", "expected_post_gate": "watch_only"},
+    "AVGO": {"pre_risk": "watch_only", "reason": "SHORT-ROUTING P0 #1", "fundamentals": "CONFIRM", "debate_gate": "fires"},
+    "SPY": {"pre_risk": "watch_only", "reason": "no direction to size", "fundamentals": "NA", "debate_gate": "n/a"},
+    "NBIS": {"pre_risk": "starter", "fundamentals": "CAUTION -1", "debate_gate": "fires", "expected_post_gate": "watch_only"}
+  }
+}

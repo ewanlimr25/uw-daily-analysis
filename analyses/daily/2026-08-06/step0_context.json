@@ -1,0 +1,109 @@
+{
+  "date": "2026-08-06",
+  "fz_available": true,
+  "fz_ticker_emitter_bug": "fz screen lanes emit DOUBLED-FIRST-LETTER tickers (AABEO->ABEO, PPAYS->PAYS, IIOVA->IOVA). Deterministic inverse verified against the Company field. Repaired names are tagged source:fz_* and remain ADVISORY (0 rubric points).",
+  "regime": {
+    "label": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "spy": {"current": 768.56, "sma_20": 749.26, "sma_50": 746.73, "above_20sma": true, "above_50sma": true, "change_30d_pct": 3.11, "pct_from_90d_high": -1.07},
+    "market_breadth": {"bullish_flow_tickers": 2141, "bearish_flow_tickers": 4140, "bullish_pct": 34.1, "tickers_with_options": 6281},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range.",
+    "sector_rotation_NETTED": {
+      "money_flowing_in": {"Technology": 620297121.5, "Industrials": 20783990, "Communication Services": 9389960},
+      "money_flowing_out": {"Consumer Cyclical": -44603170, "Consumer Defensive": -9138952, "Basic Materials": -7729179}
+    }
+  },
+  "vrp_classification": {
+    "SPY": {"regime": "FAIR", "vrp": -0.0041, "iv30d": 0.1298, "realised_vol": 0.1339},
+    "QQQ": {"regime": "FAIR", "vrp": -0.0424, "iv30d": 0.2143, "realised_vol": 0.2568},
+    "note": "Both slightly NEGATIVE VRP (realised > implied). No premium-selling edge from VRP alone. contrarian-scanner: check your negative-VRP abort rule."
+  },
+  "dte_share": {"share_0dte": 0.284, "share_weeklies": 0.299, "share_monthlies": 0.285, "share_leaps": 0.035, "regime_hint": "BALANCED", "symbol": "MARKET"},
+  "tape_framing_OHLC": {
+    "note": "Cap-weighted vs equal-weight check. Tape is NARROW and MILDLY RED today after a strong 5-day run. RSP (-0.52%) UNDERPERFORMED SPY (-0.16%) => cap-weighted mega-caps held the index up. Semis and Energy were the only real green.",
+    "SPY": {"close": 768.56, "1d_pct": -0.16, "5d_pct": 3.62, "rv20": 13.9},
+    "QQQ": {"close": 714.65, "1d_pct": -0.37, "5d_pct": 4.55, "rv20": 25.1},
+    "IWM": {"close": 298.25, "1d_pct": -0.51, "5d_pct": 1.93, "rv20": 14.8},
+    "RSP": {"close": 218.58, "1d_pct": -0.52, "5d_pct": 1.49, "rv20": 10.5},
+    "VIX": {"close": 15.15, "1d_pct": -4.17, "5d_pct": -11.35},
+    "SMH": {"close": 571.48, "1d_pct": 0.31, "5d_pct": 6.05, "rv20": 49.4},
+    "XLK": {"close": 185.33, "1d_pct": -0.31, "5d_pct": 5.46},
+    "XLE": {"close": 58.16, "1d_pct": 1.48, "5d_pct": -1.36},
+    "XLC": {"close": 111.18, "1d_pct": 0.28, "5d_pct": 4.32},
+    "XLV": {"close": 164.45, "1d_pct": 0.18, "5d_pct": 0.57},
+    "XLY": {"close": 118.1, "1d_pct": -0.46, "5d_pct": 5.08},
+    "XLI": {"close": 184.76, "1d_pct": -0.85, "5d_pct": 3.57},
+    "XLB": {"close": 52.17, "1d_pct": -0.89, "5d_pct": 1.03},
+    "XLRE": {"close": 44.81, "1d_pct": -0.86, "5d_pct": -1.08},
+    "XLU": {"close": 43.38, "1d_pct": -0.64, "5d_pct": -2.87},
+    "XLP": {"close": 85.11, "1d_pct": -0.26, "5d_pct": -0.42},
+    "XLF": {"close": 57.81, "1d_pct": -0.33, "5d_pct": 1.42},
+    "DIA": {"close": 538.19, "1d_pct": -0.85, "5d_pct": 3.2}
+  },
+  "breadth_cross_check": {
+    "advisory": true, "source": "finviz", "advancers": 202, "decliners": 299, "unchanged": 2, "total": 503,
+    "pct_green": 40.16, "avg_change": -0.5, "median_change": -0.33,
+    "top_mover": "MSI (+8.2%)", "worst_mover": "HONA (-23.16%)",
+    "divergence_flag": false,
+    "note": "Index is NOT green today, so this is not the classic green-tape/red-breadth distribution tell. It is however a confirmation of narrowness: 40% green + RSP underperforming SPY = the cap-weighted top is carrying a broadly soft tape."
+  },
+  "sector_flow_GROSS_turnover": {
+    "warning": "sector-flow and sector-flow-persistence are ONE GROSS-TURNOVER source (net_flow = gross call$ - put$, sign-agnostic). They CANNOT express direction. Read every sector DIRECTION off regime.sector_rotation_NETTED above (2026-08-01 C55).",
+    "today_gross": {"Technology": 1263485269.5, "Communication Services": 320415697, "Energy": 310212271, "Financial Services": 196715835, "Healthcare": 194097055, "Consumer Cyclical": 171152268, "Basic Materials": 77021383, "Consumer Defensive": 70276293, "Utilities": 32487906, "Industrials": 26890311, "Real Estate": 17012172},
+    "persistence_scores": {"Technology": 1.0, "Consumer Cyclical": 1.0, "Healthcare": 1.0, "Consumer Defensive": 1.0, "Basic Materials": 1.0, "Communication Services": 1.0, "Financial Services": 1.0, "Energy": 1.0, "Real Estate": 0.8, "Industrials": 0.8, "Utilities": 0.6},
+    "persistence_note": "ALL 11 sectors read INFLOW with persistence 0.6-1.0 — this is gross turnover being universally positive, i.e. ZERO DISCRIMINATION. Do not read 'everything is being accumulated'. Use the NETTED rotation."
+  },
+  "macro_snapshot": {
+    "available": true, "source": "FRED",
+    "signals": {"yield_curve": "normal", "yield_curve_10y2y": 0.44, "core_cpi_yoy_pct": 2.81, "core_pce_yoy_pct": 3.29, "unemployment_rate": 4.2, "payrolls_mom_000s": 57.0, "ten_year_yield": 4.63, "ten_year_30d_direction": "rising", "usd_30d_direction": "weakening", "fed_funds": 3.63}
+  },
+  "event_risk": [
+    {"event": "US Employment Situation / July Nonfarm Payrolls", "date": "2026-08-07", "impact": "HIGH", "note": "TOMORROW 08:30 ET — inside the NEXT SESSION. Gaps the 0DTE prior and every 1-day-horizon trade."},
+    {"event": "CPI (July)", "date": "2026-08-12", "impact": "HIGH"},
+    {"event": "PPI (July)", "date": "2026-08-13", "impact": "MEDIUM"},
+    {"event": "Initial jobless claims (weekly)", "date": "2026-08-13", "impact": "LOW"},
+    {"event": "FOMC minutes (July meeting)", "date": "2026-08-19", "impact": "MEDIUM"},
+    {"event": "Monthly OPEX", "date": "2026-08-21", "impact": "MEDIUM"},
+    {"event": "Core PCE (July)", "date": "2026-08-28", "impact": "HIGH", "note": "just outside the 10-trading-day window; relevant to 3-4wk swing horizons"},
+    {"event": "FOMC decision + SEP", "date": "2026-09-16", "impact": "HIGH", "note": "outside window; relevant to LEAP/long-swing"}
+  ],
+  "zerodte_setup": {
+    "available": true, "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 15.15, "implied_move_pct": 0.88, "expected_range_pct": 0.85, "size_scalar": 0.5, "suggested_structure": "iron fly / short straddle centred at 768.85, wings ~ +/-0.85% (long-gamma: quieter, mean-reverting)", "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close — never carry overnight.", "stand_aside_reason": null, "caution": null, "mean_pnl_open_pct": 0.224, "mean_pnl_open_net_pct": 0.124, "premium_sell_win_open_pct": 88.3, "worst_day_open_pct": -1.4},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 15.15, "implied_move_pct": 1.47, "expected_range_pct": 1.48, "size_scalar": 0.25, "suggested_structure": "iron fly / short straddle centred at 715.6, wings ~ +/-1.48%", "entry_rule": "same as SPY", "stand_aside_reason": null, "caution": "Front-end backwardation (0DTE IV 1.54x VIX) — event/gap risk; half size.", "mean_pnl_open_pct": 0.362, "mean_pnl_open_net_pct": 0.262, "premium_sell_win_open_pct": 85.0, "worst_day_open_pct": -2.453},
+    "ORCHESTRATOR_OVERRIDE": "VIX vol_state is LOW (15.15) where the backtest mean PnL is -0.052% (SPY) / +0.007% (QQQ) — i.e. NO EDGE at this VIX tercile. AND NFP prints 08:30 ET tomorrow, pre-open. Both point the same way: this is a STAND-ASIDE day for the 0DTE premium-selling lane despite sell_premium=true."
+  },
+  "funnel_C12_passing": ["SNDK","AMD","MU","MSFT","SPCX","AAPL","AVGO","DDOG","UBER","CRWV","NFLX","META","TEAM","UTHR","WDC","NOW","U","LLY","TLT","SOXL","EWZ","AMZN","DELL","NVDA","SLV","TSM","APP","MSTR","GLD","PLTR","INTC","NBIS","IBIT","PANW","S","AXON","CAT","SMCI","POWL","NET","SOXX","OKTA","CRM","FLR","TXRH","BIRK","ENS","GPI","PENN","ET","PYPL","ELV","WCC","RBA","AES","CPRI","FIVN","LNTH","ATKR","FERG","IBN","BNY","CWST","ASB","IOVA","ATI","NSIT","ACHC","DRAM"],
+  "funnel_C12_failed_DROPPED": {"AMLX": "adv $39.1M", "DIOD": "adv $41.9M", "HP": "adv $35.4M", "ROOT": "adv $13.4M", "HELE": "adv $13.0M", "JOE": "adv $13.7M", "NSSC": "adv $10.3M", "TDS": "adv $35.9M", "CDRE": "adv $12.4M", "FUN": "adv $39.7M", "PRAA": "adv $5.9M", "FTDR": "adv $36.9M", "GCT": "adv $30.2M", "OPRT": "adv $3.6M", "HNST": "adv $9.8M", "PAYS": "adv $6.6M", "ABR": "adv $20.0M", "AESI": "adv $45.0M"},
+  "top_bullish_net_premium": {"SNDK": 387706965, "AMD": 106610878, "MU": 75507652, "MSFT": 58113080, "SPCX": 40430095, "AAPL": 22193614, "AVGO": 19656547, "DDOG": 16450588, "UBER": 11935793, "CRWV": 10795669, "NFLX": 10681442, "META": 9182252, "TEAM": 8968394, "UTHR": 6672878, "WDC": 6537891, "NOW": 6186158, "U": 5404608, "LLY": 5349487},
+  "top_bearish_net_premium": {"TLT": -33057056, "SOXL": -31535878, "EWZ": -29425141, "AMZN": -24217451, "DELL": -17860960, "NVDA": -15947457, "SLV": -15588744, "TSM": -15435419, "APP": -14490861, "MSTR": -12368846, "GLD": -11642021, "PLTR": -11111676, "INTC": -10398791, "NBIS": -8967893, "PANW": -8544955, "S": -8223369, "AXON": -6747602, "CAT": -6579867, "SMCI": -6266773, "NET": -5803508},
+  "confluence_bullish_top": ["ET(6)","CPRI(6)","AES(6)","PYPL(5)","ELV(5)","WCC(5)","RBA(5)","GLD(5)","EWZ(5)"],
+  "confluence_bearish_top": ["TXRH(5)","SOXX(5)","BIRK(5)","OKTA(5)","FLR(5)","PENN(5)","CRM(4)","ENS(4)","GPI(4)"],
+  "fz_squeeze_candidates": {"advisory": true, "note": "fz emitter doubled-first-letter bug — names below are REPAIRED. High short-float (>20%) + price>$5 + avgvol>500k. Only C12-passing names carried forward: ACHC (short float 25.02%, short ratio 7.30, float 87.12M, inst trans +16.19%).", "repaired_names_c12_pass": ["ACHC"], "repaired_names_c12_fail": ["ABEO","ABR","ABSI","AESI","AI","ALMU"]},
+  "fz_rs_candidates": {"advisory": true, "note": "REPAIRED from fz emitter bug; ta_newhigh signal. Only C12-passing carried forward.", "repaired_names_c12_pass": ["IOVA","ATI","NSIT"], "repaired_names_c12_fail": ["PAYS","HNST","SMJF","FTDR","OPRT","AMLX","GCT"]},
+  "step0_cache_paths": {
+    "daily_synthesis": "analyses/daily/2026-08-06/step0_cache/daily_synthesis.json",
+    "market_regime": "analyses/daily/2026-08-06/step0_cache/market_regime.json",
+    "dte_volume_share": "analyses/daily/2026-08-06/step0_cache/dte_volume_share.json",
+    "sector_flow": "analyses/daily/2026-08-06/step0_cache/sector_flow.json",
+    "sector_flow_persistence": "analyses/daily/2026-08-06/step0_cache/sector_flow_persistence.json",
+    "screener_bullish": "analyses/daily/2026-08-06/step0_cache/screener_bullish.json",
+    "screener_bearish": "analyses/daily/2026-08-06/step0_cache/screener_bearish.json",
+    "signal_confluence_bullish": "analyses/daily/2026-08-06/step0_cache/signal_confluence_bullish.json",
+    "signal_confluence_bearish": "analyses/daily/2026-08-06/step0_cache/signal_confluence_bearish.json",
+    "iv_rank_high": "analyses/daily/2026-08-06/step0_cache/iv_rank_high.json",
+    "iv_rank_low": "analyses/daily/2026-08-06/step0_cache/iv_rank_low.json",
+    "volume_vs_average": "analyses/daily/2026-08-06/step0_cache/volume_vs_average.json",
+    "earnings_catalyst": "analyses/daily/2026-08-06/step0_cache/earnings_catalyst.json",
+    "expiry_heatmap": "analyses/daily/2026-08-06/step0_cache/expiry_heatmap.json",
+    "iv_outliers": "analyses/daily/2026-08-06/step0_cache/iv_outliers.json",
+    "greek_screener": "analyses/daily/2026-08-06/step0_cache/greek_screener.json",
+    "top_premium_trades": "analyses/daily/2026-08-06/step0_cache/top_premium_trades.json",
+    "most_active": "analyses/daily/2026-08-06/step0_cache/most_active.json",
+    "oi_smart_positioning": "analyses/daily/2026-08-06/step0_cache/oi_smart_positioning.json",
+    "single_leg": "analyses/daily/2026-08-06/step0_cache/single_leg.json",
+    "vrp_spy": "analyses/daily/2026-08-06/step0_cache/vrp_spy.json",
+    "vrp_qqq": "analyses/daily/2026-08-06/step0_cache/vrp_qqq.json"
+  },
+  "opex_guard": {"in_opex_window": false, "third_friday": "2026-08-21", "days_away": 15, "opex_pin_strategist_spawned": false}
+}

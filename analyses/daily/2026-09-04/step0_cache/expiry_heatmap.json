@@ -1,0 +1,165 @@
+{
+  "results": [
+    {
+      "expiry": "2026-09-04T00:00:00Z",
+      "total": 5687782553.949997,
+      "total_premium_call": 3559942428.1400013,
+      "total_premium_put": 2127840125.8099954,
+      "total_volume_call": 20564461,
+      "total_volume_put": 15179099
+    },
+    {
+      "expiry": "2026-09-18T00:00:00Z",
+      "total": 3776518128.21,
+      "total_premium_call": 2254283121.0600004,
+      "total_premium_put": 1522235007.1499999,
+      "total_volume_call": 4010319,
+      "total_volume_put": 3012101
+    },
+    {
+      "expiry": "2026-12-18T00:00:00Z",
+      "total": 2768856755.04,
+      "total_premium_call": 1574106498.2,
+      "total_premium_put": 1194750256.8400002,
+      "total_volume_call": 911586,
+      "total_volume_put": 599037
+    },
+    {
+      "expiry": "2026-09-11T00:00:00Z",
+      "total": 2762561399.2100005,
+      "total_premium_call": 1909250411.4400003,
+      "total_premium_put": 853310987.7700001,
+      "total_volume_call": 5846421,
+      "total_volume_put": 3368791
+    },
+    {
+      "expiry": "2026-11-20T00:00:00Z",
+      "total": 2164505148.7400002,
+      "total_premium_call": 1249192418.6000001,
+      "total_premium_put": 915312730.1400001,
+      "total_volume_call": 785666,
+      "total_volume_put": 468796
+    },
+    {
+      "expiry": "2026-10-16T00:00:00Z",
+      "total": 2141838945.9099998,
+      "total_premium_call": 1318341822.1399999,
+      "total_premium_put": 823497123.7699999,
+      "total_volume_call": 1957125,
+      "total_volume_put": 1417655
+    },
+    {
+      "expiry": "2027-01-15T00:00:00Z",
+      "total": 1981858582.6399996,
+      "total_premium_call": 1279857405.8999996,
+      "total_premium_put": 702001176.74,
+      "total_volume_call": 1380159,
+      "total_volume_put": 544752
+    },
+    {
+      "expiry": "2027-03-19T00:00:00Z",
+      "total": 1135945391.6,
+      "total_premium_call": 599848835.8,
+      "total_premium_put": 536096555.79999995,
+      "total_volume_call": 333701,
+      "total_volume_put": 316117
+    },
+    {
+      "expiry": "2028-01-21T00:00:00Z",
+      "total": 1121378685,
+      "total_premium_call": 634977777,
+      "total_premium_put": 486400908,
+      "total_volume_call": 379540,
+      "total_volume_put": 171641
+    },
+    {
+      "expiry": "2026-09-09T00:00:00Z",
+      "total": 1111963209.3899999,
+      "total_premium_call": 729563503.2499999,
+      "total_premium_put": 382399706.14000005,
+      "total_volume_call": 1736842,
+      "total_volume_put": 1183514
+    },
+    {
+      "expiry": "2028-12-15T00:00:00Z",
+      "total": 914893301,
+      "total_premium_call": 559510420.8,
+      "total_premium_put": 355382880.2,
+      "total_volume_call": 91351,
+      "total_volume_put": 62788
+    },
+    {
+      "expiry": "2027-06-17T00:00:00Z",
+      "total": 912453481.3,
+      "total_premium_call": 533165564.8,
+      "total_premium_put": 379287916.5,
+      "total_volume_call": 217767,
+      "total_volume_put": 149165
+    },
+    {
+      "expiry": "2026-09-08T00:00:00Z",
+      "total": 702845572.1900002,
+      "total_premium_call": 376617776.83000004,
+      "total_premium_put": 326227795.36000013,
+      "total_volume_call": 1130154,
+      "total_volume_put": 1472892
+    },
+    {
+      "expiry": "2027-12-17T00:00:00Z",
+      "total": 631636161.3,
+      "total_premium_call": 354368396.90000004,
+      "total_premium_put": 277267764.4,
+      "total_volume_call": 71558,
+      "total_volume_put": 48516
+    },
+    {
+      "expiry": "2026-09-25T00:00:00Z",
+      "total": 620539760.95,
+      "total_premium_call": 371198118.63000005,
+      "total_premium_put": 249341642.32,
+      "total_volume_call": 638579,
+      "total_volume_put": 485703
+    },
+    {
+      "expiry": "2026-10-02T00:00:00Z",
+      "total": 612069893.1899999,
+      "total_premium_call": 399758489.3999999,
+      "total_premium_put": 212311403.79000002,
+      "total_volume_call": 547434,
+      "total_volume_put": 366765
+    },
+    {
+      "expiry": "2026-10-30T00:00:00Z",
+      "total": 527070864.90000004,
+      "total_premium_call": 468424280.3,
+      "total_premium_put": 58646584.6,
+      "total_volume_call": 32510,
+      "total_volume_put": 35910
+    },
+    {
+      "expiry": "2027-09-17T00:00:00Z",
+      "total": 487401620.3,
+      "total_premium_call": 250427310.4,
+      "total_premium_put": 236974309.9,
+      "total_volume_call": 61609,
+      "total_volume_put": 65777
+    },
+    {
+      "expiry": "2027-02-19T00:00:00Z",
+      "total": 408139665.70000005,
+      "total_premium_call": 200257585.3,
+      "total_premium_put": 207882080.4,
+      "total_volume_call": 143604,
+      "total_volume_put": 95597
+    },
+    {
+      "expiry": "2027-08-20T00:00:00Z",
+      "total": 332011092.34000003,
+      "total_premium_call": 238743694.5,
+      "total_premium_put": 93267397.84,
+      "total_volume_call": 4598,
+      "total_volume_put": 3392
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/All Options/bot-eod-report-2026-09-04.parquet"
+}

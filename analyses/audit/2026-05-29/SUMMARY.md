@@ -1,0 +1,16 @@
+# Calibration Audit — 2026-05-29
+
+**Dataset:** 27 reports (22 daily, 5 weekly), **516 calls**, **328 resolved** (WIN+LOSS). Thresholds passed — no DATASET-SIZE-RELAXED. **Decision envelopes exist for this week only** (05-25→05-29 + W22); the other 21 reports were prose-parsed. **Method caveat:** outcomes resolved **close-to-close** (no intraday range available from `uw historical trend` or yfinance — both close-only); tool attribution on legacy rows uses **reconstructed** citations. P0 findings are corroborated across ≥2 phases.
+
+## Top 3 schema flaws
+1. **The rubric is anti-calibrated: Brier 0.34, tiers inverted.** HIGH 53.7% / MED 46.0% / **LOW 55.8%** — conviction does not rank outcomes. Worse, **HIGH-tier directional expectancy is negative (−1.52%, payoff 0.06)**: the top conviction bucket wins small and loses big. Phase 3/5. → Re-cut to HIGH≥9/MED4–8/LOW<4 restores monotonicity (64/50/47%) **P0.3+P1.1**.
+2. **`dark_pool_accumulation` is the flagship fiction: 82.8% claimed → 51.2% realised (−31.6pp, n=43).** vol_surface (−33.2pp) and gamma_pin (−33.9pp) are the same disease. The 80%+ quotes have no backtest spine (the truth-set tool can't even compute a dark-pool rate). Phase 3. → Floor quoted win-rates to realised **P0.1**.
+3. **The most-cited evidence tool earns nothing, and the HIGH gate admits anti-predictive tools.** `cumulative-premium-flow` (n=76) is NO-INFO (+2pp) yet carries a +3 line and a slot in the HIGH-tier gate; `institutional-accumulation` is NEGATIVE (−12.6pp) and *also* in the gate. Phase 4. → Demote the +3 line and swap the gate tools **P0.2+P0.3**.
+
+## Top 3 tool-tier surprises
+1. **`uw dark-pool block-stratified` is LOAD-BEARING (+25.4pp, n=52)** even though its *class* is the worst-calibrated — the institutional/retail gate is real; the win-rate label glued on top is the lie. Phase 4.
+2. **`uw historical cumulative-premium-flow` is NO-INFO at the highest citation count in the book (n=76, +2pp).** A reflexive comfort-citation inflating scores. Phase 4.
+3. **`uw options-structure dex` LOAD-BEARING (+15.5pp) and the `dealer_positioning` class (84%→80%) are the only honest, high-paying signal on the desk.** Everything else regresses to a coin-flip; DEX/dealer-flip is the edge. Phase 3/4.
+
+## What we'd do Monday
+The book's hit-rate is a coin-flip (51% directional) but it makes money on **asymmetry** — +0.50%/trade expectancy on a 1.47 payoff — *concentrated entirely in the MEDIUM tier*. So the fix is not "trade less," it's "stop lying about conviction." Three changes ship now, all corroborated and method-robust: (1) **floor the dark-pool / vol-surface / gamma-pin win-rate quotes to ~0.50** — this alone drags Brier from 0.34 toward 0.20; (2) **rip `cumulative-premium-flow` and `institutional-accumulation` out of the HIGH-tier gate** and replace with sweep-persistence + oi-trend, the tools that actually separate winners; (3) **demote the +3 cum-flow line to +1**. Lean the book toward **`dealer_positioning`/DEX** (the one signal that trades like its backtest) and **away from short-vol/pin** (30.9% WR — though confirm that isn't a close-only artifact). Hold the tier re-cut and the term-skew surgery until this week's calls resolve (~06-12) and LEAPs become auditable (~06-15). And do **not** flip the Kelly sizer live — tier expectancy is non-monotone; the gate says ADVISORY.

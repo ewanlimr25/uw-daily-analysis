@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.6667,
+      "close": 30.63,
+      "full_name": "ATN INTERNATIONAL INC",
+      "iv_rank": 22.7918,
+      "put_call_ratio": 0.005414312617702448,
+      "sector": "Communication Services",
+      "ticker": "ATNI",
+      "total_volume": 4271,
+      "volume_ratio": 6406.17969101545
+    },
+    {
+      "avg_total_volume": 5.733300000000001,
+      "close": 40.92,
+      "full_name": "NAPCO SECURITY TECHNOLOGIES INC",
+      "iv_rank": 62.8397,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "NSSC",
+      "total_volume": 3001,
+      "volume_ratio": 523.4332757748591
+    },
+    {
+      "avg_total_volume": 8.0333,
+      "close": 42.01,
+      "full_name": "LIQUIDITY SERVICES INC",
+      "iv_rank": 39.8546,
+      "put_call_ratio": 0.0008071025020177562,
+      "sector": "Consumer Cyclical",
+      "ticker": "LQDT",
+      "total_volume": 3720,
+      "volume_ratio": 463.0724608815804
+    },
+    {
+      "avg_total_volume": 139.3667,
+      "close": 36,
+      "full_name": "TELEPHONE & DATA SYSTEMS INC",
+      "iv_rank": 56.0951,
+      "put_call_ratio": 0.9982041902228135,
+      "sector": "Communication Services",
+      "ticker": "TDS",
+      "total_volume": 30043,
+      "volume_ratio": 215.56799436307236
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 45.1538,
+      "full_name": "ProShares Ultra Copper K-1 Free ETF",
+      "iv_rank": 41.8803,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "UCOP",
+      "total_volume": 10,
+      "volume_ratio": 149.92503748125938
+    },
+    {
+      "avg_total_volume": 3.5333,
+      "close": 35.65,
+      "full_name": "Array Digital Infrastructure",
+      "iv_rank": 87.0523,
+      "put_call_ratio": 27.928571428571427,
+      "sector": "Communication Services",
+      "ticker": "AD",
+      "total_volume": 405,
+      "volume_ratio": 114.62372286531004
+    },
+    {
+      "avg_total_volume": 2.8333,
+      "close": 20.53,
+      "full_name": "ATS CORP",
+      "iv_rank": 71.7547,
+      "put_call_ratio": 0.07003891050583658,
+      "sector": "Industrials",
+      "ticker": "ATS",
+      "total_volume": 275,
+      "volume_ratio": 97.05996541135778
+    },
+    {
+      "avg_total_volume": 0.3333,
+      "close": 50.17,
+      "full_name": "ISHARES CURRENCY HEDGED MSCI EUROZONE ETF",
+      "iv_rank": 5.4107,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HEZU",
+      "total_volume": 30,
+      "volume_ratio": 90.00900090009002
+    },
+    {
+      "avg_total_volume": 7.2334,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BDX1",
+      "total_volume": 601,
+      "volume_ratio": 83.08679182680345
+    },
+    {
+      "avg_total_volume": 11.3666,
+      "close": 0.8424,
+      "full_name": "NERDY INC",
+      "iv_rank": 0.2643,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "NRDY",
+      "total_volume": 940,
+      "volume_ratio": 82.6984322488695
+    },
+    {
+      "avg_total_volume": 12.4333,
+      "close": 31.16,
+      "full_name": "ASSOCIATED BANC-CORP",
+      "iv_rank": 35.7332,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "ASB",
+      "total_volume": 963,
+      "volume_ratio": 77.45329075949266
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 27,
+      "full_name": "HAMILTON BEACH BRANDS HOLDING CO",
+      "iv_rank": 33.3042,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "HBB",
+      "total_volume": 5,
+      "volume_ratio": 74.96251874062969
+    },
+    {
+      "avg_total_volume": 1.5333999999999999,
+      "close": 26.13,
+      "full_name": "Galapagos",
+      "iv_rank": 44.4072,
+      "put_call_ratio": 0.00909090909090909,
+      "sector": "Healthcare",
+      "ticker": "LKFT",
+      "total_volume": 111,
+      "volume_ratio": 72.38815703665058
+    },
+    {
+      "avg_total_volume": 0.1666,
+      "close": 29.87,
+      "full_name": "SPDR(R) PORTFOLIO SHORT TERM CORPORATE BOND ETF",
+      "iv_rank": 7.3766,
+      "put_call_ratio": 1,
+      "sector": null,
+      "ticker": "SPSB",
+      "total_volume": 12,
+      "volume_ratio": 72.02881152460985
+    },
+    {
+      "avg_total_volume": 83.8,
+      "close": 19.04,
+      "full_name": "NATWEST GROUP PLC",
+      "iv_rank": 35.0358,
+      "put_call_ratio": 193.26923076923077,
+      "sector": "Financial Services",
+      "ticker": "NWG",
+      "total_volume": 5051,
+      "volume_ratio": 60.27446300715991
+    },
+    {
+      "avg_total_volume": 1.0334,
+      "close": 4.8,
+      "full_name": "UNIVERSAL ELECTRONICS INC",
+      "iv_rank": 18.0368,
+      "put_call_ratio": 7.857142857142857,
+      "sector": "Technology",
+      "ticker": "UEIC",
+      "total_volume": 62,
+      "volume_ratio": 59.9961292819818
+    },
+    {
+      "avg_total_volume": 23.1334,
+      "close": 35.02,
+      "full_name": "CADRE HOLDINGS INC",
+      "iv_rank": 58.7205,
+      "put_call_ratio": 0.010719754977029096,
+      "sector": "Industrials",
+      "ticker": "CDRE",
+      "total_volume": 1320,
+      "volume_ratio": 57.06035429292711
+    },
+    {
+      "avg_total_volume": 803.5334,
+      "close": 15.75,
+      "full_name": "CEDAR FAIR L P",
+      "iv_rank": 40.8756,
+      "put_call_ratio": 0.8944359282429465,
+      "sector": "Consumer Cyclical",
+      "ticker": "FUN",
+      "total_volume": 45726,
+      "volume_ratio": 56.90615971906084
+    },
+    {
+      "avg_total_volume": 7.6000000000000005,
+      "close": 90.46,
+      "full_name": "CASELLA WASTE SYSTEMS INC",
+      "iv_rank": 68.3134,
+      "put_call_ratio": 0,
+      "sector": "Industrials",
+      "ticker": "CWST",
+      "total_volume": 402,
+      "volume_ratio": 52.89473684210526
+    },
+    {
+      "avg_total_volume": 702.7334000000001,
+      "close": 532.94,
+      "full_name": "UNITED THERAPEUTICS CORP",
+      "iv_rank": 8.1108,
+      "put_call_ratio": 0.5316661876018013,
+      "sector": "Healthcare",
+      "ticker": "UTHR",
+      "total_volume": 31972,
+      "volume_ratio": 45.49662788192506
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 37.76,
+      "full_name": "SCHWAB FUNDAMENTAL US SMALL COMPANY INDEX ETF",
+      "iv_rank": 7.3496,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FNDA",
+      "total_volume": 6,
+      "volume_ratio": 45.0112528132033
+    },
+    {
+      "avg_total_volume": 133.33339999999998,
+      "close": 6.89,
+      "full_name": "ASPEN AEROGELS INC",
+      "iv_rank": 31.5163,
+      "put_call_ratio": 0.5857063093243998,
+      "sector": "Industrials",
+      "ticker": "ASPN",
+      "total_volume": 5680,
+      "volume_ratio": 42.59997870001065
+    },
+    {
+      "avg_total_volume": 38.3667,
+      "close": 0.325,
+      "full_name": "SURGEPAYS INC",
+      "iv_rank": 1.2817,
+      "put_call_ratio": 0.029889538661468484,
+      "sector": "Technology",
+      "ticker": "SURG",
+      "total_volume": 1585,
+      "volume_ratio": 41.311866801158295
+    },
+    {
+      "avg_total_volume": 59.266600000000004,
+      "close": 67.38,
+      "full_name": "ST JOE CO",
+      "iv_rank": 54.1318,
+      "put_call_ratio": 0.0016963528413910093,
+      "sector": "Real Estate",
+      "ticker": "JOE",
+      "total_volume": 2362,
+      "volume_ratio": 39.85381310890113
+    },
+    {
+      "avg_total_volume": 2.1,
+      "close": 18.15,
+      "full_name": "PRA GROUP INC",
+      "iv_rank": 43.9532,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "PRAA",
+      "total_volume": 82,
+      "volume_ratio": 39.047619047619044
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-06.parquet"
+}

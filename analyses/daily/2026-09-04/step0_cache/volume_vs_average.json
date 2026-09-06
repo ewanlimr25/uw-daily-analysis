@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0333,
+      "close": 38.61,
+      "full_name": "DIMENSIONAL WORLD EX US CORE EQUITY 2 ETF",
+      "iv_rank": 10.1785,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DFAX",
+      "total_volume": 35,
+      "volume_ratio": 1051.051051051051
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 22.5577,
+      "full_name": "RPAR RISK PARITY ETF",
+      "iv_rank": 25,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RPAR",
+      "total_volume": 31,
+      "volume_ratio": 930.9309309309308
+    },
+    {
+      "avg_total_volume": 2.8334,
+      "close": 112.89,
+      "full_name": "BANCFIRST CORP",
+      "iv_rank": 37.7935,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "BANF",
+      "total_volume": 2126,
+      "volume_ratio": 750.3352862285593
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 40.3913,
+      "full_name": "VANECK OFFICE AND COMMERCIAL REIT ETF",
+      "iv_rank": 6.4034,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DESK",
+      "total_volume": 12,
+      "volume_ratio": 360.36036036036035
+    },
+    {
+      "avg_total_volume": 1.8333,
+      "close": 49.17,
+      "full_name": "AMALGAMATED FINANCIAL CORP",
+      "iv_rank": 14.7727,
+      "put_call_ratio": 2.03,
+      "sector": "Financial Services",
+      "ticker": "AMAL",
+      "total_volume": 606,
+      "volume_ratio": 330.55146457208315
+    },
+    {
+      "avg_total_volume": 0.1334,
+      "close": 68.6234,
+      "full_name": "FIRST TRUST NASDAQ ABA COMMUNITY BANK INDEX FUND",
+      "iv_rank": 21.2589,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "QABA",
+      "total_volume": 39,
+      "volume_ratio": 292.3538230884558
+    },
+    {
+      "avg_total_volume": 8.5,
+      "close": 14.48,
+      "full_name": "AMERICAN OUTDOOR BRANDS INC",
+      "iv_rank": 40.3529,
+      "put_call_ratio": 1.4628865979381442,
+      "sector": "Consumer Cyclical",
+      "ticker": "AOUT",
+      "total_volume": 2389,
+      "volume_ratio": 281.05882352941177
+    },
+    {
+      "avg_total_volume": 0.19999999999999998,
+      "close": 29.3494,
+      "full_name": "SPDR(R) ICE PREFERRED SECURITIES ETF",
+      "iv_rank": 30.4245,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "PSK",
+      "total_volume": 50,
+      "volume_ratio": 250.00000000000003
+    },
+    {
+      "avg_total_volume": 0.2666,
+      "close": 44.96,
+      "full_name": "ISHARES MSCI INTL VALUE FACTOR ETF",
+      "iv_rank": 8.8141,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IVLU",
+      "total_volume": 65,
+      "volume_ratio": 243.81095273818454
+    },
+    {
+      "avg_total_volume": 6.3332999999999995,
+      "close": 116.69,
+      "full_name": "INTER PARFUMS INC",
+      "iv_rank": 43.7743,
+      "put_call_ratio": 0.003189792663476874,
+      "sector": "Consumer Defensive",
+      "ticker": "IPAR",
+      "total_volume": 1258,
+      "volume_ratio": 198.63262438223362
+    },
+    {
+      "avg_total_volume": 12.4333,
+      "close": 35.75,
+      "full_name": "HYSTER-YALE MATERIALS HANDLING INC",
+      "iv_rank": 34.9966,
+      "put_call_ratio": 0.03832020997375328,
+      "sector": "Industrials",
+      "ticker": "HY",
+      "total_volume": 1978,
+      "volume_ratio": 159.0888983616578
+    },
+    {
+      "avg_total_volume": 0.39999999999999997,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RUSH1",
+      "total_volume": 42,
+      "volume_ratio": 105.00000000000001
+    },
+    {
+      "avg_total_volume": 12.0333,
+      "close": 22.93,
+      "full_name": "QUANEX BUILDING PRODUCTS CORP",
+      "iv_rank": 51.183,
+      "put_call_ratio": 0.07726763717805152,
+      "sector": "Industrials",
+      "ticker": "NX",
+      "total_volume": 962,
+      "volume_ratio": 79.94481979174458
+    },
+    {
+      "avg_total_volume": 31.633300000000002,
+      "close": 43.4,
+      "full_name": "AVIENT CORP",
+      "iv_rank": 22.8585,
+      "put_call_ratio": 0.00288421920065925,
+      "sector": "Basic Materials",
+      "ticker": "AVNT",
+      "total_volume": 2434,
+      "volume_ratio": 76.94423281794818
+    },
+    {
+      "avg_total_volume": 4.3333,
+      "close": 1.63,
+      "full_name": "MEDICINOVA INC",
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "MNOV",
+      "total_volume": 320,
+      "volume_ratio": 73.84672189786075
+    },
+    {
+      "avg_total_volume": 1.5667,
+      "close": 29.81,
+      "full_name": "SPDR(R) PORTFOLIO SHORT TERM CORPORATE BOND ETF",
+      "iv_rank": 4.6034,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPSB",
+      "total_volume": 115,
+      "volume_ratio": 73.4026935597115
+    },
+    {
+      "avg_total_volume": 2.7333000000000003,
+      "close": 15.51,
+      "full_name": "GENIE ENERGY LTD",
+      "iv_rank": 28.2335,
+      "put_call_ratio": 0,
+      "sector": "Utilities",
+      "ticker": "GNE",
+      "total_volume": 200,
+      "volume_ratio": 73.17162404419565
+    },
+    {
+      "avg_total_volume": 1.0333,
+      "close": 86.05,
+      "full_name": "AMERIS BANCORP",
+      "iv_rank": 13.5571,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "ABCB",
+      "total_volume": 70,
+      "volume_ratio": 67.74412077808961
+    },
+    {
+      "avg_total_volume": 57.633300000000006,
+      "close": 28.87,
+      "full_name": "EDGEWELL PERSONAL CARE CO",
+      "iv_rank": 69.9254,
+      "put_call_ratio": 0.004900626191124422,
+      "sector": "Consumer Defensive",
+      "ticker": "EPC",
+      "total_volume": 3691,
+      "volume_ratio": 64.04283634634837
+    },
+    {
+      "avg_total_volume": 20.7333,
+      "close": 0.6259,
+      "full_name": "ATERIAN INC",
+      "iv_rank": 16.7884,
+      "put_call_ratio": 0.009266409266409266,
+      "sector": "Consumer Cyclical",
+      "ticker": "ATER",
+      "total_volume": 1307,
+      "volume_ratio": 63.038686557373886
+    },
+    {
+      "avg_total_volume": 50.166599999999995,
+      "close": 44.22,
+      "full_name": "ASTEC INDUSTRIES INC",
+      "iv_rank": 38.2891,
+      "put_call_ratio": 0.000985869208018403,
+      "sector": "Industrials",
+      "ticker": "ASTE",
+      "total_volume": 3046,
+      "volume_ratio": 60.717688661380286
+    },
+    {
+      "avg_total_volume": 137.9,
+      "close": 28.65,
+      "full_name": "TYRA BIOSCIENCES INC",
+      "iv_rank": 100,
+      "put_call_ratio": 0.17453379953379952,
+      "sector": "Healthcare",
+      "ticker": "TYRA",
+      "total_volume": 8062,
+      "volume_ratio": 58.462654097171864
+    },
+    {
+      "avg_total_volume": 82.4,
+      "close": 106.47,
+      "full_name": "AMEREN CORP",
+      "iv_rank": 41.5956,
+      "put_call_ratio": 0,
+      "sector": "Utilities",
+      "ticker": "AEE",
+      "total_volume": 4074,
+      "volume_ratio": 49.44174757281553
+    },
+    {
+      "avg_total_volume": 0.2667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "VOR1",
+      "total_volume": 13,
+      "volume_ratio": 48.74390701162355
+    },
+    {
+      "avg_total_volume": 160.9333,
+      "close": 16.7,
+      "full_name": "CONTINEUM THERAPEUTICS INC",
+      "iv_rank": 6.1742,
+      "put_call_ratio": 2333.6666666666665,
+      "sector": "Healthcare",
+      "ticker": "CTNM",
+      "total_volume": 7004,
+      "volume_ratio": 43.521135774883135
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-09-04.parquet"
+}

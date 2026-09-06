@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.1333,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "COP1",
+      "total_volume": 226,
+      "volume_ratio": 1695.423855963991
+    },
+    {
+      "avg_total_volume": 0.4,
+      "close": 73.41,
+      "full_name": "INTERNATIONAL BANCSHARES CORP",
+      "iv_rank": 55.4948,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "IBOC",
+      "total_volume": 144,
+      "volume_ratio": 360
+    },
+    {
+      "avg_total_volume": 12.7334,
+      "close": 20.25,
+      "full_name": "PRA GROUP INC",
+      "iv_rank": 46.5263,
+      "put_call_ratio": 0.002956194571351787,
+      "sector": "Financial Services",
+      "ticker": "PRAA",
+      "total_volume": 3732,
+      "volume_ratio": 293.0874707462265
+    },
+    {
+      "avg_total_volume": 14.7666,
+      "close": 28.15,
+      "full_name": "COLLEGIUM PHARMACEUTICAL INC",
+      "iv_rank": 59.3142,
+      "put_call_ratio": 0.0021037868162692847,
+      "sector": "Healthcare",
+      "ticker": "COLL",
+      "total_volume": 2858,
+      "volume_ratio": 193.54489185052753
+    },
+    {
+      "avg_total_volume": 0.2334,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 100,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AVO1",
+      "total_volume": 43,
+      "volume_ratio": 184.2330762639246
+    },
+    {
+      "avg_total_volume": 7.800000000000001,
+      "close": 29.11,
+      "full_name": "LEGACY HOUSING CORP",
+      "iv_rank": 34.5079,
+      "put_call_ratio": 0,
+      "sector": "Consumer Cyclical",
+      "ticker": "LEGH",
+      "total_volume": 1346,
+      "volume_ratio": 172.56410256410254
+    },
+    {
+      "avg_total_volume": 57.900000000000006,
+      "close": 15.01,
+      "full_name": "DIREXION DAILY MSCI EMERGING MARKETS BEAR 3X SHARES",
+      "iv_rank": 61.1925,
+      "put_call_ratio": 20.87686567164179,
+      "sector": null,
+      "ticker": "EDZ",
+      "total_volume": 5863,
+      "volume_ratio": 101.2607944732297
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 23.2,
+      "full_name": "T. Rowe Price Capital Appreciation Premium Income ETF",
+      "iv_rank": 3.9773,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "TCAL",
+      "total_volume": 3,
+      "volume_ratio": 90.09009009009009
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "BAIG1",
+      "total_volume": 15,
+      "volume_ratio": 89.98200359928015
+    },
+    {
+      "avg_total_volume": 53.400000000000006,
+      "close": 5.35,
+      "full_name": "VOX ROYALTY CORP",
+      "iv_rank": 37.5928,
+      "put_call_ratio": 0.0006444683136412459,
+      "sector": "Basic Materials",
+      "ticker": "VOXR",
+      "total_volume": 4658,
+      "volume_ratio": 87.22846441947564
+    },
+    {
+      "avg_total_volume": 358.4,
+      "close": 10.8,
+      "full_name": "CELLEBRITE DI LTD",
+      "iv_rank": 43.5878,
+      "put_call_ratio": 0.07435221955726812,
+      "sector": "Technology",
+      "ticker": "CLBT",
+      "total_volume": 27324,
+      "volume_ratio": 76.23883928571429
+    },
+    {
+      "avg_total_volume": 8.6666,
+      "close": 3.94,
+      "full_name": "KEY TRONIC CORP",
+      "iv_rank": 13.0123,
+      "put_call_ratio": 0,
+      "sector": "Technology",
+      "ticker": "KTCC",
+      "total_volume": 628,
+      "volume_ratio": 72.46209586227586
+    },
+    {
+      "avg_total_volume": 0.9334,
+      "close": 17.7868,
+      "full_name": "KraneShares 2x Long JD Daily ETF",
+      "iv_rank": 32.2209,
+      "put_call_ratio": 57,
+      "sector": null,
+      "ticker": "KJD",
+      "total_volume": 58,
+      "volume_ratio": 62.13841868437969
+    },
+    {
+      "avg_total_volume": 24.900000000000002,
+      "close": 30.84,
+      "full_name": "MGIC INVESTMENT CORP",
+      "iv_rank": 26.4991,
+      "put_call_ratio": 0.0026666666666666666,
+      "sector": "Financial Services",
+      "ticker": "MTG",
+      "total_volume": 1504,
+      "volume_ratio": 60.40160642570281
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 9.64,
+      "full_name": "GLOBAL X SUPERINCOME PREFERRED ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPFF",
+      "total_volume": 6,
+      "volume_ratio": 60
+    },
+    {
+      "avg_total_volume": 0.16670000000000001,
+      "close": 44.05,
+      "full_name": "DIMENSIONAL INTERNATIONAL SMALL CAP VALUE ETF",
+      "iv_rank": 39.5564,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "DISV",
+      "total_volume": 10,
+      "volume_ratio": 59.98800239952009
+    },
+    {
+      "avg_total_volume": 2083,
+      "close": 55.21,
+      "full_name": "TPG INC",
+      "iv_rank": 22.8416,
+      "put_call_ratio": 0.0003181673560292714,
+      "sector": "Financial Services",
+      "ticker": "TPG",
+      "total_volume": 116328,
+      "volume_ratio": 55.84637542006721
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 22.78,
+      "full_name": "STRATEGY SHARES NASDAQ 7 HANDL(TM) INDEX ETF",
+      "iv_rank": 16.3065,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HNDL",
+      "total_volume": 7,
+      "volume_ratio": 52.51312828207052
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": 582.89,
+      "full_name": "CREDIT ACCEPTANCE CORP",
+      "iv_rank": 0.1654,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CACC",
+      "total_volume": 5,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 111.3334,
+      "close": 218.67,
+      "full_name": "PENSKE AUTOMOTIVE GROUP INC",
+      "iv_rank": 3.7879,
+      "put_call_ratio": 0.00018800526414739614,
+      "sector": "Consumer Cyclical",
+      "ticker": "PAG",
+      "total_volume": 5320,
+      "volume_ratio": 47.78440252430987
+    },
+    {
+      "avg_total_volume": 1.4333,
+      "close": 103.8394,
+      "full_name": "FIRST TRUST NASDAQ-100 EX-TECHNOLOGY SECTOR INDEX FUND",
+      "iv_rank": 6.838,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "QQXT",
+      "total_volume": 68,
+      "volume_ratio": 47.442963789855575
+    },
+    {
+      "avg_total_volume": 355.2667,
+      "close": 39.98,
+      "full_name": "KODIAK SCIENCES INC",
+      "iv_rank": 28.2615,
+      "put_call_ratio": 3.1720870678617157,
+      "sector": "Healthcare",
+      "ticker": "KOD",
+      "total_volume": 16292,
+      "volume_ratio": 45.858505736676136
+    },
+    {
+      "avg_total_volume": 35.6333,
+      "close": 14.17,
+      "full_name": "TXO ENERGY PARTNERS LP",
+      "iv_rank": 17.4708,
+      "put_call_ratio": 0.0062932662051604785,
+      "sector": "Energy",
+      "ticker": "TXO",
+      "total_volume": 1599,
+      "volume_ratio": 44.873755728489925
+    },
+    {
+      "avg_total_volume": 18.2666,
+      "close": 1.83,
+      "full_name": "SPRUCE POWER HOLDING CORP",
+      "iv_rank": 83.9061,
+      "put_call_ratio": 0.03416557161629435,
+      "sector": "Technology",
+      "ticker": "SPRU",
+      "total_volume": 787,
+      "volume_ratio": 43.084098847076085
+    },
+    {
+      "avg_total_volume": 120.7666,
+      "close": 2.52,
+      "full_name": "PLAYTIKA HOLDING CORP",
+      "iv_rank": 51.6978,
+      "put_call_ratio": 0.003892565200467108,
+      "sector": "Communication Services",
+      "ticker": "PLTK",
+      "total_volume": 5158,
+      "volume_ratio": 42.71048452138257
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-08-13.parquet"
+}

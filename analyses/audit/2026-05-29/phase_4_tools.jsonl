@@ -1,0 +1,320 @@
+{
+ "tool_table": [
+  {
+   "tool": "uw historical cumulative-premium-flow",
+   "n_with": 76,
+   "mc_pp": 2.0,
+   "frac_on_win": 0.25,
+   "frac_on_loss": 0.22,
+   "n_classes": 5,
+   "tier": "NO-INFO",
+   "self_wr": 0.5
+  },
+  {
+   "tool": "uw options-structure term-skew",
+   "n_with": 56,
+   "mc_pp": -13.4,
+   "frac_on_win": 0.14,
+   "frac_on_loss": 0.2,
+   "n_classes": 3,
+   "tier": "NEGATIVE",
+   "self_wr": 0.393
+  },
+  {
+   "tool": "uw dark-pool block-stratified",
+   "n_with": 52,
+   "mc_pp": 25.4,
+   "frac_on_win": 0.17,
+   "frac_on_loss": 0.14,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.519
+  },
+  {
+   "tool": "uw historical oi-trend",
+   "n_with": 45,
+   "mc_pp": 12.2,
+   "frac_on_win": 0.14,
+   "frac_on_loss": 0.13,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.489
+  },
+  {
+   "tool": "uw options-structure dex",
+   "n_with": 37,
+   "mc_pp": 15.5,
+   "frac_on_win": 0.17,
+   "frac_on_loss": 0.06,
+   "n_classes": 4,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.703
+  },
+  {
+   "tool": "uw hot-chains sweep-persistence",
+   "n_with": 28,
+   "mc_pp": 19.5,
+   "frac_on_win": 0.1,
+   "frac_on_loss": 0.07,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.571
+  },
+  {
+   "tool": "uw options-structure iv-term-structure",
+   "n_with": 26,
+   "mc_pp": 0.8,
+   "frac_on_win": 0.08,
+   "frac_on_loss": 0.08,
+   "n_classes": 2,
+   "tier": "NO-INFO",
+   "self_wr": 0.5
+  },
+  {
+   "tool": "uw options-flow sector-flow-persistence",
+   "n_with": 22,
+   "mc_pp": -6.8,
+   "frac_on_win": 0.06,
+   "frac_on_loss": 0.07,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "self_wr": 0.455
+  },
+  {
+   "tool": "uw insights signal-confluence",
+   "n_with": 16,
+   "mc_pp": 17.2,
+   "frac_on_win": 0.07,
+   "frac_on_loss": 0.03,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.688
+  },
+  {
+   "tool": "uw options-structure gex",
+   "n_with": 12,
+   "mc_pp": 0.0,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.05,
+   "n_classes": 1,
+   "tier": "NO-INFO",
+   "self_wr": 0.333
+  },
+  {
+   "tool": "uw options-flow multi-day-sweep-persistence",
+   "n_with": 11,
+   "mc_pp": 31.9,
+   "frac_on_win": 0.05,
+   "frac_on_loss": 0.02,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.727
+  },
+  {
+   "tool": "uw historical iv-rank",
+   "n_with": 11,
+   "mc_pp": 1.2,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.03,
+   "n_classes": 2,
+   "tier": "NO-INFO",
+   "self_wr": 0.455
+  },
+  {
+   "tool": "uw hot-chains multileg",
+   "n_with": 10,
+   "mc_pp": -7.0,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.03,
+   "n_classes": 2,
+   "tier": "NEGATIVE",
+   "self_wr": 0.5
+  },
+  {
+   "tool": "uw historical gex",
+   "n_with": 9,
+   "mc_pp": -27.2,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.04,
+   "n_classes": 2,
+   "tier": "NEGATIVE",
+   "self_wr": 0.222
+  },
+  {
+   "tool": "uw options-structure multileg-activity",
+   "n_with": 9,
+   "mc_pp": 57.1,
+   "frac_on_win": 0.04,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.667
+  },
+  {
+   "tool": "uw options-structure today-gamma-flip",
+   "n_with": 9,
+   "mc_pp": 25.0,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.556
+  },
+  {
+   "tool": "uw insights conviction-matrix",
+   "n_with": 7,
+   "mc_pp": -40.1,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.03,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "self_wr": 0.143
+  },
+  {
+   "tool": "uw insights dealer-delta-exposure",
+   "n_with": 7,
+   "mc_pp": -14.3,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.02,
+   "n_classes": 2,
+   "tier": "NEGATIVE",
+   "self_wr": 0.429
+  },
+  {
+   "tool": "uw options-structure iv-percentile-zscore",
+   "n_with": 6,
+   "mc_pp": -31.7,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "self_wr": 0.333
+  },
+  {
+   "tool": "uw insights earnings-play",
+   "n_with": 6,
+   "mc_pp": 7.6,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "SUPPORTIVE",
+   "self_wr": 0.5
+  },
+  {
+   "tool": "uw historical pc-ratio-zscore",
+   "n_with": 5,
+   "mc_pp": 12.9,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.01,
+   "n_classes": 0,
+   "tier": "LOAD-BEARING",
+   "self_wr": 0.6
+  },
+  {
+   "tool": "uw insights institutional-accumulation",
+   "n_with": 5,
+   "mc_pp": -12.6,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "self_wr": 0.4
+  },
+  {
+   "tool": "uw historical vrp",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure front-end-iv-ratio",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow gex",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw historical biggest-oi-increases",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow sector-flow",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow top-premium-trades",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure smart-positioning",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi smart-positioning",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure vanna-charm",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw dark-pool price-levels",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw historical signal-backtest",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw historical sweep-persistence",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure gex-time-series",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw dark-pool summary",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow sweeps",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw watchlist alerts",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi biggest-increases",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi position-rolls",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  }
+ ],
+ "fz_advisory": {
+  "envelope_decided": 0,
+  "rows_with_fz_context": 0,
+  "rows_with_breadth": 0,
+  "verdict": "INSUFFICIENT_N \u2014 all fz/C15-C18 axes below the N>=5 decided floor (envelope reports are too recent; most are window_open). Stay advisory (0 points)."
+ }
+}

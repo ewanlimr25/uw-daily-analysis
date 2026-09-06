@@ -1,0 +1,116 @@
+{
+  "date": "2026-08-24",
+  "fleet": "10 Phase-1 agents (opex-pin-strategist omitted — 2026-08-21 monthly OPEX passed; next 2026-09-18)",
+  "regime": "TRANSITIONAL / PULLBACK_IN_UPTREND",
+  "tape": "ROTATION not broad decline. SPY -0.29%/-1.19%, QQQ -1.00%/-3.23%, RSP(equal-wt) +0.12%/+0.52%, fz breadth 60.44% green. AI/semis liquidated (SOXL -26.6% 5d, NBIS -21.6%, WDC -18.8%, CRWV -18.6%, SNDK -16.4%, INTC -15.7%, MU -10.0%, NVDA -7.4%, SMH -8.0%, XLK -5.4%). Bid: IBIT +22.6%, MSTR +25.5%, COIN +19.2%, WPM +17.3%, GLD +5.2%, XLV +4.6%, XLP +3.3%. Technology NETTED sector flow -$346.2M.",
+  "vrp": {"SPY": "+0.007 FAIR", "QQQ": "-0.0197 NEGATIVE (premium-BUYING)", "XLK": "-0.0463", "SMH": "-0.0698", "SOXL": "-0.3285"},
+
+  "population_firing_rates_observed_today": {
+    "oi_trend_BUILDING": "accumulation-hunter 12/12 (100%); leap-radar 5/5 (100%) — ZERO DISCRIMINATION reconfirmed twice. Award only on a DIRECTION-VERIFIED build.",
+    "sector_flow_persistence": "11/11 sectors >= 0.6 (six at 1.0) — zero discrimination, non-informative.",
+    "front_end_iv_ratio_gt_1.05_at_dte7": "vol-surface 17/26 (65.4%); earnings-scout 23/36 (63.9%) BUT split: 17/22 (77.3%) valid for names reporting <=4d, 6/14 (42.9%) INVALID for names reporting Sep1-3 (near tenor expires pre-earnings).",
+    "institutional_accumulation": "7 ACCUMULATION / 8 DISTRIBUTION / 9 NEUTRAL of 24 — GENUINE VARIANCE, a real gate.",
+    "block_stratified_mega_tier": "17/17 (100%) but selection-biased (only pre-flagged names queried).",
+    "analyst_vs_flow_analyst_leg": "0/36 populated — tool defect total.",
+    "term_structure_shape_flipped_under_hygiene": "vol-surface 20/29 (69%) shape, 10/29 (34%) base_shape; earnings-scout 18/36 (50%)."
+  },
+
+  "gamma_flip_tracker_SPY_QQQ_advisory": {
+    "SPY": {"spot": 763.70, "zero_gamma_level": 336.67, "zgl_reliable": false, "regime_label": "POSITIVE", "total_gex": -1284006949, "LABEL_SIGN_CONTRADICTION": true, "call_wall": 780, "put_wall": 760, "read": "Persistent short-gamma 7 straight sessions. Spot inside a deep negative-GEX trench 760-765. Amplification, not pin.", "structure_bias": "debit verticals / directional; NO iron fly or condor"},
+    "QQQ": {"spot": 706.72, "zero_gamma_level": null, "zgl_reliable": false, "regime_label": "FULLY_NEGATIVE", "total_gex": -548110530, "LABEL_SIGN_CONTRADICTION": false, "call_wall": 720, "put_wall": 705, "read": "Short-gamma 6 straight sessions; put wall 0.24% below spot — essentially ON spot. Highest amplification of the two.", "structure_bias": "debit verticals / long straddle on a flip through 705; negative VRP independently argues against short QQQ vol"}
+  },
+  "zerodte_override": "Step0 zerodte_setup says GO_PREMIUM_SELL_INTRADAY but VIX 15.85 is in the LOW tercile: SPY net +0.013% (ZERO edge), QQQ net +0.107%. Both index books are SHORT gamma. The premium-selling advisory does NOT hold on SPY tomorrow.",
+
+  "dealer_positioning": {
+    "dex_flip_qualifiers": ["WMT"],
+    "WMT": {"direction": "long", "evidence": "net_dex 2026-08-21 -1,706,978,987 -> 2026-08-24 +99,581,502; prior 3 sessions all negative; |flip| 99,581,502 vs floor 58,825,439 (0.25x trailing-10 median 235,301,755); ratio 1.69 QUALIFIES", "whipsaw_warning": true, "sign_changes_in_window": 5, "corroboration": "same-day total_gex sign flip NEG->POS; gex per-strike confirms not single-strike artifact (top strike 26% of gross); front_end_iv_ratio 1.287 BACKWARDATION; step0 watchlist alert 2.5x vol, P/C 0.21, $117.1M DP print, +102,333 net OI"},
+    "vanna_squeeze_flag_all_names": false,
+    "vanna_reason": "dated ^VIX shows no 3-consecutive-session down-run ending near today (08-20 16.01 -> 08-21 15.13 -> 08-24 15.85, +4.76% 1d). Falling-VIX leg NOT satisfied on any name.",
+    "near_miss_shorts": {"QQQ": "genuine 12-session positive run broke; ratio 0.62 sub-floor", "TSM": "ratio 0.80", "SNDK": "ratio 0.54"},
+    "unscored_divergence": "NVDA/MU/AMD/MRVL/MCHP/DELL all still net-POSITIVE DEX after 5d drops of 7-10%. The options book has NOT confirmed the spot carnage. Level, not flip — 0 points."
+  },
+
+  "sector_rotation": {
+    "rotation_regime_call": "no_change",
+    "zero_sectors_clear_full_stack": true,
+    "technology_OUT": {"netted": -346200000, "gross_DISAGREES": 524200000, "price_1d_5d": [-1.78, -5.40], "note": "classic C55 case — only NETTED carries direction; price strongly confirms netted"},
+    "short_leaders_all_3_gates_clear": {
+      "MCHP": {"cum_flow_30d": -158800000, "today_net": -152800000},
+      "INTC": {"cum_flow_30d": -398000000, "today_net": -13200000},
+      "ORCL": {"cum_flow_30d": -85000000, "today_net": -18000000}
+    },
+    "short_leaders_FAIL_condition_b": {"NVDA": {"today_net": -115900000, "cum_flow_30d": 128000000, "label": "MIXED"}, "MU": {"today_net": -96900000, "cum_flow_30d": 126600000, "label": "MIXED"}},
+    "long_side": "Financial Services cleared netted+persistence+magnitude+gross BUT XLF ETF tape -$14.7M outflow DISAGREES -> watch_only. MA (+$14.8M 30d) and DB (+$3.4M) both FAIL condition (c) >= $50M.",
+    "double_count_flag": "sector-leader conditions (b)/(c) test the IDENTICAL field+threshold as the standalone cum-flow +1 line. AWARD ONCE.",
+    "healthcare_truncation_blind_spot": "XLV +4.58% 5d (best SPDR), persistence 1.0, gross $693.3M — but ABSENT from the netted top-3/bottom-3 so it has NO directional read. Methodological hole."
+  },
+
+  "accumulation_hunter": {
+    "ACCUMULATION_book": [
+      {"ticker": "GLD", "direction": "long", "aligned_signals": ["institutional-accumulation ACCUMULATION buy_sell_ratio 4.12", "dark-pool largest: GENUINE $847.3M block 13:53:54Z (9:53am ET) executed ABOVE ask +$1.26 vs mid — CONFIRMED NOT closing-cross", "block-stratified mega buy_ratio 0.975, 7 trades $1.29B, clustered at 429 which is ABOVE the ~426.7 close", "oi-trend BUILDING 5d DIRECTION-VERIFIED call-dominant 39,817 call OI adds vs 5,513 put"], "dp_second_tier_shelf": 427.73, "block_stratified_institutional_tier_pct": 68.3, "cum_flow_30d": -311392397, "net_as_pct_of_gross": -3.72, "distribution_flag": {"present": true, "closing_side": "call", "closing_premium": 21780000, "note": "$21.8M institutional-size CALL OI closing across 15 strikes even as DP shows fresh buying — real headwind"}, "insider_cluster_present": null, "dp_block_to_float_ratio": null, "blind_spots": {"merger_arb": "n/a ETF", "dividend_capture": "n/a no dividend", "put_sale_netting": "cum-flow already negative despite usual bullish inflation — reinforces caution"}, "invalidation": "institutional-accumulation flips NEUTRAL/DISTRIBUTION; 2 consecutive closes below the $426.69 shelf; oi-trend turns UNWINDING"}
+    ],
+    "DISTRIBUTION_book": [
+      {"ticker": "HYG", "direction": "short", "aligned_signals": ["institutional-accumulation DISTRIBUTION buy_sell_ratio 0.57", "block-stratified mega buy_ratio 0.094 extreme sell skew, 6 trades $169.5M", "oi-trend BUILDING +224,038 DIRECTION-VERIFIED multi-tenor PUT ladder (75P Dec/77P Nov/79.5P Aug/79P Feb/77P Dec/75P Oct/Sep — 8 of top-10 building contracts are puts)", "step0 watchlist alert $68.6M DP print, +224,038 net OI, P/C 3.13"], "dp_second_tier_shelf": 79.67, "block_stratified_institutional_tier_pct": 56.9, "cum_flow_30d": -584068, "net_as_pct_of_gross": -0.43, "OPEN_RISK_put_sale_netting": "oi_smart_positioning reads the flagship 75P Dec as BID-side (sold) which would make this a BULLISH income trade. Unresolved.", "distribution_flag": {"present": false}, "invalidation": "P/C compresses toward 1.0; oi-trend UNWINDING 2+ sessions; trade-tape confirms put builds majority BID-side"},
+      {"ticker": "AVGO", "direction": "short", "confidence": "LOW — WATCH_ONLY", "aligned_signals": ["institutional-accumulation DISTRIBUTION ratio 0.45", "block-stratified mega buy_ratio 0.044 BUT FLAGGED CONTAMINATED", "price-levels second-tier shelf 361.00-362.15 genuine fade into the 358.76 close", "screener_bearish net_flow -$11.7M"], "dp_second_tier_shelf": 361.00, "cum_flow_30d": 9134342, "net_as_pct_of_gross": 0.16, "dp_block_to_float_ratio": 0.0000677, "distribution_flag": {"present": true, "closing_side": "put", "closing_premium": 960593, "oi_decrease": -482, "note": "CONTRADICTING — put OI closing ($960K) LARGER than confirming call closes ($273.6K). C28 net read cautions AGAINST the short."}, "note": "headline mega buy_ratio very likely majority closing-cross artifact — same signature as AMD/PLTR/MSFT"}
+    ],
+    "REJECTED_BY_DECONTAMINATION": {
+      "WMT": "institutional-accumulation = NEUTRAL — FAILS THE PRIMARY GATE OUTRIGHT despite the $117.1M print and watchlist alert",
+      "PLTR": "93.5% of mega premium = two prints at 20:00:06Z at the EXACT close. After stripping, residual is buy-leaning ~61% — THE SIGNAL REVERSES SIGN",
+      "MSFT": ">=34.7% of mega premium confirmed part of the cross-name ~$500M BASKET PRINT at 20:53-20:55Z hitting NVDA/MSFT/MU/AAPL at near-identical notionals; 30d cum-flow net BULLISH +4.5% contradicts",
+      "AMD": "mega tier $1.07B 'buy_ratio 1.00' sits almost entirely inside the exact-closing-price bucket (456.75, 72 trades, $1.06B)",
+      "GOOGL_GOOG": "price faded from a genuine intraday shelf into the close; C28 found $1.69M institutional call OI CLOSING (contradicting)"
+    },
+    "EXCLUDED_BY_C12": {"ACN": "cleanest genuine sub-close distribution block of the scan — not in c12 passed", "AMAT": "$363M genuine block above close — not in c12 passed", "ADI": "not in c12", "AAPL": "not in c12"}
+  },
+
+  "sweep_tracker": {
+    "bullish_count": 5, "bearish_count": 9,
+    "clean_aligned_bearish": ["NBIS (5/5, -$8.7M today, -21.6% 5d — best-corroborated bearish thesis)", "INTC (5/5, -$13.2M today, -15.7% 5d)", "MSTR (4/5, -$21.5M today — notable: underlying UP +25.5% 5d, hedge/fade signature)"],
+    "largest_bearish_net_flow_non_index": {"MU": -96900000, "note": "MIXED persistence tag, strong single-day tilt"},
+    "contradictions": {"SNDK": "5/5 bearish persistence FLIPPED bullish today (+$42.0M) into -16.4% 5d carnage — dip-buy/short-cover", "AMD": "5/5 bearish persistence FLIPPED bullish (+$21.4M)", "MRNA": "4/5 bearish FLIPPED bullish (+$16.9M)", "COIN": "3/5 bullish FLIPPED bearish (-$10.3M) after +19.2% 5d", "SLV": "3/5 bullish FLIPPED bearish (-$10.2M)", "MCHP": "thin 1/5 'bullish' tag vs -$152.8M largest bearish net flow in the market"},
+    "bullish": ["IBIT (4/5, ask_bid 124-151x, but LEAP-ish expiries, weak urgency)", "GLD (5/5 but MIXED tag; $202.4M+$144.5M Sep-18 420/430 prints tagged no_side — NOT confirmed clean ask-side sweeps)", "PLTR (5/5 MIXED, weak)", "COIN/SLV reversing"],
+    "note": "Persistence top-10 is 7/10 index/mega-cap hedge flow with unverified alignment. THIS LANE EARNS 0 RUBRIC POINTS (2026-05-23 P0.3)."
+  },
+
+  "contrarian_scanner": {
+    "minus2_crowded_long_penalty_fires_on": [],
+    "pc_z_all_bid_side_leaders_NORMAL": {"IBIT": -0.265, "MSTR": 0.322, "COIN": 0.299, "GLD": -1.305, "MRNA": 0.664, "ASST": -0.897},
+    "WPM": {"pc_z": 9.759, "label": "BEARISH_EXTREME", "verdict": "DISQUALIFIED — hedge bid post +47.65% 30d parabola (protective puts/collars), NOT fade fuel. No structure. abort_rule_triggered true."},
+    "semis_capitulation_verdict": "EARLY / NOT EXHAUSTED at leadership level; localized exhaustion in second tier. NVDA/MU/SMH/INTC/SOXL flow still aligned bearish; NVDA's OI unwind is CALLS closing (bulls de-risking) not puts covering.",
+    "scored": [
+      {"ticker": "AMD", "fade_direction": "short-fade (i.e. LONG the name)", "pc_z": 3.019, "label": "BEARISH_EXTREME", "trajectory_established": false, "divergence": "price -16.7% 30d but net flow +$21.4M bullish ($220.9M vs $199.5M)", "oi_unwind": "AMD270115P00300000 Jan-27 300P OI -4,324 (15,269->10,945) on 4,673 vol — large downside hedge actively closing", "iv_rank": 26.2, "vrp_regime": "QQQ-NEGATIVE", "structure": "defined-risk bull call debit spread ~25-30 DTE, half-size", "logic_basis": "mean-reversion-evidence; the crowding leg itself CUTS AGAINST per continuation research", "conviction": "MODERATE — starter size only"},
+      {"ticker": "MSTR", "fade_direction": "long-fade (SHORT)", "pc_z": 0.322, "label": "NORMAL", "divergence": "price +25.7% 30d but net flow -$21.5M bearish", "oi_unwind": "MSTR281215C00100000/C00110000 lost 31,466 and 29,124 OI on 45,233/44,518 vol — dominant call-side profit-taking", "iv_rank": 36.0, "conviction": "WATCH_ONLY sub-threshold (2 of ~5 signals)"},
+      {"ticker": "COIN", "fade_direction": "long-fade (SHORT)", "pc_z": 0.299, "label": "NORMAL", "divergence": "price +11.1% 30d but net flow -$10.3M bearish", "oi_unwind": "modest call unwind", "iv_rank": 38.6, "conviction": "WATCH_ONLY sub-threshold, weaker than MSTR"},
+      {"ticker": "GLD", "fade_direction": "long-fade (SHORT)", "pc_z": -1.305, "label": "NORMAL", "divergence": "WEAK — price +14.7% 30d, net flow -$9.9M on near-balanced $500M+ both sides", "conviction": "LOWEST — flagged for completeness only, NOT a real setup"}
+    ],
+    "advisory_context": {"WDC": "flow +$17.7M bullish vs -22.7% price", "SNDK": "flow +$42.0M bullish vs -15.1% price (largest $ divergence)", "VRT": "flow +$9.9M vs -16.0%", "NBIS": "price BOUNCING +8.7% but flow BEARISH -$8.7M — smart money skeptical of the bounce", "APP": "single_leg Tier-1 FLOOR_PUT_BLOCK CONTRARIAN_SHORT but CONFLICTS with its own price-vs-flow (+$6.5M bullish); no confluence, no trade"}
+  },
+
+  "multileg_strategist": {
+    "rubric_eligible_plus2": ["GLD"],
+    "GLD": {"structure": "vertical (bull call spread)", "legs": "BUY Sep-18 420C 115,876 @ $202.44M / SELL Sep-18 430C 115,876 @ $144.50M", "net_premium": -57940000, "direction": "long", "is_directional": true, "dte": 25, "multileg_ratio": "0.98-0.99", "term_structure_anchor": "Sep-18 expiry straddles PCE (Aug26-28), ISM (Sep1), NFP (Sep4) and lands 2 days AFTER FOMC (Sep15-16) — macro-catalyst-dense corridor", "multi_day_repeat": "single-day only for THIS strike pair; 2026-08-19 logged a different GLD 430C/445C Sep-11 vertical — thematic precedent, NOT a verified repeat", "risk_cap": "max loss = $57.94M debit (~$5.00/contract on a $10-wide spread)", "thesis": "stagflation-lite / USD-weakening / dovish-Fed expression into the PCE->FOMC window"},
+    "not_eligible": {"NVDA": "put diagonal (sell Jun-27 140P / buy Jan-27 180P) — financed protective hedge, NOT a short; one leg's side is an INFERENCE not confirmed", "IBIT": "far-OTM Dec-2028 20P/15P vertical @ ~$1.05/contract during a +22.6% 5d rip — TAIL INSURANCE on a long book, not alpha. Color: smart money buying cheap convexity against the crypto melt-up rather than shorting it.", "MCHP": "net delta -5.8K despite +31,258 calls by count — duration-shortening ROLL, thesis unreadable, AMBIGUOUS"},
+    "out_of_scope_c12": {"SPX/SPXW": "7000-strike complex >$1.5B notional, continuation of the roll program logged 2026-08-21", "VIX": "20C Sep-16 expiring ON FOMC day, ratio 0.827, $5.78M — plausible FOMC vol hedge"}
+  },
+
+  "vol_surface_scout": {
+    "dispersion_headline": "Index vol is FAIR, NOT CHEAP. VRP widens monotonically SPY +0.007 -> QQQ -0.0197 -> XLK -0.0463 -> SMH -0.0698 -> SOXL -0.3285. NO confirmed short leg exists to fund a dispersion trade — SPY VRP is FAIR not positive. Clean expression is OUTRIGHT long premium in semis, not a paired short-index spread.",
+    "BUY_VOL": {"NBIS": {"vrp": -0.8817, "note": "LARGEST cheap-vol gap in the scan; kink 28.6% prominence at Sep-18 monthly OPEX — a real structural node", "iv_pct": 11.83}, "SNDK": {"vrp": -0.6746}, "CRWV": {"vrp": -0.5353}, "LITE": {"vrp": -0.3451}, "SOXL": {"vrp": -0.3285}, "MU": {"vrp": -0.3256}, "WDC": {"vrp": -0.3058}, "AMD": {"vrp": -0.2128}, "VRT": {"vrp": -0.1748}, "MCHP": {"vrp": -0.1762, "note": "curve too thin to size"}, "INTC": {"vrp": -0.1593, "note": "iv percentile 2.15 — extreme floor"}, "MRVL": {"vrp": -0.1479, "note": "earnings 8/27, RV 93.4% running above the priced 8.97% move"}, "COIN": {"vrp": -0.1015}, "SMH": {"vrp": -0.0698}, "DELL": {"vrp": -0.0625, "note": "kink correctly tags post-ER 9/4 tenor"}, "XLK": {"vrp": -0.0463}},
+    "SELL_VOL": {"NTAP": {"vrp": 0.1948, "iv_pct_z": 2.101, "note": "the ONE name where iv_rank=100 saturation is NOT spurious; earnings 9/2"}, "SNPS": {"vrp": 0.1499, "note": "earnings 8/26, sell rich front / own back"}, "SLV": {"vrp": 0.0804, "note": "FLAT curve"}, "IBIT": {"vrp": 0.0734, "iv_pct": 78.49}, "AVGO": {"vrp": 0.0683}, "MSTR": {"vrp": 0.0576, "note": "kink at Sep OPEX"}},
+    "NEUTRAL_watch_only": {"NVDA": "genuine BACKWARDATION 1.389 but VRP FAIR +0.0366, iv pct 62nd — 0 confirming legs", "GLD": "iv pct 88th but VRP FAIR +0.0242 — the gold bid is a FLOW story, not a vol-surface mispricing", "CRM": "VRP FAIR +0.0162 — 0 confirming legs", "SPY": "FAIR — do NOT short SPY vol as a dispersion funding leg"},
+    "data_defects": {"HYG": "front-end ratio 7.127 off a 4-DTE tenor quoting 36.9% IV vs its own iv30d 3.6% — >10x internal contradiction, no catalyst. ARTIFACT, excluded.", "NTAP_MANE": "NO_NEAR_TENOR — front end UNMEASURABLE, not calm", "iv_percentile_z": "ALL names dates_used=93 < the 120-day first-class floor — every percentile reading is PROVISIONAL. MANE only 28 dates."},
+    "correction": "IA and MINT are NOT in c12_liquidity_floor.passed (orchestrator prompt was wrong); only NTAP and MANE pass."
+  },
+
+  "earnings_scout": {
+    "CRITICAL_METHOD_FIND": "`--near-dte 7` snaps to the nearest listed tenor = the 4-DTE Aug-28 bucket on this slate. VALID for the 22 names reporting Aug25-28 (fires 17/22 = 77.3%). INVALID for the 14 reporting Sep1-3 — that tenor EXPIRES BEFORE their earnings date. MDB, AEO, MDT, CPB additionally show an INVERTED pattern (invalid pre-event tenor reads HIGHER IV than the true event-covering Sep-4 tenor), which killed those theses. RECOMMENDATION: term_structure_hygiene.py should flag near_dte_actual < days_to_earnings as INVALID rather than silently returning a ratio.",
+    "KINK_FINDER_DEFECT": "single-most-prominent-bump search mislocates the event when a larger unrelated far-dated hump exists on thin contracts — CRM, CRWD, SNPS, ZM, MDB, PANW, PATH all had kink_expiry weeks past the true earnings tenor. The genuine near-event candidate WAS present in kink_candidates[] marked qualifies:false. ZM's 66.9%-prominence kink is thin-contract noise.",
+    "analyst_leg": "0/36 populated — no analyst-vs-flow claims made anywhere",
+    "c12_note": "ran market_data.py directly on the full slate: 36 of 40 pass; QFIN, EH, CAN, AI FAIL",
+    "BUY_VOL": [{"t":"SNOW","er":"2026-09-02","im":4.06,"ivr":68.0,"kink_prom":21.3,"base":"CONTANGO","iv_vs_rv":"101.6% vs 38.8%"},{"t":"ZS","er":"2026-09-03","im":4.41,"ivr":78.1,"kink_prom":21.3,"base":"CONTANGO","iv_vs_rv":"103.4% vs 47.5%"},{"t":"IOT","er":"2026-09-03","im":4.18,"ivr":64.1,"kink_prom":19.2,"note":"thin liquidity"},{"t":"CIEN","er":"2026-09-03","im":5.93,"ivr":67.1,"kink_prom":16.0,"note":"RV20 86.6% already high, thin edge"},{"t":"DOCU","er":"2026-09-03","im":3.90,"ivr":59.6,"kink_prom":11.9},{"t":"DELL","er":"2026-09-01","im":5.35,"ivr":70.8,"kink_prom":6.2,"note":"WEAKEST — smallest prominence; sits in the bearish semis funnel"}],
+    "SELL_VOL_half_size": [{"t":"WDAY","er":"2026-08-27","im":6.65,"ivr":53.3,"fer":1.692,"skew":"TAIL_HEDGING","gap":"+16.9pt weakest"},{"t":"BBY","er":"2026-08-27","im":6.50,"ivr":65.1,"fer":2.186,"skew":"TAIL_HEDGING","gap":"+73.1pt"},{"t":"GAP","er":"2026-08-27","im":8.23,"ivr":51.0,"fer":2.367,"skew":"TAIL_HEDGING","gap":"+100.8pt strongest"}],
+    "CALENDAR": [{"t":"MRVL","er":"2026-08-27","im":8.97,"ivr":54.3,"gap":"+38.7pt","note":"largest volume on the board 112.5k but smallest gap relative to its own RV 94.3%"},{"t":"CRM","er":"2026-08-26","im":6.64,"ivr":73.5,"gap":"+61.4pt","note":"reported kink at Sep-18 is NOT the earnings tenor"},{"t":"HPQ","er":"2026-08-26","im":8.24,"ivr":84.6,"gap":"+67.8pt","note":"highest IVR of cohort, heavy put skew P/C 2.22 — largest size in group"},{"t":"CRWD","er":"2026-08-26","im":7.41,"ivr":74.9,"gap":"+56.7pt"},{"t":"OKTA","er":"2026-08-26","im":10.94,"ivr":81.6,"gap":"+114.8pt LARGEST"},{"t":"SNPS","er":"2026-08-26","im":7.34,"ivr":73.8,"gap":"+71.7pt","note":"bearish flow tilt 4:1 ($11.2M bear vs $2.6M bull)"},{"t":"KSS","er":"2026-08-26","im":11.74,"ivr":55.1,"gap":"+116.6pt"},{"t":"BBWI","er":"2026-08-26","im":9.14,"ivr":76.9,"gap":"+89.0pt"},{"t":"ULTA","er":"2026-08-27","im":7.19,"ivr":72.8,"gap":"+63.3pt"},{"t":"DLTR","er":"2026-08-27","im":7.80,"ivr":65.0,"gap":"+87.9pt"},{"t":"DG","er":"2026-08-27","im":7.12,"ivr":69.1,"gap":"+80.5pt"},{"t":"INTU","er":"2026-08-25","im":6.91,"ivr":70.5,"gap":"+55.5pt","note":"cleanest least-crowded"},{"t":"ZM","er":"2026-08-25","im":7.34,"ivr":71.0,"gap":"+72.1pt","note":"66.9% kink is NOISE"}],
+    "SKIP": ["SMTC/DKS/P/SJM/FRO/NTSK (NO_NEAR_TENOR)","S (avg_iv 259.3% implausible — wing contamination)","PANW/PATH (true event tenor prominence 3.8%/2.7% below threshold)","MDB/AEO/MDT/CPB (INVERTED front — invalid pre-event tenor higher than true event tenor)","LULU (genuine 17.8% at-event kink on CONTANGO base BUT consumer-apparel, negative-QQQ-VRP confirming leg does not apply; SPY VRP FAIR; no confirming leg -> SKIP)"],
+    "retail_crowding_warning": "KSS/DG/DLTR/GAP/BBWI/ULTA all report the same week — correlated crowding risk if sizing multiple retail calendars"
+  }
+}

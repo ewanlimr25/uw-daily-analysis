@@ -1,0 +1,726 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-06-18",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL \u2014 PULLBACK_IN_UPTREND",
+  "vrp_classification": "FAIR",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.27,
+    "core_cpi_yoy_pct": 2.96,
+    "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.3,
+    "payrolls_mom_000s": 172.0,
+    "ten_year_yield": 4.49,
+    "ten_year_30d_direction": "falling",
+    "usd_30d_direction": "strengthening",
+    "fed_funds": 3.63
+  },
+  "macro_event_risk": [
+    {
+      "event": "FOMC decision (passed \u2014 hawkish-hold; VIX crushed 18.44->16.4)",
+      "date": "2026-06-17",
+      "impact": "high"
+    },
+    {
+      "event": "Initial jobless claims (shifted off the 06-19 Juneteenth holiday)",
+      "date": "2026-06-22",
+      "impact": "low"
+    },
+    {
+      "event": "Core PCE (May \u2014 Fed preferred inflation gauge)",
+      "date": "2026-06-25",
+      "impact": "high"
+    },
+    {
+      "event": "Q1 GDP third (final) estimate",
+      "date": "2026-06-25",
+      "impact": "medium"
+    }
+  ],
+  "watchlist_write_back": [
+    "NKE",
+    "SNDK",
+    "MU",
+    "EWZ",
+    "MRVL"
+  ],
+  "report_path": "analyses/daily/2026-06-18/report.md",
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 264,
+    "decliners": 238,
+    "pct_green": 52.49,
+    "divergence_flag": false,
+    "note": "Green tape, pct_green > 50 \u2014 NO divergence. avg +0.31% / median +0.13%; broadening vs 06-17's 14% green. top SNDK +11.5%, worst ACN -17.97% (earnings)."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-18",
+    "next_session_date": "2026-06-22",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 747.26,
+        "zero_gamma_level": 300.05,
+        "zgl_reliable": false,
+        "regime": "NEGATIVE",
+        "total_gex": -275800000,
+        "call_wall": 755,
+        "put_wall": 735,
+        "read": "spot in a short-gamma air pocket (746-748), flow amplified until ~750; below 740 negative-gamma accelerates to the 735 put wall",
+        "structure_bias": "directional-into-the-shelf (tight 750/755 debit call vertical if firm; fade pokes to 740 if soft) \u2014 NOT a naked pin",
+        "caveats": "net-negative gamma (label NEGATIVE); post-triple-witching OI roll-off \u2014 book thinned/unstable; ZGL unreliable (deep-OTM 300); gap risk into 06-22 claims / 06-25 PCE; ETF book not SPX; cannot isolate D+1 expiry."
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 740.0,
+        "zero_gamma_level": 270.79,
+        "zgl_reliable": false,
+        "regime": "POSITIVE",
+        "total_gex": 1690000000,
+        "call_wall": 750,
+        "put_wall": 728,
+        "read": "long-gamma pin/mean-revert around 740 IF the 740 anchor reprints Monday; dampened 728-750",
+        "structure_bias": "740-centred iron fly / 728-750 condor \u2014 but WAIT for the first 30-60min of 06-22 OI to confirm the 740 mass reprints before sizing short-vol",
+        "caveats": "label POSITIVE but the 740 +1.34B is suspected OPEX roll-off residue (~+350M ex-outlier) \u2014 discount magnitude; regime whipsawed FULLY_NEGATIVE 06-17 -> POSITIVE 06-18; ZGL unreliable; gap risk into 06-22/06-25; ETF book not NDX."
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-06-18",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.4,
+        "implied_move_pct": 0.52,
+        "expected_range_pct": 1.22,
+        "size_scalar": 0.5,
+        "suggested_structure": "wider iron condor, wings ~+/-1.22% (short-gamma: wider/trendier) \u2014 or reduce/stand aside",
+        "entry_rule": "enter at/after the open once the gap resolves; hold 0DTE to close; never overnight",
+        "stand_aside_reason": null,
+        "caution": "net +0.207%/day GROSS-of-tail; vol-shock left tail UNSAMPLED; advisory 0 rubric points"
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "LOW",
+        "vix": 16.4,
+        "implied_move_pct": 0.91,
+        "expected_range_pct": 1.23,
+        "size_scalar": 0.5,
+        "suggested_structure": "iron fly / short straddle ~740, wings ~+/-1.23% (long-gamma: quieter/mean-reverting)",
+        "entry_rule": "enter at/after the open once the gap resolves; hold 0DTE to close; never overnight",
+        "stand_aside_reason": null,
+        "caution": "QQQ weaker (Nasdaq index book unavailable); net +0.297%/day GROSS-of-tail; advisory 0 rubric points"
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "NKE",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "in earnings-scout BUY VOL or SELL VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw insights earnings-play",
+          "evidence": "SELL VOL into 06-30 earnings; 07-02 IV kink 73.4% vs 07-17 57%; flow bearish -$3.2M aligned"
+        },
+        {
+          "rubric_line": "vol-surface-scout KINKED/BACKWARDATION with VRP-aligned bias",
+          "points": 1,
+          "source_agent": "vol-surface-scout",
+          "source_tool": "uw options-structure iv-term-structure",
+          "evidence": "07-02 KINKED bracketing 06-30 ER; VRP +0.22 POSITIVE (premium rich); complacent skew \u2192 short-calendar"
+        }
+      ],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -31400000,
+      "cum_premium_flow_90d": -33200000,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no_op (TRANSITIONAL not hostile to a short)",
+        "vrp": "no_op (VRP FAIR \u2014 sign wash)",
+        "panic": "no_op (front-end-iv-ratio OPEX-0DTE-contaminated \u2014 unreliable)",
+        "cluster": "no_op (outside semis_memory_cluster \u2014 consumer)",
+        "sector": "no_op (no adverse footwear rotation)",
+        "fundamentals": "CONFIRM (secular decline supports bear; 2.24 d-to-cover squeeze risk)",
+        "event_risk": "no_op (own earnings 06-30 = T+8, outside swing window)",
+        "debate": "no_op (no sized names \u2014 debate moot)",
+        "rubric_regime": "capped_half (OUT-OF-REGIME; moot, sub-floor)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 4.4,
+        "days_to_cover": 2.24,
+        "float_shares": 1170000000,
+        "squeeze_pressure": "LOW",
+        "recom": 2.33,
+        "upside_to_target_pct": 30.93,
+        "rsi": 52.67,
+        "note": "Highest d-to-cover of the set (2.24) = modest event-day squeeze fuel for the short; consensus target +31% above price (leans long). Advisory, 0 tier impact."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "07-02/07-17 short calendar (defined-risk); directional-bear lean",
+      "entry_or_trigger": "sub-floor (raw 2 < 3) \u2014 no entry",
+      "invalidation": "07-02 kink dissipates pre-print / bearish flow flips bullish / beat-vs-lowered-bar relief pop forces the 2.24 d-to-cover cover",
+      "key_risks": [
+        "06-30 earnings binary (can gap either way)",
+        "2.24 days-to-cover event-day squeeze on the short",
+        "consensus target +31% above price (street leans long the turnaround)"
+      ],
+      "thesis": "Short-vol / directional-bear into the 06-30 print on a secularly declining brand; best-structured idea on the board but sub-floor. Express defined-risk only."
+    },
+    {
+      "ticker": "SNDK",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "sector-rotation-strategist names ticker as single-name leader (persistence>=0.6 + cum_flow aligned >=$50M)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Tech persistence 0.8; cum_flow_30d +$1.06B LONG-aligned >=$50M (semis-memory leader, tactical)"
+        },
+        {
+          "rubric_line": "cum_premium_flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "30d +$1.06B LONG-aligned, 30.95x union median; intent screen PASS (no distribution_flag, not div-arb)"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 1060000000,
+      "cum_premium_flow_90d": 1700000000,
+      "win_rate": 0.6,
+      "win_rate_uncapped": 0.6,
+      "win_rate_n": 135,
+      "win_rate_source": "backtest_clean",
+      "market_excess": -0.143,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no_op (LONG aligned with PULLBACK_IN_UPTREND)",
+        "vrp": "no_op (VRP FAIR)",
+        "panic": "no_op (front-iv-ratio unreliable today)",
+        "cluster": "no_op (highest-scored member of semis_memory_cluster \u2014 kept name, no self-penalty)",
+        "sector": "no_op (semis flow positive, not adverse)",
+        "fundamentals": "CONFIRM (memory supercycle; RSI 71 / beta 4.88 extension)",
+        "event_risk": "no_op (own earnings 08-12 far out; PCE 06-25=T+5 would be -0.5 if sized, moot)",
+        "debate": "no_op (no sized names \u2014 debate moot)",
+        "rubric_regime": "capped_half (OUT-OF-REGIME; moot, sub-floor)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 6.3,
+        "days_to_cover": 0.62,
+        "float_shares": 146130000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.64,
+        "upside_to_target_pct": -14.72,
+        "rsi": 70.93,
+        "note": "Highest SF (6.3%) but 0.62 d-to-cover = LOW squeeze; RSI 71 + price 14.7% above target = extended. Advisory, 0 tier impact."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "n/a (sub-floor)",
+      "entry_or_trigger": "sub-floor (raw 2 < 3) \u2014 no entry",
+      "invalidation": "semis cluster sweep tape flips bearish / SNDK net flow flips outflow / RSI-71 extension unwinds",
+      "key_risks": [
+        "one of a 5-name correlated semis_memory_cluster (one position)",
+        "negative market_excess -0.143 = beta not alpha",
+        "RSI 70.9, beta 4.88 \u2014 violent on a regime turn; persistent insider selling"
+      ],
+      "thesis": "Best-scored long: memory-supercycle momentum + qualified sector-leader cum-flow, but it is correlated semis beta at extreme extension, 1 point short of LOW."
+    },
+    {
+      "ticker": "MU",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "sector-rotation-strategist names ticker as single-name leader (persistence>=0.6 + cum_flow aligned >=$50M)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Tech persistence 0.8; cum_flow_30d +$581M LONG-aligned >=$50M"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 581000000,
+      "cum_premium_flow_90d": 313000000,
+      "win_rate": 0.6,
+      "win_rate_uncapped": 0.6,
+      "win_rate_n": 135,
+      "win_rate_source": "backtest_clean",
+      "market_excess": -0.143,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no_op (LONG aligned with regime)",
+        "vrp": "no_op (VRP FAIR)",
+        "panic": "no_op (front-iv-ratio unreliable)",
+        "cluster": "-1 tier (semis_memory_cluster: MU/QQQ 0.82, SNDK/MU 0.776 \u2014 SNDK scored higher) \u2014 moot, sub-floor",
+        "sector": "no_op (semis flow positive)",
+        "fundamentals": "-1 tier (CAUTION: insider selling + DP distribution into ATH + price ~10% above target)",
+        "event_risk": "-0.5 one-step (MU earnings 2026-06-24 = T+4) \u2014 moot, sub-floor",
+        "debate": "no_op (no sized names \u2014 debate moot)",
+        "rubric_regime": "capped_half (OUT-OF-REGIME; moot, sub-floor)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 3.34,
+        "days_to_cover": 0.73,
+        "float_shares": 1120000000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.35,
+        "upside_to_target_pct": -9.96,
+        "rsi": 66.39,
+        "note": "LOW squeeze; strong-buy consensus but price ~10% ABOVE target (analyst-divergence). Advisory, 0 tier impact."
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw dark-pool block-stratified",
+        "note": "DP-block distribution (mega buy_ratio 0.129, prints below NBBO mid) per accumulation-hunter \u2014 institutions trimming an ATH, NOT a C28 OI-close flag; the +1 cum-flow line was intent-screened OUT on this distribution context."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "n/a (sub-floor)",
+      "entry_or_trigger": "sub-floor (raw 1 < 3) \u2014 no entry; also EXIT-LEAN from conviction_2026-06-17",
+      "invalidation": "06-24 earnings disappointment / loses momentum gap / DP distribution accelerates",
+      "key_risks": [
+        "earnings 2026-06-24 (T+4) binary; long entered ~10% ABOVE analyst target",
+        "DP distribution + IV-rank 94 = late-stage/profit-taking signature (exit-lean)",
+        "semis_memory_cluster member; negative market_excess -0.143"
+      ],
+      "thesis": "Loud bullish flow (+$522M) but dark-pool DISTRIBUTION into an all-time high ahead of 06-24 earnings \u2014 CAUTION; flagged exit-lean on yesterday's group, do not add."
+    },
+    {
+      "ticker": "EWZ",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "in multileg-strategist with directional structure (term-structure-anchored play type)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "Jul 38/41 + Aug 39/42 bull call verticals rolled forward, repeat_count 2 (HIGH), multileg_ratio 0.996, CONTANGO"
+        },
+        {
+          "rubric_line": "flow_conflict_lite (MIXED/bottom-quartile 30d cum_flow)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$7.7M, 0.22x union median = bottom-quartile magnitude"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 7700000,
+      "cum_premium_flow_90d": -14400000,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no_op (LONG low-beta diversifier \u2014 regime-neutral)",
+        "vrp": "no_op (VRP FAIR)",
+        "panic": "no_op (front-iv-ratio unreliable)",
+        "cluster": "no_op (outside semis_memory_cluster \u2014 Brazil ETF)",
+        "sector": "no_op (EM/LatAm \u2014 no adverse rotation)",
+        "fundamentals": "NA (ETF; oversold RSI 33.8, beta 0.65)",
+        "event_risk": "no_op (PCE 06-25=T+5 would be -0.5 if sized; ETF diversifier, moot)",
+        "debate": "no_op (no sized names \u2014 debate moot)",
+        "rubric_regime": "capped_half (OUT-OF-REGIME; moot, sub-floor)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": true,
+        "squeeze_pressure": "unknown",
+        "rsi": 33.81,
+        "note": "ETF \u2014 no SI/float/analyst fields; RSI 33.8 oversold = contrarian-entry context. Advisory, 0 tier impact."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "bull call vertical (Jul 38/41 or Aug 39/42), debit-capped",
+      "entry_or_trigger": "sub-floor (raw 1 < 3) \u2014 no entry",
+      "invalidation": "EWZ fails to clear ~38 long strike before Jul-17 / spread stops being rolled forward / EM risk-off",
+      "key_risks": [
+        "thin cum-flow magnitude (flow_conflict_lite)",
+        "Brazil rate-curve / BRL FX / EM-outflow macro risk",
+        "oversold can stay oversold absent a rates/FX catalyst"
+      ],
+      "thesis": "Cleanest STRUCTURE on the board \u2014 institutions rolling stacked bull call verticals forward; oversold low-beta diversifier vs the semis cluster. Still sub-floor on thin cum-flow."
+    },
+    {
+      "ticker": "MRVL",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "sector-rotation-strategist names ticker as single-name leader (persistence>=0.6 + cum_flow aligned >=$50M)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Tech persistence 0.8; cum_flow_30d +$224M LONG-aligned >=$50M"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 224000000,
+      "cum_premium_flow_90d": 236000000,
+      "win_rate": 0.6,
+      "win_rate_uncapped": 0.6,
+      "win_rate_n": 135,
+      "win_rate_source": "backtest_clean",
+      "market_excess": -0.143,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "regime": "no_op (LONG aligned with regime)",
+        "vrp": "no_op (VRP FAIR)",
+        "panic": "no_op (front-iv-ratio unreliable)",
+        "cluster": "-1 tier (semis_memory_cluster member \u2014 SNDK scored higher) \u2014 moot, sub-floor",
+        "sector": "no_op (semis flow positive today)",
+        "fundamentals": "CONFIRM (parabola-trim not rot; entry extended +20% above target)",
+        "event_risk": "no_op (own earnings 08-26 far out; PCE 06-25=T+5 -0.5 if sized, moot)",
+        "debate": "no_op (no sized names \u2014 debate moot)",
+        "rubric_regime": "capped_half (OUT-OF-REGIME; moot, sub-floor)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": true,
+        "short_float_pct": 4.06,
+        "days_to_cover": 0.96,
+        "float_shares": 868070000,
+        "squeeze_pressure": "LOW",
+        "recom": 1.43,
+        "upside_to_target_pct": -20.29,
+        "rsi": 64.55,
+        "note": "LOW squeeze; price ~20% above target after +14% (entry-extension flag). Advisory, 0 tier impact."
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw dark-pool block-stratified",
+        "note": "DP-block distribution (mega buy_ratio 0.015, two ~$4.3B prints below NBBO mid) per accumulation-hunter \u2014 parabola-trim, NOT a C28 OI-close flag; the +1 cum-flow line was intent-screened OUT."
+      },
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "n/a (sub-floor)",
+      "entry_or_trigger": "sub-floor (raw 1 < 3) \u2014 no entry",
+      "invalidation": "today's +14% gap fades / DP below-mid distribution accelerates / semis cluster rolls over",
+      "key_risks": [
+        "DP distribution into a +14% one-day gap; entry +20% above analyst target",
+        "semis_memory_cluster member; negative market_excess -0.143",
+        "PE 107 / PS 33 \u2014 no margin for an AI-capex air-pocket; beta 2.16"
+      ],
+      "thesis": "Bullish flow + qualified sector-leader cum-flow with fundamentals CONFIRM (catalyst-driven, not rot), but dark-pool is trimming the parabola and entry is extended \u2014 sub-floor."
+    },
+    {
+      "ticker": "WMB",
+      "horizon": "swing",
+      "section": "swing_long",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "in multileg-strategist with directional structure (term-structure-anchored play type)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "Nov-20 80/95 bull call vertical/ladder, multileg_ratio 0.989, flat/mild-contango (raw BACKWARDATION rejected \u2014 0DTE-contaminated)"
+        },
+        {
+          "rubric_line": "flow_conflict_lite (bottom-quartile 30d cum_flow)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$17.2M aligned but 0.50x union median (bottom-quartile)"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 17200000,
+      "cum_premium_flow_90d": 19400000,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "starter",
+      "final_size": "skip",
+      "fundamentals_verdict": "NA",
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "Nov-20 80/95 bull call vertical, debit-capped",
+      "entry_or_trigger": "sub-floor (raw 1 < 3) \u2014 no entry",
+      "invalidation": "single-day OPEX build does not repeat within the week / 80C flips to bid-side selling",
+      "key_risks": [
+        "single-day OPEX-day build (repeat_count 1) \u2014 may not persist",
+        "thin cum-flow magnitude",
+        "Energy/pipeline sensitivity to oil tape"
+      ],
+      "thesis": "Lower-conviction Energy bull call vertical (single-day OPEX build); directional but unconfirmed and sub-floor."
+    },
+    {
+      "ticker": "WDC",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "contrarian-scanner fade-the-breakout (advisory C19 whale-put co-flag; quant fade credit)",
+          "points": 2,
+          "source_agent": "contrarian-scanner",
+          "source_tool": "uw screener iv-rank",
+          "evidence": "ivr 100 + new-high +4.8% yet Tier-1 OPENING_PUT_PRIME K742.5 ($690k) bought against it \u2014 cleanest fade-the-breakout tell"
+        },
+        {
+          "rubric_line": "flow_conflict_lite (bottom-quartile 30d cum_flow opposing the short)",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$12.7M bullish opposes SHORT, 0.37x union median"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 12700000,
+      "cum_premium_flow_90d": 39800000,
+      "win_rate": 0.396,
+      "win_rate_uncapped": 0.396,
+      "win_rate_n": 139,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.139,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "fundamentals_verdict": "NA",
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "defined-risk put debit spread only (negative VRP \u2014 never naked)",
+      "entry_or_trigger": "sub-floor / advisory \u2014 no entry",
+      "invalidation": "reclaims the breakout high on volume / whale put closes / fz_rs new-high persists",
+      "key_risks": [
+        "fz_rs new-high +4.8% CONFLICTS (bullish RS)",
+        "bearish_flow class WR 0.396 < 0.50",
+        "advisory C19 signal is bull-regime-validated, we are TRANSITIONAL"
+      ],
+      "thesis": "Advisory fade-the-breakout: a whale bought K742.5 puts into a new high (ivr 100). Sub-floor; defined-risk only."
+    },
+    {
+      "ticker": "INTC",
+      "horizon": "swing",
+      "section": "swing_short",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": -1,
+      "score_components": [
+        {
+          "rubric_line": "contrarian-scanner fade (advisory C19 whale-put co-flag; quant fade credit)",
+          "points": 2,
+          "source_agent": "contrarian-scanner",
+          "source_tool": "uw options-flow single-leg",
+          "evidence": "Tier-1 OPENING_PUT_PRIME K150 size/OI 72 ($785k) \u2014 highest-edge bearish single-leg whale"
+        },
+        {
+          "rubric_line": "flow_conflict (30d cum_flow clearly opposes the short)",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +$37.1M bullish OPPOSES SHORT, 1.08x union median (above median \u2192 full -3); DP also BUYING"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 37100000,
+      "cum_premium_flow_90d": 254000000,
+      "win_rate": 0.396,
+      "win_rate_uncapped": 0.396,
+      "win_rate_n": 139,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.139,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "fundamentals_verdict": "NA",
+      "debate_residual_confidence": null,
+      "debate_residuals": {
+        "bull": null,
+        "bear": null
+      },
+      "structure": "none \u2014 mechanically un-shortable",
+      "entry_or_trigger": "NO ENTRY (negative raw; cum-flow + DP both oppose the short)",
+      "invalidation": "n/a \u2014 thesis rejected by flow_conflict",
+      "key_risks": [
+        "the clearest 'do NOT short' on the board: cum-flow +$37M and DP buying both oppose the whale put"
+      ],
+      "thesis": "A Tier-1 whale put (K150) but the tape disagrees \u2014 +$37M bullish cum-flow and DP buying = -3 flow_conflict. Net negative score; reject the short."
+    },
+    {
+      "ticker": "SEI",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "NA",
+      "structure": "none \u2014 watch-only",
+      "entry_or_trigger": "single-signal, failed >=2-agent confluence gate \u2014 journaling only",
+      "invalidation": "n/a",
+      "key_risks": [
+        "single-agent signal, no confluence"
+      ],
+      "thesis": "Only name to clear the accumulation gate (mega $10M DP block 100%-at-ask, 5d OI BUILDING, Jan-2027 LEAP call, conviction-matrix DIRECTIONAL_LONG 56.5, DP support $82.88) \u2014 but single-agent, failed the >=2-agent confluence gate. 90d cum-flow -$6.25M bearish; small size."
+    },
+    {
+      "ticker": "AMZN",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "dark_pool_accumulation",
+      "confluence_score": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "NA",
+      "structure": "none \u2014 watch-only",
+      "entry_or_trigger": "single-signal, failed >=2-agent confluence gate \u2014 journaling only",
+      "invalidation": "n/a",
+      "key_risks": [
+        "single-agent signal, no confluence"
+      ],
+      "thesis": "Sweep bull (4/5) + DP buying 0.985 but conviction-matrix 34.7 < 50 floor (diluted by triple-witching tape) \u2014 near-miss, single clean agent."
+    },
+    {
+      "ticker": "NBIS",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "NA",
+      "structure": "none \u2014 watch-only",
+      "entry_or_trigger": "single-signal, failed >=2-agent confluence gate \u2014 journaling only",
+      "invalidation": "n/a",
+      "key_risks": [
+        "single-agent signal, no confluence"
+      ],
+      "thesis": "Sweep-tracker bull (3/5) but accumulation read HEDGED_LONG (rejected) \u2014 no clean long."
+    },
+    {
+      "ticker": "FDX",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "earnings_vol",
+      "confluence_score": null,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "fundamentals_verdict": "NA",
+      "structure": "none \u2014 watch-only",
+      "entry_or_trigger": "single-signal, failed >=2-agent confluence gate \u2014 journaling only",
+      "invalidation": "n/a",
+      "key_risks": [
+        "single-agent signal, no confluence"
+      ],
+      "thesis": "earnings-scout SELL VOL (06-23 earnings, best risk-adjusted vol short) but single-agent \u2014 failed confluence."
+    }
+  ]
+}

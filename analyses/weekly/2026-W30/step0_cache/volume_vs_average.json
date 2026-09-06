@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 2.5332999999999997,
+      "close": 103.2,
+      "full_name": "SAFETY INSURANCE GROUP INC",
+      "iv_rank": 0,
+      "put_call_ratio": 5.764705882352941,
+      "sector": "Financial Services",
+      "ticker": "SAFT",
+      "total_volume": 1150,
+      "volume_ratio": 453.9533414913355
+    },
+    {
+      "avg_total_volume": 0.0345,
+      "close": 100.3,
+      "full_name": "GLOBAL X 1-3 MONTH T-BILL ETF",
+      "iv_rank": 95.5224,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CLIP",
+      "total_volume": 14,
+      "volume_ratio": 405.7971014492753
+    },
+    {
+      "avg_total_volume": 89.3,
+      "close": 1.46,
+      "full_name": "LIVEWIRE GROUP INC",
+      "iv_rank": 43.2695,
+      "put_call_ratio": 0.3505807814149947,
+      "sector": "Consumer Cyclical",
+      "ticker": "LVWR",
+      "total_volume": 8953,
+      "volume_ratio": 100.2575587905935
+    },
+    {
+      "avg_total_volume": 348.9334,
+      "close": 9.69,
+      "full_name": "LIBERTY GLOBAL PLC",
+      "iv_rank": 21.632,
+      "put_call_ratio": 34.648979591836735,
+      "sector": "Communication Services",
+      "ticker": "LBTYA",
+      "total_volume": 34936,
+      "volume_ratio": 100.1222582876847
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 40.7533,
+      "full_name": "ISHARES CURRENCY HEDGED MSCI EMERGING MARKETS ETF",
+      "iv_rank": 63.2226,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HEEM",
+      "total_volume": 6,
+      "volume_ratio": 89.95502248875563
+    },
+    {
+      "avg_total_volume": 0.8334,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 100,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SMU2",
+      "total_volume": 60,
+      "volume_ratio": 71.99424046076314
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 48.48,
+      "full_name": "FIRST COMMUNITY BANKSHARES INC",
+      "iv_rank": 14.9968,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "FCBC",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 63.5,
+      "full_name": "JPMORGAN DIVERSIFIED RETURN EMERGING MARKETS EQUITY ETF",
+      "iv_rank": 28.9925,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "JPEM",
+      "total_volume": 4,
+      "volume_ratio": 59.97001499250375
+    },
+    {
+      "avg_total_volume": 0.1,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 3.0127,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "SPEQW",
+      "total_volume": 5,
+      "volume_ratio": 50
+    },
+    {
+      "avg_total_volume": 0.1667,
+      "close": 47.8464,
+      "full_name": "KRANESHARES MSCI EMERGING MARKETS EX CHINA INDEX ETF",
+      "iv_rank": 41.1359,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "KEMX",
+      "total_volume": 8,
+      "volume_ratio": 47.99040191961608
+    },
+    {
+      "avg_total_volume": 0.0666,
+      "close": 46.275,
+      "full_name": "ISHARES CURRENCY HEDGED MSCI EAFE ETF",
+      "iv_rank": 3.5654,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HEFA",
+      "total_volume": 3,
+      "volume_ratio": 45.04504504504504
+    },
+    {
+      "avg_total_volume": 1.7333,
+      "close": 76.29,
+      "full_name": "SunocoCorp",
+      "iv_rank": 58.647,
+      "put_call_ratio": 0.7142857142857143,
+      "sector": "Energy",
+      "ticker": "SUNC",
+      "total_volume": 72,
+      "volume_ratio": 41.53926037039174
+    },
+    {
+      "avg_total_volume": 0.6334,
+      "close": null,
+      "full_name": null,
+      "iv_rank": 100,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "HOOX1",
+      "total_volume": 24,
+      "volume_ratio": 37.890748342279764
+    },
+    {
+      "avg_total_volume": 1.4000000000000001,
+      "close": 53.62,
+      "full_name": "ORIGIN BANCORP INC",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "OBK",
+      "total_volume": 52,
+      "volume_ratio": 37.14285714285714
+    },
+    {
+      "avg_total_volume": 2.7,
+      "close": 82.28,
+      "full_name": "GUGGENHEIM S&P 500(R) EQUAL WEIGHT FINANCIALS ETF",
+      "iv_rank": 23.2361,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "RSPF",
+      "total_volume": 96,
+      "volume_ratio": 35.55555555555555
+    },
+    {
+      "avg_total_volume": 0.4334,
+      "close": 40.44,
+      "full_name": "ISHARES INTERNATIONAL TREASURY BOND ETF",
+      "iv_rank": 19.3595,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IGOV",
+      "total_volume": 15,
+      "volume_ratio": 34.61005999077065
+    },
+    {
+      "avg_total_volume": 21.833299999999998,
+      "close": 24.88,
+      "full_name": "SPDR(R) NUVEEN BLOOMBERG HIGH YIELD MUNICIPAL BOND ETF",
+      "iv_rank": 9.1563,
+      "put_call_ratio": 54.166666666666664,
+      "sector": null,
+      "ticker": "HYMB",
+      "total_volume": 662,
+      "volume_ratio": 30.32065697810226
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 16.7,
+      "full_name": "PROSHARES SHORT MSCI EMERGING MARKETS",
+      "iv_rank": 43.3009,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "EUM",
+      "total_volume": 1,
+      "volume_ratio": 30.030030030030026
+    },
+    {
+      "avg_total_volume": 0.3333,
+      "close": 11.24,
+      "full_name": "NUVEEN NEW YORK QUALITY MUNICIPAL INCOME FUND",
+      "iv_rank": 0.3294,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "NAN",
+      "total_volume": 10,
+      "volume_ratio": 30.003000300030003
+    },
+    {
+      "avg_total_volume": 27.5333,
+      "close": 36.33,
+      "full_name": "MARINEMAX INC",
+      "iv_rank": 23.2149,
+      "put_call_ratio": 1.911660777385159,
+      "sector": "Consumer Cyclical",
+      "ticker": "HZO",
+      "total_volume": 824,
+      "volume_ratio": 29.927397006533905
+    },
+    {
+      "avg_total_volume": 7.4667,
+      "close": 42.75,
+      "full_name": "NMI HOLDINGS INC",
+      "iv_rank": 29.863,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "NMIH",
+      "total_volume": 203,
+      "volume_ratio": 27.18737862777398
+    },
+    {
+      "avg_total_volume": 367.7,
+      "close": 31.71,
+      "full_name": "TETRA TECH INC",
+      "iv_rank": 65.4242,
+      "put_call_ratio": 662.8,
+      "sector": "Industrials",
+      "ticker": "TTEK",
+      "total_volume": 9957,
+      "volume_ratio": 27.07914060375306
+    },
+    {
+      "avg_total_volume": 30.4333,
+      "close": 33.1,
+      "full_name": "FIDELITY MSCI ENERGY INDEX ETF",
+      "iv_rank": 50.7653,
+      "put_call_ratio": 1.9083969465648856,
+      "sector": null,
+      "ticker": "FENY",
+      "total_volume": 762,
+      "volume_ratio": 25.038362583091548
+    },
+    {
+      "avg_total_volume": 600.8,
+      "close": 9.525,
+      "full_name": "ZEVRA THERAPEUTICS INC",
+      "iv_rank": 35.8525,
+      "put_call_ratio": 2.1358574610244987,
+      "sector": "Healthcare",
+      "ticker": "ZVRA",
+      "total_volume": 14080,
+      "volume_ratio": 23.435419440745676
+    },
+    {
+      "avg_total_volume": 0.3,
+      "close": null,
+      "full_name": null,
+      "iv_rank": null,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "NDLS1",
+      "total_volume": 7,
+      "volume_ratio": 23.333333333333336
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-07-24.parquet"
+}

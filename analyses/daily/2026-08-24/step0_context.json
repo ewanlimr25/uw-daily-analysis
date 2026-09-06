@@ -1,0 +1,129 @@
+{
+  "date": "2026-08-24",
+  "fz_available": true,
+  "regime": {
+    "label": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "PULLBACK_IN_UPTREND",
+    "spy": {"current": 763.47, "sma_20": 763.55, "above_20sma": false, "sma_50": 752.26, "above_50sma": true, "change_30d_pct": 3.32, "pct_from_90d_high": -2.04},
+    "market_breadth_options": {"bullish_flow_tickers": 2183, "bearish_flow_tickers": 4118, "bullish_pct": 34.6, "tickers_with_options": 6301},
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+  "TAPE_FRAMING_CRITICAL": {
+    "read": "ROTATION, NOT A BROAD DECLINE. Cap-weighted indices are red while equal-weight is GREEN. The damage is concentrated in the AI/semis/memory complex; money is moving into defensives, financials, gold and crypto.",
+    "cap_vs_equal_weight": {"SPY_1d_5d": [-0.29, -1.19], "QQQ_1d_5d": [-1.0, -3.23], "IWM_1d_5d": [-0.66, -2.0], "RSP_equal_weight_1d_5d": [0.12, 0.52]},
+    "fz_breadth_cross_check": {"advancers": 304, "decliners": 196, "unchanged": 3, "total": 503, "pct_green": 60.44, "avg_change": 0.08, "median_change": 0.36, "top_mover": "EXPE +5.44%", "worst_mover": "STX -6.51%", "note": "Broad tape GREEN (60.4%) while SPY/QQQ red and options-flow breadth bearish (34.6% bullish). This is the rotation signature, NOT an index-green/breadth-red distribution tell."},
+    "carnage_5d": {"SOXL": -26.64, "NBIS": -21.55, "WDC": -18.77, "CRWV": -18.63, "RKLB": -16.81, "SNDK": -16.44, "INTC": -15.68, "LITE": -14.32, "VRT": -12.81, "MU": -10.01, "AMD": -9.73, "DELL": -9.72, "AVGO": -8.58, "NTAP": -8.49, "SMH": -7.96, "MCHP": -7.54, "NVDA": -7.35, "XLK": -5.4},
+    "bid_5d": {"IBIT": 22.57, "MSTR": 25.54, "COIN": 19.22, "WPM": 17.26, "GLD": 5.23, "SLV": 4.41, "XLV": 4.58, "XLP": 3.27, "XLB": 2.57, "XLY": 1.33, "XLC": 1.35, "XLF": 1.11, "MRNA": 115.47, "ASST": 49.47},
+    "sector_etf_1d_5d": {"XLK": [-1.78,-5.4], "XLF": [1.29,1.11], "XLE": [-0.83,0.85], "XLV": [0.05,4.58], "XLI": [-0.69,-3.93], "XLY": [0.24,1.33], "XLP": [1.7,3.27], "XLU": [1.05,-2.17], "XLB": [0.07,2.57], "XLRE": [0.55,1.12], "XLC": [0.83,1.35]},
+    "vix": {"level": 15.85, "change_1d_pct": 4.76, "change_5d_pct": 4.34}
+  },
+  "vrp_classification": {
+    "SPY": {"regime": "FAIR", "vrp": 0.007, "iv30d": 0.1304, "realised_vol": 0.1235},
+    "QQQ": {"regime": "FAIR", "vrp": -0.0197, "iv30d": 0.1988, "realised_vol": 0.2185, "note": "QQQ IV is BELOW realised — negative VRP. Premium-BUYING environment on the Nasdaq complex; contrarian-scanner must respect its negative-VRP abort rule."}
+  },
+  "dte_share": {"share_0dte": 0.368, "share_weeklies": 0.238, "share_monthlies": 0.204, "share_leaps": 0.044, "regime_hint": "BALANCED"},
+  "sector_summary_netted_uw_market_regime": {
+    "money_flowing_in": {"Communication Services": 17452199, "Consumer Defensive": 11424977, "Financial Services": 10431987},
+    "money_flowing_out": {"Consumer Cyclical": -21157164, "Industrials": -25018410.5, "Technology": -346246398},
+    "note": "This NETTED block is the ONLY directional sector source (2026-08-01 C55). sector-flow / sector-flow-persistence are ONE gross-turnover source and cannot express direction."
+  },
+  "macro_snapshot": {
+    "yield_curve": "normal", "yield_curve_10y2y": 0.46,
+    "core_cpi_yoy_pct": 2.79, "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.1, "payrolls_mom_000s": -23.0,
+    "ten_year_yield": 4.74, "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "weakening", "fed_funds": 3.63,
+    "read": "Sticky core PCE (3.29%) above target with a NEGATIVE payrolls print (-23k) and a rising 10Y — stagflation-lite tension. Curve normal (+0.46). USD weakening supports gold/crypto/international."
+  },
+  "event_risk": [
+    {"event": "Jobless claims + Q2 GDP 2nd estimate", "date": "2026-08-27", "impact": "medium"},
+    {"event": "PCE / Personal Income & Outlays (Fed's preferred gauge)", "date": "2026-08-26_to_2026-08-28", "impact": "high", "note": "exact date unconfirmed — sources conflict between Aug 26 and Aug 28; treat the whole window as event-risk"},
+    {"event": "ISM Manufacturing", "date": "2026-09-01", "impact": "medium"},
+    {"event": "ISM Services + jobless claims", "date": "2026-09-03", "impact": "medium"},
+    {"event": "Nonfarm payrolls (August)", "date": "2026-09-04", "impact": "high"},
+    {"event": "CPI (August)", "date": "2026-09-11", "impact": "high"},
+    {"event": "FOMC + SEP", "date": "2026-09-15_to_2026-09-16", "impact": "high"}
+  ],
+  "earnings_inside_swing_horizon": {
+    "2026-08-25": ["INTU", "ZM", "DKS", "SMTC", "QFIN", "EH"],
+    "2026-08-26": ["CRM", "HPQ", "CRWD", "OKTA", "SNPS", "KSS", "SJM", "BBWI", "P"],
+    "2026-08-27": ["MRVL", "WDAY", "ULTA", "DLTR", "BBY", "DG", "GAP", "S", "CAN"],
+    "2026-08-28": ["FRO"],
+    "2026-09-01": ["DELL", "PANW", "MDB", "MDT", "SPWH"],
+    "2026-09-02": ["SNOW", "AEO", "AI", "NTSK"],
+    "2026-09-03": ["LULU", "ZS", "PATH", "IOT", "CPB", "CIEN", "DOCU"],
+    "implied_moves_pct": {"MRVL": 8.97, "CRM": 6.64, "DELL": 5.35, "HPQ": 8.24, "CRWD": 7.41, "SNOW": 4.06, "PANW": 4.01, "OKTA": 10.94, "SNPS": 7.34, "DKS": 10.31, "INTU": 6.91, "ZM": 7.34, "LULU": 3.38, "ZS": 4.41, "PATH": 5.40, "MDB": 4.79, "WDAY": 6.65, "KSS": 11.74, "BBY": 6.50, "ULTA": 7.19, "DLTR": 7.80}
+  },
+  "zerodte_setup": {
+    "verdict_both": "GO_PREMIUM_SELL_INTRADAY",
+    "SPY": {"sell_premium": true, "vol_state": "LOW", "vix": 15.85, "implied_move_pct": 0.61, "expected_range_pct": 1.15, "size_scalar": 0.5, "mean_pnl_open_pct_gross": 0.205, "mean_pnl_open_net_pct": 0.105, "mean_pnl_by_vix_state_LOW": 0.113, "NET_AT_LOW_VIX": 0.013, "worst_day_open_pct": -1.4},
+    "QQQ": {"sell_premium": true, "vol_state": "LOW", "vix": 15.85, "implied_move_pct": 1.03, "expected_range_pct": 1.94, "size_scalar": 0.5, "mean_pnl_open_pct_gross": 0.335, "mean_pnl_open_net_pct": 0.235, "mean_pnl_by_vix_state_LOW": 0.207, "NET_AT_LOW_VIX": 0.107, "worst_day_open_pct": -2.453},
+    "CRITICAL_CAVEAT": "VIX 15.85 sits in the LOW tercile (bounds 15.9/17.3). Read mean_pnl_by_vix_state[LOW] MINUS the 0.1% round-trip cost: SPY = +0.013% (effectively ZERO edge), QQQ = +0.107%. The unconditional sell_premium:true flag OVERSTATES the SPY case. Short-vol left tail is UNSAMPLED."
+  },
+  "opex": {"in_window": false, "note": "2026-08-21 monthly OPEX has PASSED; next monthly OPEX 2026-09-18 (25 days out). opex-pin-strategist NOT spawned — same precedent as 2026-07-20."},
+  "fz_squeeze_candidates": {
+    "status": "ADVISORY, DEGRADED — the fz doubled-first-letter ticker bug corrupts every fz screen row. Tickers below were recovered by positionally joining the overview view (Company names) to the ownership view (20/20 Price match). The screen is also ALPHABETICALLY TRUNCATED at 20 rows (A-B only), so it is NOT a market-wide squeeze screen.",
+    "rows": [
+      {"ticker": "ABEO", "company": "Abeona Therapeutics", "price": 6.06, "short_float_pct": 26.99, "short_ratio": 9.93, "float_m": 50.54},
+      {"ticker": "ABR", "company": "Arbor Realty Trust", "price": 5.25, "short_float_pct": 24.79, "short_ratio": 10.66, "float_m": 178.39},
+      {"ticker": "ABSI", "company": "Absci", "price": 8.84, "short_float_pct": 25.24, "short_ratio": 7.42, "float_m": 147.79},
+      {"ticker": "ACHC", "company": "Acadia Healthcare", "price": 28.72, "short_float_pct": 25.03, "short_ratio": 7.71, "float_m": 87.11},
+      {"ticker": "AESI", "company": "Atlas Energy Solutions", "price": 11.90, "short_float_pct": 29.03, "short_ratio": 7.38, "float_m": 79.72},
+      {"ticker": "AI", "company": "C3.ai", "price": 10.11, "short_float_pct": 33.84, "short_ratio": 7.42, "float_m": 136.86, "note": "reports 2026-09-02"},
+      {"ticker": "APLD", "company": "Applied Digital", "price": 26.89, "short_float_pct": 27.67, "short_ratio": 3.67, "float_m": 262.81},
+      {"ticker": "ARQQ", "company": "Arqit Quantum", "price": 20.13, "short_float_pct": 41.47, "short_ratio": 3.59, "float_m": 6.99},
+      {"ticker": "ASAN", "company": "Asana", "price": 9.76, "short_float_pct": 31.65, "short_ratio": 4.91, "float_m": 90.24},
+      {"ticker": "ASST", "company": "Strive Inc", "price": 19.73, "short_float_pct": 29.72, "short_ratio": 5.11, "float_m": 74.52, "note": "ALSO in signal_confluence_bullish score 6, +49.5% 5d — squeeze x flow cross-hit"},
+      {"ticker": "ASTS", "company": "AST SpaceMobile", "price": 62.35, "short_float_pct": 31.41, "short_ratio": 2.92, "float_m": 180.99}
+    ]
+  },
+  "fz_rs_candidates": {
+    "status": "ADVISORY. Tickers recovered from the Company column (doubled-first-letter bug). Truncated at 20 rows.",
+    "rows": [
+      {"ticker": "EXPE", "company": "Expedia Group", "price": 339.12, "chg_pct": 5.44},
+      {"ticker": "FIVE", "company": "Five Below", "price": 262.72, "chg_pct": 4.99},
+      {"ticker": "XNCR", "company": "Xencor", "price": 29.00, "chg_pct": 4.30},
+      {"ticker": "ANRO", "company": "Alto Neuroscience", "price": 36.25, "chg_pct": 5.75},
+      {"ticker": "LIFE", "company": "Ethos Technologies", "price": 36.72, "chg_pct": 7.49},
+      {"ticker": "ETON", "company": "Eton Pharmaceuticals", "price": 64.43, "chg_pct": 1.51},
+      {"ticker": "TGT", "company": "Target", "price": 169.89, "chg_pct": 2.69},
+      {"ticker": "AVAH", "company": "Aveanna Healthcare", "price": 13.70, "chg_pct": 4.10},
+      {"ticker": "SLDE", "company": "Slide Insurance", "price": 23.64, "chg_pct": 3.96},
+      {"ticker": "V", "company": "Visa", "price": 382.41, "chg_pct": 3.06},
+      {"ticker": "ABNB", "company": "Airbnb", "price": 190.21, "chg_pct": 1.55},
+      {"ticker": "NIQ", "company": "NIQ Global Intelligence", "price": 19.18, "chg_pct": 2.13},
+      {"ticker": "FCX", "company": "Freeport-McMoRan", "price": 77.80, "chg_pct": 1.49},
+      {"ticker": "IMAX", "company": "Imax", "price": 54.79, "chg_pct": 3.89},
+      {"ticker": "SEIC", "company": "SEI Investments", "price": 110.75, "chg_pct": 1.11},
+      {"ticker": "RHI", "company": "Robert Half", "price": 45.12, "chg_pct": 0.83},
+      {"ticker": "SCHW", "company": "Charles Schwab", "price": 113.65, "chg_pct": 1.20},
+      {"ticker": "LTGO", "company": "Latigo Biotherapeutics", "price": 22.00, "chg_pct": -1.65}
+    ],
+    "read": "The RS/new-high leaders are FINANCIALS (V, SCHW, SEIC, SLDE), CONSUMER (EXPE, ABNB, TGT, FIVE), HEALTHCARE (XNCR, ANRO, ETON, AVAH) and MATERIALS (FCX). ZERO semis/AI names. This corroborates the rotation read from an independent, non-flow data lineage."
+  },
+  "c12_liquidity_floor": {
+    "rule": "price >= $5 AND 20d dollar ADV >= $50M; fail-closed",
+    "passed": ["SPY","QQQ","IWM","RSP","XLK","XLF","XLE","XLV","XLI","XLY","XLP","XLU","XLB","XLRE","XLC","SMH","SOXL","GLD","SLV","HYG","IBIT","SNDK","PBR","AMD","WDC","MRNA","MSFT","GOOG","GOOGL","TSM","VRT","META","AMZN","LITE","CRM","COST","CRWV","APP","MRVL","PLTR","WMT","MCHP","NVDA","MU","VLO","TSLA","MSTR","ORCL","INTC","AVGO","COIN","HOOD","NBIS","SNPS","QBTS","BA","DELL","MA","CART","DB","SNAP","WM","CI","SWKS","PAYX","ED","SM","VEA","CRGY","ASST","WPM","PSX","CVE","HYG","JEF","TD","KRYS","NTAP","MANE","DECK","RKLB","SYM","AES","BFAM","CLH"],
+    "failed": [
+      {"symbol": "^VIX", "reason": "adv $0.0M (index, no share volume) — tape context only, expected"},
+      {"symbol": "ARKB", "reason": "adv $44.6M < $50M"},
+      {"symbol": "DQ", "reason": "adv $15.8M < $50M"},
+      {"symbol": "TXO", "reason": "adv $2.7M < $50M"},
+      {"symbol": "BLCO", "reason": "adv $6.7M < $50M"},
+      {"symbol": "DNN", "reason": "price 3.54 < 5.00"},
+      {"symbol": "MGEE", "reason": "adv $13.9M < $50M"},
+      {"symbol": "CCS", "reason": "adv $15.5M < $50M"},
+      {"symbol": "OMCL", "reason": "adv $31.1M < $50M"},
+      {"symbol": "BUG", "reason": "adv $48.7M < $50M"},
+      {"symbol": "CMP", "reason": "adv $14.7M < $50M"},
+      {"symbol": "CRI", "reason": "adv $46.6M < $50M"},
+      {"symbol": "NGVC", "reason": "adv $4.9M < $50M"},
+      {"symbol": "DBA", "reason": "adv $23.0M < $50M"}
+    ],
+    "note": "Sub-floor names (DNN, DQ, TXO, BLCO, MGEE, CCS, OMCL, BUG, CMP, CRI, NGVC, DBA, plus every micro-ETF in volume_vs_average: EAGG, SIZE, RSPR, GGR, SPCK, FTGC, FBND, FV, VIXY2, PFFV, NERV, PPSI, SPMB, STXF, BBCA, RSPC, BLCK, CZNC, ETHU1, EWQ) are DROPPED FROM THE FUNNEL ENTIRELY. Do not score them."
+  },
+  "top_bullish_funnel": ["SPX","QQQ","SNDK","PBR","IBIT","AMD","WDC","MRNA","MSFT","GOOG","TSM","VRT","META","AMZN","LITE","SPY","GOOGL","CRM","COST","CRWV","APP","MRVL","PLTR","WMT","MA","CART","DB","SNAP","WM","CI","SWKS","PAYX","ED","SM","VEA","CRGY","ASST"],
+  "top_bearish_funnel": ["MCHP","NVDA","MU","VLO","TSLA","MSTR","ORCL","SOXL","WPM","INTC","AVGO","COIN","SLV","GLD","HOOD","NBIS","SNPS","QBTS","BA","DELL","SMH","PSX","CVE","HYG","JEF","TD","KRYS","MANE","NTAP"],
+  "watchlist_alerts_prior_group": ["WMT (2.5x vol, P/C 0.21, $117.1M single DP print, +102,333 net OI)", "JNJ (3.5x vol, P/C 0.09, $9.3M DP, +17,111 OI)", "HYG (IV rank 8.6, P/C 3.13 heavy PUT, $68.6M single DP print, +224,038 net OI)"],
+  "step0_cache_dir": "analyses/daily/2026-08-24/step0_cache/"
+}

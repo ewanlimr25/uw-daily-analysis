@@ -1,0 +1,180 @@
+{
+ "tier_by_regime": {
+  "uptrend": {
+   "HIGH": {
+    "n": 5,
+    "wr": 0.2
+   },
+   "MEDIUM": {
+    "n": 17,
+    "wr": 0.529
+   },
+   "LOW": {
+    "n": 74,
+    "wr": 0.432
+   },
+   "DROP": {
+    "n": 218,
+    "wr": 0.385
+   }
+  },
+  "pullback_in_uptrend": {
+   "HIGH": {
+    "n": 2,
+    "wr": 0.0
+   },
+   "MEDIUM": {
+    "n": 2,
+    "wr": 0.5
+   },
+   "LOW": {
+    "n": 37,
+    "wr": 0.405
+   },
+   "DROP": {
+    "n": 138,
+    "wr": 0.399
+   }
+  },
+  "choppy": {
+   "HIGH": {
+    "n": 0,
+    "wr": null
+   },
+   "MEDIUM": {
+    "n": 0,
+    "wr": null
+   },
+   "LOW": {
+    "n": 9,
+    "wr": 0.333
+   },
+   "DROP": {
+    "n": 64,
+    "wr": 0.391
+   }
+  },
+  "transitional_other": {
+   "HIGH": {
+    "n": 0,
+    "wr": null
+   },
+   "MEDIUM": {
+    "n": 0,
+    "wr": null
+   },
+   "LOW": {
+    "n": 12,
+    "wr": 0.25
+   },
+   "DROP": {
+    "n": 173,
+    "wr": 0.393
+   }
+  }
+ },
+ "dir_by_regime": {
+  "uptrend": {
+   "long": {
+    "n": 132,
+    "wr": 0.402,
+    "excess_pp": 17.8,
+    "excess_n": 129
+   },
+   "short": {
+    "n": 85,
+    "wr": 0.424,
+    "excess_pp": -23.8,
+    "excess_n": 84
+   }
+  },
+  "pullback_in_uptrend": {
+   "long": {
+    "n": 61,
+    "wr": 0.557,
+    "excess_pp": 1.6,
+    "excess_n": 61
+   },
+   "short": {
+    "n": 64,
+    "wr": 0.344,
+    "excess_pp": -14.0,
+    "excess_n": 64
+   }
+  },
+  "choppy": {
+   "long": {
+    "n": 18,
+    "wr": 0.667,
+    "excess_pp": -11.1,
+    "excess_n": 18
+   },
+   "short": {
+    "n": 36,
+    "wr": 0.222,
+    "excess_pp": -25.0,
+    "excess_n": 36
+   }
+  },
+  "transitional_other": {
+   "long": {
+    "n": 76,
+    "wr": 0.303,
+    "excess_pp": 9.2,
+    "excess_n": 76
+   },
+   "short": {
+    "n": 48,
+    "wr": 0.562,
+    "excess_pp": 20.8,
+    "excess_n": 48
+   }
+  }
+ },
+ "halfcap_out_of_regime": {
+  "n": 43,
+  "wr": 0.326,
+  "excess_pp": -23.5
+ },
+ "halfcap_in_regime": {
+  "n": 708,
+  "wr": 0.398,
+  "excess_pp": 1.8
+ },
+ "halfcap_rubric_regime_gated": {
+  "n": 411,
+  "wr": 0.355,
+  "excess_pp": -3.6
+ },
+ "halfcap_rubric_regime_ungated": {
+  "n": 340,
+  "wr": 0.441,
+  "excess_pp": 4.5
+ },
+ "halfcap_advisory": false,
+ "post_freeze_tier": {
+  "HIGH": {
+   "n": 0,
+   "wr": null
+  },
+  "MEDIUM": {
+   "n": 0,
+   "wr": null
+  },
+  "LOW": {
+   "n": 71,
+   "wr": 0.366
+  },
+  "DROP": {
+   "n": 533,
+   "wr": 0.381
+  }
+ },
+ "post_freeze_decided": 604,
+ "post_freeze_book": {
+  "wr": 0.379,
+  "n": 604,
+  "excess_pp": -0.8
+ },
+ "note": "vol resolution is rv_direction_proxy; vol_short collapse tracks RV expansion in the pullback, not a true IV-vs-RV miss"
+}

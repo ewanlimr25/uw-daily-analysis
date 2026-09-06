@@ -1,0 +1,98 @@
+{
+  "skill_name": "daily/weekly subject edits (C28/C31/C34)",
+  "pass_rate": 1.0,
+  "passed": 15,
+  "total": 15,
+  "detail": [
+    {
+      "text": "accumulation-hunter wires `uw oi decrease-with-volume` -> distribution_flag (C28)",
+      "id": "C28_accum_detector",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "C28 in accumulation-hunter is fenced advisory: 0 points / 0 tier impact / not in score_components",
+      "id": "C28_accum_advisory",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "fundamentals-gate uses distribution_flag as advisory corroboration, no tier_adjustment change (C28)",
+      "id": "C28_fund_advisory",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "schema defines distribution_flag advisory block (C28)",
+      "id": "C28_schema_field",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "schema documents distribution_flag as structurally 0-points (C28)",
+      "id": "C28_schema_zero_points",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "daily envelope carries distribution_flag explicitly OUT of score_components (C28)",
+      "id": "C28_daily_envelope_not_scored",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "weekly envelope carries distribution_flag advisory (C28)",
+      "id": "C28_weekly_envelope",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "daily \u00a77 surfaces per-tier expectancy/payoff as display-only, not a sizing input (C31)",
+      "id": "C31_daily_expectancy",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "weekly \u00a78 surfaces expectancy lens, live sizer stays win-rate ladder (C31)",
+      "id": "C31_weekly_expectancy",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "C31 explicitly keeps the C3 Kelly sizer ADVISORY (no live-flip)",
+      "id": "C31_kelly_stays_advisory",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "daily \u00a73 anchors invalidation to dark-pool price-levels (C34)",
+      "id": "C34_daily_invalidation",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "weekly \u00a73 anchors invalidation to dark-pool price-levels (C34)",
+      "id": "C34_weekly_invalidation",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "schema_version enum bumped to include 1.2 (1.0/1.1 retained = backward-compatible)",
+      "id": "schema_version_1_2",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "daily command emits schema_version 1.2",
+      "id": "daily_emits_1_2",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "text": "weekly command emits schema_version 1.2",
+      "id": "weekly_emits_1_2",
+      "passed": true,
+      "evidence": ""
+    }
+  ]
+}

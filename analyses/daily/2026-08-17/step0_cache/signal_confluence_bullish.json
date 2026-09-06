@@ -1,0 +1,439 @@
+{
+  "direction": "bullish",
+  "min_score": 3,
+  "results": [
+    {
+      "close": 44.72,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 13.9814,
+      "net_flow": 11283,
+      "put_call_ratio": 0.2232055063913471,
+      "score": 6,
+      "sector": "Energy",
+      "ticker": "HP",
+      "volume_ratio": 4.21
+    },
+    {
+      "close": 35.755,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 27.7945,
+      "net_flow": 1941091,
+      "put_call_ratio": 0.6922680412371134,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "FIGR",
+      "volume_ratio": 4.45
+    },
+    {
+      "close": 3.595,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 18.3356,
+      "net_flow": 73690,
+      "put_call_ratio": 0.49483455607126814,
+      "score": 6,
+      "sector": "Industrials",
+      "ticker": "ENVX",
+      "volume_ratio": 2.69
+    },
+    {
+      "close": 14.59,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 9.1575,
+      "net_flow": 308605,
+      "put_call_ratio": 0.3699566522174058,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "RAM",
+      "volume_ratio": 2.24
+    },
+    {
+      "close": 13.2,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 1.7949,
+      "net_flow": 758065,
+      "put_call_ratio": 0.5206262958461428,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "ASST",
+      "volume_ratio": 2.36
+    },
+    {
+      "close": 28.81,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 15.2599,
+      "net_flow": 156641,
+      "put_call_ratio": 0.1499294521808478,
+      "score": 6,
+      "sector": "Industrials",
+      "ticker": "ZIM",
+      "volume_ratio": 3.03
+    },
+    {
+      "close": 6.33,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 10.9538,
+      "net_flow": 38635,
+      "put_call_ratio": 0.41728395061728396,
+      "score": 6,
+      "sector": "Consumer Cyclical",
+      "ticker": "JMIA",
+      "volume_ratio": 2.69
+    },
+    {
+      "close": 39.09,
+      "factors": [
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 26.7388,
+      "net_flow": -6320653,
+      "put_call_ratio": 0.5359863214236699,
+      "score": 5,
+      "sector": "Consumer Cyclical",
+      "ticker": "NKE",
+      "volume_ratio": 3.13
+    },
+    {
+      "close": 9.83,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 2.1404,
+      "net_flow": 63924,
+      "put_call_ratio": 0.4844971010839425,
+      "score": 5,
+      "sector": "Financial Services",
+      "ticker": "UNG",
+      "volume_ratio": 0.97
+    },
+    {
+      "close": 17.25,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 4.4002,
+      "net_flow": 21958,
+      "put_call_ratio": 0.5794621026894865,
+      "score": 5,
+      "sector": "Financial Services",
+      "ticker": "NIQ",
+      "volume_ratio": 20.62
+    },
+    {
+      "close": 2.32,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 1.2447,
+      "net_flow": 36384,
+      "put_call_ratio": 0.0013365410318096765,
+      "score": 5,
+      "sector": "Communication Services",
+      "ticker": "CCO",
+      "volume_ratio": 37.03
+    },
+    {
+      "close": 25.91,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 8.6557,
+      "net_flow": 36585,
+      "put_call_ratio": 0.6756996890270991,
+      "score": 5,
+      "sector": "Energy",
+      "ticker": "BTU",
+      "volume_ratio": 0.77
+    },
+    {
+      "close": 36.72,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building"
+      ],
+      "iv_rank": 34.8002,
+      "net_flow": 71843,
+      "put_call_ratio": 0.5197472353870458,
+      "score": 5,
+      "sector": null,
+      "ticker": "COHX",
+      "volume_ratio": 2.18
+    },
+    {
+      "close": 22.24,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 19.2475,
+      "net_flow": 3735,
+      "put_call_ratio": 0.015135135135135135,
+      "score": 5,
+      "sector": "Energy",
+      "ticker": "LBRT",
+      "volume_ratio": 0.93
+    },
+    {
+      "close": 59.57,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 21.7777,
+      "net_flow": 6496287,
+      "put_call_ratio": 0.29455423580564605,
+      "score": 5,
+      "sector": null,
+      "ticker": "SLV",
+      "volume_ratio": 1.13
+    },
+    {
+      "close": 43.78,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 5.6647,
+      "net_flow": 64450,
+      "put_call_ratio": 0.27115445108524694,
+      "score": 5,
+      "sector": "Consumer Cyclical",
+      "ticker": "MGM",
+      "volume_ratio": 0.95
+    },
+    {
+      "close": 31.34,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 7.908,
+      "net_flow": 91142,
+      "put_call_ratio": 0.5096695226438188,
+      "score": 5,
+      "sector": "Basic Materials",
+      "ticker": "DOW",
+      "volume_ratio": 0.75
+    },
+    {
+      "close": 45.98,
+      "factors": [
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 29.7855,
+      "net_flow": -203705,
+      "put_call_ratio": 0.2276064610866373,
+      "score": 5,
+      "sector": null,
+      "ticker": "AVL",
+      "volume_ratio": 3.66
+    },
+    {
+      "close": 18.18,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 8.4843,
+      "net_flow": 63605,
+      "put_call_ratio": 0.3534923339011925,
+      "score": 5,
+      "sector": "Healthcare",
+      "ticker": "SRPT",
+      "volume_ratio": 0.4
+    },
+    {
+      "close": 12.33,
+      "factors": [
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 20.3742,
+      "net_flow": -113649,
+      "put_call_ratio": 0.005797723856560017,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "FRSH",
+      "volume_ratio": 4.86
+    },
+    {
+      "close": 97.68,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 24.4485,
+      "net_flow": 12438579,
+      "put_call_ratio": 0.6841923374843591,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "MSTR",
+      "volume_ratio": 0.79
+    },
+    {
+      "close": 17.4,
+      "factors": [
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 12.8554,
+      "net_flow": -24219,
+      "put_call_ratio": 0.05744614423977521,
+      "score": 5,
+      "sector": "Industrials",
+      "ticker": "EROC",
+      "volume_ratio": 4.22
+    },
+    {
+      "close": 36.42,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 25.3865,
+      "net_flow": 1453679,
+      "put_call_ratio": 0.15518390595649276,
+      "score": 5,
+      "sector": null,
+      "ticker": "SQQQ",
+      "volume_ratio": 0.69
+    },
+    {
+      "close": 9.27,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 13.46,
+      "net_flow": 273799,
+      "put_call_ratio": 0.2916666666666667,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "STNE",
+      "volume_ratio": 1.64
+    },
+    {
+      "close": 28.43,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 8.1552,
+      "net_flow": 23728,
+      "put_call_ratio": 0.30182232346241455,
+      "score": 5,
+      "sector": null,
+      "ticker": "BTC",
+      "volume_ratio": 2.03
+    }
+  ],
+  "tickers_found": 25
+}

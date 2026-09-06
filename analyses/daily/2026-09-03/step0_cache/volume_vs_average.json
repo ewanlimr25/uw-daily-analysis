@@ -1,0 +1,281 @@
+{
+  "min_volume_ratio": 3,
+  "results": [
+    {
+      "avg_total_volume": 0.0667,
+      "close": 30.04,
+      "full_name": "INVESCO FTSE RAFI EMERGING MARKETS ETF",
+      "iv_rank": 9.6131,
+      "put_call_ratio": 0.6,
+      "sector": null,
+      "ticker": "PXH",
+      "total_volume": 400,
+      "volume_ratio": 5997.001499250376
+    },
+    {
+      "avg_total_volume": 0.0667,
+      "close": 81.96,
+      "full_name": "AVANTIS US MID CAP VALUE ETF",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "AVMV",
+      "total_volume": 76,
+      "volume_ratio": 1139.4302848575712
+    },
+    {
+      "avg_total_volume": 14.8666,
+      "close": 28.55,
+      "full_name": "Ingram Micro Holding",
+      "iv_rank": 63.5023,
+      "put_call_ratio": 0.0009775171065493646,
+      "sector": "Technology",
+      "ticker": "INGM",
+      "total_volume": 5120,
+      "volume_ratio": 344.39616321149424
+    },
+    {
+      "avg_total_volume": 0.1333,
+      "close": 45.08,
+      "full_name": "ISHARES JP MORGAN EM CORPORATE BOND ETF",
+      "iv_rank": 7.5391,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "CEMB",
+      "total_volume": 27,
+      "volume_ratio": 202.55063765941486
+    },
+    {
+      "avg_total_volume": 479.6,
+      "close": 9.08,
+      "full_name": "CHARGEPOINT HOLDINGS INC",
+      "iv_rank": 68.3882,
+      "put_call_ratio": 0.6178627641405178,
+      "sector": "Consumer Cyclical",
+      "ticker": "CHPT",
+      "total_volume": 48311,
+      "volume_ratio": 100.73185988323603
+    },
+    {
+      "avg_total_volume": 1.3,
+      "close": 2.77,
+      "full_name": "17 EDUCATION & TECHNOLOGY GROUP INC",
+      "iv_rank": 9.2529,
+      "put_call_ratio": 0,
+      "sector": "Consumer Defensive",
+      "ticker": "YQ",
+      "total_volume": 114,
+      "volume_ratio": 87.6923076923077
+    },
+    {
+      "avg_total_volume": 54.866699999999994,
+      "close": 80.79,
+      "full_name": "SUN LIFE FINANCIAL INC",
+      "iv_rank": 29.6047,
+      "put_call_ratio": 0.0026292725679228747,
+      "sector": "Financial Services",
+      "ticker": "SLF",
+      "total_volume": 4576,
+      "volume_ratio": 83.4021364507069
+    },
+    {
+      "avg_total_volume": 0.30000000000000004,
+      "close": 18.99,
+      "full_name": "ETFMG TRAVEL TECH ETF",
+      "iv_rank": 18.9988,
+      "put_call_ratio": 23,
+      "sector": null,
+      "ticker": "AWAY",
+      "total_volume": 24,
+      "volume_ratio": 79.99999999999999
+    },
+    {
+      "avg_total_volume": 10.5,
+      "close": 11.23,
+      "full_name": "KNOT OFFSHORE PARTNERS LP",
+      "iv_rank": 33.3994,
+      "put_call_ratio": 4.9921875,
+      "sector": "Industrials",
+      "ticker": "KNOP",
+      "total_volume": 767,
+      "volume_ratio": 73.04761904761905
+    },
+    {
+      "avg_total_volume": 2.7666000000000004,
+      "close": 2.25,
+      "full_name": "MONTAUK RENEWABLES INC",
+      "iv_rank": 19.503,
+      "put_call_ratio": 0.010416666666666666,
+      "sector": "Utilities",
+      "ticker": "MNTK",
+      "total_volume": 194,
+      "volume_ratio": 70.12217161859321
+    },
+    {
+      "avg_total_volume": 22.8667,
+      "close": 20.4,
+      "full_name": "CATALYST BIOSCIENCES INC",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Healthcare",
+      "ticker": "CBIO",
+      "total_volume": 1594,
+      "volume_ratio": 69.7083531948204
+    },
+    {
+      "avg_total_volume": 0.0333,
+      "close": 42.22,
+      "full_name": "FIDELITY ENHANCED MID CAP ETF",
+      "iv_rank": 5.4069,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "FMDE",
+      "total_volume": 2,
+      "volume_ratio": 60.06006006006005
+    },
+    {
+      "avg_total_volume": 1.9,
+      "close": 62.58,
+      "full_name": "CATHAY GENERAL BANCORP",
+      "iv_rank": 0,
+      "put_call_ratio": 0,
+      "sector": "Financial Services",
+      "ticker": "CATY",
+      "total_volume": 100,
+      "volume_ratio": 52.631578947368425
+    },
+    {
+      "avg_total_volume": 13.600000000000001,
+      "close": 14.85,
+      "full_name": "Tradr 2X Short ORCL Daily ETF",
+      "iv_rank": 10.6996,
+      "put_call_ratio": 0.001422475106685633,
+      "sector": null,
+      "ticker": "ORCZ",
+      "total_volume": 704,
+      "volume_ratio": 51.764705882352935
+    },
+    {
+      "avg_total_volume": 3.1,
+      "close": 5.16,
+      "full_name": "TRANSACT TECHNOLOGIES INC",
+      "iv_rank": 10.7934,
+      "put_call_ratio": 0.30434782608695654,
+      "sector": "Technology",
+      "ticker": "TACT",
+      "total_volume": 150,
+      "volume_ratio": 48.387096774193544
+    },
+    {
+      "avg_total_volume": 1405.1999999999998,
+      "close": 0.9788,
+      "full_name": "CHEGG INC",
+      "iv_rank": 88.4023,
+      "put_call_ratio": 0.007123680517420221,
+      "sector": "Consumer Defensive",
+      "ticker": "CHGG",
+      "total_volume": 66023,
+      "volume_ratio": 46.9847708511244
+    },
+    {
+      "avg_total_volume": 17.5666,
+      "close": 337.97,
+      "full_name": "RENAISSANCERE HOLDINGS LTD",
+      "iv_rank": 16.2319,
+      "put_call_ratio": 0.011842105263157895,
+      "sector": "Financial Services",
+      "ticker": "RNR",
+      "total_volume": 769,
+      "volume_ratio": 43.7762572153974
+    },
+    {
+      "avg_total_volume": 15.399999999999999,
+      "close": 6.58,
+      "full_name": "Leverage Shares 2X Long LULU Daily ETF",
+      "iv_rank": 67.9227,
+      "put_call_ratio": 0.09900990099009901,
+      "sector": null,
+      "ticker": "LULG",
+      "total_volume": 666,
+      "volume_ratio": 43.24675324675325
+    },
+    {
+      "avg_total_volume": 6.800000000000001,
+      "close": 9.05,
+      "full_name": "CONCRETE PUMPING HOLDINGS INC",
+      "iv_rank": 11.5772,
+      "put_call_ratio": 0.014285714285714285,
+      "sector": "Industrials",
+      "ticker": "BBCP",
+      "total_volume": 284,
+      "volume_ratio": 41.764705882352935
+    },
+    {
+      "avg_total_volume": 1.2334,
+      "close": 113.38,
+      "full_name": "ISHARES S&P MID-CAP 400 GROWTH ETF",
+      "iv_rank": 22.9058,
+      "put_call_ratio": 0,
+      "sector": null,
+      "ticker": "IJK",
+      "total_volume": 51,
+      "volume_ratio": 41.34911626398573
+    },
+    {
+      "avg_total_volume": 16.9,
+      "close": 77.75,
+      "full_name": "PIPER SANDLER COMPANIES",
+      "iv_rank": 33.6424,
+      "put_call_ratio": 57.083333333333336,
+      "sector": "Financial Services",
+      "ticker": "PIPR",
+      "total_volume": 697,
+      "volume_ratio": 41.24260355029586
+    },
+    {
+      "avg_total_volume": 1.4,
+      "close": 16,
+      "full_name": "PROSHARES ULTRASHORT MSCI JAPAN",
+      "iv_rank": 37.8431,
+      "put_call_ratio": 0.12,
+      "sector": null,
+      "ticker": "EWV",
+      "total_volume": 56,
+      "volume_ratio": 40
+    },
+    {
+      "avg_total_volume": 5142.9334,
+      "close": 6.43,
+      "full_name": "DRAGANFLY INC",
+      "iv_rank": 55.7394,
+      "put_call_ratio": 0.018885285691548622,
+      "sector": "Industrials",
+      "ticker": "DPRO",
+      "total_volume": 204853,
+      "volume_ratio": 39.831937158665134
+    },
+    {
+      "avg_total_volume": 1.8333,
+      "close": 14.11,
+      "full_name": "HUTCHMED (CHINA) LTD",
+      "iv_rank": 0,
+      "put_call_ratio": 0.09523809523809523,
+      "sector": "Healthcare",
+      "ticker": "HCM",
+      "total_volume": 69,
+      "volume_ratio": 37.6370479463263
+    },
+    {
+      "avg_total_volume": 60.3,
+      "close": 69.54,
+      "full_name": "STONEX GROUP INC",
+      "iv_rank": 47.8488,
+      "put_call_ratio": 0.0148975791433892,
+      "sector": "Financial Services",
+      "ticker": "SNEX",
+      "total_volume": 2180,
+      "volume_ratio": 36.152570480928695
+    }
+  ],
+  "source": "/Users/ewan/Documents/Stocks/Stock Screener/stock-screener-2026-09-03.parquet"
+}

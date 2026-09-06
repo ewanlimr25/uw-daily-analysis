@@ -1,0 +1,164 @@
+{
+  "iso_week": "2026-W32",
+  "monday": "2026-08-03",
+  "week_end": "2026-08-07",
+  "today": "2026-08-07",
+  "covered_dates": ["2026-08-03", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07"],
+  "covered_days_count": 5,
+  "full_week": true,
+  "fz_available": true,
+
+  "regime_today": {
+    "date": "2026-08-07",
+    "regime": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "bullish_pct": 37.7,
+    "bullish_flow_tickers": 2368,
+    "bearish_flow_tickers": 3913,
+    "spy_current": 773.26,
+    "spy_above_20sma": true,
+    "spy_above_50sma": true,
+    "spy_change_30d_pct": 2.87,
+    "spy_pct_from_90d_high": -0.46,
+    "trading_guidance": "Half position sizes. Favor defined-risk strategies. Iron condors in range."
+  },
+  "regime_monday": {
+    "date": "2026-08-03",
+    "regime": "TRANSITIONAL — Mixed signals, reduce position size, wait for clarity",
+    "trend": "UPTREND",
+    "bullish_pct": 40.0
+  },
+  "regime_delta": "HELD — TRANSITIONAL/UPTREND at both ends of the week. Internals DETERIORATED: options-flow breadth 40.0% -> 37.7% bullish (2368 bullish vs 3913 bearish tickers). SPY holds above both 20d (750.17) and 50d (747.19) SMA, -0.46% from the 90d high.",
+
+  "CAVEAT_regime_spy_block_not_date_pinned": "The `spy` sub-block of `uw risk market-regime` returned BYTE-IDENTICAL values for --date 2026-08-03 and --date 2026-08-07 (current 773.26, change_30d_pct 2.87, sma_20 750.17, sma_50 747.19). It is a LIVE snapshot, NOT date-pinned. Do NOT compute any WoW price delta from it. Use `uw historical trend` or scripts/market_data.py for dated price moves.",
+
+  "vrp_classification": {
+    "SPY": {"vrp": -0.0073, "iv30d": 0.1272, "realised_vol": 0.1345, "regime": "FAIR"},
+    "QQQ": {"vrp": -0.0536, "iv30d": 0.2044, "realised_vol": 0.2579, "regime": "PREMIUM_BUYING"},
+    "week_call": "PREMIUM-BUYING / NEUTRAL. VRP is NEGATIVE on both indices (QQQ decisively so at -0.054). This is NOT a premium-selling week. Per the fleet rule: contrarian-scanner must ABORT fade calls predicated on selling rich premium; earnings-scout and gamma-flip-tracker carry more weight; vol-surface-scout should bias toward LONG vol / premium-buying structures."
+  },
+
+  "sector_direction_C55": {
+    "RULE": "Direction reads off the NETTED `uw risk market-regime.sector_rotation` ONLY. `options-flow sector-flow` and `sector-flow-persistence` are ONE gross-turnover source (sign-agnostic gross call$ minus put$) and CANNOT express direction. Netted-vs-gross disagreement => watch_only.",
+    "netted_2026_08_07": {
+      "in": {"Technology": 110410371, "Industrials": 79482725, "Consumer Defensive": 8638806},
+      "out": {"Consumer Cyclical": -30812229, "Communication Services": -18907148, "Healthcare": -7477652}
+    },
+    "netted_2026_08_03": {
+      "in": {"Technology": 217368141, "Communication Services": 138044646, "Consumer Cyclical": 76903040},
+      "out": {"Healthcare": -36462512, "Consumer Defensive": -4132483, "Utilities": -802822}
+    },
+    "netted_WoW_shift": "Communication Services FLIPPED +$138.0M -> -$18.9M. Consumer Cyclical FLIPPED +$76.9M -> -$30.8M. Technology stayed IN but HALVED +$217.4M -> +$110.4M. Consumer Defensive FLIPPED -$4.1M -> +$8.6M (defensive bid appearing). Industrials NEW inflow +$79.5M. Healthcare outflow SHRANK -$36.5M -> -$7.5M.",
+    "gross_persistence_ARTIFACT": "`sector-flow-persistence --days 5` returned ALL 11 SECTORS as trend=INFLOW with persistence_score=1. Every sector 'inflowing' simultaneously is arithmetically impossible for netted flow and confirms the gross-turnover artifact. persistence_score=1 for all 11 => ZERO cross-sectional discrimination this week. Use it ONLY as a durability/turnover filter, NEVER for direction.",
+    "gross_vs_netted_DISAGREEMENT": "Consumer Cyclical (gross +$677.9M vs netted -$30.8M) and Communication Services (gross +$590.5M vs netted -$18.9M) DISAGREE IN SIGN. Per C55 both route to watch_only."
+  },
+
+  "dte_volume_share_week": {
+    "2026-08-03": {"share_0dte": 0.155, "share_weeklies": 0.053, "share_monthlies": 0.227, "share_leaps": 0.036, "regime_hint": "BALANCED"},
+    "2026-08-04": {"share_0dte": 0.173, "share_weeklies": 0.068, "share_monthlies": 0.238, "share_leaps": 0.036, "regime_hint": "BALANCED"},
+    "2026-08-05": {"share_0dte": 0.176, "share_weeklies": 0.072, "share_monthlies": 0.219, "share_leaps": 0.033, "regime_hint": "BALANCED"},
+    "2026-08-06": {"share_0dte": 0.264, "share_weeklies": 0.111, "share_monthlies": 0.209, "share_leaps": 0.035, "regime_hint": "BALANCED"},
+    "2026-08-07": {"share_0dte": 0.464, "share_weeklies": 0.211, "share_monthlies": 0.209, "share_leaps": 0.030, "regime_hint": "RETAIL_DRIVEN"},
+    "read": "0DTE share TRIPLED across the week 15.5% -> 46.4%; Friday flips to RETAIL_DRIVEN. Monthlies share FELL 22.7% -> 20.9% and LEAPs fell 3.6% -> 3.0%. CAVEAT: 2026-08-07 is a weekly-expiry Friday so part of the 0DTE spike is expiry mechanics, but Thursday 26.4% is genuinely elevated vs the 15-18% Mon-Wed baseline. Net read: the tape got MORE retail / shorter-dated as the week progressed => DOWNGRADE rotation conviction uniformly and discount week-end-only directional prints."
+  },
+
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 321,
+    "decliners": 180,
+    "unchanged": 2,
+    "total": 503,
+    "pct_green": 63.82,
+    "avg_change": 0.7,
+    "median_change": 0.48,
+    "top_mover": "ABNB (+17.43%)",
+    "worst_mover": "TTD (-21.90%)",
+    "divergence_flag": true,
+    "note": "DIVERGENCE, opposite polarity to the usual tell: PRICE breadth is strong (63.8% green, S&P 500) while OPTIONS-FLOW breadth is weak (37.7% bullish per uw). Green tape carried by price, but options positioning is net-bearish across 6281 optionable names. Treat as a distribution/hedging tell rather than confirmation. Advisory, 0 rubric points."
+  },
+
+  "macro_snapshot": {
+    "available": true,
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.46,
+    "core_cpi_yoy_pct": 2.81,
+    "core_pce_yoy_pct": 3.29,
+    "unemployment_rate": 4.1,
+    "payrolls_mom_000s": -23.0,
+    "ten_year_yield": 4.69,
+    "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "weakening",
+    "fed_funds": 3.63,
+    "read": "STAGFLATIONARY TILT. Core PCE 3.29% YoY is well above target and ABOVE core CPI 2.81%. Payrolls went NEGATIVE (-23k MoM) with unemployment 4.1%. 10Y rising to 4.69% (+14bp/30d) while USD weakens - an unusual combination that points to term-premium/fiscal rather than growth-driven rate pressure. Curve normal (+46bp). Fed funds 3.63% vs core PCE 3.29% leaves very little real-rate buffer. Negative payrolls + sticky core PCE is the worst cell for long-duration risk."
+  },
+
+  "event_risk": [
+    {"event": "CPI (July data)", "date": "2026-08-12", "impact": "HIGH", "note": "Confirmed 8:30am ET. Primary input to the September FOMC. Lands inside a 1-2 week swing horizon - the event-risk gate should fire on any swing call held through Wednesday."},
+    {"event": "PPI (July data)", "date": "2026-08-13", "impact": "MEDIUM", "note": "Standard day-after-CPI sequencing; date approximate."},
+    {"event": "Initial jobless claims", "date": "2026-08-13", "impact": "LOW-MEDIUM", "note": "Weekly Thursday print. Elevated salience given payrolls just went negative."},
+    {"event": "Retail sales (July)", "date": "2026-08-14", "impact": "MEDIUM", "note": "Date approximate."},
+    {"event": "Initial jobless claims", "date": "2026-08-20", "impact": "LOW-MEDIUM", "note": "Weekly Thursday print."},
+    {"event": "Monthly OPEX", "date": "2026-08-21", "impact": "MEDIUM", "note": "Third Friday. OUTSIDE the current week (14 days out) so opex-pin-strategist is NOT spawned this run, but it constrains any 2-week structure."},
+    {"event": "FOMC / SEP", "date": "2026-09 (TBC)", "impact": "HIGH", "note": "No FOMC inside the next two weeks."}
+  ],
+
+  "gex_advisory_backtest": {
+    "verdict": "NO_GO_NO_EDGE",
+    "pooled_h2_n": 118,
+    "closer_to_nearest_wall_pct": 21.2,
+    "p_vs_50": 1.0,
+    "closer_to_dominant_gex_pct": 22.9,
+    "contained_within_walls_pct": 51.7,
+    "moved_in_pin_direction_pct": 54.2,
+    "h1_zgl_testable_n": 40,
+    "h1_long_gamma_mean_abs_ret": 0.953,
+    "h1_short_gamma_mean_abs_ret": 0.747,
+    "h1_short_gt_long_as_theory": false,
+    "read": "Walls are ANTI-magnets: the next close landed closer to the nearest wall only 21.2% of the time vs a 50% baseline (p=1.0 one-sided) - i.e. price systematically moved AWAY. H1 also runs BACKWARDS (short-gamma realised vol 0.747 < long-gamma 0.953, the opposite of dealer-hedging theory). The GEX map is dealer CONTEXT ONLY and must never be presented as a backtested edge."
+  },
+
+  "zerodte_setup": {
+    "available": true,
+    "as_of": "2026-08-07",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "SPY": {"n": 60, "win_open_pct": 88.3, "mean_pnl_open_pct": 0.223, "mean_pnl_open_net_pct": 0.123, "worst_day_open_pct": -1.4, "vol_state": "LOW", "vix": 14.9, "implied_move_pct": 0.45, "expected_range_pct": 0.83, "size_scalar": 0.5, "structure": "iron fly / short straddle centred at 772.89, wings ~ +/-0.83% (long-gamma: quieter, mean-reverting)"},
+    "QQQ": {"n": 60, "win_open_pct": 85.0, "mean_pnl_open_pct": 0.36, "mean_pnl_open_net_pct": 0.26, "worst_day_open_pct": -2.453, "vol_state": "LOW", "vix": 14.9, "implied_move_pct": 0.77, "expected_range_pct": 1.45, "size_scalar": 0.5, "structure": "iron fly / short straddle centred at 722.68, wings ~ +/-1.45% (long-gamma: quieter, mean-reverting)"},
+    "pnl_basis": "percent-of-underlying-spot-notional, GROSS of transaction costs; NOT premium-collected, NOT margin-relative",
+    "entry_rule": "Enter at/after the open once the overnight gap resolves; stand aside if it gaps beyond the wings. Hold to the close - NEVER carry overnight.",
+    "tail_caveat": "Validation sample contains NO vol shock; the short-vol left tail is UNSAMPLED. Advisory, 0 rubric points, permanently until a shock enters the sample.",
+    "note": "VIX 14.9 = LOW tercile (bounds 16.4/18.0). Backtest mean PnL in the LOW-VIX state is NEGATIVE for SPY (-0.059) and ~flat for QQQ (+0.016) - i.e. the edge lives in MID/HIGH VIX, and the CURRENT state is the one cell where it does not pay. Size scalar 0.5 already reflects this. Report this explicitly."
+  },
+
+  "opex_week": false,
+  "opex_note": "Third Friday is 2026-08-21, 14 calendar days after WEEK_END. NOT within 7 days => opex-pin-strategist NOT spawned. 11 Phase 1 agents.",
+
+  "DATA_QUALITY_WARNINGS": {
+    "fz_screen_doubled_first_letter": "CONFIRMED LIVE THIS RUN. `fz screen` doubles the first letter of EVERY ticker in its emitter (PPUBM=PUBM, HHALO=HALO, AABNB=ABNB, FFIVN=FIVN, NNTRA=NTRA, TTCGX=TCGX, IIOVA=IOVA, CCRSR=CRSR). `fz breadth` is NOT affected (returns correct ABNB/TTD). The orchestrator has already de-doubled every fz ticker in the floored funnel below. If you call `fz screen` yourself you MUST apply the same fix. This is the long-standing bug that blocked criterion C16.",
+    "signal_confluence_zero_discrimination": "19 of the top-25 BULLISH confluence names returned score=6 with a BYTE-IDENTICAL factor list ['bullish_flow','low_pcr','volume_spike','dp_accumulation','oi_building','low_iv_cheap_options']. Zero cross-sectional discrimination - same failure class as C47. Confluence is FUNNEL-SEED ONLY (audit P0.2): it is not an entry path, not a scored line, and not a second opinion.",
+    "confluence_TTD_contradiction": "TTD appears in the top-25 BULLISH confluence list with score=6 while it fell -21.9% on the day and -23.5% on the week (worst S&P mover). A post-crash put-selling / cheap-call footprint reads as 'bullish_flow + low_iv_cheap_options' to the composite. Treat any TTD bullish signal as an artifact unless independently corroborated.",
+    "SNDK_put_sale_netting": "KNOWN BLIND SPOT, ACTIVE THIS WEEK. SNDK appears in the bullish screener (net_flow +$25.0M, close $1212.21, rv20 155.3). On 2026-08-06 SNDK's '+$388M top bullish' reading was ONE bid-side deep-ITM PUT SALE (74% of net) on a collapsed high-IV name. `cumulative-premium-flow` books put SALES as bullish premium. Before citing ANY SNDK bullish flow, check net-as-%-of-gross and the `side` field. Its gross premium is $895M call / $870M put => net is only 1.4% of gross = MIXED, not bullish.",
+    "earnings_catalyst_field_names": "`screener earnings-catalyst` uses `next_earnings_date` and `days_to_earnings` (NOT `earnings_date`). It also carries `implied_move` / `implied_move_perc` (the C43 instrumentation field).",
+    "term_structure_hygiene_mandatory": "Classify IV term structure ONLY through `python3 scripts/term_structure_hygiene.py`. The raw label is unreliable (returned BACKWARDATION on 39/41 names on 2026-07-24; 14 flipped after dropping the dte_approx:0 bucket and sub-15-contract tenors). Compare base_shape to base_shape."
+  },
+
+  "funnel_C12_floored": {
+    "rule": "price >= $5 AND 20d dollar-ADV >= $50M, fail-closed. Computed via scripts/market_data.py --as-of 2026-08-07.",
+    "raw_funnel_size": 243,
+    "passed": 112,
+    "failed": 131,
+    "unresolved": 0,
+    "note": "54% of the raw funnel was sub-floor. THIS FLOORED LIST IS THE ONLY UNIVERSE YOU MAY WORK FROM. Do not reintroduce a dropped name.",
+    "symbols": ["MU","SPY","QQQ","NVDA","SNDK","MSFT","AMD","TSLA","AMZN","SPCX","GOOGL","META","GOOG","SKHY","PLTR","IWM","TSM","SOXX","MRVL","STX","NBIS","DRAM","SOXS","LITE","NFLX","IBM","APP","GEV","DELL","HYG","CSCO","COHR","GDX","MSTR","UBER","IBIT","HD","MPWR","RTX","RDDT","NET","ASTS","ABNB","DE","NVO","APLD","RBLX","CDE","ROST","ECHO","TWLO","DOCN","IBKR","TTD","ROKU","RIOT","KEYS","U","EQT","INSM","CPNG","NTRA","LULU","MDLN","SKUU","ARGX","ETSY","TEM","JMKE","SWK","LYFT","RAM","NLY","HALO","DOCS","TRP","CW","AR","OSCR","VSXY","AVB","TRMB","GTLB","ONC","FLR","SEZL","WOLF","AAON","ATKR","ACM","IOVA","SKHX","FIVN","ACHC","NOWL","ORA","LMND","UUUU","POST","HRB","NVST","CAR","PSNL","CECO","CHH","AMPX","BULL","MRCY","MWH","POR","MGNI","DPC"],
+    "biggest_5d_movers_up": {"IOVA": 55.77, "COHR": 44.22, "PLTR": 39.78, "WOLF": 39.16, "U": 35.60, "INSM": 32.96, "DOCS": 31.04, "ATKR": 28.44, "MGNI": 28.08, "LITE": 24.68, "HALO": 24.93, "NOWL": 24.62, "UUUU": 23.60, "FIVN": 23.56, "AMPX": 23.44, "SPCX": 22.83, "TWLO": 22.26, "ASTS": 21.97, "GDX": 21.31, "NTRA": 20.29},
+    "biggest_5d_movers_down": {"SEZL": -23.74, "TTD": -23.50, "SOXS": -22.46, "POST": -13.92, "APP": -12.40, "OSCR": -10.63, "MDLN": -10.31, "SKHX": -9.15, "SKUU": -9.12, "TRP": -6.23, "STX": -5.07, "SKHY": -4.05, "CHH": -4.33, "CW": -4.49, "AR": -3.96}
+  },
+
+  "fz_squeeze_candidates": ["ASTS", "APLD", "ACHC", "AMPX"],
+  "fz_rs_candidates": ["NET", "ABNB", "TWLO", "NTRA", "HALO", "FLR", "IOVA", "FIVN", "VSXY", "PUBM", "QNST", "CRSR", "TILE"],
+  "fz_note": "Advisory, 0 rubric points. Tickers already de-doubled. PUBM/QNST/CRSR/TILE did NOT clear the C12 floor and are listed for context only - they may NOT enter the rubric.",
+
+  "SHORT_ROUTING_RULE_2026_08_01_P0": "Any call whose direction == short routes to watch_only regardless of tier or win_rate, instrument-agnostic. ROUTING, NOT SUPPRESSION: still generate the thesis, structure, invalidation and gate_verdicts so the counterfactual keeps resolving. Out of scope: short legs inside defined-risk spreads, short-vol structures, beta-hedge sleeve.",
+  "OUT_OF_REGIME_GUARD_P0_6": "The rubric was fitted in the UPTREND regime that ended 2026-06-12. Current regime is TRANSITIONAL. ALL conviction-tier sizing is CAPPED AT HALF and the Executive Summary must carry the OUT-OF-REGIME line.",
+  "RUBRIC_VERSION": "2026-06-12 (FROZEN)"
+}

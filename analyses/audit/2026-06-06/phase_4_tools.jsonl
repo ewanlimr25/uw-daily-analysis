@@ -1,0 +1,546 @@
+{
+ "tool_table": [
+  {
+   "tool": "uw historical cumulative-premium-flow",
+   "n_with": 136,
+   "mc_pp": -3.5,
+   "frac_on_win": 0.32,
+   "frac_on_loss": 0.31,
+   "n_classes": 5,
+   "tier": "NO-INFO",
+   "p": 0.7038208703354665,
+   "cite_frac": 0.31,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.493,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical oi-trend",
+   "n_with": 73,
+   "mc_pp": -0.5,
+   "frac_on_win": 0.18,
+   "frac_on_loss": 0.16,
+   "n_classes": 4,
+   "tier": "NO-INFO",
+   "p": 0.43753207891534807,
+   "cite_frac": 0.17,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.521,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure dex",
+   "n_with": 70,
+   "mc_pp": 11.1,
+   "frac_on_win": 0.21,
+   "frac_on_loss": 0.12,
+   "n_classes": 4,
+   "tier": "LOAD-BEARING",
+   "p": 0.00626779580139214,
+   "cite_frac": 0.16,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.629,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw dark-pool block-stratified",
+   "n_with": 67,
+   "mc_pp": 17.0,
+   "frac_on_win": 0.19,
+   "frac_on_loss": 0.12,
+   "n_classes": 3,
+   "tier": "LOAD-BEARING",
+   "p": 0.06655826286955513,
+   "cite_frac": 0.16,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.582,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure term-skew",
+   "n_with": 62,
+   "mc_pp": 6.7,
+   "frac_on_win": 0.15,
+   "frac_on_loss": 0.14,
+   "n_classes": 3,
+   "tier": "SUPPORTIVE",
+   "p": 0.7227276012681854,
+   "cite_frac": 0.14,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.5,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-flow sector-flow-persistence",
+   "n_with": 49,
+   "mc_pp": 5.4,
+   "frac_on_win": 0.13,
+   "frac_on_loss": 0.1,
+   "n_classes": 4,
+   "tier": "SUPPORTIVE",
+   "p": 0.2849371038499806,
+   "cite_frac": 0.11,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.551,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw insights signal-confluence",
+   "n_with": 44,
+   "mc_pp": -6.2,
+   "frac_on_win": 0.1,
+   "frac_on_loss": 0.11,
+   "n_classes": 6,
+   "tier": "NEGATIVE",
+   "p": 0.730124230688296,
+   "cite_frac": 0.1,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.455,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw hot-chains sweep-persistence",
+   "n_with": 32,
+   "mc_pp": -7.2,
+   "frac_on_win": 0.06,
+   "frac_on_loss": 0.08,
+   "n_classes": 2,
+   "tier": "NEGATIVE",
+   "p": 0.3908556983850189,
+   "cite_frac": 0.07,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.406,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure iv-term-structure",
+   "n_with": 31,
+   "mc_pp": 2.4,
+   "frac_on_win": 0.08,
+   "frac_on_loss": 0.06,
+   "n_classes": 3,
+   "tier": "SUPPORTIVE",
+   "p": 0.4232815199114124,
+   "cite_frac": 0.07,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.548,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw hot-chains multileg",
+   "n_with": 27,
+   "mc_pp": -15.5,
+   "frac_on_win": 0.05,
+   "frac_on_loss": 0.08,
+   "n_classes": 5,
+   "tier": "NEGATIVE",
+   "p": 0.24250865884142625,
+   "cite_frac": 0.06,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.37,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw insights institutional-accumulation",
+   "n_with": 15,
+   "mc_pp": -23.0,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.04,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.5321701979906179,
+   "cite_frac": 0.03,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.4,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure gex",
+   "n_with": 13,
+   "mc_pp": -50.0,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.04,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.06870185372256588,
+   "cite_frac": 0.03,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.231,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical iv-rank",
+   "n_with": 11,
+   "mc_pp": 9.3,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.02,
+   "n_classes": 2,
+   "tier": "SUPPORTIVE",
+   "p": 0.6557428039005548,
+   "cite_frac": 0.03,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.545,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-flow multi-day-sweep-persistence",
+   "n_with": 10,
+   "mc_pp": 26.4,
+   "frac_on_win": 0.04,
+   "frac_on_loss": 0.01,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "p": 0.03989700528162854,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.8,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure today-gamma-flip",
+   "n_with": 10,
+   "mc_pp": 65.6,
+   "frac_on_win": 0.04,
+   "frac_on_loss": 0.01,
+   "n_classes": 2,
+   "tier": "LOAD-BEARING",
+   "p": 0.03989700528162854,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.8,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical pc-ratio-zscore",
+   "n_with": 9,
+   "mc_pp": -33.3,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.03,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.11891705713706946,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.222,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure multileg-activity",
+   "n_with": 9,
+   "mc_pp": 52.9,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.01,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "p": 0.2551650488625681,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.667,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw insights earnings-play",
+   "n_with": 9,
+   "mc_pp": 20.8,
+   "frac_on_win": 0.03,
+   "frac_on_loss": 0.01,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "p": 0.2551650488625681,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.667,
+   "bh_significant": false
+  },
+  {
+   "tool": "historical_cumulative_premium_flow",
+   "n_with": 8,
+   "mc_pp": 26.9,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.01,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "p": 0.4046034219615222,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.625,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical gex",
+   "n_with": 8,
+   "mc_pp": -31.9,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.03,
+   "n_classes": 2,
+   "tier": "NEGATIVE",
+   "p": 0.19030665767230892,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.25,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical sweep-persistence",
+   "n_with": 8,
+   "mc_pp": 18.6,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "LOAD-BEARING",
+   "p": 0.9052269218919347,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": false,
+   "self_wr": 0.5,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure front-end-iv-ratio",
+   "n_with": 7,
+   "mc_pp": -25.3,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.7870408299849903,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.429,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw insights conviction-matrix",
+   "n_with": 7,
+   "mc_pp": -45.2,
+   "frac_on_win": 0.0,
+   "frac_on_loss": 0.03,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.07253623705611245,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.143,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw insights dealer-delta-exposure",
+   "n_with": 7,
+   "mc_pp": 6.2,
+   "frac_on_win": 0.02,
+   "frac_on_loss": 0.01,
+   "n_classes": 2,
+   "tier": "SUPPORTIVE",
+   "p": 0.6222697946145819,
+   "cite_frac": 0.02,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.571,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-structure iv-percentile-zscore",
+   "n_with": 6,
+   "mc_pp": -17.1,
+   "frac_on_win": 0.01,
+   "frac_on_loss": 0.01,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.9180680208841774,
+   "cite_frac": 0.01,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.5,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw historical vrp",
+   "n_with": 5,
+   "mc_pp": -10.8,
+   "frac_on_win": 0.0,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.208807574578586,
+   "cite_frac": 0.01,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.2,
+   "bh_significant": false
+  },
+  {
+   "tool": "uw options-flow top-premium-trades",
+   "n_with": 5,
+   "mc_pp": -10.8,
+   "frac_on_win": 0.0,
+   "frac_on_loss": 0.02,
+   "n_classes": 1,
+   "tier": "NEGATIVE",
+   "p": 0.208807574578586,
+   "cite_frac": 0.01,
+   "ubiquity_confounded": false,
+   "thin_n": true,
+   "self_wr": 0.2,
+   "bh_significant": false
+  },
+  {
+   "tool": "insights_signal_confluence",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "historical_oi_trend",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow gex",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure vanna-charm",
+   "n_with": 4,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw historical biggest-oi-increases",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow sector-flow",
+   "n_with": 3,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_iv_term_structure",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "hot_chains_multileg",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure smart-positioning",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi smart-positioning",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw dark-pool summary",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow sweeps",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw watchlist alerts",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi position-rolls",
+   "n_with": 2,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_institutional_accumulation",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_dex",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_term_skew",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "insights_conviction_matrix",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "options_structure_gex",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "dark_pool_block_stratified",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw dark-pool price-levels",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw historical signal-backtest",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-structure gex-time-series",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw oi biggest-increases",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw options-flow single-leg",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  },
+  {
+   "tool": "uw screener iv-rank",
+   "n_with": 1,
+   "tier": "INSUFFICIENT_N"
+  }
+ ],
+ "n_decided": 432,
+ "provenance": "RECONSTRUCTED (all decided rows are legacy prose; envelope rows window_open) -> structural/qualitative; caps Phase-7 at P1",
+ "fz_advisory": {
+  "envelope_decided": 53,
+  "rows_with_fz_context_decided": 28,
+  "verdict": "INSUFFICIENT_N \u2014 fz C15-C18 axes have 0 decided envelope rows (fz shipped 05-27; all envelope calls window_open). Stay advisory (0 pts). Re-test ~2026-06-12."
+ }
+}

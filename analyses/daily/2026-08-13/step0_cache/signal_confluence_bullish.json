@@ -1,0 +1,443 @@
+{
+  "direction": "bullish",
+  "min_score": 3,
+  "results": [
+    {
+      "close": 42.19,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 28.9071,
+      "net_flow": 62488,
+      "put_call_ratio": 0.5778301886792453,
+      "score": 6,
+      "sector": "Consumer Cyclical",
+      "ticker": "GLBE",
+      "volume_ratio": 2.92
+    },
+    {
+      "close": 80.08,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 23.654,
+      "net_flow": 253848,
+      "put_call_ratio": 0.05568554047730463,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "SYF",
+      "volume_ratio": 2.25
+    },
+    {
+      "close": 18.43,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 13.7697,
+      "net_flow": 325751,
+      "put_call_ratio": 0.3178519593613933,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "TRIN",
+      "volume_ratio": 3.02
+    },
+    {
+      "close": 21.95,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 0.2317,
+      "net_flow": 551669,
+      "put_call_ratio": 0.5074476142388286,
+      "score": 6,
+      "sector": null,
+      "ticker": "SNDU",
+      "volume_ratio": 2.12
+    },
+    {
+      "close": 2.67,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 9.5604,
+      "net_flow": 216595,
+      "put_call_ratio": 0.04557048121067846,
+      "score": 6,
+      "sector": null,
+      "ticker": "MSOX",
+      "volume_ratio": 5.23
+    },
+    {
+      "close": 7.68,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 8.9326,
+      "net_flow": 778413,
+      "put_call_ratio": 0.3679441877321736,
+      "score": 6,
+      "sector": "Communication Services",
+      "ticker": "STUB",
+      "volume_ratio": 4.53
+    },
+    {
+      "close": 23.56,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 14.625,
+      "net_flow": 144058,
+      "put_call_ratio": 0.44992343032159265,
+      "score": 6,
+      "sector": null,
+      "ticker": "SPXS",
+      "volume_ratio": 2.37
+    },
+    {
+      "close": 220.48,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 25.5037,
+      "net_flow": 115888305,
+      "put_call_ratio": 0.040675132244627335,
+      "score": 6,
+      "sector": "Industrials",
+      "ticker": "RTX",
+      "volume_ratio": 5.02
+    },
+    {
+      "close": 14.09,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 6.8433,
+      "net_flow": 1979378,
+      "put_call_ratio": 0.29800513687236335,
+      "score": 6,
+      "sector": null,
+      "ticker": "SNXX",
+      "volume_ratio": 2.46
+    },
+    {
+      "close": 15.04,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 23.8217,
+      "net_flow": 255950,
+      "put_call_ratio": 0.3510464954717124,
+      "score": 6,
+      "sector": "Financial Services",
+      "ticker": "RKT",
+      "volume_ratio": 2.1
+    },
+    {
+      "close": 2.68,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 19.6763,
+      "net_flow": 2227,
+      "put_call_ratio": 0.1390728476821192,
+      "score": 6,
+      "sector": "Communication Services",
+      "ticker": "NCMI",
+      "volume_ratio": 9.51
+    },
+    {
+      "close": 15.39,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 28.3399,
+      "net_flow": 6183,
+      "put_call_ratio": 0.39091440826671864,
+      "score": 5,
+      "sector": "Consumer Defensive",
+      "ticker": "CAG",
+      "volume_ratio": 0.67
+    },
+    {
+      "close": 24.68,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 7.767,
+      "net_flow": 589891,
+      "put_call_ratio": 0.5857612267250821,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "QMCO",
+      "volume_ratio": 7.27
+    },
+    {
+      "close": 14.17,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 17.4708,
+      "net_flow": 129,
+      "put_call_ratio": 0.0062932662051604785,
+      "score": 5,
+      "sector": "Energy",
+      "ticker": "TXO",
+      "volume_ratio": 44.87
+    },
+    {
+      "close": 26.59,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 18.6313,
+      "net_flow": 89492,
+      "put_call_ratio": 0.47831743278404165,
+      "score": 5,
+      "sector": "Healthcare",
+      "ticker": "DOCS",
+      "volume_ratio": 0.59
+    },
+    {
+      "close": 223.83,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 9.1477,
+      "net_flow": 29358,
+      "put_call_ratio": 0.524822695035461,
+      "score": 5,
+      "sector": "Financial Services",
+      "ticker": "COF",
+      "volume_ratio": 0.34
+    },
+    {
+      "close": 496.88,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 27.3549,
+      "net_flow": 32985980,
+      "put_call_ratio": 0.5051612990969426,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "MSFT",
+      "volume_ratio": 0.58
+    },
+    {
+      "close": 10.09,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 23.1058,
+      "net_flow": 15828,
+      "put_call_ratio": 0.4722575180008471,
+      "score": 5,
+      "sector": "Healthcare",
+      "ticker": "KURA",
+      "volume_ratio": 3.2
+    },
+    {
+      "close": 56.93,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 14.9893,
+      "net_flow": 11969085,
+      "put_call_ratio": 0.3339176025314885,
+      "score": 5,
+      "sector": null,
+      "ticker": "DRAM",
+      "volume_ratio": 1.12
+    },
+    {
+      "close": 8.75,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 11.5535,
+      "net_flow": 257301,
+      "put_call_ratio": 0.5549738219895288,
+      "score": 5,
+      "sector": null,
+      "ticker": "SNDG",
+      "volume_ratio": 2.86
+    },
+    {
+      "close": 10.94,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 27.7254,
+      "net_flow": 102645,
+      "put_call_ratio": 0.09918601145613506,
+      "score": 5,
+      "sector": "Consumer Cyclical",
+      "ticker": "REAL",
+      "volume_ratio": 1.38
+    },
+    {
+      "close": 92.05,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "dp_accumulation",
+        "oi_building",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 10.3149,
+      "net_flow": 1139279,
+      "put_call_ratio": 0.49898332655551036,
+      "score": 5,
+      "sector": "Consumer Defensive",
+      "ticker": "ELF",
+      "volume_ratio": 0.38
+    },
+    {
+      "close": 18.86,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 15.2168,
+      "net_flow": 9468,
+      "put_call_ratio": 0.1679456906729634,
+      "score": 5,
+      "sector": null,
+      "ticker": "VIXY",
+      "volume_ratio": 2.35
+    },
+    {
+      "close": 16.77,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 25.3141,
+      "net_flow": 99914,
+      "put_call_ratio": 0.3431372549019608,
+      "score": 5,
+      "sector": "Industrials",
+      "ticker": "ADUR",
+      "volume_ratio": 2.61
+    },
+    {
+      "close": 1.49,
+      "factors": [
+        "bullish_flow",
+        "low_pcr",
+        "volume_spike",
+        "dp_accumulation",
+        "low_iv_cheap_options"
+      ],
+      "iv_rank": 1.9747,
+      "net_flow": 3194,
+      "put_call_ratio": 0.11821561338289963,
+      "score": 5,
+      "sector": "Technology",
+      "ticker": "VERI",
+      "volume_ratio": 2.28
+    }
+  ],
+  "tickers_found": 25
+}

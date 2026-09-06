@@ -1,0 +1,63 @@
+{
+ "sigma_ok": 126,
+ "sigma_n": 126,
+ "sizing_compliant": 256,
+ "sizing_n": 266,
+ "gate_firing": {
+  "vrp": 4,
+  "fundamentals": 26,
+  "regime": 12,
+  "event_risk": 57,
+  "cluster": 11,
+  "panic": 11,
+  "sector": 1
+ },
+ "gate_effectiveness": {
+  "regime": {
+   "down_n": 9,
+   "down_wr": 0.4444444444444444,
+   "ungated_n": 44,
+   "ungated_wr": 0.4318181818181818
+  },
+  "vrp": {
+   "down_n": 7,
+   "down_wr": 0.5714285714285714,
+   "ungated_n": 46,
+   "ungated_wr": 0.41304347826086957
+  },
+  "panic": {
+   "down_n": 5,
+   "down_wr": 0.2,
+   "ungated_n": 48,
+   "ungated_wr": 0.4583333333333333
+  },
+  "cluster": {
+   "down_n": 7,
+   "down_wr": 0.7142857142857143,
+   "ungated_n": 46,
+   "ungated_wr": 0.391304347826087
+  },
+  "sector": {
+   "down_n": 0,
+   "down_wr": null,
+   "ungated_n": 53,
+   "ungated_wr": 0.4339622641509434
+  },
+  "event_risk": {
+   "down_n": 46,
+   "down_wr": 0.43478260869565216,
+   "ungated_n": 7,
+   "ungated_wr": 0.42857142857142855
+  },
+  "fundamentals": {
+   "down_n": 23,
+   "down_wr": 0.391304347826087,
+   "ungated_n": 30,
+   "ungated_wr": 0.4666666666666667
+  }
+ },
+ "fund_fp_n": 20,
+ "fund_fp_won": 8,
+ "debate_decided": 34,
+ "missed_event_n": 0
+}

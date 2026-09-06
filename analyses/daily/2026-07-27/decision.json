@@ -1,0 +1,1103 @@
+{
+  "schema_version": "1.3",
+  "rubric_version": "2026-06-12",
+  "report_date": "2026-07-27",
+  "report_kind": "daily",
+  "regime": "TRANSITIONAL",
+  "vrp_classification": "FAIR (SPY VRP +0.0305; QQQ VRP -0.0167 NEGATIVE - realised 27.69% > implied 26.02%, premium selling structurally disfavoured on the Nasdaq/semis complex)",
+  "macro_snapshot_signals": {
+    "yield_curve": "normal",
+    "yield_curve_10y2y": 0.34,
+    "core_cpi_yoy_pct": 2.81,
+    "core_pce_yoy_pct": 3.41,
+    "unemployment_rate": 4.2,
+    "payrolls_mom_000s": 57.0,
+    "ten_year_yield": 4.69,
+    "ten_year_30d_direction": "rising",
+    "usd_30d_direction": "weakening",
+    "fed_funds": 3.63
+  },
+  "macro_event_risk": [
+    {
+      "event": "FOMC two-day meeting begins; CB Consumer Confidence; Case-Shiller HPI",
+      "date": "2026-07-28",
+      "impact": "high"
+    },
+    {
+      "event": "FOMC rate decision 2:00pm ET + Chair Warsh press conference 2:30pm ET",
+      "date": "2026-07-29",
+      "impact": "high"
+    },
+    {
+      "event": "Core PCE price index (June) + Q2 GDP advance + initial jobless claims, 8:30am ET",
+      "date": "2026-07-30",
+      "impact": "high"
+    },
+    {
+      "event": "Employment Cost Index Q2; Chicago PMI; Michigan sentiment final",
+      "date": "2026-07-31",
+      "impact": "medium"
+    },
+    {
+      "event": "July CPI",
+      "date": "2026-08-12",
+      "impact": "high"
+    },
+    {
+      "event": "FOMC minutes",
+      "date": "2026-08-19",
+      "impact": "medium"
+    }
+  ],
+  "watchlist_write_back": [],
+  "report_path": "analyses/daily/2026-07-27/report.md",
+  "breadth_cross_check": {
+    "advisory": true,
+    "source": "finviz",
+    "advancers": 328,
+    "decliners": 175,
+    "pct_green": 65.21,
+    "divergence_flag": false,
+    "note": "No classic divergence (index is not green on negative price breadth). But a REVERSE divergence is present and worth naming: uw market-breadth reads 35.2% bullish FLOW against 65.2% green PRICE - bearish-tilted flow under broadly green price is hedging/put-buying into a rotation, not distribution across the tape. Advisory, 0 points."
+  },
+  "next_session_gex": {
+    "advisory": true,
+    "as_of_eod_date": "2026-07-27",
+    "next_session_date": "2026-07-28",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "spot": 738.91,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -1589298789.0,
+        "call_wall": null,
+        "put_wall": 735.0,
+        "read": "FULLY_NEGATIVE with total_gex deeply negative and ZGL unresolved - dealers are short gamma across essentially the entire 0-45d grid, so hedging AMPLIFIES moves in both directions rather than dampening them. No reliable call wall: first positive strike is 748 (+$44.9M, 1.2% up), largest positive cluster 760 (+$56.7M, 2.9% up). Put wall 735 (-$153.4M), but the single largest negative concentration sits ATM at 739/740 (-$381.7M combined) - a gravity trough, not support. Top strikes by |GEX|: 740 (-$266.3M), 735 (-$153.4M), 730 (-$149.2M). Regime HELD FULLY_NEGATIVE across 7/23, 7/24 and 7/27 - not a fresh flip; SPY has not touched POSITIVE since 7/16.",
+        "structure_bias": "Short-gamma trend/breakout map: debit verticals or directional 0DTE; long straddle if spot sits on the 739/740 trough with walls wide. Do NOT run an iron fly or condor - there is no gamma cushion to sell against.",
+        "caveats": "EOD is a prior, not a target - fresh 0DTE OI in the first 30-60 minutes re-computes the ZGL and walls; the 7/28 expiry alone carries ~$1.1B notional | zero_gamma_level is null (regime already saturated negative) - the read leans entirely on the total_gex sign and per-strike shape; zgl_reliable false | Gap risk voids the prior and is elevated this week, not theoretical: FOMC day-1 is 7/28, the decision 7/29, Core PCE and Q2 GDP 7/30. A fully-negative book plus a binary macro catalyst is the worst combination for premium selling | Tooling limit: uw cannot isolate the D+1 expiry (gex --dte-max 1 errors) - this is the standing 0-45 DTE book as proxy | SPY ETF book, not the cleaner SPX index book"
+      },
+      {
+        "symbol": "QQQ",
+        "spot": 681.85,
+        "zero_gamma_level": null,
+        "zgl_reliable": false,
+        "regime": "FULLY_NEGATIVE",
+        "total_gex": -904798396.0,
+        "call_wall": null,
+        "put_wall": 680.0,
+        "read": "FULLY_NEGATIVE and sharply negative - the same short-gamma amplification profile as SPY and arguably worse on a relative basis, since QQQ's positive-GEX prints are negligible everywhere in range (all under $5.1M), leaving essentially no dealer buffer in either direction. Put wall 680 (-$151.6M) is essentially ATM; secondary troughs 690 (-$71.9M) and 700 (-$55.6M) are round-number OI concentration, not support. Compounded by negative VRP (realised 27.69% > implied 26.02%): a short-gamma book plus underpriced vol argues specifically against selling premium here. Regime HELD FULLY_NEGATIVE across 7/23, 7/24 and 7/27.",
+        "structure_bias": "Short-gamma plus underpriced vol - long straddle/strangle or debit verticals are the coherent structures; avoid iron condor/fly. Today's semis unwind inside a green tape means the ETF-level book does not capture the single-name dispersion, so a directional QQQ 0DTE thesis is weaker evidence than it looks.",
+        "caveats": "EOD prior only - 7/28 fresh 0DTE OI resets the grid before the open settles | Same FOMC / Core PCE / Q2 GDP stack as SPY; QQQ front-end IV was already backwardated at 1.43x VIX before this read | QQQ ETF book, not the NDX index book | Tooling limit: 0-45 DTE proxy, cannot isolate the D+1 expiry | Negative VRP independently argues against short-vol structures regardless of the gamma regime"
+      }
+    ]
+  },
+  "next_session_0dte_setup": {
+    "advisory": true,
+    "as_of_eod_date": "2026-07-27",
+    "backtest_verdict": "GO_PREMIUM_SELL_INTRADAY",
+    "indices": [
+      {
+        "symbol": "SPY",
+        "sell_premium": true,
+        "vol_state": "HIGH",
+        "vix": 18.67,
+        "implied_move_pct": 0.97,
+        "expected_range_pct": 1.2,
+        "size_scalar": 1.5,
+        "suggested_structure": "Wider iron condor, wings ~ +/-1.2%. ORCHESTRATOR OVERRIDE: the 1.5x scalar is computed from VIX level alone and is BLIND to the FOMC/PCE calendar - NOT actionable at face value on 7/28-7/30. Two independent signals contradict it: SPY is FULLY_NEGATIVE gamma (no cushion to sell against) and the entire Tier-1 macro stack lands inside the prior's shelf life. Rolling backtest n=60: win 91.7%, mean PnL GROSS +0.258%, NET +0.158% after 0.10% assumed round-trip cost, worst day -1.40%; pnl_basis = percent-of-underlying-spot-notional, GROSS.",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold the 0DTE to the close - never carry overnight (overnight entry backtested +0.046% for SPY, materially worse than open entry).",
+        "stand_aside_reason": null,
+        "caution": "Advisory, delta-neutral, 0 rubric points. The validation sample contains no vol shock, so the short-vol left tail is UNSAMPLED and the gross win-rate overstates a negatively-skewed seller's edge."
+      },
+      {
+        "symbol": "QQQ",
+        "sell_premium": true,
+        "vol_state": "HIGH",
+        "vix": 18.67,
+        "implied_move_pct": 1.68,
+        "expected_range_pct": 2.0,
+        "size_scalar": 0.75,
+        "suggested_structure": "Wider iron condor, wings ~ +/-2.0%, half size. Rolling backtest n=60: win 86.7%, mean PnL GROSS +0.381%, NET +0.281% after 0.10% assumed round-trip cost, worst day -2.453%; pnl_basis = percent-of-underlying-spot-notional, GROSS. QQQ is the weaker of the pair (Nasdaq index book unavailable) - lower confidence than SPY, which is validated identical to SPX.",
+        "entry_rule": "Enter at/after the open once the overnight gap resolves; if it gaps beyond the wings, stand aside. Hold to the close - never carry overnight (QQQ overnight entry backtested NEGATIVE at -0.081%).",
+        "stand_aside_reason": null,
+        "caution": "Front-end backwardation (0DTE IV 1.43x VIX) - event/gap risk; half size. Compounded by negative VRP (realised 27.69% > implied 26.02%), which argues against selling QQQ premium at all this week. Advisory, 0 rubric points; short-vol tail unsampled."
+      }
+    ]
+  },
+  "calls": [
+    {
+      "ticker": "TSLA",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (CONDITIONAL)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Consumer Cyclical persistence 0.6 >= 0.6; cum_flow_30d -629,546,735 aligned SHORT; magnitude >= $50M - all three legs pass"
+        },
+        {
+          "rubric_line": "+1 cumulative-premium-flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "-629,546,735 aligned SHORT, >= $50M; no C28 distribution_flag; TSLA pays no dividend so no ex-div arb signature"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -629546735.0,
+      "cum_premium_flow_90d": 33613861.0,
+      "win_rate": 0.6119,
+      "win_rate_uncapped": 0.6119,
+      "win_rate_n": 134,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.0224,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op (TRANSITIONAL; no clear directional conflict with a short)",
+        "cluster": "no-op (no pairwise >= 0.70 partner in today's candidate union)",
+        "sector": "no-op (Consumer Cyclical persistence 0.6 ROTATING-bearish confirms the short, not adverse)",
+        "fundamentals": "CONFIRM (EPS -37.66% YoY at 308x PE, most recent qtr -36.43% miss, insider MSPR -45.35 negative five straight months)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2 and Core PCE + Q2 GDP 2026-07-30 T+3 both inside the swing horizon; own earnings 2026-10-20 T+85 non-binding)",
+        "excess": "pass (+0.0224 > 0; no downgrade from the C2 market-excess gate)"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price all unavailable, no screen fallback fired. NA never penalises."
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume",
+        "note": "no bullish-side OI closing signature; short thesis so the C28 screen is informational"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken - sub-floor",
+      "entry_or_trigger": "none - raw_score 2 below the LOW floor of 3",
+      "invalidation": "n/a - no position taken. Would re-test on a close back above the 20SMA with cum_flow_30d turning positive.",
+      "key_risks": [
+        "Musk/SpaceX headline risk is a correlated non-fundamental swing factor",
+        "cum_flow_30d of -$629.5M is only ~1.5% of TSLA's ~$41.8B 30d gross premium - scale-degeneracy caveat",
+        "No near-term earnings catalyst (T+85) so the short has no company-specific event to work with"
+      ],
+      "thesis": "Sector-rotation leader out of a confirmed-rotating-out Consumer Cyclical, with 5/5-session ask-side OPENING put buying (12/18 560P $20.3M, 12/18 570P $17.2M, 7/31 400P $17.0M, 83% ask-side ex-0DTE) and -16.33% over five sessions. Fundamentals CONFIRM. Died at raw_score 2 because the frozen rubric offers only two scoreable lines for a pure flow-driven short and both measure the same underlying quantity."
+    },
+    {
+      "ticker": "PLTR",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [
+        {
+          "rubric_line": "+1 MECHANIZED DEX flip in trade direction",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "scripts/dex_flip.py",
+          "evidence": "net_dex 2026-07-24 -480,058,776 -> 2026-07-27 +947,286,825; prior 3 sessions (07-22 -178,327,379, 07-23 -328,543,917, 07-24 -480,058,776) all negative; |flip| 947,286,825 vs floor 265,499,262.5 (0.25x trailing-10 median 1,061,997,050); magnitude_ratio 3.57, sign_changes_in_window 2, whipsaw_warning false; GEX flipped positive same day"
+        },
+        {
+          "rubric_line": "+1 earnings-scout BUY VOL",
+          "points": 1,
+          "source_agent": "earnings-scout",
+          "source_tool": "uw options-structure iv-term-structure + term-skew + front-end-iv-ratio",
+          "evidence": "Earnings 2026-08-03 PM (7 DTE). Hygiene: raw BACKWARDATION -> shape KINKED, base_shape CONTANGO, flipped=true. Kink DTE 11 / 2026-08-07 / 9.1% prominence = the correct first expiry after the print. kink_attribution EARNINGS - the only macro-decontaminated kink in the scan. front_end_ratio 0.946, back-month skew 1.01 COMPLACENT"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical oi-trend --days 5",
+          "evidence": "BUILDING, consecutive 5, net +340,634; 5d top-contract CALL-dominant 2.1:1 (+169,518 vs +80,954) in the LONG direction"
+        },
+        {
+          "rubric_line": "-3 flow_conflict",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d -203,873,113 opposes the LONG thesis; magnitude 1.05x the union median of $195.04M (8th of 14)"
+        }
+      ],
+      "dominant_signal_class": "gamma_breakout",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -203873113.0,
+      "cum_premium_flow_90d": -193445926.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op (software/AI-application complex led the tape up; consistent with a LONG)",
+        "cluster": "no-op (no pairwise >= 0.70 partner)",
+        "sector": "no-op (Technology persistence 1.0 INFLOW nominally confirms, but Trap 1 applies - the aggregate is software(+) netted against semis(-))",
+        "fundamentals": "CONFIRM (4/4 beat streak, +67.71% revenue YoY, 84.07% gross margin) - fundamentals-only; the flow thesis had already failed upstream",
+        "event_risk": "-1 tier (FOMC T+2, Core PCE + Q2 GDP T+3; own earnings 2026-08-03 T+5 - capped at -1, not stacked)",
+        "excess": "n/a - NA(substrate), no class win-rate to test"
+      },
+      "fundamentals_verdict": "CONFIRM",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable, no screen fallback fired."
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume",
+        "note": "modest call OI decay at 130/140/175 (25-53 DTE) - light de-risking, below the institutional threshold"
+      },
+      "implied_move": 4.52,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken - would have been a long 2026-08-07 straddle (130) or 122.5/140 strangle",
+      "entry_or_trigger": "none - raw_score 0",
+      "invalidation": "n/a - no position. The vol thesis would invalidate if the 8/07 kink compresses toward the dte18 base level before 8/03.",
+      "key_risks": [
+        "accumulation-hunter REJECTED the DP signal as a closing-cross artifact (all 4 mega trades inside 20:00:06-20:00:34Z; institutional-accumulation NEUTRAL 1.49)",
+        "sweep-tracker: only 1 of 5 sessions in the persistence list and that session reads bearish; 76% bid-side today - the +7.00% rip is not sweep-confirmed",
+        "cum_flow_30d -$203.9M runs against the long beneath a +7% print",
+        "PS 70.5x / PE 138x leaves large multiple-compression risk on a merely-in-line guide"
+      ],
+      "thesis": "The only name carrying both a qualifying mechanized DEX flip (LONG, magnitude ratio 3.57) and a clean macro-decontaminated earnings vol kink (8/07, implied move 4.52%). Killed by a -3 flow_conflict: the 30-day cumulative premium book is -$203.9M against the long, and both the accumulation and sweep lanes independently rejected the move as closing-cross and retail/0DTE-driven rather than institutional."
+    },
+    {
+      "ticker": "SMH",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg-strategist directional structure (term-structure-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "7/31 532.5/527.5 put vertical, 76,400 lots per leg, both legs same second 19:13:09Z, $11.3M net debit on $141M gross, max gain $26.9M (2.38:1). multi_day_repeat_count 2 - the 7/24 identical pair converted ~98% into OI (61,199 vol -> 60,286 OI). Term anchor: hygiene-verified KINKED @ 2026-08-07; the structure's own 7/31 tenor is 90.2% IV on 12,661 contracts vs 65.0% at 7 DTE - the first expiry after FOMC+PCE, with a vertical used to strip the event vol while keeping direction. SMH GEX FULLY_NEGATIVE, total_gex -$318M"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical oi-trend --days 5",
+          "evidence": "BUILDING, consecutive 5, net +789,272; 5d top-contract PUT-dominant 9:1 (+611,133 puts vs +68,149 calls) in the SHORT direction"
+        },
+        {
+          "rubric_line": "-3 flow_conflict",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +221,764,010 opposes the SHORT thesis; magnitude 1.14x the union median of $195.04M (9th of 14). SEE key_risks - this deduction is probably partly an artifact of the very structure it penalises"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 221764010.0,
+      "cum_premium_flow_90d": -3663517.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "-1 tier (semis_infra_cluster: SMH/AMD 0.924, SMH/INTC 0.899, SMH/SNDK 0.873, SMH/MU 0.864 - all >= 0.70; AMD kept as highest raw_score in cluster)",
+        "sector": "-1 tier (Technology persistence 1.0 INFLOW is adverse to a SHORT - though Trap 1 means the aggregate is unreliable and the SMH ETF tape itself reads clean bearish)",
+        "fundamentals": "NA (ETF - outside fundamentals-gate scope; NA never penalises)",
+        "event_risk": "-1 tier (FOMC T+2, Core PCE + Q2 GDP T+3 - the structure's own 7/31 expiry sits directly on top of both)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "ETF - fz fundamentals lane not applicable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume",
+        "note": "short thesis; no bullish-side closing signature to screen"
+      },
+      "implied_move": 9.46,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken - the observed institutional structure is a 7/31 532.5/527.5 put debit vertical",
+      "entry_or_trigger": "none - raw_score 0",
+      "invalidation": "n/a - no position. The observed structure invalidates if SMH reclaims 555 before 7/31, if the 7/31 IV bump collapses toward the 65% 7-DTE tenor without SMH moving, or if tomorrow's OI shows the 76,400 pair decreasing.",
+      "key_risks": [
+        "ARTIFACT: a 532.5/527.5 put DEBIT vertical SELLS the 527.5P, which UW books as bullish premium - roughly $65M+ of the +$221.8M that generated this call's own -3 flow_conflict. The deduction is partly manufactured by the bearish structure it penalises. Registered for the next calibration-audit.",
+        "Both legs print no_side; net_ask_bid -561/-76 on 60k volume is cross noise - the aggressor is unobservable and the bearish sign is inferred from the surrounding book, not measured",
+        "Correlation: SMH duplicates AMD/INTC/MU/SNDK risk (pairwise 0.76-0.92) - a semis-short book would be one position, not four",
+        "SMH 530P prints $8.15 against the 527.5P's $8.48 - a put-monotonicity violation; do not build on the 530 leg"
+      ],
+      "thesis": "The strongest single institutional structure on the tape: a repeat-session, OI-confirmed-opening 7/31 put debit vertical deliberately placed on the first expiry after FOMC and PCE, using a vertical to avoid paying the 90.2%-vs-65% event vol. It scored zero because the sold put leg mechanically inflates SMH's bullish net-premium reading, which then triggered a -3 flow_conflict against it."
+    },
+    {
+      "ticker": "INTC",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg-strategist directional structure (term-structure-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "Resolves the day's $193.0M and $65.5M no_side mystery tickets as two legs of one package, both at 19:24:01Z: BUY 70C 2026-11-20 65,200 @ $29.60 (delta 0.798) / SELL 97.5C 2026-09-18 70,000 @ $9.35 (delta 0.496) = $127.5M net debit diagonal, +1.73M shares delta, vega ~ -255/pt (flat). Legs verified analytically at S=92.125: 70C reprices $29.54 vs $29.60 printed and delta 0.7976 vs 0.7976; 97.5C $9.42 vs $9.35, delta 0.4958 vs 0.4958 - NOT the un-split-adjusted strike artifact. Term anchor: the only name whose BACKWARDATION label survived hygiene unflipped, no kink, sells the richer 86.3% front and buys the cheaper 83.5% back"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical oi-trend --days 5",
+          "evidence": "BUILDING, consecutive 5, net +810,648; 5d top-contract CALL-dominant (+261,705 vs +173,852) in the LONG direction; mixed composition - the largest single 07-27 builds are P55 +16,279 and the DTE-325 P85 +13,503"
+        },
+        {
+          "rubric_line": "-3 flow_conflict",
+          "points": -3,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d -836,153,067 with explicit tool trend_direction BEARISH, magnitude 4.3x the union median of $195.04M - clearly opposite the LONG routing on both tests"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -836153067.0,
+      "cum_premium_flow_90d": -707030902.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "-1 tier (LONG against a semis complex leading the tape down; explicit directional-conflict tag from Phase 2a)",
+        "cluster": "-1 tier (semis_infra_cluster: INTC/SMH 0.899, INTC/AMD 0.869, INTC/MU 0.797, INTC/SNDK 0.763; AMD kept as highest raw_score)",
+        "sector": "no-op (Technology persistence 1.0 INFLOW nominally confirms the long on an options-flow basis, though Trap 1 makes the aggregate unreliable)",
+        "fundamentals": "NA (not among the top-5 by raw_score sent to fundamentals-gate; NA never penalises)",
+        "event_risk": "-1 tier (FOMC T+2, Core PCE + Q2 GDP T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "not in top-5 fundamentals-gate scope this run"
+      },
+      "distribution_flag": {
+        "present": true,
+        "source_tool": "uw oi decrease-with-volume",
+        "closing_side": "call",
+        "note": "contrarian-scanner found heavy one-directional call OI closing across 6+ strikes/tenors (125-210 strike, 25-116 DTE) - long calls capitulating after the sell-off, which reads as downtrend confirmation rather than a bottom. Advisory, 0 points, 0 tier impact."
+      },
+      "implied_move": 11.5,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken - the observed institutional structure is a Nov-20 70C / Sep-18 97.5C diagonal",
+      "entry_or_trigger": "none - raw_score 0",
+      "invalidation": "n/a - no position. The observed structure invalidates below 85 (the Nov 70C loses its delta cushion and the Sep short stops financing), or if tomorrow's OI shows the Sep-18 97.5 line decreasing ~70,000 without a matching Nov-20 70 increase.",
+      "key_risks": [
+        "DIRECTIONAL CONFLICT: multileg reads BULLISH while the sector-rotation conditional fires BEARISH on -$836.2M. Sensitivity checked - routed SHORT the call scores 2 and also DROPs, so the conflict does not change the outcome",
+        "NARRATIVE CORRECTION: the multileg agent framed this as a bid for the semis washout. Per DATA_CORRECTION.md INTC fell 0.70% today, not 8.54% - there was no washout. The structure stands; the knife-catching characterisation is withdrawn",
+        "Everything unscored leans bearish: conviction-matrix COVERED_CALL 14.5%, the only DTE>180 OI move is a put (+13,503 P85 at DTE 325), the single-leg whale print is a deep-ITM synthetic short (1/15/27 170P at ask), net premium -$13.7M",
+        "A live financing desk in the name (7/31 deep-ITM 1-wide call pairs at near-identical sizes = boxes/conversions) raises the balance-sheet prior, though +1.73M shares of delta argues it is a genuine risk position",
+        "gex returned zero_gamma_level 24.3 against spot 91.67 - ZGL-grid artifact, so no gamma context is available for this name"
+      ],
+      "thesis": "A $127.5M deep-ITM Nov/Sep call diagonal, both legs Black-Scholes-verified to the penny and printed in the same second - the hardest structural evidence on the tape, expressing months-long recovery with upside capped at 97.5 through mid-September. Scored zero: the 30-day cumulative premium book is -$836.2M with an explicit BEARISH label at 4.3x the union median, so the -3 flow_conflict fires undiluted against the long routing."
+    },
+    {
+      "ticker": "WOLF",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 4,
+      "score_components": [
+        {
+          "rubric_line": "+2 multileg-strategist directional structure (term-structure-anchored)",
+          "points": 2,
+          "source_agent": "multileg-strategist",
+          "source_tool": "uw hot-chains multileg",
+          "evidence": "9/18 broken-wing put ladder, THE CLEANEST AGGRESSOR EVIDENCE ON THE TAPE - every leg carries an explicit side across multiple trades: BUY 30P 42,509 @ask, BUY 25P 22,501 @ask, BUY 22.5P 40,005 @ask, BUY 20P 18,003 @ask, SELL 17.5P 50,112 @bid, SELL 2027 65C 21,251 @bid. ~$58M net debit, net long ~72,900 puts = -5.8M shares (-$131M notional vs $138M ADV). Term anchor: hygiene KINKED @ 8/28 at 149.6%; they bought the post-kink 9/18 tenor at 131.7%, spanning the catalyst without paying for it"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical oi-trend --days 5",
+          "evidence": "BUILDING, PUT-dominant +22,857 vs +15,914 - aligned with the SHORT direction"
+        },
+        {
+          "rubric_line": "+1 cumulative-premium-flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "-71,925,982, tool trend_direction BEARISH, >= $50M, and 19.7% of gross - one of only two genuinely directional flow reads on the tape today"
+        }
+      ],
+      "dominant_signal_class": "multileg_directional",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -71925982.0,
+      "cum_premium_flow_90d": -144462111.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "-1 tier (Technology persistence 1.0 INFLOW adverse to the short)",
+        "fundamentals": "-1 tier (CAUTION: insider MSPR +33.33 buying against a $58M put ladder; leverage_flag mislabel noted)",
+        "event_risk": "-1 tier (FOMC T+2 / PCE-GDP T+3; own earnings 2026-08-24 T+28 outside horizon, non-binding)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FAILED the >=2-agent confluence gate - multileg only. Step-0 confluence_bearish score 5 is funnel-seed only, 0 points, and explicitly NOT a second opinion (2026-06-12 P0.2)",
+        "Fundamentals CAUTION: insiders are net BUYING (MSPR +33.33; Jul-26 +100 / +38,775 shares) into a $58M put ladder - the pattern that produces squeezes in distressed-recovery names",
+        "finnhub leverage_flag reads 'low' but raw D/E is 6.9952 and current ratio 0.3586 - a script mislabel, likely a near-zero/negative equity denominator post-restructuring",
+        "Competing explanation UNRESOLVED: the ladder may be convertible-arb / hard-to-borrow synthetic short rather than directional. Argued against by the 2027 65C sale monetising the recovery tail, but not ruled out",
+        "Risk cap NOT fully defined - the short 2027 65C sleeve is uncapped above $65",
+        "Post-restructuring microcap, beta 6.34"
+      ],
+      "thesis": "The highest-scoring name on the board (raw 4) and the cleanest aggressor evidence anywhere on the tape - and it still fails, on one agent. #1 bearish net premium (-$69.9M), +3.07% today but -18.99% over five sessions."
+    },
+    {
+      "ticker": "AMD",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 3,
+      "score_components": [
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (CONDITIONAL)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "all three legs pass: persistence >= 0.6, cum_flow_30d -225,844,347 aligned SHORT, >= $50M"
+        },
+        {
+          "rubric_line": "+1 cumulative-premium-flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "-225,844,347 aligned SHORT, >= $50M, no C28 flag"
+        },
+        {
+          "rubric_line": "+1 multi-day OI build",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical oi-trend --days 5",
+          "evidence": "BUILDING, PUT-dominant +97,444 vs +77,809 - the only name today clearing the C4 opening gate cleanly in its trade direction"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -225844347.0,
+      "cum_premium_flow_90d": -14915148.0,
+      "win_rate": 0.6119,
+      "win_rate_uncapped": 0.6119,
+      "win_rate_n": 134,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.0224,
+      "pre_risk_size": "skip",
+      "final_size": "watch_only",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op (AMD is the kept/highest-scored member of semis_infra_cluster)",
+        "sector": "-1 tier (Technology persistence 1.0 INFLOW adverse to the short) - moot, VETO overrides",
+        "fundamentals": "VETO -> watch-only (3/4 beat streak, +34.97% revenue / +123.4% EPS growth, Wedbush AI upgrade + MSFT partnership, 8 days pre-earnings - squeeze risk)",
+        "event_risk": "-1 tier (FOMC T+2 / PCE-GDP T+3; own earnings 2026-08-04 T+6) - moot, VETO overrides",
+        "excess": "pass"
+      },
+      "fundamentals_verdict": "VETO",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FUNDAMENTALS VETO - short flow into a 3-of-4 beat streak with +34.97% revenue and +123.4% EPS growth, and a net-bullish catalyst stack (Wedbush AI upgrade, Microsoft partnership, Helios platform) 8 days before the 2026-08-04 print. This is the mirror image of accumulation-into-a-miss and it is a squeeze setup",
+        "FAILED the >=2-agent confluence gate - sector-rotation only",
+        "Today's -5.17% is tape-wide semis sympathy, not an AMD-specific fundamental event; AMD's own news this week skews bullish",
+        "Kept member of semis_infra_cluster (SMH/AMD 0.924) - would have absorbed SMH, INTC, MU and SNDK risk",
+        "PE ~160x / PS ~23x means multiple-compression risk still exists on a miss - the VETO says this short setup is wrong, not that AMD can never be shorted"
+      ],
+      "thesis": "Scored LOW (3) with the cleanest C4 opening-gate pass on the board, then took a fundamentals VETO. Short flow into a strengthening name eight days before earnings."
+    },
+    {
+      "ticker": "AMZN",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 2,
+      "score_components": [
+        {
+          "rubric_line": "+1 sector-rotation single-name leader (CONDITIONAL)",
+          "points": 1,
+          "source_agent": "sector-rotation-strategist",
+          "source_tool": "uw options-flow sector-flow-persistence",
+          "evidence": "Consumer Cyclical persistence 0.6, cum_flow_30d -186,199,912 aligned SHORT, >= $50M"
+        },
+        {
+          "rubric_line": "+1 cumulative-premium-flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "-186,199,912 aligned SHORT"
+        }
+      ],
+      "dominant_signal_class": "bearish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -186199912.0,
+      "cum_premium_flow_90d": -179425724.0,
+      "win_rate": 0.6119,
+      "win_rate_uncapped": 0.6119,
+      "win_rate_n": 134,
+      "win_rate_source": "backtest_clean",
+      "market_excess": 0.0224,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "-1 tier (CAUTION - imminent earnings + macro pile-up)",
+        "event_risk": "-1 tier (own earnings 2026-07-30 T+3 coincident with Core PCE + Q2 GDP; FOMC T+2)",
+        "excess": "pass"
+      },
+      "fundamentals_verdict": "CAUTION",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FAILED the >=2-agent confluence gate - sector-rotation only",
+        "Earnings 2026-07-30 lands the SAME SESSION as Core PCE and Q2 GDP - the most concentrated binary-event day across the whole candidate set",
+        "cum_flow_30d is only ~1.5% of gross two-way premium - scale-degeneracy caveat",
+        "Growth is genuinely strong (+36.46% EPS, +14.22% revenue YoY, 12.22% net margin) and is a real counter-fundamental to the short"
+      ],
+      "thesis": "Sector-rotation leader out of Consumer Cyclical. One agent, raw 2, and the single most concentrated binary-event exposure in the set."
+    },
+    {
+      "ticker": "DELL",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "long",
+      "tier": "DROP",
+      "raw_score": 1,
+      "score_components": [
+        {
+          "rubric_line": "+1 cumulative-premium-flow net directional accretion 30d (intent-screened)",
+          "points": 1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "+73,796,149 aligned LONG, >= $50M, no C28 distribution_flag"
+        }
+      ],
+      "dominant_signal_class": "bullish_flow",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 73796149.0,
+      "cum_premium_flow_90d": 279521691.0,
+      "win_rate": 0.3923,
+      "win_rate_uncapped": 0.3923,
+      "win_rate_n": 130,
+      "win_rate_source": "backtest_clean",
+      "market_excess": -0.0385,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - failed the >=2-agent confluence gate)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "starter (market_excess -0.0385 <= 0; sub-0.50 clean WR floor also binds)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FAILED the >=2-agent confluence gate - sweep-tracker only, and sweeps earn 0 rubric points since 2026-05-23 P0.3",
+        "0 of 5 sessions in the sweep-persistence list - purely single-day",
+        "bullish_flow class clean WR 0.3923 with market_excess -0.0385 - below the 0.50 floor and negative excess, so it would size at starter/skip regardless",
+        "C4 opening gate FAILS - 5d OI build is put-dominant, against the long thesis",
+        "The near-dated leg sits inside FOMC week"
+      ],
+      "thesis": "The only genuine ask-side buying sweep-tracker found all day - call buys plus a put sale, a bullish risk reversal - but at $2-4M tickets with zero multi-day persistence."
+    },
+    {
+      "ticker": "NVDA",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "short",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [
+        {
+          "rubric_line": "+1 MECHANIZED DEX flip in trade direction",
+          "points": 1,
+          "source_agent": "dealer-positioning-strategist",
+          "source_tool": "scripts/dex_flip.py",
+          "evidence": "THE CLEANEST FLIP ON THE BOARD. net_dex 2026-07-24 +3,162,134,515 -> 2026-07-27 -3,635,988,005; prior 10 sessions (07-13 +5,807,663,366, 07-14 +13,950,823,407, 07-15 +15,127,302,353, 07-16 +8,381,868,937, 07-17 +3,934,431,028, 07-20 +2,234,211,074, 07-21 +5,096,820,482, 07-22 +10,750,319,528, 07-23 +5,019,710,392, 07-24 +3,162,134,515) all positive; |flip| 3,635,988,005 vs floor 1,363,060,481 (0.25x trailing-10 median 5,452,241,924); magnitude_ratio 2.67, sign_changes_in_window 1, whipsaw_warning false. GEX regime flipped POSITIVE->NEGATIVE the same day; exposure spread across dozens of strikes $115-230+, not a single-strike artifact"
+        },
+        {
+          "rubric_line": "-1 flow_conflict_lite",
+          "points": -1,
+          "source_agent": "signal-confluence-quant",
+          "source_tool": "uw historical cumulative-premium-flow",
+          "evidence": "cum_flow_30d +22,171,520 opposes the SHORT thesis at 11% of the union median - below the 25% threshold, so the lite deduction applies rather than the full -3"
+        }
+      ],
+      "dominant_signal_class": "gamma_breakout",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 22171520.0,
+      "cum_premium_flow_90d": -279408817.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA(substrate)",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - failed the >=2-agent confluence gate)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FAILED the >=2-agent confluence gate - dealer-positioning only. vol-surface explicitly declined to flag it, sector-rotation fails leg B (+$22.2M misaligned with a short), multileg rejected its 7/31 calls as bid-side overwriting",
+        "The +1 mechanized flip line is worth exactly one point, which a -1 flow_conflict_lite erases - the flip test is working, it simply cannot carry a call alone",
+        "Member of semis_infra_cluster",
+        "Karsan/SqueezeMetrics dealer-flow persistence has no peer-reviewed support at the 1-4 week horizon (hedging pressure is intraday-mean-reverting, Baltussen et al. 2021)"
+      ],
+      "thesis": "The cleanest mechanized DEX flip on the board - ten straight positive sessions breaking today, GEX confirming same-day, no whipsaw - and it scores exactly zero because the tape's own cumulative flow cancels its single point."
+    },
+    {
+      "ticker": "MU",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "none",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 536152287.0,
+      "cum_premium_flow_90d": 292104139.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - no positive rubric line and no dominant signal class)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "Flag withdrawn - see DATA_CORRECTION.md. raw iv_rank 79.9 vs GS percentile 42.47 is a 37-point divergence driven by a single-day spike that was smaller than believed",
+        "accumulation-hunter REJECTED: mega buy_ratio 0.602 collapses to ~0.23 once two 20:07:47Z closing-cross trades (81% of mega buy volume) are stripped; real-session premarket crosses at trade_vs_mid -21.45/-13.95/-19.13 are aggressive SELLS into a stale NBBO; institutional-accumulation NEUTRAL 1.02",
+        "sweep-tracker: 5 of 7 top tickets bid-side closing, only 30% ask-side",
+        "Un-split-adjusted strike-grid artifact - tickets at 2110/1710/1810/1300 against a $900 spot",
+        "dex_flip: MU flipped on 2026-07-24, so 07-27 is a continuation (prior_run_length 0), NOT a new flip"
+      ],
+      "thesis": "vol-surface's BUY VOL flag was WITHDRAWN after the data correction: it was premised on a -9.09% print that was actually -2.25%. The agent's own Goyal-Saretto read (42.47, NORMAL) already contradicted the raw iv_rank of 79.9."
+    },
+    {
+      "ticker": "SNDK",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "none",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 753343608.0,
+      "cum_premium_flow_90d": 2250581596.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - no positive rubric line and no dominant signal class)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": false,
+        "source_tool": "uw oi decrease-with-volume"
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "FAILED the >=2-agent confluence gate - vol-surface only",
+        "RUBRIC-COVERAGE GAP: 'FLAT when it should be KINKED' is a real underpriced-event setup the frozen rubric cannot score. Registered for the next calibration-audit",
+        "sweep-tracker resolved the +$58.1M 'bullish' premium as a mirage - the three largest tickets ($49.0M/$33.8M/$19.3M) are deep-ITM long-dated puts SOLD AT THE BID (closing protection at a profit); the one genuinely fresh ticket is $38.6M BUYING an OTM put at the ask, which is bearish",
+        "accumulation-hunter: institutional-accumulation 0.87 sell-leaning, mega buy_ratio 0.153 (85% sell at the top tier)",
+        "earnings-scout: the 11.53% implied move is a sector-wide storage/memory re-rating, not a targeted 8/5 event premium"
+      ],
+      "thesis": "vol-surface BUY VOL stands on the evidence (-11.02% is correct, VRP -0.081, GS percentile 90.41 HIGH_IV, hygiene shape FLAT despite earnings nine days out) but scores zero: the +1 rubric line requires KINKED or BACKWARDATION and the hygiene shape is FLAT."
+    },
+    {
+      "ticker": "GOOGL",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "none",
+      "confluence_score": null,
+      "cum_premium_flow_30d": -3743255.0,
+      "cum_premium_flow_90d": -563786007.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - no positive rubric line and no dominant signal class)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": true,
+        "source_tool": "uw insights institutional-accumulation",
+        "closing_side": "mixed",
+        "note": "DISTRIBUTION buy_sell_ratio 0.59 on a 4,348-trade sample, mega-tier buy_ratio 0.163 - genuine broad-sample institutional selling into a +2.13% day, not a closing-cross artifact. Advisory, 0 points, 0 tier impact."
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "institutional-accumulation DISTRIBUTION 0.59 on 4,348 trades, mega buy_ratio 0.163 - NOT closing-cross dependent, unlike most of today's DP signals",
+        "Institutions net-selling mega-cap tech into +2.13% strength ahead of FOMC",
+        "The rubric has no distribution deduction line - C28 is an intent screen on the cum-flow +1, not a standalone penalty",
+        "sector-rotation: fails leg B, 30d cum-flow is net negative beneath the green print"
+      ],
+      "thesis": "No rubric line fires. Carried for the audit trail because accumulation-hunter found genuine, broad-sample institutional DISTRIBUTION into a green day - a bearish caution the rubric has no line to express."
+    },
+    {
+      "ticker": "AAPL",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "none",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 21011129.0,
+      "cum_premium_flow_90d": 434919203.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - no positive rubric line and no dominant signal class)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": true,
+        "source_tool": "uw insights institutional-accumulation",
+        "closing_side": "mixed",
+        "note": "DISTRIBUTION buy_sell_ratio 0.60 on a 9,440-trade sample, mega-tier buy_ratio 0.094. Advisory, 0 points, 0 tier impact."
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "institutional-accumulation DISTRIBUTION 0.60 on 9,440 trades, mega buy_ratio 0.094 (91% sell at the top tier)",
+        "Earnings 2026-07-30 lands the same session as Core PCE and Q2 GDP - earnings-scout rated the kink AMBIGUOUS and un-splittable",
+        "AAPL carries the one mild TAIL_HEDGING back-month skew reading in the whole vol scan (ratio 1.145)"
+      ],
+      "thesis": "No rubric line fires. Same pattern as GOOGL - genuine broad-sample institutional distribution into strength."
+    },
+    {
+      "ticker": "JPM",
+      "horizon": "swing",
+      "section": "watch_only",
+      "direction": "neutral",
+      "tier": "DROP",
+      "raw_score": 0,
+      "score_components": [],
+      "dominant_signal_class": "none",
+      "confluence_score": null,
+      "cum_premium_flow_30d": 47989672.0,
+      "cum_premium_flow_90d": -79672736.0,
+      "win_rate": null,
+      "win_rate_uncapped": null,
+      "win_rate_n": null,
+      "win_rate_source": "NA",
+      "market_excess": null,
+      "pre_risk_size": "skip",
+      "final_size": "skip",
+      "gate_verdicts": {
+        "vrp": "no-op (directional equity call, not a vol-structure trade; SPY VRP +0.0305 FAIR, QQQ VRP -0.0167 NEGATIVE recorded as context)",
+        "panic": "-1 tier (QQQ front_end_iv_ratio 1.221 > 1.10; all gate-relevant candidates are Nasdaq/tech-complex so the reading is binding market-wide)",
+        "debate": "n/a - not run (flat board; the debate gate can only cut size and there is no size to cut)",
+        "rubric_regime": "capped half (OUT-OF-REGIME - rubric fitted UPTREND ended 2026-06-12, current TRANSITIONAL; 0/30 post-freeze HIGH/MEDIUM resolved)",
+        "regime": "no-op",
+        "cluster": "no-op",
+        "sector": "no-op",
+        "fundamentals": "NA (not evaluated - no positive rubric line and no dominant signal class)",
+        "event_risk": "-1 tier (FOMC 2026-07-29 T+2, Core PCE + Q2 GDP 2026-07-30 T+3)",
+        "excess": "n/a - NA(substrate)"
+      },
+      "fundamentals_verdict": "NA",
+      "fz_context": {
+        "available": false,
+        "note": "fz_enrich upstream_gaps: short_interest / recom / target_price unavailable"
+      },
+      "distribution_flag": {
+        "present": true,
+        "source_tool": "uw oi decrease-with-volume",
+        "closing_side": "call",
+        "closing_premium": 1150000.0,
+        "note": "Call OI closing at 360/350/320 strikes, $377K-$1.15M premium each - above the $100K institutional floor. Independently withheld the cum-flow +1. Advisory, 0 points."
+      },
+      "implied_move": null,
+      "dp_block_to_float_ratio": null,
+      "insider_cluster_flag": null,
+      "debate_residual_confidence": null,
+      "debate_residuals": null,
+      "structure": "none taken",
+      "entry_or_trigger": "none - failed the >=2-agent confluence gate",
+      "invalidation": "n/a - no position taken",
+      "key_risks": [
+        "sector-rotation conditional +1 fails leg C by $2M (+$47,989,672 vs the $50M floor)",
+        "cum-flow +1 withheld twice over: below the $50M floor AND a C28 distribution_flag is present (call OI closing at 320/350/360, $377K-$1.15M premium each)",
+        "accumulation-hunter explicitly DECLINED to flag it - 47% of mega buy volume is the 20:00:08-20:00:21Z closing cross; the headline institutional-accumulation 2.86 is contaminated and should not be quoted at face value",
+        "Reads as FOMC-week positioning in a rate-sensitive financial rather than thesis accumulation",
+        "No clean independent DP support shelf - the dominant 356.20 level IS the closing-cross cluster"
+      ],
+      "thesis": "The closest miss on the board and a clean example of two independent screens doing their job: the sector-leader +1 misses its $50M magnitude leg by $2M, and the cum-flow +1 fails both that floor and the C28 intent screen."
+    }
+  ]
+}

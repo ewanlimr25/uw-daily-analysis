@@ -1,0 +1,413 @@
+{
+  "direction": "bearish",
+  "min_score": 3,
+  "results": [
+    {
+      "close": 53.28,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts"
+      ],
+      "iv_rank": 33.3361,
+      "net_flow": -1675426,
+      "put_call_ratio": 1.5765192961703387,
+      "score": 5,
+      "sector": "Financial Services",
+      "ticker": "BHF",
+      "volume_ratio": 16.72
+    },
+    {
+      "close": 101.25,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts"
+      ],
+      "iv_rank": 42.6001,
+      "net_flow": -198870,
+      "put_call_ratio": 1.5735829433177326,
+      "score": 5,
+      "sector": "Industrials",
+      "ticker": "MRCY",
+      "volume_ratio": 3.55
+    },
+    {
+      "close": 234.69,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 93.6153,
+      "net_flow": -2348081,
+      "put_call_ratio": 0.6216905275544224,
+      "score": 5,
+      "sector": "Consumer Cyclical",
+      "ticker": "ROST",
+      "volume_ratio": 2.62
+    },
+    {
+      "close": 160.31,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 93.2099,
+      "net_flow": -922855,
+      "put_call_ratio": 2.5585314474872103,
+      "score": 5,
+      "sector": "Healthcare",
+      "ticker": "NVS",
+      "volume_ratio": 5.18
+    },
+    {
+      "close": 580.63,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 79.1174,
+      "net_flow": -2358667,
+      "put_call_ratio": 1.2868765475769366,
+      "score": 5,
+      "sector": "Industrials",
+      "ticker": "DE",
+      "volume_ratio": 3.13
+    },
+    {
+      "close": 14.6,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 80.1538,
+      "net_flow": -567416,
+      "put_call_ratio": 0.24279773156899812,
+      "score": 5,
+      "sector": "Healthcare",
+      "ticker": "CCXI",
+      "volume_ratio": 2.62
+    },
+    {
+      "close": 251.29,
+      "factors": [
+        "high_pcr",
+        "dp_distribution",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 86.1943,
+      "net_flow": 299431,
+      "put_call_ratio": 2.2537688442211055,
+      "score": 4,
+      "sector": "Technology",
+      "ticker": "ADSK",
+      "volume_ratio": 0.42
+    },
+    {
+      "close": 29.91,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "oi_building_puts"
+      ],
+      "iv_rank": 25.5576,
+      "net_flow": -89567,
+      "put_call_ratio": 42.02623906705539,
+      "score": 4,
+      "sector": null,
+      "ticker": "JETS",
+      "volume_ratio": 3.31
+    },
+    {
+      "close": 13.79,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "dp_distribution",
+        "oi_building_puts"
+      ],
+      "iv_rank": 24.6907,
+      "net_flow": -44788,
+      "put_call_ratio": 0.05475214600572268,
+      "score": 4,
+      "sector": "Communication Services",
+      "ticker": "VG",
+      "volume_ratio": 2.11
+    },
+    {
+      "close": 94.13,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "oi_building_puts",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 72.4818,
+      "net_flow": -340821,
+      "put_call_ratio": 0.050257202888400514,
+      "score": 4,
+      "sector": "Healthcare",
+      "ticker": "MDT",
+      "volume_ratio": 3.56
+    },
+    {
+      "close": 116.92,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "dp_distribution",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 85.2206,
+      "net_flow": -1272,
+      "put_call_ratio": 3,
+      "score": 4,
+      "sector": "Consumer Defensive",
+      "ticker": "MZTI",
+      "volume_ratio": 0.25
+    },
+    {
+      "close": 34.66,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 15.2821,
+      "net_flow": -387,
+      "put_call_ratio": 14.5,
+      "score": 4,
+      "sector": null,
+      "ticker": "HGER",
+      "volume_ratio": 3.04
+    },
+    {
+      "close": 7.98,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 22.2166,
+      "net_flow": -1806,
+      "put_call_ratio": 13.75,
+      "score": 4,
+      "sector": "Basic Materials",
+      "ticker": "SLSR",
+      "volume_ratio": 3.72
+    },
+    {
+      "close": 68.29,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "oi_building_puts"
+      ],
+      "iv_rank": 10.5414,
+      "net_flow": -125832,
+      "put_call_ratio": 5.400651465798045,
+      "score": 4,
+      "sector": "Financial Services",
+      "ticker": "ZION",
+      "volume_ratio": 2.03
+    },
+    {
+      "close": 200.16,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "dp_distribution",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 74.8298,
+      "net_flow": -27773,
+      "put_call_ratio": 4.466666666666667,
+      "score": 4,
+      "sector": "Industrials",
+      "ticker": "DCO",
+      "volume_ratio": 1.57
+    },
+    {
+      "close": 17.5,
+      "factors": [
+        "bearish_flow",
+        "volume_spike",
+        "dp_distribution",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 73.4424,
+      "net_flow": -500,
+      "put_call_ratio": 0,
+      "score": 4,
+      "sector": null,
+      "ticker": "IVOL",
+      "volume_ratio": 2.37
+    },
+    {
+      "close": 81.3,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 70.1969,
+      "net_flow": -323,
+      "put_call_ratio": 1.8571428571428572,
+      "score": 4,
+      "sector": "Consumer Defensive",
+      "ticker": "JBSS",
+      "volume_ratio": 18.63
+    },
+    {
+      "close": 3.43,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 15.7561,
+      "net_flow": -2056,
+      "put_call_ratio": 2.303030303030303,
+      "score": 4,
+      "sector": null,
+      "ticker": "MSTW",
+      "volume_ratio": 2.77
+    },
+    {
+      "close": 11.3,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 40.9006,
+      "net_flow": -96,
+      "put_call_ratio": 10.538461538461538,
+      "score": 4,
+      "sector": "Consumer Cyclical",
+      "ticker": "SVV",
+      "volume_ratio": 8.18
+    },
+    {
+      "close": 117.84,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "dp_distribution",
+        "high_iv_sell_premium"
+      ],
+      "iv_rank": 95.3876,
+      "net_flow": -597,
+      "put_call_ratio": 4.25,
+      "score": 4,
+      "sector": "Financial Services",
+      "ticker": "CM",
+      "volume_ratio": 0.68
+    },
+    {
+      "close": 69.12,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 25.5626,
+      "net_flow": -52738,
+      "put_call_ratio": 4.5,
+      "score": 4,
+      "sector": null,
+      "ticker": "KBE",
+      "volume_ratio": 2.05
+    },
+    {
+      "close": 414.87,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 38.8645,
+      "net_flow": -676282,
+      "put_call_ratio": 58.77777777777778,
+      "score": 4,
+      "sector": "Technology",
+      "ticker": "LFUS",
+      "volume_ratio": 2.04
+    },
+    {
+      "close": 68.16,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 25.9795,
+      "net_flow": -174991,
+      "put_call_ratio": 1.724770642201835,
+      "score": 4,
+      "sector": "Basic Materials",
+      "ticker": "CMC",
+      "volume_ratio": 3.54
+    },
+    {
+      "close": 26.59,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "volume_spike",
+        "dp_distribution"
+      ],
+      "iv_rank": 34.7387,
+      "net_flow": -53302,
+      "put_call_ratio": 19.333333333333332,
+      "score": 4,
+      "sector": "Financial Services",
+      "ticker": "SLM",
+      "volume_ratio": 4.79
+    },
+    {
+      "close": 21.97,
+      "factors": [
+        "bearish_flow",
+        "high_pcr",
+        "dp_distribution",
+        "oi_building_puts"
+      ],
+      "iv_rank": 6.1638,
+      "net_flow": -102353,
+      "put_call_ratio": 2.1368821292775664,
+      "score": 4,
+      "sector": null,
+      "ticker": "BEX",
+      "volume_ratio": 0.57
+    }
+  ],
+  "tickers_found": 25
+}
